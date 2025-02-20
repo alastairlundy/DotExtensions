@@ -54,7 +54,7 @@ namespace AlastairLundy.Extensions.Maths.Averages
         }
 
         /// <summary>
-        /// Returns the arithmetic mean of a 64-Bit integer array.
+        /// Returns the arithmetic mean of a 64 Bit integer array.
         /// </summary>
         /// <param name="values">The array of values to get the arithmetic mean of.</param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace AlastairLundy.Extensions.Maths.Averages
         }
 
         /// <summary>
-        ///  Returns the arithmetic mean of a 32-Bit integer array.
+        ///  Returns the arithmetic mean of a 32 Bit integer array.
         /// </summary>
         /// <param name="values">The array of values to get the arithmetic mean of.</param>
         /// <returns></returns>
