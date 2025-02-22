@@ -23,6 +23,7 @@
    */
 
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -38,6 +39,7 @@ namespace AlastairLundy.Extensions.System.Processes
         /// <param name="process">The process to sanitize the name of.</param>
         /// <param name="excludeFileExtension">Whether to remove the file extension from the Process when sanitizing the process name.</param>
         /// <returns>the sanitized process names.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
         {
 #if NET8_0_OR_GREATER
@@ -53,6 +55,7 @@ namespace AlastairLundy.Extensions.System.Processes
         /// <param name="processNames">The list of Processes to sanitize the names of.</param>
         /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process when sanitizing the process name.</param>
         /// <returns>the sanitized process names.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
         {
             List<string> output;

@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace AlastairLundy.Extensions.System.Processes
         /// </summary>
         /// <param name="process">The process to be checked.</param>
         /// <returns>True if the specified process is running; returns false otherwise.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static bool IsRunning(this Process process)
         {
             if (process.HasStarted())

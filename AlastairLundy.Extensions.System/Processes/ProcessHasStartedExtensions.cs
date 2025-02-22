@@ -35,6 +35,7 @@ public static class ProcessHasStartedExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has started; false otherwise.</returns>
+    [Obsolete("This method is deprecated and will be removed in a future version.")]
     public static bool HasStarted(this Process process)
     {
         try
