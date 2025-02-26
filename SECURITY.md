@@ -14,9 +14,8 @@ These are the currently supported versions of System Extensions.
 
 | Version | Standard Security Support | Extended Security Support |
 | ------- | ------------------ |----|
-| 6.0.x   | Until System Extensions 6.1 | Until System Extensions 6.1 |
-| 5.5.x   | Until System Extensions 6.0 | Until System Extensions 6.0 |
-| < 5.5.x   | :x: | :x: |
+| 6.0.x   | Until System Extensions 6.1 | Until System Extensions 6.2 |
+| < 6.0.x   | :x: | :x: |
 
 
 ### Security Vulnerabilities
