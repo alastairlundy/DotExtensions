@@ -1,23 +1,11 @@
 # This workflow will build and publish System Extensions to Nuget.
 
-name: Publish
+name: Publish to Nuget
 
 on:
   workflow_dispatch:
     
 jobs:
-  publish-github:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - uses: eregon/publish-release@v1.0.6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
-
   publish-nuget:
 
     runs-on: ubuntu-latest
@@ -30,12 +18,12 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-        working-directory: AlastairLundy.Extensions.System/AlastairLundy.Extensions.System/
+        working-directory: AlastairLundy.Extensions.System
     - name: Restore dependencies
       run: dotnet restore
     - name: Create packages
       run: dotnet build -c Release
     - name: Publish the package to nuget.org
-      run: dotnet nuget push */bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push AlastairLundy.Extensions.System/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
