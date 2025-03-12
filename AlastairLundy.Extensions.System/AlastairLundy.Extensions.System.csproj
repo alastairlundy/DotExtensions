@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>13</LangVersion>
         <TargetFrameworks>net8.0;net9.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-        <Version>6.0.0</Version>
+        <Version>6.1.0</Version>
         <Title>AlastairLundy.Extensions.System</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2020-2025</Copyright>
@@ -17,27 +17,8 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <PackageReleaseNotes>## Changes since 5.5.0
-
-### Additions
-* Added ``IsToStringImplemented(this T @this)`` extension method in Types sub-namespace
-* Added ``IFormattable`` ToString extension method
-* Added ``HasStarted`` Process extension method
-
-### Changes
-* Adjusted namespaces
-* Merged String Extensions, Version Extensions, Process Extensions, and Date Extensions back into 1 library.
-* Changed ``FriendlyVersionToString(this Version version)`` method signature to be ``ToFriendlyString(this Version version)``
-* Renamed some string extension methods
-
-### Removals
-* Removed Version Strings AddMissingZeroes extension method
-* Removed Generics extension methods
-* Removed deprecated code
-* Removed String ContainsChar extensions
-* Removed String indexing extensions
-* Removed Date Name extension methods
-</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+- Deprecate Processes method before removal in a future version @alastairlundy (#1)</PackageReleaseNotes>
         <Description>Extensions to C# System classes and structs to improve them.</Description>
         <PackageTags>string extensions, version extensions, system extensions, date extensions</PackageTags>
     </PropertyGroup>
