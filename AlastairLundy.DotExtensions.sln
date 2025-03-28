@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.System", "AlastairLundy.Extensions.System\AlastairLundy.Extensions.System.csproj", "{87031789-C539-46D8-BCAD-9A2A6DD898E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions.Tests", "SystemExtensions.Tests\SystemExtensions.Tests.csproj", "{53EB53FA-D30C-42E3-970D-8F47182BDC6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions", "AlastairLundy.DotExtensions\AlastairLundy.DotExtensions.csproj", "{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{87031789-C539-46D8-BCAD-9A2A6DD898E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87031789-C539-46D8-BCAD-9A2A6DD898E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87031789-C539-46D8-BCAD-9A2A6DD898E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87031789-C539-46D8-BCAD-9A2A6DD898E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53EB53FA-D30C-42E3-970D-8F47182BDC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53EB53FA-D30C-42E3-970D-8F47182BDC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53EB53FA-D30C-42E3-970D-8F47182BDC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU

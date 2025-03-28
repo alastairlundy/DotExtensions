@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using AlastairLundy.Extensions.System.Strings;
+using AlastairLundy.DotExtensions.Strings;
 
 using Bogus.DataSets;
 using SystemExtensions.Tests.TestData;

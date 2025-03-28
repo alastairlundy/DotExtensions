@@ -1,5 +1,5 @@
 ﻿
-using AlastairLundy.Extensions.System.Strings;
+using AlastairLundy.DotExtensions.Strings;
 using Bogus;
 using SystemExtensions.Tests.TestData;
 

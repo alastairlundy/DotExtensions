@@ -24,12 +24,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AlastairLundy.Extensions.System\AlastairLundy.Extensions.System.csproj" />
+      <Folder Include="Generics\" />
+      <Folder Include="Strings\Cases\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Generics\" />
-      <Folder Include="Strings\Cases\" />
+      <ProjectReference Include="..\AlastairLundy.DotExtensions\AlastairLundy.DotExtensions.csproj" />
     </ItemGroup>
 
 </Project>
