@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions.Tests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions", "AlastairLundy.DotExtensions\AlastairLundy.DotExtensions.csproj", "{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions.Resyslib", "AlastairLundy.DotExtensions.Resyslib\AlastairLundy.DotExtensions.Resyslib.csproj", "{2AF703EE-965D-4E1F-B09C-1B909CE4F4DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF703EE-965D-4E1F-B09C-1B909CE4F4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF703EE-965D-4E1F-B09C-1B909CE4F4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF703EE-965D-4E1F-B09C-1B909CE4F4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF703EE-965D-4E1F-B09C-1B909CE4F4DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

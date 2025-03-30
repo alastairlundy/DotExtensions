@@ -25,12 +25,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using AlastairLundy.Resyslib.Collections.Generics.HashMaps;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.HashMaps
+namespace AlastairLundy.DotExtensions.Resyslib.HashMaps
 {
     public static class HashMapPutRangeExtensions
     {
