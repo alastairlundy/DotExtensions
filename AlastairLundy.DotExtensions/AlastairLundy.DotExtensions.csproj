@@ -15,6 +15,13 @@
         <PackageReleaseNotes>Initial Release as new library</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>A collection of useful extension methods for .NET .</Description>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>6.2.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
