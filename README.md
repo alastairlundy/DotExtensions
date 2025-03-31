@@ -5,7 +5,7 @@ An extension method library that enhances the experience of using .NET's types w
 
 ## Table of Contents
 * [Features](#features)
-* [Installing](#how-to-install-and-use-extensionssystem)
+* [Installing](#how-to-install-and-use-dotextensions)
     * [Compatibility](#compatibility)
 * [Contributing](#how-to-contribute)
 * [Roadmap](#roadmap)
@@ -18,8 +18,8 @@ An extension method library that enhances the experience of using .NET's types w
 * Support for Detecting and Removing Escape Characters
 * Counting dots in strings.
 
-## How to install and use Extensions.System
-Extensions.System can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
+## How to install and use DotExtensions
+DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
 | Package Name                | Nuget Link                                                                                  | .NET SDK CLI command                               |
 |-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -53,7 +53,7 @@ The current build targets include:
 Any version of the .NET 9 SDK can be used, but using the latest version is preferred.
 
 ### Versioning new releases
-Extensions.System aims to follow Semantic versioning with ```[Major].[Minor].[Build]``` for most circumstances and an optional ``.[Revision]`` when only a configuration change is made, or a new build of a preview release or a new build of a previous release is made.
+DotExtensions aims to follow Semantic versioning with ```[Major].[Minor].[Build]``` for most circumstances and an optional ``.[Revision]`` when only a configuration change is made, or a new build of a preview release or a new build of a previous release is made.
 
 #### Pre-releases
 Pre-release versions should have a suffix of -alpha, -beta, -rc, or -preview followed by a ``.`` and what pre-release version number they are. The number should be incremented by 1 after each release unless it only contains a configuration change, or another packaging, or build change. An example pre-release version may look like 1.1.0-alpha.2 , this version string would indicate it is the 2nd alpha pre-release version of 1.1.0 .
