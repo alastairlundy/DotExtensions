@@ -36,7 +36,7 @@
         <Link>README.md</Link>
       </Content>
     </ItemGroup>
-
+    
     <ItemGroup>
       <Compile Update="Localizations\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
