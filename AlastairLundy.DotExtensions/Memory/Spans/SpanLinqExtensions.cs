@@ -63,19 +63,19 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="count"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Span<T> Skip<T>(this Span<T> span, int count)
+        public static Span<T> Skip<T>(this Span<T> target, int count)
         {
-            T[] array = new T[span.Length - count];
+            T[] array = new T[target.Length - count];
         
-            for (int i = 0; i < span.Length; i++)
+            for (int i = 0; i < target.Length; i++)
             {
                 if ((i <= count) == false)
                 {
-                    array[i] = span[i];
+                    array[i] = target[i];
                 }
             }
         
@@ -85,19 +85,19 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="count"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Span<T> SkipLast<T>(this Span<T> span, int count)
+        public static Span<T> SkipLast<T>(this Span<T> target, int count)
         {
-            T[] array = new T[span.Length - count];
+            T[] array = new T[target.Length - count];
 
-            int limit = span.Length - count;
+            int limit = target.Length - count;
 
             for (int i = 0; i < limit; i++)
             {
-                array[i] = span[i];
+                array[i] = target[i];
             }
 
             return new Span<T>(array);
@@ -106,15 +106,15 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="predicate"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Span<T> SkipWhile<T>(this Span<T> span, Func<T, bool> predicate)
+        public static Span<T> SkipWhile<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<T> list = new();
         
-            foreach (T item in span)
+            foreach (T item in target)
             {
                 if (predicate.Invoke(item) == false)
                 {
@@ -128,15 +128,15 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="predicate"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Span<T> Where<T>(this Span<T> span, Func<T, bool> predicate)
+        public static Span<T> Where<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<T> list = new();
 
-            foreach (T item in span)
+            foreach (T item in target)
             {
                 if (predicate.Invoke(item))
                 {
@@ -150,13 +150,13 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="predicate"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool Any<T>(this Span<T> span, Func<T, bool> predicate)
+        public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
         {
-            foreach (T item in span)
+            foreach (T item in target)
             {
                 bool result = predicate.Invoke(item);
 
@@ -172,15 +172,15 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="span"></param>
+        /// <param name="target"></param>
         /// <param name="predicate"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool All<T>(this Span<T> span, Func<T, bool> predicate)
+        public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<bool> results = new();
 
-            foreach (T item in span)
+            foreach (T item in target)
             {
                 results.Add(predicate.Invoke(item));
             }
