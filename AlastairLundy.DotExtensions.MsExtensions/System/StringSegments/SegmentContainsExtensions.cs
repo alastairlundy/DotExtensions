@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Extensions.Primitives;
@@ -113,5 +114,28 @@ public static class SegmentContainsExtensions
         StringSegment val = new StringSegment(str);
 
         return Contains(@this, val);
+    }
+    
+    /// <summary>
+    /// Returns whether a StringSegment contains any of the specified possible chars.
+    /// </summary>
+    /// <param name="source">The string segment to be searched.</param>
+    /// <param name="possibleValues">The possible chars to search for.</param>
+    /// <returns>True if any of the possible values is found; false otherwise.</returns>
+    public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
+    {
+        return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
+    }
+    
+        
+    /// <summary>
+    /// Returns whether a StringSegment contains all the specified possible chars.
+    /// </summary>
+    /// <param name="source">The string segment to be searched.</param>
+    /// <param name="possibleValues">The possible chars to search for.</param>
+    /// <returns>true if all the values are found in the string segment; false otherwise.</returns>
+    public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
+    {
+        return possibleValues.Select(c => source.Contains(c)).All(containsValue => containsValue == true);
     }
 }
