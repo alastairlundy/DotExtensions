@@ -12,7 +12,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods</PackageTags>
-        <PackageReleaseNotes>Initial Release as new library</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+
+## 🚀 Features
+
+- Add StringSegment support in MsExtensions sub package @alastairlundy (#2)
+- Added Span linq style extensions 
+- Added Span ``Contains`` extension method - .NET Standard 2.0 and 2.1 only</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -21,7 +27,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.2.0</Version>
+        <Version>6.3.0</Version>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,6 +4,12 @@
 
 ### Version 6.x
 
+### 6.3
+| Version | Release Date |
+|-|-|
+| 6.3.0 | April 4th 2025 |
+
+
 ### 6.2
 | Version | Release Date |
 |-|-|
