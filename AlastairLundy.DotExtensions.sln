@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemExtensions.Tests", "SystemExtensions.Tests\SystemExtensions.Tests.csproj", "{53EB53FA-D30C-42E3-970D-8F47182BDC6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotExtensions.Tests", "DotExtensions.Tests\DotExtensions.Tests.csproj", "{53EB53FA-D30C-42E3-970D-8F47182BDC6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions", "AlastairLundy.DotExtensions\AlastairLundy.DotExtensions.csproj", "{55CEB0CA-33E1-4812-B9C2-DE31A486C6CA}"
 EndProject
