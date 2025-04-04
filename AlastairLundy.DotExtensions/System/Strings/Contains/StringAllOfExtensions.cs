@@ -34,11 +34,11 @@ namespace AlastairLundy.DotExtensions.Strings
     public static class StringAllOfExtensions
     {
         /// <summary>
-        /// Returns whether an item of type T contains all the specified values.
+        /// Returns whether a string contains all the specified chars.
         /// </summary>
-        /// <param name="source">The item to be searched.</param>
-        /// <param name="values">The values to search for.</param>
-        /// <returns>true if all the values are found in the string; returns false otherwise.</returns>
+        /// <param name="source">The string to be searched.</param>
+        /// <param name="values">The chars to search for.</param>
+        /// <returns>True if all the values are found in the string; false otherwise.</returns>
         public static bool ContainsAllOf(this string source, IEnumerable<char> values)
         {
             return values.Select(t => source.Contains(t)).All(containsSource => containsSource == true);

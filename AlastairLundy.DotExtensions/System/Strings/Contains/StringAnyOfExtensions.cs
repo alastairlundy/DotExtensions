@@ -34,11 +34,11 @@ namespace AlastairLundy.DotExtensions.Strings
     public static class StringAnyOfExtensions
     {
         /// <summary>
-        /// Returns whether an item of type T contains any of the specified possible values.
+        /// Returns whether a string contains any of the specified possible chars.
         /// </summary>
         /// <param name="source">The string to be searched.</param>
         /// <param name="possibleValues">The possible values to search for.</param>
-        /// <returns>true if any of the possible values is found; returns false otherwise.</returns>
+        /// <returns>True if any of the possible values is found; false otherwise.</returns>
         public static bool ContainsAnyOf(this string source, IEnumerable<char> possibleValues)
         {
             return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
