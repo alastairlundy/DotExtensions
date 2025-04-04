@@ -33,13 +33,13 @@ public static class SpanContainsExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="span">The span to check through.</param>
-    /// <param name="item"></param>
+    /// <param name="target">The span to check through.</param>
+    /// <param name="item">The item to search for in the span.</param>
     /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static bool Contains<T>(this Span<T> span, T item) where T : IEquatable<T>
+    /// <returns>True if the item is found in the span; false otherwise.</returns>
+    public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
     {
-        foreach (T t in span)
+        foreach (T t in target)
         {
             if (t is not null && t.Equals(item))
             {
