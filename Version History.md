@@ -1,5 +1,14 @@
 # Version History
 
+## As DotExtensions
+
+### Version 6.x
+
+### 6.2
+| Version | Release Date |
+|-|-|
+| 6.2.0 | March 30th 2025 |
+
 ## As AlastairLundy.Extensions.System
 
 ### Version 6.x
