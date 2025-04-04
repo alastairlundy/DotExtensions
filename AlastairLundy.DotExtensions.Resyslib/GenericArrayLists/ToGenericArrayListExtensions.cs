@@ -22,11 +22,16 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Collections.ICollections
+using System;
+using System.Collections;
+
+using AlastairLundy.Resyslib.Collections.Generics.ArrayLists;
+
+namespace AlastairLundy.DotExtensions.Resyslib.GenericArrayLists
 {
     public static class ToGenericArrayListExtensions
     {
-        /*/// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="arrayList"></param>
@@ -37,7 +42,8 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
         {
             if (typeof(T) != arrayList.GetType())
             {
-                throw new ArgumentException($"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
+                throw new ArgumentException(
+                    $"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
             }
 
             GenericArrayList<T> output = new();
@@ -49,9 +55,9 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
                     output.Add(t);
                 }
             }
-        
+
             return output;
-        }*/
-    
+        }
+
     }
 }
