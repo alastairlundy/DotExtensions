@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans
 {
@@ -31,12 +32,12 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
     {
 
         /// <summary>
-        /// 
+        /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
         /// </summary>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="first">The first Span to search.</param>
+        /// <param name="second">The second Span to search.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
         public static Span<T> Except<T>(this Span<T> first, Span<T> second) where T : IEquatable<T>
         {
             List<T> list = new();
@@ -61,14 +62,19 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// 
+        /// Returns a new Span with all the elements of the span except the specified first number of elements.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="target">The span to make a new span from.</param>
+        /// <param name="count">The number of items to skip from the beginning of the span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>A new Span with all the elements of the original span except the specified number of first elements to skip.</returns>
         public static Span<T> Skip<T>(this Span<T> target, int count)
         {
+            if (count > target.Length)
+            {
+                throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
+            }
+            
             T[] array = new T[target.Length - count];
         
             for (int i = 0; i < target.Length; i++)
@@ -83,14 +89,19 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
 
         /// <summary>
-        /// 
+        /// Returns a new Span with all the elements of the span except the specified last number of elements.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="target">The span to make a new span from.</param>
+        /// <param name="count">The number of items to skip from the end of the span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>A new Span with all the elements of the original span except the specified last number of elements to skip.</returns>
         public static Span<T> SkipLast<T>(this Span<T> target, int count)
         {
+            if (count > target.Length)
+            {
+                throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
+            }
+            
             T[] array = new T[target.Length - count];
 
             int limit = target.Length - count;
@@ -104,12 +115,12 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// 
+        /// Returns a new Span with all the elements of the original span that do not match the specified predicate func.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="predicate"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="target">The span to make a new span from.</param>
+        /// <param name="predicate">The condition to use to determine whether to skip items or not in the span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>A new Span with all the elements of the original Span that did not match the specified predicate func.</returns>
         public static Span<T> SkipWhile<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<T> list = new();
@@ -126,11 +137,11 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// 
+        /// Returns a new Span with all items in the Span that match the predicate condition.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="predicate"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="target">The Span to be searched.</param>
+        /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
         /// <returns></returns>
         public static Span<T> Where<T>(this Span<T> target, Func<T, bool> predicate)
         {
@@ -148,12 +159,12 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         } 
     
         /// <summary>
-        /// 
+        /// Returns whether any item in a Span matches the predicate condition.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="predicate"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="target">The Span to be searched.</param>
+        /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
         public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
         {
             foreach (T item in target)
@@ -170,12 +181,12 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// 
+        /// Returns whether all items in a Span matches the predicate condition.
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="predicate"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="target">The span to be searched.</param>
+        /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
         public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<bool> results = new();

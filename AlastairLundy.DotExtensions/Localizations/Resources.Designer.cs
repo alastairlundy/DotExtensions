@@ -69,6 +69,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot skip more elements than the target span contains..
+        /// </summary>
+        internal static string Exceptions_Span_SkipCountTooLarge {
+            get {
+                return ResourceManager.GetString("Exceptions.Span.SkipCountTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value {x} Not Found within Key Value Pair.
         /// </summary>
         internal static string Exceptions_ValueNotFound {

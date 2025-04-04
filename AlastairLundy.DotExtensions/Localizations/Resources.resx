@@ -30,4 +30,7 @@
     <data name="Exceptions.KeyValuePairNotFound" xml:space="preserve">
         <value>KeyValuePair not found within the collection</value>
     </data>
+    <data name="Exceptions.Span.SkipCountTooLarge" xml:space="preserve">
+        <value>Cannot skip more elements than the target span contains.</value>
+    </data>
 </root>

@@ -31,11 +31,11 @@ public static class SpanContainsExtensions
     #if NETSTANDARD2_0 || NETSTANDARD2_1
     
     /// <summary>
-    /// 
+    /// Checks to see if a Span contains the specified item.
     /// </summary>
     /// <param name="target">The span to check through.</param>
     /// <param name="item">The item to search for in the span.</param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
     /// <returns>True if the item is found in the span; false otherwise.</returns>
     public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
     {
