@@ -67,8 +67,6 @@ public static class SegmentContainsExtensions
             return false;
         }
         
-        segment.
-
         char[] segmentArray = segment.ToCharArray();
 
         bool containsAllChars = segmentArray.All(x => @this.Contains(x));
