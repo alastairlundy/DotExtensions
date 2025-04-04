@@ -7,6 +7,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>6.2.0</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
