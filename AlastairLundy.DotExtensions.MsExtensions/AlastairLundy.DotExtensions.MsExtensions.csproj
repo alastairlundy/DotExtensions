@@ -6,8 +6,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>6.2.0</Version>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>6.3.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -15,6 +16,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
+        <PackageTags>primitives-extensions</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
