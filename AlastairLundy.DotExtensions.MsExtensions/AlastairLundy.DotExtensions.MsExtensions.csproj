@@ -19,5 +19,13 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Primitives" Version="[9.0.3, 10.0.0)"/>
     </ItemGroup>
+
+
+    <ItemGroup>
+        <Content Include="..\README.md">
+            <PackagePath>README.md</PackagePath>
+            <Link>README.md</Link>
+        </Content>
+    </ItemGroup>
     
 </Project>
