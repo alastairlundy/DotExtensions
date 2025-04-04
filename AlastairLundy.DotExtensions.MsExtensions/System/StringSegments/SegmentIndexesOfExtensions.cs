@@ -31,11 +31,11 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 public static class SegmentIndexesOfExtensions
 {
     /// <summary>
-    /// 
+    /// Returns a list of indexes of the specified char within the String Segment.
     /// </summary>
-    /// <param name="this"></param>
-    /// <param name="c">The character to look for.</param>
-    /// <returns></returns>
+    /// <param name="this">The string segment to be searched.</param>
+    /// <param name="c">The character to search for.</param>
+    /// <returns>A list of indexes of the specified char within the String Segment; empty if not found within the String Segment.</returns>
     public static IEnumerable<int> IndexesOf(this StringSegment @this, char c)
     {
         List<int> indexes = new List<int>();

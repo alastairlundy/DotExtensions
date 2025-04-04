@@ -32,11 +32,11 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 public static class SegmentContainsExtensions
 {
     /// <summary>
-    /// 
+    /// Returns whether the String Segment contains a character. 
     /// </summary>
-    /// <param name="this"></param>
-    /// <param name="character"></param>
-    /// <returns></returns>
+    /// <param name="this">The string segment to search.</param>
+    /// <param name="character">The char to search for.</param>
+    /// <returns>True if the character is found in the StringSegment; false otherwise.</returns>
     public static bool Contains(this StringSegment @this, char character)
     {
         for (int i = 0; i < @this.Length; i++)
@@ -51,11 +51,11 @@ public static class SegmentContainsExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns whether the String Segment contains another String Segment.
     /// </summary>
-    /// <param name="this"></param>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="this">The string segment to search.</param>
+    /// <param name="segment">The string segment to search for.</param>
+    /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
     public static bool Contains(this StringSegment @this, StringSegment segment)
     {
         if (@this.Length == segment.Length)
@@ -103,11 +103,11 @@ public static class SegmentContainsExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns whether a string segment contains a string.
     /// </summary>
-    /// <param name="this"></param>
-    /// <param name="str"></param>
-    /// <returns></returns>
+    /// <param name="this">The StringSegment to be searched.</param>
+    /// <param name="str">The string to search for.</param>
+    /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
     public static bool Contains(this StringSegment @this, string str)
     {
         StringSegment val = new StringSegment(str);

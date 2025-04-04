@@ -30,10 +30,10 @@ public static class SegmentToCharArrayExtensions
 {
     
     /// <summary>
-    /// 
+    /// Returns the String segment as a Char Array.
     /// </summary>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="segment">The string segment to enumerate.</param>
+    /// <returns>The string segment as a char array.</returns>
     public static char[] ToCharArray(this StringSegment segment)
     {
         char[] charArray = new char[segment.Length];
