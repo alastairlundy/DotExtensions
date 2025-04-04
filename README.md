@@ -71,7 +71,7 @@ Releases that add major breaking changes or significantly affect the API should 
 ### Building for Testing
 You can build for testing by building the project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
 
-If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/IOExtensions/issues/new/) if one doesn't already exist for the bug(s).
+If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/DotExtensions/issues/new/) if one doesn't already exist for the bug(s).
 
 ### Building for Release
 Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.DotExtensions.csproj`` file:
