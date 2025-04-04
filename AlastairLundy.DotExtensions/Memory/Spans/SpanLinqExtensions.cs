@@ -37,7 +37,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <param name="second"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Span<T> Except<T>(this Span<T> first, Span<T> second) where T : IEquatable<T>?
+        public static Span<T> Except<T>(this Span<T> first, Span<T> second) where T : IEquatable<T>
         {
             List<T> list = new();
         
