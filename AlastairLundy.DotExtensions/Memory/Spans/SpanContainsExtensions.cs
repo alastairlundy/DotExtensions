@@ -37,7 +37,7 @@ public static class SpanContainsExtensions
     /// <param name="item"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static bool Contains<T>(this Span<T> span, T item)
+    public static bool Contains<T>(this Span<T> span, T item) where T : IEquatable<T>
     {
         foreach (T t in span)
         {
