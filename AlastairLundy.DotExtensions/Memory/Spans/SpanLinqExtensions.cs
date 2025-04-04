@@ -69,17 +69,17 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <returns></returns>
         public static Span<T> Skip<T>(this Span<T> span, int count)
         {
-            List<T> list = new();
+            T[] array = new T[span.Length - count];
         
             for (int i = 0; i < span.Length; i++)
             {
                 if ((i <= count) == false)
                 {
-                    list.Add(span[i]);
+                    array[i] = span[i];
                 }
             }
         
-            return new Span<T>(list.ToArray());
+            return new Span<T>(array);
         }
 
         /// <summary>
@@ -91,16 +91,16 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <returns></returns>
         public static Span<T> SkipLast<T>(this Span<T> span, int count)
         {
-            List<T> list = new();
+            T[] array = new T[span.Length - count];
 
             int limit = span.Length - count;
 
             for (int i = 0; i < limit; i++)
             {
-                list.Add(span[i]);
+                array[i] = span[i];
             }
 
-            return new Span<T>(list.ToArray());
+            return new Span<T>(array);
         }
     
         /// <summary>
