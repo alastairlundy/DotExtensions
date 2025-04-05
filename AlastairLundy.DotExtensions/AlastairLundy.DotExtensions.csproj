@@ -12,13 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods</PackageTags>
-        <PackageReleaseNotes>## Changes
+        <PackageReleaseNotes>## Changes since 6.3.0
 
-## 🚀 Features
-
-- Add StringSegment support in MsExtensions sub package @alastairlundy (#2)
-- Added Span linq style extensions 
-- Added Span ``Contains`` extension method - .NET Standard 2.0 and 2.1 only</PackageReleaseNotes>
+* Fixed a bug that would prevent size checks from being performed before combining IEnumerables in the ``Combine`` extension method
+* Improved robustness of size checks in the Dictionary ``AddRange`` extension methods
+* Updated System.Memory dependency minimum version from 4.6.2 to 4.6.3</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -27,7 +25,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.3.0</Version>
+        <Version>6.3.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
