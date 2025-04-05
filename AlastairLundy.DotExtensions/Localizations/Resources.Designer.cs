@@ -60,6 +60,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot split an empty enumerable..
+        /// </summary>
+        internal static string Exceptions_EnumerablesSplit_Empty {
+            get {
+                return ResourceManager.GetString("Exceptions.EnumerablesSplit.Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KeyValuePair not found within the collection.
         /// </summary>
         internal static string Exceptions_KeyValuePairNotFound {
