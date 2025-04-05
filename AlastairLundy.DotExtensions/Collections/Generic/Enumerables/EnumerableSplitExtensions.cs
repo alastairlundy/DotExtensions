@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Localizations;
+
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
 public static class EnumerableSplitExtensions
@@ -45,6 +46,7 @@ public static class EnumerableSplitExtensions
 
         if (items.Length == 0)
         {
+            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
         
         double itemsPerThread = items.Length / Convert.ToDouble(Environment.ProcessorCount);
@@ -70,6 +72,7 @@ public static class EnumerableSplitExtensions
 
         if (items.Length == 0)
         {
+            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
 
         int enumerableLimit = maxCount;
