@@ -45,10 +45,10 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             T[] arrayTwo = enumerableTwo as T[] ?? enumerableTwo.ToArray();
             
 #if NET6_0_OR_GREATER
-            if (arrayOne.Length + arrayTwo.Length > Array.MaxLength)
+            if (arrayOne.Length + arrayTwo.Length >= Array.MaxLength)
 #else
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            if((arrayOne.Length + arrayTwo.Length) > int.MaxValue)
+            if((arrayOne.Length + arrayTwo.Length) >= int.MaxValue)
 #endif
             {
                 throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
