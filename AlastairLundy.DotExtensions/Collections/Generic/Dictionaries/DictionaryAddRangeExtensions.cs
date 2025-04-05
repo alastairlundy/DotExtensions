@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedType.Global
@@ -44,7 +45,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
         public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
             IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
         {
-            foreach (KeyValuePair<TKey, TValue> pair in pairsToAdd)
+            KeyValuePair<TKey, TValue>[] keyValuePairs = pairsToAdd as KeyValuePair<TKey, TValue>[] ?? pairsToAdd.ToArray();
+            
+            if (source.Count == int.MaxValue || source.Count + keyValuePairs.Length >= int.MaxValue)
+            {
+                throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+            }
+            
+            foreach (KeyValuePair<TKey, TValue> pair in keyValuePairs)
             {
                 if (source.Count == int.MaxValue)
                 {
@@ -66,7 +74,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
         public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
             IDictionary<TKey, TValue> dictionaryToAdd)
         {
-            if (source.Count == int.MaxValue)
+            if (source.Count == int.MaxValue || source.Count + dictionaryToAdd.Count >= int.MaxValue)
             {
                 throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             }
