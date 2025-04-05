@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Localizations;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
