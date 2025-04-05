@@ -47,7 +47,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             {
                 for (int index = 0; index < enumerable.Length; index++)
                 {
-                    if (enumerable[index]!.Equals(oldValue) == true)
+                    T item = enumerable[index];
+                    
+                    if (item is not null && item.Equals(oldValue) == true)
                     {
                         enumerable[index] = newValue;
                     }
