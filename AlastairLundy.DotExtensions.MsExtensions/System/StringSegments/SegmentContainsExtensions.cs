@@ -27,6 +27,7 @@ using System.Linq;
 
 using Microsoft.Extensions.Primitives;
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
