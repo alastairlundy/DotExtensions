@@ -24,20 +24,23 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using AlastairLundy.Resyslib.Collections.Generics.ArrayLists;
+// ReSharper disable SuggestVarOrType_BuiltInTypes
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.DotExtensions.Resyslib.GenericArrayLists
 {
     public static class ToGenericArrayListExtensions
     {
         /// <summary>
-        /// 
+        /// Converts an ArrayList to a GenericArrayList that supports generics.
         /// </summary>
-        /// <param name="arrayList"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="arrayList">The arraylist to convert.</param>
+        /// <typeparam name="T">The type of Type the ArrayList stores.</typeparam>
+        /// <returns>A new GenericArrayList of type T with the items from the ArrayList.</returns>
+        /// <exception cref="ArgumentException">Thrown if the type specified is not the type stored in the ArrayList.</exception>
         public static GenericArrayList<T> ToGenericArrayList<T>(this ArrayList arrayList)
         {
             if (typeof(T) != arrayList.GetType())
@@ -59,5 +62,15 @@ namespace AlastairLundy.DotExtensions.Resyslib.GenericArrayLists
             return output;
         }
 
+        /// <summary>
+        /// Converts an ArrayList to a IGenericArrayList that supports generics.
+        /// </summary>
+        /// <param name="arrayList">The arraylist to convert.</param>
+        /// <typeparam name="T">The type of Type the ArrayList stores.</typeparam>
+        /// <returns>A new IGenericArrayList of type T with the items from the ArrayList.</returns>
+        public static IGenericArrayList<T> ToIGenericArrayList<T>(this ArrayList arrayList)
+        {
+            return ToGenericArrayList<T>(arrayList);
+        }
     }
 }

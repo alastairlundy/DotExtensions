@@ -31,9 +31,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Collections\" />
       <Folder Include="Internal\" />
-      <Folder Include="IO\" />
       <Folder Include="Memory\" />
     </ItemGroup>
 

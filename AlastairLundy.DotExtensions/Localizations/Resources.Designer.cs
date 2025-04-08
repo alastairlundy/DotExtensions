@@ -69,6 +69,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to find directory with file path of {x}..
+        /// </summary>
+        internal static string Exceptions_IO_DirectoryNotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.IO.DirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KeyValuePair not found within the collection.
         /// </summary>
         internal static string Exceptions_KeyValuePairNotFound {

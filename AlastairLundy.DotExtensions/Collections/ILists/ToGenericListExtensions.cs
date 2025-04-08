@@ -22,45 +22,40 @@
        SOFTWARE.
    */
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
-// ReSharper disable SuggestVarOrType_BuiltInTypes
 
-// ReSharper disable RedundantBoolCompare
-// ReSharper disable RedundantIfElseBlock
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    public static class DictionaryGetValueExtensions
+    public static class ToGenericListExtensions
     {
         /// <summary>
-        /// Returns the value associated with a Key if found or a default value if not found.
+        /// Converts a non-generic IList to a generic IList that stores objects of type T.
         /// </summary>
-        /// <param name="dictionary">The dictionary to be searched.</param>
-        /// <param name="key">The key to search for.</param>
-        /// <param name="defaultValue">The value to be returned if the key is not found.</param>
-        /// <typeparam name="TKey">The type of Key stored in the dictionary.</typeparam>
-        /// <typeparam name="TValue">The type of Value stored in the dictionary.</typeparam>
-        /// <returns>the value associated with the specified Key if found; the specified default value otherwise.</returns>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
-            TValue defaultValue)
+        /// <param name="list">The IList to convert.</param>
+        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
+        /// <returns>A new IList that stores items of type T.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static IList<T> ToGenericList<T>(this IList list)
         {
-            try
+            if (typeof(T) != list.GetType())
             {
-                bool containsKey = dictionary.TryGetValue(key, out TValue? value);
+                throw new ArgumentException(
+                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
+            }
 
-                if (containsKey == true && value is not null)
-                {
-                    return value;
-                }
-                else
-                {
-                    return defaultValue;
-                }
-            }
-            catch
+            List<T> output = new();
+
+            foreach (object obj in list)
             {
-                return defaultValue;
+                if (obj is T t)
+                {
+                    output.Add(t);
+                }
             }
+
+            return output;
         }
     }
 }
