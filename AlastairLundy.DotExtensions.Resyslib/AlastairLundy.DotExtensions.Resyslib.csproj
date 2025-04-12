@@ -17,11 +17,10 @@
 
     <ItemGroup>
         <PackageReference Include="AlastairLundy.Resyslib.Collections" Version="[1.0.0, 2.0.0)" />
-    </ItemGroup>
-
-
-    <ItemGroup>
-      <Folder Include="Localizations\" />
+        <PackageReference Include="AlastairLundy.Resyslib.Processes" Version="[1.0.0, 2.0.0)"/>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.3.1, 7.0.0)"/>
+         
+        <PackageReference Include="Polyfill" Version="[7.26.0, 8.0.0)" Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netstandard2.1'" />
     </ItemGroup>
 
 </Project>
