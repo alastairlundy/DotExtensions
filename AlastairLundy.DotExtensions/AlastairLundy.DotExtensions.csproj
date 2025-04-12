@@ -16,9 +16,9 @@
 
 ## 🚀 Features
 
-- Add StringSegment support in MsExtensions sub package @alastairlundy (#2)
-- Added Span linq style extensions 
-- Added Span ``Contains`` extension method - .NET Standard 2.0 and 2.1 only</PackageReleaseNotes>
+- Added IO Extension method from Extensions.IO @alastairlundy (#3)
+- Added Enumerable Split extension method
+- Added ``ToGenericList`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -27,7 +27,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.3.0</Version>
+        <Version>6.4.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
