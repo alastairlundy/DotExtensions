@@ -10,12 +10,12 @@ Extended Security Support covers all accepted security vulnerabilities of Modera
 
 ### Supported Versions
 
-These are the currently supported versions of System Extensions.
+These are the currently supported versions of DotExtensions
 
 | Version | Standard Security Support | Extended Security Support |
 | ------- | ------------------ |----|
-| 6.3.x |  Until System Extensions 6.5 | Until System Extensions 6.5 |
-| 6.2.x   | Until System Extensions 6.4 | Until System Extensions 6.4 |
+| 6.3.x |  Until DotExtensions 6.5 | Until DotExtensions 6.5 |
+| 6.2.x   | Until otExtensions 6.4 | Until DotExtensions 6.4 |
 | < 6.2.x   | :x: | :x: |
 
 
