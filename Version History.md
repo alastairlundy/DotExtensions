@@ -7,6 +7,7 @@
 ### 6.4
 | Version | Release Date |
 |-|-|
+| 6.4.1 | April 14th 2025 |
 | 6.4.0 | April 12th 2025 |
 
 ### 6.3

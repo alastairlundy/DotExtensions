@@ -14,8 +14,7 @@
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Added StringSegment ``ContainsAnyOf``  and ``ContainsAllOf`` extension methods
-* Fixed package readme issues</PackageReleaseNotes>
+        <PackageReleaseNotes>* Update Microsoft.Extensions.Primitives from 9.0.3 to 9.0.4</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -25,7 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Primitives" Version="[9.0.3, 10.0.0)"/>
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="[9.0.4, 10.0.0)"/>
     </ItemGroup>
 
 
