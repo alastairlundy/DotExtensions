@@ -31,6 +31,7 @@ using OperatingSystem = Polyfills.OperatingSystemPolyfill;
 #endif
 
 using AlastairLundy.DotExtensions.Processes;
+using AlastairLundy.DotExtensions.Resyslib.Localizations;
 using AlastairLundy.Resyslib.Processes.Policies;
 
 namespace AlastairLundy.DotExtensions.Resyslib.Processes;
@@ -82,7 +83,7 @@ public static class ProcessSetResourcePolicyExtensions
         }
         else
         {
-            throw new InvalidOperationException("Cannot set Resource Policy to a Process that has not already been started.");
+            throw new InvalidOperationException(Resources.Exceptions_ResourcePolicy_CannotSetToNotStartedProcess);
         }
     }
 }
