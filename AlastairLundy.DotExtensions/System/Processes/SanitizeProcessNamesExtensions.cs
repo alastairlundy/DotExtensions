@@ -41,7 +41,7 @@ namespace AlastairLundy.DotExtensions.Processes
         public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
         {
 #if NET8_0_OR_GREATER
-        return SanitizeProcessNames([process], excludeFileExtension).First();
+            return SanitizeProcessNames([process], excludeFileExtension).First();
 #else
             return SanitizeProcessNames(new Process[]{process}, excludeFileExtension).First();
 #endif
