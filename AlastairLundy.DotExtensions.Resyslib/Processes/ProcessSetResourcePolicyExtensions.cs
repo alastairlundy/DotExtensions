@@ -32,6 +32,7 @@ using OperatingSystem = Polyfills.OperatingSystemPolyfill;
 
 using AlastairLundy.DotExtensions.Processes;
 using AlastairLundy.DotExtensions.Resyslib.Localizations;
+
 using AlastairLundy.Resyslib.Processes.Policies;
 
 namespace AlastairLundy.DotExtensions.Resyslib.Processes;
