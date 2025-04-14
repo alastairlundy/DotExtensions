@@ -32,7 +32,7 @@ DotExtensions.MsExtensions supports:
 
 However, it is important to note that not all features may be supported by all TFMs.
 
-## How to Build Extension.System's code
+## How to Build the code
 
 ### Requirements
 DotExtensions.MsExtensions requires the latest stable .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.

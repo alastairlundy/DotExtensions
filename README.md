@@ -37,7 +37,7 @@ However, it is important to note that not all features may be supported by all T
 
 **Note for DateOnly**: Though DateOnly was originally part of .NET 6, this library's DateOnly extension methods are only supported for .NET 8 and .NET 9 users since we don't target .NET 6 as a TFM due to being out of support.
 
-## How to Build Extension.System's code
+## How to Build the code
 
 ### Requirements
 DotExtensions requires the latest .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.
