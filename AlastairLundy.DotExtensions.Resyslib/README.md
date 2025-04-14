@@ -12,11 +12,12 @@ An extension method library that enhances the experience of using Resyslib packa
 * [License](#license)
 
 ## Features
-* Adds HashMap ``PutRange`` extension method
+* Adds HashMap ``PutRange`` extension method.
+* Adds ArrayList ``ToGenericArrayList`` extension methods.
 * Extension methods for Resyslib.Process primitives. 
 
 
-## How to install and use DotExtensions.Resyslib
+## How to install and use
 DotExtensions.Resyslib can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
 | Package Name                         | Nuget Link                                                                                           | .NET SDK CLI command                                        |
