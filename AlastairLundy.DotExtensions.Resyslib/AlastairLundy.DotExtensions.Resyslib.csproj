@@ -22,8 +22,14 @@
          
         <PackageReference Include="Polyfill" Version="[7.27.0, 8.0.0)" Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netstandard2.1'" />
     </ItemGroup>
-
-
+    
+    <ItemGroup>
+        <Content Include="README.md">
+            <PackagePath>README.md</PackagePath>
+            <Link>README.md</Link>
+        </Content>
+    </ItemGroup>
+    
     <ItemGroup>
       <EmbeddedResource Update="Localizations\Resources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
