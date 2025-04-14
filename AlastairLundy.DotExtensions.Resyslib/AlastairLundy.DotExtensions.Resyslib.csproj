@@ -12,7 +12,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Version>6.4.0</Version>
+        <Version>6.4.1</Version>
         <Description>An extension method library that enhances the experience of using Resyslib packages with useful features.</Description>
         <PackageTags>resyslib-extensions,resyslib, hashmap-extensions,</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
