@@ -24,9 +24,10 @@
 
 using System;
 using System.Diagnostics;
+
 using System.Runtime.Versioning;
 
-using AlastairLundy.Resyslib.Processes;
+using AlastairLundy.ProcessInvoke.Primitives;
 
 namespace AlastairLundy.DotExtensions.Resyslib.Processes;
 

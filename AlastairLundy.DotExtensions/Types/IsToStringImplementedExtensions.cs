@@ -29,7 +29,7 @@ namespace AlastairLundy.DotExtensions.Types;
 public static class IsToStringImplementedExtensions
 {
     /// <summary>
-    /// Returns whether a Type implements ToString such that a concrete non-virtual implementation is available.
+    /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
     /// </summary>
     /// <param name="this">The instance of the Type to be checked.</param>
     /// <typeparam name="T">The type to be checked.</typeparam>

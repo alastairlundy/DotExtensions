@@ -29,7 +29,7 @@ using System;
 using System.Runtime.InteropServices;
 #endif
 
-using AlastairLundy.Resyslib.Processes;
+using AlastairLundy.ProcessInvoke.Primitives;
 
 namespace AlastairLundy.DotExtensions.Resyslib.Processes;
 
