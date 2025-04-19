@@ -22,8 +22,11 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedType.Global
 
 namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
 {
