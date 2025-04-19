@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Extensions.Primitives;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantBoolCompare
 
@@ -38,7 +39,7 @@ public static class SegmentContainsExtensions
     /// </summary>
     /// <param name="this">The string segment to search.</param>
     /// <param name="character">The char to search for.</param>
-    /// <returns>True if the character is found in the StringSegment; false otherwise.</returns>
+    /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
     public static bool Contains(this StringSegment @this, char character)
     {
         for (int i = 0; i < @this.Length; i++)
@@ -122,7 +123,7 @@ public static class SegmentContainsExtensions
     /// </summary>
     /// <param name="source">The string segment to be searched.</param>
     /// <param name="possibleValues">The possible chars to search for.</param>
-    /// <returns>True if any of the possible values is found; false otherwise.</returns>
+    /// <returns>True if any of the possible values is found, false otherwise.</returns>
     public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
         return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
@@ -134,7 +135,7 @@ public static class SegmentContainsExtensions
     /// </summary>
     /// <param name="source">The string segment to be searched.</param>
     /// <param name="possibleValues">The possible chars to search for.</param>
-    /// <returns>true if all the values are found in the string segment; false otherwise.</returns>
+    /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
     public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
         return possibleValues.Select(c => source.Contains(c)).All(containsValue => containsValue == true);
