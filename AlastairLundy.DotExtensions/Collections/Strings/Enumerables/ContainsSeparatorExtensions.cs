@@ -34,7 +34,7 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
         /// </summary>
         /// <param name="args">The IEnumerable to be searched.</param>
         /// <param name="separator">The separator to look for.</param>
-        /// <returns>true if the separator character is found in the IEnumerable; returns false otherwise.</returns>
+        /// <returns>True, if the separator character is found in the IEnumerable, returns false otherwise.</returns>
         public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
         {
             return ContainsSeparator(args, separator.ToString());
@@ -45,7 +45,8 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
         /// </summary>
         /// <param name="args">The IEnumerable to be searched.</param>
         /// <param name="separator">The separator to look for.</param>
-        /// <returns>true if the separator character string is found in the IEnumerable; returns false otherwise.</returns>
+        /// <returns>True, if the separator character string is found in the IEnumerable,
+        /// returns false otherwise.</returns>
         public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
         {
             string[] enumerable = args as string[] ?? args.ToArray();

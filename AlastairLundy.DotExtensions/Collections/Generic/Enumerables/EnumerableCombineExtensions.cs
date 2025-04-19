@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
@@ -76,13 +77,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 
         /// <summary>
         /// Attempts to combine an IEnumerable with another IEnumerable and provides the newly combined IEnumerable.
-        /// Returns whether combining the IEnumerables was successful or not.
+        /// Returns whether combining the IEnumerable objects was successful or not.
         /// </summary>
         /// <param name="source">The first IEnumerable to be added.</param>
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
-        /// <param name="destinationEnumerable">The combined IEnumerable if successful; is null otherwise.</param>
+        /// <param name="destinationEnumerable">The combined IEnumerable if successful; null otherwise.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        /// <returns>True if combining the IEnumerables was successful; returns false otherwise.</returns>
+        /// <returns>True if combining the IEnumerable objects was successful; returns false otherwise.</returns>
         public static bool TryCombine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo, out IEnumerable<T>? destinationEnumerable)
         {
             try
