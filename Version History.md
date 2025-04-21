@@ -5,10 +5,11 @@
 ### Version 6.x
 
 ### 6.4
-| Version | Release Date |
-|-|-|
-| 6.4.1 | April 14th 2025 |
-| 6.4.0 | April 12th 2025 |
+| Version | Release Date | Notes | 
+|-|-|-|
+| 6.4.2 | April 21st 2025 | DotExtensions.Resyslib only |
+| 6.4.1 | April 14th 2025 | |
+| 6.4.0 | April 12th 2025 | |
 
 ### 6.3
 | Version | Release Date |
