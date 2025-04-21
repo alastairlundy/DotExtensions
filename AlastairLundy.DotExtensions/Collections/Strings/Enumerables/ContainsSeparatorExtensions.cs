@@ -22,8 +22,11 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedType.Global
 
 namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
 {
@@ -37,7 +40,7 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
         /// <returns>True, if the separator character is found in the IEnumerable, returns false otherwise.</returns>
         public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
         {
-            return ContainsSeparator(args, separator.ToString());
+            return args.Any(x => x.Contains(separator) && x.Split(separator).Length > 1);
         }
     
         /// <summary>
@@ -49,25 +52,9 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
         /// returns false otherwise.</returns>
         public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
         {
-            string[] enumerable = args as string[] ?? args.ToArray();
-        
-            bool output = enumerable.Any(arg => arg.Contains(separator));
+            //string[] enumerable = args as string[] ?? args.ToArray();
 
-            if (enumerable.Any(arg => arg.Split(' ').Length > 1))
-            {
-                foreach (string arg in enumerable.Where(arg => arg.Split(' ').Length > 1))
-                {
-                    if (arg.Split(' ').Length > 1)
-                    {
-                        if (arg.Split(' ').Any(s => s.Equals(separator)))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-        
-            return output;
+            return args.Any(x => x.Contains(separator) && x.Split([separator], StringSplitOptions.None).Length > 1);
         }
     }
 }
