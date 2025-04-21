@@ -32,7 +32,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
     {
     
         /// <summary>
-        /// Removes an item from an IEnumerable (by creating a new IEnumerable without the removed item).
+        /// Removes an item from an IEnumerable.
         /// </summary>
         /// <param name="source">The IEnumerable to have an item removed from it.</param>
         /// <param name="itemToBeRemoved">The item to be removed.</param>
