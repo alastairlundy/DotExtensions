@@ -42,7 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             return Remove(source, [itemToBeRemoved]);
         }
-    
+
         /// <summary>
         /// Removes items from an IEnumerable (by creating a new IEnumerable without the removed items).
         /// </summary>
