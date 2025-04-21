@@ -52,10 +52,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
         {
-            T[] itemsToBeRemovedArr = itemsToBeRemoved as T[] ?? itemsToBeRemoved.ToArray();
-            T[] oldItems = source as T[] ?? source.ToArray();
-
-            return oldItems.Where(x => itemsToBeRemovedArr.Contains(x) == false);
+            return source.Where(x => itemsToBeRemoved.Contains(x) == false);
         }
     }
 }
