@@ -12,10 +12,10 @@
         <RepositoryType>git</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Version>6.4.1</Version>
+        <Version>6.4.2</Version>
         <Description>An extension method library that enhances the experience of using Resyslib packages with useful features.</Description>
         <PackageTags>resyslib-extensions,resyslib, hashmap-extensions,</PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated to use ProcessInvoke.Primitives from Resyslib.Processes due to package name change.</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
