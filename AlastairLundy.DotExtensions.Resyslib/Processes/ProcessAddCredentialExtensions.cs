@@ -25,7 +25,9 @@
 using System;
 using System.Diagnostics;
 
+#if NET5_0_OR_GREATER
 using System.Runtime.Versioning;
+#endif
 
 using AlastairLundy.ProcessInvoke.Primitives;
 
@@ -35,10 +37,37 @@ public static class ProcessAddCredentialExtensions
 {
 
     /// <summary>
+    /// Attempts to add the specified Credential to the current Process object.
+    /// </summary>
+    /// <param name="process">The current Process object.</param>
+    /// <param name="credential">The credential to be added.</param>
+    /// <returns>True if successfully applied; false otherwise.</returns>
+    public static bool TryAddUserCredential(this Process process, UserCredential credential)
+    {
+        if (credential.IsSupportedOnCurrentOS())
+        {
+            try
+            {
+                AddUserCredential(process, credential);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    /// <summary>
     /// Adds the specified Credential to the current Process object.
     /// </summary>
     /// <param name="process">The current Process object.</param>
     /// <param name="credential">The credential to be added.</param>
+    /// <exception cref="PlatformNotSupportedException">Thrown if not supported on the current operating system.</exception>
 #if NET5_0_OR_GREATER
     [SupportedOSPlatform("windows")]
 #endif
