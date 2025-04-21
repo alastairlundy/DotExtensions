@@ -12,10 +12,10 @@
         <RepositoryType>git</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Version>6.4.1</Version>
+        <Version>6.5.0</Version>
         <Description>An extension method library that enhances the experience of using Resyslib packages with useful features.</Description>
         <PackageTags>resyslib-extensions,resyslib, hashmap-extensions,</PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated dependency on DotExtensions to 6.5.0</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -24,9 +24,9 @@
 
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.Resyslib.Collections" Version="[1.0.0, 2.0.0)" />
+        <PackageReference Include="AlastairLundy.Resyslib.Collections" Version="[1.1.0, 2.0.0)" />
         <PackageReference Include="AlastairLundy.ProcessInvoke.Primitives" Version="[1.2.0, 2.0.0)"/>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.4.0, 7.0.0)"/>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.5.0, 7.0.0)"/>
          
         <PackageReference Include="Polyfill" Version="[7.27.0, 8.0.0)" Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netstandard2.1'" />
     </ItemGroup>
