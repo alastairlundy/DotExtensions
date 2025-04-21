@@ -32,19 +32,34 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
     {
     
         /// <summary>
-        /// Removes an item from an IEnumerable (by creating a new IEnumerable without the removed item).
+        /// Removes an item from an IEnumerable.
         /// </summary>
         /// <param name="source">The IEnumerable to have an item removed from it.</param>
         /// <param name="itemToBeRemoved">The item to be removed.</param>
         /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
-        /// <returns>The new IEnumerable with the removed item.</returns>
+        /// <returns>The new IEnumerable with the specified item removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
             return Remove(source, [itemToBeRemoved]);
         }
-    
+
         /// <summary>
-        /// Removes items from an IEnumerable (by creating a new IEnumerable without the removed items).
+        /// Removes the item located at the specified index from an IEnumerable.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="index">The index of the item to be removed.</param>
+        /// <typeparam name="T">The type of item stored in the IEnumerable.</typeparam>
+        /// <returns>The IEnumerable with the index of the specified item removed.</returns>
+        public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
+        {
+            T[] enumerable = source as T[] ?? source.ToArray();
+            T item = enumerable.ElementAt(index);
+            
+            return enumerable.Remove(item);
+        }
+        
+        /// <summary>
+        /// Removes items from an IEnumerable.
         /// </summary>
         /// <param name="source">The IEnumerable to have items removed from.</param>
         /// <param name="itemsToBeRemoved">The items to be removed.</param>
@@ -52,10 +67,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
         {
-            T[] itemsToBeRemovedArr = itemsToBeRemoved as T[] ?? itemsToBeRemoved.ToArray();
-            T[] oldItems = source as T[] ?? source.ToArray();
-
-            return oldItems.Where(x => itemsToBeRemovedArr.Contains(x) == false);
+            return source.Where(x => itemsToBeRemoved.Contains(x) == false);
         }
     }
 }

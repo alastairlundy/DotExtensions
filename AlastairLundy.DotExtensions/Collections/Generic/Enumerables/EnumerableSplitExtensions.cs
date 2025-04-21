@@ -36,40 +36,40 @@ public static class EnumerableSplitExtensions
 {
     
     /// <summary>
-    /// 
+    /// Splits an IEnumerable into an IEnumerable of IEnumerables by the CPU thread count.
     /// </summary>
-    /// <param name="enumerable"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public static IEnumerable<IEnumerable<T>> SplitByThreadCount<T>(this IEnumerable<T> enumerable)
+    /// <param name="source">The IEnumerable to be split.</param>
+    /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
+    /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
+    public static IEnumerable<IEnumerable<T>> SplitByThreadCount<T>(this IEnumerable<T> source)
     {
-        T[] items = enumerable as T[] ?? enumerable.ToArray();
-
-        if (items.Length == 0)
+        T[] array = source as T[] ?? source.ToArray();
+        
+        if (array.Length == 0)
         {
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
         
-        double itemsPerThread = items.Length / Convert.ToDouble(Environment.ProcessorCount);
+        double itemsPerThread = array.Length / Convert.ToDouble(Environment.ProcessorCount);
         
         int enumerableLimit = Convert.ToInt32(Math.Round(itemsPerThread, MidpointRounding.AwayFromZero));
 
-        return SplitByCount(items, enumerableLimit);
+        return SplitByCount(array, enumerableLimit);
     }
 
     /// <summary>
-    /// 
+    /// Splits an IEnumerable based on the maximum number of items allowed in each IEnumerable. 
     /// </summary>
-    /// <param name="enumerable"></param>
-    /// <param name="maxCount"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The IEnumerable to be split.</param>
+    /// <param name="maxCount">The number of items allowed in each IEnumerable.</param>
+    /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
+    /// <returns>An IEnumerable of IEnumerables split by the maximum number of items allowed in each IEnumerable.</returns>
     /// <exception cref="ArgumentException"></exception>
-    public static IEnumerable<IEnumerable<T>> SplitByCount<T>(this IEnumerable<T> enumerable, int maxCount)
+    public static IEnumerable<IEnumerable<T>> SplitByCount<T>(this IEnumerable<T> source, int maxCount)
     {
         List<List<T>> outputList = new List<List<T>>();
         
-        T[] items = enumerable as T[] ?? enumerable.ToArray();
+        T[] items = source as T[] ?? source.ToArray();
 
         if (items.Length == 0)
         {
