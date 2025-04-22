@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
+
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
@@ -38,10 +40,18 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <returns>The new collection with the specified item removed.</returns>
         public static ICollection<T> RemoveAt<T>(this ICollection<T> collection, int index)
         {
+            if (index < 0 || index >= collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{index}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{collection.Count}"));
+            }
+            
             T item = collection.ElementAt(index);
 
-            bool success = collection.Remove(item);
-
+            collection.Remove(item);
+            
             return collection;
         }
     }
