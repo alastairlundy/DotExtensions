@@ -51,6 +51,16 @@ namespace AlastairLundy.DotExtensions.Strings
 
             return letterCapitalization.All(x => x == true);
         }
+
+        /// <summary>
+        /// Converts a string to Title Case.
+        /// </summary>
+        /// <param name="word">The string to be converted.</param>
+        /// <returns>The title case version of the input string.</returns>
+        public static string ToTitleCase(this string word)
+        {
+            return ToTitleCase([word]);
+        }
         
         /// <summary>
         /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
