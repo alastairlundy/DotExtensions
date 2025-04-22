@@ -34,7 +34,7 @@ namespace AlastairLundy.DotExtensions.Dates
         /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
         /// </summary>
         /// <param name="date">The date </param>
-        /// <returns>the day of the week as a 32-Bit integer.</returns>
+        /// <returns>The day of the week as a 32-Bit integer.</returns>
         public static int DayOfWeekInt(this DateTime date)
         {
             DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
