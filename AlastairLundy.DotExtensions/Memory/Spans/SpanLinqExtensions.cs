@@ -181,7 +181,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// Returns whether all items in a Span matches the predicate condition.
+        /// Returns whether all items in a Span match the predicate condition.
         /// </summary>
         /// <param name="target">The span to be searched.</param>
         /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
