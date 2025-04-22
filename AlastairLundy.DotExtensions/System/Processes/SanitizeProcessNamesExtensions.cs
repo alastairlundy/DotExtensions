@@ -59,9 +59,7 @@ namespace AlastairLundy.DotExtensions.Processes
         
             if (excludeFileExtensions)
             {
-                Process[] enumerable = processNames as Process[] ?? processNames.ToArray();
-            
-                output = enumerable.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
+                output = processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
                     .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
                         .Replace(")", string.Empty)).ToList();
             }
