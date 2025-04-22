@@ -55,21 +55,17 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <returns>the sanitised process names.</returns>
         public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
         {
-            List<string> output;
-        
             if (excludeFileExtensions)
             {
-                output = processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
+                return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
                     .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
-                        .Replace(")", string.Empty)).ToList();
+                        .Replace(")", string.Empty));
             }
             else
             {
-                output = processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
-                    .Replace(")", string.Empty)).ToList();
+                return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+                    .Replace(")", string.Empty));
             }
-        
-            return output;
         }
     }
 }
