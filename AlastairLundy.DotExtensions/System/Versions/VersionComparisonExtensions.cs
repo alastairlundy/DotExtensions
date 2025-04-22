@@ -23,12 +23,33 @@
    */
 
 using System;
-// ReSharper disable CheckNamespace
 
 namespace AlastairLundy.DotExtensions.Versions
 {
-    public static class IsNewerThanExtensions
+    public static class VersionComparisonExtensions
     {
+        /// <summary>
+        /// Returns whether the specified version is newer than or equal to the current version object.
+        /// </summary>
+        /// <param name="version">The current version object.</param>
+        /// <param name="versionToBeCompared">The version to be compared.</param>
+        /// <returns>true if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
+        public static bool IsAtLeastVersion(this Version version, Version versionToBeCompared)
+        {
+            return versionToBeCompared >= version;
+        }
+        
+        /// <summary>
+        /// Returns whether a specified Version is older than the current Version object.
+        /// </summary>
+        /// <param name="version">The current version object.</param>
+        /// <param name="versionToBeCompared">The version to be compared.</param>
+        /// <returns>true if the specified compared version is older than the current version, and returns false otherwise.</returns>
+        public static bool IsOlderThanVersion(this Version version, Version versionToBeCompared)
+        {
+            return versionToBeCompared < version;
+        }
+        
         /// <summary>
         /// Returns whether the specified version is newer than the current version object.
         /// </summary>
