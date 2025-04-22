@@ -23,6 +23,7 @@
    */
 
 using System;
+
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions
@@ -37,7 +38,8 @@ namespace AlastairLundy.DotExtensions.Exceptions
         /// <param name="collectionName">The name of the collection that was searched.</param>
         /// <param name="valueName">The name of the value that was expected.</param>
         public ValueNotFoundException(string collectionName, string valueName) : base(
-            $"{Resources.Exceptions_ValueNotFound.Replace("{x}", $"'{valueName}'")}: {collectionName}")
+            $"{Resources.Exceptions_ValueNotFound.Replace("{x}", valueName)
+                .Replace("{y}", collectionName)}")
         {
             
         }
