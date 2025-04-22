@@ -47,15 +47,13 @@ namespace AlastairLundy.DotExtensions.Strings
         {
             char oldChar = word[index];
 
-            if (oldChar.ToString().Equals(oldChar.ToString().ToUpper()) == false)
+            if (oldChar.IsUpperCaseCharacter() == false)
             {
-                string newWord = word.Remove(index, 1);
-                return newWord.Insert(index, oldChar.ToString().ToUpper());
+                word = word.Remove(index, 1)
+                    .Insert(index, oldChar.ToString().ToUpper());
             }
-            else
-            {
-                return word;
-            }
+
+            return word;
         }
     }
 }
