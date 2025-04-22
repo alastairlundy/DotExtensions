@@ -37,7 +37,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
     public static class EnumerableToStringObjectExtensions
     {
         /// <summary>
-        /// Converts an IEnumerable of objects of Type T to a string separated by a separator string.
+        /// Converts an IEnumerable of Type T to a string separated by a separator string.
         /// </summary>
         /// <param name="source">The enumerable to be turned into a string.</param>
         /// <param name="separator">The string to separate the items in the source enumerable.</param>
