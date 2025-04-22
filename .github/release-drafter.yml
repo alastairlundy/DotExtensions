@@ -5,6 +5,15 @@ categories:
     labels:
       - 'feature'
       - 'enhancement'
+  - title: '📗 DotExtensions Main Package Changes:'
+    labels:
+      - 'DotExtensions'
+  - title: '📙 DotExtensions.Resyslib Changes: 
+     labels:
+       - 'DotExtensions.Resyslib'
+  - title: '📘 DotExtensions.MsExtensions Changes: 
+     labels:
+       - 'DotExtensions.MsExtensions' 
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
