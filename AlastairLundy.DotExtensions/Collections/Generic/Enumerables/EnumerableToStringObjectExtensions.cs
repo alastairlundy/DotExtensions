@@ -42,7 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="source">The enumerable to be turned into a string.</param>
         /// <param name="separator">The string to separate the items in the source enumerable.</param>
         /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
-        /// <returns>the string containing all the strings in the source enumerable separated by the separator.</returns>
+        /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
         public static string ToString<T>(this IEnumerable<T> source, string separator)
         {
             StringBuilder stringBuilder = new StringBuilder();
