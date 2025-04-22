@@ -35,9 +35,9 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <summary>
         /// Sanitizes a Process Name.
         /// </summary>
-        /// <param name="process">The process to sanitize the name of.</param>
-        /// <param name="excludeFileExtension">Whether to remove the file extension from the Process when sanitizing the process name.</param>
-        /// <returns>the sanitized process names.</returns>
+        /// <param name="process">The process to sanitise the name of.</param>
+        /// <param name="excludeFileExtension">Whether to remove the file extension from the Process when sanitising the process name.</param>
+        /// <returns>the sanitised process names.</returns>
         public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
         {
 #if NET8_0_OR_GREATER
@@ -50,9 +50,9 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <summary>
         /// Sanitizes Process Names from a list of Process objects.
         /// </summary>
-        /// <param name="processNames">The list of Processes to sanitize the names of.</param>
-        /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process when sanitizing the process name.</param>
-        /// <returns>the sanitized process names.</returns>
+        /// <param name="processNames">The list of Processes to sanitise the names of.</param>
+        /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process when sanitising the process name.</param>
+        /// <returns>the sanitised process names.</returns>
         public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
         {
             List<string> output;
