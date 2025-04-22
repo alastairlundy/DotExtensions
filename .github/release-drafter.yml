@@ -1,10 +1,6 @@
 name-template: '$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 categories:
-  - title: '🚀 Features'
-    labels:
-      - 'feature'
-      - 'enhancement'
   - title: '📗 DotExtensions Main Package Changes:'
     label:
       - 'DotExtensions'
