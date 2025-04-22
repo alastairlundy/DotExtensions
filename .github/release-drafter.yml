@@ -1,16 +1,6 @@
 name-template: '$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 categories:
-  - title: '📗 DotExtensions Main Package Changes:'
-    label:
-      - 'DotExtensions'
-  - title: '📙 DotExtensions.Resyslib Changes:' 
-     label:
-      - 'DotExtensions.Resyslib'
-  - title: '📘 DotExtensions.MsExtensions Changes:'
-     label:
-      - 'DotExtensions.MsExtensions' 
-=======
   - title: '🚀 Features'
     labels:
       - 'feature'
