@@ -47,20 +47,18 @@ namespace AlastairLundy.DotExtensions.Strings
         /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
         public static string RemoveEscapeCharacters(this string str)
         {
-            string newStr = str;
-                
             if (ContainsEscapeCharacters(str))
             {
                 foreach (string escapeChar in CharacterConstants.EscapeCharacters)
                 {
-                    if (newStr.Contains(escapeChar))
+                    if (str.Contains(escapeChar))
                     {
-                        newStr = newStr.Replace(escapeChar, string.Empty);
+                        str = str.Replace(escapeChar, string.Empty);
                     }
                 }
             }
 
-            return newStr;
+            return str;
         }
     }
 }
