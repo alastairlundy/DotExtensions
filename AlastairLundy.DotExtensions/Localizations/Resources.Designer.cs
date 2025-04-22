@@ -96,7 +96,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value {x} Not Found within Key Value Pair.
+        ///   Looks up a localized string similar to Value {x} Not Found within the collection {y}.
         /// </summary>
         internal static string Exceptions_ValueNotFound {
             get {

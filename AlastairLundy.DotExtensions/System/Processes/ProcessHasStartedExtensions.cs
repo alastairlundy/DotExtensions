@@ -39,7 +39,7 @@ public static class ProcessHasStartedExtensions
     {
         try
         {
-            var startTime = process.StartTime.ToUniversalTime();
+            DateTime startTime = process.StartTime.ToUniversalTime();
 
             return startTime < DateTime.UtcNow;
         }

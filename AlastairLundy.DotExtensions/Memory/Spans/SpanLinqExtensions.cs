@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans
@@ -142,7 +143,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <param name="target">The Span to be searched.</param>
         /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
         /// <typeparam name="T">The type of items stored in the span.</typeparam>
-        /// <returns></returns>
+        /// <returns>A new Span with the items that match the predicate condition.</returns>
         public static Span<T> Where<T>(this Span<T> target, Func<T, bool> predicate)
         {
             List<T> list = new();
@@ -181,7 +182,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         }
     
         /// <summary>
-        /// Returns whether all items in a Span matches the predicate condition.
+        /// Returns whether all items in a Span match the predicate condition.
         /// </summary>
         /// <param name="target">The span to be searched.</param>
         /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>

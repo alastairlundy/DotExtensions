@@ -30,7 +30,7 @@ using System.Linq;
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
     /// <summary>
-    /// 
+    /// Provides static methods for finding and removing duplicates from an IEnumerable.
     /// </summary>
     public static class EnumerableDeDuplicateExtensions
     {

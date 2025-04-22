@@ -25,7 +25,7 @@
         <value>Process {x} is not currently running. Please try again later.</value>
     </data>
     <data name="Exceptions.ValueNotFound" xml:space="preserve">
-        <value>Value {x} Not Found within Key Value Pair</value>
+        <value>Value {x} Not Found within the collection {y}</value>
     </data>
     <data name="Exceptions.KeyValuePairNotFound" xml:space="preserve">
         <value>KeyValuePair not found within the collection</value>

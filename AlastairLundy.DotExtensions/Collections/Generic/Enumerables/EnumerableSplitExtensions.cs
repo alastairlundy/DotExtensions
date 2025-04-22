@@ -76,21 +76,21 @@ public static class EnumerableSplitExtensions
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
         
-        int currentEnumerable = 0;
+        int currentEnumerableCount = 0;
 
         List<T> currentList = new List<T>();
         
         foreach (T item in items)
         {
-            if (currentEnumerable < maxCount)
+            if (currentEnumerableCount < maxCount)
             {
                 currentList.Add(item);
             }
-            else if (currentEnumerable == maxCount)
+            else if (currentEnumerableCount == maxCount)
             {
                 outputList.Add(currentList);
                 currentList.Clear();
-                currentEnumerable = 0;
+                currentEnumerableCount = 0;
             }
         }
 
