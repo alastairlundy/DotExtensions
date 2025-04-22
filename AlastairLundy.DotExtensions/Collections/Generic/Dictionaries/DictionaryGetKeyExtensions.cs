@@ -49,7 +49,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
             {
                 foreach (KeyValuePair<TKey, TValue> pair in dictionary)
                 {
-                    if (pair.Value != null && pair.Value.Equals(value))
+                    if (pair.Value is not null && pair.Value.Equals(value))
                     {
                         return pair.Key;
                     }
@@ -76,7 +76,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
             {
                 foreach (KeyValuePair<TKey, TValue> pair in dictionary)
                 {
-                    if (pair.Value != null && pair.Value.Equals(value))
+                    if (pair.Value is not null && pair.Value.Equals(value))
                     {
                         list.Add(pair.Key);
                     }
