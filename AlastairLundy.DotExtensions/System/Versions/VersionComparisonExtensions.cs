@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Versions
         /// </summary>
         /// <param name="version">The current version object.</param>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>true if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
+        /// <returns>True if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
         public static bool IsAtLeastVersion(this Version version, Version versionToBeCompared)
         {
             return versionToBeCompared >= version;
@@ -44,7 +44,7 @@ namespace AlastairLundy.DotExtensions.Versions
         /// </summary>
         /// <param name="version">The current version object.</param>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>true if the specified compared version is older than the current version, and returns false otherwise.</returns>
+        /// <returns>True if the specified compared version is older than the current version, and returns false otherwise.</returns>
         public static bool IsOlderThanVersion(this Version version, Version versionToBeCompared)
         {
             return versionToBeCompared < version;
@@ -55,7 +55,7 @@ namespace AlastairLundy.DotExtensions.Versions
         /// </summary>
         /// <param name="version">The current version object.</param>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>true if the specified compared version is newer than the current version, and returns false otherwise.</returns>
+        /// <returns>True if the specified compared version is newer than the current version, and returns false otherwise.</returns>
         public static bool IsNewerThanVersion(this Version version, Version versionToBeCompared)
         {
             return version > versionToBeCompared;

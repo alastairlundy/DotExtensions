@@ -32,10 +32,10 @@ namespace AlastairLundy.DotExtensions.Versions
     public static class FriendlyVersionStringExtensions
     {
         /// <summary>
-        /// Returns the current version formatted in the specified formatting style.
+        /// Converts a Version object to a human-readable friendly string.
         /// </summary>
-        /// <param name="version"></param>
-        /// <returns></returns>
+        /// <param name="version">The Version object to convert.</param>
+        /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
         public static string ToFriendlyString(this Version version)
         {
             bool showMinor = version.Minor != 0;
