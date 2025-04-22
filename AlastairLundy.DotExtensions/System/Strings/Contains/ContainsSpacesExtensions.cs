@@ -35,7 +35,11 @@ namespace AlastairLundy.DotExtensions.Strings
         /// <returns>True if the string contains space separated strings within it; false otherwise.</returns>
         public static bool ContainsSpaceSeparatedSubStrings(this string s)
         {
-            return s.Split(' ').Length > 1;
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+            return s.Contains(" ") && s.Split(' ').Length > 1;
+#else
+            return s.Contains(' ') && s.Split(' ').Length > 1;
+#endif
         }
     }
 }
