@@ -11,7 +11,7 @@ categories:
   - title: '📙 DotExtensions.Resyslib Changes: 
      labels:
        - 'DotExtensions.Resyslib'
-  - title: '📘 DotExtensions.MsExtensions Changes: 
+  - title: '📘 DotExtensions.MsExtensions Changes:'
      labels:
        - 'DotExtensions.MsExtensions' 
   - title: '🐛 Bug Fixes'
