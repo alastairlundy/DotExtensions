@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether a character is a lower case letter or not.
         /// </summary>
         /// <param name="c">The character to be checked.</param>
-        /// <returns>true if the character is a lower case character, returns false otherwise.</returns>
+        /// <returns>True, if the character is a lower case character; false otherwise.</returns>
         public static bool IsLowerCaseCharacter(this char c)
         {
             return c.ToString().Equals(c.ToString().ToLower());
@@ -41,7 +41,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether a string is lower case or not.
         /// </summary>
         /// <param name="s">The string to be checked.</param>
-        /// <returns>true if a string is lower case; returns false otherwise.</returns>
+        /// <returns>True if a string is lower case; false otherwise.</returns>
         public static bool IsLowerCase(this string s)
         {
             return s.Equals(s.ToLower());
