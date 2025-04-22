@@ -63,7 +63,7 @@ namespace AlastairLundy.DotExtensions.Resyslib.GenericArrayLists
         }
 
         /// <summary>
-        /// Converts an ArrayList to a IGenericArrayList that supports generics.
+        /// Converts an ArrayList to an IGenericArrayList that supports generics.
         /// </summary>
         /// <param name="arrayList">The arraylist to convert.</param>
         /// <typeparam name="T">The type of Type the ArrayList stores.</typeparam>
