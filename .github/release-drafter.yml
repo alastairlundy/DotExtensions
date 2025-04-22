@@ -6,13 +6,13 @@ categories:
       - 'feature'
       - 'enhancement'
   - title: '📗 DotExtensions Main Package Changes:'
-    labels:
+    label:
       - 'DotExtensions'
   - title: '📙 DotExtensions.Resyslib Changes:' 
-     labels:
+     label:
        - 'DotExtensions.Resyslib'
   - title: '📘 DotExtensions.MsExtensions Changes:'
-     labels:
+     label:
        - 'DotExtensions.MsExtensions' 
   - title: '🐛 Bug Fixes'
     labels:
