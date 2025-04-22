@@ -43,9 +43,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
         /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
         /// <returns>The key associated with the specified value in a Dictionary.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
-        public static TKey GetKeyByValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
+        public static TKey GetKeyByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
         {
-            if (dictionary.ContainsValue(value))
+            if (dictionary.Values.Contains(value))
             {
                 foreach (KeyValuePair<TKey, TValue> pair in dictionary)
                 {
