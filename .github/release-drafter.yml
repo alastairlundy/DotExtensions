@@ -10,10 +10,10 @@ categories:
       - 'DotExtensions'
   - title: '📙 DotExtensions.Resyslib Changes:' 
      label:
-       - 'DotExtensions.Resyslib'
+      - 'DotExtensions.Resyslib'
   - title: '📘 DotExtensions.MsExtensions Changes:'
      label:
-       - 'DotExtensions.MsExtensions' 
+      - 'DotExtensions.MsExtensions' 
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
