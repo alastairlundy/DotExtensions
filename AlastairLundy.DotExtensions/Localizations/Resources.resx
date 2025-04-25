@@ -39,7 +39,4 @@
     <data name="Exceptions.IO.DirectoryNotFound" xml:space="preserve">
         <value>Unable to find directory with file path of {x}.</value>
     </data>
-    <data name="Exceptions.Processes.NotSupportedOnRemoteProcesss" xml:space="preserve">
-        <value>This feature or functionaltiy is not supported on remote Processes (e.g. Processes not running on this machine).</value>
-    </data>
 </root>

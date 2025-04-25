@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +22,39 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
-// ReSharper disable MemberCanBePrivate.Global
+using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    /// <summary>
-    /// Provides static methods for finding and removing duplicates from an IEnumerable.
-    /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    public static class GenericCollectionElementAtExtensions
     {
         /// <summary>
-        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// Retrieves the element at a specified index from the collection.
         /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
+        /// <param name="source">The collection to retrieve the element from.</param>
+        /// <param name="index">The zero-based index of the element to retrieve.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
+        /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
+        public static T ElementAt<T>(this ICollection<T> source, int index)
         {
-            return source.FrequencyOfAll().Any(x => x.Value > 1);
+            int i = 0;
+
+            foreach (T item in source)
+            {
+                if (i == index)
+                {
+                    return item;
+                }
+
+                i++;
+            }
+
+            throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
+                .Replace("{x}",$"{index}"));
         }
     }
 }

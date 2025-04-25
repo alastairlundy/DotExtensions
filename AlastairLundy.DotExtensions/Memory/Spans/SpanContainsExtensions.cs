@@ -22,7 +22,9 @@
        SOFTWARE.
    */
 
+#if  NETSTANDARD2_0 || NETSTANDARD2_1
 using System;
+#endif
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 

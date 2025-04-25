@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2020-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,36 @@
    */
 
 using System;
-// ReSharper disable ArrangeNamespaceBody
-// ReSharper disable CheckNamespace
+using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Versions
+using AlastairLundy.DotExtensions.Localizations;
+
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    public static class IsAtLeastExtension
+    public static class GenericCollectionRemoveExtensions
     {
         /// <summary>
-        /// Returns whether the specified version is newer than or equal to the current version object.
+        /// Removes an item at the specified index from a collection.
         /// </summary>
-        /// <param name="version">The current version object.</param>
-        /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>true if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
-        public static bool IsAtLeastVersion(this Version version, Version versionToBeCompared)
+        /// <param name="collection">The collection to remove the item from.</param>
+        /// <param name="index">The index of the item to be removed.</param>
+        /// <typeparam name="T">The type of elements stored in the collection.</typeparam>
+        /// <returns>The new collection with the specified item removed.</returns>
+        public static ICollection<T> RemoveAt<T>(this ICollection<T> collection, int index)
         {
-            return versionToBeCompared >= version;
+            if (index < 0 || index >= collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{index}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{collection.Count}"));
+            }
+            
+            T item = collection.ElementAt(index);
+
+            collection.Remove(item);
+            
+            return collection;
         }
     }
 }

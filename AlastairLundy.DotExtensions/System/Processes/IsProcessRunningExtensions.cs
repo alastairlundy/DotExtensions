@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -55,21 +56,21 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <returns>true if the specified process is running; returns false otherwise.</returns>
         public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
         {
-            string[] processes;
+            IEnumerable<string> processes;
 
             string tempProcessName = processName;
             
             if (sanitizeProcessName)
             {
                 tempProcessName = Path.GetFileNameWithoutExtension(processName);
-                processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true).ToArray();
+                processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true);
             }
             else
             {
-                processes = Process.GetProcesses().Select(x => x.ProcessName).ToArray();
+                processes = Process.GetProcesses().Select(x => x.ProcessName);
             }
             
-            processes = processes.Where(x => x.Contains(tempProcessName)).ToArray();
+            processes = processes.Where(x => x.Contains(tempProcessName));
             
             return processes.Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
         }

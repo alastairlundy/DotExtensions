@@ -31,23 +31,24 @@ using System.Runtime.InteropServices;
 
 using AlastairLundy.ProcessInvoke.Primitives;
 
-namespace AlastairLundy.DotExtensions.Resyslib.Processes;
-
-public static class IsSupportedOnOsExtensions
+namespace AlastairLundy.DotExtensions.Resyslib.Processes
 {
-    /// <summary>
-    /// Returns whether UserCredential is supported on the currently running Operating System.
-    /// </summary>
-    /// <param name="userCredential"></param>
-    /// <returns>True if supported; false otherwise.</returns>
-    public static bool IsSupportedOnCurrentOS(this UserCredential userCredential)
+    public static class IsSupportedOnOsExtensions
     {
+        /// <summary>
+        /// Returns whether UserCredential is supported on the currently running Operating System.
+        /// </summary>
+        /// <param name="userCredential"></param>
+        /// <returns>True if supported; false otherwise.</returns>
+        public static bool IsSupportedOnCurrentOS(this UserCredential userCredential)
+        {
 #if NET5_0_OR_GREATER
-        return OperatingSystem.IsWindows();
+            return OperatingSystem.IsWindows();
 #else
         return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 #endif
+        }
+    
+    
     }
-    
-    
 }

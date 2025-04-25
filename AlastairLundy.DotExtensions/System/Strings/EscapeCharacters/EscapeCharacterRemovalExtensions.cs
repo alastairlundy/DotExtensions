@@ -34,7 +34,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether the string contains an Escape Character.
         /// </summary>
         /// <param name="str">The string to be searched.</param>
-        /// <returns>true if the string contains an Escape Character; returns false otherwise.</returns>
+        /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
         public static bool ContainsEscapeCharacters(this string str)
         {
             return CharacterConstants.EscapeCharacters.Any(x => x.Equals(str));
@@ -44,23 +44,21 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Removes escape characters from a string.
         /// </summary>
         /// <param name="str">The string to be searched.</param>
-        /// <returns>the modified string if one or more escape characters were found; returns the original string otherwise.</returns>
+        /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
         public static string RemoveEscapeCharacters(this string str)
         {
-            string newStr = str;
-                
             if (ContainsEscapeCharacters(str))
             {
                 foreach (string escapeChar in CharacterConstants.EscapeCharacters)
                 {
-                    if (newStr.Contains(escapeChar))
+                    if (str.Contains(escapeChar))
                     {
-                        newStr = newStr.Replace(escapeChar, string.Empty);
+                        str = str.Replace(escapeChar, string.Empty);
                     }
                 }
             }
 
-            return newStr;
+            return str;
         }
     }
 }

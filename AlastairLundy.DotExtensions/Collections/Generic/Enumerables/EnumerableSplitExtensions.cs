@@ -41,6 +41,7 @@ public static class EnumerableSplitExtensions
     /// <param name="source">The IEnumerable to be split.</param>
     /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
     /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
+    // TODO: Rename to SplitByProcessorCount in V7
     public static IEnumerable<IEnumerable<T>> SplitByThreadCount<T>(this IEnumerable<T> source)
     {
         T[] array = source as T[] ?? source.ToArray();
@@ -76,21 +77,21 @@ public static class EnumerableSplitExtensions
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
         
-        int currentEnumerable = 0;
+        int currentEnumerableCount = 0;
 
         List<T> currentList = new List<T>();
         
         foreach (T item in items)
         {
-            if (currentEnumerable < maxCount)
+            if (currentEnumerableCount < maxCount)
             {
                 currentList.Add(item);
             }
-            else if (currentEnumerable == maxCount)
+            else if (currentEnumerableCount == maxCount)
             {
                 outputList.Add(currentList);
                 currentList.Clear();
-                currentEnumerable = 0;
+                currentEnumerableCount = 0;
             }
         }
 

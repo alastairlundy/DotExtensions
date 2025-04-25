@@ -29,13 +29,17 @@ namespace AlastairLundy.DotExtensions.Strings
     {
 
         /// <summary>
-        /// Determine if a string contains space separated substrings within it.
+        /// Determines if a string contains space separated substrings within it.
         /// </summary>
         /// <param name="s">The string to search.</param>
-        /// <returns>true if the string contains space separated strings within it; false otherwise.</returns>
+        /// <returns>True if the string contains space separated strings within it; false otherwise.</returns>
         public static bool ContainsSpaceSeparatedSubStrings(this string s)
         {
-            return s.Split(' ').Length > 1;
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+            return s.Contains(" ") && s.Split(' ').Length > 1;
+#else
+            return s.Contains(' ') && s.Split(' ').Length > 1;
+#endif
         }
     }
 }
