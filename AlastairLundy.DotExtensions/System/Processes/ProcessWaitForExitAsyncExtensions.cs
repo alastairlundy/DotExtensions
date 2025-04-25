@@ -53,18 +53,39 @@ namespace AlastairLundy.DotExtensions.Processes
         /// </summary>
         /// <param name="process"></param>
         /// <param name="timeout"></param>
+        /// <param name="endProcessAtTimeout"></param>
         /// <param name="cancellationToken"></param>
-        public static async Task WaitForExitAsync(this Process process, TimeSpan timeout, CancellationToken cancellationToken = default)
+        public static async Task WaitForExitAsync(this Process process, TimeSpan timeout, bool endProcessAtTimeout = false, CancellationToken cancellationToken = default)
         {
-            Task task = new Task(() =>
+            Task processTask = new Task(async () =>
+            {
+                await process.WaitForExitAsync(cancellationToken);
+
+                return;
+            });
+            
+            processTask.Start();
+            
+            Task timeoutTask = new Task(() =>
             {
                 Stopwatch stopWatch = Stopwatch.StartNew();
                 stopWatch.Start();
 
-                while (stopWatch.IsRunning)
+                while (stopWatch.IsRunning && process.IsRunning())
                 {
                     if (stopWatch.Elapsed > timeout)
                     {
+                        stopWatch.Stop();
+
+                        if (endProcessAtTimeout)
+                        {
+                            process.Close();
+                        }
+                        else
+                        {
+                            cancellationToken = new CancellationToken(true);
+                        }
+                        
                         return;
                     }
 
@@ -79,9 +100,9 @@ namespace AlastairLundy.DotExtensions.Processes
                 }
             });
         
-            task.Start();
-        
-            Task.WaitAny([task, process.WaitForExitAsync(cancellationToken)], cancellationToken);
+            timeoutTask.Start();
+            
+            await timeoutTask;
         }
 
         /// <summary>
