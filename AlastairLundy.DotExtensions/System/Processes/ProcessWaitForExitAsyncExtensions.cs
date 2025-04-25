@@ -32,7 +32,12 @@ namespace AlastairLundy.DotExtensions.Processes
 {
     public static class ProcessWaitForExitAsyncExtensions
     {
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="process"></param>
+    /// <param name="cancellationToken"></param>
     private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
     {
         Task task = new Task(process.WaitForExit);
