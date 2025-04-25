@@ -53,7 +53,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
         {
             T[] enumerable = source as T[] ?? source.ToArray();
-            T item = enumerable.ElementAt(index);
+            T item = enumerable[index];
             
             return enumerable.Remove(item);
         }

@@ -42,7 +42,8 @@ namespace AlastairLundy.DotExtensions.IO.Directories
         {
             if (Directory.Exists(directory.FullName))
             {
-                return directory.GetFiles().Length == 0 && directory.GetDirectories().Length == 0;
+                return directory.GetFiles().Length == 0 &&
+                       directory.GetDirectories().Length == 0;
             }
             else
             {

@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,37 @@
        SOFTWARE.
    */
 
-
-#if NET5_0_OR_GREATER
 using System;
-#else
-using System.Runtime.InteropServices;
-#endif
+using System.Collections.Generic;
 
-using AlastairLundy.ProcessInvoke.Primitives;
+using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Resyslib.Processes
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    public static class IsSupportedOnOsExtensions
+    public static class GenericCollectionRemoveExtensions
     {
         /// <summary>
-        /// Returns whether UserCredential is supported on the currently running Operating System.
+        /// Removes an item at the specified index from a collection.
         /// </summary>
-        /// <param name="userCredential"></param>
-        /// <returns>True if supported; false otherwise.</returns>
-        public static bool IsSupportedOnCurrentOS(this UserCredential userCredential)
+        /// <param name="collection">The collection to remove the item from.</param>
+        /// <param name="index">The index of the item to be removed.</param>
+        /// <typeparam name="T">The type of elements stored in the collection.</typeparam>
+        /// <returns>The new collection with the specified item removed.</returns>
+        public static ICollection<T> RemoveAt<T>(this ICollection<T> collection, int index)
         {
-#if NET5_0_OR_GREATER
-            return OperatingSystem.IsWindows();
-#else
-        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
+            if (index < 0 || index >= collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{index}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{collection.Count}"));
+            }
+            
+            T item = collection.ElementAt(index);
+
+            collection.Remove(item);
+            
+            return collection;
         }
-    
-    
     }
 }

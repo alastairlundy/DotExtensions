@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Counts the number of periods/full stops/dots in a string.
         /// </summary>
         /// <param name="str">The string to be checked.</param>
-        /// <returns>the number of periods/full stops/dots in a string</returns>
+        /// <returns>The number of periods/full stops/dots in a string</returns>
         public static int CountDotsInString(this string str)
         {
             return str.ToCharArray().Count(x => x.Equals('.'));
