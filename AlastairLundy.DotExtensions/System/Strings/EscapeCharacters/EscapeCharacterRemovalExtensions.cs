@@ -34,7 +34,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether the string contains an Escape Character.
         /// </summary>
         /// <param name="str">The string to be searched.</param>
-        /// <returns>true if the string contains an Escape Character; returns false otherwise.</returns>
+        /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
         public static bool ContainsEscapeCharacters(this string str)
         {
             return CharacterConstants.EscapeCharacters.Any(x => x.Equals(str));

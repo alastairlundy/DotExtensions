@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether a character is an upper case character or not.
         /// </summary>
         /// <param name="c">The character to be checked.</param>
-        /// <returns>true if the character is an upper case character; returns false otherwise.</returns>
+        /// <returns>True, if the character is an upper case character, false otherwise.</returns>
         public static bool IsUpperCaseCharacter(this char c)
         {
             return c.ToString().Equals(c.ToString().ToUpper());
@@ -41,7 +41,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether a string is upper case or not.
         /// </summary>
         /// <param name="s">The string to be checked.</param>
-        /// <returns>true if the string is upper case; returns false otherwise.</returns>
+        /// <returns>True if the string is upper case; false otherwise.</returns>
         // ReSharper disable once MemberCanBePrivate.Global
         public static bool IsUpperCase(this string s)
         { 

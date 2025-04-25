@@ -70,13 +70,11 @@ namespace AlastairLundy.DotExtensions.Strings
         public static string ToTitleCase(this IEnumerable<string> words)
         {
             StringBuilder stringBuilder = new StringBuilder();
-
-            string[] enumerable = words as string[] ?? words.ToArray();
             
-            for (int index = 0; index < enumerable.Length; index++)
+            foreach (string str in words)
             {
-                stringBuilder.Append(enumerable[index].IsWordTitleCase() ? enumerable[index] :
-                    enumerable[index].CapitalizeFirstLetter());
+                stringBuilder.Append(str.IsWordTitleCase() ? str :
+                    str.CapitalizeFirstLetter());
             }
 
             return stringBuilder.ToString();

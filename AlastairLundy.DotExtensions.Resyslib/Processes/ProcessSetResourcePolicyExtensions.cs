@@ -40,7 +40,6 @@ namespace AlastairLundy.DotExtensions.Resyslib.Processes
 {
     public static class ProcessSetResourcePolicyExtensions
     {
-
         /// <summary>
         /// Applies a ProcessResourcePolicy to a Process.
         /// </summary>

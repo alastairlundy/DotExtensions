@@ -121,7 +121,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
         {
             List<int> indexes = new List<int>();
-            indexes.Clear();
             int index = 0;
             
             using IEnumerator<T> enumerator = collection.GetEnumerator();
