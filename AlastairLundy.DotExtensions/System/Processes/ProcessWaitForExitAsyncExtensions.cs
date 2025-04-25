@@ -112,9 +112,12 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <param name="millisecondTimeout"></param>
         /// <param name="cancellationToken"></param>
         public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
+            bool endProcessAtTimeout = false, 
             CancellationToken cancellationToken = default)
         { 
-            await WaitForExitAsync(process, TimeSpan.FromMilliseconds(Convert.ToDouble(millisecondTimeout)),
+            await WaitForExitAsync(process, 
+                TimeSpan.FromMilliseconds(Convert.ToDouble(millisecondTimeout)),
+                endProcessAtTimeout,
                 cancellationToken);
         }
     }
