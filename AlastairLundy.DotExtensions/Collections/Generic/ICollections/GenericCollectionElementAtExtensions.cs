@@ -37,7 +37,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="source">The collection to retrieve the element from.</param>
         /// <param name="index">The zero-based index of the element to retrieve.</param>
         /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>The element at the specified index, or throws an exception if no such element exists.</returns>
+        /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
         /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
         public static T ElementAt<T>(this ICollection<T> source, int index)
         {
