@@ -110,6 +110,7 @@ namespace AlastairLundy.DotExtensions.Processes
         /// </summary>
         /// <param name="process"></param>
         /// <param name="millisecondTimeout"></param>
+        /// <param name="endProcessAtTimeout"></param>
         /// <param name="cancellationToken"></param>
         public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
             bool endProcessAtTimeout = false, 
