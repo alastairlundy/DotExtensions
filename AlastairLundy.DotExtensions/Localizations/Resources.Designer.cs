@@ -69,6 +69,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index provided of {x} was out of range. Minimum accepted value is {y}. Maximum accepted value is {z}..
+        /// </summary>
+        internal static string Exceptions_IndexOutOfRange {
+            get {
+                return ResourceManager.GetString("Exceptions.IndexOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to find directory with file path of {x}..
         /// </summary>
         internal static string Exceptions_IO_DirectoryNotFound {
@@ -101,6 +110,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         internal static string Exceptions_ValueNotFound {
             get {
                 return ResourceManager.GetString("Exceptions.ValueNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value not found at index {x} within collection {y}.
+        /// </summary>
+        internal static string Exceptions_ValueNotFound_AtIndex {
+            get {
+                return ResourceManager.GetString("Exceptions.ValueNotFound.AtIndex", resourceCulture);
             }
         }
         

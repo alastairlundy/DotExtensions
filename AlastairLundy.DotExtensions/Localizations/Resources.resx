@@ -39,4 +39,10 @@
     <data name="Exceptions.IO.DirectoryNotFound" xml:space="preserve">
         <value>Unable to find directory with file path of {x}.</value>
     </data>
+    <data name="Exceptions.ValueNotFound.AtIndex" xml:space="preserve">
+        <value>Value not found at index {x} within collection {y}</value>
+    </data>
+    <data name="Exceptions.IndexOutOfRange" xml:space="preserve">
+        <value>Index provided of {x} was out of range. Minimum accepted value is {y}. Maximum accepted value is {z}.</value>
+    </data>
 </root>
