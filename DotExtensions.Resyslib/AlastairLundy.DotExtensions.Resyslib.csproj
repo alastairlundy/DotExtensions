@@ -12,11 +12,10 @@
         <RepositoryType>git</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Version>6.6.0</Version>
+        <Version>6.5.0</Version>
         <Description>An extension method library that enhances the experience of using Resyslib packages with useful features.</Description>
         <PackageTags>resyslib-extensions,resyslib, hashmap-extensions,</PackageTags>
-        <PackageReleaseNotes>* Updated dependency on DotExtensions to 6.6.0
-* Add TryAddUserCredential to DotExtensions.Resyslib @alastairlundy (#9)</PackageReleaseNotes>
+        <PackageReleaseNotes>* Updated dependency on DotExtensions to 6.5.0</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
