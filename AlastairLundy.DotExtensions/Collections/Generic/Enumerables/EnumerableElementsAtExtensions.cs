@@ -22,39 +22,43 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
-using AlastairLundy.DotExtensions.Localizations;
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    public static class GenericCollectionElementAtExtensions
+    public static class EnumerableElementsAtExtensions
     {
+    
         /// <summary>
-        /// Retrieves the element at a specified index from the collection.
+        /// Returns a IEnumerable of elements from the specified source, 
+        /// where the index of each element in the returned IEnumerable corresponds to an index in the provided indexes.
         /// </summary>
-        /// <param name="source">The collection to retrieve the element from.</param>
-        /// <param name="index">The zero-based index of the element to retrieve.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
-        /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
-        public static T ElementAt<T>(this ICollection<T> source, int index)
+        /// <remarks>The order of the elements in the returned IEnumerable is determined by their original position in the source,
+        /// but the order within the returned IEnumerable is based on the provided indexes.</remarks>
+        /// <param name="source">The IEnumerable from which to retrieve elements.</param>
+        /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
+        /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
+        /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
+        public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
         {
+            List<T> output = new();
+            
+            int[] enumerable = indexes as int[] ?? indexes.ToArray();
+            
             int i = 0;
-
+            
             foreach (T item in source)
             {
-                if (i == index)
+                if (enumerable.Contains(i))
                 {
-                    return item;
+                    output.Add(item);
                 }
 
                 i++;
             }
 
-            throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
-                .Replace("{x}",$"{index}"));
+            return output;
         }
     }
 }
