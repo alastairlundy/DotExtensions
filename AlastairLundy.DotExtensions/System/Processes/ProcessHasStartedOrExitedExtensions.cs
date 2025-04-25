@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2025 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,14 @@
 
 using System;
 using System.Diagnostics;
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
-public static class ProcessHasStartedExtensions
+public static class ProcessHasStartedOrExitedExtensions
 {
     /// <summary>
-    /// Determines whether a process has started or not.
+    /// Determines if a process has started.
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has started; false otherwise.</returns>
@@ -39,13 +40,38 @@ public static class ProcessHasStartedExtensions
     {
         try
         {
-            var startTime = process.StartTime.ToUniversalTime();
-
-            return startTime < DateTime.UtcNow;
+            return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
         }
         catch
         {
             return false;
+        }
+    }
+
+    /// <summary>
+    /// Determines if a process has exited.
+    /// </summary>
+    /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
+    /// <param name="process">The process to be checked.</param>
+    /// <returns>True if it has exited; false if it is still running.</returns>
+    /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
+    public static bool HasExited(this Process process)
+    {
+        if (process.MachineName.Equals(Environment.MachineName))
+        {
+            try
+            {
+                int exitCode = process.ExitCode;
+                return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        else
+        {
+            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcesss);
         }
     }
 }
