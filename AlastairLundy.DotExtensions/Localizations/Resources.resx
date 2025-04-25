@@ -25,7 +25,7 @@
         <value>Process {x} is not currently running. Please try again later.</value>
     </data>
     <data name="Exceptions.ValueNotFound" xml:space="preserve">
-        <value>Value {x} Not Found within the collection {y}</value>
+        <value>Value {x} Not Found within Key Value Pair</value>
     </data>
     <data name="Exceptions.KeyValuePairNotFound" xml:space="preserve">
         <value>KeyValuePair not found within the collection</value>
@@ -38,11 +38,5 @@
     </data>
     <data name="Exceptions.IO.DirectoryNotFound" xml:space="preserve">
         <value>Unable to find directory with file path of {x}.</value>
-    </data>
-    <data name="Exceptions.ValueNotFound.AtIndex" xml:space="preserve">
-        <value>Value not found at index {x} within collection {y}</value>
-    </data>
-    <data name="Exceptions.IndexOutOfRange" xml:space="preserve">
-        <value>Index provided of {x} was out of range. Minimum accepted value is {y}. Maximum accepted value is {z}.</value>
     </data>
 </root>

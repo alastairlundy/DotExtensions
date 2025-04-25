@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2025 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,57 +22,57 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
+
+using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
+
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Processes
 {
-    public static class IsProcessRunningExtensions
+    public static class ProcessHasStartedOrExitedExtensions
     {
         /// <summary>
-        /// Check to see if a specified process is running or not.
+        /// Determines if a process has started.
         /// </summary>
         /// <param name="process">The process to be checked.</param>
-        /// <returns>True if the specified process is running; returns false otherwise.</returns>
-        public static bool IsRunning(this Process process)
+        /// <returns>True if it has started; false otherwise.</returns>
+        public static bool HasStarted(this Process process)
         {
-            if (process.HasStarted())
+            try
             {
-                return process.HasExited() == false;
+                return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
             }
-            else
+            catch
             {
                 return false;
             }
         }
-        
-        /// <summary>
-        /// Check to see if a specified process is running or not.
-        /// </summary>
-        /// <param name="processName">The name of the process to be checked.</param>
-        /// <param name="sanitizeProcessName"></param>
-        /// <returns>true if the specified process is running; returns false otherwise.</returns>
-        public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
-        {
-            IEnumerable<string> processes;
 
-            string tempProcessName = processName;
-            
-            if (sanitizeProcessName)
+        /// <summary>
+        /// Determines if a process has exited.
+        /// </summary>
+        /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
+        /// <param name="process">The process to be checked.</param>
+        /// <returns>True if it has exited; false if it is still running.</returns>
+        /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
+        public static bool HasExited(this Process process)
+        {
+            if (process.MachineName.Equals(Environment.MachineName))
             {
-                tempProcessName = Path.GetFileNameWithoutExtension(processName);
-                processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true);
+                try
+                {
+                    return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
+                }
+                catch
+                {
+                    return false;
+                }
             }
             else
             {
-                processes = Process.GetProcesses().Select(x => x.ProcessName);
+                throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcesss);
             }
-            
-            processes = processes.Where(x => x.Contains(tempProcessName));
-            
-            return processes.Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
         }
     }
 }
