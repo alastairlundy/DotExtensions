@@ -15,9 +15,11 @@
         <PackageReleaseNotes>## Changes
 
 ## 🚀 Features
-- Optimize IEnumerable ``Remove`` extension method and add ``RemoveAt`` extension method @alastairlundy (#6)
-* Added missing xml doc comments
-* Fixed xml doc comment issues</PackageReleaseNotes>
+
+- Update ``HasStarted`` and ``IsProcessRunning`` Process extension methods, and add ``HasExited`` extension method @alastairlundy (#13)
+- Add ``ElementsAt`` and ``GetRange`` IEnumerable extension methods @alastairlundy (#11)
+- Improved performance of many DotExtensions Extension methods and add ``ElementAt`` extension methods @alastairlundy (#10)
+- Add missing xml doc comments and fix xml doc comment issues @alastairlundy (#7)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +28,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.5.0</Version>
+        <Version>6.6.0</Version>
     </PropertyGroup>
 
     <ItemGroup>

@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.5.0</Version>
+        <Version>6.6.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -17,8 +17,8 @@
         <PackageReleaseNotes>## Changes
 
 ## 🚀 Features
-- Add StringSegment ``ToEnumerable`` extension method and optimize other StringSegment methods @alastairlundy  (#5 )
-* Fixed xml doc comment issues</PackageReleaseNotes>
+Add StringSegment IEnumerable ToString extension method @alastairlundy (#8)
+Add missing xml doc comments and fix xml doc comment issues @alastairlundy (#7)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
