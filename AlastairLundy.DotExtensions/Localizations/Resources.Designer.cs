@@ -87,6 +87,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature or functionaltiy is not supported on remote Processes (e.g. Processes not running on this machine)..
+        /// </summary>
+        internal static string Exceptions_Processes_NotSupportedOnRemoteProcesss {
+            get {
+                return ResourceManager.GetString("Exceptions.Processes.NotSupportedOnRemoteProcesss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot skip more elements than the target span contains..
         /// </summary>
         internal static string Exceptions_Span_SkipCountTooLarge {
