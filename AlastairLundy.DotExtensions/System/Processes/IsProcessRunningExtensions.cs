@@ -39,14 +39,7 @@ namespace AlastairLundy.DotExtensions.Processes
         {
             if (process.HasStarted())
             {
-                try
-                {
-                    return process.HasExited == false;
-                }
-                catch
-                {
-                    return true;
-                }
+                return process.HasExited() == false;
             }
             else
             {
