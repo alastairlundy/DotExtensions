@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>AlastairLundy.DotExtensions.Resyslib</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Version>6.6.0</Version>
+        <Description>An extension method library that enhances the experience of using Resyslib packages with useful features.</Description>
+        <PackageTags>resyslib-extensions,resyslib, hashmap-extensions,</PackageTags>
+        <PackageReleaseNotes>Add TryAddUserCredential to DotExtensions.Resyslib @alastairlundy (#9)
+Add missing xml doc comments and fix xml doc comment issues @alastairlundy (#7)</PackageReleaseNotes>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="AlastairLundy.Resyslib.Collections" Version="[1.1.0, 2.0.0)" />
+        <PackageReference Include="AlastairLundy.ProcessInvoke.Primitives" Version="[1.2.0, 2.0.0)"/>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.6.0, 7.0.0)"/>
+         
+        <PackageReference Include="Polyfill" Version="[7.27.0, 8.0.0)" Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netstandard2.1'" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="README.md">
+            <PackagePath>README.md</PackagePath>
+            <Link>README.md</Link>
+        </Content>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <EmbeddedResource Update="Localizations\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="Localizations\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>
