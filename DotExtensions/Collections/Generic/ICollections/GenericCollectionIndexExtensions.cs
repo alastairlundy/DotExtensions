@@ -91,6 +91,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>The index of the specified item in a collection.</returns>
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV7)]
         public static int IndexOf<T>(this ICollection<T> collection, T item)
         {
             if (collection is IList<T> list)
