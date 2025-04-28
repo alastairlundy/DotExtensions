@@ -74,7 +74,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
             StringBuilder stringBuilder = new StringBuilder();
 
             StringSegment[] stringSegments = segments as StringSegment[] ?? segments.ToArray();
-        
+            
             for (int i = 0; i < stringSegments.Length; i++)
             {
                 stringBuilder.Append(stringSegments[i].ToCharArray());

@@ -26,10 +26,7 @@ Add missing xml doc comments and fix xml doc comment issues @alastairlundy (#7)<
 
     <ItemGroup>
         <PackageReference Include="AlastairLundy.Resyslib.Collections" Version="[1.1.0, 2.0.0)" />
-        <PackageReference Include="AlastairLundy.ProcessInvoke.Primitives" Version="[1.2.0, 2.0.0)"/>
         <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.6.0, 7.0.0)"/>
-         
-        <PackageReference Include="Polyfill" Version="[7.27.0, 8.0.0)" Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netstandard2.1'" />
     </ItemGroup>
     
     <ItemGroup>
