@@ -27,18 +27,21 @@ using System.Diagnostics;
 
 using System.Threading;
 using System.Threading.Tasks;
+// ReSharper disable AsyncVoidLambda
+// ReSharper disable RedundantJumpStatement
 
 namespace AlastairLundy.DotExtensions.Processes
 {
     public static class ProcessWaitForExitAsyncExtensions
     {
 #if NETSTANDARD2_0 || NETSTANDARD2_1
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="process"></param>
-    /// <param name="cancellationToken"></param>
-    private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Waits for the specified process to exit, but only waits while the specified token is held.
+        /// </summary>
+        /// <param name="process">The process to wait for.</param>
+        /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be
+        /// cancelled.</param>
+        private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
     {
         Task task = new Task(process.WaitForExit);
         
@@ -49,13 +52,17 @@ namespace AlastairLundy.DotExtensions.Processes
 #endif
     
         /// <summary>
-        /// 
+        /// Waits for the specified process to exit within the given time span.
         /// </summary>
-        /// <param name="process"></param>
-        /// <param name="timeout"></param>
-        /// <param name="endProcessAtTimeout"></param>
-        /// <param name="cancellationToken"></param>
-        public static async Task WaitForExitAsync(this Process process, TimeSpan timeout, bool endProcessAtTimeout = false, CancellationToken cancellationToken = default)
+        /// <param name="process">The process to wait for.</param>
+        /// <param name="timeout">The maximum amount of time that is spent waiting for the process to exit. If the timeout
+        /// expires before the process exits.</param>
+        /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
+        /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
+        public static async Task WaitForExitAsync(this Process process,
+            TimeSpan timeout,
+            bool endProcessAtTimeout = false,
+            CancellationToken cancellationToken = default)
         {
             Task processTask = new Task(async () =>
             {
@@ -106,14 +113,15 @@ namespace AlastairLundy.DotExtensions.Processes
         }
 
         /// <summary>
-        /// 
+        /// Waits for the specified process to exit.
         /// </summary>
-        /// <param name="process"></param>
-        /// <param name="millisecondTimeout"></param>
-        /// <param name="endProcessAtTimeout"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="process">The process to wait for.</param>
+        /// <param name="millisecondTimeout">The number of milliseconds to wait before timing out. If 0, there is no timeout.</param>
+        /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
+        /// <param name="cancellationToken">A cancellation token that determines whether the operation
+        /// should continue to run or be cancelled.</param>
         public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
-            bool endProcessAtTimeout = false, 
+            bool endProcessAtTimeout = false,
             CancellationToken cancellationToken = default)
         { 
             await WaitForExitAsync(process, 
