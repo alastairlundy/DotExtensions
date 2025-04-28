@@ -92,23 +92,18 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         public static int IndexOf<T>(this ICollection<T> collection, T item)
         {
             int index = 0;
-            
-            using IEnumerator<T> enumerator = collection.GetEnumerator();
 
-            while (enumerator.MoveNext())
+            foreach (T t in collection)
             {
-                if (enumerator.Current is not null)
+                if (t is not null && t.Equals(item))
                 {
-                    if (enumerator.Current.Equals(item))
-                    {
-                        return index;
-                    }
+                    return index;
                 }
-
+                    
                 index++;
             }
-            
-            throw new KeyNotFoundException();
+
+            return -1;
         }
         
         /// <summary>
