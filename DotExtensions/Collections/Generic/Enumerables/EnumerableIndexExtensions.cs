@@ -55,8 +55,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                         return index;
                     }
                 }
-
-                return -1;
             }
             else
             {
@@ -71,8 +69,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                     
                     index++;
                 }
-                return -1;
             }
+            return -1;
         }
 
         /// <summary>

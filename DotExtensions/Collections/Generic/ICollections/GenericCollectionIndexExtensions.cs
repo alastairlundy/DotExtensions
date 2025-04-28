@@ -22,8 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlastairLundy.DotExtensions.Deprecations;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -91,18 +93,31 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
         public static int IndexOf<T>(this ICollection<T> collection, T item)
         {
-            int index = 0;
-
-            foreach (T t in collection)
+            if (collection is IList<T> list)
             {
-                if (t is not null && t.Equals(item))
+                for (int index = 0; index < list.Count; index++)
                 {
-                    return index;
+                    T t = list[index];
+                    if (t is not null && t.Equals(item))
+                    {
+                        return index;
+                    }
                 }
-                    
-                index++;
             }
+            else
+            {
+                int index = 0;
 
+                foreach (T t in collection)
+                {
+                    if (t is not null && t.Equals(item))
+                    {
+                        return index;
+                    }
+                    
+                    index++;
+                }
+            }
             return -1;
         }
         
@@ -113,6 +128,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="item">The item to get the indexes of.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>The indexes of the specified item in the collection.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV7)]
         public static IEnumerable<int> IndexesOf<T>(this ICollection<T> collection, T item)
         {
             List<int> indexes = new List<int>();
