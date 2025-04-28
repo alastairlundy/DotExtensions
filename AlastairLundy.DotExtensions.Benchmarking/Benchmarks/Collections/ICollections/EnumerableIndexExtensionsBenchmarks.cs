@@ -52,7 +52,7 @@ public class EnumerableIndexExtensionsBenchmarks
     }
 
     [Benchmark]
-    public void Linq_IndexOf()
+    public void Linq_List_IndexOf()
     {
         int index = fakeData.IndexOf(fakeData[indexes[Random.Shared.Next(0, N)]]);
     }
