@@ -28,7 +28,7 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    public static class ToGenericListExtensions
+    public static class ToGenericsListExtensions
     {
         /// <summary>
         /// Converts a non-generic IList to a generic IList that stores objects of type T.
