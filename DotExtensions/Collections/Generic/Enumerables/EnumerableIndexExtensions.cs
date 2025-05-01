@@ -40,23 +40,37 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <param name="obj">The object to get the index of.</param>
         /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
-        /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object; throws an exception otherwise.</returns>
+        /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object, throws an exception otherwise.</returns>
         /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
         public static int IndexOf<T>(this IEnumerable<T> source, T obj)
         {
-            T[] items = source as T[] ?? source.ToArray();
-
-            for(int index = 0; index < items.Length; index++)
+            if (source is IList<T> list)
             {
-                T item = items[index];
-                
-                if (item != null && item.Equals(obj))
+                for(int index = 0; index < list.Count; index++)
                 {
-                    return index;
+                    T item = list[index];
+                
+                    if (item is not null && item.Equals(obj))
+                    {
+                        return index;
+                    }
                 }
             }
-
-            throw new ValueNotFoundException(nameof(source), nameof(obj));
+            else
+            {
+                int index = 0;
+                
+                foreach (T item in source)
+                {
+                    if (item is not null && item.Equals(obj))
+                    {
+                        return index;
+                    }
+                    
+                    index++;
+                }
+            }
+            return -1;
         }
 
         /// <summary>
