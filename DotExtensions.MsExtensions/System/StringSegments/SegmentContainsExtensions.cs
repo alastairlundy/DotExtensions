@@ -52,7 +52,7 @@ public static class SegmentContainsExtensions
         
         return false;
     }
-
+    
     /// <summary>
     /// Returns whether the String Segment contains another String Segment.
     /// </summary>
@@ -71,13 +71,13 @@ public static class SegmentContainsExtensions
         }
         
         char[] segmentArray = segment.ToCharArray();
-
-        bool containsAllChars = segmentArray.All(x => @this.Contains(x));
         
+        bool containsAllChars = @this.ContainsAllOf(segmentArray);
+
         if (containsAllChars == false)
         {
             return false;
-        }
+        } 
         
         int startIndex = 0;
 
