@@ -126,10 +126,9 @@ public static class SegmentContainsExtensions
     /// <returns>True if any of the possible values is found, false otherwise.</returns>
     public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
-        return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
+        return source.IndexOfAny([..possibleValues]) != -1;
     }
     
-        
     /// <summary>
     /// Returns whether a StringSegment contains all the specified possible chars.
     /// </summary>
