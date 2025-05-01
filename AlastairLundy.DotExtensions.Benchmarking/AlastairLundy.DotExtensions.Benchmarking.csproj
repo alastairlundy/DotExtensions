@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>AlastairLundy.DotExtensions.Benchmarking</RootNamespace>
+        <AssemblyName>AlastairLundy.DotExtensions.Benchmarking</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+      <PackageReference Include="Bogus" Version="35.6.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Benchmarks\" />
+      <Folder Include="Benchmarks\Collections\Generic\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DotExtensions\AlastairLundy.DotExtensions.csproj" />
+    </ItemGroup>
+
+</Project>
