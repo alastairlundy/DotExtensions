@@ -47,20 +47,17 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
         public static string ToString(this IEnumerable<StringSegment> segments, string separator = " ")
         {
             StringBuilder stringBuilder = new StringBuilder();
-
-            StringSegment[] stringSegments = segments as StringSegment[] ?? segments.ToArray();
-        
-            for (int i = 0; i < stringSegments.Length; i++)
-            {
-                stringBuilder.Append(stringSegments[i].ToCharArray());
             
-                if(i < stringSegments.Length - 1)
-                {
-                    stringBuilder.Append(separator);
-                }
+            foreach (StringSegment segment in segments)
+            {
+                stringBuilder.Append(segment.ToCharArray());
+                stringBuilder.Append(separator);
             }
         
-            return stringBuilder.ToString();
+            string output = stringBuilder.ToString();
+            output = output.Remove(output.Length - 1, 1);
+
+            return output;
         }
 
         /// <summary>
@@ -72,20 +69,17 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
         public static string ToString(this IEnumerable<StringSegment> segments, char separator = ' ')
         {
             StringBuilder stringBuilder = new StringBuilder();
-
-            StringSegment[] stringSegments = segments as StringSegment[] ?? segments.ToArray();
-        
-            for (int i = 0; i < stringSegments.Length; i++)
-            {
-                stringBuilder.Append(stringSegments[i].ToCharArray());
             
-                if(i < stringSegments.Length - 1)
-                {
-                    stringBuilder.Append(separator);
-                }
+            foreach(StringSegment segment in segments)
+            {
+                stringBuilder.Append(segment.ToCharArray());
+                stringBuilder.Append(separator);
             }
-        
-            return stringBuilder.ToString();
+            
+            string output = stringBuilder.ToString();
+            output = output.Remove(output.Length - 1, 1);
+
+            return output;
         }
     }
 }

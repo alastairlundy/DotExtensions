@@ -52,7 +52,7 @@ public static class SegmentContainsExtensions
         
         return false;
     }
-
+    
     /// <summary>
     /// Returns whether the String Segment contains another String Segment.
     /// </summary>
@@ -71,13 +71,13 @@ public static class SegmentContainsExtensions
         }
         
         char[] segmentArray = segment.ToCharArray();
-
-        bool containsAllChars = segmentArray.All(x => @this.Contains(x));
         
+        bool containsAllChars = @this.ContainsAllOf(segmentArray);
+
         if (containsAllChars == false)
         {
             return false;
-        }
+        } 
         
         int startIndex = 0;
 
@@ -96,13 +96,14 @@ public static class SegmentContainsExtensions
                 }
             }
 
-            if (found == false)
+            if (found == true)
             {
-                return false;
+                return true;
             }
+            
         }
 
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -126,10 +127,9 @@ public static class SegmentContainsExtensions
     /// <returns>True if any of the possible values is found, false otherwise.</returns>
     public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
-        return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
+        return source.IndexOfAny([..possibleValues]) != -1;
     }
     
-        
     /// <summary>
     /// Returns whether a StringSegment contains all the specified possible chars.
     /// </summary>
@@ -138,6 +138,6 @@ public static class SegmentContainsExtensions
     /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
     public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
-        return possibleValues.Select(c => source.Contains(c)).All(containsValue => containsValue == true);
+        return possibleValues.All(c => source.Contains(c));
     }
 }
