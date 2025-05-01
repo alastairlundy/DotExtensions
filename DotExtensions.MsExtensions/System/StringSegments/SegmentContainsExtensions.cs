@@ -96,13 +96,14 @@ public static class SegmentContainsExtensions
                 }
             }
 
-            if (found == false)
+            if (found == true)
             {
-                return false;
+                return true;
             }
+            
         }
 
-        return true;
+        return false;
     }
 
     /// <summary>
