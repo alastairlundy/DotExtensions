@@ -24,7 +24,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables

@@ -33,12 +33,12 @@ public static class IListAddRangeExtensions
 {
     
     /// <summary>
-    /// 
+    /// Adds a range of elements from an IEnumerable to the current list.
     /// </summary>
-    /// <param name="list"></param>
-    /// <param name="listToAdd"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <exception cref="OverflowException"></exception>
+    /// <param name="list">The list into which elements will be added.</param>
+    /// <param name="listToAdd">The IEnumerable containing elements to add to the list.</param>
+    /// <typeparam name="T">The type of elements in both lists.</typeparam>
+    /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
     public static void AddRange<T>(this IList<T> list, IEnumerable<T> listToAdd)
     {
         if (list.Count == int.MaxValue)
@@ -58,13 +58,14 @@ public static class IListAddRangeExtensions
         }
     }
     
+
     /// <summary>
-    /// Adds the elements of another list to the current list.
+    /// Appends elements from another collection to the end of the specified list.
     /// </summary>
-    /// <param name="list">The list to add to.</param>
-    /// <param name="listToAdd">The list to add from.</param>
-    /// <typeparam name="T"></typeparam>
-    /// <exception cref="OverflowException"></exception>
+    /// <param name="list">The list into which elements will be appended.</param>
+    /// <param name="listToAdd">The collection containing elements to append to the list.</param>
+    /// <typeparam name="T">The type of elements in both lists.</typeparam>
+    /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
     public static void AddRange<T>(this IList<T> list, IList<T> listToAdd)
     {
         if (list.Count == int.MaxValue)
