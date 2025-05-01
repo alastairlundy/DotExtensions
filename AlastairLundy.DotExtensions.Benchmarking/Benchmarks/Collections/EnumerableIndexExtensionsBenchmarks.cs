@@ -5,7 +5,7 @@ using AlastairLundy.DotExtensions.Benchmarking.Infra.FakeData;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
-namespace AlastairLundy.DotExtensions.Benchmarking.Benchmarks.Collections.ICollections;
+namespace AlastairLundy.DotExtensions.Benchmarking.Benchmarks.Collections;
 
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
