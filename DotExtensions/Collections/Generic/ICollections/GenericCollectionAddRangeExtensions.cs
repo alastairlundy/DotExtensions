@@ -22,40 +22,33 @@
        SOFTWARE.
    */
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ILists
+using AlastairLundy.DotExtensions.Collections.ILists;
+
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    public static class ToGenericListExtensions
+    public static class GenericCollectionAddRangeExtensions
     {
+
         /// <summary>
-        /// Converts a non-generic IList to a generic IList that stores objects of type T.
+        /// Appends elements from another collection to the end of the specified collection.
         /// </summary>
-        /// <param name="list">The IList to convert.</param>
-        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
-        /// <returns>A new IList that stores items of type T.</returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static IList<T> ToGenericList<T>(this IList list)
+        /// <param name="collection">The collection into which elements will be appended.</param>
+        /// <param name="collectionToAdd">The collection containing elements to append to the original collection.</param>
+        /// <typeparam name="T">The type of elements in both collections.</typeparam>
+        public static void AddRange<T>(this ICollection<T> collection, ICollection<T> collectionToAdd)
         {
-            if (typeof(T) != list.GetType())
+            if (collection is IList<T> list && collectionToAdd is IList<T> listToAdd)
             {
-                throw new ArgumentException(
-                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
+                IListAddRangeExtensions.AddRange(list, listToAdd);
+                return;
             }
 
-            List<T> output = new();
-
-            foreach (object obj in list)
+            foreach (T item in collectionToAdd)
             {
-                if (obj is T t)
-                {
-                    output.Add(t);
-                }
+                collection.Add(item);
             }
-
-            return output;
         }
     }
 }

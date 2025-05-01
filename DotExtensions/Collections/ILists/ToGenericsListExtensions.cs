@@ -26,35 +26,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ICollections;
-
-public static class CollectionToGenericsExtensions
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
-    // TODO: Rename to ``ToGenericCollection``
-    public static ICollection<T> ToGeneric<T>(this ICollection source)
+    public static class ToGenericsListExtensions
     {
-        ICollection<T> output = new List<T>();
-
-        foreach (object item in source)
+        /// <summary>
+        /// Converts a non-generic IList to a generic IList that stores objects of type T.
+        /// </summary>
+        /// <param name="list">The IList to convert.</param>
+        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
+        /// <returns>A new IList that stores items of type T.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static IList<T> ToGenericList<T>(this IList list)
         {
-            if (item is T t)
+            if (typeof(T) != list.GetType())
             {
-                output.Add(t);
+                throw new ArgumentException(
+                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
             }
-            else
-            {
-                throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
-            }
-        }
 
-        return output;
+            List<T> output = new();
+
+            foreach (object obj in list)
+            {
+                if (obj is T t)
+                {
+                    output.Add(t);
+                }
+            }
+
+            return output;
+        }
     }
 }
