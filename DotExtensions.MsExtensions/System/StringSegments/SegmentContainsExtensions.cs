@@ -137,6 +137,6 @@ public static class SegmentContainsExtensions
     /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
     public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
     {
-        return possibleValues.Select(c => source.Contains(c)).All(containsValue => containsValue == true);
+        return possibleValues.All(c => source.Contains(c));
     }
 }
