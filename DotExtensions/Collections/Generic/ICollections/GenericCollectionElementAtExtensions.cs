@@ -24,7 +24,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
+using AlastairLundy.DotExtensions.Collections.ILists;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
@@ -55,6 +57,36 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 
             throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
                 .Replace("{x}",$"{index}"));
+        }
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="indexes"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indexes)
+        {
+            List<T> output = new();
+
+            if (source is IList<T> list)
+            {
+                return IListElementsAtExtensions.ElementsAt(list, indexes);
+            }
+
+            T[] sourceArray = source.ToArray();
+            
+            foreach (int index in indexes)
+            {
+                if (index >= 0 && index < sourceArray.Length)
+                {
+                    output.Add(sourceArray[index]);
+                }
+            }
+            
+            return output;   
         }
     }
 }
