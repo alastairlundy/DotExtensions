@@ -32,26 +32,15 @@ namespace AlastairLundy.DotExtensions.Dates;
 public static class DateTimeAddExtensions
 {
     /// <summary>
-    /// Adds two dates together and returns the resulting date and time.
+    /// Adds two dates together and returns the resulting DateTime.
     /// </summary>
-    /// <param name="dateTimeOne">The first date and time to add.</param>
-    /// <param name="dateTimeTwo">The second date and time to add.</param>
+    /// <param name="dateTimeOne">The starting DateTime.</param>
+    /// <param name="dateTimeTwo">The date and time to add.</param>
     /// <returns>The sum of the two input dates and times.</returns>
     public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
-        int yearDifference = dateTimeTwo.Year - dateTimeOne.Year;
-        int monthDifference = dateTimeTwo.Month - dateTimeOne.Month;
-        int dayDifference = dateTimeTwo.Day - dateTimeOne.Day;
-        int hourDifference = dateTimeTwo.Hour - dateTimeOne.Hour;
-        int minuteDifference = dateTimeTwo.Minute - dateTimeOne.Minute;
-        
-        dateTimeOne = dateTimeOne.AddMinutes(Convert.ToDouble(minuteDifference));
-        dateTimeOne = dateTimeOne.AddHours(Convert.ToDouble(hourDifference));
-        dateTimeOne = AddDays(dateTimeOne, dayDifference);
-        dateTimeOne = dateTimeOne.AddMonths(monthDifference);
-        dateTimeOne = dateTimeOne.AddYears(yearDifference);
-        
-        return dateTimeOne;
+        TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+        return dateTimeOne.Add(timeSpan);
     }
 
     
