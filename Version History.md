@@ -4,15 +4,20 @@
 
 ### Version 6.x
 
+### 6.8
+| Version | Release Date | Notes | 
+|-|-|-|
+| 6.8.0 | May 8th 2025 | |
+
 ### 6.7
 | Version | Release Date | Notes | 
 |-|-|-|
-| 6.7.0 | May 1st 2025 | No DotExtensions.Resyslib update |
+| 6.7.0 | May 1st 2025 | |
 
 ### 6.6
 | Version | Release Date | Notes | 
 |-|-|-|
-| 6.6.0 | April 25th 2025 | |
+| 6.6.0 | April 25th 2025 | Final DotExtensions.Resyslib update.|
 
 ### 6.5
 | Version | Release Date | Notes | 

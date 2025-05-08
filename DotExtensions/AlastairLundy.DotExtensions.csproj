@@ -14,10 +14,14 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
-Add new AddRange and ElementsAt IEnumerable and ICollection extension methods @alastairlundy (#18)
-    Improve IEnumerable extension method performance @alastairlundy (#17)
-    Add DateTime Add extension methods @alastairlundy (#16)
-    Add async WaitForExitAsync timeout overloads as extension methods @alastairlundy (#12)</PackageReleaseNotes>
+- Deprecate methods that will be removed in v7 @alastairlundy (#23)
+
+## 🚀 Features
+
+- Add KeyValuePairEnumerable ``ToKeys``, ``ToValues`` and ``ToSplit`` extension methods @alastairlundy (#22)
+- Add Span ``GetRange``, ``First``, and ``Last`` extension, and optimize Span extensions @alastairlundy (#21)
+- Optimize DateTime Add method and add DateTime Subtract method @alastairlundy (#20)
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +30,7 @@ Add new AddRange and ElementsAt IEnumerable and ICollection extension methods @a
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.7.0</Version>
+        <Version>6.8.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
