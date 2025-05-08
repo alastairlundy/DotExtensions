@@ -24,34 +24,35 @@
 
 using System;
 
-namespace AlastairLundy.DotExtensions.Dates;
-
-/// <summary>
-/// A static class to Add to DateTime values.
-/// </summary>
-public static class DateTimeAddExtensions
+namespace AlastairLundy.DotExtensions.Dates
 {
     /// <summary>
-    /// Adds two dates together and returns the resulting DateTime.
+    /// A static class to Add to DateTime values.
     /// </summary>
-    /// <param name="dateTimeOne">The starting DateTime.</param>
-    /// <param name="dateTimeTwo">The date and time to add.</param>
-    /// <returns>The sum of the two input dates and times.</returns>
-    public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
+    public static class DateTimeAddExtensions
     {
-        TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
-        return dateTimeOne.Add(timeSpan);
-    }
+        /// <summary>
+        /// Adds two dates together and returns the resulting DateTime.
+        /// </summary>
+        /// <param name="dateTimeOne">The starting DateTime.</param>
+        /// <param name="dateTimeTwo">The date and time to add.</param>
+        /// <returns>The sum of the two input dates and times.</returns>
+        public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
+        {
+            TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+            return dateTimeOne.Add(timeSpan);
+        }
 
     
-    /// <summary>
-    /// Adds a specified number of days to a given date and time.
-    /// </summary>
-    /// <param name="dateTime">The initial date and time to add days to.</param>
-    /// <param name="days">The number of days to add.</param>
-    /// <returns>The resulting date and time after adding the specified number of days.</returns>
-    public static DateTime AddDays(this DateTime dateTime, int days)
-    {
-       return dateTime.AddDays(Convert.ToDouble(days));
+        /// <summary>
+        /// Adds a specified number of days to a given date and time.
+        /// </summary>
+        /// <param name="dateTime">The initial date and time to add days to.</param>
+        /// <param name="days">The number of days to add.</param>
+        /// <returns>The resulting date and time after adding the specified number of days.</returns>
+        public static DateTime AddDays(this DateTime dateTime, int days)
+        {
+            return dateTime.AddDays(Convert.ToDouble(days));
+        }
     }
 }
