@@ -76,17 +76,9 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
             
-            T[] array = new T[target.Length - count];
-        
-            for (int i = 0; i < target.Length; i++)
-            {
-                if ((i <= count) == false)
-                {
-                    array[i] = target[i];
-                }
-            }
-        
-            return new Span<T>(array);
+            int end = target.Length - count;
+
+            return GetRange(target, start: count, end: end);
         }
 
         /// <summary>
@@ -103,9 +95,9 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
             
-            T[] array = new T[target.Length - count];
+            return GetRange(target, start: 0, end: target.Length - count);
+        }
 
-            int limit = target.Length - count;
         /// <summary>
         /// Returns a new Span with the specified range of elements,
         /// starting from the given start index and ending at the given end index.
@@ -124,10 +116,8 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
 
-            for (int i = 0; i < limit; i++)
             if (start < 0 || start >= target.Length)
             {
-                array[i] = target[i];
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{start}")
                     .Replace("{y}", $"0")
