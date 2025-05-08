@@ -54,10 +54,9 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
                 stringBuilder.Append(separator);
             }
         
-            string output = stringBuilder.ToString();
-            output = output.Remove(output.Length - 1, 1);
+            stringBuilder.Remove(stringBuilder.Length - separator.Length, separator.Length);
 
-            return output;
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -76,10 +75,8 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
                 stringBuilder.Append(separator);
             }
             
-            string output = stringBuilder.ToString();
-            output = output.Remove(output.Length - 1, 1);
-
-            return output;
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            return stringBuilder.ToString();
         }
     }
 }
