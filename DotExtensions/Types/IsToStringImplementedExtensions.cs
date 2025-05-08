@@ -22,19 +22,21 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Types
 {
     public static class IsToStringImplementedExtensions
     {
-        /// <summary>
-        /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
-        /// </summary>
-        /// <param name="this">The instance of the Type to be checked.</param>
-        /// <typeparam name="T">The type to be checked.</typeparam>
-        /// <returns>True if ToString is implemented, false otherwise.</returns>
-        public static bool IsToStringImplemented<T>(this T @this)
+  /// <summary>
+    /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
+    /// </summary>
+    /// <param name="this">The instance of the Type to be checked.</param>
+    /// <typeparam name="T">The type to be checked.</typeparam>
+    /// <returns>True if ToString is implemented, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
+    public static bool IsToStringImplemented<T>(this T @this)
         {
             return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
                                                    m.ReturnType == typeof(string) &&
