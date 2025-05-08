@@ -29,6 +29,31 @@ namespace AlastairLundy.DotExtensions.Dates
     public static class DateTimeSubtractExtensions
     {
         
+        /// <summary>
+        /// Subtracts two dates from each other and returns the resulting date and time.
+        /// </summary>
+        /// <param name="dateTimeOne">The starting DateTime.</param>
+        /// <param name="dateTimeTwo">The date and time to subtract from.</param>
+        /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
+        public static DateTime Subtract(this DateTime dateTimeOne, DateTime dateTimeTwo)
+        {
+            int yearDifference = dateTimeTwo.Year - dateTimeOne.Year;
+            int monthDifference = dateTimeTwo.Month - dateTimeOne.Month;
+            int dayDifference = dateTimeTwo.Day - dateTimeOne.Day;
+            int hourDifference = dateTimeTwo.Hour - dateTimeOne.Hour;
+            int minuteDifference = dateTimeTwo.Minute - dateTimeOne.Minute;
+            int millisecondDifference = dateTimeTwo.Millisecond - dateTimeOne.Millisecond;
+            
+            dateTimeOne = SubtractMilliseconds(dateTimeOne, millisecondDifference);
+            dateTimeOne = SubtractMinutes(dateTimeOne, minuteDifference);
+            dateTimeOne = SubtractHours(dateTimeOne, hourDifference);
+            dateTimeOne = SubtractDays(dateTimeOne, dayDifference);
+            dateTimeOne = dateTimeOne.SubtractMonths(monthDifference);
+            dateTimeOne = dateTimeOne.SubtractYears(yearDifference);
+        
+            return dateTimeOne;
+        }
+        
 #if NET6_0_OR_GREATER
         /// <summary>
         /// Subtract a specified number of microseconds from a DateTime.
