@@ -26,35 +26,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ICollections;
-
-public static class CollectionToGenericsExtensions
+namespace AlastairLundy.DotExtensions.Collections.ICollections
 {
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
-    // TODO: Rename to ``ToGenericCollection``
-    public static ICollection<T> ToGeneric<T>(this ICollection source)
+    public static class CollectionToGenericsExtensions
     {
-        ICollection<T> output = new List<T>();
-
-        foreach (object item in source)
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        // TODO: Rename to ``ToGenericCollection``
+        public static ICollection<T> ToGeneric<T>(this ICollection source)
         {
-            if (item is T t)
-            {
-                output.Add(t);
-            }
-            else
-            {
-                throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
-            }
-        }
+            ICollection<T> output = new List<T>();
 
-        return output;
+            foreach (object item in source)
+            {
+                if (item is T t)
+                {
+                    output.Add(t);
+                }
+                else
+                {
+                    throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
+                }
+            }
+
+            return output;
+        }
     }
 }

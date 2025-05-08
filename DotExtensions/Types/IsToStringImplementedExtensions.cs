@@ -25,11 +25,11 @@
 using System;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Types;
-
-public static class IsToStringImplementedExtensions
+namespace AlastairLundy.DotExtensions.Types
 {
-    /// <summary>
+    public static class IsToStringImplementedExtensions
+    {
+  /// <summary>
     /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
     /// </summary>
     /// <param name="this">The instance of the Type to be checked.</param>
@@ -37,10 +37,11 @@ public static class IsToStringImplementedExtensions
     /// <returns>True if ToString is implemented, false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
     public static bool IsToStringImplemented<T>(this T @this)
-    {
-        return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
-                                               m.ReturnType == typeof(string) &&
-                                               m.GetParameters().Length == 0 &&
-                                               m is { IsPublic: true, IsStatic: false});
+        {
+            return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
+                                                   m.ReturnType == typeof(string) &&
+                                                   m.GetParameters().Length == 0 &&
+                                                   m is { IsPublic: true, IsStatic: false});
+        }
     }
 }

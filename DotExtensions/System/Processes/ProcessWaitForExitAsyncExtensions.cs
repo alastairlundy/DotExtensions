@@ -34,6 +34,7 @@ namespace AlastairLundy.DotExtensions.Processes
 {
     public static class ProcessWaitForExitAsyncExtensions
     {
+        
 #if NETSTANDARD2_0 || NETSTANDARD2_1
         /// <summary>
         /// Waits for the specified process to exit, but only waits while the specified token is held.
@@ -42,13 +43,13 @@ namespace AlastairLundy.DotExtensions.Processes
         /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be
         /// cancelled.</param>
         private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
-    {
-        Task task = new Task(process.WaitForExit);
-        
-        task.Start();
-        
-        await task;
-    }
+        {
+            Task task = new Task(process.WaitForExit);
+            
+            task.Start();
+            
+            await task;
+        }
 #endif
     
         /// <summary>

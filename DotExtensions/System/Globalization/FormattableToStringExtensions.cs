@@ -25,17 +25,18 @@
 using System;
 using System.Globalization;
 
-namespace AlastairLundy.DotExtensions.Globalization;
-
-public static class FormattableToStringExtensions
+namespace AlastairLundy.DotExtensions.Globalization
 {
-    /// <summary>
-    /// Converts an IFormattable to a string.
-    /// </summary>
-    /// <param name="formattable">The IFormattable to be converted to a string.</param>
-    /// <returns>The newly created string.</returns>
-    public static string? ToString(this IFormattable formattable)
+    public static class FormattableToStringExtensions
     {
-        return (string?)CultureInfo.CurrentCulture.GetFormat(formattable.GetType());
+        /// <summary>
+        /// Converts an IFormattable to a string.
+        /// </summary>
+        /// <param name="formattable">The IFormattable to be converted to a string.</param>
+        /// <returns>The newly created string.</returns>
+        public static string? ToString(this IFormattable formattable)
+        {
+            return (string?)CultureInfo.CurrentCulture.GetFormat(formattable.GetType());
+        }
     }
 }

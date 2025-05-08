@@ -27,65 +27,66 @@ using System.Collections.Generic;
 
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Collections.ILists;
-
-public static class IListAddRangeExtensions
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    
-    /// <summary>
-    /// Adds a range of elements from an IEnumerable to the current list.
-    /// </summary>
-    /// <param name="list">The list into which elements will be added.</param>
-    /// <param name="listToAdd">The IEnumerable containing elements to add to the list.</param>
-    /// <typeparam name="T">The type of elements in both lists.</typeparam>
-    /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
-    public static void AddRange<T>(this IList<T> list, IEnumerable<T> listToAdd)
+    public static class IListAddRangeExtensions
     {
-        if (list.Count == int.MaxValue)
+    
+        /// <summary>
+        /// Adds a range of elements from an IEnumerable to the current list.
+        /// </summary>
+        /// <param name="list">The list into which elements will be added.</param>
+        /// <param name="listToAdd">The IEnumerable containing elements to add to the list.</param>
+        /// <typeparam name="T">The type of elements in both lists.</typeparam>
+        /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
+        public static void AddRange<T>(this IList<T> list, IEnumerable<T> listToAdd)
         {
-            throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
-        }
+            if (list.Count == int.MaxValue)
+            {
+                throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+            }
         
-        if (list is List<T> actualList && listToAdd is IList<T> iListToAdd)
-        {
-            actualList.AddRange(iListToAdd);
-            return;
-        }
+            if (list is List<T> actualList && listToAdd is IList<T> iListToAdd)
+            {
+                actualList.AddRange(iListToAdd);
+                return;
+            }
         
-        foreach (T item in listToAdd)
-        {
-            list.Add(item);
+            foreach (T item in listToAdd)
+            {
+                list.Add(item);
+            }
         }
-    }
     
 
-    /// <summary>
-    /// Appends elements from another collection to the end of the specified list.
-    /// </summary>
-    /// <param name="list">The list into which elements will be appended.</param>
-    /// <param name="listToAdd">The collection containing elements to append to the list.</param>
-    /// <typeparam name="T">The type of elements in both lists.</typeparam>
-    /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
-    public static void AddRange<T>(this IList<T> list, IList<T> listToAdd)
-    {
-        if (list.Count == int.MaxValue)
+        /// <summary>
+        /// Appends elements from another collection to the end of the specified list.
+        /// </summary>
+        /// <param name="list">The list into which elements will be appended.</param>
+        /// <param name="listToAdd">The collection containing elements to append to the list.</param>
+        /// <typeparam name="T">The type of elements in both lists.</typeparam>
+        /// <exception cref="OverflowException">Thrown if an attempt is made to add an element that exceeds the maximum allowed capacity of the list.</exception>
+        public static void AddRange<T>(this IList<T> list, IList<T> listToAdd)
         {
-            throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
-        }
-        else if (listToAdd.Count == int.MaxValue)
-        {
-            throw new OverflowException($"{nameof(listToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(list)}.");
-        }
+            if (list.Count == int.MaxValue)
+            {
+                throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
+            }
+            else if (listToAdd.Count == int.MaxValue)
+            {
+                throw new OverflowException($"{nameof(listToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(list)}.");
+            }
         
-        if (list is List<T> actualList)
-        {
-            actualList.AddRange(listToAdd);
-            return;
-        }
+            if (list is List<T> actualList)
+            {
+                actualList.AddRange(listToAdd);
+                return;
+            }
         
-        foreach (T item in listToAdd)
-        {
-            list.Add(item);
+            foreach (T item in listToAdd)
+            {
+                list.Add(item);
+            }
         }
     }
 }
