@@ -148,5 +148,15 @@ namespace AlastairLundy.DotExtensions.Localizations {
                 return ResourceManager.GetString("Processes.Exceptions.ProcessNotRunning", resourceCulture);
             }
         }
+
+        internal static string Exceptions_Enumerables_InvalidOperation_EmptySequence
+        {
+            get
+            {
+                return ResourceManager.GetString("Exceptions.Enumerables.InvalidOperation_EmptySequence", resourceCulture);
+            }
+        }
+        
+        
     }
 }

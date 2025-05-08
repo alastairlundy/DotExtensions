@@ -26,37 +26,38 @@
 using System.Collections.Generic;
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Collections.ILists;
-
-public static class IListElementsAtExtensions
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    /// <summary>
-    /// Returns a IList of elements from the specified source, 
-    /// where the index of each element in the returned IList corresponds to an index in the provided indexes.
-    /// </summary>
-    /// <remarks>The order of the elements in the returned IList is determined by their original position in the source,
-    /// but the order within the returned IList is based on the provided indexes.</remarks>
-    /// <param name="source">The IList from which to retrieve elements.</param>
-    /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
-    /// <typeparam name="T">The type of the elements in the source and returned IList.</typeparam>
-    /// <returns>A new IList containing the elements at the specified indexes from the original source.</returns>
-    public static IList<T> ElementsAt<T>(this IList<T> source, IEnumerable<int> indexes)
+    public static class IListElementsAtExtensions
     {
-        List<T> output = new();
-        
-        IList<int> indexesList = new List<int>();
-        indexesList.AddRange(indexes);
-
-        for (int i = 0; i < indexesList.Count; i++)
+        /// <summary>
+        /// Returns a IList of elements from the specified source, 
+        /// where the index of each element in the returned IList corresponds to an index in the provided indexes.
+        /// </summary>
+        /// <remarks>The order of the elements in the returned IList is determined by their original position in the source,
+        /// but the order within the returned IList is based on the provided indexes.</remarks>
+        /// <param name="source">The IList from which to retrieve elements.</param>
+        /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
+        /// <typeparam name="T">The type of the elements in the source and returned IList.</typeparam>
+        /// <returns>A new IList containing the elements at the specified indexes from the original source.</returns>
+        public static IList<T> ElementsAt<T>(this IList<T> source, IEnumerable<int> indexes)
         {
-            int index = indexesList[i];
+            List<T> output = new();
+        
+            IList<int> indexesList = new List<int>();
+            indexesList.AddRange(indexes);
 
-            if (index >= 0 && index < source.Count)
+            for (int i = 0; i < indexesList.Count; i++)
             {
-                output.Add(source[index]);
+                int index = indexesList[i];
+
+                if (index >= 0 && index < source.Count)
+                {
+                    output.Add(source[index]);
+                }
             }
-        }
             
-        return output;
+            return output;
+        }
     }
 }

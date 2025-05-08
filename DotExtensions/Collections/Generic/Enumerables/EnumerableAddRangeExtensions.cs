@@ -28,59 +28,60 @@ using System.Linq;
 using AlastairLundy.DotExtensions.Collections.ILists;
 // ReSharper disable RedundantAssignment
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
-
-public static class EnumerableAddRangeExtensions
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    /// <summary>
-    /// Adds a single element to the specified sequence of elements.
-    /// </summary>
-    /// <param name="source">The sequence from which the element will be removed.</param>
-    /// <param name="item">The element to add to the sequence.</param>
-    /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
-    public static void Add<T>(this IEnumerable<T> source, T item)
+    public static class EnumerableAddRangeExtensions
     {
-        if (source is ICollection<T> collection)
+        /// <summary>
+        /// Adds a single element to the specified sequence of elements.
+        /// </summary>
+        /// <param name="source">The sequence from which the element will be removed.</param>
+        /// <param name="item">The element to add to the sequence.</param>
+        /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
+        public static void Add<T>(this IEnumerable<T> source, T item)
         {
-            collection.Add(item);
+            if (source is ICollection<T> collection)
+            {
+                collection.Add(item);
+            }
+            else
+            {
+                source = source.Append(item);
+            }
         }
-        else
-        {
-            source = source.Append(item);
-        }
-    }
     
-    /// <summary>
-    /// Adds multiple elements to the specified sequence of elements.
-    /// </summary>
-    /// <param name="source">The sequence from which no elements will be removed.</param>
-    /// <param name="toBeAdded">The elements to add to the sequence.</param>
-    /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
-    public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
-    {
-        if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
-        { 
-            IListAddRangeExtensions.AddRange(sourceList, listTwo);
-            return;
-        }
-
-        if (source is ICollection<T> sourceCollection)
+        /// <summary>
+        /// Adds multiple elements to the specified sequence of elements.
+        /// </summary>
+        /// <param name="source">The sequence from which no elements will be removed.</param>
+        /// <param name="toBeAdded">The elements to add to the sequence.</param>
+        /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
+        public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
         {
-            foreach (T item in toBeAdded)
-            {
-                sourceCollection.Add(item);
+            if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
+            { 
+                IListAddRangeExtensions.AddRange(sourceList, listTwo);
+                return;
             }
-        }
-        else
-        {
-            List<T> list = source.ToList();
+
+            if (source is ICollection<T> sourceCollection)
+            {
+                foreach (T item in toBeAdded)
+                {
+                    sourceCollection.Add(item);
+                }
+            }
+            else
+            {
+                List<T> list = source.ToList();
             
-            foreach (T item in toBeAdded)
-            {
-                list.Add(item);
-            }
+                foreach (T item in toBeAdded)
+                {
+                    list.Add(item);
+                }
 
-            source = list;
+                source = list;
+            }
         }
     }
 }
