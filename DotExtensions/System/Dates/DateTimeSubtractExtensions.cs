@@ -38,9 +38,7 @@ namespace AlastairLundy.DotExtensions.Dates
         public static DateTime Subtract(this DateTime dateTimeOne, DateTime dateTimeTwo)
         {
             TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
-            dateTimeOne = dateTimeOne.Subtract(timeSpan);
-        
-            return dateTimeOne;
+            return dateTimeOne.Subtract(timeSpan);
         }
         
 #if NET6_0_OR_GREATER

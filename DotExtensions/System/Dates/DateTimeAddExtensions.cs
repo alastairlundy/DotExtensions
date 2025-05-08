@@ -40,9 +40,7 @@ public static class DateTimeAddExtensions
     public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
         TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
-        dateTimeOne = dateTimeOne.Add(timeSpan);
-        
-        return dateTimeOne;
+        return dateTimeOne.Add(timeSpan);
     }
 
     
