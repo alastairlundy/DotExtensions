@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Types;
@@ -34,6 +35,7 @@ public static class IsToStringImplementedExtensions
     /// <param name="this">The instance of the Type to be checked.</param>
     /// <typeparam name="T">The type to be checked.</typeparam>
     /// <returns>True if ToString is implemented, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
     public static bool IsToStringImplemented<T>(this T @this)
     {
         return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
