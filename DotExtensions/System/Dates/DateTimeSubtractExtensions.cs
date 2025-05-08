@@ -37,19 +37,8 @@ namespace AlastairLundy.DotExtensions.Dates
         /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
         public static DateTime Subtract(this DateTime dateTimeOne, DateTime dateTimeTwo)
         {
-            int yearDifference = dateTimeTwo.Year - dateTimeOne.Year;
-            int monthDifference = dateTimeTwo.Month - dateTimeOne.Month;
-            int dayDifference = dateTimeTwo.Day - dateTimeOne.Day;
-            int hourDifference = dateTimeTwo.Hour - dateTimeOne.Hour;
-            int minuteDifference = dateTimeTwo.Minute - dateTimeOne.Minute;
-            int millisecondDifference = dateTimeTwo.Millisecond - dateTimeOne.Millisecond;
-            
-            dateTimeOne = SubtractMilliseconds(dateTimeOne, millisecondDifference);
-            dateTimeOne = SubtractMinutes(dateTimeOne, minuteDifference);
-            dateTimeOne = SubtractHours(dateTimeOne, hourDifference);
-            dateTimeOne = SubtractDays(dateTimeOne, dayDifference);
-            dateTimeOne = dateTimeOne.SubtractMonths(monthDifference);
-            dateTimeOne = dateTimeOne.SubtractYears(yearDifference);
+            TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+            dateTimeOne = dateTimeOne.Subtract(timeSpan);
         
             return dateTimeOne;
         }

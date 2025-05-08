@@ -39,19 +39,8 @@ public static class DateTimeAddExtensions
     /// <returns>The sum of the two input dates and times.</returns>
     public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
-        int yearDifference = dateTimeTwo.Year - dateTimeOne.Year;
-        int monthDifference = dateTimeTwo.Month - dateTimeOne.Month;
-        int dayDifference = dateTimeTwo.Day - dateTimeOne.Day;
-        int hourDifference = dateTimeTwo.Hour - dateTimeOne.Hour;
-        int minuteDifference = dateTimeTwo.Minute - dateTimeOne.Minute;
-        int millisecondDifference = dateTimeTwo.Millisecond - dateTimeOne.Millisecond;
-        
-        dateTimeOne = dateTimeOne.AddMinutes(Convert.ToDouble(millisecondDifference));
-        dateTimeOne = dateTimeOne.AddMinutes(Convert.ToDouble(minuteDifference));
-        dateTimeOne = dateTimeOne.AddHours(Convert.ToDouble(hourDifference));
-        dateTimeOne = AddDays(dateTimeOne, dayDifference);
-        dateTimeOne = dateTimeOne.AddMonths(monthDifference);
-        dateTimeOne = dateTimeOne.AddYears(yearDifference);
+        TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+        dateTimeOne = dateTimeOne.Add(timeSpan);
         
         return dateTimeOne;
     }
