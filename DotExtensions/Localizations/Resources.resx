@@ -39,4 +39,7 @@
     <data name="Exceptions.IO.DirectoryNotFound" xml:space="preserve">
         <value>Unable to find directory with file path of {x}.</value>
     </data>
+    <data name="Exceptions.Enumerables.InvalidOperation.EmptySequence" xml:space="preserve">
+        <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
+    </data>
 </root>
