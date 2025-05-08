@@ -106,15 +106,47 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
             T[] array = new T[target.Length - count];
 
             int limit = target.Length - count;
-
-            for (int i = 0; i < limit; i++)
+        /// <summary>
+        /// Returns a new Span with the specified range of elements,
+        /// starting from the given start index and ending at the given end index.
+        /// </summary>
+        /// <param name="target">The original span to extract the range of items from.</param>
+        /// <param name="start">The zero-based starting index of the range.</param>
+        /// <param name="end">The one-based ending index of the range (inclusive).</param>
+        /// <typeparam name="T">The type of elements in the span.</typeparam>
+        /// <returns>A new span containing the specified range of elements.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is greater than the length of the span, or if the end index exceeds the span's capacity.</exception>
+        public static Span<T> GetRange<T>(this Span<T> target, int start, int end)
+        {
+            if ((end - start) > target.Length)
             {
-                array[i] = target[i];
+                throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
 
+            for (int i = 0; i < limit; i++)
+            if (start < 0 || start >= target.Length)
+            {
+                array[i] = target[i];
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{start}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{ target.Length}"));
+            }
+            
+            int count = end - start;
+            
+            T[] array = new T[count];
+
+            int newIndex = 0;
+            for (int i = start; i < end; i++)
+            {
+                array[newIndex] = target[i];
+            }
+            
             return new Span<T>(array);
         }
-    
+        
         /// <summary>
         /// Returns a new Span with all the elements of the original span that do not match the specified predicate func.
         /// </summary>
