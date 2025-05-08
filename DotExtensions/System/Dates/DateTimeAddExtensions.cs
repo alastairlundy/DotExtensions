@@ -42,7 +42,11 @@ public static class DateTimeAddExtensions
         int yearDifference = dateTimeTwo.Year - dateTimeOne.Year;
         int monthDifference = dateTimeTwo.Month - dateTimeOne.Month;
         int dayDifference = dateTimeTwo.Day - dateTimeOne.Day;
+        int hourDifference = dateTimeTwo.Hour - dateTimeOne.Hour;
+        int minuteDifference = dateTimeTwo.Minute - dateTimeOne.Minute;
         
+        dateTimeOne = dateTimeOne.AddMinutes(Convert.ToDouble(minuteDifference));
+        dateTimeOne = dateTimeOne.AddHours(Convert.ToDouble(hourDifference));
         dateTimeOne = AddDays(dateTimeOne, dayDifference);
         dateTimeOne = dateTimeOne.AddMonths(monthDifference);
         dateTimeOne = dateTimeOne.AddYears(yearDifference);
