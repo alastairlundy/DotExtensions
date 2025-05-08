@@ -119,6 +119,44 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         
             return new Span<T>(list.ToArray());
         }
+
+        /// <summary>
+        /// Returns the first element in the Span.
+        /// </summary>
+        /// <param name="target">The span to be searched.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>The first item in the span if any items are in the Span.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+        public static T First<T>(this Span<T> target)
+        {
+            if (target.Length == 1)
+            {
+                return target[0];
+            }
+
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        }
+
+        /// <summary>
+        /// Returns the last element in the Span.
+        /// </summary>
+        /// <param name="target">The span to be searched.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>The last item in the span if any items are in the Span.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+        public static T Last<T>(this Span<T> target)
+        {
+            if (target.Length == 1)
+            {
+#if NET6_0_OR_GREATER
+                return target[^1];
+#else
+                return target[target.Length - 1];
+#endif
+            }
+
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        }
     
         /// <summary>
         /// Returns a new Span with all items in the Span that match the predicate condition.
