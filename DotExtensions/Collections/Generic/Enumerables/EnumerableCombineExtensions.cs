@@ -40,6 +40,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>The newly created IEnumerable.</returns>
         /// <exception cref="OverflowException">Thrown if the size of the new IEnumerable is larger than the max size for IEnumerables.</exception>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
         public static IEnumerable<T> Combine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo)
         {   
             T[] arrayOne = source as T[] ?? source.ToArray();
@@ -70,6 +71,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="enumerableTwo">The second IEnumerable to be added.</param>
         /// <param name="destinationEnumerable">The combined IEnumerable.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
         public static void Combine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo, out IEnumerable<T> destinationEnumerable)
         {
             destinationEnumerable = source.Combine(enumerableTwo);
@@ -84,6 +86,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="destinationEnumerable">The combined IEnumerable if successful; null otherwise.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>True if combining the IEnumerable objects was successful; returns false otherwise.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
         public static bool TryCombine<T>(this IEnumerable<T> source, IEnumerable<T> enumerableTwo, out IEnumerable<T>? destinationEnumerable)
         {
             try
