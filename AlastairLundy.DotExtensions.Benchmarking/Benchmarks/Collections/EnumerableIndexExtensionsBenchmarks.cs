@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.Benchmarking.Infra.FakeData;
+
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
@@ -41,14 +43,8 @@ public class EnumerableIndexExtensionsBenchmarks
         int index = DotExtensions.Collections.Generic.
             Enumerables.EnumerableIndexExtensions.IndexOf(fakeData,
                 fakeData[indexes[Random.Shared.Next(0, N)]]);
-    }
-    
-    [Benchmark]
-    public void DotExtensions_Collections_IndexOf()
-    {
-        int index = DotExtensions.Collections.Generic.
-            ICollections.GenericCollectionIndexExtensions.IndexOf(fakeData,
-            fakeData[indexes[Random.Shared.Next(0, N)]]);
+
+        //fakeData[index];
     }
 
     [Benchmark]
