@@ -57,12 +57,12 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             {
                 return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
             }
-
-            T[] sourceList = source as T[] ?? source.ToArray();
+        
+            IList<T> sourceList = source.ToArray();
 
             foreach (int index in indexes)
             {
-                if (index >= 0 && index < sourceList.Length)
+                if (index >= 0 && index < sourceList.Count)
                 {
                     output.Add(sourceList[index]);
                 }
