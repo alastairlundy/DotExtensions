@@ -83,5 +83,54 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                 source = list;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        {
+            #region Faster IList implementation
+            if (source is IList<T> list)
+            {
+                IListRangeExtensions.RemoveRange(list, startIndex, count);
+                return list;
+            }
+            #endregion
+
+            #region Faster ICollection implementation
+
+            if (source is ICollection<T> collection)
+            {
+                ICollections.GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
+                return collection;
+            }
+            #endregion
+            
+            IList<T> enumerableList = source.ToList();
+
+            int limit;
+
+            if (enumerableList.Count >= (startIndex + count))
+            {
+                limit = startIndex + count;
+            }
+            else
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+
+            for (int index = startIndex; index < limit; index++)
+            {
+                enumerableList.RemoveAt(index);   
+            }
+            
+            return enumerableList;
+        }
     }
 }

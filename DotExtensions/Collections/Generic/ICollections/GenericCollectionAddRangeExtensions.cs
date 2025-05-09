@@ -50,5 +50,34 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 collection.Add(item);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="ArgumentException"></exception>
+        public static void RemoveRange<T>(this ICollection<T> collection, int startIndex, int count)
+        {
+            if (collection is IList<T> list)
+            {
+                IListRangeExtensions.RemoveRange(list, startIndex, count);
+                return;
+            }
+            else
+            {
+                if (collection.Count > startIndex + count)
+                {
+                    throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                }
+                
+                for (int index = startIndex; index < startIndex + count; index++)
+                {
+                   collection = collection.RemoveAt(index);
+                }
+            }
+        }
     }
 }

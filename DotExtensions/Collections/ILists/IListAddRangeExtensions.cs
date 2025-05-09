@@ -88,5 +88,74 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 list.Add(item);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public static IList<T> GetRange<T>(this IList<T> list, int startIndex, int count)
+        {
+            List<T> output = new List<T>();
+            int limit;
+            
+            if (list.Count < startIndex + count)
+            {
+                limit = startIndex + count;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{count}")
+                    .Replace("{y}", "0")
+                    .Replace("{z}", $"{list.Count}"));
+            }
+                
+            for (int index = startIndex; index < limit; index++)
+            {
+                output.Add(list[index]);
+            }
+                
+            return output;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        public static void RemoveRange<T>(this IList<T> list, int startIndex, int count)
+        {
+            int limit;
+            
+            if (list.Count < startIndex + count)
+            {
+                limit = startIndex + count;
+            }
+            else if (startIndex >= list.Count || startIndex < 0 ) 
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", "0")
+                    .Replace("{z}", $"{list.Count}"));
+            }
+            else
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+            
+            for (int index = startIndex; index < limit; index++)
+            {
+                list.RemoveAt(index);
+            }
+        }
     }
 }
