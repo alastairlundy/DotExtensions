@@ -99,13 +99,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             
             int i = 0;
 
-            #region Faster IList implementation
+            /*#region Faster IList implementation
             if (source is IList<T> list)
             {
                 // Uses a faster IList GetRange implementation that avoids unnecessary ToArray enumeration.
                return IListRangeExtensions.GetRange(list, startIndex, count);
             }
-            #endregion
+            #endregion*/
             
             IList<T> enumerable = source as IList<T> ?? source.ToArray();
         
