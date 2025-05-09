@@ -22,9 +22,11 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
