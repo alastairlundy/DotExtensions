@@ -85,9 +85,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             List<int> indexes = new List<int>();
             
-            T[] items = source as T[] ?? source.ToArray();
+            IList<T> items = source as IList<T> ?? source.ToArray();
 
-            for(int index = 0; index < items.Length; index++)
+            for(int index = 0; index < items.Count; index++)
             {
                 T item = items[index];
                 
