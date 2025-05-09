@@ -1,18 +1,18 @@
 ﻿/*
         MIT License
-       
+
        Copyright (c) 2024-2025 Alastair Lundy
-       
+
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-       
+
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-       
+
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,39 +23,36 @@
    */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ILists
+namespace AlastairLundy.DotExtensions.Dates
 {
-    public static class ToGenericListExtensions
+    /// <summary>
+    /// A static class to Add to DateTime values.
+    /// </summary>
+    public static class DateTimeAddExtensions
     {
         /// <summary>
-        /// Converts a non-generic IList to a generic IList that stores objects of type T.
+        /// Adds two dates together and returns the resulting DateTime.
         /// </summary>
-        /// <param name="list">The IList to convert.</param>
-        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
-        /// <returns>A new IList that stores items of type T.</returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static IList<T> ToGenericList<T>(this IList list)
+        /// <param name="dateTimeOne">The starting DateTime.</param>
+        /// <param name="dateTimeTwo">The date and time to add.</param>
+        /// <returns>The sum of the two input dates and times.</returns>
+        public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
         {
-            if (typeof(T) != list.GetType())
-            {
-                throw new ArgumentException(
-                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
-            }
+            TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+            return dateTimeOne.Add(timeSpan);
+        }
 
-            List<T> output = new();
-
-            foreach (object obj in list)
-            {
-                if (obj is T t)
-                {
-                    output.Add(t);
-                }
-            }
-
-            return output;
+    
+        /// <summary>
+        /// Adds a specified number of days to a given date and time.
+        /// </summary>
+        /// <param name="dateTime">The initial date and time to add days to.</param>
+        /// <param name="days">The number of days to add.</param>
+        /// <returns>The resulting date and time after adding the specified number of days.</returns>
+        public static DateTime AddDays(this DateTime dateTime, int days)
+        {
+            return dateTime.AddDays(Convert.ToDouble(days));
         }
     }
 }

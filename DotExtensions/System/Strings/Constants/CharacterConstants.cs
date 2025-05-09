@@ -50,8 +50,14 @@ namespace AlastairLundy.DotExtensions.Strings
 
 #endif
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static char[] SpecialCharacters => SpecialChars;
         
+        /// <summary>
+        /// 
+        /// </summary>
         public static string[] EscapeCharacters => EscapeChars;
     }
 }

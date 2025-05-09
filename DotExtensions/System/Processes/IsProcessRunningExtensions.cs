@@ -70,9 +70,8 @@ namespace AlastairLundy.DotExtensions.Processes
                 processes = Process.GetProcesses().Select(x => x.ProcessName);
             }
             
-            processes = processes.Where(x => x.Contains(tempProcessName));
-            
-            return processes.Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
+            return processes.Where(x => x.Contains(tempProcessName))
+                .Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
         }
     }
 }

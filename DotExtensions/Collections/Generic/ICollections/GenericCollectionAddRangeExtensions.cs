@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2020-2025 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,26 +22,33 @@
        SOFTWARE.
    */
 
-using System;
-using System.Linq;
+using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Types
+using AlastairLundy.DotExtensions.Collections.ILists;
+
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    public static class IsToStringImplementedExtensions
+    public static class GenericCollectionAddRangeExtensions
     {
-  /// <summary>
-    /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
-    /// </summary>
-    /// <param name="this">The instance of the Type to be checked.</param>
-    /// <typeparam name="T">The type to be checked.</typeparam>
-    /// <returns>True if ToString is implemented, false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
-    public static bool IsToStringImplemented<T>(this T @this)
+
+        /// <summary>
+        /// Appends elements from another collection to the end of the specified collection.
+        /// </summary>
+        /// <param name="collection">The collection into which elements will be appended.</param>
+        /// <param name="collectionToAdd">The collection containing elements to append to the original collection.</param>
+        /// <typeparam name="T">The type of elements in both collections.</typeparam>
+        public static void AddRange<T>(this ICollection<T> collection, ICollection<T> collectionToAdd)
         {
-            return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
-                                                   m.ReturnType == typeof(string) &&
-                                                   m.GetParameters().Length == 0 &&
-                                                   m is { IsPublic: true, IsStatic: false});
+            if (collection is IList<T> list && collectionToAdd is IList<T> listToAdd)
+            {
+                IListAddRangeExtensions.AddRange(list, listToAdd);
+                return;
+            }
+
+            foreach (T item in collectionToAdd)
+            {
+                collection.Add(item);
+            }
         }
     }
 }

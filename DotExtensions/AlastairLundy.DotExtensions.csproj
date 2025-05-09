@@ -14,12 +14,14 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
+- Deprecate methods that will be removed in v7 @alastairlundy (#23)
+
 ## 🚀 Features
 
-- Update ``HasStarted`` and ``IsProcessRunning`` Process extension methods, and add ``HasExited`` extension method @alastairlundy (#13)
-- Add ``ElementsAt`` and ``GetRange`` IEnumerable extension methods @alastairlundy (#11)
-- Improved performance of many DotExtensions Extension methods and add ``ElementAt`` extension methods @alastairlundy (#10)
-- Add missing xml doc comments and fix xml doc comment issues @alastairlundy (#7)</PackageReleaseNotes>
+- Add KeyValuePairEnumerable ``ToKeys``, ``ToValues`` and ``ToSplit`` extension methods @alastairlundy (#22)
+- Add Span ``GetRange``, ``First``, and ``Last`` extension, and optimize Span extensions @alastairlundy (#21)
+- Optimize DateTime Add method and add DateTime Subtract method @alastairlundy (#20)
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -28,7 +30,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.6.0</Version>
+        <Version>6.8.0</Version>
     </PropertyGroup>
 
     <ItemGroup>

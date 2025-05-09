@@ -76,17 +76,9 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
             
-            T[] array = new T[target.Length - count];
-        
-            for (int i = 0; i < target.Length; i++)
-            {
-                if ((i <= count) == false)
-                {
-                    array[i] = target[i];
-                }
-            }
-        
-            return new Span<T>(array);
+            int end = target.Length - count;
+
+            return target.GetRange(start: count, end: end);
         }
 
         /// <summary>
@@ -103,18 +95,9 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
             }
             
-            T[] array = new T[target.Length - count];
-
-            int limit = target.Length - count;
-
-            for (int i = 0; i < limit; i++)
-            {
-                array[i] = target[i];
-            }
-
-            return new Span<T>(array);
+            return target.GetRange(start: 0, end: target.Length - count);
         }
-    
+
         /// <summary>
         /// Returns a new Span with all the elements of the original span that do not match the specified predicate func.
         /// </summary>
@@ -135,6 +118,44 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
             }
         
             return new Span<T>(list.ToArray());
+        }
+
+        /// <summary>
+        /// Returns the first element in the Span.
+        /// </summary>
+        /// <param name="target">The span to be searched.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>The first item in the span if any items are in the Span.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+        public static T First<T>(this Span<T> target)
+        {
+            if (target.Length == 1)
+            {
+                return target[0];
+            }
+
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        }
+
+        /// <summary>
+        /// Returns the last element in the Span.
+        /// </summary>
+        /// <param name="target">The span to be searched.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>The last item in the span if any items are in the Span.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+        public static T Last<T>(this Span<T> target)
+        {
+            if (target.Length == 1)
+            {
+#if NET6_0_OR_GREATER
+                return target[^1];
+#else
+                return target[target.Length - 1];
+#endif
+            }
+
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         }
     
         /// <summary>

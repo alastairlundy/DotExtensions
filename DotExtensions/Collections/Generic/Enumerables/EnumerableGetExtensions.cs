@@ -28,46 +28,47 @@ using System.Linq;
 
 using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
-
-public static class EnumerableGetExtensions
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    /// <summary>
-    /// Returns a range of elements from the startIndex to the number of elements required.
-    /// </summary>
-    /// <param name="source"></param>
-    /// <param name="startIndex"></param>
-    /// <param name="count"></param>
-    /// <typeparam name="T">The type of object stored in the collection.</typeparam>
-    /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
-    public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
+    public static class EnumerableGetExtensions
     {
-        List<T> output = new();
+        /// <summary>
+        /// Returns a range of elements from the startIndex to the number of elements required.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T">The type of object stored in the collection.</typeparam>
+        /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
+        public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        {
+            List<T> output = new();
             
-        int i = 0;
+            int i = 0;
 
-        T[] enumerable = source as T[] ?? source.ToArray();
+            T[] enumerable = source as T[] ?? source.ToArray();
         
-        if (enumerable.Length < count || startIndex < 0 || count <= 0 || count > enumerable.Length || startIndex > enumerable.Length)
-        {
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                .Replace("{x}", $"{startIndex}"
-                    .Replace("{y}", $"0")
-                    .Replace("{z}", $"{enumerable.Length}")));
-        }
-        
-        int limit = startIndex + count;
-            
-        foreach (T item in enumerable)
-        {
-            if (i >= startIndex && i <= limit)
+            if (enumerable.Length < count || startIndex < 0 || count <= 0 || count > enumerable.Length || startIndex > enumerable.Length)
             {
-                output.Add(item);
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}"
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{enumerable.Length}")));
+            }
+        
+            int limit = startIndex + count;
+            
+            foreach (T item in enumerable)
+            {
+                if (i >= startIndex && i <= limit)
+                {
+                    output.Add(item);
+                }
+
+                i++;
             }
 
-            i++;
+            return output;
         }
-
-        return output;
     }
 }

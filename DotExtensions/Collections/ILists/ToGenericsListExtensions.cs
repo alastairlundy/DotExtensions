@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2020-2025 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,39 @@
    */
 
 using System;
-using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Types
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    public static class IsToStringImplementedExtensions
+    public static class ToGenericsListExtensions
     {
-  /// <summary>
-    /// Return whether Type implements ToString such that a concrete non-virtual implementation is available.
-    /// </summary>
-    /// <param name="this">The instance of the Type to be checked.</param>
-    /// <typeparam name="T">The type to be checked.</typeparam>
-    /// <returns>True if ToString is implemented, false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV7)]
-    public static bool IsToStringImplemented<T>(this T @this)
+        /// <summary>
+        /// Converts a non-generic IList to a generic IList that stores objects of type T.
+        /// </summary>
+        /// <param name="list">The IList to convert.</param>
+        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
+        /// <returns>A new IList that stores items of type T.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static IList<T> ToGenericList<T>(this IList list)
         {
-            return typeof(T).GetMethods().Any(m => m.Name == "ToString" &&
-                                                   m.ReturnType == typeof(string) &&
-                                                   m.GetParameters().Length == 0 &&
-                                                   m is { IsPublic: true, IsStatic: false});
+            if (typeof(T) != list.GetType())
+            {
+                throw new ArgumentException(
+                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
+            }
+
+            List<T> output = new();
+
+            foreach (object obj in list)
+            {
+                if (obj is T t)
+                {
+                    output.Add(t);
+                }
+            }
+
+            return output;
         }
     }
 }

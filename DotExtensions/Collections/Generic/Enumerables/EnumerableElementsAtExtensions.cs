@@ -25,6 +25,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
+using AlastairLundy.DotExtensions.Collections.ILists;
+
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
     public static class EnumerableElementsAtExtensions
@@ -43,21 +47,27 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
         {
             List<T> output = new();
-            
-            int[] enumerable = indexes as int[] ?? indexes.ToArray();
-            
-            int i = 0;
-            
-            foreach (T item in source)
-            {
-                if (enumerable.Contains(i))
-                {
-                    output.Add(item);
-                }
 
-                i++;
+            if (source is IList<T> list)
+            {
+                return IListElementsAtExtensions.ElementsAt(list, indexes);
             }
 
+            if (source is ICollection<T> collection)
+            {
+                return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
+            }
+
+            T[] sourceList = source as T[] ?? source.ToArray();
+
+            foreach (int index in indexes)
+            {
+                if (index >= 0 && index < sourceList.Length)
+                {
+                    output.Add(sourceList[index]);
+                }
+            }
+            
             return output;
         }
     }

@@ -23,6 +23,7 @@
    */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,9 +64,16 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                     bool overridesToString = typeof(T).GetMethods().Any(x =>
                         x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
 
-                    if (overridesToString == true)
+                    if (overridesToString == true || source is IEnumerable<string> enumerable)
                     {
-                        stringBuilder.Append(item.ToString()); 
+                        if (typeof(T) == typeof(string))
+                        {
+                            stringBuilder.Append(item);
+                        }
+                        else
+                        {
+                            stringBuilder.Append(item.ToString()); 
+                        }
                     }
                     else
                     {
