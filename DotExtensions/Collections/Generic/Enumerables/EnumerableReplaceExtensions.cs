@@ -55,7 +55,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                 int index = collection.IndexOf(oldValue);
                 
                 collection.RemoveAt(index);
-                collection = collection.Insert(index, newValue);
+                collection.Insert(index, newValue);
+                return collection;
             }
             
             T[] enumerable = source.ToArray();

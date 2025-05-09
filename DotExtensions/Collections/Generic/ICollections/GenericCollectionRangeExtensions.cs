@@ -30,7 +30,7 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    public static class GenericCollectionAddRangeExtensions
+    public static class GenericCollectionRangeExtensions
     {
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         {
             if (collection is IList<T> list && collectionToAdd is IList<T> listToAdd)
             {
-                IListAddRangeExtensions.AddRange(list, listToAdd);
+                IListRangeExtensions.AddRange(list, listToAdd);
                 return;
             }
 

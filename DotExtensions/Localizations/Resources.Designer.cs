@@ -156,7 +156,13 @@ namespace AlastairLundy.DotExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.Enumerables.InvalidOperation_EmptySequence", resourceCulture);
             }
         }
-        
-        
+
+        internal static string Exceptions_Enumerables_CountArgumentTooLarge
+        {
+            get
+            {
+                return ResourceManager.GetString("Exceptions.Enumerables.CountArgumentTooLarge", resourceCulture);
+            }
+        }
     }
 }
