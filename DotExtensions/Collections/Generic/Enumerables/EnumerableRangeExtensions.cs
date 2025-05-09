@@ -22,15 +22,18 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
+using AlastairLundy.DotExtensions.Localizations;
+
 // ReSharper disable RedundantAssignment
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    public static class EnumerableAddRangeExtensions
+    public static class EnumerableRangeExtensions
     {
         /// <summary>
         /// Adds a single element to the specified sequence of elements.
@@ -58,11 +61,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
         public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
         {
+            #region Faster IList Implementation
             if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
             { 
-                IListAddRangeExtensions.AddRange(sourceList, listTwo);
+                IListRangeExtensions.AddRange(sourceList, listTwo);
                 return;
             }
+            #endregion
 
             if (source is ICollection<T> sourceCollection)
             {
@@ -73,15 +78,59 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             else
             {
-                List<T> list = source.ToList();
-            
                 foreach (T item in toBeAdded)
                 {
-                    list.Add(item);
+                   source = source.Append(item);
                 }
-
-                source = list;
             }
         }
+        
+        /// <summary>
+        /// Returns a range of elements from the startIndex to the number of elements required.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T">The type of object stored in the collection.</typeparam>
+        /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
+        public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        {
+            List<T> output = new();
+            
+            int i = 0;
+
+            /*#region Faster IList implementation
+            if (source is IList<T> list)
+            {
+                // Uses a faster IList GetRange implementation that avoids unnecessary ToArray enumeration.
+               return IListRangeExtensions.GetRange(list, startIndex, count);
+            }
+            #endregion*/
+            
+            IList<T> enumerable = source as IList<T> ?? source.ToArray();
+        
+            if (enumerable.Count < count || startIndex < 0 || count <= 0 || count > enumerable.Count || startIndex > enumerable.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}"
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{enumerable.Count}")));
+            }
+        
+            int limit = startIndex + count;
+            
+            foreach (T item in enumerable)
+            {
+                if (i >= startIndex && i <= limit)
+                {
+                    output.Add(item);
+                }
+
+                i++;
+            }
+
+            return output;
+        }
+
     }
 }
