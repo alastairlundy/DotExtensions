@@ -52,10 +52,25 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The IEnumerable with the index of the specified item removed.</returns>
         public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
         {
-            T[] enumerable = source as T[] ?? source.ToArray();
-            T item = enumerable[index];
+            #region Faster IList implementation
+            if (source is IList<T> list)
+            {
+                 list.RemoveAt(index);
+                 return list;
+            }
+            #endregion
             
-            return enumerable.Remove(item);
+            #region Faster ICollection implementation
+            if (source is ICollection<T> collection)
+            {
+                return ICollections.GenericCollectionRemoveExtensions.RemoveAt<T>(collection, index);
+            }
+            #endregion
+            
+            IList<T> enumerable = source.ToArray();
+            
+            enumerable.RemoveAt(index);
+            return enumerable;
         }
         
         /// <summary>
