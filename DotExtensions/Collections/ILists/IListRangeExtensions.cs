@@ -24,12 +24,13 @@
 
 using System;
 using System.Collections.Generic;
+using AlastairLundy.DotExtensions.Localizations;
 
 // ReSharper disable InconsistentNaming
 
 namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    public static class IListAddRangeExtensions
+    public static class IListRangeExtensions
     {
     
         /// <summary>
@@ -88,5 +89,6 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 list.Add(item);
             }
         }
+
     }
 }
