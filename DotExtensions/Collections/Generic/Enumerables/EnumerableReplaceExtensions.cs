@@ -41,6 +41,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The modified IEnumerable if the IEnumerable contains the value to be replaced; Otherwise the original IEnumerable is returned.</returns>
         public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, T oldValue, T newValue)
         {
+            if (source is IList<T> list)
+            {
+                int index = list.IndexOf(oldValue);
+                
+                list[index] = newValue;
+                return list;
+            }
             T[] enumerable = source.ToArray();
 
             if (enumerable.Contains(oldValue))
