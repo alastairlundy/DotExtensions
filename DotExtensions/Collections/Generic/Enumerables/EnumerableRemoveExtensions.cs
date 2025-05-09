@@ -40,7 +40,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified item removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
-            return Remove(source, [itemToBeRemoved]);
+            return source.Where(x => itemToBeRemoved is not null && itemToBeRemoved.Equals(x) == false);
         }
 
         /// <summary>
