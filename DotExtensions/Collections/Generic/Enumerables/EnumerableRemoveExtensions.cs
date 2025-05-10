@@ -40,7 +40,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified item removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
-            return Remove(source, [itemToBeRemoved]);
+            return from item in source
+                where item.Equals(itemToBeRemoved) == false
+                    select item;
         }
 
         /// <summary>
@@ -82,7 +84,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
         {
-            return source.Where(x => itemsToBeRemoved.Contains(x) == false);
+            return from item in source
+                where itemsToBeRemoved.Contains(item) == false
+                    select item;
         }
     }
 }
