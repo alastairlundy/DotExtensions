@@ -38,7 +38,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <summary>
         /// Adds a single element to the specified sequence of elements.
         /// </summary>
-        /// <param name="source">The sequence from which the element will be removed.</param>
+        /// <param name="source">The sequence to add items to.</param>
         /// <param name="item">The element to add to the sequence.</param>
         /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
         public static void Add<T>(this IEnumerable<T> source, T item)
@@ -56,7 +56,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <summary>
         /// Adds multiple elements to the specified sequence of elements.
         /// </summary>
-        /// <param name="source">The sequence from which no elements will be removed.</param>
+        /// <param name="source">The sequence to add items to.</param>
         /// <param name="toBeAdded">The elements to add to the sequence.</param>
         /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
         public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
