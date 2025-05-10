@@ -44,14 +44,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         // TODO: Rename to SplitByProcessorCount in V7
         public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
         {
-            T[] array = source as T[] ?? source.ToArray();
+            IList<T> array = source as IList<T> ?? source.ToArray();
         
-            if (array.Length == 0)
+            if (array.Count == 0)
             {
                 throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
             }
         
-            double itemsPerThread = array.Length / Convert.ToDouble(Environment.ProcessorCount);
+            double itemsPerThread = array.Count / Convert.ToDouble(Environment.ProcessorCount);
         
             int enumerableLimit = Convert.ToInt32(Math.Round(itemsPerThread, MidpointRounding.AwayFromZero));
 
@@ -70,9 +70,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             List<List<T>> outputList = new List<List<T>>();
         
-            T[] items = source as T[] ?? source.ToArray();
+            IList<T> items = source as IList<T> ?? source.ToArray();
 
-            if (items.Length == 0)
+            if (items.Count == 0)
             {
                 throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
             }
