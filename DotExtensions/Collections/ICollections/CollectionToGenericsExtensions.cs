@@ -51,7 +51,7 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
                 }
                 else
                 {
-                    throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
+                    throw new ArgumentException($"Source does not contain objects of type {typeof(T)}");
                 }
             }
 
