@@ -42,7 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
         /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
         // TODO: Rename to SplitByProcessorCount in V7
-        public static IEnumerable<IEnumerable<T>> SplitByThreadCount<T>(this IEnumerable<T> source)
+        public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
         {
             T[] array = source as T[] ?? source.ToArray();
         

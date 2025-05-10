@@ -37,7 +37,7 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         /// <typeparam name="T">The type of items stored in the IList.</typeparam>
         /// <returns>A new IList that stores items of type T.</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static IList<T> ToGenericList<T>(this IList list)
+        public static IList<T> ToGenericIList<T>(this IList list)
         {
             if (typeof(T) != list.GetType())
             {
