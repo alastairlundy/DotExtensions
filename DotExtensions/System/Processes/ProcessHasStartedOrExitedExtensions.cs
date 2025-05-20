@@ -71,7 +71,7 @@ namespace AlastairLundy.DotExtensions.Processes
             }
             else
             {
-                throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcesss);
+                throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
             }
         }
     }
