@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2025 Alastair Lundy
+       Copyright (c) 2024-2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -26,49 +26,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using AlastairLundy.DotExtensions.Collections.ILists;
 using AlastairLundy.DotExtensions.Localizations;
+
+// ReSharper disable RedundantAssignment
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    public static class EnumerableGetExtensions
+    public static class EnumerableAddExtensions
     {
         /// <summary>
-        /// Returns a range of elements from the startIndex to the number of elements required.
+        /// Adds a single element to the specified sequence of elements.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T">The type of object stored in the collection.</typeparam>
-        /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
-        public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        /// <param name="source">The sequence to add items to.</param>
+        /// <param name="item">The element to add to the sequence.</param>
+        /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
+        public static void Add<T>(this IEnumerable<T> source, T item)
         {
-            List<T> output = new();
-            
-            int i = 0;
-
-            T[] enumerable = source as T[] ?? source.ToArray();
-        
-            if (enumerable.Length < count || startIndex < 0 || count <= 0 || count > enumerable.Length || startIndex > enumerable.Length)
+            if (source is ICollection<T> collection)
             {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", $"{startIndex}"
-                        .Replace("{y}", $"0")
-                        .Replace("{z}", $"{enumerable.Length}")));
+                collection.Add(item);
             }
-        
-            int limit = startIndex + count;
-            
-            foreach (T item in enumerable)
+            else
             {
-                if (i >= startIndex && i <= limit)
-                {
-                    output.Add(item);
-                }
-
-                i++;
+                source = source.Append(item);
             }
-
-            return output;
         }
     }
 }

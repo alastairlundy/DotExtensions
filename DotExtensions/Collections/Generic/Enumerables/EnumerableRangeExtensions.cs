@@ -22,57 +22,35 @@
        SOFTWARE.
    */
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
 using AlastairLundy.DotExtensions.Localizations;
 
-// ReSharper disable RedundantAssignment
-
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
-    public static class EnumerableAddRangeExtensions
+    public static class EnumerableRangeExtensions
     {
-        /// <summary>
-        /// Adds a single element to the specified sequence of elements.
-        /// </summary>
-        /// <param name="source">The sequence to add items to.</param>
-        /// <param name="item">The element to add to the sequence.</param>
-        /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
-        public static void Add<T>(this IEnumerable<T> source, T item)
-        {
-            if (source is ICollection<T> collection)
-            {
-                collection.Add(item);
-            }
-            else
-            {
-                source = source.Append(item);
-            }
-        }
-    
         /// <summary>
         /// Adds multiple elements to the specified sequence of elements.
         /// </summary>
         /// <param name="source">The sequence to add items to.</param>
         /// <param name="toBeAdded">The elements to add to the sequence.</param>
         /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
-        public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
+        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
         {
             if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
             { 
                 IListRangeExtensions.AddRange(sourceList, listTwo);
-                return;
+                return sourceList;
             }
-
             if (source is ICollection<T> sourceCollection)
             {
-                foreach (T item in toBeAdded)
-                {
-                    sourceCollection.Add(item);
-                }
+                GenericCollectionRangeExtensions.AddRange(sourceCollection, toBeAdded);
+                return sourceCollection;
             }
             else
             {
@@ -83,8 +61,47 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                     list.Add(item);
                 }
 
-                source = list;
+                return list;
             }
+        }
+        
+        /// <summary>
+        /// Returns a range of elements from the startIndex to the number of elements required.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T">The type of object stored in the collection.</typeparam>
+        /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
+        public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        {
+            List<T> output = new();
+            
+            int i = 0;
+
+            ICollection<T> collection = source as ICollection<T> ?? source.ToArray();
+        
+            if (collection.Count < count || startIndex < 0 || count <= 0 || count > collection.Count || startIndex > collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}"
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{collection.Count}")));
+            }
+        
+            int limit = startIndex + count;
+            
+            foreach (T item in collection)
+            {
+                if (i >= startIndex && i <= limit)
+                {
+                    output.Add(item);
+                }
+
+                i++;
+            }
+
+            return output;
         }
 
         /// <summary>
