@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 
 // ReSharper disable InconsistentNaming
@@ -90,6 +91,41 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="index"></param>
+        /// <param name="values"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public static void InsertRange<T>(this IList<T> list, int index, IEnumerable<T> values)
+        {
+            if (index < 0 || index > list.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{index}")
+                    .Replace("{y}", $"0")
+                    .Replace("z", $"{list.Count}"));
+            }
+            
+            int newIndex = index;
+
+            foreach (T value in values)
+            {
+                if (newIndex >= list.Count)
+                {
+                    list.Add(value);       
+                }
+                else
+                {
+                    list.Insert(newIndex, value);
+                }
+                
+                newIndex++;
+            }
+        }
+        
         /// <summary>
         /// 
         /// </summary>
