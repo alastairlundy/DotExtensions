@@ -24,19 +24,20 @@
 
 using System.Collections.Generic;
 
-using AlastairLundy.DotExtensions.Collections.ICollections;
-
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class GenericCollectionReplaceExtensions
     {
         /// <summary>
-        /// 
+        /// Replaces all occurrences of the specified old value with the new value in the given collection.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection to modify.</param>
+        /// <param name="oldValue">The value to replace.</param>
+        /// <param name="newValue">The replacement value.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
         public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
         {
             int index = collection.IndexOf(oldValue);
