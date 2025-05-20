@@ -107,17 +107,9 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <returns>A new Span with all the elements of the original Span that did not match the specified predicate func.</returns>
         public static Span<T> SkipWhile<T>(this Span<T> target, Func<T, bool> predicate)
         {
-            List<T> list = new();
-        
-            foreach (T item in target)
-            {
-                if (predicate.Invoke(item) == false)
-                {
-                    list.Add(item);
-                }
-            }
-        
-            return new Span<T>(list.ToArray());
+            return from item in target
+                where predicate.Invoke(item) == false
+                    select item;
         }
 
         /// <summary>
