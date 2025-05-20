@@ -5,4 +5,4 @@ using AlastairLundy.DotExtensions.Benchmarking.Benchmarks.Collections;
 using BenchmarkDotNet.Running;
 
 
-BenchmarkRunner.Run<EnumerableIndexExtensionsBenchmarks>();
+BenchmarkRunner.Run<EnumerableAddRangeExtensionsBenchmarks>();

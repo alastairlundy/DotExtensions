@@ -22,13 +22,24 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
+<<<<<<<< HEAD:DotExtensions/Collections/Generic/Enumerables/EnumerableAddExtensions.cs
 using System.Linq;
 // ReSharper disable RedundantAssignment
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
     public static class EnumerableAddExtensions
+========
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+using AlastairLundy.DotExtensions.Collections.ILists;
+using AlastairLundy.DotExtensions.Localizations;
+
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+{
+    public static class GenericCollectionRangeExtensions
+>>>>>>>> main:DotExtensions/Collections/Generic/ICollections/GenericCollectionRangeExtensions.cs
     {
         /// <summary>
         /// Adds a single element to the specified sequence of elements.
@@ -38,7 +49,17 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
         public static void Add<T>(this IEnumerable<T> source, T item)
         {
+<<<<<<<< HEAD:DotExtensions/Collections/Generic/Enumerables/EnumerableAddExtensions.cs
             if (source is ICollection<T> collection)
+========
+            if (collection is IList<T> list && collectionToAdd is IList<T> listToAdd)
+            {
+                IListRangeExtensions.AddRange(list, listToAdd);
+                return;
+            }
+
+            foreach (T item in collectionToAdd)
+>>>>>>>> main:DotExtensions/Collections/Generic/ICollections/GenericCollectionRangeExtensions.cs
             {
                 collection.Add(item);
             }

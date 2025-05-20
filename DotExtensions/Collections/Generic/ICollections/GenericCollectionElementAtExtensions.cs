@@ -43,6 +43,11 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
         public static T ElementAt<T>(this ICollection<T> source, int index)
         {
+            if (source is IList<T> list)
+            {
+                return list[index];
+            }
+            
             int i = 0;
 
             if (source is IList<T> list)
