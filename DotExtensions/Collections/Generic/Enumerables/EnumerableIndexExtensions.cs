@@ -75,7 +75,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             List<int> indexes = new List<int>();
             
-            
             int index = 0;
             foreach (T item in source)
             {

@@ -83,7 +83,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
-        {
+        { 
             return from item in source
                 where itemsToBeRemoved.Contains(item) == false
                     select item;
