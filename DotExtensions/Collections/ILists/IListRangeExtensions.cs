@@ -24,7 +24,6 @@
 
 using System;
 using System.Collections.Generic;
-using AlastairLundy.DotExtensions.Localizations;
 
 // ReSharper disable InconsistentNaming
 

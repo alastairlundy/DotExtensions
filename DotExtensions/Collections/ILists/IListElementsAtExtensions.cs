@@ -24,6 +24,9 @@
 
 
 using System.Collections.Generic;
+using System.Linq;
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
 // ReSharper disable InconsistentNaming
 
 namespace AlastairLundy.DotExtensions.Collections.ILists
@@ -43,9 +46,18 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         public static IList<T> ElementsAt<T>(this IList<T> source, IEnumerable<int> indexes)
         {
             List<T> output = new();
-        
-            IList<int> indexesList = new List<int>();
-            indexesList.AddRange(indexes);
+
+            IList<int> indexesList;
+
+            if (indexes is IList<int> list)
+            {
+                indexesList = list;
+            }
+            else
+            {
+                indexesList = new List<int>();
+                indexesList.AddRange(indexes);
+            }
 
             for (int i = 0; i < indexesList.Count; i++)
             {
