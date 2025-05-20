@@ -96,7 +96,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This feature or functionaltiy is not supported on remote Processes (e.g. Processes not running on this machine)..
+        ///   Looks up a localized string similar to This feature or functionality is not supported on remote Processes (e.g. Processes not running on this machine)..
         /// </summary>
         internal static string Exceptions_Processes_NotSupportedOnRemoteProcess {
             get {
