@@ -50,11 +50,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             
             int i = 0;
 
-            if (source is IList<T> list)
-            {
-                return list[index];
-            }
-
             foreach (T item in source)
             {
                 if (i == index)
