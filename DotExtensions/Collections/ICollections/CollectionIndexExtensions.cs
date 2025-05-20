@@ -54,19 +54,19 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
         }
         
         /// <summary>
-        /// Attempts to get the indexes of a specified element in a collection.
+        /// Attempts to get the indices of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
-        /// <param name="item">The item to attempt to get the indexes of.</param>
-        /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
-        /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryGetIndexesOf(this ICollection collection, object item, out IEnumerable<int>? indexes)
+        /// <param name="item">The item to attempt to get the indices of.</param>
+        /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
+        /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
+        public static bool TryGetIndicesOf(this ICollection collection, object item, out IEnumerable<int>? indices)
         {
             try
             {
-                indexes = IndexesOf(collection, item);
+                indices = IndicesOf(collection, item);
 
-                if (indexes.Any() == false)
+                if (indices.Any() == false)
                 {
                     throw new KeyNotFoundException();    
                 }
@@ -75,7 +75,7 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
             }
             catch
             {
-                indexes = null;
+                indices = null;
                 return false;
             }
         }
@@ -111,15 +111,15 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
         }
         
         /// <summary>
-        /// Gets the indexes of the specified item in a collection.
+        /// Gets the indices of the specified item in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
-        /// <param name="item">The item to get the indexes of.</param>
-        /// <returns>The indexes of an object in the collection.</returns>
-        public static IEnumerable<int> IndexesOf(this ICollection collection, object item)
+        /// <param name="item">The item to get the indices of.</param>
+        /// <returns>The indices of an object in the collection.</returns>
+        public static IEnumerable<int> IndicesOf(this ICollection collection, object item)
         {
-            List<int> indexes = new List<int>();
-            indexes.Clear();
+            List<int> indices = new List<int>();
+            indices.Clear();
             int index = 0;
             
             IEnumerator enumerator = collection.GetEnumerator();
@@ -131,14 +131,14 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
                 {
                     if (enumerator.Current.Equals(item))
                     {
-                        indexes.Add(index);
+                        indices.Add(index);
                     }
                 }
 
                 index++;
             }
 
-            return indexes;
+            return indices;
         }
     }
 }

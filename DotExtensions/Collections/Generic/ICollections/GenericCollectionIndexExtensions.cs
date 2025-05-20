@@ -54,6 +54,19 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             
             return -1;
         }
+
+        /// <summary>
+        /// Retrieves a collection of indices where the specified element can be found within the given collection.
+        /// </summary>
+        /// <param name="source">The collection to search in.</param>
+        /// <param name="item">The element to find.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <returns>A collection of zero-based indices where the item is found,
+        /// or an empty collection if not found.</returns>
+        public static ICollection<int> IndicesOf<T>(this ICollection<T> source, T item)
+        {
+            return (ICollection<int>)EnumerableIndexExtensions.IndicesOf(source, item);
+        }
         
         /// <summary>
         /// Attempts to get the index of a specified element in a collection.
@@ -82,16 +95,16 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
         /// <param name="item">The item to attempt to get the indexes of.</param>
-        /// <param name="indexes">the indexes of an object in a collection if found; null otherwise.</param>
+        /// <param name="indices">the indexes of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
-        public static bool TryGetIndexesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indexes)
+        public static bool TryGetIndicesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indices)
         {
             try
             {
-                indexes = collection.IndexesOf(item);
+                indices = collection.IndicesOf(item);
 
-                if (indexes.Any() == false)
+                if (indices.Any() == false)
                 {
                     throw new KeyNotFoundException();    
                 }
@@ -100,7 +113,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             }
             catch
             {
-                indexes = null;
+                indices = null;
                 return false;
             }
         }
