@@ -64,30 +64,30 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         }
 
         /// <summary>
-        /// Gets the indexes of the specified object within an IEnumerable of an object.
+        /// Gets the indices of the specified object within an IEnumerable of an object.
         /// </summary>
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <param name="obj">The item to search for.</param>
         /// <typeparam name="T"></typeparam>
-        /// <returns>The indexes if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
-        public static IEnumerable<int> IndexesOf<T>(this IEnumerable<T> source, T obj)
+        /// <returns>The indices if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
+        public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T obj)
         {
-            List<int> indexes = new List<int>();
+            List<int> indices = new List<int>();
             
             int index = 0;
             foreach (T item in source)
             {
                 if (obj is not null && obj.Equals(item))
                 {
-                    indexes.Add(index);
+                    indices.Add(index);
                 }
 
                 index += 1;
             }
 
-            if (indexes.Count > 0)
+            if (indices.Count > 0)
             {
-                return indexes; 
+                return indices; 
             }
             else
             {

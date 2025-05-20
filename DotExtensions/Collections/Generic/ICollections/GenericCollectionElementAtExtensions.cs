@@ -75,12 +75,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indexes)
         {
             List<T> output = new();
-
+            
+            #region IList Performance Optimizations
             if (source is IList<T> list)
             {
                 return IListElementsAtExtensions.ElementsAt(list, indexes);
             }
-
+            #endregion
+            
             IList<T> sourceList = source as IList<T> ?? source.ToArray();
             
             foreach (int index in indexes)
