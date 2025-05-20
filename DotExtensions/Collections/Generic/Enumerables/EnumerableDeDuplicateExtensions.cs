@@ -42,7 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
         public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
         {
-            return source.FrequencyOf().Any(x => x.Value > 1);
+            return source.FrequencyOfElements().Any(x => x.Value > 1);
         }
     }
 }
