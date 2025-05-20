@@ -34,12 +34,12 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
     public static class GenericCollectionIndexExtensions
     {
         /// <summary>
-        /// 
+        /// Determines the index of the specified element within the given collection.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="item"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="source">The collection to search in.</param>
+        /// <param name="item">The element to find.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <returns>The zero-based index of the item if found, -1 otherwise.</returns>
         public static int IndexOf<T>(this ICollection<T> source, T item)
         {
             int index = 0;
