@@ -41,7 +41,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Pairs.KeyValuePairs
         /// <returns>A sequence of keys extracted from the input.</returns>
         public static IEnumerable<TKey> ToKeys<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
         {
-            return source.Select(pair => pair.Key);
+            return from pair in source
+                select pair.Key;
         }
 
         /// <summary>
@@ -53,10 +54,10 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Pairs.KeyValuePairs
         /// <returns>A sequence of values extracted from the input.</returns>
         public static IEnumerable<TValue> ToValues<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source)
         {
-            return source.Select(pair => pair.Value);
+            return from pair in source
+                select pair.Value;
         }
-
-
+        
         /// <summary>
         /// Splits an IEnumerable of flexible key-value pairs into separate sequences of keys and values.
         /// </summary>

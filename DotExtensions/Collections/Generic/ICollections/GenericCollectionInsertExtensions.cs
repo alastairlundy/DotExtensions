@@ -1,18 +1,18 @@
 ﻿/*
         MIT License
-       
+
        Copyright (c) 2024-2025 Alastair Lundy
-       
+
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-       
+
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-       
+
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,24 +25,21 @@
 using System.Collections.Generic;
 using System.Linq;
 
-// ReSharper disable MemberCanBePrivate.Global
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
-    /// <summary>
-    /// Provides static methods for finding and removing duplicates from an IEnumerable.
-    /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    public static class GenericCollectionInsertExtensions
     {
+    
         /// <summary>
-        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// Inserts an element at the specified position in a collection.
         /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
+        /// <param name="collection">The collection to insert into.</param>
+        /// <param name="index">The zero-based index at which value should be inserted.</param>
+        /// <param name="value">The element to insert into the collection.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        public static void Insert<T>(this ICollection<T> collection, int index, T value)
         {
-            return source.FrequencyOfElements().Any(x => x.Value > 1);
+            collection.InsertRange(index, [value]);
         }
     }
 }

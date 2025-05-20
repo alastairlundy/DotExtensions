@@ -26,21 +26,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections
+namespace AlastairLundy.DotExtensions.Collections.ICollections
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class ToGenericsExtensions
+    public static class CollectionToGenericsExtensions
     {
     
         /// <summary>
-        /// Converts the specified collection to a generic collection of type T.
+        /// 
         /// </summary>
-        /// <param name="source">The collection to convert.</param>
-        /// <typeparam name="T">The type of elements in the resulting collection.</typeparam>
-        /// <returns>A new generic collection containing all elements from the source collection.</returns>
-        /// <exception cref="ArgumentException">Thrown if the source collection is null or cannot be converted to a generic collection.</exception>
+        /// <param name="source"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static ICollection<T> ToGenericCollection<T>(this ICollection source)
         {
             ICollection<T> output = new List<T>();
@@ -54,34 +51,6 @@ namespace AlastairLundy.DotExtensions.Collections
                 else
                 {
                     throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
-                }
-            }
-
-            return output;
-        }
-    
-        /// <summary>
-        /// Converts a non-generic IList to a generic IList that stores objects of type T.
-        /// </summary>
-        /// <param name="list">The IList to convert.</param>
-        /// <typeparam name="T">The type of items stored in the IList.</typeparam>
-        /// <returns>A new IList that stores items of type T.</returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static IList<T> ToGenericIList<T>(this IList list)
-        {
-            if (typeof(T) != list.GetType())
-            {
-                throw new ArgumentException(
-                    $"Type specified of {typeof(T)} does not match IList of type {list.GetType()}.");
-            }
-
-            List<T> output = new();
-
-            foreach (object obj in list)
-            {
-                if (obj is T t)
-                {
-                    output.Add(t);
                 }
             }
 

@@ -40,7 +40,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified item removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
-            return source.Where(x => itemToBeRemoved is not null && itemToBeRemoved.Equals(x) == false);
+            return from item in source
+                where item.Equals(itemToBeRemoved) == false
+                    select item;
         }
 
         /// <summary>
@@ -52,9 +54,25 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The IEnumerable with the index of the specified item removed.</returns>
         public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
         {
-            T item = source.ElementAt(index);
+            #region Faster IList implementation
+            if (source is IList<T> list)
+            {
+                 list.RemoveAt(index);
+                 return list;
+            }
+            #endregion
             
-            return source.Remove(item);
+            #region Faster ICollection implementation
+            if (source is ICollection<T> collection)
+            {
+                return ICollections.GenericCollectionRemoveExtensions.RemoveAt<T>(collection, index);
+            }
+            #endregion
+            
+            IList<T> enumerable = source.ToArray();
+            
+            enumerable.RemoveAt(index);
+            return enumerable;
         }
         
         /// <summary>
@@ -65,8 +83,10 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
         /// <returns>The new IEnumerable with the specified items removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
-        {
-            return source.Where(x => itemsToBeRemoved.Contains(x) == false);
+        { 
+            return from item in source
+                where itemsToBeRemoved.Contains(item) == false
+                    select item;
         }
     }
 }

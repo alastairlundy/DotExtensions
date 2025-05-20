@@ -22,66 +22,48 @@
        SOFTWARE.
    */
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
-using AlastairLundy.DotExtensions.Localizations;
 
-// ReSharper disable RedundantAssignment
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
     public static class EnumerableRangeExtensions
     {
         /// <summary>
-        /// Adds a single element to the specified sequence of elements.
-        /// </summary>
-        /// <param name="source">The sequence from which the element will be removed.</param>
-        /// <param name="item">The element to add to the sequence.</param>
-        /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
-        public static void Add<T>(this IEnumerable<T> source, T item)
-        {
-            if (source is ICollection<T> collection)
-            {
-                collection.Add(item);
-            }
-            else
-            {
-                source = source.Append(item);
-            }
-        }
-    
-        /// <summary>
         /// Adds multiple elements to the specified sequence of elements.
         /// </summary>
-        /// <param name="source">The sequence from which no elements will be removed.</param>
+        /// <param name="source">The sequence to add items to.</param>
         /// <param name="toBeAdded">The elements to add to the sequence.</param>
         /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
-        public static void AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
+        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
         {
-            #region Faster IList Implementation
             if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
             { 
                 IListRangeExtensions.AddRange(sourceList, listTwo);
-                return;
+                return sourceList;
             }
-            #endregion
-
             if (source is ICollection<T> sourceCollection)
             {
-                foreach (T item in toBeAdded)
-                {
-                    sourceCollection.Add(item);
-                }
+                GenericCollectionRangeExtensions.AddRange(sourceCollection, toBeAdded);
+                return sourceCollection;
             }
             else
             {
+                List<T> list = source.ToList();
+            
                 foreach (T item in toBeAdded)
                 {
-                   source = source.Append(item);
+                    list.Add(item);
                 }
+
+                return list;
             }
         }
         
@@ -99,27 +81,19 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             
             int i = 0;
 
-            /*#region Faster IList implementation
-            if (source is IList<T> list)
-            {
-                // Uses a faster IList GetRange implementation that avoids unnecessary ToArray enumeration.
-               return IListRangeExtensions.GetRange(list, startIndex, count);
-            }
-            #endregion*/
-            
-            IList<T> enumerable = source as IList<T> ?? source.ToArray();
+            ICollection<T> collection = source as ICollection<T> ?? source.ToArray();
         
-            if (enumerable.Count < count || startIndex < 0 || count <= 0 || count > enumerable.Count || startIndex > enumerable.Count)
+            if (collection.Count < count || startIndex < 0 || count <= 0 || count > collection.Count || startIndex > collection.Count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{startIndex}"
                         .Replace("{y}", $"0")
-                        .Replace("{z}", $"{enumerable.Count}")));
+                        .Replace("{z}", $"{collection.Count}")));
             }
         
             int limit = startIndex + count;
             
-            foreach (T item in enumerable)
+            foreach (T item in collection)
             {
                 if (i >= startIndex && i <= limit)
                 {
@@ -132,5 +106,53 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             return output;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
+        {
+            #region Faster IList implementation
+            if (source is IList<T> list)
+            {
+                IListRangeExtensions.RemoveRange(list, startIndex, count);
+                return list;
+            }
+            #endregion
+
+            #region Faster ICollection implementation
+
+            if (source is ICollection<T> collection)
+            {
+                GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
+                return collection;
+            }
+            #endregion
+            
+            IList<T> enumerableList = source.ToList();
+
+            int limit;
+
+            if (enumerableList.Count >= (startIndex + count))
+            {
+                limit = startIndex + count;
+            }
+            else
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+
+            for (int index = startIndex; index < limit; index++)
+            {
+                enumerableList.RemoveAt(index);   
+            }
+            
+            return enumerableList;
+        }
     }
 }

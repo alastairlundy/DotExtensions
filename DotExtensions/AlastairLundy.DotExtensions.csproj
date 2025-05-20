@@ -27,6 +27,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
         <IncludeSymbols>true</IncludeSymbols>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -35,7 +36,6 @@
 
     <ItemGroup>
       <Folder Include="Memory\" />
-      <Folder Include="Types\" />
     </ItemGroup>
 
     <ItemGroup>

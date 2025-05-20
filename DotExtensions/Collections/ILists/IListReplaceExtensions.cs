@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
        
-       Copyright (c) 2024-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,26 @@
    */
 
 using System.Collections.Generic;
-using System.Linq;
+// ReSharper disable InconsistentNaming
 
-// ReSharper disable MemberCanBePrivate.Global
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.ILists
 {
-    /// <summary>
-    /// Provides static methods for finding and removing duplicates from an IEnumerable.
-    /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    public static class IListReplaceExtensions
     {
         /// <summary>
-        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// Replaces all occurrences of an item in an IList with a replacement item.
         /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
+        /// <param name="source">The IList to be modified.</param>
+        /// <param name="oldValue">The value to be replaced.</param>
+        /// <param name="newValue">The replacement value.</param>
+        /// <typeparam name="T">The type of value.</typeparam>
+        /// <returns>The modified IList if the IList contains the value to be replaced; Otherwise the original IList is returned.</returns>
+        public static IList<T> Replace<T>(this IList<T> source, T oldValue, T newValue)
         {
-            return source.FrequencyOfElements().Any(x => x.Value > 1);
+            int index = source.IndexOf(oldValue);
+                
+            source[index] = newValue;
+            return source;
         }
     }
 }

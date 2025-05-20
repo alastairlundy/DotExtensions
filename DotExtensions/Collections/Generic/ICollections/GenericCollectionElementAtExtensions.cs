@@ -50,6 +50,11 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             
             int i = 0;
 
+            if (source is IList<T> list)
+            {
+                return list[index];
+            }
+
             foreach (T item in source)
             {
                 if (i == index)
@@ -81,13 +86,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return IListElementsAtExtensions.ElementsAt(list, indexes);
             }
 
-            T[] sourceArray = source.ToArray();
+            IList<T> sourceList = source as IList<T> ?? source.ToArray();
             
             foreach (int index in indexes)
             {
-                if (index >= 0 && index < sourceArray.Length)
+                if (index >= 0 && index < sourceList.Count)
                 {
-                    output.Add(sourceArray[index]);
+                    output.Add(sourceList[index]);
                 }
             }
             

@@ -31,7 +31,6 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
     public static class SpanContainsExtensions
     {
 #if NETSTANDARD2_0 || NETSTANDARD2_1
-    
         /// <summary>
         /// Checks to see if a Span contains the specified item.
         /// </summary>

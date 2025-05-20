@@ -34,6 +34,28 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
     public static class GenericCollectionIndexExtensions
     {
         /// <summary>
+        /// Determines the index of the specified element within the given collection.
+        /// </summary>
+        /// <param name="source">The collection to search in.</param>
+        /// <param name="item">The element to find.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <returns>The zero-based index of the item if found, -1 otherwise.</returns>
+        public static int IndexOf<T>(this ICollection<T> source, T item)
+        {
+            int index = 0;
+            foreach (T item1 in source)
+            {
+                if (item is not null && item.Equals(item1))
+                {
+                    return index;
+                }
+                index++;
+            }
+            
+            return -1;
+        }
+        
+        /// <summary>
         /// Attempts to get the index of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>

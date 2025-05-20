@@ -22,11 +22,7 @@
        SOFTWARE.
    */
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable RedundantToStringCallForValueType
@@ -46,54 +42,12 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
         public static string ToString<T>(this IEnumerable<T> source, string separator)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (T item in source)
+            if (source is IEnumerable<string> stringEnumerable)
             {
-                if (item is null)
-                {
-                    throw new NullReferenceException($"Item {nameof(item)} in {nameof(source)} was null");
-                }
-
-                if (typeof(T) == typeof(string))
-                {
-                    stringBuilder.Append(item);
-                }
-                else
-                {
-                    bool overridesToString = typeof(T).GetMethods().Any(x =>
-                        x.Name.Equals(nameof(ToString), StringComparison.Ordinal) && x.IsVirtual == false);
-
-                    if (overridesToString == true || source is IEnumerable<string> enumerable)
-                    {
-                        if (typeof(T) == typeof(string))
-                        {
-                            stringBuilder.Append(item);
-                        }
-                        else
-                        {
-                            stringBuilder.Append(item.ToString()); 
-                        }
-                    }
-                    else
-                    {
-                        stringBuilder.Append(item);
-                    }
-                }
-
-                if (separator == Environment.NewLine)
-                {
-                    stringBuilder.AppendLine();
-                }
-                else
-                {
-                    stringBuilder.Append(separator);
-                }
+                return string.Join(separator, stringEnumerable);
             }
 
-            stringBuilder = stringBuilder.Remove(stringBuilder.Length, stringBuilder.Length - separator.Length);
-        
-            return stringBuilder.ToString();
+            return string.Join(separator, source);
         }
     }
 }

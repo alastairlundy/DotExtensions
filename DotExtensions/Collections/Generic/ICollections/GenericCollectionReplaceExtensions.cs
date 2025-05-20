@@ -23,26 +23,27 @@
    */
 
 using System.Collections.Generic;
-using System.Linq;
 
-// ReSharper disable MemberCanBePrivate.Global
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
     /// <summary>
-    /// Provides static methods for finding and removing duplicates from an IEnumerable.
+    /// 
     /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    public static class GenericCollectionReplaceExtensions
     {
         /// <summary>
-        /// Returns whether an IEnumerable contains duplicate instances of an object.
+        /// Replaces all occurrences of the specified old value with the new value in the given collection.
         /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>True if the IEnumerable contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
+        /// <param name="collection">The collection to modify.</param>
+        /// <param name="oldValue">The value to replace.</param>
+        /// <param name="newValue">The replacement value.</param>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
         {
-            return source.FrequencyOfElements().Any(x => x.Value > 1);
+            int index = collection.IndexOf(oldValue);
+            
+            collection.RemoveAt(index);
+            collection.Insert(index, newValue);
         }
     }
 }

@@ -96,11 +96,11 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This feature or functionaltiy is not supported on remote Processes (e.g. Processes not running on this machine)..
+        ///   Looks up a localized string similar to This feature or functionality is not supported on remote Processes (e.g. Processes not running on this machine)..
         /// </summary>
-        internal static string Exceptions_Processes_NotSupportedOnRemoteProcesss {
+        internal static string Exceptions_Processes_NotSupportedOnRemoteProcess {
             get {
-                return ResourceManager.GetString("Exceptions.Processes.NotSupportedOnRemoteProcesss", resourceCulture);
+                return ResourceManager.GetString("Exceptions.Processes.NotSupportedOnRemoteProcess", resourceCulture);
             }
         }
         
@@ -114,7 +114,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value {x} Not Found within the collection {y}.
+        ///   Looks up a localized string similar to Value {x} Not Found within Key Value Pair.
         /// </summary>
         internal static string Exceptions_ValueNotFound {
             get {
@@ -161,7 +161,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         {
             get
             {
-                return ResourceManager.GetString("Exceptions.Enumerables.CountArgumentTooLarge");
+                return ResourceManager.GetString("Exceptions.Enumerables.CountArgumentTooLarge", resourceCulture);
             }
         }
     }

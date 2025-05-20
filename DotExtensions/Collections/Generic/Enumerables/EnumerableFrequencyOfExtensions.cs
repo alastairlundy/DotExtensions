@@ -37,7 +37,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="source">The IEnumerable to be searched.</param>
         /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
         /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
-        public static Dictionary<T, int> FrequencyOf<T>(this IEnumerable<T> source) where T : notnull
+        public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
         {
             Dictionary<T, int> items = new Dictionary<T, int>();
 
