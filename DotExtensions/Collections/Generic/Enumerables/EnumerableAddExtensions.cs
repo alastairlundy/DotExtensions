@@ -22,10 +22,8 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.DotExtensions.Collections.ILists;
 
 // ReSharper disable RedundantAssignment
 
