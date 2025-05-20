@@ -22,13 +22,8 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using AlastairLundy.DotExtensions.Collections.ILists;
-using AlastairLundy.DotExtensions.Localizations;
-
 // ReSharper disable RedundantAssignment
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
