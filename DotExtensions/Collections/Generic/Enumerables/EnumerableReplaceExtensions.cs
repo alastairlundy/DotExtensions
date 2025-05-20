@@ -66,8 +66,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                         enumerable[index] = newValue;
                     }
                 }
-                
-                return enumerable;
             }
 
             return enumerable;
