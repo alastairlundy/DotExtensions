@@ -41,21 +41,20 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="source">The IEnumerable to be split.</param>
         /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
         /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
-        // TODO: Rename to SplitByProcessorCount in V7
-        public static IEnumerable<IEnumerable<T>> SplitByThreadCount<T>(this IEnumerable<T> source)
+        public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
         {
-            T[] array = source as T[] ?? source.ToArray();
+            ICollection<T> list = source as ICollection<T> ?? source.ToArray();
         
-            if (array.Length == 0)
+            if (list.Count == 0)
             {
                 throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
             }
         
-            double itemsPerThread = array.Length / Convert.ToDouble(Environment.ProcessorCount);
+            double itemsPerThread = list.Count / Convert.ToDouble(Environment.ProcessorCount);
         
             int enumerableLimit = Convert.ToInt32(Math.Round(itemsPerThread, MidpointRounding.AwayFromZero));
 
-            return SplitByCount(array, enumerableLimit);
+            return SplitByCount(list, enumerableLimit);
         }
 
         /// <summary>
@@ -68,17 +67,21 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <exception cref="ArgumentException"></exception>
         public static IEnumerable<IEnumerable<T>> SplitByCount<T>(this IEnumerable<T> source, int maxCount)
         {
-            List<List<T>> outputList = new List<List<T>>();
-        
-            T[] items = source as T[] ?? source.ToArray();
+            ICollection<T> items = source as ICollection<T> ?? source.ToArray();
 
-            if (items.Length == 0)
+            if (items.Count == 0)
             {
                 throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
             }
+
+            if (items.Count <= maxCount)
+            {
+                return [[..items]];
+            }
         
             int currentEnumerableCount = 0;
-
+            
+            List<List<T>> outputList = new List<List<T>>();
             List<T> currentList = new List<T>();
         
             foreach (T item in items)

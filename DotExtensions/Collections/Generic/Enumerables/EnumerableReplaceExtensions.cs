@@ -24,7 +24,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.DotExtensions.Collections.ICollections;
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+using AlastairLundy.DotExtensions.Collections.ILists;
 
 // ReSharper disable RedundantBoolCompare
 
@@ -44,26 +45,19 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             if (source is IList<T> list)
             {
-                int index = list.IndexOf(oldValue);
-                
-                list[index] = newValue;
-                return list;
+               IListReplaceExtensions.Replace(list, oldValue, newValue);
+               return list;
             }
-
             if (source is ICollection<T> collection)
             {
-                int index = collection.IndexOf(oldValue);
-                
-                collection.RemoveAt(index);
-                collection.Insert(index, newValue);
+                GenericCollectionReplaceExtensions.Replace<T>(collection, oldValue, newValue);
                 return collection;
             }
-            
-            T[] enumerable = source.ToArray();
+            IList<T> enumerable = source.ToArray();
 
             if (enumerable.Contains(oldValue))
             {
-                for (int index = 0; index < enumerable.Length; index++)
+                for (int index = 0; index < enumerable.Count; index++)
                 {
                     T item = enumerable[index];
                     
@@ -72,6 +66,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                         enumerable[index] = newValue;
                     }
                 }
+                
+                return enumerable;
             }
 
             return enumerable;
