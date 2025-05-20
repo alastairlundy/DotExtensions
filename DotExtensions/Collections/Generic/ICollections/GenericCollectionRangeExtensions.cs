@@ -79,8 +79,24 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         }
 
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="index"></param>
+        /// <param name="values"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public static void InsertRange<T>(this ICollection<T> collection, int index, IEnumerable<T> values)
         {
+            if (index < 0 || index >= collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", index.ToString())
+                    .Replace("{y}", "0")
+                    .Replace("{z}", $"{collection.Count}"));
+            }
+            
             #region Use IList Optimized Code Path if IList
             if (collection is IList<T> list)
             {
