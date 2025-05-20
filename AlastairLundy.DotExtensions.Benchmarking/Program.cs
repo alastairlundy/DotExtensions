@@ -6,4 +6,4 @@ using BenchmarkDotNet.Running;
 
 Console.WriteLine("Hello World!");
 
-BenchmarkRunner.Run<EnumerableIndexExtensionsBenchmarks>();
+BenchmarkRunner.Run<EnumerableAddRangeExtensionsBenchmarks>();
