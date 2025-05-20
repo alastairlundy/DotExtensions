@@ -38,8 +38,7 @@ namespace AlastairLundy.DotExtensions.Collections.ICollections
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        // TODO: Rename to ``ToGenericCollection``
-        public static ICollection<T> ToGeneric<T>(this ICollection source)
+        public static ICollection<T> ToGenericCollection<T>(this ICollection source)
         {
             ICollection<T> output = new List<T>();
 
