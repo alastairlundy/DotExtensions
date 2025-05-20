@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AlastairLundy.DotExtensions.Benchmarking.Infra.FakeData;
 using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
@@ -41,15 +42,15 @@ public class EnumerableAddRangeExtensionsBenchmarks
     {
        Collection<string> fakestData =[..fakeData];
 
-       EnumerableAddRangeExtensions.AddRange(fakestData, fakeData2Enumerable);
+       EnumerableRangeExtensions.AddRange(fakestData, fakeData2Enumerable);
     }
     
     [Benchmark]
     public void DotExtensions_Collection_AddRange()
     {
         Collection<string> fakestData = [..fakeData];
-
-        EnumerableAddRangeExtensions.AddRange(fakestData, fakeData2Enumerable);
+            
+            GenericCollectionRangeExtensions.AddRange(fakestData, fakeData2IList);
     }
     
     [Benchmark]
@@ -57,7 +58,8 @@ public class EnumerableAddRangeExtensionsBenchmarks
     {
         IList<string> fakestData = [..fakeData];
         
-        IListAddRangeExtensions.AddRange(fakestData, fakeData2IList);
+        // ReSharper disable once InvokeAsExtensionMethod
+        IListRangeExtensions.AddRange(fakestData, fakeData2IList);
     }
 
     [Benchmark(Baseline = true)]
