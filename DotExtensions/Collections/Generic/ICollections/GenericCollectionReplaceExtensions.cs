@@ -32,12 +32,12 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
     public static class GenericCollectionReplaceExtensions
     {
         /// <summary>
-        /// Replaces all occurrences of the specified old value with the new value in the given collection.
+        /// Replaces all occurrences of the specified old value with the new value in the given <see cref="ICollection{T}"/>.
         /// </summary>
         /// <param name="collection">The collection to modify.</param>
         /// <param name="oldValue">The value to replace.</param>
         /// <param name="newValue">The replacement value.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <typeparam name="T">The type of elements in the <see cref="ICollection{T}"/>.</typeparam>
         public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
         {
             int index = collection.IndexOf(oldValue);

@@ -69,7 +69,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             #endregion
             
-            IList<T> enumerable = source.ToArray();
+            IList<T> enumerable = source.ToList();
             
             enumerable.RemoveAt(index);
             return enumerable;

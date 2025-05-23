@@ -71,19 +71,5 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             
             return output;
         }
-        
-        /// <summary>
-        /// Removes the item located at the specified index from an IList.
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="index">The index of the item to be removed.</param>
-        /// <typeparam name="T">The type of item stored in the IList.</typeparam>
-        /// <returns>The IList with the index of the specified item removed.</returns>
-        public static void RemoveAt<T>(this IList<T> source, int index)
-        {
-            T item = source[index];
-            
-             source.Remove(item);
-        }
     }
 }

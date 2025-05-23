@@ -69,6 +69,38 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         }
         
         /// <summary>
+        /// Returns a dictionary where each key is an element in the source collection,
+        /// and its corresponding value is a collection of indices
+        /// where that element occurs within the source collection.
+        /// </summary>
+        /// <param name="source">The initial collection to search.</param>
+        /// <typeparam name="T">The type of elements within the source collection.</typeparam>
+        /// <returns>A dictionary mapping each element in the source collection,
+        /// to its corresponding indices.</returns>
+        public static Dictionary<T, ICollection<int>> IndicesOfElements<T>(this ICollection<T> source)
+        {
+            Dictionary<T, ICollection<int>> output = new Dictionary<T, ICollection<int>>();
+
+            int index = 0;
+            foreach (T item in source)
+            {
+                if (output.ContainsKey(item))
+                {
+                    output[item].Add(index);
+                }
+                else
+                {
+                    output.Add(item, new List<int>());
+                    output[item].Add(index);
+                }
+
+                index++;
+            }
+            
+            return output;
+        }
+        
+        /// <summary>
         /// Attempts to get the index of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
