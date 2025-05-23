@@ -36,7 +36,7 @@ namespace AlastairLundy.DotExtensions.Versions
         /// </summary>
         /// <param name="version">The Version object to convert.</param>
         /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
-        public static string ToFriendlyString(this Version version)
+        public static string ToHumanReadableString(this Version version)
         {
             bool showMinor = version.Minor != 0;
             bool showBuild = version.Build != 0;
