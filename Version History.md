@@ -2,42 +2,49 @@
 
 ## As DotExtensions
 
+### Version 7.x
+
+#### 7.0
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.0.0 | May 23rd 2025 | |
+
 ### Version 6.x
 
-### 6.8
+#### 6.8
 | Version | Release Date | Notes | 
 |-|-|-|
 | 6.8.0 | May 8th 2025 | |
 
-### 6.7
+#### 6.7
 | Version | Release Date | Notes | 
 |-|-|-|
 | 6.7.0 | May 1st 2025 | |
 
-### 6.6
+#### 6.6
 | Version | Release Date | Notes | 
 |-|-|-|
 | 6.6.0 | April 25th 2025 | Final DotExtensions.Resyslib update.|
 
-### 6.5
+#### 6.5
 | Version | Release Date | Notes | 
 |-|-|-|
 | 6.5.0 | April 21st 2025 | |
 
-### 6.4
+#### 6.4
 | Version | Release Date | Notes | 
 |-|-|-|
 | 6.4.2 | April 21st 2025 | DotExtensions.Resyslib only |
 | 6.4.1 | April 14th 2025 | |
 | 6.4.0 | April 12th 2025 | |
 
-### 6.3
+#### 6.3
 | Version | Release Date |
 |-|-|
 | 6.3.1 | April 5th 2025 |
 | 6.3.0 | April 4th 2025 |
 
-### 6.2
+#### 6.2
 | Version | Release Date |
 |-|-|
 | 6.2.0 | March 30th 2025 |

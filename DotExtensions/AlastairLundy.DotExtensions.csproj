@@ -14,14 +14,18 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
-- Deprecate methods that will be removed in v7 @alastairlundy (#23)
+- Add Benchmarks for AddRange extension methods @alastairlundy (#29)
+- Remove DotExtensions.Resyslib for v7 @alastairlundy (#24)
 
 ## 🚀 Features
 
-- Add KeyValuePairEnumerable ``ToKeys``, ``ToValues`` and ``ToSplit`` extension methods @alastairlundy (#22)
-- Add Span ``GetRange``, ``First``, and ``Last`` extension, and optimize Span extensions @alastairlundy (#21)
-- Optimize DateTime Add method and add DateTime Subtract method @alastairlundy (#20)
-</PackageReleaseNotes>
+- Remove duplicative extension method, and add ``IndicesOfElements`` ICollection\&lt;T&gt; extension method @alastairlundy (#33)
+- Create Span ``AsEnumerable`` and ``IndicesOf`` extension methods, and overload for ``GetRange`` with a collection of indices @alastairlundy (#32)
+- Rename ``IndexesOf`` extension methods to ``IndicesOf`` @alastairlundy (#31)
+- Bring DotExtension's ICollection extension methods up to par with DotExtension's Enumerable extension methods @alastairlundy (#30)
+- Improve performance of some Enumerable extension methods @alastairlundy (#28)
+- Reorganize Collection Extensions classes @alastairlundy (#27)
+- Remove deprecated methods @alastairlundy (#26)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -31,7 +35,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>6.8.0</Version>
+        <Version>7.0.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
