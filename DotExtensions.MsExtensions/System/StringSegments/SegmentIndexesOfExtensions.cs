@@ -28,27 +28,27 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
-public static class SegmentIndexesOfExtensions
+public static class SegmentIndicesOfExtensions
 {
     /// <summary>
-    /// Gets an IEnumerable of indexes for all occurrences of the specified character within the provided StringSegment.
+    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
     /// </summary>
     /// <param name="this">The string segment to be searched.</param>
     /// <param name="c">The character to search for.</param>
-    /// <returns>An IEnumerable of indexes for all occurrences specified character within the String Segment;
+    /// <returns>An IEnumerable of Indices for all occurrences specified character within the String Segment;
     /// empty if not found within the String Segment.</returns>
-    public static IEnumerable<int> IndexesOf(this StringSegment @this, char c)
+    public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
     {
-        List<int> indexes = new List<int>();
+        List<int> indices = new List<int>();
         
         for(int i = 0; i < @this.Length; i++)
         {
             if (@this[i] == c)
             {
-                indexes.Add(i);
+                indices.Add(i);
             }
         }
         
-        return indexes;
+        return indices;
     }
 }
