@@ -23,7 +23,7 @@
    */
 
 using System;
-
+using System.Collections.Generic;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans
@@ -55,7 +55,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                     .Replace("{y}", $"0")
                     .Replace("{z}", $"{target.Length}"));
             }
-
+            
             int count = end - start;
 
             T[] array = new T[count];
@@ -66,6 +66,37 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
                 array[newIndex] = target[i];
             }
 
+            return new Span<T>(array);
+        }
+
+        
+        /// <summary>
+        /// Retrieves a range of elements within the specified span.
+        /// </summary>
+        /// <param name="target">The initial span to search.</param>
+        /// <param name="indices">A collection of indices specifying the positions of interest in the span.</param>
+        /// <typeparam name="T">The type of the elements within the span.</typeparam>
+        /// <returns>A new Span containing only the elements at the specified indices.</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index in indices is out of range for the target span.</exception>
+        public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
+        {
+            T[] array = new T[indices.Count];
+            
+            int newIndex = 0;
+            foreach (int index in indices)
+            {
+                if (index < 0 || index >= target.Length)
+                {
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", $"{index}")
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{target.Length}"));
+                }
+                
+                target[index] = target[newIndex];
+                newIndex++;
+            }
+            
             return new Span<T>(array);
         }
     }
