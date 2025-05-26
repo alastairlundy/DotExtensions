@@ -27,6 +27,9 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Strings
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class SpecialCharacterDetectionExtension
     {
         /// <summary>

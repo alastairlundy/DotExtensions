@@ -31,7 +31,10 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Strings
 {
-    public static class StringAllOfExtensions
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class StringContainsOfExtensions
     {
         /// <summary>
         /// Returns whether a string contains all the specified chars.
@@ -42,6 +45,17 @@ namespace AlastairLundy.DotExtensions.Strings
         public static bool ContainsAllOf(this string source, IEnumerable<char> values)
         {
             return values.Select(t => source.Contains(t)).All(containsSource => containsSource == true);
+        }
+        
+        /// <summary>
+        /// Returns whether a string contains any of the specified possible chars.
+        /// </summary>
+        /// <param name="source">The string to be searched.</param>
+        /// <param name="possibleValues">The possible values to search for.</param>
+        /// <returns>True if any of the possible values is found, false otherwise.</returns>
+        public static bool ContainsAnyOf(this string source, IEnumerable<char> possibleValues)
+        {
+            return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
         }
     }
 }
