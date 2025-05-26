@@ -31,6 +31,9 @@ using AlastairLundy.DotExtensions.Collections.ILists;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EnumerableElementsAtExtensions
     {
     
