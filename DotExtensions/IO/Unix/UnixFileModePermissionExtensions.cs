@@ -24,35 +24,27 @@
 
 using System.IO;
 
-using AlastairLundy.DotExtensions.Localizations;
-// ReSharper disable UnusedMember.Global
-// ReSharper disable RedundantIfElseBlock
-
-namespace AlastairLundy.DotExtensions.IO.Directories
+namespace AlastairLundy.DotExtensions.IO.Unix
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class IsDirectoryEmptyExtensions
+    public static class UnixFileModePermissionExtensions
     {
-        ///<summary>
-        /// Checks if a Directory is empty or not.
+#if NET6_0_OR_GREATER
+        /// <summary>
+        /// 
         /// </summary>
-        /// <param name="directory">The directory to be searched.</param>
-        /// <returns>True if the directory is empty; false otherwise.</returns>
-        /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
-        public static bool IsDirectoryEmpty(this DirectoryInfo directory)
+        /// <param name="mode"></param>
+        /// <returns></returns>
+        public static bool IsExecutePermission(this UnixFileMode mode)
         {
-            if (Directory.Exists(directory.FullName))
+            return mode switch
             {
-                return directory.GetFiles().Length == 0 &&
-                       directory.GetDirectories().Length == 0;
-            }
-            else
-            {
-                throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-            }
+                UnixFileMode.OtherExecute or UnixFileMode.UserExecute or UnixFileMode.GroupExecute => true,
+                _ => false
+            };
         }
-
+#endif
     }
 }
