@@ -31,6 +31,9 @@ using System.Text;
 
 namespace AlastairLundy.DotExtensions.Strings
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TitleCaseExtensions
     {
         /// <summary>

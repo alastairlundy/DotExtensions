@@ -26,6 +26,9 @@
 // ReSharper disable CheckNamespace
 namespace AlastairLundy.DotExtensions.Strings
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class CharacterConstants
     {
         private static readonly char[] SpecialChars =

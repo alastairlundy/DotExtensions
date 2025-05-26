@@ -27,6 +27,9 @@ using System.Globalization;
 
 namespace AlastairLundy.DotExtensions.Globalization
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class FormattableToStringExtensions
     {
         /// <summary>

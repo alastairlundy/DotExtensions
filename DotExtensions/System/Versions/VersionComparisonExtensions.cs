@@ -26,6 +26,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Versions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class VersionComparisonExtensions
     {
         /// <summary>

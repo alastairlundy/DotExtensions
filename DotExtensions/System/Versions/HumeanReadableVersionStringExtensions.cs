@@ -29,7 +29,7 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Versions
 {
-    public static class FriendlyVersionStringExtensions
+    public static class HumeanReadableVersionStringExtensions
     {
         /// <summary>
         /// Converts a Version object to a human-readable friendly string.
