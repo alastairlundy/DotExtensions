@@ -26,7 +26,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ICollections
+namespace AlastairLundy.DotExtensions.Collections
 {
     public static class CollectionToGenericsExtensions
     {
