@@ -2,7 +2,7 @@
 using Bogus;
 using Bogus.DataSets;
 
-namespace AlastairLundy.DotExtensions.Benchmarking.Infra.FakeData;
+namespace DotExtensions.Benchmarking.Infra.FakeData;
 
 public class FakeEnumerables
 {

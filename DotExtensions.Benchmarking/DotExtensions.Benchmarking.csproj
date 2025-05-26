@@ -6,8 +6,7 @@
         <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>AlastairLundy.DotExtensions.Benchmarking</RootNamespace>
-        <AssemblyName>AlastairLundy.DotExtensions.Benchmarking</AssemblyName>
+        <PackageId>DotExtensions.Benchmarking</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
