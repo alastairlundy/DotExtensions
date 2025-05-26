@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
 {
-    public static class ContainsSeparatorExtensions
+    public static class StringEnumerableContainsSeparatorExtensions
     {
         /// <summary>
         /// Check to see if an IEnumerable contains a separator character.
