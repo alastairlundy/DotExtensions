@@ -25,36 +25,37 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
-
-public static class SpanIndicesExtensions
+namespace AlastairLundy.DotExtensions.Memory.Spans
 {
-    /// <summary>
-    /// Returns a collection of indices within the given span where the specified value occurs.
-    /// </summary>
-    /// <param name="span">The initial span to search.</param>
-    /// <param name="item">The value to find in the span.</param>
-    /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
-    public static ICollection<int> IndicesOf<T>(this Span<T> span, T item) where T : notnull
+    public static class SpanIndicesExtensions
     {
-        List<int> indices = new List<int>();
-
-        for (int index = 0; index < span.Length; index++)
+        /// <summary>
+        /// Returns a collection of indices within the given span where the specified value occurs.
+        /// </summary>
+        /// <param name="span">The initial span to search.</param>
+        /// <param name="item">The value to find in the span.</param>
+        /// <typeparam name="T">The type of elements within the span.</typeparam>
+        /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
+        public static ICollection<int> IndicesOf<T>(this Span<T> span, T item) where T : notnull
         {
-            if (item is not null && item.Equals(span[index]))
+            List<int> indices = new List<int>();
+
+            for (int index = 0; index < span.Length; index++)
             {
-                indices.Add(index);
+                if (item is not null && item.Equals(span[index]))
+                {
+                    indices.Add(index);
+                }
             }
-        }
 
-        if (indices.Count == 0)
-        {
-            return [ -1];
-        }
-        else
-        {
-            return indices;
+            if (indices.Count == 0)
+            {
+                return [ -1];
+            }
+            else
+            {
+                return indices;
+            }
         }
     }
 }
