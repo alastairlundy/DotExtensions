@@ -43,7 +43,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Collections\Concurrent\" />
       <Folder Include="Memory\" />
     </ItemGroup>
 
