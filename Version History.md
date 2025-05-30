@@ -4,6 +4,11 @@
 
 ### Version 7.x
 
+#### 7.1
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.1.0 | May 30th 2025 | |
+
 #### 7.0
 | Version | Release Date | Notes | 
 |-|-|-|

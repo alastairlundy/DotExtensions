@@ -14,10 +14,11 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
-- Add Benchmarks for AddRange extension methods @alastairlundy (#29)
-- Remove DotExtensions.Resyslib for v7 @alastairlundy (#24)
-
 ## 🚀 Features
+
+- Optimize Span ``All&lt;T&gt;`` extension method performance @alastairlundy (#37)
+- Add missing xml doc comments @alastairlundy (#35)
+- add Unix File Mode permission extension @alastairlundy (#34)
 
 - Remove duplicative extension method, and add ``IndicesOfElements`` ICollection\&lt;T&gt; extension method @alastairlundy (#33)
 - Create Span ``AsEnumerable`` and ``IndicesOf`` extension methods, and overload for ``GetRange`` with a collection of indices @alastairlundy (#32)
@@ -35,7 +36,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.0.0</Version>
+        <Version>7.1.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
