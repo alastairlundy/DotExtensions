@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotExtensions.Tests", "DotExtensions.Tests\DotExtensions.Tests.csproj", "{53EB53FA-D30C-42E3-970D-8F47182BDC6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions", "DotExtensions\AlastairLundy.DotExtensions.csproj", "{15E29C93-B8F2-48EE-A0EB-9414D63F6F9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotExtensions", "DotExtensions\DotExtensions.csproj", "{15E29C93-B8F2-48EE-A0EB-9414D63F6F9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.DotExtensions.MsExtensions", "DotExtensions.MsExtensions\AlastairLundy.DotExtensions.MsExtensions.csproj", "{6259563A-9C56-4CD2-94DB-CFB0E37BC8B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotExtensions.MsExtensions", "DotExtensions.MsExtensions\DotExtensions.MsExtensions.csproj", "{6259563A-9C56-4CD2-94DB-CFB0E37BC8B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{46BC0B4F-D6A4-4195-BBAB-BE2E67DB8DE1}"
 EndProject

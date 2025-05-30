@@ -36,6 +36,7 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Version>7.0.0</Version>
+        <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

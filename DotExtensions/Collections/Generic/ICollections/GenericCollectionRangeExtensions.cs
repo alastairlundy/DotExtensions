@@ -1,18 +1,18 @@
 ﻿/*
         MIT License
-       
+
        Copyright (c) 2024-2025 Alastair Lundy
-       
+
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-       
+
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-       
+
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -101,8 +101,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             #region Use IList Optimized Code Path if IList
             if (source is IList<T> list)
             {
-               IListRangeExtensions.InsertRange(list, index, values);
-               return;
+                IListRangeExtensions.InsertRange(list, index, values);
+                return;
             }
             #endregion
             else
@@ -143,10 +143,10 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         {
             #region Optimized IList code
 
+            List<T> output = new();
+
             if (source is IList<T> list)
             {
-                List<T> output = new();
-
                 foreach (int index in indexes)
                 {
                     if (index < 0 || index >= source.Count)
@@ -163,27 +163,23 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return output;
             }
             #endregion
-            else
+            
+            IList<T> sourceList = source as IList<T> ?? source.ToArray();
+
+            foreach (int index in indexes)
             {
-                List<T> output = new();
-
-                IList<T> sourceList = source as IList<T> ?? source.ToArray();
-
-                foreach (int index in indexes)
+                if (index < 0 || index >= source.Count)
                 {
-                    if (index < 0 || index >= source.Count)
-                    {
-                        throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                            .Replace("{x}", index.ToString())
-                            .Replace("{y}", $"0")
-                            .Replace("{z}", $"{sourceList.Count}"));
-                    }
-                    
-                    output.Add(sourceList[index]);
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", index.ToString())
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{sourceList.Count}"));
                 }
-                
-                return output;
+                    
+                output.Add(sourceList[index]);
             }
+                
+            return output;
         }
 
         /// <summary>
@@ -221,7 +217,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             #region Optimized IList code
             if (source is IList<T> list)
             {
-               return IListRangeExtensions.GetRange(list, startIndex,  count);
+                return IListRangeExtensions.GetRange(list, startIndex,  count);
             }
             #endregion
             else
@@ -271,7 +267,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             {
                 for (int index = startIndex; index < startIndex + count; index++)
                 {
-                   source = source.RemoveAt(index);
+                    source = source.RemoveAt(index);
                 }
             }
         }

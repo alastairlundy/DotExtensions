@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Capitalizes the first letter in a word.
         /// </summary>
         /// <param name="word">The word to be modified.</param>
-        /// <returns>The updated word with the first letter capitalised.</returns>
+        /// <returns>The updated word with the first letter capitalized.</returns>
         public static string CapitalizeFirstLetter(this string word)
         {
             return word.CapitalizeChar(0);

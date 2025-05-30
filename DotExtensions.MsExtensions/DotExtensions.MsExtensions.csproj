@@ -22,6 +22,7 @@ Renamed IndexesOf method to IndicesOf</PackageReleaseNotes>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <RootNamespace>AlastairLundy.DotExtensions.MsExtensions</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

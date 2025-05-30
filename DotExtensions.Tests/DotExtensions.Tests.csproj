@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DotExtensions\AlastairLundy.DotExtensions.csproj" />
+      <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
     </ItemGroup>
 
 </Project>

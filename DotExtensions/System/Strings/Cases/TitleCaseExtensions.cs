@@ -37,10 +37,10 @@ namespace AlastairLundy.DotExtensions.Strings
     public static class TitleCaseExtensions
     {
         /// <summary>
-        /// Checks whether a word is capitalised.
+        /// Checks whether a word is capitalized.
         /// </summary>
         /// <param name="word">The word to be checked.</param>
-        /// <returns>True if the word is capitalised; false otherwise.</returns>
+        /// <returns>True if the word is capitalized; false otherwise.</returns>
         public static bool IsWordTitleCase(this string word)
         {
             bool[] letterCapitalization = new bool[word.Length];
@@ -87,7 +87,7 @@ namespace AlastairLundy.DotExtensions.Strings
         /// Returns whether the specified phrase to be checked is in Title Case or not.
         /// </summary>
         /// <param name="phrase">The phrase to be checked.</param>
-        /// <returns>True if the specified phrase is in Title Case; false otherwise.</returns>
+        /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
         public static bool IsTitleCase(this string phrase)
         {
             string[] words = phrase.Split();
