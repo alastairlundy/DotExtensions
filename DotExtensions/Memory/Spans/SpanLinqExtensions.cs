@@ -203,15 +203,12 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
         public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
         {
-            List<bool> results = new();
-
-            foreach (T item in target)
+            for (int index = 0; index < target.Length; index++)
             {
-                results.Add(predicate.Invoke(item));
-            }
+                T item = target[index];
 
-            foreach (bool result in results)
-            {
+                bool result = predicate.Invoke(item);
+                
                 if (result == false)
                 {
                     return false;
