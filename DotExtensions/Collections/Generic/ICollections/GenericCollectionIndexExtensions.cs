@@ -123,13 +123,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         }
 
         /// <summary>
-        /// Attempts to get the indexes of a specified element in a collection.
+        /// Attempts to get the indices of a specified element in a collection.
         /// </summary>
         /// <param name="collection">The collection to be searched.</param>
-        /// <param name="item">The item to attempt to get the indexes of.</param>
-        /// <param name="indices">the indexes of an object in a collection if found; null otherwise.</param>
+        /// <param name="item">The item to attempt to get the indices of.</param>
+        /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
-        /// <returns>True if one or more indexes can be found for an item in a collection; false otherwise.</returns>
+        /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
         public static bool TryGetIndicesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indices)
         {
             try

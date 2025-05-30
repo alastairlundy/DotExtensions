@@ -33,7 +33,8 @@ namespace AlastairLundy.DotExtensions.Memory.Spans
         /// Converts a <see cref="Span{T}"/> to an <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <remarks>This method works by creating a new Array of the same length as the span, copies files to the array, and returns it as an IEnumerable.
-        /// <para>Conversion from a <see cref="Span{T}"/> to an <see cref="IEnumerable{T}"/> should not be done if performance is a concern. Spans are faster to iterate over and work with than IEnumerables.</para>
+        /// <para>Conversion from a <see cref="Span{T}"/> to an <see cref="IEnumerable{T}"/> should not be done if performance is a concern.
+        /// Spans are faster to iterate over and work with than IEnumerables.</para>
         /// </remarks>
         /// <param name="span">The span to convert.</param>
         /// <typeparam name="T">The type of elements in the span.</typeparam>

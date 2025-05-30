@@ -72,14 +72,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         
 
         /// <summary>
-        /// 
+        /// Returns a sequence of elements from the specified start index to a distance of 'count' elements.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <param name="source">The source sequence of elements.</param>
+        /// <param name="startIndex">The starting index of the range (inclusive).</param>
+        /// <param name="count">The number of elements to include in the range.</param>
+        /// <typeparam name="T">The type of elements in the source sequence.</typeparam>
+        /// <returns>A new sequence containing the specified range of elements from the source sequence.</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for the source sequence.</exception>
         public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             List<T> output = new();
