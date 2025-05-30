@@ -37,6 +37,8 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Version>7.0.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
+        <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
+        <PackageId>AlastairLundy.DotExtensions</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
