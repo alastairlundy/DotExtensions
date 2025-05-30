@@ -52,8 +52,6 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables
         /// returns false otherwise.</returns>
         public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
         {
-            //string[] enumerable = args as string[] ?? args.ToArray();
-
             return args.Any(x => x.Contains(separator) && x.Split([separator], StringSplitOptions.None).Length > 1);
         }
     }
