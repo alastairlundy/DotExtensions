@@ -26,36 +26,37 @@ using System.Collections.Generic;
 
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
-public static class SegmentToEnumerablesExtensions
+namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
 {
+    public static class SegmentToEnumerablesExtensions
+    {
     
-    /// <summary>
-    /// Returns the String segment as a Char Array.
-    /// </summary>
-    /// <param name="segment">The string segment to enumerate.</param>
-    /// <returns>The string segment as a char array.</returns>
-    public static char[] ToCharArray(this StringSegment segment)
-    {
-        char[] charArray = new char[segment.Length];
-
-        for (int i = 0; i < segment.Length; i++)
+        /// <summary>
+        /// Returns the String segment as a Char Array.
+        /// </summary>
+        /// <param name="segment">The string segment to enumerate.</param>
+        /// <returns>The string segment as a char array.</returns>
+        public static char[] ToCharArray(this StringSegment segment)
         {
-            charArray[i] = segment[i];
-        }
-        
-        return charArray;
-    }
+            char[] charArray = new char[segment.Length];
 
-    /// <summary>
-    /// Returns the StringSegment as an IEnumerable.
-    /// </summary>
-    /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
-    /// <param name="segment">The StringSegment to enumerate.</param>
-    /// <returns>The StringSegment as an IEnumerable.</returns>
-    public static IEnumerable<char> ToEnumerable(this StringSegment segment)
-    {
-        return ToCharArray(segment);
+            for (int i = 0; i < segment.Length; i++)
+            {
+                charArray[i] = segment[i];
+            }
+        
+            return charArray;
+        }
+
+        /// <summary>
+        /// Returns the StringSegment as an IEnumerable.
+        /// </summary>
+        /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
+        /// <param name="segment">The StringSegment to enumerate.</param>
+        /// <returns>The StringSegment as an IEnumerable.</returns>
+        public static IEnumerable<char> ToEnumerable(this StringSegment segment)
+        {
+            return ToCharArray(segment);
+        }
     }
 }
