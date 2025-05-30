@@ -82,7 +82,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
                     }
                 }
 
-                return list.ToArray();
+                return list;
             }
 
             throw new ValueNotFoundException(nameof(dictionary), nameof(value));
