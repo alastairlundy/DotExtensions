@@ -84,8 +84,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             List<T> output = new();
             
-            int i = 0;
-
             ICollection<T> collection = source as ICollection<T> ?? source.ToArray();
         
             if (collection.Count < count || startIndex < 0 || count <= 0 || count > collection.Count || startIndex > collection.Count)
@@ -95,7 +93,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
                         .Replace("{y}", $"0")
                         .Replace("{z}", $"{collection.Count}")));
             }
-        
+            
+            int i = 0;
             int limit = startIndex + count;
             
             foreach (T item in collection)
