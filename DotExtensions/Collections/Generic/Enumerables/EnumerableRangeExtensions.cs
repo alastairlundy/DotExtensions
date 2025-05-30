@@ -34,6 +34,9 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EnumerableRangeExtensions
     {
         /// <summary>
@@ -67,14 +70,16 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
         }
         
+
         /// <summary>
-        /// Returns a range of elements from the startIndex to the number of elements required.
+        /// 
         /// </summary>
         /// <param name="source"></param>
         /// <param name="startIndex"></param>
         /// <param name="count"></param>
-        /// <typeparam name="T">The type of object stored in the collection.</typeparam>
-        /// <returns>The items specified starting from the start index, with the specified number of additional items.</returns>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             List<T> output = new();
@@ -107,14 +112,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         }
 
         /// <summary>
-        /// 
+        /// Removes a specified range of elements from the given sequence.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="source">The input sequence from which elements will be removed.</param>
+        /// <param name="startIndex">Zero-based index of the first element in the range to remove.</param>
+        /// <param name="count">Number of elements in the range to remove.</param>
+        /// <typeparam name="T">Type of elements in the source sequence.</typeparam>
+        /// <returns>An enumerable sequence containing all elements except those specified in the range.</returns>
+        /// <exception cref="ArgumentException">Thrown when startIndex or count is out of range.</exception>
         public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             #region Faster IList implementation
