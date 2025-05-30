@@ -23,8 +23,8 @@
    */
 
 using System;
-using System.Collections.Generic;
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
