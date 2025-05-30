@@ -27,9 +27,18 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions
 {
+    /// <summary>
+    /// Represents an exception thrown when a key-value pair is not found in a collection.
+    /// </summary>
+    /// <remarks>This exception may be thrown when a Key is found but is associated with a different value than expected or vice versa.
+    /// <para>This exception is typically thrown by methods that access or manipulate collections.</para></remarks>
     public class KeyValuePairNotFoundException : Exception
     {
 
+        ///<summary>
+        /// Initializes a new instance of the <see cref="KeyValuePairNotFoundException"/> class.
+        /// </summary>
+        /// <param name="collectionName">The name of the collection that was not found.</param>
         public KeyValuePairNotFoundException(string collectionName) : base(
             $"{Resources.Exceptions_KeyValuePairNotFound}: {collectionName}")
         {
