@@ -30,114 +30,115 @@ using Microsoft.Extensions.Primitives;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
-public static class SegmentContainsExtensions
+namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
 {
-    /// <summary>
-    /// Returns whether the String Segment contains a character. 
-    /// </summary>
-    /// <param name="this">The string segment to search.</param>
-    /// <param name="character">The char to search for.</param>
-    /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, char character)
+    public static class SegmentContainsExtensions
     {
-        for (int i = 0; i < @this.Length; i++)
+        /// <summary>
+        /// Returns whether the String Segment contains a character. 
+        /// </summary>
+        /// <param name="this">The string segment to search.</param>
+        /// <param name="character">The char to search for.</param>
+        /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
+        public static bool Contains(this StringSegment @this, char character)
         {
-            if (@this[i] == character)
+            for (int i = 0; i < @this.Length; i++)
             {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    /// <summary>
-    /// Returns whether the String Segment contains another String Segment.
-    /// </summary>
-    /// <param name="this">The string segment to search.</param>
-    /// <param name="segment">The string segment to search for.</param>
-    /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, StringSegment segment)
-    {
-        if (@this.Length == segment.Length)
-        {
-            return @this.Equals(segment);
-        }
-        if (segment.Length > @this.Length)
-        {
-            return false;
-        }
-        
-        char[] segmentArray = segment.ToCharArray();
-        
-        bool containsAllChars = @this.ContainsAllOf(segmentArray);
-
-        if (containsAllChars == false)
-        {
-            return false;
-        } 
-        
-        int startIndex = 0;
-
-        for (int originIndex = 0; originIndex < @this.Length; originIndex++)
-        {
-            char c = @this[originIndex];
-            bool found = false;
-
-            for (int i = startIndex; i < segment.Length; i++)
-            {
-                if (segmentArray[i] == c)
+                if (@this[i] == character)
                 {
-                    found = true;
-                    startIndex = i + 1;
-                    break;
+                    return true;
                 }
             }
-
-            if (found == true)
+        
+            return false;
+        }
+    
+        /// <summary>
+        /// Returns whether the String Segment contains another String Segment.
+        /// </summary>
+        /// <param name="this">The string segment to search.</param>
+        /// <param name="segment">The string segment to search for.</param>
+        /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
+        public static bool Contains(this StringSegment @this, StringSegment segment)
+        {
+            if (@this.Length == segment.Length)
             {
-                return true;
+                return @this.Equals(segment);
             }
+            if (segment.Length > @this.Length)
+            {
+                return false;
+            }
+        
+            char[] segmentArray = segment.ToCharArray();
+        
+            bool containsAllChars = @this.ContainsAllOf(segmentArray);
+
+            if (containsAllChars == false)
+            {
+                return false;
+            } 
+        
+            int startIndex = 0;
+
+            for (int originIndex = 0; originIndex < @this.Length; originIndex++)
+            {
+                char c = @this[originIndex];
+                bool found = false;
+
+                for (int i = startIndex; i < segment.Length; i++)
+                {
+                    if (segmentArray[i] == c)
+                    {
+                        found = true;
+                        startIndex = i + 1;
+                        break;
+                    }
+                }
+
+                if (found == true)
+                {
+                    return true;
+                }
             
+            }
+
+            return false;
         }
 
-        return false;
-    }
+        /// <summary>
+        /// Returns whether a string segment contains a string.
+        /// </summary>
+        /// <param name="this">The StringSegment to be searched.</param>
+        /// <param name="str">The string to search for.</param>
+        /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
+        public static bool Contains(this StringSegment @this, string str)
+        {
+            StringSegment val = new StringSegment(str);
 
-    /// <summary>
-    /// Returns whether a string segment contains a string.
-    /// </summary>
-    /// <param name="this">The StringSegment to be searched.</param>
-    /// <param name="str">The string to search for.</param>
-    /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, string str)
-    {
-        StringSegment val = new StringSegment(str);
-
-        return Contains(@this, val);
-    }
+            return Contains(@this, val);
+        }
     
-    /// <summary>
-    /// Returns whether a StringSegment contains any of the specified possible chars.
-    /// </summary>
-    /// <param name="source">The string segment to be searched.</param>
-    /// <param name="possibleValues">The possible chars to search for.</param>
-    /// <returns>True if any of the possible values is found, false otherwise.</returns>
-    public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
-    {
-        return source.IndexOfAny([..possibleValues]) != -1;
-    }
+        /// <summary>
+        /// Returns whether a StringSegment contains any of the specified possible chars.
+        /// </summary>
+        /// <param name="source">The string segment to be searched.</param>
+        /// <param name="possibleValues">The possible chars to search for.</param>
+        /// <returns>True if any of the possible values is found, false otherwise.</returns>
+        public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
+        {
+            return source.IndexOfAny([..possibleValues]) != -1;
+        }
     
-    /// <summary>
-    /// Returns whether a StringSegment contains all the specified possible chars.
-    /// </summary>
-    /// <param name="source">The string segment to be searched.</param>
-    /// <param name="possibleValues">The possible chars to search for.</param>
-    /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
-    public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
-    {
-        return possibleValues.All(c => source.Contains(c));
+        /// <summary>
+        /// Returns whether a StringSegment contains all the specified possible chars.
+        /// </summary>
+        /// <param name="source">The string segment to be searched.</param>
+        /// <param name="possibleValues">The possible chars to search for.</param>
+        /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
+        public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
+        {
+            return possibleValues.All(c => source.Contains(c));
+        }
     }
 }
