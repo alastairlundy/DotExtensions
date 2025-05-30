@@ -33,10 +33,10 @@ namespace AlastairLundy.DotExtensions.IO.Unix
     {
 #if NET6_0_OR_GREATER
         /// <summary>
-        /// 
+        /// Determines whether the specified Unix file mode has execute permission.
         /// </summary>
-        /// <param name="mode"></param>
-        /// <returns></returns>
+        /// <param name="mode">The Unix file mode to check.</param>
+        /// <returns>True if the mode includes execute permission, false otherwise.</returns>
         public static bool IsExecutePermission(this UnixFileMode mode)
         {
             return mode switch
