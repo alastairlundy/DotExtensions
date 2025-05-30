@@ -69,24 +69,23 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// Returns the elements at the specified indexes from the given collection.
         /// </summary>
         /// <param name="source">The source collection to extract elements from.</param>
-        /// <param name="indexes">The indexes of the elements to extract.</param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="indices">The indexes of the elements to extract.</param>
         /// <typeparam name="T">The type of elements in the collection.</typeparam>
         /// <returns>The extracted elements as a generic collection.</returns>
-        public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indexes)
+        public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
         {
             List<T> output = new();
             
             #region IList Performance Optimizations
             if (source is IList<T> list)
             {
-                return IListElementsAtExtensions.ElementsAt(list, indexes);
+                return IListElementsAtExtensions.ElementsAt(list, indices);
             }
             #endregion
             
             IList<T> sourceList = source as IList<T> ?? source.ToArray();
             
-            foreach (int index in indexes)
+            foreach (int index in indices)
             {
                 if (index >= 0 && index < sourceList.Count)
                 {
