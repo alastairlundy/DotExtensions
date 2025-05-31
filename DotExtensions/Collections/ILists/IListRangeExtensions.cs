@@ -160,6 +160,28 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 
             return output;
         }
+        
+        
+        
+        public static IList<T> GetRange<T>(this IList<T> source, ICollection<int> indices)
+        {
+            List<T> output = new();
+
+            foreach (int index in indices)
+            {
+                if (index < 0 || index >= source.Count)
+                {
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", index.ToString())
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{source.Count}"));
+                }
+
+                output.Add(source[index]);
+            }
+
+            return output;
+        }
 
         /// <summary>
         /// Removes a specified range of elements from this list.
