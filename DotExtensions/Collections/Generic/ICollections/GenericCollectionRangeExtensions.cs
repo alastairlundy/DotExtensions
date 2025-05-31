@@ -261,7 +261,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
 
             source = sourceList;
-            return sourceList;
+            return source;
         }
     }
 }
