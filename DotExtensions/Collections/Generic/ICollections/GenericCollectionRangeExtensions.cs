@@ -108,68 +108,53 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return;
             }
             #endregion
-            else
+
+            int numberOfItemsToBeRemoved = source.Count - index;
+
+            List<T> removedItems = new();
+
+            int i = 0;
+            foreach (T item in source)
             {
-                int numberOfItemsToBeRemoved = source.Count - index;
-
-                List<T> removedItems = new();
-
-                int i = 0;
-                foreach (T item in source)
+                if (i >= index && i < source.Count)
                 {
-                    if (i >= index && i < source.Count)
-                    {
-                        removedItems.Add(item);
-                    }
-
-                    i += 1;
+                    removedItems.Add(item);
                 }
 
-                source.RemoveRange(index, numberOfItemsToBeRemoved);
-
-                source.AddRange(values);
-
-                source.AddRange(removedItems);
+                i += 1;
             }
+
+            source.RemoveRange(index, numberOfItemsToBeRemoved);
+
+            source.AddRange(values);
+
+            source.AddRange(removedItems);
         }
 
 
         /// <summary>
-        /// Retrieves a portion of the elements in an ICollection based on a collection of indexes.
+        /// Retrieves a portion of the elements in an ICollection based on a collection of indices.
         /// </summary>
         /// <param name="source">The collection from which to retrieve elements.</param>
-        /// <param name="indexes">A collection of integers representing the indexes of elements to retrieve.</param>
+        /// <param name="indices">A collection of integers representing the indices of elements to retrieve.</param>
         /// <typeparam name="T">The type of elements in the collection and range.</typeparam>
-        /// <returns>A new collection containing the specified elements based on the provided indexes.</returns>
+        /// <returns>A new collection containing the specified elements based on the provided indices.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown when an index is out of the valid range for the collection.</exception>
-        public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indexes)
+        public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
         {
             #region Optimized IList code
 
             List<T> output = new();
-
-            if (source is IList<T> list)
+            
+            if (source is IList<T> list && indices is ICollection<int> indicesCollection)
             {
-                foreach (int index in indexes)
-                {
-                    if (index < 0 || index >= source.Count)
-                    {
-                        throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                            .Replace("{x}", index.ToString())
-                            .Replace("{y}", $"0")
-                            .Replace("{z}", $"{list.Count}"));
-                    }
-                    
-                    output.Add(list[index]);
-                }
-                
-                return output;
+                return IListRangeExtensions.GetRange(list, indicesCollection);
             }
             #endregion
             
             IList<T> sourceList = source as IList<T> ?? source.ToArray();
 
-            foreach (int index in indexes)
+            foreach (int index in indices)
             {
                 if (index < 0 || index >= source.Count)
                 {
@@ -223,17 +208,15 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return IListRangeExtensions.GetRange(list, startIndex,  count);
             }
             #endregion
-            else
+
+            List<int> numbers = new();
+                
+            for (int i = startIndex; i < endIndex; i++)
             {
-                List<int> numbers = new();
-                
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    numbers.Add(i);
-                }
-                
-                return GetRange(source, numbers);
+                numbers.Add(i);
             }
+                
+            return GetRange(source, numbers);
         }
 
 
@@ -270,16 +253,13 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return list;
             }
             #endregion
-            else
-            {
-               IList<T> sourceList = source.ToList();
+            
+            IList<T> sourceList = source.ToList();
                
-               IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
+            IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
 
                source = sourceList;
                return sourceList;
-            }
-        }
         
         /// <summary>
         /// 
