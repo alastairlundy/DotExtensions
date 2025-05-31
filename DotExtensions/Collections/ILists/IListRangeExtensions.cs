@@ -162,7 +162,14 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         }
         
         
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="indices"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
         public static IList<T> GetRange<T>(this IList<T> source, ICollection<int> indices)
         {
             List<T> output = new();
