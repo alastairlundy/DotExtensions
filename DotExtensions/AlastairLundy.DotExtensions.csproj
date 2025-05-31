@@ -14,18 +14,9 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
-- Add Benchmarks for AddRange extension methods @alastairlundy (#29)
-- Remove DotExtensions.Resyslib for v7 @alastairlundy (#24)
+## 🐛 Bug Fixes
 
-## 🚀 Features
-
-- Remove duplicative extension method, and add ``IndicesOfElements`` ICollection\&lt;T&gt; extension method @alastairlundy (#33)
-- Create Span ``AsEnumerable`` and ``IndicesOf`` extension methods, and overload for ``GetRange`` with a collection of indices @alastairlundy (#32)
-- Rename ``IndexesOf`` extension methods to ``IndicesOf`` @alastairlundy (#31)
-- Bring DotExtension's ICollection extension methods up to par with DotExtension's Enumerable extension methods @alastairlundy (#30)
-- Improve performance of some Enumerable extension methods @alastairlundy (#28)
-- Reorganize Collection Extensions classes @alastairlundy (#27)
-- Remove deprecated methods @alastairlundy (#26)</PackageReleaseNotes>
+- fix IEnumerable Add method for ICollection&lt;T&gt; types</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -35,7 +26,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.0.0</Version>
+        <Version>7.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
