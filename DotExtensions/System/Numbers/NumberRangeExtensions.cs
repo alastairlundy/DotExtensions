@@ -59,5 +59,16 @@ public static class NumberRangeExtensions
     {
         return new Range(start, count);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public static Range AsRange(this Index start, int count)
+    {
+        return new Range(start, count);
+    }
 #endif
 }
