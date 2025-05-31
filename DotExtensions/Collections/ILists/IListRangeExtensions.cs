@@ -198,5 +198,32 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 list.RemoveAt(index);
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="indices"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public static void RemoveRange<T>(this IList<T> list, IList<int> indices)
+        {
+            foreach (int index in indices)
+            {
+                if (index >= list.Count || index < 0 ) 
+                {
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", $"{index}")
+                        .Replace("{y}", "0")
+                        .Replace("{z}", $"{list.Count}"));
+                }
+                else if (indices.Count > list.Count)
+                {
+                    throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                }
+                
+                list.RemoveAt(index);
+            }
+        }
     }
 }
