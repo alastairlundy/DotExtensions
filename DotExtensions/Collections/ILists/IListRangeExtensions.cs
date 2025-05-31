@@ -200,14 +200,6 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         }
         
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="indices"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <exception cref="IndexOutOfRangeException"></exception>
-        
-        /// <summary>
         /// Removes a range of elements from the specified list.
         ///
         /// <para>
@@ -237,5 +229,6 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 list.RemoveAt(index);
             }
         }
+
     }
 }
