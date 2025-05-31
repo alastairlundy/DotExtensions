@@ -27,6 +27,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
+
+using AlastairLundy.DotExtensions.Deprecations;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
@@ -88,6 +90,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="values">The IEnumerable containing elements to insert at the specified index.</param>
         /// <typeparam name="T">The type of elements in the collection.</typeparam>
         /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of range for the collection.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static void InsertRange<T>(this ICollection<T> source, int index, IEnumerable<T> values)
         {
             if (index < 0 || index >= source.Count)
@@ -244,6 +247,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <exception cref="IndexOutOfRangeException">Thrown when startIndex is less than 0 or greater
         /// than or equal to collection's Count.</exception>
         /// <exception cref="ArgumentException">Thrown when count is greater than the Collection's Count minus startIndex.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static ICollection<T> RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
         {
             if (startIndex < 0 || startIndex >= source.Count)
