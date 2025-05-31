@@ -123,11 +123,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 i += 1;
             }
 
-            source.RemoveRange(index, numberOfItemsToBeRemoved);
+            List<T> newSource = source.ToList();
+            newSource.RemoveRange(index, numberOfItemsToBeRemoved);
 
-            source.AddRange(values);
+            newSource.AddRange(values);
+            newSource.AddRange(removedItems);
+            source.Clear();
 
-            source.AddRange(removedItems);
+            AddRange(source, newSource);
         }
 
 
