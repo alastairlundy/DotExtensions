@@ -25,6 +25,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+using AlastairLundy.DotExtensions.Collections.ILists;
 
 namespace AlastairLundy.DotExtensions.Collections.Concurrent
 {
@@ -46,7 +49,7 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
                 concurrentBag.Add(item);
             }
         }
-    
+        
         /// <summary>
         /// 
         /// </summary>
@@ -54,7 +57,7 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         /// <param name="items"></param>
         /// <typeparam name="T"></typeparam>
         /// <exception cref="InvalidOperationException"></exception>
-        public static void AddRange<T>(this IProducerConsumerCollection<T> collection, IEnumerable<T> items)
+        public static void AddRange<T>(this IProducerConsumerCollection<T> collection, ICollection<T> items)
         {
             foreach (T item in items)
             {
