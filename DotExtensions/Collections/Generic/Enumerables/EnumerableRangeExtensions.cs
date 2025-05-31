@@ -123,6 +123,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
 
             return output;
+            #endregion
         }
 
         /// <summary>
