@@ -121,7 +121,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <exception cref="ArgumentException">Thrown when startIndex or count is out of range.</exception>
         public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
-            #region Faster IList implementation
+            #region Optimized IList implementation
             if (source is IList<T> list)
             {
                 IListRangeExtensions.RemoveRange(list, startIndex, count);
@@ -129,11 +129,17 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             #endregion
 
-            #region Faster ICollection implementation
-
+            #region Optimized ICollection implementation
             if (source is ICollection<T> collection)
             {
-                return GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
+                List<int> indices = new List<int>();
+
+                for (int i = startIndex; i < startIndex + count; i++)
+                {
+                    indices.Add(i);
+                }
+
+                return RemoveRange(collection, indices);
             }
             #endregion
             
@@ -141,6 +147,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 
             int limit;
 
+            if (startIndex < 0 || startIndex > enumerableList.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", "0")
+                    .Replace("{z}", $"{enumerableList.Count}"));
+            }
+            
             if (enumerableList.Count >= (startIndex + count))
             {
                 limit = startIndex + count;
