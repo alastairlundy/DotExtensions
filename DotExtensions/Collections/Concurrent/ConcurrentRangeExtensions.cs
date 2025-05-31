@@ -69,5 +69,110 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="concurrentBag"></param>
+        /// <param name="items"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static ConcurrentBag<T> RemoveRange<T>(this ConcurrentBag<T> concurrentBag, ICollection<T> items)
+        {
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
+
+            foreach (T item in concurrentBag)
+            {
+                if (items.Contains(item) == false)
+                {
+                    output.Add(item);
+                }
+            }
+           
+            return output;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="concurrentBag"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static ConcurrentBag<T> RemoveRange<T>(this ConcurrentBag<T> concurrentBag, int startIndex, int count)
+        {
+            List<T> itemsToKeep = concurrentBag.ToList();
+            
+            IListRangeExtensions.RemoveRange(itemsToKeep, startIndex, count);
+            
+            ConcurrentBag<T> output = new ConcurrentBag<T>(itemsToKeep);
+            
+            return output;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="items"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IProducerConsumerCollection<T> RemoveRange<T>(this IProducerConsumerCollection<T> collection,
+            ICollection<T> items)
+        {
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
+
+            foreach (T item in collection)
+            {
+                if (items.Contains(item) == false)
+                {
+                    output.Add(item);
+                }
+            }
+           
+            return output;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IProducerConsumerCollection<T> RemoveRange<T>(this IProducerConsumerCollection<T> collection,
+            int startIndex, int count)
+        {
+            List<T> itemsToKeep = collection.ToList();
+            
+            IListRangeExtensions.RemoveRange(itemsToKeep, startIndex, count);
+            
+            ConcurrentBag<T> output = new ConcurrentBag<T>(itemsToKeep);
+            
+            return output;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
+            int startIndex, int count)
+        {
+            List<T> itemsToKeep = collection.ToList();
+   
+            IListRangeExtensions.GetRange(itemsToKeep, startIndex, count);
+   
+            ConcurrentBag<T> output = new ConcurrentBag<T>(itemsToKeep);
+            
+            return output;
+        }
+
     }
 }
