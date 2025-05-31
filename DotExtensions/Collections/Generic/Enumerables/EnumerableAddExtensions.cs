@@ -42,10 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         {
             if (source is ICollection<T> collection)
             {
-                foreach (T obj in collection)
-                {
-                    collection.Add(item);
-                }
+               collection.Add(item);
             }
             else
             {
