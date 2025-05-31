@@ -258,35 +258,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                
             IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
 
-               source = sourceList;
-               return sourceList;
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="indices"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static ICollection<T> RemoveRange<T>(this ICollection<T> source, ICollection<int> indices)
-        {
-            #region Optimized IList Code
-            if (source is IList<T> list && indices is IList<int> indicesList)
-            {
-                IListRangeExtensions.RemoveRange(list, indicesList);
-
-                return list;
-            }
-            #endregion
-            else
-            {
-                IList<T> sourceList = source.ToList();
-                IList<int> indicesIList = indices.ToList();
-                
-                IListRangeExtensions.RemoveRange(sourceList, indicesIList);
-                
-                return sourceList;
-            }
+            source = sourceList;
+            return sourceList;
         }
     }
 }
