@@ -33,6 +33,9 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class GenericCollectionRangeExtensions
     {
 
