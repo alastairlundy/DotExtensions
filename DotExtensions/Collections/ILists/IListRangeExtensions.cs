@@ -206,6 +206,18 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         /// <param name="indices"></param>
         /// <typeparam name="T"></typeparam>
         /// <exception cref="IndexOutOfRangeException"></exception>
+        
+        /// <summary>
+        /// Removes a range of elements from the specified list.
+        ///
+        /// <para>
+        /// If the range of indices is empty, no elements will be removed.
+        ///</para>
+        /// </summary>
+        /// <param name="list">The list from which to remove elements.</param>
+        /// <param name="indices">A list of 0-based indices specifying the range of elements to remove.</param>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index in the indices list is out of range for the corresponding element in the list.</exception>
         public static void RemoveRange<T>(this IList<T> list, IList<int> indices)
         {
             foreach (int index in indices)
