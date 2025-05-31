@@ -244,7 +244,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <exception cref="IndexOutOfRangeException">Thrown when startIndex is less than 0 or greater
         /// than or equal to collection's Count.</exception>
         /// <exception cref="ArgumentException">Thrown when count is greater than the Collection's Count minus startIndex.</exception>
-        public static void RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
+        public static ICollection<T> RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
         {
             if (startIndex < 0 || startIndex >= source.Count)
             {
@@ -258,17 +258,24 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             {
                 throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
             }
-            
+
+            #region Optimized IList Code
             if (source is IList<T> list)
             {
                 IListRangeExtensions.RemoveRange(list, startIndex, count);
+                return list;
             }
+            #endregion
             else
             {
-                for (int index = startIndex; index < startIndex + count; index++)
-                {
-                    source = source.RemoveAt(index);
-                }
+               IList<T> sourceList = source.ToList();
+               
+               IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
+
+               source = sourceList;
+               return sourceList;
+            }
+        }
         
         /// <summary>
         /// 

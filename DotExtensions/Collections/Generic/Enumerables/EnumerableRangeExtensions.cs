@@ -133,8 +133,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 
             if (source is ICollection<T> collection)
             {
-                GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
-                return collection;
+                return GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
             }
             #endregion
             
