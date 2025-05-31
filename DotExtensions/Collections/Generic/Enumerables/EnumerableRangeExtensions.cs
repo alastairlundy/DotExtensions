@@ -157,6 +157,39 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             
             return enumerableList;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="indices"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, IEnumerable<int> indices)
+        {
+            #region Optimized IList Code
+            if (source is IList<T> list && indices is IList<int> listTwo)
+            {
+                IListRangeExtensions.RemoveRange(list, listTwo);
+                return list;
+            }
+            #endregion
+            
+            IList<T> sourceList = source.ToList();
+            IList<int> indicesList = indices.ToList();
+            
+            for (int i = 0; i < sourceList.Count; i++)
+            {
+                if (sourceList.Count < indicesList.Count)
+                {
+                    throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                }
+                
+                sourceList.RemoveAt(i);
+            }
+            
+            return sourceList;
+        }
         
         /// <summary>
         /// Removes items from an IEnumerable.
