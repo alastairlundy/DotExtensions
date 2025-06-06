@@ -22,10 +22,12 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
+using AlastairLundy.DotExtensions.Deprecations;
 
 // ReSharper disable RedundantBoolCompare
 
@@ -41,6 +43,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="newValue">The replacement value.</param>
         /// <typeparam name="T">The type of value.</typeparam>
         /// <returns>The modified IEnumerable if the IEnumerable contains the value to be replaced; Otherwise the original IEnumerable is returned.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> Replace<T>(this IEnumerable<T> source, T oldValue, T newValue)
         {
             if (source is IList<T> list)

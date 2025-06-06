@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 // ReSharper disable MemberCanBePrivate.Global
@@ -52,6 +53,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="index">The index of the item to be removed.</param>
         /// <typeparam name="T">The type of item stored in the IEnumerable.</typeparam>
         /// <returns>The IEnumerable with the index of the specified item removed.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
         {
             #region Faster IList implementation
