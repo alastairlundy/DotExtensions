@@ -34,7 +34,7 @@ public class EnumerableAddRangeExtensionsBenchmarks
         fakeData2List = fakeEnumerables.Create(N / 10).ToList();
     }
 
-    [Params(1000, 10_000)]
+    [Params(100_000)]
     public int N;
     
     [Benchmark]
