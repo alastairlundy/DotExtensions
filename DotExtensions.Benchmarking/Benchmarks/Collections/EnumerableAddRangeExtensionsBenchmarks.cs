@@ -40,9 +40,9 @@ public class EnumerableAddRangeExtensionsBenchmarks
     [Benchmark]
     public void DotExtensions_Enumerables_AddRange()
     {
-       Collection<string> fakestData =[..fakeData];
+     IEnumerable<string> enumerable = fakeData.AsEnumerable().AddRange(fakeData2Enumerable);
 
-       EnumerableRangeExtensions.AddRange(fakestData, fakeData2Enumerable);
+     // Console.WriteLine($"{nameof(enumerable)} exists");
     }
     
     [Benchmark]
