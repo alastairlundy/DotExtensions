@@ -85,21 +85,36 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             List<T> output = new();
-            
-            ICollection<T> collection = source as ICollection<T> ?? source.ToArray();
+
+            #region Optimized IList Code
+            if (source is IList<T> list)
+            {
+                return IListRangeExtensions.GetRange(list, startIndex, count);
+            }
+            #endregion
+
+            #region Optimized ICollection Code
+            if (source is ICollection<T> collection)
+            {
+                return GenericCollectionRangeExtensions.GetRange(collection, startIndex, count);
+            }
+            #endregion
+
+            #region IEnumerable Code
+            IList<T> newList = source.ToArray();
         
-            if (collection.Count < count || startIndex < 0 || count <= 0 || count > collection.Count || startIndex > collection.Count)
+            if (newList.Count < count || startIndex < 0 || count <= 0 || count > newList.Count || startIndex > newList.Count)
             {
                 throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                     .Replace("{x}", $"{startIndex}"
                         .Replace("{y}", $"0")
-                        .Replace("{z}", $"{collection.Count}")));
+                        .Replace("{z}", $"{newList.Count}")));
             }
             
             int i = 0;
             int limit = startIndex + count;
             
-            foreach (T item in collection)
+            foreach (T item in newList)
             {
                 if (i >= startIndex && i <= limit)
                 {
@@ -110,6 +125,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
 
             return output;
+            #endregion
         }
 
         /// <summary>
@@ -124,20 +140,11 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         [Obsolete(DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
-            #region Faster IList implementation
+            #region Optimized IList implementation
             if (source is IList<T> list)
             {
                 IListRangeExtensions.RemoveRange(list, startIndex, count);
                 return list;
-            }
-            #endregion
-
-            #region Faster ICollection implementation
-
-            if (source is ICollection<T> collection)
-            {
-                GenericCollectionRangeExtensions.RemoveRange(collection, startIndex, count);
-                return collection;
             }
             #endregion
             
@@ -145,6 +152,14 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 
             int limit;
 
+            if (startIndex < 0 || startIndex > enumerableList.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", "0")
+                    .Replace("{z}", $"{enumerableList.Count}"));
+            }
+            
             if (enumerableList.Count >= (startIndex + count))
             {
                 limit = startIndex + count;
@@ -160,6 +175,41 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             
             return enumerableList;
+        }
+        
+        /// <summary>
+        /// Removes items from an IEnumerable.
+        /// </summary>
+        /// <param name="source">The IEnumerable to have items removed from.</param>
+        /// <param name="itemsToBeRemoved">The items to be removed.</param>
+        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
+        /// <returns>The new IEnumerable with the specified items removed.</returns>
+        public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
+        {
+            #region Optimized IList Code
+            if (source is IList<T> list && itemsToBeRemoved is IList<int> listTwo)
+            {
+                list.RemoveRange(listTwo);
+                return list;
+            }
+            #endregion
+            
+            return from item in source
+                where itemsToBeRemoved.Contains(item) == false
+                select item;
+        }
+        
+        /// <summary>
+        /// Removes items from an IEnumerable.
+        /// </summary>
+        /// <param name="source">The IEnumerable to have items removed from.</param>
+        /// <param name="itemsToBeRemoved">The items to be removed.</param>
+        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
+        /// <returns>The new IEnumerable with the specified items removed.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+        public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
+        {
+           return RemoveRange(source, itemsToBeRemoved);
         }
     }
 }
