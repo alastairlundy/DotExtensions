@@ -102,12 +102,20 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         /// <returns></returns>
         public static ConcurrentBag<T> RemoveRange<T>(this ConcurrentBag<T> concurrentBag, int startIndex, int count)
         {
-            List<T> itemsToKeep = concurrentBag.ToList();
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
+
+            int limit = startIndex + count;
             
-            IListRangeExtensions.RemoveRange(itemsToKeep, startIndex, count);
-            
-            ConcurrentBag<T> output = new ConcurrentBag<T>(itemsToKeep);
-            
+            int actualIndex = 0;
+            foreach (T item in concurrentBag)
+            {
+                if (actualIndex < startIndex || actualIndex > limit)
+                {
+                    output.Add(item);
+                }
+                actualIndex++;
+            }
+           
             return output;
         }
 
@@ -154,23 +162,24 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
             return output;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="count"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+
         public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
             int startIndex, int count)
         {
-            List<T> itemsToKeep = collection.ToList();
-   
-            IListRangeExtensions.GetRange(itemsToKeep, startIndex, count);
-   
-            ConcurrentBag<T> output = new ConcurrentBag<T>(itemsToKeep);
+            ConcurrentBag<T> output = new ConcurrentBag<T>();
+
+            int limit = startIndex + count;
             
+            int actualIndex = 0;
+            foreach (T item in collection)
+            {
+                if (actualIndex < startIndex || actualIndex > limit)
+                {
+                    output.Add(item);
+                }
+                actualIndex++;
+            }
+           
             return output;
         }
 
