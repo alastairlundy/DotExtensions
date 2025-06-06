@@ -11,7 +11,7 @@ using DotExtensions.Benchmarking.Infra.FakeData;
 
 namespace DotExtensions.Benchmarking.Benchmarks.Collections;
 
-[SimpleJob(RuntimeMoniker.Net80)]
+//[SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [MemoryDiagnoser(true)]
 [CsvMeasurementsExporter]
@@ -34,7 +34,8 @@ public class EnumerableAddRangeExtensionsBenchmarks
         fakeData2List = fakeEnumerables.Create(N / 10).ToList();
     }
 
-    [Params(1000, 10_000)]
+    [Params(1000)]
+        //, 10_000)]
     public int N;
     
     [Benchmark]
