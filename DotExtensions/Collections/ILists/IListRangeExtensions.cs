@@ -163,13 +163,16 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
         
         
         /// <summary>
+        /// Retrieves a specified range of elements from the source list.
         /// 
+        /// The indices are 0-based, meaning the first element is at index 0 and the last element is at index Count - 1.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="indices"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <param name="source">The list from which to retrieve the range of elements.</param>
+        /// <param name="indices">A collection of 0-based indices specifying the range of elements to retrieve.</param>
+        /// <typeparam name="T">The type of elements in the source list.</typeparam>
+        /// <returns>A list containing the specified range of elements.</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index is out of range
+        /// (less than 0 or greater than or equal to Count).</exception>
         public static IList<T> GetRange<T>(this IList<T> source, ICollection<int> indices)
         {
             List<T> output = new();
