@@ -135,6 +135,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">Type of elements in the source sequence.</typeparam>
         /// <returns>An enumerable sequence containing all elements except those specified in the range.</returns>
         /// <exception cref="ArgumentException">Thrown when startIndex or count is out of range.</exception>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             #region Optimized IList implementation
@@ -142,20 +143,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             {
                 IListRangeExtensions.RemoveRange(list, startIndex, count);
                 return list;
-            }
-            #endregion
-
-            #region Optimized ICollection implementation
-            if (source is ICollection<T> collection)
-            {
-                List<int> indices = new List<int>();
-
-                for (int i = startIndex; i < startIndex + count; i++)
-                {
-                    indices.Add(i);
-                }
-
-                return RemoveRange(collection, indices);
             }
             #endregion
             
@@ -186,39 +173,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             
             return enumerableList;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="indices"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, IEnumerable<int> indices)
-        {
-            #region Optimized IList Code
-            if (source is IList<T> list && indices is IList<int> listTwo)
-            {
-                IListRangeExtensions.RemoveRange(list, listTwo);
-                return list;
-            }
-            #endregion
-            
-            IList<T> sourceList = source.ToList();
-            IList<int> indicesList = indices.ToList();
-            
-            for (int i = 0; i < sourceList.Count; i++)
-            {
-                if (sourceList.Count < indicesList.Count)
-                {
-                    throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
-                }
-                
-                sourceList.RemoveAt(i);
-            }
-            
-            return sourceList;
         }
         
         /// <summary>
