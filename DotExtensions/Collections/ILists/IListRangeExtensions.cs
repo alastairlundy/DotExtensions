@@ -47,7 +47,7 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             {
                 throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             }
-        
+            
             if (list is List<T> actualList && listToAdd is IList<T> iListToAdd)
             {
                 actualList.AddRange(iListToAdd);
@@ -77,6 +77,11 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             else if (listToAdd.Count == int.MaxValue)
             {
                 throw new OverflowException($"{nameof(listToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(list)}.");
+            }
+
+            if (list.Count == 0)
+            {
+                list = new List<T>(capacity: listToAdd.Count);
             }
         
             if (list is List<T> actualList)

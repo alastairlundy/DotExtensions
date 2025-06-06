@@ -29,7 +29,7 @@ using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
-
+using AlastairLundy.DotExtensions.Deprecations;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
@@ -45,6 +45,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="source">The sequence to add items to.</param>
         /// <param name="toBeAdded">The elements to add to the sequence.</param>
         /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
         {
             if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
@@ -80,6 +81,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">The type of elements in the source sequence.</typeparam>
         /// <returns>A new sequence containing the specified range of elements from the source sequence.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown if the start index is out of range for the source sequence.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> GetRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             List<T> output = new();
@@ -135,7 +137,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <typeparam name="T">Type of elements in the source sequence.</typeparam>
         /// <returns>An enumerable sequence containing all elements except those specified in the range.</returns>
         /// <exception cref="ArgumentException">Thrown when startIndex or count is out of range.</exception>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+        [Obsolete(DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, int startIndex, int count)
         {
             #region Optimized IList implementation
