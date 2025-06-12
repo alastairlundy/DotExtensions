@@ -42,12 +42,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <typeparam name="T">The type of elements in both collections.</typeparam>
         public static void AddRange<T>(this ICollection<T> source, IEnumerable<T> enumerableToAdd)
         {
-            if (source is IList<T> list && enumerableToAdd is IList<T> listToAdd)
-            {
-                IListRangeExtensions.AddRange(list, listToAdd);
-                return;
-            }
-            else if (source is IList<T> list1)
+            if (source is IList<T> list1)
             {
                 IListRangeExtensions.AddRange(list1, enumerableToAdd);
                 return;
