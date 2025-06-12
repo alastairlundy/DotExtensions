@@ -30,19 +30,19 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// <summary>
 /// 
 /// </summary>
-public static class IntegerRangeAsEnumerableExtensions
+public static class FloatingPointRangeAsEnumerableExtensions
 {
     /// <summary>
-    /// Returns an enumerable sequence of integers from <paramref name="start"/> up to start + count.
+    /// 
     /// </summary>
-    /// <param name="start">The starting integer of the sequence.</param>
-    /// <param name="count">The number of integers to generate.</param>
-    /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
-    public static IEnumerable<int> RangeAsEnumerable(this int start, int count)
+    /// <param name="start"></param>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public static IEnumerable<double> RangeAsEnumerable(this double start, double count)
     {
-        List<int> list = new List<int>();
+        List<double> list = new List<double>();
 
-        for (int i = start; i < count; i++)
+        for (double i = start; i < count; i += 1.0 )
         {
             list.Add(i);
         }
@@ -56,11 +56,11 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="start"></param>
     /// <param name="count"></param>
     /// <returns></returns>
-    public static IEnumerable<long> RangeAsEnumerable(this long start, long count)
+    public static IEnumerable<float> RangeAsEnumerable(this float start, float count)
     {
-        List<long> list = new List<long>();
+        List<float> list = new List<float>();
 
-        for (long i = start; i < count; i++)
+        for (float i = start; i < count; i += 1.0F )
         {
             list.Add(i);
         }
@@ -68,18 +68,17 @@ public static class IntegerRangeAsEnumerableExtensions
         return list;
     }
     
-
     /// <summary>
     /// 
     /// </summary>
     /// <param name="start"></param>
     /// <param name="count"></param>
     /// <returns></returns>
-    public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count)
+    public static IEnumerable<decimal> RangeAsEnumerable(this decimal start, decimal count)
     {
-        List<uint> list = new List<uint>();
+        List<decimal> list = new List<decimal>();
 
-        for (uint i = start; i < count; i++)
+        for (decimal i = start; i < count; i += decimal.One )
         {
             list.Add(i);
         }
@@ -87,49 +86,6 @@ public static class IntegerRangeAsEnumerableExtensions
         return list;
     }
     
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <returns></returns>
-    public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count)
-    {
-        List<ulong> list = new List<ulong>();
-
-        for (ulong i = start; i < count; i++)
-        {
-            list.Add(i);
-        }
-        
-        return list;
-    }
-
-    /// <summary>
-    /// Returns an enumerable sequence of integers from <paramref name="start"/> up to start + count.
-    /// </summary>
-    /// <param name="start">The starting integer of the sequence.</param>
-    /// <param name="count">The number of integers to generate.</param>
-    /// <param name="numbersToSkip">The numbers to skip from the range.</param>
-    /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
-    public static IEnumerable<int> RangeAsEnumerable(this int start, int count, IEnumerable<int> numbersToSkip)
-    {
-        List<int> list = new List<int>();
-        IList<int> numbersToSkipList = numbersToSkip as IList<int> ?? numbersToSkip.ToList();
-
-        for (int i = start; i < count; i++)
-        {
-            if (numbersToSkipList.Contains(i) == false)
-            {
-                list.Add(i);
-            }
-        }
-        
-        return list;
-    }
-    
-
     /// <summary>
     /// 
     /// </summary>
@@ -137,12 +93,12 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="count"></param>
     /// <param name="numbersToSkip"></param>
     /// <returns></returns>
-    public static IEnumerable<long> RangeAsEnumerable(this long start, long count, IEnumerable<long> numbersToSkip)
+    public static IEnumerable<double> RangeAsEnumerable(this double start, double count, IEnumerable<double> numbersToSkip)
     {
-        List<long> list = new List<long>();
-        IList<long> numbersToSkipList = numbersToSkip as IList<long> ?? numbersToSkip.ToList();
+        List<double> list = new List<double>();
+        IList<double> numbersToSkipList = numbersToSkip as IList<double> ?? numbersToSkip.ToList();
 
-        for (long i = start; i < count; i++)
+        for (double i = start; i < count; i += 1.0)
         {
             if (numbersToSkipList.Contains(i) == false)
             {
@@ -160,12 +116,12 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="count"></param>
     /// <param name="numbersToSkip"></param>
     /// <returns></returns>
-    public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count, IEnumerable<ulong> numbersToSkip)
+    public static IEnumerable<float> RangeAsEnumerable(this float start, float count, IEnumerable<float> numbersToSkip)
     {
-        List<ulong> list = new List<ulong>();
-        IList<ulong> numbersToSkipList = numbersToSkip as IList<ulong> ?? numbersToSkip.ToList();
+        List<float> list = new List<float>();
+        IList<float> numbersToSkipList = numbersToSkip as IList<float> ?? numbersToSkip.ToList();
 
-        for (ulong i = start; i < count; i++)
+        for (float i = start; i < count; i += 1.0F)
         {
             if (numbersToSkipList.Contains(i) == false)
             {
@@ -183,12 +139,12 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="count"></param>
     /// <param name="numbersToSkip"></param>
     /// <returns></returns>
-    public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count, IEnumerable<uint> numbersToSkip)
+    public static IEnumerable<decimal> RangeAsEnumerable(this decimal start, decimal count, IEnumerable<decimal> numbersToSkip)
     {
-        List<uint> list = new List<uint>();
-        IList<uint> numbersToSkipList = numbersToSkip as IList<uint> ?? numbersToSkip.ToList();
+        List<decimal> list = new List<decimal>();
+        IList<decimal> numbersToSkipList = numbersToSkip as IList<decimal> ?? numbersToSkip.ToList();
 
-        for (uint i = start; i < count; i++)
+        for (decimal i = start; i < count; i += decimal.One)
         {
             if (numbersToSkipList.Contains(i) == false)
             {
