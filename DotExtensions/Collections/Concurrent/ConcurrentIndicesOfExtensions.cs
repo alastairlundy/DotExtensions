@@ -26,19 +26,23 @@ using System.Collections.Concurrent;
 
 namespace AlastairLundy.DotExtensions.Collections.Concurrent;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ConcurrentIndicesOfExtensions
 {
+    
     /// <summary>
-    /// 
+    /// Retrieves a collection of indices where the specified element can be found within the given collection.
     /// </summary>
-    /// <param name="collection"></param>
-    /// <param name="item"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="collection">The producer-consumer collection to search.</param>
+    /// <param name="item">The item to find and return its indices for.</param>
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    /// <returns>A concurrent bag containing the indices where the specified item can be found, or empty if not found.</returns>
     public static IProducerConsumerCollection<int> IndicesOf<T>(this IProducerConsumerCollection<T> collection, T item)
     {
         ConcurrentBag<int> output = new ConcurrentBag<int>();
-
+        
         int index = 0;
         foreach (T obj in collection)
         {
