@@ -96,6 +96,25 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
             int limit = startIndex + count;
+
+            if (limit > concurrentBag.Count)
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+
+            if (startIndex < 0 || startIndex >= concurrentBag.Count && startIndex != 0 ||
+                startIndex > concurrentBag.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{limit}"));
+            }
+
+            if (count < 0)
+            {
+                //TODO: Add CountOutOfRange in the future
+            }
             
             int actualIndex = 0;
             foreach (T item in concurrentBag)
@@ -131,6 +150,28 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         {
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
+            int limit = startIndex + count;
+
+            if (limit > collection.Count)
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+
+            if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
+                startIndex > collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{limit}"));
+            }
+
+            if (count < 0)
+            {
+                //TODO: Add CountOutOfRange in the future
+            }
+            
+            int actualIndex = 0;
             foreach (T item in collection)
             {
                 if (items.Contains(item) == false)
@@ -149,6 +190,26 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
             int limit = startIndex + count;
+
+            if (limit > collection.Count)
+            {
+                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            }
+
+            if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
+                startIndex > collection.Count)
+            {
+                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                    .Replace("{x}", $"{startIndex}")
+                    .Replace("{y}", $"0")
+                    .Replace("{z}", $"{limit}"));
+            }
+
+            if (count < 0)
+            {
+                //TODO: Add CountOutOfRange in the future
+            }
+            
             
             int actualIndex = 0;
             foreach (T item in collection)
