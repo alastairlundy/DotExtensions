@@ -43,10 +43,10 @@ public static class ConcurrentRemoveExtensions
     /// <returns>A new concurrent bag with all occurrences of the specified object removed.</returns>
     public static ConcurrentBag<T> Remove<T>(this ConcurrentBag<T> concurrentBag, T obj)
     {
-        List<T> newList = concurrentBag.ToList();
+        IEnumerable<T> newCollection = from item in concurrentBag
+            where item.Equals(obj) == false
+            select item;
         
-        newList.Remove(item);
-        
-        return new ConcurrentBag<T>(newList);
+        return new ConcurrentBag<T>(newCollection);
     }
 }
