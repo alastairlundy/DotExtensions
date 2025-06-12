@@ -236,7 +236,6 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             }
         }
         
-        /// <summary>
         /// Removes a range of elements from the specified list.
         ///
         /// <para>
@@ -266,6 +265,5 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 list.RemoveAt(index);
             }
         }
-
     }
 }

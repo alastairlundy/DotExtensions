@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="item">The element to find.</param>
         /// <typeparam name="T">The type of elements in the collection.</typeparam>
         /// <returns>The zero-based index of the item if found, -1 otherwise.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static int IndexOf<T>(this ICollection<T> source, T item)
         {
             int index = 0;
@@ -77,6 +79,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <typeparam name="T">The type of elements within the source collection.</typeparam>
         /// <returns>A dictionary mapping each element in the source collection,
         /// to its corresponding indices.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static Dictionary<T, ICollection<int>> IndicesOfElements<T>(this ICollection<T> source)
         {
             Dictionary<T, ICollection<int>> output = new Dictionary<T, ICollection<int>>();
@@ -108,6 +111,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, out int? index)
         {
             try
@@ -130,6 +134,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
         /// <typeparam name="T">The type of the object in the collection.</typeparam>
         /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static bool TryGetIndicesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indices)
         {
             try

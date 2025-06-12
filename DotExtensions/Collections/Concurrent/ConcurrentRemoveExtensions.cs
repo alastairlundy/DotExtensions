@@ -22,32 +22,31 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
-using System.IO;
-#endif
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace AlastairLundy.DotExtensions.IO.Unix
+namespace AlastairLundy.DotExtensions.Collections.Concurrent;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ConcurrentRemoveExtensions
 {
+    
     /// <summary>
-    /// 
+    /// Removes all occurrences of a specified object from a concurrent bag.
     /// </summary>
-    public static class UnixFileModePermissionExtensions
+    /// <param name="concurrentBag">The concurrent bag to remove objects from.</param>
+    /// <param name="obj">The object to be removed from the concurrent bag.</param>
+    /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
+    /// <returns>A new concurrent bag with all occurrences of the specified object removed.</returns>
+    public static ConcurrentBag<T> Remove<T>(this ConcurrentBag<T> concurrentBag, T obj)
     {
-#if NET8_0_OR_GREATER
-        /// <summary>
-        /// Determines whether the specified Unix file mode has execute permission.
-        /// </summary>
-        /// <param name="mode">The Unix file mode to check.</param>
-        /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-        // TODO: Rename to HasExecutePermission in v8
-        public static bool IsExecutePermission(this UnixFileMode mode)
-        {
-            return mode switch
-            {
-                UnixFileMode.OtherExecute or UnixFileMode.UserExecute or UnixFileMode.GroupExecute => true,
-                _ => false
-            };
-        }
-#endif
+        IEnumerable<T> newCollection = from item in concurrentBag
+            where item.Equals(obj) == false
+            select item;
+        
+        return new ConcurrentBag<T>(newCollection);
     }
 }

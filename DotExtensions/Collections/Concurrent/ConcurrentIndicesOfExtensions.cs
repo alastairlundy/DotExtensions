@@ -22,32 +22,37 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
-using System.IO;
-#endif
+using System.Collections.Concurrent;
 
-namespace AlastairLundy.DotExtensions.IO.Unix
+namespace AlastairLundy.DotExtensions.Collections.Concurrent;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ConcurrentIndicesOfExtensions
 {
+    
     /// <summary>
-    /// 
+    /// Retrieves a collection of indices where the specified element can be found within the given collection.
     /// </summary>
-    public static class UnixFileModePermissionExtensions
+    /// <param name="collection">The producer-consumer collection to search.</param>
+    /// <param name="item">The item to find and return its indices for.</param>
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    /// <returns>A concurrent bag containing the indices where the specified item can be found, or empty if not found.</returns>
+    public static IProducerConsumerCollection<int> IndicesOf<T>(this IProducerConsumerCollection<T> collection, T item)
     {
-#if NET8_0_OR_GREATER
-        /// <summary>
-        /// Determines whether the specified Unix file mode has execute permission.
-        /// </summary>
-        /// <param name="mode">The Unix file mode to check.</param>
-        /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-        // TODO: Rename to HasExecutePermission in v8
-        public static bool IsExecutePermission(this UnixFileMode mode)
+        ConcurrentBag<int> output = new ConcurrentBag<int>();
+        
+        int index = 0;
+        foreach (T obj in collection)
         {
-            return mode switch
+            if (item is not null && item.Equals(obj))
             {
-                UnixFileMode.OtherExecute or UnixFileMode.UserExecute or UnixFileMode.GroupExecute => true,
-                _ => false
-            };
+                output.Add(index);
+            }
+            index++;
         }
-#endif
+        
+        return output;
     }
 }

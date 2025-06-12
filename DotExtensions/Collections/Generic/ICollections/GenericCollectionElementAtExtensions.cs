@@ -72,6 +72,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <param name="indices">The indexes of the elements to extract.</param>
         /// <typeparam name="T">The type of elements in the collection.</typeparam>
         /// <returns>The extracted elements as a generic collection.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
         {
             List<T> output = new();
