@@ -23,8 +23,8 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
-using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Exceptions;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -44,9 +44,9 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
         public static int IndexOf<T>(this IEnumerable<T> source, T obj)
         {
-            if (source is ICollection<T> collection)
+            if (source is IList<T> list)
             {
-                return GenericCollectionIndexExtensions.IndexOf<T>(collection, obj);
+                return list.IndexOf(obj);
             }
             
             int index = 0;
@@ -92,6 +92,59 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             else
             {
                 return [-1];
+            }
+        }
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <param name="index"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static bool TryGetIndexOf<T>(this IEnumerable<T> source, T item, out int? index)
+        {
+            try
+            {
+                index = IndexOf(source, item);
+                return true;
+            }
+            catch
+            {
+                index = null;
+                return false;
+            }
+        }
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <param name="indices"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="KeyNotFoundException"></exception>
+        public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, out IEnumerable<int>? indices)
+        {
+            try
+            {
+                indices = IndicesOf(source, item);
+
+                if (indices.Any() == false)
+                {
+                    throw new KeyNotFoundException();    
+                }
+                
+                return true;
+            }
+            catch
+            {
+                indices = null;
+                return false;
             }
         }
     }
