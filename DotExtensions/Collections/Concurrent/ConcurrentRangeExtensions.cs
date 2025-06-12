@@ -37,11 +37,11 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
     public static class ConcurrentRangeExtensions
     {
         /// <summary>
-        /// 
+        /// Adds all objects in a provided IEnumerable to a concurrent bag.
         /// </summary>
-        /// <param name="concurrentBag"></param>
-        /// <param name="items"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="concurrentBag">The concurrent bag to add objects to.</param>
+        /// <param name="items">The collection of objects to be added to the concurrent bag.</param>
+        /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
         public static void AddRange<T>(this ConcurrentBag<T> concurrentBag, IEnumerable<T> items)
         {
             foreach (T item in items)
@@ -51,13 +51,12 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         }
         
         /// <summary>
-        /// 
+        /// Attempts to add multiple objects to a producer-consumer collection.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="items"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static void AddRange<T>(this IProducerConsumerCollection<T> collection, ICollection<T> items)
+        /// <param name="collection">The producer-consumer collection to add objects to.</param>
+        /// <param name="items">The collection of objects to be added to the collection.</param>
+        /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+        /// <returns>True if all objects were successfully added, false otherwise.</returns>
         public static bool TryAddRange<T>(this IProducerConsumerCollection<T> collection, IEnumerable<T> items)
         {
             foreach (T item in items)
@@ -73,12 +72,12 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        /// Removes multiple objects from a concurrent bag.
         /// </summary>
-        /// <param name="concurrentBag"></param>
-        /// <param name="items"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="concurrentBag">The concurrent bag from which objects will be removed.</param>
+        /// <param name="itemsToRemove">A sequence of objects to be removed from the concurrent bag.</param>
+        /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
+        /// <returns>A new concurrent bag with all specified objects removed.</returns>
         public static ConcurrentBag<T> RemoveRange<T>(this ConcurrentBag<T> concurrentBag,
             IEnumerable<T> itemsToRemove)
         {
@@ -90,8 +89,19 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        /// Removes a range of objects from a concurrent bag.
         /// </summary>
+        /// <param name="concurrentBag">The concurrent bag from which objects will be removed.</param>
+        /// <param name="startIndex">The starting index (inclusive) of the range to remove.</param>
+        /// <param name="count">The number of elements in the range to remove.</param>
+        /// <typeparam name="T">The type of elements contained within the concurrent bag.</typeparam>
+        /// <returns>A new concurrent bag with the specified range removed.</returns>
+        /// <exception cref="ArgumentException">Thrown if more items are requested
+        /// to be removed than exist in the ConcurrentBag.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the start index is less than 0 or greater
+        /// than the number of items in the ConcurrentBag.</exception>
+        public static ConcurrentBag<T> RemoveRange<T>(this ConcurrentBag<T> concurrentBag,
+            int startIndex, int count)
         {
             ConcurrentBag<T> output = new ConcurrentBag<T>();
 
@@ -130,7 +140,12 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
         }
 
         /// <summary>
-        /// 
+        /// Removes specified items from the collection and returns a new producer-consumer collection.
+        /// </summary>
+        /// <param name="collection">The producer-consumer collection to remove elements from.</param>
+        /// <param name="itemsToRemove">A sequence of objects to be removed from the collection.</param>
+        /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+        /// <returns>A new producer-consumer collection with all specified objects removed.</returns>
         public static IProducerConsumerCollection<T> RemoveRange<T>(this IProducerConsumerCollection<T> collection,
             IEnumerable<T> itemsToRemove)
         {
@@ -140,11 +155,15 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
             
             return new ConcurrentBag<T>(newCollection);
         }
+        
+        /// <summary>
+        /// Removes a range of elements from the collection and returns a new producer-consumer collection.
         /// </summary>
-        /// <param name="collection"></param>
-        /// <param name="items"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="collection">The producer-consumer collection to remove elements from.</param>
+        /// <param name="startIndex">The starting index (inclusive) of the range to remove.</param>
+        /// <param name="count">The number of elements in the range to remove.</param>
+        /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+        /// <returns>A new producer-consumer collection with the specified range removed.</returns>
         public static IProducerConsumerCollection<T> RemoveRange<T>(this IProducerConsumerCollection<T> collection,
             int startIndex, int count)
         {
@@ -174,16 +193,25 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent
             int actualIndex = 0;
             foreach (T item in collection)
             {
-                if (items.Contains(item) == false)
+                if (actualIndex < startIndex || actualIndex > limit)
                 {
                     output.Add(item);
                 }
+                actualIndex++;
             }
            
             return output;
         }
 
 
+        /// <summary>
+        /// Retrieves the specified range of elements from the collection.
+        /// </summary>
+        /// <param name="collection">The producer-consumer collection to retrieve elements from.</param>
+        /// <param name="startIndex">The starting index (inclusive) of the range to retrieve.</param>
+        /// <param name="count">The number of elements in the range to retrieve.</param>
+        /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+        /// <returns>A new sequence containing the specified range of elements.</returns>
         public static IProducerConsumerCollection<T> GetRange<T>(this IProducerConsumerCollection<T> collection,
             int startIndex, int count)
         {
