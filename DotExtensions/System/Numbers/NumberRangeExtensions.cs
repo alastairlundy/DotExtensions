@@ -33,8 +33,7 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class NumberRangeExtensions
 {
-
-
+    
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
     /// <summary>
     /// Creates a new instance of the Range struct based on the given start value and length.
