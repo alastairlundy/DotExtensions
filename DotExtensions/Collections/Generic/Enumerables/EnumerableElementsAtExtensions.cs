@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,6 +48,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
         /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
         /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
         {
             List<T> output = new();
