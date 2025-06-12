@@ -27,10 +27,15 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
+
+using AlastairLundy.DotExtensions.Deprecations;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class GenericCollectionRangeExtensions
     {
 
@@ -100,68 +105,56 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return;
             }
             #endregion
-            else
+
+            int numberOfItemsToBeRemoved = source.Count - index;
+
+            List<T> removedItems = new();
+
+            int i = 0;
+            foreach (T item in source)
             {
-                int numberOfItemsToBeRemoved = source.Count - index;
-
-                List<T> removedItems = new();
-
-                int i = 0;
-                foreach (T item in source)
+                if (i >= index && i < source.Count)
                 {
-                    if (i >= index && i < source.Count)
-                    {
-                        removedItems.Add(item);
-                    }
-
-                    i += 1;
+                    removedItems.Add(item);
                 }
 
-                source.RemoveRange(index, numberOfItemsToBeRemoved);
-
-                source.AddRange(values);
-
-                source.AddRange(removedItems);
+                i += 1;
             }
+
+            List<T> newSource = source.ToList();
+            newSource.RemoveRange(index, numberOfItemsToBeRemoved);
+
+            newSource.AddRange(values);
+            newSource.AddRange(removedItems);
+            source.Clear();
+
+            AddRange(source, newSource);
         }
 
 
         /// <summary>
-        /// Retrieves a portion of the elements in an ICollection based on a collection of indexes.
+        /// Retrieves a portion of the elements in an ICollection based on a collection of indices.
         /// </summary>
         /// <param name="source">The collection from which to retrieve elements.</param>
-        /// <param name="indexes">A collection of integers representing the indexes of elements to retrieve.</param>
+        /// <param name="indices">A collection of integers representing the indices of elements to retrieve.</param>
         /// <typeparam name="T">The type of elements in the collection and range.</typeparam>
-        /// <returns>A new collection containing the specified elements based on the provided indexes.</returns>
+        /// <returns>A new collection containing the specified elements based on the provided indices.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown when an index is out of the valid range for the collection.</exception>
-        public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indexes)
+        public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
         {
             #region Optimized IList code
 
             List<T> output = new();
-
-            if (source is IList<T> list)
+            
+            if (source is IList<T> list && indices is ICollection<int> indicesCollection)
             {
-                foreach (int index in indexes)
-                {
-                    if (index < 0 || index >= source.Count)
-                    {
-                        throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                            .Replace("{x}", index.ToString())
-                            .Replace("{y}", $"0")
-                            .Replace("{z}", $"{list.Count}"));
-                    }
-                    
-                    output.Add(list[index]);
-                }
-                
-                return output;
+                return IListRangeExtensions.GetRange(list, indicesCollection);
             }
             #endregion
             
             IList<T> sourceList = source as IList<T> ?? source.ToArray();
 
-            foreach (int index in indexes)
+            foreach (int index in indices)
             {
                 if (index < 0 || index >= source.Count)
                 {
@@ -215,17 +208,15 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
                 return IListRangeExtensions.GetRange(list, startIndex,  count);
             }
             #endregion
-            else
+
+            List<int> numbers = new();
+                
+            for (int i = startIndex; i < endIndex; i++)
             {
-                List<int> numbers = new();
-                
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    numbers.Add(i);
-                }
-                
-                return GetRange(source, numbers);
+                numbers.Add(i);
             }
+                
+            return GetRange(source, numbers);
         }
 
 
@@ -239,7 +230,8 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
         /// <exception cref="IndexOutOfRangeException">Thrown when startIndex is less than 0 or greater
         /// than or equal to collection's Count.</exception>
         /// <exception cref="ArgumentException">Thrown when count is greater than the Collection's Count minus startIndex.</exception>
-        public static void RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
+        [Obsolete(DeprecationMessages.DeprecationV8)]
+        public static ICollection<T> RemoveRange<T>(this ICollection<T> source, int startIndex, int count)
         {
             if (startIndex < 0 || startIndex >= source.Count)
             {
@@ -253,18 +245,21 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             {
                 throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
             }
-            
+
+            #region Optimized IList Code
             if (source is IList<T> list)
             {
                 IListRangeExtensions.RemoveRange(list, startIndex, count);
+                return list;
             }
-            else
-            {
-                for (int index = startIndex; index < startIndex + count; index++)
-                {
-                    source = source.RemoveAt(index);
-                }
-            }
+            #endregion
+            
+            IList<T> sourceList = source.ToList();
+               
+            IListRangeExtensions.RemoveRange(sourceList, startIndex, count);
+
+            source = sourceList;
+            return source;
         }
     }
 }

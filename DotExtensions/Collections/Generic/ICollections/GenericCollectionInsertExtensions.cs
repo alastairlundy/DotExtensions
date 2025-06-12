@@ -29,7 +29,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 {
     public static class GenericCollectionInsertExtensions
     {
-    
         /// <summary>
         /// Inserts an element at the specified position in a collection.
         /// </summary>

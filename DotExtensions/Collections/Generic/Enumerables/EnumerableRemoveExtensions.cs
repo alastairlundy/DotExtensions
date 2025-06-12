@@ -25,10 +25,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EnumerableRemoveExtensions
     {
     
@@ -41,6 +47,22 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
         /// <returns>The new IEnumerable with the specified item removed.</returns>
         public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
         {
+            #region IList Optimized Code
+            if (source is IList<T> list)
+            {
+                list.Remove(itemToBeRemoved);
+                return list;
+            }
+            #endregion
+            
+            #region ICollection Optimized Code
+            if (source is ICollection<T> collection)
+            {
+                collection.Remove(itemToBeRemoved);
+                return collection;
+            }
+            #endregion
+            
             return from item in source
                 where item.Equals(itemToBeRemoved) == false
                     select item;
@@ -67,7 +89,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             #region Faster ICollection implementation
             if (source is ICollection<T> collection)
             {
-                return ICollections.GenericCollectionRemoveExtensions.RemoveAt<T>(collection, index);
+                return GenericCollectionRemoveExtensions.RemoveAt(collection, index);
             }
             #endregion
             
@@ -75,20 +97,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             
             enumerable.RemoveAt(index);
             return enumerable;
-        }
-        
-        /// <summary>
-        /// Removes items from an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to have items removed from.</param>
-        /// <param name="itemsToBeRemoved">The items to be removed.</param>
-        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
-        /// <returns>The new IEnumerable with the specified items removed.</returns>
-        public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
-        { 
-            return from item in source
-                where itemsToBeRemoved.Contains(item) == false
-                    select item;
         }
     }
 }

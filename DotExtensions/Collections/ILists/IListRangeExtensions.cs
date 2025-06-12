@@ -47,7 +47,7 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             {
                 throw new OverflowException($"{nameof(list)} contains the maximum size of {int.MaxValue} and cannot be added to.");
             }
-        
+            
             if (list is List<T> actualList && listToAdd is IList<T> iListToAdd)
             {
                 actualList.AddRange(iListToAdd);
@@ -77,6 +77,11 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             else if (listToAdd.Count == int.MaxValue)
             {
                 throw new OverflowException($"{nameof(listToAdd)} contains the maximum size of {int.MaxValue} and cannot be added to {nameof(list)}.");
+            }
+
+            if (list.Count == 0)
+            {
+                list = new List<T>(capacity: listToAdd.Count);
             }
         
             if (list is List<T> actualList)
@@ -160,6 +165,38 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 
             return output;
         }
+        
+        
+        /// <summary>
+        /// Retrieves a specified range of elements from the source list.
+        /// 
+        /// The indices are 0-based, meaning the first element is at index 0 and the last element is at index Count - 1.
+        /// </summary>
+        /// <param name="source">The list from which to retrieve the range of elements.</param>
+        /// <param name="indices">A collection of 0-based indices specifying the range of elements to retrieve.</param>
+        /// <typeparam name="T">The type of elements in the source list.</typeparam>
+        /// <returns>A list containing the specified range of elements.</returns>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index is out of range
+        /// (less than 0 or greater than or equal to Count).</exception>
+        public static IList<T> GetRange<T>(this IList<T> source, ICollection<int> indices)
+        {
+            List<T> output = new();
+
+            foreach (int index in indices)
+            {
+                if (index < 0 || index >= source.Count)
+                {
+                    throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                        .Replace("{x}", index.ToString())
+                        .Replace("{y}", $"0")
+                        .Replace("{z}", $"{source.Count}"));
+                }
+
+                output.Add(source[index]);
+            }
+
+            return output;
+        }
 
         /// <summary>
         /// Removes a specified range of elements from this list.
@@ -199,13 +236,16 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             }
         }
         
-        /// <summary>
-        /// 
+        /// Removes a range of elements from the specified list.
+        ///
+        /// <para>
+        /// If the range of indices is empty, no elements will be removed.
+        ///</para>
         /// </summary>
-        /// <param name="list"></param>
-        /// <param name="indices"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <exception cref="IndexOutOfRangeException"></exception>
+        /// <param name="list">The list from which to remove elements.</param>
+        /// <param name="indices">A list of 0-based indices specifying the range of elements to remove.</param>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <exception cref="IndexOutOfRangeException">Thrown if any index in the indices list is out of range for the corresponding element in the list.</exception>
         public static void RemoveRange<T>(this IList<T> list, IList<int> indices)
         {
             foreach (int index in indices)
