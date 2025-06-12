@@ -1,6 +1,3 @@
-﻿/*
-        MIT License
-
        Copyright (c) 2025 Alastair Lundy
 
        Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,40 +19,32 @@
        SOFTWARE.
    */
 
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
-using System;
-#endif
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
 /// <summary>
-/// Provides static extension methods for working with number ranges.
+/// 
 /// </summary>
-public static class NumberRangeExtensions
+public static class IntegerRangeAsEnumerableExtensions
 {
-
-
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
     /// <summary>
-    /// Creates a new instance of the Range struct based on the given start value and length.
+    /// Returns an enumerable sequence of integers from <paramref name="start"/> up to start + count.
     /// </summary>
-    /// <param name="start">The starting index or integer value of the range.</param>
-    /// <param name="count">The number of elements in the range.</param>
-    /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this int start, int count)
+    /// <param name="start">The starting integer of the sequence.</param>
+    /// <param name="count">The number of integers to generate.</param>
+    /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
+    public static IEnumerable<int> RangeAsEnumerable(this int start, int count)
     {
-        return new Range(start, count);
+        List<int> list = new List<int>();
+
+        for (int i = start; i < count; i++)
+        {
+            list.Add(i);
+        }
+        
+        return list;
     }
     
-    /// <summary>
-    /// Creates a new instance of the Range struct based on the given Index value and length.
-    /// </summary>
-    /// <param name="start">The starting Index value.</param>
-    /// <param name="count">The number of elements in the range.</param>
-    /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this Index start, int count)
-    {
-        return new Range(start, count);
-    }
-#endif
 }
