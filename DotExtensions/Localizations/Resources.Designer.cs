@@ -132,7 +132,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process {x} could not be found but a similarly named process {y} was found..
+        ///   Looks up a localized string similar to Process {x} could not be found, but a similarly named process {y} was found..
         /// </summary>
         internal static string Processes_Exceptions_IncorrectProcessName {
             get {
@@ -151,13 +151,6 @@ namespace AlastairLundy.DotExtensions.Localizations {
             get
             {
                 return ResourceManager.GetString("Exceptions.Enumerables.InvalidOperation_EmptySequence", resourceCulture);
-            }
-        }
-
-        
-        internal static string Exceptions_Processes_NotSupportedOnRemoteProcess {
-            get {
-                return ResourceManager.GetString("Exceptions.Processes.NotSupportedOnRemoteProcess", resourceCulture);
             }
         }
     }
