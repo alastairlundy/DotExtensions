@@ -29,77 +29,76 @@ using System.Text;
 
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+/// <summary>
+/// 
+/// </summary>
+public static class TitleCaseExtensions
 {
     /// <summary>
-    /// 
+    /// Checks whether a word is capitalized.
     /// </summary>
-    public static class TitleCaseExtensions
+    /// <param name="word">The word to be checked.</param>
+    /// <returns>True if the word is capitalized; false otherwise.</returns>
+    public static bool IsWordTitleCase(this string word)
     {
-        /// <summary>
-        /// Checks whether a word is capitalized.
-        /// </summary>
-        /// <param name="word">The word to be checked.</param>
-        /// <returns>True if the word is capitalized; false otherwise.</returns>
-        public static bool IsWordTitleCase(this string word)
-        {
-            bool[] letterCapitalization = new bool[word.Length];
+        bool[] letterCapitalization = new bool[word.Length];
 
-            letterCapitalization[0] = word[0].IsUpperCaseCharacter();
+        letterCapitalization[0] = word[0].IsUpperCaseCharacter();
             
-            for (int index = 1; index < word.Length; index++)
-            {
-                letterCapitalization[index] = word[index].IsLowerCaseCharacter();
-            }
-
-            return letterCapitalization.All(x => x == true);
-        }
-
-        /// <summary>
-        /// Converts a string to Title Case.
-        /// </summary>
-        /// <param name="word">The string to be converted.</param>
-        /// <returns>The title case version of the input string.</returns>
-        public static string ToTitleCase(this string word)
+        for (int index = 1; index < word.Length; index++)
         {
-            return ToTitleCase([word]);
+            letterCapitalization[index] = word[index].IsLowerCaseCharacter();
         }
+
+        return letterCapitalization.All(x => x == true);
+    }
+
+    /// <summary>
+    /// Converts a string to Title Case.
+    /// </summary>
+    /// <param name="word">The string to be converted.</param>
+    /// <returns>The title case version of the input string.</returns>
+    public static string ToTitleCase(this string word)
+    {
+        return ToTitleCase([word]);
+    }
         
-        /// <summary>
-        /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
-        /// </summary>
-        /// <param name="words">The array of strings to be converted.</param>
-        /// <returns>The converted title case string enumerable.</returns>
-        public static string ToTitleCase(this IEnumerable<string> words)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
+    /// <summary>
+    /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
+    /// </summary>
+    /// <param name="words">The array of strings to be converted.</param>
+    /// <returns>The converted title case string enumerable.</returns>
+    public static string ToTitleCase(this IEnumerable<string> words)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
             
-            foreach (string str in words)
-            {
-                stringBuilder.Append(str.IsWordTitleCase() ? str :
-                    str.CapitalizeFirstLetter());
-            }
-
-            return stringBuilder.ToString();
+        foreach (string str in words)
+        {
+            stringBuilder.Append(str.IsWordTitleCase() ? str :
+                str.CapitalizeFirstLetter());
         }
+
+        return stringBuilder.ToString();
+    }
         
-        /// <summary>
-        /// Returns whether the specified phrase to be checked is in Title Case or not.
-        /// </summary>
-        /// <param name="phrase">The phrase to be checked.</param>
-        /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
-        public static bool IsTitleCase(this string phrase)
+    /// <summary>
+    /// Returns whether the specified phrase to be checked is in Title Case or not.
+    /// </summary>
+    /// <param name="phrase">The phrase to be checked.</param>
+    /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
+    public static bool IsTitleCase(this string phrase)
+    {
+        string[] words = phrase.Split();
+            
+        bool[] results = new bool[words.Length];
+            
+        for (int index = 0; index < words.Length; index++)
         {
-            string[] words = phrase.Split();
-            
-            bool[] results = new bool[words.Length];
-            
-            for (int index = 0; index < words.Length; index++)
-            {
-                results[index] = words[index].IsWordTitleCase();
-            }
-
-            return results.All(x => x == true);
+            results[index] = words[index].IsWordTitleCase();
         }
+
+        return results.All(x => x == true);
     }
 }

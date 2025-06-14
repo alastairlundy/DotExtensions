@@ -26,81 +26,80 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ICollections
+namespace AlastairLundy.DotExtensions.Collections.ICollections;
+
+public static class CollectionElementAtExtensions
 {
-    public static class CollectionElementAtExtensions
+    /// <summary>
+    /// Attempts to retrieve the item at the specified index.
+    /// </summary>
+    /// <param name="collection">The collection to be searched.</param>
+    /// <param name="index">The index position to search an element for.</param>
+    /// <param name="value">The value at the index position if one is found; null otherwise.</param>
+    /// <returns>True if an item is found at the specified index position; false otherwise.</returns>
+    public static bool TryGetElementAt(this ICollection collection, int index, out object? value)
     {
-        /// <summary>
-        /// Attempts to retrieve the item at the specified index.
-        /// </summary>
-        /// <param name="collection">The collection to be searched.</param>
-        /// <param name="index">The index position to search an element for.</param>
-        /// <param name="value">The value at the index position if one is found; null otherwise.</param>
-        /// <returns>True if an item is found at the specified index position; false otherwise.</returns>
-        public static bool TryGetElementAt(this ICollection collection, int index, out object? value)
+        try
         {
-            try
-            {
-                value = ElementAt(collection, index);
-                return true;
-            }
-            catch
-            {
-                value = null;
-                return false;
-            }
+            value = ElementAt(collection, index);
+            return true;
         }
-        
-        /// <summary>
-        /// Gets the item at the specified index.
-        /// </summary>
-        /// <param name="collection">The collection to be searched.</param>
-        /// <param name="index">The index position to search an element for.</param>
-        /// <returns>The item associated with the specified index in the collection.</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown if the greater is larger than the collection or is less than 0.</exception>
-        /// <exception cref="KeyNotFoundException">Thrown if no item is found at the specified index.</exception>
-        public static object? ElementAt(this ICollection collection, int index)
+        catch
         {
+            value = null;
+            return false;
+        }
+    }
+        
+    /// <summary>
+    /// Gets the item at the specified index.
+    /// </summary>
+    /// <param name="collection">The collection to be searched.</param>
+    /// <param name="index">The index position to search an element for.</param>
+    /// <returns>The item associated with the specified index in the collection.</returns>
+    /// <exception cref="IndexOutOfRangeException">Thrown if the greater is larger than the collection or is less than 0.</exception>
+    /// <exception cref="KeyNotFoundException">Thrown if no item is found at the specified index.</exception>
+    public static object? ElementAt(this ICollection collection, int index)
+    {
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
-            object? output = null;
+        object? output = null;
 #else
             object output = -1;
 #endif
             
-            if (index > collection.Count || index < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            
-            IEnumerator enumerator = collection.GetEnumerator();
-            using var enumerator1 = enumerator as IDisposable;
-
-            int internalIndex = 0;
-            while (enumerator.MoveNext())
-            {
-                if (internalIndex == index)
-                {
-                    if (enumerator.Current != null)
-                    {
-                        output = enumerator.Current;
-                    }
-                }
-
-                internalIndex++;
-            }
-
-            if (output == null)
-            {
-                return null;
-            }
-            else if (int.Parse(output.ToString()!) == -1)
-            {
-                return null;
-            }
-            else
-            {
-                return output;
-            }
+        if (index > collection.Count || index < 0)
+        {
+            throw new IndexOutOfRangeException();
         }
-    }   
+            
+        IEnumerator enumerator = collection.GetEnumerator();
+        using var enumerator1 = enumerator as IDisposable;
+
+        int internalIndex = 0;
+        while (enumerator.MoveNext())
+        {
+            if (internalIndex == index)
+            {
+                if (enumerator.Current != null)
+                {
+                    output = enumerator.Current;
+                }
+            }
+
+            internalIndex++;
+        }
+
+        if (output == null)
+        {
+            return null;
+        }
+        else if (int.Parse(output.ToString()!) == -1)
+        {
+            return null;
+        }
+        else
+        {
+            return output;
+        }
+    }
 }

@@ -24,18 +24,17 @@
 
 using System;
 
-namespace AlastairLundy.DotExtensions.Dates
+namespace AlastairLundy.DotExtensions.Dates;
+
+public static class UnixDateStringExtension
 {
-    public static class UnixDateStringExtension
+    /// <summary>
+    /// Gets the current date in the format of the unix Date command.
+    /// </summary>
+    /// <param name="dateTime">The dateTime object to be used.</param>
+    /// <returns>the current date in the format of the unix Date command.</returns>
+    public static string ToUnixDateString(this DateTime dateTime)
     {
-        /// <summary>
-        /// Gets the current date in the format of the unix Date command.
-        /// </summary>
-        /// <param name="dateTime">The dateTime object to be used.</param>
-        /// <returns>the current date in the format of the unix Date command.</returns>
-        public static string ToUnixDateString(this DateTime dateTime)
-        {
-            return dateTime.ToString("R").Replace(",", string.Empty);
-        }
+        return dateTime.ToString("R").Replace(",", string.Empty);
     }
 }

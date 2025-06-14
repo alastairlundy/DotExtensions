@@ -26,37 +26,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections
+namespace AlastairLundy.DotExtensions.Collections;
+
+public static class CollectionToGenericsExtensions
 {
-    public static class CollectionToGenericsExtensions
-    {
     
-        /// <summary>
-        /// Converts a non-generic collection to its generic counterpart.
-        /// </summary>
-        /// <param name="source">The non-generic collection to convert.</param>
-        /// <typeparam name="T">The type parameter of the resulting generic collection.</typeparam>
-        /// <returns>A new generic collection with the same elements as the original collection,
-        /// typed according to the specified type parameter.</returns>
-        /// <exception cref="ArgumentException">Thrown if the source collection is null
-        /// or cannot be converted to a generic collection.</exception>
-        public static ICollection<T> ToGenericCollection<T>(this ICollection source)
+    /// <summary>
+    /// Converts a non-generic collection to its generic counterpart.
+    /// </summary>
+    /// <param name="source">The non-generic collection to convert.</param>
+    /// <typeparam name="T">The type parameter of the resulting generic collection.</typeparam>
+    /// <returns>A new generic collection with the same elements as the original collection,
+    /// typed according to the specified type parameter.</returns>
+    /// <exception cref="ArgumentException">Thrown if the source collection is null
+    /// or cannot be converted to a generic collection.</exception>
+    public static ICollection<T> ToGenericCollection<T>(this ICollection source)
+    {
+        ICollection<T> output = new List<T>();
+
+        foreach (object item in source)
         {
-            ICollection<T> output = new List<T>();
-
-            foreach (object item in source)
+            if (item is T t)
             {
-                if (item is T t)
-                {
-                    output.Add(t);
-                }
-                else
-                {
-                    throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
-                }
+                output.Add(t);
             }
-
-            return output;
+            else
+            {
+                throw new ArgumentException($"Source does not contain objects of type {typeof(T).Name}");
+            }
         }
+
+        return output;
     }
 }

@@ -27,51 +27,50 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Processes
-{
-    public static class IsProcessRunningExtensions
-    {
-        /// <summary>
-        /// Check to see if a specified process is running or not.
-        /// </summary>
-        /// <param name="process">The process to be checked.</param>
-        /// <returns>True if the specified process is running; returns false otherwise.</returns>
-        public static bool IsRunning(this Process process)
-        {
-            if (process.HasStarted())
-            {
-                return process.HasExited() == false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        
-        /// <summary>
-        /// Check to see if a specified process is running or not.
-        /// </summary>
-        /// <param name="processName">The name of the process to be checked.</param>
-        /// <param name="sanitizeProcessName"></param>
-        /// <returns>true if the specified process is running; returns false otherwise.</returns>
-        public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
-        {
-            IEnumerable<string> processes;
+namespace AlastairLundy.DotExtensions.Processes;
 
-            string tempProcessName = processName;
-            
-            if (sanitizeProcessName)
-            {
-                tempProcessName = Path.GetFileNameWithoutExtension(processName);
-                processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true);
-            }
-            else
-            {
-                processes = Process.GetProcesses().Select(x => x.ProcessName);
-            }
-            
-            return processes.Where(x => x.Contains(tempProcessName))
-                .Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
+public static class IsProcessRunningExtensions
+{
+    /// <summary>
+    /// Check to see if a specified process is running or not.
+    /// </summary>
+    /// <param name="process">The process to be checked.</param>
+    /// <returns>True if the specified process is running; returns false otherwise.</returns>
+    public static bool IsRunning(this Process process)
+    {
+        if (process.HasStarted())
+        {
+            return process.HasExited() == false;
         }
+        else
+        {
+            return false;
+        }
+    }
+        
+    /// <summary>
+    /// Check to see if a specified process is running or not.
+    /// </summary>
+    /// <param name="processName">The name of the process to be checked.</param>
+    /// <param name="sanitizeProcessName"></param>
+    /// <returns>true if the specified process is running; returns false otherwise.</returns>
+    public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
+    {
+        IEnumerable<string> processes;
+
+        string tempProcessName = processName;
+            
+        if (sanitizeProcessName)
+        {
+            tempProcessName = Path.GetFileNameWithoutExtension(processName);
+            processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true);
+        }
+        else
+        {
+            processes = Process.GetProcesses().Select(x => x.ProcessName);
+        }
+            
+        return processes.Where(x => x.Contains(tempProcessName))
+            .Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
     }
 }

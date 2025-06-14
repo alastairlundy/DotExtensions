@@ -25,24 +25,23 @@
 using System.Collections.Generic;
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Collections.ILists
+namespace AlastairLundy.DotExtensions.Collections.ILists;
+
+public static class IListReplaceExtensions
 {
-    public static class IListReplaceExtensions
+    /// <summary>
+    /// Replaces all occurrences of an item in an IList with a replacement item.
+    /// </summary>
+    /// <param name="source">The IList to be modified.</param>
+    /// <param name="oldValue">The value to be replaced.</param>
+    /// <param name="newValue">The replacement value.</param>
+    /// <typeparam name="T">The type of value.</typeparam>
+    /// <returns>The modified IList if the IList contains the value to be replaced; Otherwise the original IList is returned.</returns>
+    public static IList<T> Replace<T>(this IList<T> source, T oldValue, T newValue)
     {
-        /// <summary>
-        /// Replaces all occurrences of an item in an IList with a replacement item.
-        /// </summary>
-        /// <param name="source">The IList to be modified.</param>
-        /// <param name="oldValue">The value to be replaced.</param>
-        /// <param name="newValue">The replacement value.</param>
-        /// <typeparam name="T">The type of value.</typeparam>
-        /// <returns>The modified IList if the IList contains the value to be replaced; Otherwise the original IList is returned.</returns>
-        public static IList<T> Replace<T>(this IList<T> source, T oldValue, T newValue)
-        {
-            int index = source.IndexOf(oldValue);
+        int index = source.IndexOf(oldValue);
                 
-            source[index] = newValue;
-            return source;
-        }
+        source[index] = newValue;
+        return source;
     }
 }

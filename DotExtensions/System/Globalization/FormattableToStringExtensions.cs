@@ -25,21 +25,20 @@
 using System;
 using System.Globalization;
 
-namespace AlastairLundy.DotExtensions.Globalization
+namespace AlastairLundy.DotExtensions.Globalization;
+
+/// <summary>
+/// 
+/// </summary>
+public static class FormattableToStringExtensions
 {
     /// <summary>
-    /// 
+    /// Converts an IFormattable to a string.
     /// </summary>
-    public static class FormattableToStringExtensions
+    /// <param name="formattable">The IFormattable to be converted to a string.</param>
+    /// <returns>The newly created string.</returns>
+    public static string? ToString(this IFormattable formattable)
     {
-        /// <summary>
-        /// Converts an IFormattable to a string.
-        /// </summary>
-        /// <param name="formattable">The IFormattable to be converted to a string.</param>
-        /// <returns>The newly created string.</returns>
-        public static string? ToString(this IFormattable formattable)
-        {
-            return (string?)CultureInfo.CurrentCulture.GetFormat(formattable.GetType());
-        }
+        return (string?)CultureInfo.CurrentCulture.GetFormat(formattable.GetType());
     }
 }

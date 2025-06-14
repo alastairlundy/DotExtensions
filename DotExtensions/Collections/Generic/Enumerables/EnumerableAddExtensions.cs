@@ -27,27 +27,26 @@ using System.Linq;
 
 // ReSharper disable RedundantAssignment
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
-{
-    public static class EnumerableAddExtensions
-    {
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
-        /// <summary>
-        /// Adds a single element to the specified sequence of elements.
-        /// </summary>
-        /// <param name="source">The sequence to add items to.</param>
-        /// <param name="item">The element to add to the sequence.</param>
-        /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
-        public static void Add<T>(this IEnumerable<T> source, T item)
+public static class EnumerableAddExtensions
+{
+
+    /// <summary>
+    /// Adds a single element to the specified sequence of elements.
+    /// </summary>
+    /// <param name="source">The sequence to add items to.</param>
+    /// <param name="item">The element to add to the sequence.</param>
+    /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
+    public static void Add<T>(this IEnumerable<T> source, T item)
+    {
+        if (source is ICollection<T> collection)
         {
-            if (source is ICollection<T> collection)
-            {
-                collection.Add(item);
-            }
-            else
-            {
-                source = source.Append(item);
-            }
+            collection.Add(item);
+        }
+        else
+        {
+            source = source.Append(item);
         }
     }
 }

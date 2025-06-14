@@ -23,37 +23,36 @@
    */
 
 // ReSharper disable CheckNamespace
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+public static class CapitalizationExtensions
 {
-    public static class CapitalizationExtensions
+    /// <summary>
+    /// Capitalizes the first letter in a word.
+    /// </summary>
+    /// <param name="word">The word to be modified.</param>
+    /// <returns>The updated word with the first letter capitalized.</returns>
+    public static string CapitalizeFirstLetter(this string word)
     {
-        /// <summary>
-        /// Capitalizes the first letter in a word.
-        /// </summary>
-        /// <param name="word">The word to be modified.</param>
-        /// <returns>The updated word with the first letter capitalized.</returns>
-        public static string CapitalizeFirstLetter(this string word)
-        {
-            return word.CapitalizeChar(0);
-        }
+        return word.CapitalizeChar(0);
+    }
         
-        /// <summary>
-        /// Capitalizes the specified letter in the specified word.
-        /// </summary>
-        /// <param name="index">The letter position to be made upper case.</param>
-        /// <param name="word">The word to be modified.</param>
-        /// <returns>The specified word with the specified letter made upper case.</returns>
-        public static string CapitalizeChar(this string word, int index)
+    /// <summary>
+    /// Capitalizes the specified letter in the specified word.
+    /// </summary>
+    /// <param name="index">The letter position to be made upper case.</param>
+    /// <param name="word">The word to be modified.</param>
+    /// <returns>The specified word with the specified letter made upper case.</returns>
+    public static string CapitalizeChar(this string word, int index)
+    {
+        char oldChar = word[index];
+
+        if (oldChar.IsUpperCaseCharacter() == false)
         {
-            char oldChar = word[index];
-
-            if (oldChar.IsUpperCaseCharacter() == false)
-            {
-                word = word.Remove(index, 1)
-                    .Insert(index, oldChar.ToString().ToUpper());
-            }
-
-            return word;
+            word = word.Remove(index, 1)
+                .Insert(index, oldChar.ToString().ToUpper());
         }
+
+        return word;
     }
 }

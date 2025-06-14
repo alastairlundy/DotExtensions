@@ -30,10 +30,10 @@ using System.Threading.Tasks;
 // ReSharper disable AsyncVoidLambda
 // ReSharper disable RedundantJumpStatement
 
-namespace AlastairLundy.DotExtensions.Processes
+namespace AlastairLundy.DotExtensions.Processes;
+
+public static class ProcessWaitForExitAsyncExtensions
 {
-    public static class ProcessWaitForExitAsyncExtensions
-    {
         
 #if NETSTANDARD2_0 || NETSTANDARD2_1
         /// <summary>
@@ -52,83 +52,82 @@ namespace AlastairLundy.DotExtensions.Processes
         }
 #endif
     
-        /// <summary>
-        /// Waits for the specified process to exit within the given time span.
-        /// </summary>
-        /// <param name="process">The process to wait for.</param>
-        /// <param name="timeout">The maximum amount of time that is spent waiting for the process to exit. If the timeout
-        /// expires before the process exits.</param>
-        /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
-        /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
-        public static async Task WaitForExitAsync(this Process process,
-            TimeSpan timeout,
-            bool endProcessAtTimeout = false,
-            CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Waits for the specified process to exit within the given time span.
+    /// </summary>
+    /// <param name="process">The process to wait for.</param>
+    /// <param name="timeout">The maximum amount of time that is spent waiting for the process to exit. If the timeout
+    /// expires before the process exits.</param>
+    /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
+    /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
+    public static async Task WaitForExitAsync(this Process process,
+        TimeSpan timeout,
+        bool endProcessAtTimeout = false,
+        CancellationToken cancellationToken = default)
+    {
+        Task processTask = new Task(async () =>
         {
-            Task processTask = new Task(async () =>
-            {
-                await process.WaitForExitAsync(cancellationToken);
+            await process.WaitForExitAsync(cancellationToken);
 
-                return;
-            });
+            return;
+        });
             
-            processTask.Start();
+        processTask.Start();
             
-            Task timeoutTask = new Task(() =>
-            {
-                Stopwatch stopWatch = Stopwatch.StartNew();
-                stopWatch.Start();
+        Task timeoutTask = new Task(() =>
+        {
+            Stopwatch stopWatch = Stopwatch.StartNew();
+            stopWatch.Start();
 
-                while (stopWatch.IsRunning && process.IsRunning())
+            while (stopWatch.IsRunning && process.IsRunning())
+            {
+                if (stopWatch.Elapsed > timeout)
                 {
-                    if (stopWatch.Elapsed > timeout)
-                    {
-                        stopWatch.Stop();
+                    stopWatch.Stop();
 
-                        if (endProcessAtTimeout)
-                        {
-                            process.Close();
-                        }
-                        else
-                        {
-                            cancellationToken = new CancellationToken(true);
-                        }
-                        
-                        return;
-                    }
-
-                    if (timeout.TotalMilliseconds >= 100)
+                    if (endProcessAtTimeout)
                     {
-                        Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                        process.Close();
                     }
                     else
                     {
-                        Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                        cancellationToken = new CancellationToken(true);
                     }
+                        
+                    return;
                 }
-            });
-        
-            timeoutTask.Start();
-            
-            await timeoutTask;
-        }
 
-        /// <summary>
-        /// Waits for the specified process to exit.
-        /// </summary>
-        /// <param name="process">The process to wait for.</param>
-        /// <param name="millisecondTimeout">The number of milliseconds to wait before timing out. If 0, there is no timeout.</param>
-        /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
-        /// <param name="cancellationToken">A cancellation token that determines whether the operation
-        /// should continue to run or be cancelled.</param>
-        public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
-            bool endProcessAtTimeout = false,
-            CancellationToken cancellationToken = default)
-        { 
-            await WaitForExitAsync(process, 
-                TimeSpan.FromMilliseconds(Convert.ToDouble(millisecondTimeout)),
-                endProcessAtTimeout,
-                cancellationToken);
-        }
+                if (timeout.TotalMilliseconds >= 100)
+                {
+                    Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                }
+                else
+                {
+                    Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+                }
+            }
+        });
+        
+        timeoutTask.Start();
+            
+        await timeoutTask;
+    }
+
+    /// <summary>
+    /// Waits for the specified process to exit.
+    /// </summary>
+    /// <param name="process">The process to wait for.</param>
+    /// <param name="millisecondTimeout">The number of milliseconds to wait before timing out. If 0, there is no timeout.</param>
+    /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
+    /// <param name="cancellationToken">A cancellation token that determines whether the operation
+    /// should continue to run or be cancelled.</param>
+    public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
+        bool endProcessAtTimeout = false,
+        CancellationToken cancellationToken = default)
+    { 
+        await WaitForExitAsync(process, 
+            TimeSpan.FromMilliseconds(Convert.ToDouble(millisecondTimeout)),
+            endProcessAtTimeout,
+            cancellationToken);
     }
 }

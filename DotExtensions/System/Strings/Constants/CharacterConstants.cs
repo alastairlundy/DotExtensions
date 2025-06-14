@@ -24,19 +24,19 @@
 
 // ReSharper disable ConvertToAutoProperty
 // ReSharper disable CheckNamespace
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+/// <summary>
+/// 
+/// </summary>
+public static class CharacterConstants
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class CharacterConstants
-    {
-        private static readonly char[] SpecialChars =
+    private static readonly char[] SpecialChars =
 #if NET8_0_OR_GREATER
-        [
-            ',', '.', '\\', '/', '^', '*', '&', '?', '!', '#', '~', '_', '+',
-                '-', '@', '<', '>', '=', '(', ')', '%', '$', '£', '"', ';', ':', '{', '}', '[', ']'
-        ];
+    [
+        ',', '.', '\\', '/', '^', '*', '&', '?', '!', '#', '~', '_', '+',
+        '-', '@', '<', '>', '=', '(', ')', '%', '$', '£', '"', ';', ':', '{', '}', '[', ']'
+    ];
 #else
             new[]
             {
@@ -45,22 +45,21 @@ namespace AlastairLundy.DotExtensions.Strings
             };        
 #endif
         
-        private static readonly string[] EscapeChars = 
+    private static readonly string[] EscapeChars = 
 #if NET8_0_OR_GREATER
-            ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b", "\\", @"\NNN", @"\xHH"];
+        ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b", "\\", @"\NNN", @"\xHH"];
 #else
             new[] { "\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b", "\\", @"\NNN", @"\xHH"};
 
 #endif
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public static char[] SpecialCharacters => SpecialChars;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static char[] SpecialCharacters => SpecialChars;
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public static string[] EscapeCharacters => EscapeChars;
-    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public static string[] EscapeCharacters => EscapeChars;
 }

@@ -24,26 +24,25 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
+/// <summary>
+/// 
+/// </summary>
+public static class GenericCollectionReplaceExtensions
 {
     /// <summary>
-    /// 
+    /// Replaces all occurrences of the specified old value with the new value in the given <see cref="ICollection{T}"/>.
     /// </summary>
-    public static class GenericCollectionReplaceExtensions
+    /// <param name="collection">The collection to modify.</param>
+    /// <param name="oldValue">The value to replace.</param>
+    /// <param name="newValue">The replacement value.</param>
+    /// <typeparam name="T">The type of elements in the <see cref="ICollection{T}"/>.</typeparam>
+    public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
     {
-        /// <summary>
-        /// Replaces all occurrences of the specified old value with the new value in the given <see cref="ICollection{T}"/>.
-        /// </summary>
-        /// <param name="collection">The collection to modify.</param>
-        /// <param name="oldValue">The value to replace.</param>
-        /// <param name="newValue">The replacement value.</param>
-        /// <typeparam name="T">The type of elements in the <see cref="ICollection{T}"/>.</typeparam>
-        public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
-        {
-            int index = collection.IndexOf(oldValue);
+        int index = collection.IndexOf(oldValue);
             
-            collection.RemoveAt(index);
-            collection.Insert(index, newValue);
-        }
+        collection.RemoveAt(index);
+        collection.Insert(index, newValue);
     }
 }

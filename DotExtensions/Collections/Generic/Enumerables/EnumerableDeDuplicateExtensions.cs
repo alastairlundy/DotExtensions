@@ -27,22 +27,21 @@ using System.Linq;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+/// <summary>
+/// Provides static methods for finding and removing duplicates from an IEnumerable.
+/// </summary>
+public static class EnumerableDeDuplicateExtensions
 {
     /// <summary>
-    /// Provides static methods for finding and removing duplicates from an IEnumerable.
+    /// Returns whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
     /// </summary>
-    public static class EnumerableDeDuplicateExtensions
+    /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
+    /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>
+    /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
+    public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
     {
-        /// <summary>
-        /// Returns whether an <see cref="IEnumerable{T}"/> contains duplicate instances of an object.
-        /// </summary>
-        /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
-        /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
-        public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
-        {
-            return source.FrequencyOfElements().Any(x => x.Value > 1);
-        }
+        return source.FrequencyOfElements().Any(x => x.Value > 1);
     }
 }

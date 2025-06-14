@@ -24,44 +24,43 @@
 
 using System;
 
-namespace AlastairLundy.DotExtensions.Versions
+namespace AlastairLundy.DotExtensions.Versions;
+
+/// <summary>
+/// 
+/// </summary>
+public static class VersionComparisonExtensions
 {
     /// <summary>
-    /// 
+    /// Returns whether the specified version is newer than or equal to the current version object.
     /// </summary>
-    public static class VersionComparisonExtensions
+    /// <param name="version">The current version object.</param>
+    /// <param name="versionToBeCompared">The version to be compared.</param>
+    /// <returns>True if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
+    public static bool IsAtLeastVersion(this Version version, Version versionToBeCompared)
     {
-        /// <summary>
-        /// Returns whether the specified version is newer than or equal to the current version object.
-        /// </summary>
-        /// <param name="version">The current version object.</param>
-        /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True if the specified compared version is newer than or equal to the current version, and returns false otherwise.</returns>
-        public static bool IsAtLeastVersion(this Version version, Version versionToBeCompared)
-        {
-            return versionToBeCompared >= version;
-        }
+        return versionToBeCompared >= version;
+    }
         
-        /// <summary>
-        /// Returns whether a specified Version is older than the current Version object.
-        /// </summary>
-        /// <param name="version">The current version object.</param>
-        /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True if the specified compared version is older than the current version, and returns false otherwise.</returns>
-        public static bool IsOlderThanVersion(this Version version, Version versionToBeCompared)
-        {
-            return versionToBeCompared < version;
-        }
+    /// <summary>
+    /// Returns whether a specified Version is older than the current Version object.
+    /// </summary>
+    /// <param name="version">The current version object.</param>
+    /// <param name="versionToBeCompared">The version to be compared.</param>
+    /// <returns>True if the specified compared version is older than the current version, and returns false otherwise.</returns>
+    public static bool IsOlderThanVersion(this Version version, Version versionToBeCompared)
+    {
+        return versionToBeCompared < version;
+    }
         
-        /// <summary>
-        /// Returns whether the specified version is newer than the current version object.
-        /// </summary>
-        /// <param name="version">The current version object.</param>
-        /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True if the specified compared version is newer than the current version, and returns false otherwise.</returns>
-        public static bool IsNewerThanVersion(this Version version, Version versionToBeCompared)
-        {
-            return version > versionToBeCompared;
-        }
+    /// <summary>
+    /// Returns whether the specified version is newer than the current version object.
+    /// </summary>
+    /// <param name="version">The current version object.</param>
+    /// <param name="versionToBeCompared">The version to be compared.</param>
+    /// <returns>True if the specified compared version is newer than the current version, and returns false otherwise.</returns>
+    public static bool IsNewerThanVersion(this Version version, Version versionToBeCompared)
+    {
+        return version > versionToBeCompared;
     }
 }

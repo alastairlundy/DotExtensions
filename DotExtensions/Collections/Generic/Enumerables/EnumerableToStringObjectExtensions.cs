@@ -31,26 +31,25 @@ using AlastairLundy.DotExtensions.Deprecations;
 
 // ReSharper disable SuggestVarOrType_SimpleTypes
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
-{
-    public static class EnumerableToStringObjectExtensions
-    {
-        /// <summary>
-        /// Converts an IEnumerable of Type T to a string separated by a separator string.
-        /// </summary>
-        /// <param name="source">The enumerable to be turned into a string.</param>
-        /// <param name="separator">The string to separate the items in the source enumerable.</param>
-        /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
-        /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV8)]
-        public static string ToString<T>(this IEnumerable<T> source, string separator)
-        {
-            if (source is IEnumerable<string> stringEnumerable)
-            {
-                return string.Join(separator, stringEnumerable);
-            }
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
-            return string.Join(separator, source);
+public static class EnumerableToStringObjectExtensions
+{
+    /// <summary>
+    /// Converts an IEnumerable of Type T to a string separated by a separator string.
+    /// </summary>
+    /// <param name="source">The enumerable to be turned into a string.</param>
+    /// <param name="separator">The string to separate the items in the source enumerable.</param>
+    /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
+    /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV8)]
+    public static string ToString<T>(this IEnumerable<T> source, string separator)
+    {
+        if (source is IEnumerable<string> stringEnumerable)
+        {
+            return string.Join(separator, stringEnumerable);
         }
+
+        return string.Join(separator, source);
     }
 }

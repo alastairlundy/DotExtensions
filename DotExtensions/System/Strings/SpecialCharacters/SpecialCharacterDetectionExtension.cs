@@ -25,31 +25,30 @@
 using System.Linq;
 // ReSharper disable CheckNamespace
 
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+/// <summary>
+/// 
+/// </summary>
+public static class SpecialCharacterDetectionExtension
 {
     /// <summary>
-    /// 
+    /// Returns whether a string contains a special character or not.
     /// </summary>
-    public static class SpecialCharacterDetectionExtension
+    /// <param name="s">The string to be checked.</param>
+    /// <returns>True if the string contains a special character; false otherwise.</returns>
+    public static bool ContainsSpecialCharacter(this string s)
     {
-        /// <summary>
-        /// Returns whether a string contains a special character or not.
-        /// </summary>
-        /// <param name="s">The string to be checked.</param>
-        /// <returns>True if the string contains a special character; false otherwise.</returns>
-        public static bool ContainsSpecialCharacter(this string s)
-        {
-            return s.ContainsAnyOf(CharacterConstants.SpecialCharacters);
-        }
+        return s.ContainsAnyOf(CharacterConstants.SpecialCharacters);
+    }
         
-        /// <summary>
-        /// Returns whether a character is a special character or not.
-        /// </summary>
-        /// <param name="c">The character to be checked.</param>
-        /// <returns>True if the character is a special character; false otherwise.</returns>
-        public static bool IsSpecialCharacter(this char c)
-        {
-            return CharacterConstants.SpecialCharacters.Any(sc => sc == c);
-        }
+    /// <summary>
+    /// Returns whether a character is a special character or not.
+    /// </summary>
+    /// <param name="c">The character to be checked.</param>
+    /// <returns>True if the character is a special character; false otherwise.</returns>
+    public static bool IsSpecialCharacter(this char c)
+    {
+        return CharacterConstants.SpecialCharacters.Any(sc => sc == c);
     }
 }

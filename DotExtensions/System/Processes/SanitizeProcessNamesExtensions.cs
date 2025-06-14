@@ -28,46 +28,45 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Processes
+namespace AlastairLundy.DotExtensions.Processes;
+
+public static class SanitizeProcessNamesExtensions
 {
-    public static class SanitizeProcessNamesExtensions
+    /// <summary>
+    /// Sanitizes a Process Name.
+    /// </summary>
+    /// <param name="process">The process to sanitize the name of.</param>
+    /// <param name="excludeFileExtension">Whether to remove the file extension from the Process
+    /// when sanitizing the process name.</param>
+    /// <returns>The sanitized process names.</returns>
+    public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
     {
-        /// <summary>
-        /// Sanitizes a Process Name.
-        /// </summary>
-        /// <param name="process">The process to sanitize the name of.</param>
-        /// <param name="excludeFileExtension">Whether to remove the file extension from the Process
-        /// when sanitizing the process name.</param>
-        /// <returns>The sanitized process names.</returns>
-        public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
-        {
 #if NET8_0_OR_GREATER
             return SanitizeProcessNames([process], excludeFileExtension).First();
 #else
-            return SanitizeProcessNames(new Process[]{process}, excludeFileExtension).First();
+        return SanitizeProcessNames(new Process[]{process}, excludeFileExtension).First();
 #endif
-        }
+    }
 
-        /// <summary>
-        /// Sanitizes Process Names from a list of Process objects.
-        /// </summary>
-        /// <param name="processNames">The list of Processes to sanitize the names of.</param>
-        /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process
-        /// when sanitizing the process name.</param>
-        /// <returns>The sanitized process names.</returns>
-        public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
+    /// <summary>
+    /// Sanitizes Process Names from a list of Process objects.
+    /// </summary>
+    /// <param name="processNames">The list of Processes to sanitize the names of.</param>
+    /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process
+    /// when sanitizing the process name.</param>
+    /// <returns>The sanitized process names.</returns>
+    public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
+    {
+        if (excludeFileExtensions)
         {
-            if (excludeFileExtensions)
-            {
-                return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
-                    .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
-                        .Replace(")", string.Empty));
-            }
-            else
-            {
-                return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+            return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
+                .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
                     .Replace(")", string.Empty));
-            }
+        }
+        else
+        {
+            return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+                .Replace(")", string.Empty));
         }
     }
 }

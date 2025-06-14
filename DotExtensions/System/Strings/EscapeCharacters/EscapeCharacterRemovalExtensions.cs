@@ -26,39 +26,38 @@
 
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+public static class EscapeCharacterRemovalExtensions
 {
-    public static class EscapeCharacterRemovalExtensions
+    /// <summary>
+    /// Returns whether the string contains an Escape Character.
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
+    /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
+    public static bool ContainsEscapeCharacters(this string str)
     {
-        /// <summary>
-        /// Returns whether the string contains an Escape Character.
-        /// </summary>
-        /// <param name="str">The string to be searched.</param>
-        /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
-        public static bool ContainsEscapeCharacters(this string str)
-        {
-            return CharacterConstants.EscapeCharacters.Any(x => x.Equals(str));
-        }
+        return CharacterConstants.EscapeCharacters.Any(x => x.Equals(str));
+    }
         
-        /// <summary>
-        /// Removes escape characters from a string.
-        /// </summary>
-        /// <param name="str">The string to be searched.</param>
-        /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
-        public static string RemoveEscapeCharacters(this string str)
+    /// <summary>
+    /// Removes escape characters from a string.
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
+    /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
+    public static string RemoveEscapeCharacters(this string str)
+    {
+        if (ContainsEscapeCharacters(str))
         {
-            if (ContainsEscapeCharacters(str))
+            foreach (string escapeChar in CharacterConstants.EscapeCharacters)
             {
-                foreach (string escapeChar in CharacterConstants.EscapeCharacters)
+                if (str.Contains(escapeChar))
                 {
-                    if (str.Contains(escapeChar))
-                    {
-                        str = str.Replace(escapeChar, string.Empty);
-                    }
+                    str = str.Replace(escapeChar, string.Empty);
                 }
             }
-
-            return str;
         }
+
+        return str;
     }
 }
