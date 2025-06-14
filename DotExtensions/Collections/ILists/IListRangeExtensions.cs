@@ -236,7 +236,8 @@ public static class IListRangeExtensions
         }
     }
         
-    /// Removes a range of elements from the specified list.
+    
+    /// <summary>Removes a range of elements from the specified list.
     ///
     /// <para>
     /// If the range of indices is empty, no elements will be removed.
