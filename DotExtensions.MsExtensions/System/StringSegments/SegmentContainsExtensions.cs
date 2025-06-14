@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -125,6 +126,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
         /// <param name="source">The string segment to be searched.</param>
         /// <param name="possibleValues">The possible chars to search for.</param>
         /// <returns>True if any of the possible values is found, false otherwise.</returns>
+        [Obsolete]
         public static bool ContainsAnyOf(this StringSegment source, IEnumerable<char> possibleValues)
         {
             return source.IndexOfAny([..possibleValues]) != -1;
@@ -136,6 +138,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
         /// <param name="source">The string segment to be searched.</param>
         /// <param name="possibleValues">The possible chars to search for.</param>
         /// <returns>True if all the values are found in the string segment; false otherwise.</returns>
+        [Obsolete]
         public static bool ContainsAllOf(this StringSegment source, IEnumerable<char> possibleValues)
         {
             return possibleValues.All(c => source.Contains(c));

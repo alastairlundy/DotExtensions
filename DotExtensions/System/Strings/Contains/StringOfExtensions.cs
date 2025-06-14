@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 // ReSharper disable CheckNamespace
@@ -42,6 +43,7 @@ public static class StringContainsOfExtensions
     /// <param name="source">The string to be searched.</param>
     /// <param name="values">The chars to search for.</param>
     /// <returns>True if all the values are found in the string; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool ContainsAllOf(this string source, IEnumerable<char> values)
     {
         return values.Select(t => source.Contains(t)).All(containsSource => containsSource == true);
@@ -53,6 +55,7 @@ public static class StringContainsOfExtensions
     /// <param name="source">The string to be searched.</param>
     /// <param name="possibleValues">The possible values to search for.</param>
     /// <returns>True if any of the possible values is found, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool ContainsAnyOf(this string source, IEnumerable<char> possibleValues)
     {
         return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
