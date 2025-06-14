@@ -22,8 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
@@ -32,14 +34,79 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class IntegerRangeAsEnumerableExtensions
 {
+
+    /// <summary>
+    /// Generates a sequence of unsigned short (ushort) values starting from a specified value and continuing for a specified count,
+    /// with each value incremented by 1 from the starting point.
+    /// </summary>
+    /// <param name="startIndex">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned short values,
+    /// incremented by 1 from the starting point.</returns>
+    /// <exception cref="ArgumentException">Thrown when the count + startIndex are greater than ushort.MaxValue </exception>
+    public static IEnumerable<ushort> RangeAsEnumerable(this ushort startIndex, ushort count)
+    {
+        if (startIndex + count > ushort.MaxValue)
+        {
+            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+        }
+        
+        List<ushort> list = new List<ushort>();
+
+        for (ushort i = startIndex; i < count; i++)
+        {
+            list.Add(i);
+        }
+        
+        return list;
+    }
+    
+    /// <summary>
+    /// Generates a sequence of short (short) values starting from a specified value and continuing for a specified count,
+    /// with each value incremented by 1 from the starting point.
+    /// </summary>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of short values,
+    /// incremented by 1 from the starting point.</returns>
+    /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
+    public static IEnumerable<short> RangeAsEnumerable(this short start, short count)
+    {
+        if (start + count > short.MaxValue)
+        {
+            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+        }
+        if (count < 0)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
+                .Replace("{x}", $"{count}"));
+        }
+        
+        List<short> list = new List<short>();
+
+        for (short i = start; i < count; i++)
+        {
+            list.Add(i);
+        }
+        
+        return list;
+    }
+    
     /// <summary>
     /// Returns an enumerable sequence of integers from <paramref name="start"/> up to start + count.
     /// </summary>
     /// <param name="start">The starting integer of the sequence.</param>
     /// <param name="count">The number of integers to generate.</param>
     /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
+    /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<int> RangeAsEnumerable(this int start, int count)
     {
+        if (count < 0)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
+                .Replace("{x}", $"{count}"));
+        }
+        
         List<int> list = new List<int>();
 
         for (int i = start; i < count; i++)
@@ -51,13 +118,22 @@ public static class IntegerRangeAsEnumerableExtensions
     }
     
     /// <summary>
-    /// 
+    /// Generates a sequence of long values starting from a specified value and continuing for a specified count,
+    /// with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of long values,
+    /// incremented by 1 from the starting point.</returns>
+    /// <exception cref="ArgumentException">Thrown when the count is less than zero.</exception>
     public static IEnumerable<long> RangeAsEnumerable(this long start, long count)
     {
+        if (count < 0)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
+                .Replace("{x}", $"{count}"));
+        }
+        
         List<long> list = new List<long>();
 
         for (long i = start; i < count; i++)
@@ -70,15 +146,17 @@ public static class IntegerRangeAsEnumerableExtensions
     
 
     /// <summary>
-    /// 
+    /// Generates a sequence of unsigned integer (uint) values starting from a specified value and continuing for a specified count,
+    /// with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned integer values,
+    /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count)
     {
         List<uint> list = new List<uint>();
-
+        
         for (uint i = start; i < count; i++)
         {
             list.Add(i);
@@ -88,12 +166,15 @@ public static class IntegerRangeAsEnumerableExtensions
     }
     
 
+
     /// <summary>
-    /// 
+    /// Generates a sequence of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
+    /// with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned long values,
+    /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count)
     {
         List<ulong> list = new List<ulong>();
@@ -113,8 +194,15 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="count">The number of integers to generate.</param>
     /// <param name="numbersToSkip">The numbers to skip from the range.</param>
     /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
+    /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<int> RangeAsEnumerable(this int start, int count, IEnumerable<int> numbersToSkip)
     {
+        if (count < 0)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
+                .Replace("{x}", $"{count}"));
+        }
+        
         List<int> list = new List<int>();
         IList<int> numbersToSkipList = numbersToSkip as IList<int> ?? numbersToSkip.ToList();
 
@@ -131,14 +219,23 @@ public static class IntegerRangeAsEnumerableExtensions
     
 
     /// <summary>
-    /// 
+    /// Generates a sequence of long values starting from a specified value and continuing for a specified count,
+    /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <param name="numbersToSkip"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <param name="numbersToSkip">An <see cref="IEnumerable{T}"/> of long values to skip in the generated sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of long values,
+    /// excluding the skipped numbers.</returns>
+    /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<long> RangeAsEnumerable(this long start, long count, IEnumerable<long> numbersToSkip)
     {
+        if (count < 0)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
+                .Replace("{x}", $"{count}"));
+        }
+        
         List<long> list = new List<long>();
         IList<long> numbersToSkipList = numbersToSkip as IList<long> ?? numbersToSkip.ToList();
 
@@ -153,13 +250,16 @@ public static class IntegerRangeAsEnumerableExtensions
         return list;
     }
     
+
     /// <summary>
-    /// 
+    /// Generates a sequence of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
+    /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <param name="numbersToSkip"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <param name="numbersToSkip">An <see cref="IEnumerable{T}"/> of unsigned long values to skip in the generated sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned long values,
+    /// excluding the skipped numbers.</returns>
     public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count, IEnumerable<ulong> numbersToSkip)
     {
         List<ulong> list = new List<ulong>();
@@ -176,13 +276,16 @@ public static class IntegerRangeAsEnumerableExtensions
         return list;
     }
     
+    
     /// <summary>
-    /// 
+    /// Generates a sequence of unsigned integer (uint) values starting from a specified value and continuing for a specified count,
+    /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="count"></param>
-    /// <param name="numbersToSkip"></param>
-    /// <returns></returns>
+    /// <param name="start">The starting value of the sequence.</param>
+    /// <param name="count">The number of values to generate in the sequence.</param>
+    /// <param name="numbersToSkip">An <see cref="IEnumerable{T}"/> of unsigned integer values to skip in the generated sequence.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned integer values,
+    /// excluding the skipped numbers.</returns>
     public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count, IEnumerable<uint> numbersToSkip)
     {
         List<uint> list = new List<uint>();
