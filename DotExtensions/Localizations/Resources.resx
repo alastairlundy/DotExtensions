@@ -43,9 +43,12 @@
         <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
     </data>
     <data name="Exceptions.Enumerables.CountArgumentTooLarge" xml:space="preserve">
-        <value />
+        <value>Count cannot be less than 0. Provided count was {x}.</value>
     </data>
     <data name="Exceptions.Processes.NotSupportedOnRemoteProcess" xml:space="preserve">
         <value>This feature or functionality is not supported on remote Processes (e.g. Processes not running on this machine).</value>
+    </data>
+    <data name="Exceptions.Count.LessThanZero" xml:space="preserve">
+        <value />
     </data>
 </root>
