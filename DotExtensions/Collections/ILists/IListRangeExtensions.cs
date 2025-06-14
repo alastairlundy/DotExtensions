@@ -227,7 +227,7 @@ public static class IListRangeExtensions
         }
         else
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
             
         for (int index = startIndex; index < limit; index++)
@@ -262,10 +262,7 @@ public static class IListRangeExtensions
                 throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
             
-            for (int index = startIndex; index < limit; index++)
-            {
-                list.RemoveAt(index);
-            }
+            list.RemoveAt(index);
         }
     }
 }

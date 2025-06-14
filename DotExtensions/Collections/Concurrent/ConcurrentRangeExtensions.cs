@@ -109,7 +109,7 @@ public static class ConcurrentRangeExtensions
 
         if (limit > concurrentBag.Count)
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
 
         if (startIndex < 0 || startIndex >= concurrentBag.Count && startIndex != 0 ||
@@ -173,7 +173,7 @@ public static class ConcurrentRangeExtensions
 
         if (limit > collection.Count)
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
 
         if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
@@ -221,7 +221,7 @@ public static class ConcurrentRangeExtensions
 
         if (limit > collection.Count)
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
 
         if (startIndex < 0 || startIndex >= collection.Count && startIndex != 0 ||
