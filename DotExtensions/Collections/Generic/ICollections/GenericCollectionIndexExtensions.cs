@@ -30,129 +30,128 @@ using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
+public static class GenericCollectionIndexExtensions
 {
-    public static class GenericCollectionIndexExtensions
+    /// <summary>
+    /// Determines the index of the specified element within the given collection.
+    /// </summary>
+    /// <param name="source">The collection to search in.</param>
+    /// <param name="item">The element to find.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>The zero-based index of the item if found, -1 otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static int IndexOf<T>(this ICollection<T> source, T item)
     {
-        /// <summary>
-        /// Determines the index of the specified element within the given collection.
-        /// </summary>
-        /// <param name="source">The collection to search in.</param>
-        /// <param name="item">The element to find.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>The zero-based index of the item if found, -1 otherwise.</returns>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-        public static int IndexOf<T>(this ICollection<T> source, T item)
+        int index = 0;
+        foreach (T item1 in source)
         {
-            int index = 0;
-            foreach (T item1 in source)
+            if (item is not null && item.Equals(item1))
             {
-                if (item is not null && item.Equals(item1))
-                {
-                    return index;
-                }
-                index++;
+                return index;
             }
+            index++;
+        }
             
-            return -1;
-        }
+        return -1;
+    }
 
-        /// <summary>
-        /// Retrieves a collection of indices where the specified element can be found within the given collection.
-        /// </summary>
-        /// <param name="source">The collection to search in.</param>
-        /// <param name="item">The element to find.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>A collection of zero-based indices where the item is found,
-        /// or an empty collection if not found.</returns>
-        public static ICollection<int> IndicesOf<T>(this ICollection<T> source, T item)
-        {
-            return (ICollection<int>)EnumerableIndexExtensions.IndicesOf(source, item);
-        }
+    /// <summary>
+    /// Retrieves a collection of indices where the specified element can be found within the given collection.
+    /// </summary>
+    /// <param name="source">The collection to search in.</param>
+    /// <param name="item">The element to find.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>A collection of zero-based indices where the item is found,
+    /// or an empty collection if not found.</returns>
+    public static ICollection<int> IndicesOf<T>(this ICollection<T> source, T item)
+    {
+        return (ICollection<int>)EnumerableIndexExtensions.IndicesOf(source, item);
+    }
         
-        /// <summary>
-        /// Returns a dictionary where each key is an element in the source collection,
-        /// and its corresponding value is a collection of indices
-        /// where that element occurs within the source collection.
-        /// </summary>
-        /// <param name="source">The initial collection to search.</param>
-        /// <typeparam name="T">The type of elements within the source collection.</typeparam>
-        /// <returns>A dictionary mapping each element in the source collection,
-        /// to its corresponding indices.</returns>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-        public static Dictionary<T, ICollection<int>> IndicesOfElements<T>(this ICollection<T> source)
+    /// <summary>
+    /// Returns a dictionary where each key is an element in the source collection,
+    /// and its corresponding value is a collection of indices
+    /// where that element occurs within the source collection.
+    /// </summary>
+    /// <param name="source">The initial collection to search.</param>
+    /// <typeparam name="T">The type of elements within the source collection.</typeparam>
+    /// <returns>A dictionary mapping each element in the source collection,
+    /// to its corresponding indices.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static Dictionary<T, ICollection<int>> IndicesOfElements<T>(this ICollection<T> source)
+    {
+        Dictionary<T, ICollection<int>> output = new Dictionary<T, ICollection<int>>();
+
+        int index = 0;
+        foreach (T item in source)
         {
-            Dictionary<T, ICollection<int>> output = new Dictionary<T, ICollection<int>>();
-
-            int index = 0;
-            foreach (T item in source)
+            if (output.ContainsKey(item))
             {
-                if (output.ContainsKey(item))
-                {
-                    output[item].Add(index);
-                }
-                else
-                {
-                    output.Add(item, new List<int>());
-                    output[item].Add(index);
-                }
-
-                index++;
+                output[item].Add(index);
             }
+            else
+            {
+                output.Add(item, new List<int>());
+                output[item].Add(index);
+            }
+
+            index++;
+        }
             
-            return output;
-        }
+        return output;
+    }
         
-        /// <summary>
-        /// Attempts to get the index of a specified element in a collection.
-        /// </summary>
-        /// <param name="collection">The collection to be searched.</param>
-        /// <param name="item">The item to attempt to get the index of.</param>
-        /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
-        /// <typeparam name="T">The type of the object in the collection.</typeparam>
-        /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-        public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, out int? index)
+    /// <summary>
+    /// Attempts to get the index of a specified element in a collection.
+    /// </summary>
+    /// <param name="collection">The collection to be searched.</param>
+    /// <param name="item">The item to attempt to get the index of.</param>
+    /// <param name="index">the index of an object in a collection if found; null otherwise.</param>
+    /// <typeparam name="T">The type of the object in the collection.</typeparam>
+    /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, out int? index)
+    {
+        try
         {
-            try
-            {
-                index = collection.IndexOf(item);
-                return true;
-            }
-            catch
-            {
-                index = null;
-                return false;
-            }
+            index = collection.IndexOf(item);
+            return true;
         }
-
-        /// <summary>
-        /// Attempts to get the indices of a specified element in a collection.
-        /// </summary>
-        /// <param name="collection">The collection to be searched.</param>
-        /// <param name="item">The item to attempt to get the indices of.</param>
-        /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
-        /// <typeparam name="T">The type of the object in the collection.</typeparam>
-        /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-        public static bool TryGetIndicesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indices)
+        catch
         {
-            try
-            {
-                indices = collection.IndicesOf(item);
+            index = null;
+            return false;
+        }
+    }
 
-                if (indices.Any() == false)
-                {
-                    throw new KeyNotFoundException();    
-                }
+    /// <summary>
+    /// Attempts to get the indices of a specified element in a collection.
+    /// </summary>
+    /// <param name="collection">The collection to be searched.</param>
+    /// <param name="item">The item to attempt to get the indices of.</param>
+    /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
+    /// <typeparam name="T">The type of the object in the collection.</typeparam>
+    /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static bool TryGetIndicesOf<T>(this ICollection<T> collection, T item, out IEnumerable<int>? indices)
+    {
+        try
+        {
+            indices = collection.IndicesOf(item);
+
+            if (indices.Any() == false)
+            {
+                throw new KeyNotFoundException();    
+            }
                 
-                return true;
-            }
-            catch
-            {
-                indices = null;
-                return false;
-            }
+            return true;
+        }
+        catch
+        {
+            indices = null;
+            return false;
         }
     }
 }
