@@ -184,10 +184,10 @@ public static class GenericCollectionRangeExtensions
     {
         int endIndex = startIndex + count;
 
-        if (endIndex > source.Count)
-        {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
-        }
+            if (endIndex > source.Count)
+            {
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+            }
 
         if (startIndex < 0 || startIndex >= source.Count)
         {
@@ -241,10 +241,10 @@ public static class GenericCollectionRangeExtensions
                 .Replace("{z}", $"{source.Count}"));
         }
             
-        if (source.Count > startIndex + count)
-        {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
-        }
+            if (source.Count > startIndex + count)
+            {
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+            }
 
         #region Optimized IList Code
         if (source is IList<T> list)

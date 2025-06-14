@@ -132,7 +132,7 @@ namespace AlastairLundy.DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process {x} could not be found but a similarly named process {y} was found..
+        ///   Looks up a localized string similar to Process {x} could not be found, but a similarly named process {y} was found..
         /// </summary>
         internal static string Processes_Exceptions_IncorrectProcessName {
             get {
@@ -140,12 +140,9 @@ namespace AlastairLundy.DotExtensions.Localizations {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Process {x} is not currently running. Please try again later..
-        /// </summary>
-        internal static string Processes_Exceptions_ProcessNotRunning {
+        internal static string Exceptions_Count_LessThanZero {
             get {
-                return ResourceManager.GetString("Processes.Exceptions.ProcessNotRunning", resourceCulture);
+                return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
             }
         }
 
@@ -154,14 +151,6 @@ namespace AlastairLundy.DotExtensions.Localizations {
             get
             {
                 return ResourceManager.GetString("Exceptions.Enumerables.InvalidOperation_EmptySequence", resourceCulture);
-            }
-        }
-
-        internal static string Exceptions_Enumerables_CountArgumentTooLarge
-        {
-            get
-            {
-                return ResourceManager.GetString("Exceptions.Enumerables.CountArgumentTooLarge", resourceCulture);
             }
         }
     }

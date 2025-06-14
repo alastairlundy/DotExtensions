@@ -152,26 +152,25 @@ public static class EnumerableRangeExtensions
 
         int limit;
 
+            if (enumerableList.Count >= (startIndex + count))
+            {
+                limit = startIndex + count;
+            }
+            else
+            {
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+            }
+
+            for (int index = startIndex; index < limit; index++)
+            {
+                enumerableList.RemoveAt(index);   
+            }
         if (startIndex < 0 || startIndex > enumerableList.Count)
         {
             throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
                 .Replace("{x}", $"{startIndex}")
                 .Replace("{y}", "0")
                 .Replace("{z}", $"{enumerableList.Count}"));
-        }
-            
-        if (enumerableList.Count >= (startIndex + count))
-        {
-            limit = startIndex + count;
-        }
-        else
-        {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
-        }
-
-        for (int index = startIndex; index < limit; index++)
-        {
-            enumerableList.RemoveAt(index);   
         }
             
         return enumerableList;

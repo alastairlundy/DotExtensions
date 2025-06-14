@@ -259,10 +259,13 @@ public static class IListRangeExtensions
             }
             else if (indices.Count > list.Count)
             {
-                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
-                
-            list.RemoveAt(index);
+            
+            for (int index = startIndex; index < limit; index++)
+            {
+                list.RemoveAt(index);
+            }
         }
     }
 }
