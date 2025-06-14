@@ -14,19 +14,15 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
+- Deprecate Enumerable Range extensions for removal in 8.0 @alastairlundy (#39)
+
 ## 🚀 Features
 
-- Optimize Span ``All&lt;T&gt;`` extension method performance @alastairlundy (#37)
-- Add missing xml doc comments @alastairlundy (#35)
-- add Unix File Mode permission extension @alastairlundy (#34)
-
-- Remove duplicative extension method, and add ``IndicesOfElements`` ICollection\&lt;T&gt; extension method @alastairlundy (#33)
-- Create Span ``AsEnumerable`` and ``IndicesOf`` extension methods, and overload for ``GetRange`` with a collection of indices @alastairlundy (#32)
-- Rename ``IndexesOf`` extension methods to ``IndicesOf`` @alastairlundy (#31)
-- Bring DotExtension's ICollection extension methods up to par with DotExtension's Enumerable extension methods @alastairlundy (#30)
-- Improve performance of some Enumerable extension methods @alastairlundy (#28)
-- Reorganize Collection Extensions classes @alastairlundy (#27)
-- Remove deprecated methods @alastairlundy (#26)</PackageReleaseNotes>
+- Add Number ``RangeAsEnumerable`` extensions @alastairlundy (#43)
+- Add Concurrent Collection ``IndicesOf`` ,  ``Remove`` , and Range extensions @alastairlundy (#42)
+- Add Number Range extensions @alastairlundy (#41)
+- Add collection Range Extensions @alastairlundy (#40)
+* Deprecate string ``ContainsAnyOf`` and ``ContainsAllOf`` extension methods for removal in v8</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -36,7 +32,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.1.1</Version>
+        <Version>7.2.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
