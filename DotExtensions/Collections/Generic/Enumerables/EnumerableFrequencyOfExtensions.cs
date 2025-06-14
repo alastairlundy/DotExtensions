@@ -24,36 +24,35 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+/// <summary>
+/// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
+/// </summary>
+public static class EnumerableFrequencyOfExtensions
 {
     /// <summary>
-    /// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
+    /// Calculates the number of times each distinct object appears in an IEnumerable.
     /// </summary>
-    public static class EnumerableFrequencyOfExtensions
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
+    /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
+    public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
     {
-        /// <summary>
-        /// Calculates the number of times each distinct object appears in an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-        /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
-        public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
-        {
-            Dictionary<T, int> items = new Dictionary<T, int>();
+        Dictionary<T, int> items = new Dictionary<T, int>();
 
-            foreach (T item in source)
-            {
+        foreach (T item in source)
+        {
 #if NET6_0_OR_GREATER
-                if (items.TryAdd(item, 1) == false)
+            if (items.TryAdd(item, 1) == false)
 #else
                 if (items.ContainsKey(item))
 #endif
-                {
-                    items[item] += 1;
-                }
+            {
+                items[item] += 1;
             }
-
-            return items;
         }
+
+        return items;
     }
 }

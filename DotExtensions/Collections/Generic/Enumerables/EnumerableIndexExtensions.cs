@@ -23,76 +23,128 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 
-using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Exceptions;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+public static class EnumerableIndexExtensions
 {
-    public static class EnumerableIndexExtensions
+    /// <summary>
+    /// Returns the index of an object in an IEnumerable.
+    /// </summary>
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <param name="obj">The object to get the index of.</param>
+    /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
+    /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object, throws an exception otherwise.</returns>
+    /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
+    public static int IndexOf<T>(this IEnumerable<T> source, T obj)
     {
-        /// <summary>
-        /// Returns the index of an object in an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <param name="obj">The object to get the index of.</param>
-        /// <typeparam name="T">The type of object in the IEnumerable.</typeparam>
-        /// <returns>The index of an object in an IEnumerable, if the IEnumerable contains the object, throws an exception otherwise.</returns>
-        /// <exception cref="ValueNotFoundException">Thrown if the IEnumerable does not contain the specified object.</exception>
-        public static int IndexOf<T>(this IEnumerable<T> source, T obj)
+        if (source is IList<T> list)
         {
-            if (source is ICollection<T> collection)
-            {
-                return GenericCollectionIndexExtensions.IndexOf<T>(collection, obj);
-            }
+            return list.IndexOf(obj);
+        }
             
-            int index = 0;
+        int index = 0;
                 
-            foreach (T item in source)
+        foreach (T item in source)
+        {
+            if (item is not null && item.Equals(obj))
             {
-                if (item is not null && item.Equals(obj))
-                {
-                    return index;
-                }
-                    
-                index++;
+                return index;
             }
-            return -1;
+                    
+            index++;
+        }
+        return -1;
+    }
+
+    /// <summary>
+    /// Gets the indices of the specified object within an IEnumerable of an object.
+    /// </summary>
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <param name="obj">The item to search for.</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns>The indices if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
+    public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T obj)
+    {
+        List<int> indices = new List<int>();
+            
+        int index = 0;
+        foreach (T item in source)
+        {
+            if (obj is not null && obj.Equals(item))
+            {
+                indices.Add(index);
+            }
+
+            index += 1;
         }
 
-        /// <summary>
-        /// Gets the indices of the specified object within an IEnumerable of an object.
-        /// </summary>
-        /// <param name="source">The IEnumerable to be searched.</param>
-        /// <param name="obj">The item to search for.</param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>The indices if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
-        public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T obj)
+        if (indices.Count > 0)
         {
-            List<int> indices = new List<int>();
-            
-            int index = 0;
-            foreach (T item in source)
-            {
-                if (obj is not null && obj.Equals(item))
-                {
-                    indices.Add(index);
-                }
+            return indices; 
+        }
+        else
+        {
+            return [-1];
+        }
+    }
+        
 
-                index += 1;
-            }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="item"></param>
+    /// <param name="index"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static bool TryGetIndexOf<T>(this IEnumerable<T> source, T item, out int? index)
+    {
+        try
+        {
+            index = IndexOf(source, item);
+            return true;
+        }
+        catch
+        {
+            index = null;
+            return false;
+        }
+    }
 
-            if (indices.Count > 0)
+        
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="item"></param>
+    /// <param name="indices"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="KeyNotFoundException"></exception>
+    public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, out IEnumerable<int>? indices)
+    {
+        try
+        {
+            indices = IndicesOf(source, item);
+
+            if (indices.Any() == false)
             {
-                return indices; 
+                throw new KeyNotFoundException();    
             }
-            else
-            {
-                return [-1];
-            }
+                
+            return true;
+        }
+        catch
+        {
+            indices = null;
+            return false;
         }
     }
 }

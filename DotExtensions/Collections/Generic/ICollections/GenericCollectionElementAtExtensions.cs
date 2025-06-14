@@ -29,71 +29,71 @@ using System.Linq;
 using AlastairLundy.DotExtensions.Collections.ILists;
 using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
+public static class GenericCollectionElementAtExtensions
 {
-    public static class GenericCollectionElementAtExtensions
+    /// <summary>
+    /// Retrieves the element at a specified index from the collection.
+    /// </summary>
+    /// <param name="source">The collection to retrieve the element from.</param>
+    /// <param name="index">The zero-based index of the element to retrieve.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
+    /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
+    public static T ElementAt<T>(this ICollection<T> source, int index)
     {
-        /// <summary>
-        /// Retrieves the element at a specified index from the collection.
-        /// </summary>
-        /// <param name="source">The collection to retrieve the element from.</param>
-        /// <param name="index">The zero-based index of the element to retrieve.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>The element at the specified index in the sequence, or throws an exception if no such element exists.</returns>
-        /// <exception cref="ArgumentException">Thrown when no element is found at the specified index.</exception>
-        public static T ElementAt<T>(this ICollection<T> source, int index)
+        if (source is IList<T> list)
         {
-            if (source is IList<T> list)
-            {
-                return list[index];
-            }
-            
-            int i = 0;
-
-            foreach (T item in source)
-            {
-                if (i == index)
-                {
-                    return item;
-                }
-
-                i++;
-            }
-
-            throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
-                .Replace("{x}",$"{index}"));
+            return list[index];
         }
+            
+        int i = 0;
+
+        foreach (T item in source)
+        {
+            if (i == index)
+            {
+                return item;
+            }
+
+            i++;
+        }
+
+        throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
+            .Replace("{x}",$"{index}"));
+    }
 
         
-        /// <summary>
-        /// Returns the elements at the specified indexes from the given collection.
-        /// </summary>
-        /// <param name="source">The source collection to extract elements from.</param>
-        /// <param name="indices">The indexes of the elements to extract.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        /// <returns>The extracted elements as a generic collection.</returns>
-        public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
+    /// <summary>
+    /// Returns the elements at the specified indexes from the given collection.
+    /// </summary>
+    /// <param name="source">The source collection to extract elements from.</param>
+    /// <param name="indices">The indexes of the elements to extract.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>The extracted elements as a generic collection.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
+    {
+        List<T> output = new();
+            
+        #region IList Performance Optimizations
+        if (source is IList<T> list)
         {
-            List<T> output = new();
-            
-            #region IList Performance Optimizations
-            if (source is IList<T> list)
-            {
-                return IListElementsAtExtensions.ElementsAt(list, indices);
-            }
-            #endregion
-            
-            IList<T> sourceList = source as IList<T> ?? source.ToArray();
-            
-            foreach (int index in indices)
-            {
-                if (index >= 0 && index < sourceList.Count)
-                {
-                    output.Add(sourceList[index]);
-                }
-            }
-            
-            return output;   
+            return IListElementsAtExtensions.ElementsAt(list, indices);
         }
+        #endregion
+            
+        IList<T> sourceList = source as IList<T> ?? source.ToArray();
+            
+        foreach (int index in indices)
+        {
+            if (index >= 0 && index < sourceList.Count)
+            {
+                output.Add(sourceList[index]);
+            }
+        }
+            
+        return output;   
     }
 }

@@ -25,21 +25,20 @@
 using System.Linq;
 // ReSharper disable CheckNamespace
 
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+/// <summary>
+/// 
+/// </summary>
+public static class DotCountingExtensions
 {
     /// <summary>
-    /// 
+    /// Counts the number of periods/full stops/dots in a string.
     /// </summary>
-    public static class DotCountingExtensions
+    /// <param name="str">The string to be checked.</param>
+    /// <returns>The number of periods/full stops/dots in a string</returns>
+    public static int CountDotsInString(this string str)
     {
-        /// <summary>
-        /// Counts the number of periods/full stops/dots in a string.
-        /// </summary>
-        /// <param name="str">The string to be checked.</param>
-        /// <returns>The number of periods/full stops/dots in a string</returns>
-        public static int CountDotsInString(this string str)
-        {
-            return str.ToCharArray().Count(x => x.Equals('.'));
-        }
+        return str.ToCharArray().Count(x => x.Equals('.'));
     }
 }

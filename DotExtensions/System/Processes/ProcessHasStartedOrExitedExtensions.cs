@@ -28,51 +28,50 @@ using System.Diagnostics;
 
 using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Processes
+namespace AlastairLundy.DotExtensions.Processes;
+
+public static class ProcessHasStartedOrExitedExtensions
 {
-    public static class ProcessHasStartedOrExitedExtensions
+    /// <summary>
+    /// Determines if a process has started.
+    /// </summary>
+    /// <param name="process">The process to be checked.</param>
+    /// <returns>True if it has started; false otherwise.</returns>
+    public static bool HasStarted(this Process process)
     {
-        /// <summary>
-        /// Determines if a process has started.
-        /// </summary>
-        /// <param name="process">The process to be checked.</param>
-        /// <returns>True if it has started; false otherwise.</returns>
-        public static bool HasStarted(this Process process)
+        try
+        {
+            return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Determines if a process has exited.
+    /// </summary>
+    /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
+    /// <param name="process">The process to be checked.</param>
+    /// <returns>True if it has exited; false if it is still running.</returns>
+    /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
+    public static bool HasExited(this Process process)
+    {
+        if (process.MachineName.Equals(Environment.MachineName))
         {
             try
             {
-                return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
+                return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
             }
             catch
             {
                 return false;
             }
         }
-
-        /// <summary>
-        /// Determines if a process has exited.
-        /// </summary>
-        /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
-        /// <param name="process">The process to be checked.</param>
-        /// <returns>True if it has exited; false if it is still running.</returns>
-        /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
-        public static bool HasExited(this Process process)
+        else
         {
-            if (process.MachineName.Equals(Environment.MachineName))
-            {
-                try
-                {
-                    return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
-            }
+            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
         }
     }
 }

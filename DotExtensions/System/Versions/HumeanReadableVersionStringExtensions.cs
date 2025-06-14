@@ -27,39 +27,38 @@ using System;
 
 // ReSharper disable RedundantIfElseBlock
 
-namespace AlastairLundy.DotExtensions.Versions
-{
-    public static class HumeanReadableVersionStringExtensions
-    {
-        /// <summary>
-        /// Converts a Version object to a human-readable friendly string.
-        /// </summary>
-        /// <param name="version">The Version object to convert.</param>
-        /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
-        public static string ToHumanReadableString(this Version version)
-        {
-            bool showMinor = version.Minor != 0;
-            bool showBuild = version.Build != 0;
-            bool showRevision = version.Revision != 0;
+namespace AlastairLundy.DotExtensions.Versions;
 
-            switch (showRevision)
+public static class HumeanReadableVersionStringExtensions
+{
+    /// <summary>
+    /// Converts a Version object to a human-readable friendly string.
+    /// </summary>
+    /// <param name="version">The Version object to convert.</param>
+    /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
+    public static string ToHumanReadableString(this Version version)
+    {
+        bool showMinor = version.Minor != 0;
+        bool showBuild = version.Build != 0;
+        bool showRevision = version.Revision != 0;
+
+        switch (showRevision)
+        {
+            case true:
+                return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            default:
             {
-                case true:
-                    return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
-                default:
+                if (showBuild)
                 {
-                    if (showBuild)
-                    {
-                        return $"{version.Major}.{version.Minor}.{version.Build}";
-                    }
-                    else if(showMinor)
-                    {
-                        return $"{version.Major}.{version.Minor}";
-                    }
-                    else
-                    {
-                        return version.Major.ToString();
-                    }
+                    return $"{version.Major}.{version.Minor}.{version.Build}";
+                }
+                else if(showMinor)
+                {
+                    return $"{version.Major}.{version.Minor}";
+                }
+                else
+                {
+                    return version.Major.ToString();
                 }
             }
         }

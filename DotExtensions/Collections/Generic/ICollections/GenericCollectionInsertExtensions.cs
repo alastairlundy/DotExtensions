@@ -25,20 +25,19 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
+
+public static class GenericCollectionInsertExtensions
 {
-    public static class GenericCollectionInsertExtensions
+    /// <summary>
+    /// Inserts an element at the specified position in a collection.
+    /// </summary>
+    /// <param name="collection">The collection to insert into.</param>
+    /// <param name="index">The zero-based index at which value should be inserted.</param>
+    /// <param name="value">The element to insert into the collection.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    public static void Insert<T>(this ICollection<T> collection, int index, T value)
     {
-        /// <summary>
-        /// Inserts an element at the specified position in a collection.
-        /// </summary>
-        /// <param name="collection">The collection to insert into.</param>
-        /// <param name="index">The zero-based index at which value should be inserted.</param>
-        /// <param name="value">The element to insert into the collection.</param>
-        /// <typeparam name="T">The type of elements in the collection.</typeparam>
-        public static void Insert<T>(this ICollection<T> collection, int index, T value)
-        {
-            collection.InsertRange(index, [value]);
-        }
+        collection.InsertRange(index, [value]);
     }
 }

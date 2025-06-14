@@ -27,32 +27,31 @@ using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
-{
-    public static class GenericCollectionRemoveExtensions
-    {
-        /// <summary>
-        /// Removes an item at the specified index from a collection.
-        /// </summary>
-        /// <param name="collection">The collection to remove the item from.</param>
-        /// <param name="index">The index of the item to be removed.</param>
-        /// <typeparam name="T">The type of elements stored in the collection.</typeparam>
-        /// <returns>The new collection with the specified item removed.</returns>
-        public static ICollection<T> RemoveAt<T>(this ICollection<T> collection, int index)
-        {
-            if (index < 0 || index >= collection.Count)
-            {
-                throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                    .Replace("{x}", $"{index}")
-                    .Replace("{y}", $"0")
-                    .Replace("{z}", $"{collection.Count}"));
-            }
-            
-            T item = collection.ElementAt(index);
+namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
-            collection.Remove(item);
-            
-            return collection;
+public static class GenericCollectionRemoveExtensions
+{
+    /// <summary>
+    /// Removes an item at the specified index from a collection.
+    /// </summary>
+    /// <param name="collection">The collection to remove the item from.</param>
+    /// <param name="index">The index of the item to be removed.</param>
+    /// <typeparam name="T">The type of elements stored in the collection.</typeparam>
+    /// <returns>The new collection with the specified item removed.</returns>
+    public static ICollection<T> RemoveAt<T>(this ICollection<T> collection, int index)
+    {
+        if (index < 0 || index >= collection.Count)
+        {
+            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
+                .Replace("{x}", $"{index}")
+                .Replace("{y}", $"0")
+                .Replace("{z}", $"{collection.Count}"));
         }
+            
+        T item = collection.ElementAt(index);
+
+        collection.Remove(item);
+            
+        return collection;
     }
 }

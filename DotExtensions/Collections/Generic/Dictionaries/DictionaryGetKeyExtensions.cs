@@ -27,65 +27,64 @@ using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Exceptions;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
+namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries;
+
+public static class DictionaryGetKeyExtensions
 {
-    public static class DictionaryGetKeyExtensions
+    /// <summary>
+    /// Gets the Key associated with the specified value in the Dictionary.
+    /// </summary>
+    /// <remarks>
+    /// This method assumes there is only ONE Key associated with a specific Value in a Dictionary.
+    /// If multiple Keys have the same Value, use the GetKeys method instead.</remarks>
+    /// <param name="dictionary">The Dictionary to be searched.</param>
+    /// <param name="value">The value to search for.</param>
+    /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
+    /// <returns>The key associated with the specified value in a Dictionary.</returns>
+    /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
+    public static TKey GetKeyByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
     {
-        /// <summary>
-        /// Gets the Key associated with the specified value in the Dictionary.
-        /// </summary>
-        /// <remarks>
-        /// This method assumes there is only ONE Key associated with a specific Value in a Dictionary.
-        /// If multiple Keys have the same Value, use the GetKeys method instead.</remarks>
-        /// <param name="dictionary">The Dictionary to be searched.</param>
-        /// <param name="value">The value to search for.</param>
-        /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
-        /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
-        /// <returns>The key associated with the specified value in a Dictionary.</returns>
-        /// <exception cref="ValueNotFoundException">Thrown if the Dictionary does not contain the specified value.</exception>
-        public static TKey GetKeyByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value) where TKey : notnull
+        if (dictionary.Values.Contains(value))
         {
-            if (dictionary.Values.Contains(value))
+            foreach (KeyValuePair<TKey, TValue> pair in dictionary)
             {
-                foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+                if (pair.Value is not null && pair.Value.Equals(value))
                 {
-                    if (pair.Value is not null && pair.Value.Equals(value))
-                    {
-                        return pair.Key;
-                    }
+                    return pair.Key;
                 }
             }
-
-            throw new ValueNotFoundException(nameof(dictionary), nameof(value));
         }
 
-        /// <summary>
-        /// Returns all keys associated with a specified value in a Dictionary.
-        /// </summary>
-        /// <param name="dictionary">The Dictionary to be searched.</param>
-        /// <param name="value">The value to search for.</param>
-        /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
-        /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
-        /// <returns>The keys associated with the specified value in a Dictionary.</returns>
-        /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
-        public static IEnumerable<TKey> GetKeysByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
-        {
-            List<TKey> list = new List<TKey>();
+        throw new ValueNotFoundException(nameof(dictionary), nameof(value));
+    }
+
+    /// <summary>
+    /// Returns all keys associated with a specified value in a Dictionary.
+    /// </summary>
+    /// <param name="dictionary">The Dictionary to be searched.</param>
+    /// <param name="value">The value to search for.</param>
+    /// <typeparam name="TKey">The type of Key in the Dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of Value in the Dictionary.</typeparam>
+    /// <returns>The keys associated with the specified value in a Dictionary.</returns>
+    /// <exception cref="ValueNotFoundException">Thrown if the specified value is not found within the Dictionary.</exception>
+    public static IEnumerable<TKey> GetKeysByValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TValue value)
+    {
+        List<TKey> list = new List<TKey>();
             
-            if (dictionary.Values.Contains(value))
+        if (dictionary.Values.Contains(value))
+        {
+            foreach (KeyValuePair<TKey, TValue> pair in dictionary)
             {
-                foreach (KeyValuePair<TKey, TValue> pair in dictionary)
+                if (pair.Value is not null && pair.Value.Equals(value))
                 {
-                    if (pair.Value is not null && pair.Value.Equals(value))
-                    {
-                        list.Add(pair.Key);
-                    }
+                    list.Add(pair.Key);
                 }
-
-                return list;
             }
 
-            throw new ValueNotFoundException(nameof(dictionary), nameof(value));
+            return list;
         }
+
+        throw new ValueNotFoundException(nameof(dictionary), nameof(value));
     }
 }

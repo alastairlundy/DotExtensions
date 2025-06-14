@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,72 +30,72 @@ using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
-{
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class EnumerableRemoveExtensions
-    {
-    
-        /// <summary>
-        /// Removes an item from an IEnumerable.
-        /// </summary>
-        /// <param name="source">The IEnumerable to have an item removed from it.</param>
-        /// <param name="itemToBeRemoved">The item to be removed.</param>
-        /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
-        /// <returns>The new IEnumerable with the specified item removed.</returns>
-        public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
-        {
-            #region IList Optimized Code
-            if (source is IList<T> list)
-            {
-                list.Remove(itemToBeRemoved);
-                return list;
-            }
-            #endregion
-            
-            #region ICollection Optimized Code
-            if (source is ICollection<T> collection)
-            {
-                collection.Remove(itemToBeRemoved);
-                return collection;
-            }
-            #endregion
-            
-            return from item in source
-                where item.Equals(itemToBeRemoved) == false
-                    select item;
-        }
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
-        /// <summary>
-        /// Removes the item located at the specified index from an IEnumerable.
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="index">The index of the item to be removed.</param>
-        /// <typeparam name="T">The type of item stored in the IEnumerable.</typeparam>
-        /// <returns>The IEnumerable with the index of the specified item removed.</returns>
-        public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
+/// <summary>
+/// 
+/// </summary>
+public static class EnumerableRemoveExtensions
+{
+    
+    /// <summary>
+    /// Removes an item from an IEnumerable.
+    /// </summary>
+    /// <param name="source">The IEnumerable to have an item removed from it.</param>
+    /// <param name="itemToBeRemoved">The item to be removed.</param>
+    /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
+    /// <returns>The new IEnumerable with the specified item removed.</returns>
+    public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
+    {
+        #region IList Optimized Code
+        if (source is IList<T> list)
         {
-            #region Faster IList implementation
-            if (source is IList<T> list)
-            {
-                 list.RemoveAt(index);
-                 return list;
-            }
-            #endregion
-            
-            #region Faster ICollection implementation
-            if (source is ICollection<T> collection)
-            {
-                return GenericCollectionRemoveExtensions.RemoveAt(collection, index);
-            }
-            #endregion
-            
-            IList<T> enumerable = source.ToList();
-            
-            enumerable.RemoveAt(index);
-            return enumerable;
+            list.Remove(itemToBeRemoved);
+            return list;
         }
+        #endregion
+            
+        #region ICollection Optimized Code
+        if (source is ICollection<T> collection)
+        {
+            collection.Remove(itemToBeRemoved);
+            return collection;
+        }
+        #endregion
+            
+        return from item in source
+            where item.Equals(itemToBeRemoved) == false
+            select item;
+    }
+
+    /// <summary>
+    /// Removes the item located at the specified index from an IEnumerable.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="index">The index of the item to be removed.</param>
+    /// <typeparam name="T">The type of item stored in the IEnumerable.</typeparam>
+    /// <returns>The IEnumerable with the index of the specified item removed.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int index)
+    {
+        #region Faster IList implementation
+        if (source is IList<T> list)
+        {
+            list.RemoveAt(index);
+            return list;
+        }
+        #endregion
+            
+        #region Faster ICollection implementation
+        if (source is ICollection<T> collection)
+        {
+            return GenericCollectionRemoveExtensions.RemoveAt(collection, index);
+        }
+        #endregion
+            
+        IList<T> enumerable = source.ToList();
+            
+        enumerable.RemoveAt(index);
+        return enumerable;
     }
 }

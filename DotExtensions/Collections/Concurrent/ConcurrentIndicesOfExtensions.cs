@@ -1,18 +1,18 @@
 ﻿/*
         MIT License
-
-       Copyright (c) 2020-2025 Alastair Lundy
-
+       
+       Copyright (c) 2024-2025 Alastair Lundy
+       
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-
+       
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-
+       
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,29 +22,37 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
-namespace AlastairLundy.DotExtensions.Strings;
+using System.Collections.Concurrent;
 
-public static class UpperCaseExtensions
+namespace AlastairLundy.DotExtensions.Collections.Concurrent;
+
+/// <summary>
+/// 
+/// </summary>
+public static class ConcurrentIndicesOfExtensions
 {
+    
     /// <summary>
-    /// Returns whether a character is an upper case character or not.
+    /// Retrieves a collection of indices where the specified element can be found within the given collection.
     /// </summary>
-    /// <param name="c">The character to be checked.</param>
-    /// <returns>True, if the character is an upper case character, false otherwise.</returns>
-    public static bool IsUpperCaseCharacter(this char c)
+    /// <param name="collection">The producer-consumer collection to search.</param>
+    /// <param name="item">The item to find and return its indices for.</param>
+    /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
+    /// <returns>A concurrent bag containing the indices where the specified item can be found, or empty if not found.</returns>
+    public static IProducerConsumerCollection<int> IndicesOf<T>(this IProducerConsumerCollection<T> collection, T item)
     {
-        return c.ToString().Equals(c.ToString().ToUpper());
-    }
+        ConcurrentBag<int> output = new ConcurrentBag<int>();
         
-    /// <summary>
-    /// Returns whether a string is upper case or not.
-    /// </summary>
-    /// <param name="s">The string to be checked.</param>
-    /// <returns>True if the string is upper case; false otherwise.</returns>
-    // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsUpperCase(this string s)
-    { 
-        return s.Equals(s.ToUpper());
+        int index = 0;
+        foreach (T obj in collection)
+        {
+            if (item is not null && item.Equals(obj))
+            {
+                output.Add(index);
+            }
+            index++;
+        }
+        
+        return output;
     }
 }

@@ -30,50 +30,49 @@ using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+/// <summary>
+/// 
+/// </summary>
+public static class EnumerableElementsAtExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class EnumerableElementsAtExtensions
-    {
     
-        /// <summary>
-        /// Returns a IEnumerable of elements from the specified source, 
-        /// where the index of each element in the returned IEnumerable corresponds to an index in the provided indexes.
-        /// </summary>
-        /// <remarks>The order of the elements in the returned IEnumerable is determined by their original position in the source,
-        /// but the order within the returned IEnumerable is based on the provided indexes.</remarks>
-        /// <param name="source">The IEnumerable from which to retrieve elements.</param>
-        /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
-        /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
-        /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
-        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-        public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
+    /// <summary>
+    /// Returns a IEnumerable of elements from the specified source, 
+    /// where the index of each element in the returned IEnumerable corresponds to an index in the provided indexes.
+    /// </summary>
+    /// <remarks>The order of the elements in the returned IEnumerable is determined by their original position in the source,
+    /// but the order within the returned IEnumerable is based on the provided indexes.</remarks>
+    /// <param name="source">The IEnumerable from which to retrieve elements.</param>
+    /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
+    /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
+    /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
+    public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
+    {
+        List<T> output = new();
+
+        if (source is IList<T> list)
         {
-            List<T> output = new();
-
-            if (source is IList<T> list)
-            {
-                return IListElementsAtExtensions.ElementsAt(list, indexes);
-            }
-
-            if (source is ICollection<T> collection)
-            {
-                return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
-            }
-        
-            IList<T> sourceList = source.ToArray();
-
-            foreach (int index in indexes)
-            {
-                if (index >= 0 && index < sourceList.Count)
-                {
-                    output.Add(sourceList[index]);
-                }
-            }
-            
-            return output;
+            return IListElementsAtExtensions.ElementsAt(list, indexes);
         }
+
+        if (source is ICollection<T> collection)
+        {
+            return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
+        }
+        
+        IList<T> sourceList = source.ToArray();
+
+        foreach (int index in indexes)
+        {
+            if (index >= 0 && index < sourceList.Count)
+            {
+                output.Add(sourceList[index]);
+            }
+        }
+            
+        return output;
     }
 }

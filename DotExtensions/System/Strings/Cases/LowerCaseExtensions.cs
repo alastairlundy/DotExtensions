@@ -23,28 +23,27 @@
    */
 
 // ReSharper disable CheckNamespace
-namespace AlastairLundy.DotExtensions.Strings
+namespace AlastairLundy.DotExtensions.Strings;
+
+public static class LowerCaseExtensions
 {
-    public static class LowerCaseExtensions
+    /// <summary>
+    /// Returns whether a character is a lower case letter or not.
+    /// </summary>
+    /// <param name="c">The character to be checked.</param>
+    /// <returns>True, if the character is a lower case character; false otherwise.</returns>
+    public static bool IsLowerCaseCharacter(this char c)
     {
-        /// <summary>
-        /// Returns whether a character is a lower case letter or not.
-        /// </summary>
-        /// <param name="c">The character to be checked.</param>
-        /// <returns>True, if the character is a lower case character; false otherwise.</returns>
-        public static bool IsLowerCaseCharacter(this char c)
-        {
-            return c.ToString().Equals(c.ToString().ToLower());
-        }
+        return c.ToString().Equals(c.ToString().ToLower());
+    }
         
-        /// <summary>
-        /// Returns whether a string is lower case or not.
-        /// </summary>
-        /// <param name="s">The string to be checked.</param>
-        /// <returns>True if a string is lower case; false otherwise.</returns>
-        public static bool IsLowerCase(this string s)
-        {
-            return s.Equals(s.ToLower());
-        }
+    /// <summary>
+    /// Returns whether a string is lower case or not.
+    /// </summary>
+    /// <param name="s">The string to be checked.</param>
+    /// <returns>True if a string is lower case; false otherwise.</returns>
+    public static bool IsLowerCase(this string s)
+    {
+        return s.Equals(s.ToLower());
     }
 }

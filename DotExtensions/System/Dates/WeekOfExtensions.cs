@@ -25,83 +25,82 @@
 using System;
 using System.Globalization;
 
-namespace AlastairLundy.DotExtensions.Dates
+namespace AlastairLundy.DotExtensions.Dates;
+
+public static class WeekOfExtensions
 {
-    public static class WeekOfExtensions
+    /// <summary>
+    /// Calculates the week of the month.
+    /// </summary>
+    /// <param name="date">The date to be used.</param>
+    /// <returns>The week number in a given month.</returns>
+    public static int WeekOfMonth(this DateTime date)
     {
-        /// <summary>
-        /// Calculates the week of the month.
-        /// </summary>
-        /// <param name="date">The date to be used.</param>
-        /// <returns>The week number in a given month.</returns>
-        public static int WeekOfMonth(this DateTime date)
+        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+        int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
+
+        int weekCount = 0;
+
+        for (int day = 1; day < daysInMonth; day++)
         {
-            DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-            int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
+            DateTime currentDate = new DateTime(date.Year, date.Month, day);
 
-            int weekCount = 0;
-
-            for (int day = 1; day < daysInMonth; day++)
+            if (currentDate.DayOfWeek == firstDayOfWeek)
             {
-                DateTime currentDate = new DateTime(date.Year, date.Month, day);
+                weekCount++;
+            }
 
+            if (currentDate.Day == date.Day)
+            {
+                break;
+            }
+        }
+
+        return weekCount;
+    }
+
+    /// <summary>
+    /// Calculates the week in the year of a given DateTime. 
+    /// </summary>
+    /// <param name="date">The date to be used.</param>
+    /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
+    /// <returns>The week number in a given year.</returns>
+    public static int WeekOfYear(this DateTime date, CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek)
+    {
+        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+        int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(date.Year) ? 366 : 365;
+        int weekCount = 0;
+
+        for (int day = 1; day < daysInYear; day++)
+        {
+            DateTime currentDate = new DateTime(date.Year, date.Month, day);
+
+            if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
+            {
+                weekCount = 1;
+            }
+            else if (day == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
+            {
+                weekCount = 1;
+            }
+            else if (day == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
+            {
+                weekCount = 1;
+            }
+            else
+            {
                 if (currentDate.DayOfWeek == firstDayOfWeek)
                 {
                     weekCount++;
                 }
-
-                if (currentDate.Day == date.Day)
-                {
-                    break;
-                }
             }
 
-            return weekCount;
-        }
-
-        /// <summary>
-        /// Calculates the week in the year of a given DateTime. 
-        /// </summary>
-        /// <param name="date">The date to be used.</param>
-        /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
-        /// <returns>The week number in a given year.</returns>
-        public static int WeekOfYear(this DateTime date, CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek)
-        {
-            DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-            int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(date.Year) ? 366 : 365;
-            int weekCount = 0;
-
-            for (int day = 1; day < daysInYear; day++)
+            if (currentDate.Day == date.Day)
             {
-                DateTime currentDate = new DateTime(date.Year, date.Month, day);
-
-                if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
-                {
-                    weekCount = 1;
-                }
-                else if (day == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
-                {
-                    weekCount = 1;
-                }
-                else if (day == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
-                {
-                    weekCount = 1;
-                }
-                else
-                {
-                    if (currentDate.DayOfWeek == firstDayOfWeek)
-                    {
-                        weekCount++;
-                    }
-                }
-
-                if (currentDate.Day == date.Day)
-                {
-                    break;
-                }
+                break;
             }
-        
-            return weekCount;
         }
+        
+        return weekCount;
     }
 }

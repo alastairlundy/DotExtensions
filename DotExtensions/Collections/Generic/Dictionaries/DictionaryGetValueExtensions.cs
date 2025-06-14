@@ -28,39 +28,38 @@ using System.Collections.Generic;
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable RedundantIfElseBlock
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries
-{
-    public static class DictionaryGetValueExtensions
-    {
-        /// <summary>
-        /// Returns the value associated with a Key if found or a default value if not found.
-        /// </summary>
-        /// <param name="dictionary">The dictionary to be searched.</param>
-        /// <param name="key">The key to search for.</param>
-        /// <param name="defaultValue">The value to be returned if the key is not found.</param>
-        /// <typeparam name="TKey">The type of Key stored in the dictionary.</typeparam>
-        /// <typeparam name="TValue">The type of Value stored in the dictionary.</typeparam>
-        /// <returns>the value associated with the specified Key if found; the specified default value otherwise.</returns>
-        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
-            TValue defaultValue)
-        {
-            try
-            {
-                bool containsKey = dictionary.TryGetValue(key, out TValue? value);
+namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries;
 
-                if (containsKey == true && value is not null)
-                {
-                    return value;
-                }
-                else
-                {
-                    return defaultValue;
-                }
+public static class DictionaryGetValueExtensions
+{
+    /// <summary>
+    /// Returns the value associated with a Key if found or a default value if not found.
+    /// </summary>
+    /// <param name="dictionary">The dictionary to be searched.</param>
+    /// <param name="key">The key to search for.</param>
+    /// <param name="defaultValue">The value to be returned if the key is not found.</param>
+    /// <typeparam name="TKey">The type of Key stored in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of Value stored in the dictionary.</typeparam>
+    /// <returns>the value associated with the specified Key if found; the specified default value otherwise.</returns>
+    public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key,
+        TValue defaultValue)
+    {
+        try
+        {
+            bool containsKey = dictionary.TryGetValue(key, out TValue? value);
+
+            if (containsKey == true && value is not null)
+            {
+                return value;
             }
-            catch
+            else
             {
                 return defaultValue;
             }
+        }
+        catch
+        {
+            return defaultValue;
         }
     }
 }

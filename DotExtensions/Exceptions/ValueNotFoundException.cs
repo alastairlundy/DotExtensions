@@ -26,26 +26,24 @@ using System;
 
 using AlastairLundy.DotExtensions.Localizations;
 
-namespace AlastairLundy.DotExtensions.Exceptions
+namespace AlastairLundy.DotExtensions.Exceptions;
+
+/// <summary>
+/// Represents an exception thrown when a value is not found in a collection.
+/// </summary>
+/// <remarks>This exception is typically thrown by methods that access or manipulate collections.</remarks>
+public class ValueNotFoundException : Exception
 {
-    
-    /// <summary>
-    /// Represents an exception thrown when a value is not found in a collection.
-    /// </summary>
-    /// <remarks>This exception is typically thrown by methods that access or manipulate collections.</remarks>
-    public class ValueNotFoundException : Exception
-    {
         
-        /// <summary>
-        /// Represents an exception thrown when a value cannot be found in a collection.
-        /// </summary>
-        /// <param name="collectionName">The name of the collection that was searched.</param>
-        /// <param name="valueName">The name of the value that was expected.</param>
-        public ValueNotFoundException(string collectionName, string valueName) : base(
-            $"{Resources.Exceptions_ValueNotFound.Replace("{x}", valueName)
-                .Replace("{y}", collectionName)}")
-        {
+    /// <summary>
+    /// Represents an exception thrown when a value cannot be found in a collection.
+    /// </summary>
+    /// <param name="collectionName">The name of the collection that was searched.</param>
+    /// <param name="valueName">The name of the value that was expected.</param>
+    public ValueNotFoundException(string collectionName, string valueName) : base(
+        $"{Resources.Exceptions_ValueNotFound.Replace("{x}", valueName)
+            .Replace("{y}", collectionName)}")
+    {
             
-        }
     }
 }
