@@ -191,7 +191,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
 
             if (endIndex > source.Count)
             {
-                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
 
             if (startIndex < 0 || startIndex >= source.Count)
@@ -248,7 +248,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections
             
             if (source.Count > startIndex + count)
             {
-                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
 
             #region Optimized IList Code

@@ -48,7 +48,7 @@ public static class IntegerRangeAsEnumerableExtensions
     {
         if (startIndex + count > ushort.MaxValue)
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
         
         List<ushort> list = new List<ushort>();
@@ -74,7 +74,7 @@ public static class IntegerRangeAsEnumerableExtensions
     {
         if (start + count > short.MaxValue)
         {
-            throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
         if (count < 0)
         {

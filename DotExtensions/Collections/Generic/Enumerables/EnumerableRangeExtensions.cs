@@ -166,7 +166,7 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables
             }
             else
             {
-                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
 
             for (int index = startIndex; index < limit; index++)

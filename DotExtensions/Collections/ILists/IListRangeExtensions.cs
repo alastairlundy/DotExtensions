@@ -227,7 +227,7 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
             }
             else
             {
-                throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
             }
             
             for (int index = startIndex; index < limit; index++)
@@ -260,7 +260,7 @@ namespace AlastairLundy.DotExtensions.Collections.ILists
                 }
                 else if (indices.Count > list.Count)
                 {
-                    throw new ArgumentException(Resources.Exceptions_Enumerables_CountArgumentTooLarge);
+                    throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
                 }
                 
                 list.RemoveAt(index);
