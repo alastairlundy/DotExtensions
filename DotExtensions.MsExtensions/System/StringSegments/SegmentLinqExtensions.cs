@@ -51,7 +51,22 @@ public static class SegmentLinqExtensions
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
         
+    /// <summary>
+    /// Returns the first character of the specified <see cref="StringSegment"/> or a default value if the segment is empty.
+    /// </summary>
+    /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the first character.</param>
+    /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
+    public static char? FirstOrDefault(this StringSegment target)
+    {
+        if (target.Length >= 1)
+        {
+            return target[0];
         }
+        else
+        {
+            return null;
+        }
+    }
 
     /// <summary>
     /// Returns the last char in the StringSegment.
@@ -72,7 +87,27 @@ public static class SegmentLinqExtensions
 
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
+        
+    /// <summary>
+    /// Returns the last character of the specified <see cref="StringSegment"/> or a default value if the segment is empty.
+    /// </summary>
+    /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
+    /// <returns>The last character of the segment if it exists; otherwise null.</returns>
+    public static char? LastOrDefault(this StringSegment target)
+    {
+        if (target.Length >= 1)
+        {
+#if NET6_0_OR_GREATER
+            return target[^1];
+#else
+                return target[target.Length - 1];
+#endif
         }
+        else
+        {
+            return null;
+        }
+    }
         
     /// <summary>
     /// Returns whether any char in a StringSegment matches the predicate condition.
