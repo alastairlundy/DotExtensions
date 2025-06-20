@@ -26,30 +26,29 @@ using System.Collections.Generic;
 
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
+namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+
+public static class SegmentIndicesOfExtensions
 {
-    public static class SegmentIndicesOfExtensions
+    /// <summary>
+    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
+    /// </summary>
+    /// <param name="this">The string segment to be searched.</param>
+    /// <param name="c">The character to search for.</param>
+    /// <returns>An IEnumerable of Indices for all occurrences specified character within the String Segment;
+    /// empty if not found within the String Segment.</returns>
+    public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
     {
-        /// <summary>
-        /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
-        /// </summary>
-        /// <param name="this">The string segment to be searched.</param>
-        /// <param name="c">The character to search for.</param>
-        /// <returns>An IEnumerable of Indices for all occurrences specified character within the String Segment;
-        /// empty if not found within the String Segment.</returns>
-        public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
+        List<int> indices = new List<int>();
+        
+        for(int i = 0; i < @this.Length; i++)
         {
-            List<int> indices = new List<int>();
-        
-            for(int i = 0; i < @this.Length; i++)
+            if (@this[i] == c)
             {
-                if (@this[i] == c)
-                {
-                    indices.Add(i);
-                }
+                indices.Add(i);
             }
-        
-            return indices;
         }
+        
+        return indices;
     }
 }
