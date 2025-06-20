@@ -40,7 +40,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
         /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
         public static char First(this StringSegment target)
         {
-            if (target.Length == 1)
+            if (target.Length >= 1)
             {
                 return target[0];
             }
@@ -56,7 +56,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
         /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
         public static char Last(this StringSegment target)
         {
-            if (target.Length == 1)
+            if (target.Length >= 1)
             {
 #if NET6_0_OR_GREATER
                 return target[^1];
