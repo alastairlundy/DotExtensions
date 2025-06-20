@@ -64,7 +64,7 @@ public static class EnumerableIndexExtensions
     }
 
     /// <summary>
-    /// Gets the indices of the specified object within an IEnumerable of an object.
+    /// Gets the indices of the specified item within an IEnumerable.
     /// </summary>
     /// <param name="source">The IEnumerable to be searched.</param>
     /// <param name="obj">The item to search for.</param>
@@ -97,13 +97,13 @@ public static class EnumerableIndexExtensions
         
 
     /// <summary>
-    /// 
+    /// Attempts to find the first index of a specified item in a collection.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="item"></param>
-    /// <param name="index"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The collection of items to search through.</param>
+    /// <param name="item">The item to find within the collection.</param>
+    /// <param name="index">An output parameter that will contain the index of the found item, or null if the item is not found.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>True if the item was found, otherwise false.</returns>
     public static bool TryGetIndexOf<T>(this IEnumerable<T> source, T item, out int? index)
     {
         try
@@ -120,14 +120,14 @@ public static class EnumerableIndexExtensions
 
         
     /// <summary>
-    /// 
+    /// Attempts to find all the indices of a specified item in a collection.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="item"></param>
-    /// <param name="indices"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="KeyNotFoundException"></exception>
+    /// <param name="source">The collection of items to search through.</param>
+    /// <param name="item">The item to find within the collection.</param>
+    /// <param name="indices">An output parameter that will contain the indices of the found item, or null if the item is not found.</param>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <returns>True if the item was found, otherwise false.</returns>
+    /// <exception cref="KeyNotFoundException">Thrown when the item is not found in the collection.</exception>
     public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, out IEnumerable<int>? indices)
     {
         try

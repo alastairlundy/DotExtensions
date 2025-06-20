@@ -39,33 +39,37 @@ public class EnumerableAddRangeExtensionsBenchmarks
     public int N;
     
     [Benchmark]
-    public void DotExtensions_Enumerables_AddRange()
+    public IEnumerable<string> DotExtensions_Enumerables_AddRange()
     {
-     IEnumerable<string> enumerable = fakeData.AsEnumerable().AddRange(fakeData2Enumerable);
-
-     // Console.WriteLine($"{nameof(enumerable)} exists");
+        return fakeData.AsEnumerable().AddRange(fakeData2Enumerable);
     }
     
     [Benchmark]
-    public void DotExtensions_Collection_AddRange()
+    public ICollection<string> DotExtensions_Collection_AddRange()
     {
         Collection<string> fakestData = [..fakeData];
             
         GenericCollectionRangeExtensions.AddRange(fakestData, fakeData2IList);
+        
+        return fakestData;
     }
     
     [Benchmark]
-    public void DotExtensions_IList_AddRange()
+    public IList<string> DotExtensions_IList_AddRange()
     {
         IList<string> fakestData = [..fakeData];
         
         // ReSharper disable once InvokeAsExtensionMethod
         IListRangeExtensions.AddRange(fakestData, fakeData2IList);
+
+        return fakestData;
     }
 
     [Benchmark(Baseline = true)]
-    public void Linq_List_AddRange()
+    public IList<string> Linq_List_AddRange()
     {
         fakeData.AddRange(fakeData2List);
+        
+        return fakeData;
     }
 }
