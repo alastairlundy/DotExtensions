@@ -54,6 +54,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
         /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
         /// <param name="segment">The StringSegment to enumerate.</param>
         /// <returns>The StringSegment as an IEnumerable.</returns>
+        // Rename to AsEnumerable for v8
         public static IEnumerable<char> ToEnumerable(this StringSegment segment)
         {
             return ToCharArray(segment);
