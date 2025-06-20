@@ -7,6 +7,7 @@
 ### 7.2
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.2.1 | June 20th 2025 | |
 | 7.2.0 | June 14th 2025 | |
 
 #### 7.1
