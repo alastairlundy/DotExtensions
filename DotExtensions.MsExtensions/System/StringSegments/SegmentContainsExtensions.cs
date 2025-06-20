@@ -72,8 +72,8 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
             }
         
             char[] segmentArray = segment.ToCharArray();
-        
-            bool containsAllChars = @this.ContainsAllOf(segmentArray);
+
+            bool containsAllChars = @this.All(c => segmentArray.Contains(c));
 
             if (containsAllChars == false)
             {
