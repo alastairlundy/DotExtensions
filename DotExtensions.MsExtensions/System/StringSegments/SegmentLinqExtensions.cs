@@ -23,6 +23,9 @@
    */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
@@ -89,6 +92,40 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Returns an IEnumerable of chars that match the predicate. 
+        /// </summary>
+        /// <param name="target">The StringSegment to search.</param>
+        /// <param name="predicate">The predicate to check each char against.</param>
+        /// <returns>An IEnumerable of chars that matches the predicate.</returns>
+        public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> predicate)
+        {
+            return (from c in target.ToCharArray()
+                    where predicate.Invoke(c)
+                        select c);
+        }
+
+        /// <summary>
+        /// Counts the number of chars in the StringSegment that match the predicate.
+        /// </summary>
+        /// <param name="target">The StringSegment to search.</param>
+        /// <param name="predicate">The predicate to check each char against.</param>
+        /// <returns>The number of chars matching the predicate as an integer.</returns>
+        public static int Count(this StringSegment target,  Func<char, bool> predicate)
+        {
+            int output = 0;
+
+            foreach (char c in target.ToCharArray())
+            {
+                if (predicate.Invoke(c))
+                {
+                    output++;
+                }
+            }
+            
+            return output;
         }
     
         /// <summary>
