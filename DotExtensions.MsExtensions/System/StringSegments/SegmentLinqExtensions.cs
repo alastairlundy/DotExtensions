@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
@@ -50,7 +50,27 @@ public static class SegmentLinqExtensions
 
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static char First(this StringSegment target, Func<char, bool> predicate)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (predicate.Invoke(target[i]))
+            {
+                return target[i];
+            }
+        }
         
+        throw new ArgumentException(Resources.Exceptions_StringSegment_NoPredicateMatches);
+    }
+    
     /// <summary>
     /// Returns the first character of the specified <see cref="StringSegment"/> or a default value if the segment is empty.
     /// </summary>
@@ -66,6 +86,25 @@ public static class SegmentLinqExtensions
         {
             return null;
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (predicate.Invoke(target[i]))
+            {
+                return target[i];
+            }
+        }
+
+        return null;
     }
 
     /// <summary>
@@ -86,6 +125,21 @@ public static class SegmentLinqExtensions
         }
 
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static char Last(this StringSegment target, Func<char, bool> predicate)
+    {
+        StringSegment newTarget = target;
+        newTarget.Reverse();
+
+        return First(newTarget, predicate);
     }
         
     /// <summary>
@@ -110,6 +164,20 @@ public static class SegmentLinqExtensions
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
+    {
+        StringSegment newTarget = target;
+        newTarget.Reverse();
+            
+        return FirstOrDefault(newTarget, predicate);
+    }
+    
+    /// <summary>
     /// Reverses the contents of the StringSegment.
     /// </summary>
     /// <param name="target">The StringSegment to reverse.</param>
@@ -122,17 +190,7 @@ public static class SegmentLinqExtensions
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         }
         
-        char[] targetArray = target.ToCharArray();
-
-        StringBuilder stringBuilder =  new StringBuilder();
-        stringBuilder.Append(targetArray[targetArray.Length - 1]);
-        
-        for (int i = 0; i < targetArray.Length; i++)
-        {
-            stringBuilder.Append(targetArray[targetArray.Length - i]);
-        }
-        
-        return new  StringSegment(stringBuilder.ToString());
+        return new StringSegment(string.Join("", target.ToCharArray().Reverse()));
     }
     
     /// <summary>
