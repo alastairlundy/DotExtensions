@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text;
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
@@ -108,7 +108,33 @@ public static class SegmentLinqExtensions
             return null;
         }
     }
+
+    /// <summary>
+    /// Reverses the contents of the StringSegment.
+    /// </summary>
+    /// <param name="target">The StringSegment to reverse.</param>
+    /// <returns>The reversed StringSegment.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
+    public static StringSegment Reverse(this StringSegment target)
+    {
+        if (target.Length > 0 == false)
+        {
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        }
         
+        char[] targetArray = target.ToCharArray();
+
+        StringBuilder stringBuilder =  new StringBuilder();
+        stringBuilder.Append(targetArray[targetArray.Length - 1]);
+        
+        for (int i = 0; i < targetArray.Length; i++)
+        {
+            stringBuilder.Append(targetArray[targetArray.Length - i]);
+        }
+        
+        return new  StringSegment(stringBuilder.ToString());
+    }
+    
     /// <summary>
     /// Returns whether any char in a StringSegment matches the predicate condition.
     /// </summary>
