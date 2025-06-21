@@ -241,10 +241,10 @@ public static class GenericCollectionRangeExtensions
                 .Replace("{z}", $"{source.Count}"));
         }
             
-            if (source.Count > startIndex + count)
-            {
-                throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-            }
+        if (source.Count > startIndex + count)
+        {
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        }
 
         #region Optimized IList Code
         if (source is IList<T> list)
