@@ -8,16 +8,22 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.2.1</Version>
+        <Version>7.3.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes
-## 🐛 Bug Fixes
+        <PackageReleaseNotes>## Changes since 7.2.x
 
-- Fixed a bug with StringSegment ``First`` and ``Last`` extension methods @alastairlundy (#44)</PackageReleaseNotes>
+## 🚀 Features
+
+- Add StringSegment ``First``, ``FirstOrDefault``, ``Last``, and ``LastOrDefault`` predicate overloads @alastairlundy (#52)
+- add StringSegment ``Reverse`` extension method @alastairlundy (#51)
+- Deprecate StringSegment ``ToEnumerable`` method - Added ``AsEnumerable``to be used instead. @alastairlundy (#49)
+- Add StringSegment ``FirstOrDefault`` and ``LastOrDefault`` extension methods @alastairlundy (#47)
+- Add StringSegment ``Where`` and ``Count`` extension methods @alastairlundy (#45)
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>

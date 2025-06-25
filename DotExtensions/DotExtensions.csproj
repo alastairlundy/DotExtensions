@@ -12,11 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
+        <PackageReleaseNotes>## Changes since 7.2.x
 
 ## 🚀 Features
-
-- Add missing xml doc comments in  ``TryGetIndexOf`` and ``TryGetIndicesOf`` IEnumerable extension methods @alastairlundy (#46)</PackageReleaseNotes>
+- add ``Reverse`` IList and T[] extension methods @alastairlundy (#50)
+- Add Span ``First`` with predicate overload, ``Last`` with predicate overload, ``FirstOrDefault``, and ``LastOrDefault`` @alastairlundy (#48)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +26,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.2.1</Version>
+        <Version>7.3.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
