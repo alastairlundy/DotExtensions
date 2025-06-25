@@ -14,15 +14,9 @@
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
 
-- Deprecate Enumerable Range extensions for removal in 8.0 @alastairlundy (#39)
-
 ## 🚀 Features
 
-- Add Number ``RangeAsEnumerable`` extensions @alastairlundy (#43)
-- Add Concurrent Collection ``IndicesOf`` ,  ``Remove`` , and Range extensions @alastairlundy (#42)
-- Add Number Range extensions @alastairlundy (#41)
-- Add collection Range Extensions @alastairlundy (#40)
-* Deprecate string ``ContainsAnyOf`` and ``ContainsAllOf`` extension methods for removal in v8</PackageReleaseNotes>
+- Add missing xml doc comments in  ``TryGetIndexOf`` and ``TryGetIndicesOf`` IEnumerable extension methods @alastairlundy (#46)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -32,7 +26,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.2.0</Version>
+        <Version>7.2.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>

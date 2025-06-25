@@ -205,7 +205,7 @@ public static class IntegerRangeAsEnumerableExtensions
         
         List<int> list = new List<int>();
         IList<int> numbersToSkipList = numbersToSkip as IList<int> ?? numbersToSkip.ToList();
-
+        
         for (int i = start; i < count; i++)
         {
             if (numbersToSkipList.Contains(i) == false)

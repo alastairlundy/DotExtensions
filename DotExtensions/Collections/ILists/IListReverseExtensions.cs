@@ -1,18 +1,18 @@
-﻿/*
+/*
         MIT License
-
+       
        Copyright (c) 2025 Alastair Lundy
-
+       
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-
+       
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-
+       
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,31 +24,43 @@
 
 using System.Collections.Generic;
 
-using Microsoft.Extensions.Primitives;
+namespace AlastairLundy.DotExtensions.Collections.ILists;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
-public static class SegmentIndicesOfExtensions
+public static class IListReverseExtensions
 {
     /// <summary>
-    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
+    /// Reverses an <see cref="IList{T}"/> and returns it.
     /// </summary>
-    /// <param name="this">The string segment to be searched.</param>
-    /// <param name="c">The character to search for.</param>
-    /// <returns>An IEnumerable of Indices for all occurrences specified character within the String Segment;
-    /// empty if not found within the String Segment.</returns>
-    public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
+    /// <param name="list">The list to reverse.</param>
+    /// <typeparam name="T">The type of elements in the array.</typeparam>
+    /// <returns>The reversed IList.</returns>
+    public static IList<T> Reverse<T>(this IList<T> list)
     {
-        List<int> indices = new List<int>();
-        
-        for(int i = 0; i < @this.Length; i++)
+        List<T> output = new List<T>(list.Count);
+
+        for (int i = 0; i < output.Count; i++)
         {
-            if (@this[i] == c)
-            {
-                indices.Add(i);
-            }
+            output.Add(list[list.Count - 1 - i]);
         }
         
-        return indices;
+        return output;
+    }
+
+    /// <summary>
+    /// Reverses an array and returns it.
+    /// </summary>
+    /// <param name="array">The array to reverse.</param>
+    /// <typeparam name="T">The type of elements in the array.</typeparam>
+    /// <returns>The reversed array.</returns>
+    public static T[] Reverse<T>(this T[] array)
+    {
+        T[] newArray = new T[array.Length];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            newArray[i] = array[array.Length - 1 - i];
+        }
+        
+        return newArray;
     }
 }
