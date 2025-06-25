@@ -14,7 +14,9 @@
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Fixed a bug with StringSegment First and Last extension methods</PackageReleaseNotes>
+        <PackageReleaseNotes>* Fixed a bug with StringSegment First and Last extension methods
+
+Note: Final patch update for version 7.1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
