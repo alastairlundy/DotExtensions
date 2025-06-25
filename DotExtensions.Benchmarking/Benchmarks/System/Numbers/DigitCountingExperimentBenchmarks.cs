@@ -27,29 +27,30 @@ public class DigitCountingExperimentBenchmarks
     }
     
     [Params(
-    1_000_000,
-    10_000_000)]
+//    10_000_000,
+    100_000_000)]
     public int N;
     
     [Benchmark]
     public int[] String_Linq()
     {
         int[] results = new int[N];
-        
-        foreach (int number in numbers)
+
+        for (int index = 0; index < numbers.Length; index++)
         {
+            int number = numbers[index];
             int tempI = 0;
 
             if (number < 0)
             {
                 tempI = number * -1;
             }
-        
+
             // String Implementation
-            results[number] = tempI.ToString()
+            results[index] = tempI.ToString()
                 .Count(char.IsDigit);
         }
-        
+
         return results;
     }
 
@@ -57,22 +58,56 @@ public class DigitCountingExperimentBenchmarks
     public int[] String_Length()
     {
         int[] results = new int[N];
-        
-        foreach (int number in numbers)
+
+        for (int index = 0; index < numbers.Length; index++)
         {
+            int number = numbers[index];
             int tempI = 0;
 
             if (number < 0)
             {
                 tempI = number * -1;
             }
-        
+
             // String Implementation
-            results[number] = tempI.ToString()
+            results[index] = tempI.ToString()
                 .Length;
         }
-                
+
         return results;
     }
     
+    [Benchmark]
+    public int[] WhileLoop_Length()
+    {
+        int[] results = new int[N];
+
+        for (int index = 0; index < numbers.Length; index++)
+        {
+            int number = numbers[index];
+            int tempI = 0;
+
+            if (number < 0)
+            {
+                tempI = number * -1;
+            }
+
+            int WhileLoopFunc(int n)
+            {
+                int digits = n < 0 ? 2 : 1;
+
+                while ((n /= 10) != 0)
+                {
+                    ++digits;
+                }
+
+                return digits;
+            }
+
+
+            results[index] = WhileLoopFunc(tempI);
+        }
+
+        return results;
+    }
 }
