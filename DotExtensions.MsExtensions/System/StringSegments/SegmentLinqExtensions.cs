@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
@@ -36,7 +36,7 @@ public static class SegmentLinqExtensions
 {
 
     /// <summary>
-    /// Returns the first element in the StringSegment.
+    /// Returns the first char in the StringSegment.
     /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
     /// <returns>The first char in the StringSegment.</returns>
@@ -50,9 +50,29 @@ public static class SegmentLinqExtensions
 
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
-        
+
     /// <summary>
-    /// Returns the first character of the specified <see cref="StringSegment"/> or a default value if the segment is empty.
+    /// Returns the first char in the StringSegment that matches the predicate condition.
+    /// </summary>
+    /// <param name="target">The StringSegment to be searched.</param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+    /// <returns>The first char in the StringSegment that matches the predicate condition.</returns>
+    /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
+    public static char First(this StringSegment target, Func<char, bool> predicate)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (predicate.Invoke(target[i]))
+            {
+                return target[i];
+            }
+        }
+        
+        throw new ArgumentException(Resources.Exceptions_StringSegment_NoPredicateMatches);
+    }
+    
+    /// <summary>
+    /// Returns the first character of the specified <see cref="StringSegment"/> or null if the segment is empty.
     /// </summary>
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the first character.</param>
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
@@ -66,6 +86,25 @@ public static class SegmentLinqExtensions
         {
             return null;
         }
+    }
+
+    /// <summary>
+    /// Returns the first character of the specified <see cref="StringSegment"/> that meets the predicate condition or null if the segment is empty.
+    /// </summary>
+    /// <param name="target">The StringSegment to be searched.</param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+    /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
+    public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (predicate.Invoke(target[i]))
+            {
+                return target[i];
+            }
+        }
+
+        return null;
     }
 
     /// <summary>
@@ -87,12 +126,27 @@ public static class SegmentLinqExtensions
 
         throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
+    
+    /// <summary>
+    /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition.
+    /// </summary>
+    /// <param name="target">The StringSegment to be searched.</param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+    /// <returns>The last character of the segment that meets the predicate condition if any match.</returns>
+    /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
+    public static char Last(this StringSegment target, Func<char, bool> predicate)
+    {
+        StringSegment newTarget = target;
+        newTarget.Reverse();
+
+        return First(newTarget, predicate);
+    }
         
     /// <summary>
-    /// Returns the last character of the specified <see cref="StringSegment"/> or a default value if the segment is empty.
+    /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition or a null if the segment is empty.
     /// </summary>
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
-    /// <returns>The last character of the segment if it exists; otherwise null.</returns>
+    /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target)
     {
         if (target.Length >= 1)
@@ -110,6 +164,20 @@ public static class SegmentLinqExtensions
     }
 
     /// <summary>
+    /// Returns the last character of the specified <see cref="StringSegment"/> that matches the predicate condition or a default value if the segment is empty.
+    /// </summary>
+    /// <param name="target">The StringSegment to be searched.</param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+    /// <returns>The last character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
+    public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
+    {
+        StringSegment newTarget = target;
+        newTarget.Reverse();
+            
+        return FirstOrDefault(newTarget, predicate);
+    }
+    
+    /// <summary>
     /// Reverses the contents of the StringSegment.
     /// </summary>
     /// <param name="target">The StringSegment to reverse.</param>
@@ -122,17 +190,7 @@ public static class SegmentLinqExtensions
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         }
         
-        char[] targetArray = target.ToCharArray();
-
-        StringBuilder stringBuilder =  new StringBuilder();
-        stringBuilder.Append(targetArray[targetArray.Length - 1]);
-        
-        for (int i = 0; i < targetArray.Length; i++)
-        {
-            stringBuilder.Append(targetArray[targetArray.Length - i]);
-        }
-        
-        return new  StringSegment(stringBuilder.ToString());
+        return new StringSegment(string.Join("", target.ToCharArray().Reverse()));
     }
     
     /// <summary>
@@ -176,7 +234,7 @@ public static class SegmentLinqExtensions
     /// </summary>
     /// <param name="target">The StringSegment to search.</param>
     /// <param name="predicate">The predicate to check each char against.</param>
-    /// <returns>The number of chars matching the predicate as an integer.</returns>
+    /// <returns>The number of chars matching the predicate condition as an integer.</returns>
     public static int Count(this StringSegment target,  Func<char, bool> predicate)
     {
         int output = 0;
