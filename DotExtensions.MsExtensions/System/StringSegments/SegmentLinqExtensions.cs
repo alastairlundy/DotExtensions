@@ -36,7 +36,7 @@ public static class SegmentLinqExtensions
 {
 
     /// <summary>
-    /// Returns the first element in the StringSegment.
+    /// Returns the first char in the StringSegment.
     /// </summary>
     /// <param name="target">The StringSegment to be searched.</param>
     /// <returns>The first char in the StringSegment.</returns>
@@ -52,11 +52,11 @@ public static class SegmentLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns the first char in the StringSegment that matches the predicate condition.
     /// </summary>
-    /// <param name="target"></param>
-    /// <param name="predicate"></param>
-    /// <returns></returns>
+    /// <param name="target">The StringSegment to be searched.</param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
+    /// <returns>The first char in the StringSegment that matches the predicate condition.</returns>
     /// <exception cref="ArgumentException"></exception>
     public static char First(this StringSegment target, Func<char, bool> predicate)
     {
@@ -89,10 +89,10 @@ public static class SegmentLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns the first character of the specified <see cref="StringSegment"/> that meets the predicate condition or a default value if the segment is empty.
     /// </summary>
     /// <param name="target"></param>
-    /// <param name="predicate"></param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
     /// <returns></returns>
     public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
@@ -131,7 +131,7 @@ public static class SegmentLinqExtensions
     /// 
     /// </summary>
     /// <param name="target"></param>
-    /// <param name="predicate"></param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     public static char Last(this StringSegment target, Func<char, bool> predicate)
@@ -167,7 +167,7 @@ public static class SegmentLinqExtensions
     /// 
     /// </summary>
     /// <param name="target"></param>
-    /// <param name="predicate"></param>
+    /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
     /// <returns></returns>
     public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
