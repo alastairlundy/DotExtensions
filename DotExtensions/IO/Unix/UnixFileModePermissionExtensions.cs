@@ -28,12 +28,13 @@ using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
+#if NET8_0_OR_GREATER
+
 /// <summary>
 /// 
 /// </summary>
 public static class UnixFileModePermissionExtensions
 {
-#if NET8_0_OR_GREATER
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>
@@ -48,5 +49,5 @@ public static class UnixFileModePermissionExtensions
             _ => false
         };
     }
-#endif
 }
+#endif
