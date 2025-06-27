@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.IO.Unix;
 /// <summary>
 /// 
 /// </summary>
-public static class UnixFileModePermissionExtensions
+public static class UnixFileModePermissionExecuteExtensions
 {
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
