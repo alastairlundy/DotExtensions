@@ -25,7 +25,7 @@
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
 /// <summary>
-/// 
+/// Detects Unix file permission notation.
 /// </summary>
 public static class UnixFilePermissionNotationDetection
 {
