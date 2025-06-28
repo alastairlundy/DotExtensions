@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+
+using System;
 #if NET8_0_OR_GREATER
 using System.IO;
 #endif
@@ -40,8 +42,17 @@ public static class UnixFileModePermissionExecuteExtensions
     /// </summary>
     /// <param name="mode">The Unix file mode to check.</param>
     /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    // TODO: Rename to HasExecutePermission in v8
+    [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
     public static bool IsExecutePermission(this UnixFileMode mode)
+    {
+        return mode.HasExecutePermission();
+    }
+    /// <summary>
+    /// Determines whether the specified Unix file mode has execute permission.
+    /// </summary>
+    /// <param name="mode">The Unix file mode to check.</param>
+    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+    public static bool HasExecutePermission(this UnixFileMode mode)
     {
         return mode switch
         {
