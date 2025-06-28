@@ -41,7 +41,8 @@ Add Unix File Permission Notation string extension methods @alastairlundy (https
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="System.Memory" Version="4.6.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+        <PackageReference Include="System.Memory" Version="4.6.3"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0'" />
     </ItemGroup>
     
     <ItemGroup>
