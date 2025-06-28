@@ -12,11 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 7.2.x
-
-## 🚀 Features
-- add ``Reverse`` IList and T[] extension methods @alastairlundy (#50)
-- Add Span ``First`` with predicate overload, ``Last`` with predicate overload, ``FirstOrDefault``, and ``LastOrDefault`` @alastairlundy (#48)</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.3.0
+Add Unix File Permission Notation string extension methods @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/53)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +23,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.3.0</Version>
+        <Version>7.4.0-preview.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
