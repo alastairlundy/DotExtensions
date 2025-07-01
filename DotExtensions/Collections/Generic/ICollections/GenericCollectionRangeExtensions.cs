@@ -30,6 +30,7 @@ using AlastairLundy.DotExtensions.Collections.ILists;
 
 using AlastairLundy.DotExtensions.Deprecations;
 using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
@@ -142,16 +143,15 @@ public static class GenericCollectionRangeExtensions
     /// <exception cref="IndexOutOfRangeException">Thrown when an index is out of the valid range for the collection.</exception>
     public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
     {
-        #region Optimized IList code
-
         List<T> output = new();
-            
+
+        #region Optimized IList code
         if (source is IList<T> list && indices is ICollection<int> indicesCollection)
         {
             return IListRangeExtensions.GetRange(list, indicesCollection);
         }
         #endregion
-            
+
         IList<T> sourceList = source as IList<T> ?? source.ToArray();
 
         foreach (int index in indices)
@@ -209,12 +209,7 @@ public static class GenericCollectionRangeExtensions
         }
         #endregion
 
-        List<int> numbers = new();
-                
-        for (int i = startIndex; i < endIndex; i++)
-        {
-            numbers.Add(i);
-        }
+        IEnumerable<int> numbers = startIndex.RangeAsEnumerable(endIndex);
                 
         return GetRange(source, numbers);
     }
