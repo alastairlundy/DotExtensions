@@ -85,14 +85,10 @@ public static class EnumerableIndexExtensions
             index += 1;
         }
 
-        if (indices.Count > 0)
-        {
-            return indices; 
-        }
-        else
-        {
+        if (indices.Count == 0)
             return [-1];
-        }
+
+        return indices;
     }
         
 
