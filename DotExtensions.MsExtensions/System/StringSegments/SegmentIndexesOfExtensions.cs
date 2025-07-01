@@ -23,7 +23,7 @@
    */
 
 using System.Collections.Generic;
-
+using System.Linq;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -53,5 +53,33 @@ public static class SegmentIndicesOfExtensions
             indices = [-1];
         
         return indices;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="this"></param>
+    /// <param name="segment"></param>
+    /// <returns></returns>
+    public static int IndexOf(this StringSegment @this, StringSegment segment)
+    {
+        if (@this.Length < segment.Length || segment.Length == 0)
+            return -1;
+        
+        IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x  => x != -1);
+
+        foreach (int index in indexes)
+        {
+            int nextIndex = index < @this.Length ? index + 1 : index;
+         
+            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+
+            if (indexSegment.Equals(@this))
+            {
+                return index;
+            }
+        }
+
+        return -1;
     }
 }
