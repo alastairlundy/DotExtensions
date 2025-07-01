@@ -141,6 +141,7 @@ public static class GenericCollectionRangeExtensions
     /// <typeparam name="T">The type of elements in the collection and range.</typeparam>
     /// <returns>A new collection containing the specified elements based on the provided indices.</returns>
     /// <exception cref="IndexOutOfRangeException">Thrown when an index is out of the valid range for the collection.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
     {
         List<T> output = new();
@@ -180,6 +181,7 @@ public static class GenericCollectionRangeExtensions
     /// <returns>A new collection containing the specified range of elements from the original collection.</returns>
     /// <exception cref="ArgumentException">Thrown if the count argument is too large for the collection.</exception>
     /// <exception cref="IndexOutOfRangeException">Thrown if the start index or end index is out of bounds.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> GetRange<T>(this ICollection<T> source, int startIndex, int count)
     {
         int endIndex = startIndex + count;
