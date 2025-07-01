@@ -48,6 +48,9 @@ public static class SegmentIndicesOfExtensions
                 indices.Add(i);
             }
         }
+
+        if (indices.Count == 0)
+            indices = [-1];
         
         return indices;
     }
