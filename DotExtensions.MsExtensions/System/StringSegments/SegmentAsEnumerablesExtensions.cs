@@ -29,7 +29,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
-public static class SegmentToEnumerablesExtensions
+public static class SegmentAsEnumerablesExtensions
 {
     
     /// <summary>
