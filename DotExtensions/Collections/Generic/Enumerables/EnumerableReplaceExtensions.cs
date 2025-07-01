@@ -58,6 +58,7 @@ public static class EnumerableReplaceExtensions
             GenericCollectionReplaceExtensions.Replace<T>(collection, oldValue, newValue);
             return collection;
         }
+        
         IList<T> enumerable = source.ToArray();
 
         if (enumerable.Contains(oldValue))
