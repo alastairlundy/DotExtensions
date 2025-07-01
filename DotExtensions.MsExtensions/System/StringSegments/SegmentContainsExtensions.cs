@@ -63,22 +63,19 @@ public static class SegmentContainsExtensions
     public static bool Contains(this StringSegment @this, StringSegment segment)
     {
         if (@this.Length == segment.Length)
-        {
             return @this.Equals(segment);
-        }
-        if (segment.Length > @this.Length)
-        {
+        
+        if (segment.Length > @this.Length || segment.Length == 0)
             return false;
-        }
         
         char[] segmentArray = segment.ToCharArray();
-
+        
         bool containsAllChars = @this.All(c => segmentArray.Contains(c));
-
+        
         if (containsAllChars == false)
         {
             return false;
-        } 
+        }
         
         int startIndex = 0;
 
