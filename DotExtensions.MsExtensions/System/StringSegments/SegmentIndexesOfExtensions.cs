@@ -70,8 +70,6 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            int nextIndex = index < @this.Length ? index + 1 : index;
-         
             StringSegment indexSegment = segment.Subsegment(index, segment.Length);
 
             if (indexSegment.Equals(@this))
