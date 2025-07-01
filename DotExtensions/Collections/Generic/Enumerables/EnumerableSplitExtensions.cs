@@ -75,9 +75,7 @@ public static class EnumerableSplitExtensions
         }
 
         if (items.Count <= maxCount)
-        {
             return [[..items]];
-        }
         
         int currentEnumerableCount = 0;
             
