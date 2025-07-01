@@ -65,6 +65,7 @@ public static class GenericCollectionIndexExtensions
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     /// <returns>A collection of zero-based indices where the item is found,
     /// or an empty collection if not found.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<int> IndicesOf<T>(this ICollection<T> source, T item)
     {
         return (ICollection<int>)EnumerableIndexExtensions.IndicesOf(source, item);
