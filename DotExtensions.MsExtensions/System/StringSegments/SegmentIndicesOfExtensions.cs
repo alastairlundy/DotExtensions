@@ -57,11 +57,11 @@ public static class SegmentIndicesOfExtensions
     }
 
     /// <summary>
-    /// 
+    /// Finds the index of a specified StringSegment within another StringSegment.
     /// </summary>
-    /// <param name="this"></param>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="this">The StringSegment to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
     public static int IndexOf(this StringSegment @this, StringSegment segment)
     {
         if (@this.Length < segment.Length || segment.Length == 0)
