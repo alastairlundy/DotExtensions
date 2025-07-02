@@ -60,9 +60,11 @@ public static class EnumerableIndexExtensions
                     
             index++;
         }
+        
         return -1;
     }
 
+    
     /// <summary>
     /// Gets the indices of the specified item within an IEnumerable.
     /// </summary>
