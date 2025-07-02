@@ -45,7 +45,7 @@ public static class EnumerableSplitExtensions
     {
         ICollection<T> list = source as ICollection<T> ?? source.ToArray();
         
-        if (list.Count == 0)
+        if (list.Any() == false)
         {
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
         }
