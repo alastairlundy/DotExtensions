@@ -41,6 +41,7 @@ public static class EnumerableSplitExtensions
     /// <param name="source">The IEnumerable to be split.</param>
     /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
     /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
     {
         ICollection<T> list = source as ICollection<T> ?? source.ToArray();
