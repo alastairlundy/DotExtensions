@@ -63,7 +63,7 @@ public static class EnumerableSplitExtensions
     /// <param name="maxCount">The number of items allowed in each IEnumerable.</param>
     /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
     /// <returns>An IEnumerable of IEnumerables split by the maximum number of items allowed in each IEnumerable.</returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentException">Thrown if the IEnumerable to be split is empty.</exception>
     public static IEnumerable<IEnumerable<T>> SplitByCount<T>(this IEnumerable<T> source, int maxCount)
     {
         int currentEnumerableCount = 0;
