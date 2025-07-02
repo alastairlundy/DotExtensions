@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,6 +39,7 @@ public static class EnumerableAddExtensions
     /// <param name="source">The sequence to add items to.</param>
     /// <param name="item">The element to add to the sequence.</param>
     /// <typeparam name="T">The type of element in the sequence and item being added.</typeparam>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static void Add<T>(this IEnumerable<T> source, T item)
     {
         if (source is ICollection<T> collection)
