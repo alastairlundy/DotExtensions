@@ -46,9 +46,7 @@ public static class EnumerableSplitExtensions
         ICollection<T> list = source as ICollection<T> ?? source.ToArray();
         
         if (list.Any() == false)
-        {
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
-        }
         
         double itemsPerThread = list.Count / Convert.ToDouble(Environment.ProcessorCount);
         
