@@ -78,14 +78,10 @@ public static class SegmentLinqExtensions
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
-            return target[0];
-        }
-        else
-        {
+        if (target.Length < 1)
             return null;
-        }
+
+        return target[0];
     }
 
     /// <summary>
@@ -115,16 +111,14 @@ public static class SegmentLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char Last(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
+        if (target.Length < 1)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+
 #if NET6_0_OR_GREATER
             return target[^1];
 #else
-                return target[target.Length - 1];
+        return target[target.Length - 1];
 #endif
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
     
     /// <summary>
@@ -149,18 +143,16 @@ public static class SegmentLinqExtensions
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
-#if NET6_0_OR_GREATER
-            return target[^1];
-#else
-                return target[target.Length - 1];
-#endif
-        }
-        else
+        if (target.Length < 1)
         {
             return null;
         }
+        
+#if NET6_0_OR_GREATER || NETSTANDARD2_1
+        return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
 
     /// <summary>
