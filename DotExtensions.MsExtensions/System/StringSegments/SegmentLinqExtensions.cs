@@ -196,19 +196,16 @@ public static class SegmentLinqExtensions
     /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
     public static bool Any(this StringSegment target, Func<char, bool> predicate)
     {
-        for(int index = 0; index < target.Length; index++)
-        {
-            char c = target[index];
-                
-            bool result = predicate.Invoke(c);
+        IEnumerable<bool> groups = (from c in target.ToCharArray()
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-            if (result)
-            {
-                return true;
-            }
-        }
+        bool? result = groups.FirstOrDefault();
 
-        return false;
+        return result ?? false;
     }
 
     /// <summary>
