@@ -60,12 +60,13 @@ public static class SegmentLinqExtensions
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char First(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int i = 0; i < target.Length; i++)
+        IEnumerable<char> results = (from c in target.ToCharArray()
+            where predicate.Invoke(c)
+            select c);
+
+        foreach (char result in results)
         {
-            if (predicate.Invoke(target[i]))
-            {
-                return target[i];
-            }
+            return result;
         }
         
         throw new ArgumentException(Resources.Exceptions_StringSegment_NoPredicateMatches);
