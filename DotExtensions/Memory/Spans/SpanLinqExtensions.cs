@@ -24,7 +24,8 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
@@ -327,27 +328,91 @@ public static class SpanLinqExtensions
 
         return false;
     }
+
     
     /// <summary>
-    /// Returns whether all items in a Span match the predicate condition.
+    /// 
     /// </summary>
-    /// <param name="target">The span to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
-    /// <typeparam name="T">The type of items stored in the span.</typeparam>
-    /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
-    public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
+    /// <param name="source"></param>
+    /// <param name="keySelector"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static Span<TResult> Select<TSource, TResult>(
+        [NotNull] this Span<TSource> source, [NotNull] Func<TSource, TResult> keySelector)
     {
-        for (int index = 0; index < target.Length; index++)
+        TResult[] array = new  TResult[source.Length];
+        
+        for (int index = 0; index < source.Length; index++)
         {
-            T item = target[index];
+            TSource item = source[index];
+            TResult res = keySelector.Invoke(item);
 
-            bool result = predicate.Invoke(item);
-                
-            if (result == false)
+            array[index] = res;
+        }
+
+        return new Span<TResult>(array);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> Distinct<T>(this Span<T> source)
+    {
+        HashSet<T> set = new(capacity: source.Length);
+
+        foreach (T item in source)
+        {
+            set.Add(item);
+        }
+        
+        return new Span<T>(set.ToArray());
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="comparer"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T> comparer)
+    {
+        HashSet<T> set = new(capacity: source.Length, comparer: comparer);
+
+        foreach (T item in source)
+        {
+            set.Add(item);
+        }
+        
+        return new Span<T>(set.ToArray());
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="predicate"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <returns></returns>
+    public static int Count<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+    {
+        int count = 0;
+
+        foreach (TSource item in source)
+        {
+            if (predicate.Invoke(item))
             {
-                return false;
+                count++;
             }
         }
+        
+        return count;
+    }
+    
 
         return true;
     }
