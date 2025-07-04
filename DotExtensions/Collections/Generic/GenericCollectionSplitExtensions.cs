@@ -31,12 +31,12 @@ namespace AlastairLundy.DotExtensions.Collections.Generic;
 public static class GenericCollectionSplitExtensions
 {
     /// <summary>
-    /// 
+    /// Splits an <see cref="ICollection{T}"/> into a collection of collections by the CPU thread count.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The collection to be split.</param>
+    /// <typeparam name="T">The type of item stored in the source collection.</typeparam>
+    /// <returns>An <see cref="ICollection{T}"/> of collections split by the number of threads the CPU has.</returns>
+    /// <exception cref="ArgumentException">Thrown if the collection to be split is empty.</exception>
     public static ICollection<ICollection<T>> SplitByProcessorCount<T>(this ICollection<T> source)
     {
         if (source.Count == 0)
@@ -50,12 +50,12 @@ public static class GenericCollectionSplitExtensions
     }
     
     /// <summary>
-    /// 
+    /// Splits an <see cref="IList{T}"/> into a list of lists by the CPU thread count.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The IList to be split.</param>
+    /// <typeparam name="T">The type of item stored in the source IList.</typeparam>
+    /// <returns>An <see cref="IList{T}"/> of ILists split by the number of threads the CPU has.</returns>
+    /// <exception cref="ArgumentException">Thrown if the IList to be split is empty.</exception>
     public static IList<IList<T>> SplitByProcessorCount<T>(this IList<T> source)
     {
         if (source.Count == 0)
@@ -69,13 +69,13 @@ public static class GenericCollectionSplitExtensions
     }
 
     /// <summary>
-    /// 
+    /// Splits an <see cref="ICollection{T}"/> based on the maximum number of items allowed in each collection. 
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="maxCount"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The collection to be split.</param>
+    /// <param name="maxCount">The number of items allowed in each collection.</param>
+    /// <typeparam name="T">The type of item stored in the source collection.</typeparam>
+    /// <returns>An <see cref="ICollection{T}"/> of collections split by the maximum number of items allowed in each collection.</returns>
+    /// <exception cref="ArgumentException">Thrown if the collection to be split is empty.</exception>
     public static ICollection<ICollection<T>> SplitByCount<T>(this ICollection<T> source, int maxCount)
     {
         if (source.Count == 0)
@@ -107,13 +107,13 @@ public static class GenericCollectionSplitExtensions
     }
     
     /// <summary>
-    /// 
+    /// Splits an <see cref="IList{T}"/> based on the maximum number of items allowed in each IList. 
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="maxCount"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="source">The IList to be split.</param>
+    /// <param name="maxCount">The number of items allowed in each IList.</param>
+    /// <typeparam name="T">The type of item stored in the source IList.</typeparam>
+    /// <returns>An <see cref="IList{T}"/> of ILists split by the maximum number of items allowed in each IList.</returns>
+    /// <exception cref="ArgumentException">Thrown if the IList to be split is empty.</exception>
     public static IList<IList<T>> SplitByCount<T>(this IList<T> source, int maxCount)
     {
         if (source.Count == 0)
