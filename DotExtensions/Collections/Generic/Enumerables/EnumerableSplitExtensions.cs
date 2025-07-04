@@ -41,14 +41,13 @@ public static class EnumerableSplitExtensions
     /// <param name="source">The IEnumerable to be split.</param>
     /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
     /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
     {
         ICollection<T> list = source as ICollection<T> ?? source.ToArray();
         
-        if (list.Count == 0)
-        {
+        if (list.Any() == false)
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
-        }
         
         double itemsPerThread = list.Count / Convert.ToDouble(Environment.ProcessorCount);
         
@@ -64,26 +63,19 @@ public static class EnumerableSplitExtensions
     /// <param name="maxCount">The number of items allowed in each IEnumerable.</param>
     /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
     /// <returns>An IEnumerable of IEnumerables split by the maximum number of items allowed in each IEnumerable.</returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentException">Thrown if the IEnumerable to be split is empty.</exception>
     public static IEnumerable<IEnumerable<T>> SplitByCount<T>(this IEnumerable<T> source, int maxCount)
     {
-        ICollection<T> items = source as ICollection<T> ?? source.ToArray();
-
-        if (items.Count == 0)
-        {
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
-        }
-
-        if (items.Count <= maxCount)
-            return [[..items]];
-        
         int currentEnumerableCount = 0;
             
         List<List<T>> outputList = new List<List<T>>();
         List<T> currentList = new List<T>();
-        
-        foreach (T item in items)
+
+        int sourceCount = 0;
+        foreach (T item in source)
         {
+            sourceCount++;
+            
             if (currentEnumerableCount < maxCount)
             {
                 currentList.Add(item);
@@ -95,6 +87,9 @@ public static class EnumerableSplitExtensions
                 currentEnumerableCount = 0;
             }
         }
+        
+        if(outputList.Any() == false && sourceCount == 0)
+            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
 
         return outputList;
     }
