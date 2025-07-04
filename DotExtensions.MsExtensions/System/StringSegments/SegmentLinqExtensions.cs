@@ -60,12 +60,13 @@ public static class SegmentLinqExtensions
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char First(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int i = 0; i < target.Length; i++)
+        IEnumerable<char> results = (from c in target.ToCharArray()
+            where predicate.Invoke(c)
+            select c);
+
+        foreach (char result in results)
         {
-            if (predicate.Invoke(target[i]))
-            {
-                return target[i];
-            }
+            return result;
         }
         
         throw new ArgumentException(Resources.Exceptions_StringSegment_NoPredicateMatches);
@@ -78,14 +79,10 @@ public static class SegmentLinqExtensions
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
-            return target[0];
-        }
-        else
-        {
+        if (target.Length < 1)
             return null;
-        }
+
+        return target[0];
     }
 
     /// <summary>
@@ -96,14 +93,15 @@ public static class SegmentLinqExtensions
     /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int i = 0; i < target.Length; i++)
-        {
-            if (predicate.Invoke(target[i]))
-            {
-                return target[i];
-            }
-        }
+        IEnumerable<char> results = (from c in target.ToCharArray()
+            where predicate.Invoke(c)
+            select c);
 
+        foreach (char result in results)
+        {
+            return result;
+        }
+        
         return null;
     }
 
@@ -115,16 +113,14 @@ public static class SegmentLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char Last(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
+        if (target.Length < 1)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+
 #if NET6_0_OR_GREATER
             return target[^1];
 #else
-                return target[target.Length - 1];
+        return target[target.Length - 1];
 #endif
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
     
     /// <summary>
@@ -136,10 +132,7 @@ public static class SegmentLinqExtensions
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char Last(this StringSegment target, Func<char, bool> predicate)
     {
-        StringSegment newTarget = target;
-        newTarget.Reverse();
-
-        return First(newTarget, predicate);
+        return First(target.Reverse(), predicate);
     }
         
     /// <summary>
@@ -149,18 +142,16 @@ public static class SegmentLinqExtensions
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
-#if NET6_0_OR_GREATER
-            return target[^1];
-#else
-                return target[target.Length - 1];
-#endif
-        }
-        else
+        if (target.Length < 1)
         {
             return null;
         }
+        
+#if NET6_0_OR_GREATER || NETSTANDARD2_1
+        return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
 
     /// <summary>
@@ -171,10 +162,7 @@ public static class SegmentLinqExtensions
     /// <returns>The last character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        StringSegment newTarget = target;
-        newTarget.Reverse();
-            
-        return FirstOrDefault(newTarget, predicate);
+        return FirstOrDefault(target.Reverse(), predicate);
     }
     
     /// <summary>
@@ -186,11 +174,19 @@ public static class SegmentLinqExtensions
     public static StringSegment Reverse(this StringSegment target)
     {
         if (target.Length > 0 == false)
-        {
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
-        }
         
-        return new StringSegment(string.Join("", target.ToCharArray().Reverse()));
+        char[] array = target.ToCharArray();
+        IEnumerable<int> indexes = Enumerable.Range(0, array.Length);
+        
+        IEnumerable<char> reversedEnumerable = (from c in array
+                join i in indexes
+                    on c equals array[i]
+                orderby i descending 
+                select c
+            );
+        
+        return new StringSegment(string.Join("", reversedEnumerable));
     }
     
     /// <summary>
@@ -201,19 +197,16 @@ public static class SegmentLinqExtensions
     /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
     public static bool Any(this StringSegment target, Func<char, bool> predicate)
     {
-        for(int index = 0; index < target.Length; index++)
-        {
-            char c = target[index];
-                
-            bool result = predicate.Invoke(c);
+        IEnumerable<bool> groups = (from c in target.ToCharArray()
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-            if (result)
-            {
-                return true;
-            }
-        }
+        bool? result = groups.FirstOrDefault();
 
-        return false;
+        return result ?? false;
     }
 
     /// <summary>
@@ -258,18 +251,12 @@ public static class SegmentLinqExtensions
     /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
     public static bool All(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int index = 0; index < target.Length; index++)
-        {
-            char c = target[index];
-                
-            bool result = predicate.Invoke(c);
+        IEnumerable<bool> groups = (from c in target.ToCharArray()
+                group c by predicate.Invoke(c)
+                into g
+                    select g.Any()
+            );
 
-            if (result == false)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return groups.Distinct().Count() == 1;
     }
 }

@@ -92,7 +92,7 @@ public static class EnumerableRemoveExtensions
             return GenericCollectionRemoveExtensions.RemoveAt(collection, index);
         }
         #endregion
-            
+        
         IList<T> enumerable = source.ToList();
             
         enumerable.RemoveAt(index);

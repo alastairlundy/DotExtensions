@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -113,7 +114,11 @@ public static class GenericCollectionIndexExtensions
     /// <typeparam name="T">The type of the object in the collection.</typeparam>
     /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, out int? index)
+    public static bool TryGetIndexOf<T>(this ICollection<T> collection, T item, 
+       #if NET5_0_OR_GREATER
+        [NotNullWhen(returnValue: true)]
+        #endif
+        out int? index)
     {
         try
         {
