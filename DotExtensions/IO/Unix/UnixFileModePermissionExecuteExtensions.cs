@@ -47,6 +47,7 @@ public static class UnixFileModePermissionExecuteExtensions
     {
         return mode.HasExecutePermission();
     }
+    
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>

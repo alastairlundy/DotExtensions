@@ -247,18 +247,16 @@ public static class SpanLinqExtensions
     /// <returns>The last element of the span, or null if the span is empty.</returns>
     public static T? LastOrDefault<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-#if NET6_0_OR_GREATER
-            return target[^1];
-#else
-                return target[target.Length - 1];
-#endif
-        }
-        else
+        if (target.Length != 1)
         {
             return default;
         }
+        
+#if NET6_0_OR_GREATER
+        return target[^1];
+#else
+                return target[target.Length - 1];
+#endif
     }
     
 
