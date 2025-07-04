@@ -250,18 +250,12 @@ public static class SegmentLinqExtensions
     /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
     public static bool All(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int index = 0; index < target.Length; index++)
-        {
-            char c = target[index];
-                
-            bool result = predicate.Invoke(c);
+        IEnumerable<bool> groups = (from c in target.ToCharArray()
+                group c by predicate.Invoke(c)
+                into g
+                    select g.Any()
+            );
 
-            if (result == false)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return groups.Distinct().Count() == 1;
     }
 }
