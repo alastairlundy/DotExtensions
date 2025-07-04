@@ -8,22 +8,18 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.3.0</Version>
+        <Version>7.4.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 7.2.x
+        <PackageReleaseNotes>## Changes
 
 ## 🚀 Features
-
-- Add StringSegment ``First``, ``FirstOrDefault``, ``Last``, and ``LastOrDefault`` predicate overloads @alastairlundy (#52)
-- add StringSegment ``Reverse`` extension method @alastairlundy (#51)
-- Deprecate StringSegment ``ToEnumerable`` method - Added ``AsEnumerable``to be used instead. @alastairlundy (#49)
-- Add StringSegment ``FirstOrDefault`` and ``LastOrDefault`` extension methods @alastairlundy (#47)
-- Add StringSegment ``Where`` and ``Count`` extension methods @alastairlundy (#45)
-</PackageReleaseNotes>
+- Improve StringSegment LINQ style extension method performance by using LINQ queries where possible @alastairlundy (#56)
+- Add StringSegment ``Split(StringSegment, StringSegment)``  @alastairlundy (#55)
+- Add StringSegment ``IndexOf(StringSegment, StringSegment)`` and ``IndicesOf(StringSegment, StringSegment`` @alastairlundy (#54)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>

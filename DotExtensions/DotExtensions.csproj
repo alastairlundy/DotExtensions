@@ -12,8 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 7.3.0
-Add Unix File Permission Notation string extension methods @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/53)</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+
+## 🚀 Features
+
+- Add ICollection\&lt;T&gt; and IList\&lt;T&gt; ``SplitByProcessorCount`` and ICollection\&lt;T&gt; and IList&lt;T&gt; ``SplitByCount`` extension methods @alastairlundy (#57)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -23,7 +26,7 @@ Add Unix File Permission Notation string extension methods @alastairlundy (https
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.0-preview.1</Version>
+        <Version>7.4.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
