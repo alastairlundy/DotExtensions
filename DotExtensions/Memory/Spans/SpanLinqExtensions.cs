@@ -330,6 +330,14 @@ public static class SpanLinqExtensions
     }
 
     
+    private static Span<IGrouping<TKey, T>> GroupBy<T, TKey>(
+        [NotNull] this Span<T> source,
+        [NotNull] Func<T, TKey> keySelector)
+    {
+       return new Span<IGrouping<TKey, T>>(source.AsEnumerable()
+           .GroupBy(keySelector).ToArray());
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -413,7 +421,22 @@ public static class SpanLinqExtensions
         return count;
     }
     
+    /// <summary>
+    /// Returns whether all items in a Span match the predicate condition.
+    /// </summary>
+    /// <param name="target">The span to be searched.</param>
+    /// <param name="predicate">The predicate func to be invoked on each item in the Span.</param>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
+    public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
+    {      
+        Span<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-        return true;
+        return groups.Distinct().Length ==  1;
     }
 }
