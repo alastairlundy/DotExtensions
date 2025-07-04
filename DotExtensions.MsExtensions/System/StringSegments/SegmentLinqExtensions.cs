@@ -92,14 +92,15 @@ public static class SegmentLinqExtensions
     /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        for (int i = 0; i < target.Length; i++)
-        {
-            if (predicate.Invoke(target[i]))
-            {
-                return target[i];
-            }
-        }
+        IEnumerable<char> results = (from c in target.ToCharArray()
+            where predicate.Invoke(c)
+            select c);
 
+        foreach (char result in results)
+        {
+            return result;
+        }
+        
         return null;
     }
 
