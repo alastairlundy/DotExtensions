@@ -130,10 +130,7 @@ public static class SegmentLinqExtensions
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char Last(this StringSegment target, Func<char, bool> predicate)
     {
-        StringSegment newTarget = target;
-        newTarget.Reverse();
-
-        return First(newTarget, predicate);
+        return First(target.Reverse(), predicate);
     }
         
     /// <summary>
@@ -163,10 +160,7 @@ public static class SegmentLinqExtensions
     /// <returns>The last character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        StringSegment newTarget = target;
-        newTarget.Reverse();
-            
-        return FirstOrDefault(newTarget, predicate);
+        return FirstOrDefault(target.Reverse(), predicate);
     }
     
     /// <summary>
