@@ -173,11 +173,19 @@ public static class SegmentLinqExtensions
     public static StringSegment Reverse(this StringSegment target)
     {
         if (target.Length > 0 == false)
-        {
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
-        }
         
-        return new StringSegment(string.Join("", target.ToCharArray().Reverse()));
+        char[] array = target.ToCharArray();
+        IEnumerable<int> indexes = Enumerable.Range(0, array.Length);
+        
+        IEnumerable<char> reversedEnumerable = (from c in array
+                join i in indexes
+                    on c equals array[i]
+                orderby i descending 
+                select c
+            );
+        
+        return new StringSegment(string.Join("", reversedEnumerable));
     }
     
     /// <summary>
