@@ -26,7 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using AlastairLundy.DotExtensions.Collections.Generic.Pairs.KeyValuePairs;
 using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -329,23 +331,51 @@ public static class SpanLinqExtensions
         return false;
     }
 
-    
-    private static Span<IGrouping<TKey, T>> GroupBy<T, TKey>(
-        [NotNull] this Span<T> source,
-        [NotNull] Func<T, TKey> keySelector)
-    {
-       return new Span<IGrouping<TKey, T>>(source.AsEnumerable()
-           .GroupBy(keySelector).ToArray());
-    }
-
     /// <summary>
     /// 
     /// </summary>
     /// <param name="source"></param>
     /// <param name="keySelector"></param>
-    /// <typeparam name="TSource"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TElement"></typeparam>
     /// <returns></returns>
+    public static Span<IGrouping<TKey, TElement>> GroupBy<TKey, TElement>(
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        this Span<TElement> source,
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        Func<TElement, TKey> keySelector)
+    {
+        Dictionary<TKey, List<TElement>> dictionary = new();
+
+        foreach (TElement item in source)
+        {
+            TKey key = keySelector.Invoke(item);
+
+#if NET5_0_OR_GREATER
+             if(dictionary.TryAdd(key, item))
+#else
+            if (dictionary.ContainsKey(key))
+#endif
+            {
+                dictionary[key].Add(item);
+            }
+            else
+            {
+                dictionary.Add(key, new List<TElement>());
+                dictionary[key].Add(item);
+            }
+        }
+
+        IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
+            select new GroupByEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+        
+        return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
+    }
+
     public static Span<TResult> Select<TSource, TResult>(
         [NotNull] this Span<TSource> source, [NotNull] Func<TSource, TResult> keySelector)
     {
