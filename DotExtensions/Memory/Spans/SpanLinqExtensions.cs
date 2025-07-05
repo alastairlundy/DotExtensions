@@ -347,7 +347,7 @@ public static class SpanLinqExtensions
 #if NET5_0_OR_GREATER
         [NotNull]
 #endif
-        Func<TElement, TKey> keySelector)
+        Func<TElement, TKey> keySelector) where TKey : notnull
     {
         Dictionary<TKey, List<TElement>> dictionary = new();
 
