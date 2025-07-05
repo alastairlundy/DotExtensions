@@ -354,12 +354,8 @@ public static class SpanLinqExtensions
         foreach (TElement item in source)
         {
             TKey key = keySelector.Invoke(item);
-
-#if NET5_0_OR_GREATER
-             if(dictionary.TryAdd(key, item))
-#else
+            
             if (dictionary.ContainsKey(key))
-#endif
             {
                 dictionary[key].Add(item);
             }
