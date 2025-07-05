@@ -376,6 +376,13 @@ public static class SpanLinqExtensions
         return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
     }
 
+    /// <summary>
+    /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
+    /// </summary>
+    /// <param name="first">The first Span to search.</param>
+    /// <param name="second">The second Span to search.</param>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
     public static Span<TResult> Select<TSource, TResult>(
 #if NET5_0_OR_GREATER
         [NotNull]
