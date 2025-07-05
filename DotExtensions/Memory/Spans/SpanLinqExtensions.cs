@@ -377,7 +377,14 @@ public static class SpanLinqExtensions
     }
 
     public static Span<TResult> Select<TSource, TResult>(
-        [NotNull] this Span<TSource> source, [NotNull] Func<TSource, TResult> keySelector)
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        this Span<TSource> source,
+#if NET5_0_OR_GREATER
+[NotNull]
+#endif
+        Func<TSource, TResult> keySelector)
     {
         TResult[] array = new  TResult[source.Length];
         
@@ -400,8 +407,11 @@ public static class SpanLinqExtensions
     /// <returns></returns>
     public static Span<T> Distinct<T>(this Span<T> source)
     {
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
         HashSet<T> set = new(capacity: source.Length);
-
+#else
+        HashSet<T> set = new();
+#endif
         foreach (T item in source)
         {
             set.Add(item);
@@ -409,7 +419,7 @@ public static class SpanLinqExtensions
         
         return new Span<T>(set.ToArray());
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -419,8 +429,12 @@ public static class SpanLinqExtensions
     /// <returns></returns>
     public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T> comparer)
     {
+#if NET5_0_OR_GREATER || NETSTANDARD2_1
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);
+#else
+        HashSet<T> set = new(comparer: comparer);
 
+#endif
         foreach (T item in source)
         {
             set.Add(item);
