@@ -12,11 +12,15 @@ An extension method library that enhances the experience of using .NET's types w
 * [License](#license)
 
 ## Features
-* Support for comparing versions 
+* Brings LINQ style extension methods to Span<T> and StringSegment ^1
+* A number of IEnumerable<T>, ICollection<T>, and IList<T> extension methods including ``AddRange``, ``GetRange``, ``RemoveRange`` and more.
+* Empty directory detection via ``IsDirectoryEmpty`` extension method for the ``DirectoryInfo`` class.
+* Support for comparing versions via easy to understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
 * DateTime and DateOnly extensions e.g. DateOnly's ToDateTime extension
 * Support for Detecting and Removing Special Characters
 * Support for Detecting and Removing Escape Characters
-* Counting dots in strings.
+
+^1 - StringSegment extensions are part of the ``AlastairLundy.DotExtensions.MsExtensions`` package.
 
 ## How to install and use DotExtensions
 DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
