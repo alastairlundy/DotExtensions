@@ -128,12 +128,10 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T First<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-            return target[0];
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        if (target.Length < 1)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        
+        return target[0];
     }
     
     /// <summary>
@@ -166,14 +164,7 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-            return target[0];
-        }
-        else
-        {
-            return default;
-        }
+        return target.Length == 1 ? target[0] : default;
     }
     
     /// <summary>
@@ -208,16 +199,14 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T Last<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
+        if (target.Length != 1)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+
 #if NET6_0_OR_GREATER
             return target[^1];
 #else
-                return target[target.Length - 1];
+        return target[target.Length - 1];
 #endif
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
     
     /// <summary>
