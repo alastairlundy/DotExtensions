@@ -43,12 +43,10 @@ public static class SegmentLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char First(this StringSegment target)
     {
-        if (target.Length >= 1)
-        {
-            return target[0];
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        if (target.Length < 1)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        
+        return target[0];
     }
 
     /// <summary>
