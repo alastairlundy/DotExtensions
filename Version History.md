@@ -7,6 +7,7 @@
 ### 7.4
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.4.1 | July 6th 2025 | Main package only |
 | 7.4.0 | July 4th 2025 | |
 | 7.4.0 Preview 1 | June 28th 2025 | |
 
