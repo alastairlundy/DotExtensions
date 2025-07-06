@@ -28,6 +28,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Localizations;
+
 using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
