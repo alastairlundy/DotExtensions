@@ -324,13 +324,13 @@ public static class SpanLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Groups the elements of the source span by a specified key selector function.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="keySelector"></param>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TElement"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source span to group elements from.</param>
+    /// <param name="keySelector">A function to extract the key for each element.</param>
+    /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
+    /// <typeparam name="TElement">The type of elements in the source span.</typeparam>
+    /// <returns>A span of groups, each containing a key and the elements that share that key.</returns>
     public static Span<IGrouping<TKey, TElement>> GroupBy<TKey, TElement>(
 #if NET5_0_OR_GREATER
         [NotNull]
@@ -395,11 +395,11 @@ public static class SpanLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns a new span containing distinct elements from the source span, using the default equality comparer.
     /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source span from which to extract distinct elements.</param>
+    /// <typeparam name="T">The type of elements in the source span.</typeparam>
+    /// <returns>A span containing the distinct elements from the source span.</returns>
     public static Span<T> Distinct<T>(this Span<T> source)
     {
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
@@ -416,12 +416,12 @@ public static class SpanLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Returns a new span containing distinct elements from the source span, using the specified equality comparer.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="comparer"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The source span from which to extract distinct elements.</param>
+    /// <param name="comparer">The equality comparer to use for comparing elements.</param>
+    /// <typeparam name="T">The type of elements in the source span.</typeparam>
+    /// <returns>A span containing the distinct elements from the source span.</returns>
     public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T> comparer)
     {
 #if NET5_0_OR_GREATER || NETSTANDARD2_1
