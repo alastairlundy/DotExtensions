@@ -319,17 +319,16 @@ public static class SpanLinqExtensions
     /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
     public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
     {
-        foreach (T item in target)
-        {
-            bool result = predicate.Invoke(item);
+        Span<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-            if (result)
-            {
-                return true;
-            }
-        }
+        bool? result = groups.FirstOrDefault();
 
-        return false;
+        return result ?? false;
     }
 
     /// <summary>
