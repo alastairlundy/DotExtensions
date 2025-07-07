@@ -14,6 +14,7 @@
 ### 7.3
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.3.1 | July 6th 2025 | Main package only |
 | 7.3.0 | June 25th 2025 | |
 
 ### 7.2
