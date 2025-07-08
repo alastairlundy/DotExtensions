@@ -24,14 +24,11 @@
 
 
 using System;
-#if NET8_0_OR_GREATER
 using System.IO;
-#endif
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
-#if NET8_0_OR_GREATER
-
+#if NET7_0_OR_GREATER || UnixFileModeAvailable
 /// <summary>
 /// 
 /// </summary>
