@@ -12,11 +12,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
-
-## 🐛 Bug Fixes
-
-- Fix issues with Span ``First``, ``FirstOrDefault``, ``Last``, and ``LastOrDefault`` methods @alastairlundy (#58)</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes
+* Add Span ``Distinct``, ``Count``, and ``GroupBy`` extension methods @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/59)
+* Added support for enabling UnixFileMode extensions with a conditional compilation statement ``UnixFileModeAvailable``. If Polyfill 8.5.1 or newer is used, enable this conditional compilation statement for access to the UnixFileMode extension methods.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +24,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.1</Version>
+        <Version>7.5.0-preview.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
