@@ -87,7 +87,7 @@ public static class ProcessWaitForExitAsyncExtensions
 
                     if (endProcessAtTimeout)
                     {
-                        process.Close();
+                        process.Kill();
                     }
                     else
                     {
