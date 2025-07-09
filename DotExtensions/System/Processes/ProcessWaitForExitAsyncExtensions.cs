@@ -27,11 +27,17 @@ using System.Diagnostics;
 
 using System.Threading;
 using System.Threading.Tasks;
+using AlastairLundy.DotPrimitives.Processes;
+using AlastairLundy.DotPrimitives.Processes.Policies;
+
 // ReSharper disable AsyncVoidLambda
 // ReSharper disable RedundantJumpStatement
 
 namespace AlastairLundy.DotExtensions.Processes;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ProcessWaitForExitAsyncExtensions
 {
         
@@ -60,9 +66,28 @@ public static class ProcessWaitForExitAsyncExtensions
     /// expires before the process exits.</param>
     /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
     /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process,
         TimeSpan timeout,
         bool endProcessAtTimeout = false,
+        CancellationToken cancellationToken = default)
+    {
+        ProcessCancellationMode cancellationMode =
+            endProcessAtTimeout ? ProcessCancellationMode.Forceful : ProcessCancellationMode.Graceful;
+        
+        await WaitForExitAsync(process, timeout, cancellationMode, cancellationToken);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="process"></param>
+    /// <param name="timeout"></param>
+    /// <param name="cancellationMode"></param>
+    /// <param name="cancellationToken"></param>
+    public static async Task WaitForExitAsync(this Process process,
+        TimeSpan timeout,
+        ProcessCancellationMode cancellationMode,
         CancellationToken cancellationToken = default)
     {
         Task processTask = new Task(async () =>
@@ -78,16 +103,20 @@ public static class ProcessWaitForExitAsyncExtensions
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
             stopWatch.Start();
-
+            
             while (stopWatch.IsRunning && process.IsRunning())
             {
                 if (stopWatch.Elapsed > timeout)
                 {
                     stopWatch.Stop();
 
-                    if (endProcessAtTimeout)
+                    if (cancellationMode == ProcessCancellationMode.Forceful)
                     {
-                        process.Close();
+#if NET5_0_OR_GREATER
+                        process.Kill(true);
+#else
+                        process.Kill();
+#endif
                     }
                     else
                     {
@@ -112,6 +141,19 @@ public static class ProcessWaitForExitAsyncExtensions
             
         await timeoutTask;
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="process"></param>
+    /// <param name="timeoutPolicy"></param>
+    /// <param name="cancellationToken"></param>
+    public static async Task WaitForExitAsync(this Process process,
+        ProcessTimeoutPolicy timeoutPolicy,
+        CancellationToken cancellationToken = default)
+    {
+        await WaitForExitAsync(process, timeoutPolicy.TimeoutThreshold, timeoutPolicy.CancellationMode, cancellationToken);
+    }
 
     /// <summary>
     /// Waits for the specified process to exit.
@@ -121,6 +163,7 @@ public static class ProcessWaitForExitAsyncExtensions
     /// <param name="endProcessAtTimeout">Whether the process should be ended when it times out. Default is false (wait).</param>
     /// <param name="cancellationToken">A cancellation token that determines whether the operation
     /// should continue to run or be cancelled.</param>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
         bool endProcessAtTimeout = false,
         CancellationToken cancellationToken = default)
