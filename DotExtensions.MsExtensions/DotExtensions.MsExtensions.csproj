@@ -8,18 +8,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.0</Version>
+        <Version>7.4.2</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes
-
-## 🚀 Features
-- Improve StringSegment LINQ style extension method performance by using LINQ queries where possible @alastairlundy (#56)
-- Add StringSegment ``Split(StringSegment, StringSegment)``  @alastairlundy (#55)
-- Add StringSegment ``IndexOf(StringSegment, StringSegment)`` and ``IndicesOf(StringSegment, StringSegment`` @alastairlundy (#54)</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 7.4.0
+* Update Microsoft.Extensions.Primitives dependency from 9.0.6 to 9.0.7</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -31,7 +27,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.6" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.7" />
     </ItemGroup>
 
 
