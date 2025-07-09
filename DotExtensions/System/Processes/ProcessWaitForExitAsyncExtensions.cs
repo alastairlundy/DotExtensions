@@ -44,7 +44,7 @@ public static class ProcessWaitForExitAsyncExtensions
         /// cancelled.</param>
         private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
         {
-            Task task = new Task(process.WaitForExit);
+            Task task = new Task(process.WaitForExit, cancellationToken);
             
             task.Start();
             
@@ -87,7 +87,11 @@ public static class ProcessWaitForExitAsyncExtensions
 
                     if (endProcessAtTimeout)
                     {
+#if NET5_0_OR_GREATER
+                        process.Kill(true);
+#else
                         process.Kill();
+#endif
                     }
                     else
                     {
