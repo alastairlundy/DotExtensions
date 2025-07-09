@@ -73,4 +73,5 @@ public static class UnixFileModePermissionExecuteExtensions
                mode.HasFlag(UnixFileMode.OtherRead);
     }
 }
+
 #endif
