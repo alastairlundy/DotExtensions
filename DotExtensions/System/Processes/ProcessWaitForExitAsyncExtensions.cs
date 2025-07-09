@@ -120,6 +120,7 @@ public static class ProcessWaitForExitAsyncExtensions
                     }
                     else
                     {
+                        process.CloseMainWindow();
                         cancellationToken = new CancellationToken(true);
                     }
                         
