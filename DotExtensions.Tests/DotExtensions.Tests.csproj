@@ -1,19 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFrameworks>net472;net8.0;net9.0;</TargetFrameworks>
         <OutputType>Exe</OutputType>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>13</LangVersion>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <AssemblyName>DotExtensions.Tests</AssemblyName>
         <RootNamespace>DotExtensions.Tests</RootNamespace>
+        <UnixFileModeAvailable>true</UnixFileModeAvailable>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Bogus" Version="35.6.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageReference Include="Polyfill" Version="8.5.1" PrivateAssets="All">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="xunit.v3" Version="1.1.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2">
           <PrivateAssets>all</PrivateAssets>
@@ -33,5 +39,4 @@
     <ItemGroup>
       <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
     </ItemGroup>
-
 </Project>
