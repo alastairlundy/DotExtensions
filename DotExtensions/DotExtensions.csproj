@@ -12,7 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>Fix conditional compilation with ``UnixFileModeAvailable``</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.5.0 Preview 1.1
+* Add WaitForExitAsync overload support for CancellationMode and ProcessTimeoutPolicy @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/60)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,7 +23,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.5.0-preview.1.1</Version>
+        <Version>7.5.0-preview.2</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
