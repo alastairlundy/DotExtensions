@@ -77,7 +77,7 @@ public static class ProcessWaitForExitAsyncExtensions
         
         await WaitForExitAsync(process, timeout, cancellationMode, cancellationToken);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -142,7 +142,7 @@ public static class ProcessWaitForExitAsyncExtensions
             
         await timeoutTask;
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
