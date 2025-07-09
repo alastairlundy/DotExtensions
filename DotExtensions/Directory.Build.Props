@@ -1,0 +1,5 @@
+<Project>
+    <PropertyGroup Condition="$(UnixFileModeAvailable) == 'true' ">
+        <DefineConstants>$(DefineConstants);UnixFileModeAvailable</DefineConstants>
+    </PropertyGroup>
+</Project>
