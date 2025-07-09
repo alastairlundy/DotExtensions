@@ -36,7 +36,7 @@ using AlastairLundy.DotPrimitives.Processes.Policies;
 namespace AlastairLundy.DotExtensions.Processes;
 
 /// <summary>
-/// 
+/// Waits for the specified process to exit within the given time span.
 /// </summary>
 public static class ProcessWaitForExitAsyncExtensions
 {
@@ -50,8 +50,7 @@ public static class ProcessWaitForExitAsyncExtensions
         /// cancelled.</param>
         private static async Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = default)
         {
-            Task task = new Task(process.WaitForExit);
-            
+            Task task = new Task(process.WaitForExit, cancellationToken);
             task.Start();
             
             await task;
@@ -79,12 +78,12 @@ public static class ProcessWaitForExitAsyncExtensions
     }
 
     /// <summary>
-    /// 
+    /// Waits for the specified process to exit or for the timeout time, whichever is sooner.
     /// </summary>
-    /// <param name="process"></param>
-    /// <param name="timeout"></param>
-    /// <param name="cancellationMode"></param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="process">The process to wait for.</param>
+    /// <param name="timeout">The timeout timespan to wait for before cancelling.</param>
+    /// <param name="cancellationMode">The cancellation mode to use in case the Process hasn't exited before the timeout time.</param>
+    /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
     public static async Task WaitForExitAsync(this Process process,
         TimeSpan timeout,
         ProcessCancellationMode cancellationMode,
@@ -98,7 +97,13 @@ public static class ProcessWaitForExitAsyncExtensions
         });
             
         processTask.Start();
-            
+
+        if (cancellationMode == ProcessCancellationMode.None)
+        {
+            await processTask;
+            return;
+        }
+        
         Task timeoutTask = new Task(() =>
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
@@ -144,11 +149,12 @@ public static class ProcessWaitForExitAsyncExtensions
     }
 
     /// <summary>
-    /// 
+    /// Waits for the specified process to exit or for the ProcessTimeoutPolicy's timeout time, whichever is sooner.
     /// </summary>
-    /// <param name="process"></param>
-    /// <param name="timeoutPolicy"></param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="process">The process to wait for.</param>
+    /// <param name="timeoutPolicy">The ProcessTimeoutPolicy to use for the process.</param>
+    /// <param name="cancellationToken">A cancellation token that determines whether the operation
+    /// should continue to run or be cancelled.</param>
     public static async Task WaitForExitAsync(this Process process,
         ProcessTimeoutPolicy timeoutPolicy,
         CancellationToken cancellationToken = default)
@@ -157,7 +163,7 @@ public static class ProcessWaitForExitAsyncExtensions
     }
 
     /// <summary>
-    /// Waits for the specified process to exit.
+    /// Waits for the specified process to exit or for the timeout time, whichever is sooner.
     /// </summary>
     /// <param name="process">The process to wait for.</param>
     /// <param name="millisecondTimeout">The number of milliseconds to wait before timing out. If 0, there is no timeout.</param>
