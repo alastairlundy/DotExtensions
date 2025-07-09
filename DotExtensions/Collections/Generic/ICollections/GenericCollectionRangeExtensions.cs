@@ -153,7 +153,7 @@ public static class GenericCollectionRangeExtensions
         }
         #endregion
 
-        IList<T> sourceList = source as IList<T> ?? source.ToArray();
+        IList<T> sourceList = source as IList<T> ?? source.ToList();
 
         foreach (int index in indices)
         {
