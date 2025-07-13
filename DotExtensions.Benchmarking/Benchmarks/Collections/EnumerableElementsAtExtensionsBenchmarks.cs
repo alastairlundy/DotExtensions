@@ -5,12 +5,13 @@ using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using DotExtensions.Benchmarking.Infra.FakeData;
 
 namespace DotExtensions.Benchmarking.Benchmarks.Collections;
 
-//[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [MemoryDiagnoser(true)]
 [CsvMeasurementsExporter]
@@ -38,15 +39,19 @@ public class EnumerableElementsAtExtensionsBenchmarks
         listIndices = fakeEnumerables.Indices(N / 10).ToList();
     }
     
-    [Params(1000)]
-    //, 10_000)]
+    [Params(
+        1_000_000
+    )]
     public int N;
-
+    
     [Benchmark]
-    public IEnumerable<string> DotExtensions_Enumerable_ElementsAt()
+    public void DotExtensions_Enumerable_ElementsAt()
     {
         // ReSharper disable once InvokeAsExtensionMethod
-        return EnumerableElementsAtExtensions.ElementsAt(fakeData2Enumerable, enumerableIndices);
+        IEnumerable<string> results = EnumerableElementsAtExtensions.ElementsAt(fakeData2Enumerable, enumerableIndices);
+
+        Consumer consumer = new Consumer();
+        results.Consume(consumer);
     }
     
     [Benchmark]
