@@ -25,8 +25,6 @@
 using System;
 using System.Collections.Generic;
 
-using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
-
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -47,7 +45,6 @@ public static class EnumerableElementsAtExtensions
     /// <param name="indices">A sequence of indices, where each index corresponds to an element in the source.</param>
     /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
     /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indices)
     {
         if (source is IList<T> list)
