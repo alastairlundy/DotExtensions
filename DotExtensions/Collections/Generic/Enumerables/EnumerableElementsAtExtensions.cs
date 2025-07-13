@@ -55,12 +55,7 @@ public static class EnumerableElementsAtExtensions
 
         if (source is IList<T> list)
         {
-            return IListElementsAtExtensions.ElementsAt(list, indexes);
-        }
-
-        if (source is ICollection<T> collection)
-        {
-            return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
+            return IListElementsAtExtensions.ElementsAt(list, indices);
         }
         
         IList<T> sourceList = source.ToArray();
