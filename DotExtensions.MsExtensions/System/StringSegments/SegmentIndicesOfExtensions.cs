@@ -25,6 +25,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -105,6 +107,64 @@ public static class SegmentIndicesOfExtensions
             StringSegment indexSegment = segment.Subsegment(index, segment.Length);
 
             if (indexSegment.Equals(@this))
+            {
+                indices.Add(index);
+            }
+        }
+
+        if(indices.Count == 0)
+            indices = [-1];
+        
+        return indices;
+    }
+    
+    /// <summary>
+    /// Finds the index of a specified StringSegment within a string.
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>The index at which the specified StringSegment can be found, or -1 if not found.</returns>
+    public static int IndexOf(this string str, StringSegment segment)
+    {
+        if (str.Length < segment.Length || segment.Length == 0)
+            return -1;
+        
+        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x  => x != -1);
+
+        foreach (int index in indexes)
+        {
+            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+
+            if (indexSegment.Equals(str))
+            {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+
+    /// <summary>
+    /// Finds all occurrences of a specified StringSegment within a string.
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>An IEnumerable of Indices for all occurrences of the specified StringSegment within the string; empty if not found within the String Segment.</returns>
+    public static IEnumerable<int> IndicesOf(this string str, StringSegment segment)
+    {
+        List<int> indices = new();
+
+        if (str.Length < segment.Length || segment.Length == 0)
+            return [-1];
+
+        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
+
+        foreach (int index in indexes)
+        {
+            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+
+            if (indexSegment.Equals(str))
             {
                 indices.Add(index);
             }
