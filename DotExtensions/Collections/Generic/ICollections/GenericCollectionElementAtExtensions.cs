@@ -47,7 +47,7 @@ public static class GenericCollectionElementAtExtensions
         {
             return list[index];
         }
-            
+        
         int i = 0;
 
         foreach (T item in source)
@@ -83,8 +83,8 @@ public static class GenericCollectionElementAtExtensions
             return IListElementsAtExtensions.ElementsAt(list, indices);
         }
         #endregion
-            
-        IList<T> sourceList = source as IList<T> ?? source.ToArray();
+
+        IList<T> sourceList = source as IList<T> ?? [..source];
             
         foreach (int index in indices)
         {
