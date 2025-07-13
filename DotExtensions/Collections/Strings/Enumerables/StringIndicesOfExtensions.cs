@@ -37,20 +37,20 @@ public static class StringIndicesOfExtensions
     /// <returns></returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
-        List<int> indices = new List<int>();
+        List<int> output = new List<int>();
         
         for(int i = 0; i < str.Length; i++)
         {
             if (str[i] == c)
             {
-                indices.Add(i);
+                output.Add(i);
             }
         }
 
-        if (indices.Count == 0)
-            indices = [-1];
+        if (output.Count == 0)
+            output = [-1];
         
-        return indices;
+        return output;
     }
 
     /// <summary>
@@ -64,9 +64,9 @@ public static class StringIndicesOfExtensions
         if (str.Length < value.Length || value.Length == 0)
             return -1;
 
-        IEnumerable<int> indexes = str.IndicesOf(value.First()).Where(x => x != -1);
+        IEnumerable<int> indices = str.IndicesOf(value.First()).Where(x => x != -1);
 
-        foreach (int index in indexes)
+        foreach (int index in indices)
         {
             string indexValue = value.Substring(index, value.Length);
 
@@ -87,26 +87,26 @@ public static class StringIndicesOfExtensions
     /// <returns></returns>
     public static IEnumerable<int> IndicesOf(this string str, string value)
     {
-        List<int> indices = new();
-
         if (str.Length < value.Length || value.Length == 0)
             return [-1];
+        
+        List<int> output = new();
+        
+        IEnumerable<int> indices = str.IndicesOf(value.First()).Where(x => x != -1);
 
-        IEnumerable<int> indexes = str.IndicesOf(value.First()).Where(x => x != -1);
-
-        foreach (int index in indexes)
+        foreach (int index in indices)
         {
             string indexValue = value.Substring(index, value.Length);
 
             if (indexValue.Equals(str))
             {
-                indices.Add(index);
+                output.Add(index);
             }
         }
 
-        if(indices.Count == 0)
-            indices = [-1];
+        if(output.Count == 0)
+            output = [-1];
         
-        return indices;
+        return output;
     }
 }
