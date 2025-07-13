@@ -12,10 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 7.4.1
-
-* Fixed an issue where a Process ``WaitForExitAsync`` extension method overload with timeout support wouldn't fully exit the process if the timeout condition was met.
-* Fixed an issue where Process ``WaitForExitAsync`` 's internal .NET Standard 2.0 &amp; 2.1 polyfill method didn't make use of the CancellationToken passed to it.</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.4.2
+* Fixed an issue with ``ContainsEscapeCharacters`` method incorrectly returning false.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,7 +23,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.2</Version>
+        <Version>7.4.3</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
