@@ -30,15 +30,15 @@ namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
 public static class StringIndicesOfExtensions
 {
     /// <summary>
-    /// 
+    /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="c"></param>
-    /// <returns></returns>
+    /// <param name="str">The input string.</param>
+    /// <param name="c">A single character to find in the string.</param>
+    /// <returns>A sequence of indices where the character is found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
         List<int> output = new List<int>();
-        
+
         for(int i = 0; i < str.Length; i++)
         {
             if (str[i] == c)
@@ -53,12 +53,13 @@ public static class StringIndicesOfExtensions
         return output;
     }
 
+    
     /// <summary>
-    /// 
+    /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="str">The input string.</param>
+    /// <param name="value">The substring to find.</param>
+    /// <returns>The index of the found substring if it exists, otherwise -1.</returns>
     public static int IndexOf(this string str, string value)
     {
         if (str.Length < value.Length || value.Length == 0)
@@ -78,13 +79,13 @@ public static class StringIndicesOfExtensions
         
         return -1;
     }
-    
+
     /// <summary>
-    /// 
+    /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="str">The input string.</param>
+    /// <param name="value">The substring to look for.</param>
+    /// <returns>A sequence of indices where the substring is found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, string value)
     {
         if (str.Length < value.Length || value.Length == 0)
