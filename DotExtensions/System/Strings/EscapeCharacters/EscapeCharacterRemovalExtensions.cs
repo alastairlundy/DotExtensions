@@ -56,14 +56,12 @@ public static class EscapeCharacterRemovalExtensions
             {
                 if (str.Contains(escapeChar))
                 {
-                    str =  str.Replace(escapeChar, string.Empty);
-                    
-                    /*IEnumerable<int> indices = str.IndicesOf(escapeChar);
+                    IEnumerable<int> indices = str.IndicesOf(escapeChar);
                 
                     foreach (int index in indices)
                     {
                         str = str.Remove(index, escapeChar.Length);
-                    }*/
+                    }
                 }
             }
         }
