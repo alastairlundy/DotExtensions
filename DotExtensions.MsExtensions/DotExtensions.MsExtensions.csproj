@@ -58,5 +58,10 @@
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
     </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
+    </ItemGroup>
     
 </Project>
