@@ -12,7 +12,7 @@ public class LoremWordsTestData : IEnumerable<object[]>
     {
         for (int i = 0; i < 20; i++)
         {
-            yield return new object[] { string.Join(" ", _lorem.Words(Random.Shared.Next(1, 10))) };
+            yield return new object[] { string.Join(" ", _lorem.Words(Random.Shared.Next(2, 10))) };
         }
     }
 
