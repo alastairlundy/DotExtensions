@@ -143,14 +143,14 @@ public static class SegmentIndicesOfExtensions
 
         return -1;
     }
-    
+
 
     /// <summary>
-    /// 
+    /// Finds all occurrences of a specified StringSegment within a string.
     /// </summary>
-    /// <param name="str"></param>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="str">The string to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>An IEnumerable of Indices for all occurrences of the specified StringSegment within the string; empty if not found within the String Segment.</returns>
     public static IEnumerable<int> IndicesOf(this string str, StringSegment segment)
     {
         List<int> indices = new();
