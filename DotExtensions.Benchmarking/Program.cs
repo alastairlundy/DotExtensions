@@ -5,4 +5,4 @@ using DotExtensions.Benchmarking.Benchmarks.Collections;
 using BenchmarkDotNet.Running;
 
 
-BenchmarkRunner.Run<EnumerableAddRangeExtensionsBenchmarks>();
+BenchmarkRunner.Run<EnumerableElementsAtExtensionsBenchmarks>();
