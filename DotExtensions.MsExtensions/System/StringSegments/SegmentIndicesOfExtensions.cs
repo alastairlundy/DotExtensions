@@ -96,7 +96,7 @@ public static class SegmentIndicesOfExtensions
         List<int> indices = new();
 
         if (@this.Length < segment.Length || segment.Length == 0)
-            indices = [-1];
+            return [-1];
 
         IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x => x != -1);
 
