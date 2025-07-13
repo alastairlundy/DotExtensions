@@ -47,9 +47,9 @@ public static class CharacterConstants
         
     private static readonly string[] EscapeChars = 
 #if NET8_0_OR_GREATER
-        ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b", "\\", @"\NNN", @"\xHH"];
+        ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b",  @"\NNN", @"\xHH", "\\"];
 #else
-            new[] { "\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b", "\\", @"\NNN", @"\xHH"};
+            new[] { "\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b",  @"\NNN", @"\xHH", "\\"};
 
 #endif
         

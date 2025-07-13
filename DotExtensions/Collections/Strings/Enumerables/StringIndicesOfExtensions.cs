@@ -97,11 +97,14 @@ public static class StringIndicesOfExtensions
 
         foreach (int index in indices)
         {
-            string indexValue = value.Substring(index, value.Length);
-
-            if (indexValue.Equals(str))
+            if (index >= 0 && index <= str.Length && (index + value.Length <= str.Length))
             {
-                output.Add(index);
+                string indexValue = str.Substring(index, value.Length);
+
+                if (indexValue.Equals(str))
+                {
+                    output.Add(index);
+                }
             }
         }
 
