@@ -52,6 +52,32 @@ public static class StringIndicesOfExtensions
         
         return indices;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static int IndexOf(this string str, string value)
+    {
+        if (str.Length < value.Length || value.Length == 0)
+            return -1;
+
+        IEnumerable<int> indexes = str.IndicesOf(value.First()).Where(x => x != -1);
+
+        foreach (int index in indexes)
+        {
+            string indexValue = value.Substring(index, value.Length);
+
+            if (indexValue.Equals(str))
+            {
+                return index;
+            }
+        }
+        
+        return -1;
+    }
     
     /// <summary>
     /// 
@@ -64,7 +90,7 @@ public static class StringIndicesOfExtensions
         List<int> indices = new();
 
         if (str.Length < value.Length || value.Length == 0)
-            indices = [-1];
+            return [-1];
 
         IEnumerable<int> indexes = str.IndicesOf(value.First()).Where(x => x != -1);
 
