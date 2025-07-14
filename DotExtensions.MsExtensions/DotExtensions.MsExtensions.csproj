@@ -8,18 +8,17 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.0</Version>
+        <Version>7.5.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes
+        <PackageReleaseNotes>## Changes since 7.4.x
 
-## 🚀 Features
-- Improve StringSegment LINQ style extension method performance by using LINQ queries where possible @alastairlundy (#56)
-- Add StringSegment ``Split(StringSegment, StringSegment)``  @alastairlundy (#55)
-- Add StringSegment ``IndexOf(StringSegment, StringSegment)`` and ``IndicesOf(StringSegment, StringSegment`` @alastairlundy (#54)</PackageReleaseNotes>
+### MsExtensions package
+* Added dependency on DotExtensions main package
+* Added StringSegment ``IndexOf(StringSegment)`` and ``IndicesOf(StringSegment)`` - Enabled through added dependency on DotExtensions main package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
