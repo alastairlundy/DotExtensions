@@ -32,16 +32,14 @@
     <ItemGroup>
       <Folder Include="Memory\" />
     </ItemGroup>
-
-    <PropertyGroup Condition="$(UnixFileModeAvailable) == 'true' ">
-        <DefineConstants>$(DefineConstants);UnixFileModeAvailable</DefineConstants>
-    </PropertyGroup>
     
     <ItemGroup>
       <Content Include="..\README.md">
         <PackagePath>README.md</PackagePath>
         <Link>README.md</Link>
       </Content>
+      <None Remove="DotExtensions.targets" />
+      <Content Include="DotExtensions.targets" />
     </ItemGroup>
     
     <ItemGroup>
