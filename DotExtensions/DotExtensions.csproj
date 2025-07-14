@@ -12,8 +12,12 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 7.4.2
-* Fixed an issue with ``ContainsEscapeCharacters`` method incorrectly returning false.</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 7.4.3
+
+### Main package only
+* Fixed an issue with Escape Character Removal extension method
+* Fixed an issue where the prior fix in 7.4.3 didn't fix Escape Character detection issues in strings.
+* Fixed an issue with UnixFileMode ``HasExecutePermission()`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -23,7 +27,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.4.3</Version>
+        <Version>7.4.4</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
