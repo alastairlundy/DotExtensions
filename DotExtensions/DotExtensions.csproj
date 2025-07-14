@@ -52,8 +52,7 @@
         <PackagePath>README.md</PackagePath>
         <Link>README.md</Link>
       </Content>
-      <None Remove="DotExtensions.targets" />
-      <Content Include="DotExtensions.targets" />
+      <None Include="DotExtensions.targets" />
     </ItemGroup>
     
     <ItemGroup>
