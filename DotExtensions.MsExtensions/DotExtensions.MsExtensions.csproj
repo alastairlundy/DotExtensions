@@ -30,6 +30,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="7.5.0" />
         <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.7" />
     </ItemGroup>
 
@@ -56,11 +57,6 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-
-    <ItemGroup>
-      <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
     </ItemGroup>
     
 </Project>
