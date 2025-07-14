@@ -24,13 +24,11 @@
 
 using System;
 using System.Linq;
-
 using AlastairLundy.DotExtensions.Strings;
-
 using Bogus;
 using Bogus.DataSets;
 
-namespace SystemExtensions.Tests.Strings.Contains;
+namespace DotExtensions.Tests.Strings.Contains;
 
 public class StringAnyOfTests
 {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bogus.DataSets;
 
-namespace SystemExtensions.Tests.TestData;
+namespace DotExtensions.Tests.TestData;
 
 public class LoremWordsTestData : IEnumerable<object[]>
 {
@@ -12,7 +12,7 @@ public class LoremWordsTestData : IEnumerable<object[]>
     {
         for (int i = 0; i < 20; i++)
         {
-            yield return new object[] { string.Join(" ", _lorem.Words(Random.Shared.Next(1, 10))) };
+            yield return new object[] { string.Join(" ", _lorem.Words(Random.Shared.Next(2, 10))) };
         }
     }
 

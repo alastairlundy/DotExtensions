@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
 using AlastairLundy.DotExtensions.Strings;
 
-namespace SystemExtensions.Tests.TestData;
+namespace DotExtensions.Tests.TestData;
 
 public class SpecialCharacterTestData : IEnumerable<object[]>
 {

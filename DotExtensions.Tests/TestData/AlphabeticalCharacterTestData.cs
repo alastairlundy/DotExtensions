@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Bogus;
 
-namespace SystemExtensions.Tests.TestData;
+namespace DotExtensions.Tests.TestData;
 
 public class AlphabeticalCharacterTestData : IEnumerable<object[]>
 {
