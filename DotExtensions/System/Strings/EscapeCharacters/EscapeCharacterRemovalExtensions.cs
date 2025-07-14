@@ -40,6 +40,7 @@ public static class EscapeCharacterRemovalExtensions
     /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
     public static bool ContainsEscapeCharacters(this string str)
     {
+        // ReSharper disable once ConvertClosureToMethodGroup
         return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
     }
         
