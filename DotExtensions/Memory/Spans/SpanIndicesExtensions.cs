@@ -27,6 +27,9 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanIndicesExtensions
 {
     /// <summary>

@@ -28,6 +28,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanContainsExtensions
 {
 #if NETSTANDARD2_0 || NETSTANDARD2_1
