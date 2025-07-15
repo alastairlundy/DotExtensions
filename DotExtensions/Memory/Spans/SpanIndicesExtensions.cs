@@ -52,12 +52,8 @@ public static class SpanIndicesExtensions
         }
 
         if (indices.Count == 0)
-        {
-            return [ -1];
-        }
-        else
-        {
-            return indices;
-        }
+            return [-1];
+        
+        return indices;
     }
 }
