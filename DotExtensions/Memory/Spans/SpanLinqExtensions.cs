@@ -365,12 +365,13 @@ public static class SpanLinqExtensions
     }
 
     /// <summary>
-    /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
+    /// 
     /// </summary>
-    /// <param name="first">The first Span to search.</param>
-    /// <param name="second">The second Span to search.</param>
-    /// <typeparam name="T">The type of items stored in the span.</typeparam>
-    /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
+    /// <param name="source"></param>
+    /// <param name="keySelector"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
     public static Span<TResult> Select<TSource, TResult>(
 #if NET5_0_OR_GREATER
         [NotNull]
