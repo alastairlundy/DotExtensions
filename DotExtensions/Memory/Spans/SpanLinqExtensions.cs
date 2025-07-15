@@ -203,9 +203,9 @@ public static class SpanLinqExtensions
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
-            return target[^1];
+            return target.Length > 1 ? target[^1] : target.First();
 #else
-        return target[target.Length - 1];
+        return target.Length > 1 ? target[target.Length - 1] : target.First();
 #endif
     }
     
@@ -249,9 +249,10 @@ public static class SpanLinqExtensions
         }
         
 #if NET6_0_OR_GREATER
-        return target[^1];
+        return target.Length > 1 ? target[^1] : target.FirstOrDefault();
 #else
-                return target[target.Length - 1];
+
+       return target.Length > 1 ? target[target.Length - 1] : target.FirstOrDefault();
 #endif
     }
     
