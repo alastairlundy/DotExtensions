@@ -22,11 +22,9 @@
        SOFTWARE.
    */
 
-
+#if NET7_0_OR_GREATER || UnixFileModeAvailable
 using System;
 using System.IO;
-
-#if NET7_0_OR_GREATER || UnixFileModeAvailable
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
