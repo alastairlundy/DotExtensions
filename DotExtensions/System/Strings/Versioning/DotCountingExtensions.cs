@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 // ReSharper disable CheckNamespace
 
@@ -37,6 +38,7 @@ public static class DotCountingExtensions
     /// </summary>
     /// <param name="str">The string to be checked.</param>
     /// <returns>The number of periods/full stops/dots in a string</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static int CountDotsInString(this string str)
     {
         return str.ToCharArray().Count(x => x.Equals('.'));
