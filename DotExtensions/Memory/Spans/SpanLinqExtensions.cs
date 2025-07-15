@@ -36,6 +36,9 @@ using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanLinqExtensions
 {
 
