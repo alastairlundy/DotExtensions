@@ -23,6 +23,9 @@
    */
 
 // ReSharper disable CheckNamespace
+
+using System;
+
 namespace AlastairLundy.DotExtensions.Strings;
 
 public static class LowerCaseExtensions
@@ -32,6 +35,7 @@ public static class LowerCaseExtensions
     /// </summary>
     /// <param name="c">The character to be checked.</param>
     /// <returns>True, if the character is a lower case character; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool IsLowerCaseCharacter(this char c)
     {
         return c.ToString().Equals(c.ToString().ToLower());

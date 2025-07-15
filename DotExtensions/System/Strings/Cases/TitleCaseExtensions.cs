@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,7 @@ public static class TitleCaseExtensions
     /// </summary>
     /// <param name="word">The word to be checked.</param>
     /// <returns>True if the word is capitalized; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool IsWordTitleCase(this string word)
     {
         bool[] letterCapitalization = new bool[word.Length];
@@ -58,11 +60,11 @@ public static class TitleCaseExtensions
     /// <summary>
     /// Converts a string to Title Case.
     /// </summary>
-    /// <param name="word">The string to be converted.</param>
+    /// <param name="str">The string to be converted.</param>
     /// <returns>The title case version of the input string.</returns>
-    public static string ToTitleCase(this string word)
+    public static string ToTitleCase(this string str)
     {
-        return ToTitleCase([word]);
+        return ToTitleCase([str]);
     }
         
     /// <summary>
@@ -76,7 +78,7 @@ public static class TitleCaseExtensions
             
         foreach (string str in words)
         {
-            stringBuilder.Append(str.IsWordTitleCase() ? str :
+            stringBuilder.Append(str.IsTitleCase() ? str :
                 str.CapitalizeFirstLetter());
         }
 

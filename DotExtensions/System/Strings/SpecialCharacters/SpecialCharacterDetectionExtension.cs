@@ -24,6 +24,7 @@
 
 using System.Linq;
 // ReSharper disable CheckNamespace
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -39,7 +40,7 @@ public static class SpecialCharacterDetectionExtension
     /// <returns>True if the string contains a special character; false otherwise.</returns>
     public static bool ContainsSpecialCharacter(this string s)
     {
-        return s.ContainsAnyOf(CharacterConstants.SpecialCharacters);
+        return s.Any(x => IsSpecialCharacter(x));
     }
         
     /// <summary>
