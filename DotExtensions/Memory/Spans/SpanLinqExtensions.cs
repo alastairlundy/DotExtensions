@@ -36,6 +36,9 @@ using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanLinqExtensions
 {
 
@@ -164,7 +167,7 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        return target.Length == 1 ? target[0] : default;
+        return target.Length >= 1 ? target[0] : default;
     }
     
     /// <summary>
@@ -203,9 +206,9 @@ public static class SpanLinqExtensions
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
-            return target[^1];
+            return target.Length > 1 ? target[^1] : target.First();
 #else
-        return target[target.Length - 1];
+        return target.Length > 1 ? target[target.Length - 1] : target.First();
 #endif
     }
     
@@ -249,9 +252,10 @@ public static class SpanLinqExtensions
         }
         
 #if NET6_0_OR_GREATER
-        return target[^1];
+        return target.Length > 1 ? target[^1] : target.FirstOrDefault();
 #else
-                return target[target.Length - 1];
+
+       return target.Length > 1 ? target[target.Length - 1] : target.FirstOrDefault();
 #endif
     }
     
@@ -387,7 +391,7 @@ public static class SpanLinqExtensions
         for (int index = 0; index < source.Length; index++)
         {
             TSource item = source[index];
-            TResult res = keySelector.Invoke(item);
+            TResult res = selector.Invoke(item);
 
             array[index] = res;
         }
