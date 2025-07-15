@@ -44,6 +44,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="IO\Windows\" />
       <Folder Include="Memory\" />
     </ItemGroup>
     
