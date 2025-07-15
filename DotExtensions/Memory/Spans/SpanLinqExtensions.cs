@@ -391,7 +391,7 @@ public static class SpanLinqExtensions
         for (int index = 0; index < source.Length; index++)
         {
             TSource item = source[index];
-            TResult res = keySelector.Invoke(item);
+            TResult res = selector.Invoke(item);
 
             array[index] = res;
         }
