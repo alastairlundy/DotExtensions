@@ -1,4 +1,4 @@
-﻿/*
+/*
         MIT License
 
        Copyright (c) 2025 Alastair Lundy
@@ -22,33 +22,54 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
-public static class SegmentIndicesOfExtensions
+public static class SegmentSplitExtensions
 {
     /// <summary>
-    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
+    /// Splits a StringSegment into StringSegment substrings using a specified separator.
     /// </summary>
-    /// <param name="this">The string segment to be searched.</param>
-    /// <param name="c">The character to search for.</param>
-    /// <returns>An IEnumerable of Indices for all occurrences specified character within the String Segment;
-    /// empty if not found within the String Segment.</returns>
-    public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
+    /// <param name="segment">The input StringSegment.</param>
+    /// <param name="separator">The separator to delimit the StringSegment substrings in the StringSegment.</param>
+    /// <returns>An array of StringSegment substrings, from this StringSegment instance that is delimited by the separator.</returns>
+    public static StringSegment[] Split(this StringSegment segment, StringSegment separator)
     {
-        List<int> indices = new List<int>();
+        if (segment.Contains(separator) == false)
+            return [];
+
+        List<int> indices = (List<int>)segment.IndicesOf(separator);
         
-        for(int i = 0; i < @this.Length; i++)
+        StringSegment[] output = new StringSegment[indices.Count];
+        
+        if (indices.First().Equals(-1))
+            return [segment];
+
+        int outputIndex = 0;
+        int start = 0;
+
+        for (int i = 0; i < indices.Count; i++)
         {
-            if (@this[i] == c)
+            if (indices.Any(x => x == i))
             {
-                indices.Add(i);
+                int end = i > 0 ? i - 1 : 0;
+
+                StringSegment newSegment = segment.Substring(start, Math.Abs(end - start));
+
+                output[outputIndex] = newSegment;
+                outputIndex++;
+                start = i;
             }
         }
         
-        return indices;
+        if(outputIndex < output.Length)
+            Array.Resize(ref output, outputIndex);
+
+        return output;
     }
 }

@@ -45,7 +45,6 @@ public static class EnumerableRangeExtensions
     /// <param name="source">The sequence to add items to.</param>
     /// <param name="toBeAdded">The elements to add to the sequence.</param>
     /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
-    [Obsolete(DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
     {
         if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
@@ -60,7 +59,7 @@ public static class EnumerableRangeExtensions
         }
         else
         {
-            List<T> list = source.ToList();
+            List<T> list = new List<T>(source);
             
             foreach (T item in toBeAdded)
             {

@@ -25,8 +25,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
+
 using AlastairLundy.DotExtensions.Deprecations;
 
 // ReSharper disable RedundantBoolCompare
@@ -56,6 +58,7 @@ public static class EnumerableReplaceExtensions
             GenericCollectionReplaceExtensions.Replace<T>(collection, oldValue, newValue);
             return collection;
         }
+        
         IList<T> enumerable = source.ToArray();
 
         if (enumerable.Contains(oldValue))

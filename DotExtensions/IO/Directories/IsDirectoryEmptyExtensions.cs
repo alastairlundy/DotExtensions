@@ -23,7 +23,7 @@
    */
 
 using System.IO;
-
+using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable RedundantIfElseBlock
@@ -45,8 +45,8 @@ public static class IsDirectoryEmptyExtensions
     {
         if (Directory.Exists(directory.FullName))
         {
-            return directory.GetFiles().Length == 0 &&
-                   directory.GetDirectories().Length == 0;
+            return directory.GetFiles().Any() == false &&
+                   directory.GetDirectories().Any() == false;
         }
         else
         {

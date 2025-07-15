@@ -58,4 +58,32 @@ public static class CollectionToGenericsExtensions
 
         return output;
     }
+    
+    /// <summary>
+    /// Converts an ArrayList to a List that supports generics.
+    /// </summary>
+    /// <param name="arrayList">The arraylist to convert.</param>
+    /// <typeparam name="T">The type of Type the ArrayList stores.</typeparam>
+    /// <returns>A new List of type T with the items from the ArrayList.</returns>
+    /// <exception cref="ArgumentException">Thrown if the type specified is not the type stored in the ArrayList.</exception>
+    public static List<T> ToList<T>(this ArrayList arrayList)
+    {
+        if (typeof(T) != arrayList.GetType())
+        {
+            throw new ArgumentException(
+                $"Type specified of {typeof(T)} does not match array list of type {arrayList.GetType()}.");
+        }
+
+        List<T> output = new();
+
+        foreach (object obj in arrayList)
+        {
+            if (obj is T t)
+            {
+                output.Add(t);
+            }
+        }
+
+        return output;
+    }
 }

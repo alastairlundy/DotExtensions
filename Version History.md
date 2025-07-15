@@ -4,6 +4,29 @@
 
 ### Version 7.x
 
+### 7.5
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.5.0 | July 14th 2025 |
+| 7.5.0 Preview 2 | July 9th 2025 |
+| 7.5.0 Preview 1.1 | July 8th 2025 |
+| 7.5.0 Preview 1 | July 8th 2025 |
+
+### 7.4
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.4.3 | July 13th 2025 | Main package only |
+| 7.4.2 | July 9th 2025 | |
+| 7.4.1 | July 6th 2025 | Main package only |
+| 7.4.0 | July 4th 2025 | |
+| 7.4.0 Preview 1 | June 28th 2025 | |
+
+### 7.3
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.3.1 | July 6th 2025 | Main package only |
+| 7.3.0 | June 25th 2025 | |
+
 ### 7.2
 | Version | Release Date | Notes | 
 |-|-|-|
@@ -13,6 +36,7 @@
 #### 7.1
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.1.2 | June 25th 2025 | |
 | 7.1.1 | May 31st 2025 | |
 | 7.1.0 | May 30th 2025 | |
 

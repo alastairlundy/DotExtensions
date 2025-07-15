@@ -24,8 +24,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
+#if NET5_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 using AlastairLundy.DotExtensions.Localizations;
+
+using AlastairLundy.DotPrimitives.Collections.Groupings;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -121,12 +128,10 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T First<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-            return target[0];
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        if (target.Length <= 0)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        
+        return target[0];
     }
     
     /// <summary>
@@ -159,14 +164,7 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-            return target[0];
-        }
-        else
-        {
-            return default;
-        }
+        return target.Length == 1 ? target[0] : default;
     }
     
     /// <summary>
@@ -201,16 +199,14 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T Last<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
+        if (target.Length <= 0)
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+
 #if NET6_0_OR_GREATER
             return target[^1];
 #else
-                return target[target.Length - 1];
+        return target[target.Length - 1];
 #endif
-        }
-
-        throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
     }
     
     /// <summary>
@@ -247,18 +243,16 @@ public static class SpanLinqExtensions
     /// <returns>The last element of the span, or null if the span is empty.</returns>
     public static T? LastOrDefault<T>(this Span<T> target)
     {
-        if (target.Length == 1)
-        {
-#if NET6_0_OR_GREATER
-            return target[^1];
-#else
-                return target[target.Length - 1];
-#endif
-        }
-        else
+        if (target.Length <= 0)
         {
             return default;
         }
+        
+#if NET6_0_OR_GREATER
+        return target[^1];
+#else
+                return target[target.Length - 1];
+#endif
     }
     
 
@@ -317,17 +311,153 @@ public static class SpanLinqExtensions
     /// <returns>True if any item in the span matches the predicate; false otherwise.</returns>
     public static bool Any<T>(this Span<T> target, Func<T, bool> predicate)
     {
-        foreach (T item in target)
-        {
-            bool result = predicate.Invoke(item);
+        Span<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-            if (result)
+        bool? result = groups.FirstOrDefault();
+
+        return result ?? false;
+    }
+
+    /// <summary>
+    /// Groups the elements of the source span by a specified key selector function.
+    /// </summary>
+    /// <param name="source">The source span to group elements from.</param>
+    /// <param name="keySelector">A function to extract the key for each element.</param>
+    /// <typeparam name="TKey">The type of the key returned by the key selector function.</typeparam>
+    /// <typeparam name="TElement">The type of elements in the source span.</typeparam>
+    /// <returns>A span of groups, each containing a key and the elements that share that key.</returns>
+    public static Span<IGrouping<TKey, TElement>> GroupBy<TKey, TElement>(
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        this Span<TElement> source,
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        Func<TElement, TKey> keySelector) where TKey : notnull
+    {
+        Dictionary<TKey, List<TElement>> dictionary = new();
+
+        foreach (TElement item in source)
+        {
+            TKey key = keySelector.Invoke(item);
+            
+            if (dictionary.ContainsKey(key))
             {
-                return true;
+                dictionary[key].Add(item);
+            }
+            else
+            {
+                dictionary.Add(key, new List<TElement>());
+                dictionary[key].Add(item);
             }
         }
 
-        return false;
+        IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
+            select new GroupByEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+        
+        return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
+    }
+
+    /// <summary>
+    /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
+    /// </summary>
+    /// <param name="first">The first Span to search.</param>
+    /// <param name="second">The second Span to search.</param>
+    /// <typeparam name="T">The type of items stored in the span.</typeparam>
+    /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
+    public static Span<TResult> Select<TSource, TResult>(
+#if NET5_0_OR_GREATER
+        [NotNull]
+#endif
+        this Span<TSource> source,
+#if NET5_0_OR_GREATER
+[NotNull]
+#endif
+        Func<TSource, TResult> keySelector)
+    {
+        TResult[] array = new  TResult[source.Length];
+        
+        for (int index = 0; index < source.Length; index++)
+        {
+            TSource item = source[index];
+            TResult res = keySelector.Invoke(item);
+
+            array[index] = res;
+        }
+
+        return new Span<TResult>(array);
+    }
+
+    /// <summary>
+    /// Returns a new span containing distinct elements from the source span, using the default equality comparer.
+    /// </summary>
+    /// <param name="source">The source span from which to extract distinct elements.</param>
+    /// <typeparam name="T">The type of elements in the source span.</typeparam>
+    /// <returns>A span containing the distinct elements from the source span.</returns>
+    public static Span<T> Distinct<T>(this Span<T> source)
+    {
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+        HashSet<T> set = new(capacity: source.Length);
+#else
+        HashSet<T> set = new();
+#endif
+        foreach (T item in source)
+        {
+            set.Add(item);
+        }
+        
+        return new Span<T>(set.ToArray());
+    }
+
+    /// <summary>
+    /// Returns a new span containing distinct elements from the source span, using the specified equality comparer.
+    /// </summary>
+    /// <param name="source">The source span from which to extract distinct elements.</param>
+    /// <param name="comparer">The equality comparer to use for comparing elements.</param>
+    /// <typeparam name="T">The type of elements in the source span.</typeparam>
+    /// <returns>A span containing the distinct elements from the source span.</returns>
+    public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T> comparer)
+    {
+#if NET5_0_OR_GREATER || NETSTANDARD2_1
+        HashSet<T> set = new(capacity: source.Length, comparer: comparer);
+#else
+        HashSet<T> set = new(comparer: comparer);
+
+#endif
+        foreach (T item in source)
+        {
+            set.Add(item);
+        }
+        
+        return new Span<T>(set.ToArray());
+    }
+
+    /// <summary>
+    /// Returns the number of elements in a given span that satisfy a condition.
+    /// </summary>
+    /// <param name="source">The span to search.</param>
+    /// <param name="predicate">A func that takes an element and returns a boolean indicating whether it should be counted.</param>
+    /// <typeparam name="TSource">The type of elements in the span.</typeparam>
+    /// <returns>The number of elements that satisfy the predicate.</returns>
+    public static int Count<TSource>(this Span<TSource> source, Func<TSource, bool> predicate)
+    {
+        int count = 0;
+
+        foreach (TSource item in source)
+        {
+            if (predicate.Invoke(item))
+            {
+                count++;
+            }
+        }
+        
+        return count;
     }
     
     /// <summary>
@@ -338,19 +468,14 @@ public static class SpanLinqExtensions
     /// <typeparam name="T">The type of items stored in the span.</typeparam>
     /// <returns>True if all items in the span match the predicate; false otherwise.</returns>
     public static bool All<T>(this Span<T> target, Func<T, bool> predicate)
-    {
-        for (int index = 0; index < target.Length; index++)
-        {
-            T item = target[index];
+    {      
+        Span<bool> groups = (from c in target
+                group c by predicate.Invoke(c)
+                into g
+                where g.Key
+                select g.Any()
+            );
 
-            bool result = predicate.Invoke(item);
-                
-            if (result == false)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return groups.Distinct().Length ==  1;
     }
 }

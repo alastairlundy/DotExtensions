@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+
 using AlastairLundy.DotExtensions.Deprecations;
 
 // ReSharper disable RedundantBoolCompare

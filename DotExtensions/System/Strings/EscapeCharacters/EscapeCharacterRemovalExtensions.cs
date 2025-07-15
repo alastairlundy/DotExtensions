@@ -24,7 +24,10 @@
 
 // ReSharper disable CheckNamespace
 
+using System.Collections.Generic;
 using System.Linq;
+
+using AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -37,7 +40,8 @@ public static class EscapeCharacterRemovalExtensions
     /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
     public static bool ContainsEscapeCharacters(this string str)
     {
-        return CharacterConstants.EscapeCharacters.Any(x => x.Equals(str));
+        // ReSharper disable once ConvertClosureToMethodGroup
+        return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
     }
         
     /// <summary>
@@ -54,6 +58,9 @@ public static class EscapeCharacterRemovalExtensions
                 if (str.Contains(escapeChar))
                 {
                     str = str.Replace(escapeChar, string.Empty);
+                    
+                    if(str.EndsWith(" "))
+                        str = str.Remove(str.LastIndexOf(' '), 1);
                 }
             }
         }

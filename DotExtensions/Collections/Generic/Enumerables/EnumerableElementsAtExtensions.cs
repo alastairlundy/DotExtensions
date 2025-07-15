@@ -24,9 +24,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
-using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
 using AlastairLundy.DotExtensions.Collections.ILists;
 
@@ -45,32 +42,28 @@ public static class EnumerableElementsAtExtensions
     /// <remarks>The order of the elements in the returned IEnumerable is determined by their original position in the source,
     /// but the order within the returned IEnumerable is based on the provided indexes.</remarks>
     /// <param name="source">The IEnumerable from which to retrieve elements.</param>
-    /// <param name="indexes">A sequence of indices, where each index corresponds to an element in the source.</param>
+    /// <param name="indices">A sequence of indices, where each index corresponds to an element in the source.</param>
     /// <typeparam name="T">The type of the elements in the source and returned IEnumerable.</typeparam>
     /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indexes)
+    public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indices)
     {
-        List<T> output = new();
-
         if (source is IList<T> list)
         {
-            return IListElementsAtExtensions.ElementsAt(list, indexes);
-        }
-
-        if (source is ICollection<T> collection)
-        {
-            return GenericCollectionElementAtExtensions.ElementsAt(collection, indexes);
+            return IListElementsAtExtensions.ElementsAt(list, indices);
         }
         
-        IList<T> sourceList = source.ToArray();
-
-        foreach (int index in indexes)
+        List<T> output = new();
+        IList<int> indicesList = indices as IList<int> ?? [..indices];
+        
+        int i = 0;
+        foreach (T item in source)
         {
-            if (index >= 0 && index < sourceList.Count)
+            if (indicesList.Contains(i))
             {
-                output.Add(sourceList[index]);
+                output.Add(item);
             }
+
+            i++;
         }
             
         return output;

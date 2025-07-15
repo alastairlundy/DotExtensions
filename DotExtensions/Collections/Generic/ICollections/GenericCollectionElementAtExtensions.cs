@@ -47,7 +47,7 @@ public static class GenericCollectionElementAtExtensions
         {
             return list[index];
         }
-            
+        
         int i = 0;
 
         foreach (T item in source)
@@ -75,25 +75,27 @@ public static class GenericCollectionElementAtExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
     {
-        List<T> output = new();
-            
         #region IList Performance Optimizations
         if (source is IList<T> list)
         {
             return IListElementsAtExtensions.ElementsAt(list, indices);
         }
         #endregion
-            
-        IList<T> sourceList = source as IList<T> ?? source.ToArray();
-            
-        foreach (int index in indices)
+
+        List<T> output = new();
+        IList<int> indicesList = indices as IList<int> ?? [..indices];
+        
+        int i = 0;
+        foreach (T item in source)
         {
-            if (index >= 0 && index < sourceList.Count)
+            if (indicesList.Contains(i))
             {
-                output.Add(sourceList[index]);
+                output.Add(item);
             }
+
+            i++;
         }
             
-        return output;   
+        return output;
     }
 }

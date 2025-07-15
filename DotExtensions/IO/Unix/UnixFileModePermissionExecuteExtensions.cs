@@ -22,31 +22,40 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
+
+using System;
 using System.IO;
-#endif
+
+#if NET7_0_OR_GREATER || UnixFileModeAvailable
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
 /// <summary>
 /// 
 /// </summary>
-public static class UnixFileModePermissionExtensions
+public static class UnixFileModePermissionExecuteExtensions
 {
-#if NET8_0_OR_GREATER
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>
     /// <param name="mode">The Unix file mode to check.</param>
     /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    // TODO: Rename to HasExecutePermission in v8
+    [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
     public static bool IsExecutePermission(this UnixFileMode mode)
     {
-        return mode switch
-        {
-            UnixFileMode.OtherExecute or UnixFileMode.UserExecute or UnixFileMode.GroupExecute => true,
-            _ => false
-        };
+        return mode.HasExecutePermission();
     }
-#endif
+    
+    /// <summary>
+    /// Determines whether the specified Unix file mode has execute permission.
+    /// </summary>
+    /// <param name="mode">The Unix file mode to check.</param>
+    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+    public static bool HasExecutePermission(this UnixFileMode mode)
+    {
+        return mode.HasFlag(UnixFileMode.UserExecute) ||
+               mode.HasFlag(UnixFileMode.GroupExecute) ||
+               mode.HasFlag(UnixFileMode.OtherExecute);
+    }
 }
+#endif

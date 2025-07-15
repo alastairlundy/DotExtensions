@@ -23,6 +23,7 @@
    */
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Exceptions;
@@ -60,9 +61,11 @@ public static class EnumerableIndexExtensions
                     
             index++;
         }
+        
         return -1;
     }
 
+    
     /// <summary>
     /// Gets the indices of the specified item within an IEnumerable.
     /// </summary>
@@ -85,14 +88,10 @@ public static class EnumerableIndexExtensions
             index += 1;
         }
 
-        if (indices.Count > 0)
-        {
-            return indices; 
-        }
-        else
-        {
+        if (indices.Count == 0)
             return [-1];
-        }
+
+        return indices;
     }
         
 
@@ -104,7 +103,11 @@ public static class EnumerableIndexExtensions
     /// <param name="index">An output parameter that will contain the index of the found item, or null if the item is not found.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     /// <returns>True if the item was found, otherwise false.</returns>
-    public static bool TryGetIndexOf<T>(this IEnumerable<T> source, T item, out int? index)
+    public static bool TryGetIndexOf<T>(this IEnumerable<T> source, T item, 
+#if NET5_0_OR_GREATER
+        [NotNullWhen(returnValue: true)]
+#endif
+        out int? index)
     {
         try
         {
@@ -128,7 +131,11 @@ public static class EnumerableIndexExtensions
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     /// <returns>True if the item was found, otherwise false.</returns>
     /// <exception cref="KeyNotFoundException">Thrown when the item is not found in the collection.</exception>
-    public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, out IEnumerable<int>? indices)
+    public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, 
+        #if NET5_0_OR_GREATER
+        [NotNullWhen(returnValue: true)]
+        #endif
+        out IEnumerable<int>? indices)
     {
         try
         {
