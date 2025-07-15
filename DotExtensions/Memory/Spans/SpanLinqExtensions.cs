@@ -365,13 +365,13 @@ public static class SpanLinqExtensions
     }
 
     /// <summary>
-    /// 
+    /// Transforms elements of a Span according to behaviour defined by the Selector.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="keySelector"></param>
-    /// <typeparam name="TSource"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
-    /// <returns></returns>
+    /// <param name="source">The span to search.</param>
+    /// <param name="selector">The selector to use.</param>
+    /// <typeparam name="TSource">The type of elements in the source Span.</typeparam>
+    /// <typeparam name="TResult">The type of elements the selector transforms elements into.</typeparam>
+    /// <returns>The newly created Span with the elements transformed by the selector.</returns>
     public static Span<TResult> Select<TSource, TResult>(
 #if NET5_0_OR_GREATER
         [NotNull]
@@ -380,7 +380,7 @@ public static class SpanLinqExtensions
 #if NET5_0_OR_GREATER
 [NotNull]
 #endif
-        Func<TSource, TResult> keySelector)
+        Func<TSource, TResult> selector)
     {
         TResult[] array = new  TResult[source.Length];
         
