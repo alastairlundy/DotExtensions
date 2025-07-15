@@ -43,9 +43,9 @@ public static class SpanContainsExtensions
         /// <returns>True if the item is found in the span; false otherwise.</returns>
         public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
         {
-            foreach (T t in target)
+            foreach (T tItem in target)
             {
-                if (t is not null && t.Equals(item))
+                if (tItem is not null && tItem.Equals(item))
                 {
                     return true;
                 }
