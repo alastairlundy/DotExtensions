@@ -29,8 +29,12 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanRangeExtensions
 {
+    
     /// <summary>
     /// Returns a new Span with the specified range of elements,
     /// starting from the given start index and ending at the given end index.
