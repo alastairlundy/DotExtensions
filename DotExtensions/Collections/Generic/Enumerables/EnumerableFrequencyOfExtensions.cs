@@ -46,7 +46,7 @@ public static class EnumerableFrequencyOfExtensions
 #if NET6_0_OR_GREATER
             if (items.TryAdd(item, 1) == false)
 #else
-                if (items.ContainsKey(item))
+            if (items.ContainsKey(item))
 #endif
             {
                 items[item] += 1;
