@@ -53,4 +53,22 @@ public static class SpanAsEnumerableExtensions
         
         return array;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="span"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static List<T> ToList<T>(this Span<T> span)
+    {
+        List<T> list = new List<T>();
+        
+        foreach (T item in span)
+        {
+            list.Add(item);
+        }
+        
+        return list;
+    }
 }
