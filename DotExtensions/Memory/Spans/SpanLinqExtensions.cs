@@ -33,6 +33,7 @@ using System.Diagnostics.CodeAnalysis;
 using AlastairLundy.DotExtensions.Localizations;
 
 using AlastairLundy.DotPrimitives.Collections.Groupings;
+// ReSharper disable UseIndexFromEndExpression
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
