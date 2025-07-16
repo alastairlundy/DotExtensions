@@ -134,4 +134,41 @@ public static class SpanRangeExtensions
             
         return new Span<T>(array);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="indices"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> RemoveRange<T>(this Span<T> target, ICollection<int> indices)
+    {
+        T[] array = new T[target.Length - indices.Count];
+
+        int count = 0;
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (indices.Contains(i) == false)
+            {
+                array[count] =  target[i];
+                count++;
+            }
+        }
+
+        return new Span<T>(array);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="startIndex"></param>
+    /// <param name="count"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count)
+    {
+        return RemoveRange(target, startIndex.RangeAsIList(count));
+    }
 }
