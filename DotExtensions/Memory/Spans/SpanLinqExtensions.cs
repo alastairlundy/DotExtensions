@@ -33,6 +33,7 @@ using System.Diagnostics.CodeAnalysis;
 using AlastairLundy.DotExtensions.Localizations;
 
 using AlastairLundy.DotPrimitives.Collections.Groupings;
+// ReSharper disable UseIndexFromEndExpression
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -42,6 +43,34 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 public static class SpanLinqExtensions
 {
 
+    /// <summary>
+    /// Applies the given action to each element of this Span.
+    /// </summary>
+    /// <param name="action">The action to apply to each element in the span.</param>
+    /// <param name="target">The span to apply the elements to.</param>
+    /// <typeparam name="T">The type of items in the Span.</typeparam>
+    public static void ForEach<T>(this ref Span<T> target, Action<T> action)
+    {
+        for (int index = 0; index < target.Length; index++)
+        {
+            action.Invoke(target[index]);
+        }
+    }
+
+    /// <summary>
+    /// Applies the given func to each element of this Span.
+    /// </summary>
+    /// <param name="target">The span to apply the elements to.</param>
+    /// <param name="action">The func to apply to each element in the span.</param>
+    /// <typeparam name="T">The type of items in the Span.</typeparam>
+    public static void ForEach<T>(this Span<T> target, Func<T, T> action)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            target[i] = action.Invoke(target[i]);
+        }
+    }
+    
     /// <summary>
     /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
     /// </summary>
@@ -55,7 +84,7 @@ public static class SpanLinqExtensions
         
         T[] firstArray = first.ToArray();
         T[] secondArray = second.ToArray();
-
+        
         IEnumerable<T> resultOne = first
             .SkipWhile(x => secondArray.Contains(x))
             .AsEnumerable();
