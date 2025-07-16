@@ -82,9 +82,7 @@ public static class SpanLinqExtensions
     public static Span<T> Skip<T>(this Span<T> target, int count)
     {
         if (count > target.Length)
-        {
-            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
-        }
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
             
         int end = target.Length - count;
 
@@ -101,9 +99,7 @@ public static class SpanLinqExtensions
     public static Span<T> SkipLast<T>(this Span<T> target, int count)
     {
         if (count > target.Length)
-        {
-            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
-        }
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
             
         return target.GetRange(start: 0, end: target.Length - count);
     }
@@ -131,8 +127,9 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T First<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        if (target.IsEmpty)
+            throw new InvalidOperationException(
+                Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         return target[0];
     }
