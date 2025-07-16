@@ -41,7 +41,35 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanLinqExtensions
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this ref Span<T> target, Action<T> action)
+    {
+        for (int index = 0; index < target.Length; index++)
+        {
+            T item = target[index];
+            action.Invoke(item);
+        }
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this ref Span<T> target, Func<T, T> action)
+    {
+        for(int i = 0; i < target.Length; i++)
+        {
+            target[i] = action.Invoke(target[i]);
+        }
+    }
+    
     /// <summary>
     /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
     /// </summary>
