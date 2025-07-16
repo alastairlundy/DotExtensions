@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
@@ -197,24 +198,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<int> RangeAsEnumerable(this int start, int count, IEnumerable<int> numbersToSkip)
     {
-        if (count < 0)
-        {
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
-                .Replace("{x}", $"{count}"));
-        }
-        
-        List<int> list = new List<int>();
-        IList<int> numbersToSkipList = numbersToSkip as IList<int> ?? numbersToSkip.ToList();
-        
-        for (int i = start; i < count; i++)
-        {
-            if (numbersToSkipList.Contains(i) == false)
-            {
-                list.Add(i);
-            }
-        }
-        
-        return list;
+        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
     }
     
 
@@ -230,24 +214,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<long> RangeAsEnumerable(this long start, long count, IEnumerable<long> numbersToSkip)
     {
-        if (count < 0)
-        {
-            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
-                .Replace("{x}", $"{count}"));
-        }
-        
-        List<long> list = new List<long>();
-        IList<long> numbersToSkipList = numbersToSkip as IList<long> ?? numbersToSkip.ToList();
-
-        for (long i = start; i < count; i++)
-        {
-            if (numbersToSkipList.Contains(i) == false)
-            {
-                list.Add(i);
-            }
-        }
-        
-        return list;
+        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
     }
     
 
@@ -262,18 +229,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// excluding the skipped numbers.</returns>
     public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count, IEnumerable<ulong> numbersToSkip)
     {
-        List<ulong> list = new List<ulong>();
-        IList<ulong> numbersToSkipList = numbersToSkip as IList<ulong> ?? numbersToSkip.ToList();
-
-        for (ulong i = start; i < count; i++)
-        {
-            if (numbersToSkipList.Contains(i) == false)
-            {
-                list.Add(i);
-            }
-        }
-        
-        return list;
+        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
     }
     
     
@@ -288,17 +244,6 @@ public static class IntegerRangeAsEnumerableExtensions
     /// excluding the skipped numbers.</returns>
     public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count, IEnumerable<uint> numbersToSkip)
     {
-        List<uint> list = new List<uint>();
-        IList<uint> numbersToSkipList = numbersToSkip as IList<uint> ?? numbersToSkip.ToList();
-
-        for (uint i = start; i < count; i++)
-        {
-            if (numbersToSkipList.Contains(i) == false)
-            {
-                list.Add(i);
-            }
-        }
-        
-        return list;
+        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
     }
 }
