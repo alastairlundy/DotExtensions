@@ -85,7 +85,9 @@ public static class SpanRangeExtensions
     public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
     {
         T[] array = new T[indices.Count];
+        
         int newIndex = 0;
+        
         foreach (int index in indices)
         {
             if (index < 0 || index >= target.Length)
@@ -96,7 +98,7 @@ public static class SpanRangeExtensions
                     .Replace("{z}", $"{target.Length}"));
             }
                 
-            target[index] = target[newIndex];
+            target[newIndex] = target[index];
             newIndex++;
         }
             
