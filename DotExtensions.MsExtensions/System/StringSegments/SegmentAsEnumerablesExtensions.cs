@@ -60,7 +60,7 @@ public static class SegmentAsEnumerablesExtensions
     {
         return ToCharArray(segment);
     }
-        
+    
         
     /// <summary>
     /// Returns the StringSegment as an IEnumerable.

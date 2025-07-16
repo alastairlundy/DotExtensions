@@ -34,8 +34,12 @@ using AlastairLundy.DotExtensions.Deprecations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
+/// <summary>
+/// 
+/// </summary>
 public static class EnumerableToStringObjectExtensions
 {
+    
     /// <summary>
     /// Converts an IEnumerable of Type T to a string separated by a separator string.
     /// </summary>
