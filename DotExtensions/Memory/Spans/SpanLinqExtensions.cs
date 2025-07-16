@@ -167,7 +167,7 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        return target.Length >= 1 ? target[0] : default;
+        return target.IsEmpty == false ? target[0] : default;
     }
     
     /// <summary>
@@ -202,7 +202,7 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T Last<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
+        if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
@@ -246,10 +246,8 @@ public static class SpanLinqExtensions
     /// <returns>The last element of the span, or null if the span is empty.</returns>
     public static T? LastOrDefault<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
-        {
+        if (target.IsEmpty)
             return default;
-        }
         
 #if NET6_0_OR_GREATER
         return target.Length > 1 ? target[^1] : target.FirstOrDefault();
