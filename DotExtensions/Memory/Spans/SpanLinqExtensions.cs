@@ -51,8 +51,7 @@ public static class SpanLinqExtensions
     {
         for (int index = 0; index < target.Length; index++)
         {
-            T item = target[index];
-            action.Invoke(item);
+            action.Invoke(target[index]);
         }
     }
     
@@ -62,7 +61,7 @@ public static class SpanLinqExtensions
     /// <param name="target"></param>
     /// <param name="action"></param>
     /// <typeparam name="T"></typeparam>
-    public static void ForEach<T>(this ref Span<T> target, Func<T, T> action)
+    public static void ForEach<T>(this Span<T> target, Func<T, T> action)
     {
         for(int i = 0; i < target.Length; i++)
         {
@@ -83,7 +82,7 @@ public static class SpanLinqExtensions
         
         T[] firstArray = first.ToArray();
         T[] secondArray = second.ToArray();
-
+        
         IEnumerable<T> resultOne = first
             .SkipWhile(x => secondArray.Contains(x))
             .AsEnumerable();
