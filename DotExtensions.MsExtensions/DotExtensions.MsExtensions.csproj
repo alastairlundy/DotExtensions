@@ -8,17 +8,13 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.5.0</Version>
+        <Version>7.5.1</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 7.4.x
-
-### MsExtensions package
-* Added dependency on DotExtensions main package
-* Added StringSegment ``IndexOf(StringSegment)`` and ``IndicesOf(StringSegment)`` - Enabled through added dependency on DotExtensions main package</PackageReleaseNotes>
+        <PackageReleaseNotes>* Update DotExtensions dependency to 7.5.1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -30,7 +26,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="7.5.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="7.5.1" />
         <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.7" />
     </ItemGroup>
 

@@ -7,6 +7,7 @@
 ### 7.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.5.1 | July 16th 2025 |
 | 7.5.0 | July 14th 2025 |
 | 7.5.0 Preview 2 | July 9th 2025 |
 | 7.5.0 Preview 1.1 | July 8th 2025 |
