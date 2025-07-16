@@ -53,21 +53,19 @@ public static class SpanLinqExtensions
     {
         List<T> list = new();
         
-        foreach (T item in first)
-        {
-            if (second.Contains(item) == false)
-            {
-                list.Add(item);
-            }
-        }
+        T[] firstArray = first.ToArray();
+        T[] secondArray = second.ToArray();
 
-        foreach (T item in second)
-        {
-            if (first.Contains(item) == false)
-            {
-                list.Add(item);
-            }
-        }
+        IEnumerable<T> resultOne = first
+            .SkipWhile(x => secondArray.Contains(x))
+            .AsEnumerable();
+
+        IEnumerable<T> resultTwo = second
+            .SkipWhile(x => firstArray.Contains(x))
+            .AsEnumerable();
+
+        list.AddRange(resultOne);
+        list.AddRange(resultTwo);
         
         return new Span<T>(list.ToArray());
     }
