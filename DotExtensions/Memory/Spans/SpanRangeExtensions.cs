@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -34,6 +35,37 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanRangeExtensions
 {
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="span"></param>
+    /// <param name="elements"></param>
+    /// <param name="startIndex"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static void InsertRange<T>(this ref Span<T> span, ICollection<T> elements, int startIndex)
+    {
+        if(startIndex >= 0 == false && startIndex < span.Length == false)
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
+        
+        int newLength = span.Length + elements.Count;
+        
+        span.Resize(newLength);
+        
+        int i = startIndex;
+        
+        foreach (T element in elements)
+        {
+            if (i > span.Length)
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            
+            span[i] = element;
+            
+            i++;
+        }
+    }
+    
     /// <summary>
     /// Returns a new Span with the specified range of elements,
     /// starting from the given start index and ending at the given end index.
