@@ -32,6 +32,9 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
+/// <summary>
+/// 
+/// </summary>
 public static class EnumerableSplitExtensions
 {
     

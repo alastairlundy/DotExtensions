@@ -33,6 +33,7 @@ using System.Diagnostics.CodeAnalysis;
 using AlastairLundy.DotExtensions.Localizations;
 
 using AlastairLundy.DotPrimitives.Collections.Groupings;
+// ReSharper disable UseIndexFromEndExpression
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -42,6 +43,34 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 public static class SpanLinqExtensions
 {
 
+    /// <summary>
+    /// Applies the given action to each element of this Span.
+    /// </summary>
+    /// <param name="action">The action to apply to each element in the span.</param>
+    /// <param name="target">The span to apply the elements to.</param>
+    /// <typeparam name="T">The type of items in the Span.</typeparam>
+    public static void ForEach<T>(this ref Span<T> target, Action<T> action)
+    {
+        for (int index = 0; index < target.Length; index++)
+        {
+            action.Invoke(target[index]);
+        }
+    }
+
+    /// <summary>
+    /// Applies the given func to each element of this Span.
+    /// </summary>
+    /// <param name="target">The span to apply the elements to.</param>
+    /// <param name="action">The func to apply to each element in the span.</param>
+    /// <typeparam name="T">The type of items in the Span.</typeparam>
+    public static void ForEach<T>(this Span<T> target, Func<T, T> action)
+    {
+        for (int i = 0; i < target.Length; i++)
+        {
+            target[i] = action.Invoke(target[i]);
+        }
+    }
+    
     /// <summary>
     /// Returns a new Span with all the elements of two Spans that are only in one Span and not the other.
     /// </summary>
@@ -53,21 +82,19 @@ public static class SpanLinqExtensions
     {
         List<T> list = new();
         
-        foreach (T item in first)
-        {
-            if (second.Contains(item) == false)
-            {
-                list.Add(item);
-            }
-        }
+        T[] firstArray = first.ToArray();
+        T[] secondArray = second.ToArray();
+        
+        IEnumerable<T> resultOne = first
+            .SkipWhile(x => secondArray.Contains(x))
+            .AsEnumerable();
 
-        foreach (T item in second)
-        {
-            if (first.Contains(item) == false)
-            {
-                list.Add(item);
-            }
-        }
+        IEnumerable<T> resultTwo = second
+            .SkipWhile(x => firstArray.Contains(x))
+            .AsEnumerable();
+
+        list.AddRange(resultOne);
+        list.AddRange(resultTwo);
         
         return new Span<T>(list.ToArray());
     }
@@ -82,9 +109,7 @@ public static class SpanLinqExtensions
     public static Span<T> Skip<T>(this Span<T> target, int count)
     {
         if (count > target.Length)
-        {
-            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
-        }
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
             
         int end = target.Length - count;
 
@@ -101,9 +126,7 @@ public static class SpanLinqExtensions
     public static Span<T> SkipLast<T>(this Span<T> target, int count)
     {
         if (count > target.Length)
-        {
-            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);    
-        }
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
             
         return target.GetRange(start: 0, end: target.Length - count);
     }
@@ -131,8 +154,9 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T First<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+        if (target.IsEmpty)
+            throw new InvalidOperationException(
+                Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         return target[0];
     }
@@ -167,7 +191,7 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        return target.Length >= 1 ? target[0] : default;
+        return target.IsEmpty == false ? target[0] : default;
     }
     
     /// <summary>
@@ -202,7 +226,7 @@ public static class SpanLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
     public static T Last<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
+        if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
@@ -246,10 +270,8 @@ public static class SpanLinqExtensions
     /// <returns>The last element of the span, or null if the span is empty.</returns>
     public static T? LastOrDefault<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
-        {
+        if (target.IsEmpty)
             return default;
-        }
         
 #if NET6_0_OR_GREATER
         return target.Length > 1 ? target[^1] : target.FirstOrDefault();

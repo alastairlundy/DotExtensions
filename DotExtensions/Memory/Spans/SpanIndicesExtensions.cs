@@ -25,6 +25,8 @@
 using System;
 using System.Collections.Generic;
 
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
@@ -51,7 +53,7 @@ public static class SpanIndicesExtensions
             }
         }
 
-        if (indices.Count == 0)
+        if (indices.IsEmpty())
             return [-1];
         
         return indices;

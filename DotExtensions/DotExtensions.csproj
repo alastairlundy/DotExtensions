@@ -12,22 +12,16 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 7.4.x
+        <PackageReleaseNotes>## Changes
 
-### Main package
-#### Additions
-* Added string ``IndexOf(string)``, ``IndicesOf(char)`` , and  ``IndicesOf(string)`` extension methods
-* Add Span Distinct, Count, and GroupBy extension methods @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/59)
-* Add WaitForExitAsync overload support for CancellationMode and ProcessTimeoutPolicy @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/60)
-* Added support for enabling UnixFileMode extensions with a conditional compilation statement UnixFileModeAvailable. If [Polyfill](https://github.com/SimonCropp/Polyfill) 8.5.1 or newer is installed in your project, enable this conditional compilation statement for access to the UnixFileMode extension methods.
+## 🚀 Features
 
-#### Changes
-* Removed deprecation of IEnumerable&lt;T&gt; ``ElementsAt(IEnumerable&lt;int&gt;)`` method
-* Improved performance of IEnumerable&lt;T&gt; ``ElementsAt(IEnumerable&lt;int&gt;)`` method
+- Simplify Integer `` RangeAsEnumerable([Type], [Type], IEnumerable\&lt;[Type]&gt;`` method code using LINQ @alastairlundy (#66)
  
-#### Bug Fixes
-* Fixed an issue with Escape Character Removal extension method
-* Fixed an issue with UnixFileMode ``HasExecutePermission()`` extension method</PackageReleaseNotes>
+## 🐛 Bug Fixes
+
+- Fixed an issue where Span ``FirstOrDefault`` wrongly returned ``default`` even if the Span contained more than 1 element  @alastairlundy (#65)
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -37,7 +31,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.5.0</Version>
+        <Version>7.5.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>

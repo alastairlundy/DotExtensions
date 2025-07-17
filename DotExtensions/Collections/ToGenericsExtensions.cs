@@ -40,6 +40,7 @@ public static class CollectionToGenericsExtensions
     /// typed according to the specified type parameter.</returns>
     /// <exception cref="ArgumentException">Thrown if the source collection is null
     /// or cannot be converted to a generic collection.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> ToGenericCollection<T>(this ICollection source)
     {
         ICollection<T> output = new List<T>();
@@ -66,6 +67,7 @@ public static class CollectionToGenericsExtensions
     /// <typeparam name="T">The type of Type the ArrayList stores.</typeparam>
     /// <returns>A new List of type T with the items from the ArrayList.</returns>
     /// <exception cref="ArgumentException">Thrown if the type specified is not the type stored in the ArrayList.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static List<T> ToList<T>(this ArrayList arrayList)
     {
         if (typeof(T) != arrayList.GetType())

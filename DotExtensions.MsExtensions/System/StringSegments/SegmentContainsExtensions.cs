@@ -33,8 +33,12 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SegmentContainsExtensions
 {
+    
     /// <summary>
     /// Returns whether the String Segment contains a character. 
     /// </summary>
