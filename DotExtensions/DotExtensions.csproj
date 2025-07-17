@@ -36,10 +36,6 @@
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Memory\" />
-    </ItemGroup>
     
     <ItemGroup>
       <Content Include="..\README.md">
