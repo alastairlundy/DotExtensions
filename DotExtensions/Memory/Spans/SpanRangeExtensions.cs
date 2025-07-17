@@ -37,18 +37,18 @@ public static class SpanRangeExtensions
 {
     
     /// <summary>
-    /// 
+    /// Inserts a collection of elements at the specified start index into the span.
     /// </summary>
-    /// <param name="span"></param>
-    /// <param name="elements"></param>
-    /// <param name="startIndex"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <param name="span">The original span to insert the range of items into.</param>
+    /// <param name="elements">The collection of elements to be inserted.</param>
+    /// <param name="startIndex">The zero-based starting index of the insertion.</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
     public static void InsertRange<T>(this ref Span<T> span, ICollection<T> elements, int startIndex)
     {
-        if(startIndex >= 0 == false && startIndex < span.Length == false)
+        if (startIndex >= 0 == false && startIndex < span.Length == false)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
-        
+
         int newLength = span.Length + elements.Count;
         
         span.Resize(newLength);
