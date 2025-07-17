@@ -33,7 +33,7 @@ using AlastairLundy.DotPrimitives.Collections.HashMaps;
 namespace AlastairLundy.DotExtensions.DotPrimitives.Collections.HashMaps;
 
 
-public static class HashMapPutRangeExtensions
+internal static class HashMapPutRangeExtensions
 {
     /// <summary>
     /// Adds the Key Value Pairs in a HashMap to a specified HashMap.

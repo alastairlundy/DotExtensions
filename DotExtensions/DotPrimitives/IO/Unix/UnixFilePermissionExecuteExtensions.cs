@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 using AlastairLundy.DotPrimitives.IO.Permissions;
 
 namespace AlastairLundy.DotExtensions.DotPrimitives.IO.Unix;
@@ -30,13 +29,13 @@ namespace AlastairLundy.DotExtensions.DotPrimitives.IO.Unix;
 /// <summary>
 /// 
 /// </summary>
-public static class UnixFilePermissionExecuteExtensions
+internal static class UnixFilePermissionExecuteExtensions
 {
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>
-    /// <param name="permission">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+    /// <param name="permission">The Unix file permission to check.</param>
+    /// <returns>True if the permission includes execute permission, false otherwise.</returns>
     public static bool HasExecutePermission(this UnixFilePermission permission)
     {
         return permission.HasFlag(UnixFilePermission.GroupExecute) 
@@ -45,10 +44,10 @@ public static class UnixFilePermissionExecuteExtensions
     }
 
     /// <summary>
-    /// Determines whether the specified Unix file mode has write permission.
+    /// Determines whether the specified Unix file permission has write permission.
     /// </summary>
-    /// <param name="permission">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes write permission, false otherwise.</returns>
+    /// <param name="permission">The Unix file permission to check.</param>
+    /// <returns>True if the permission includes write permission, false otherwise.</returns>
     public static bool HasWritePermission(this UnixFilePermission permission)
     {
         return permission.HasFlag(UnixFilePermission.GroupWrite) 
@@ -57,10 +56,10 @@ public static class UnixFilePermissionExecuteExtensions
     }
 
     /// <summary>
-    /// Determines whether the specified Unix file mode has read permission.
+    /// Determines whether the specified Unix file permission has read permission.
     /// </summary>
-    /// <param name="permission">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes read permission, false otherwise.</returns>
+    /// <param name="permission">The Unix file permission to check.</param>
+    /// <returns>True if the permission includes read permission, false otherwise.</returns>
     public static bool HasReadPermission(this UnixFilePermission permission)
     {
         return permission.HasFlag(UnixFilePermission.GroupRead) 
