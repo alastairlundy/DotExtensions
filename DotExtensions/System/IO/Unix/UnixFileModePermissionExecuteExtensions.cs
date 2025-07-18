@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-#if NET7_0_OR_GREATER || UnixFileModeAvailable
+#if NET7_0_OR_GREATER
 using System;
 using System.IO;
 

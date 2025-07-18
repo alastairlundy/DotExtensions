@@ -1,12 +1,15 @@
 using System.IO;
 
+#if NET7_0_OR_GREATER
 using AlastairLundy.DotExtensions.IO.Unix;
+#endif
 
 namespace DotExtensions.Tests.IO;
 
 public class UnixFileModeExtensionTests
 {
 
+    #if NET7_0_OR_GREATER
     [Fact]
     public void UnixFileMode_HasExecutePermissions_True()
     {
@@ -18,6 +21,6 @@ public class UnixFileModeExtensionTests
         Assert.True(expectedGroup.HasExecutePermission());
         Assert.True(expectedOthers.HasExecutePermission());
     }
-    
+    #endif
     
 }
