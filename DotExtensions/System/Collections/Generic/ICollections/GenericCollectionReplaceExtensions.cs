@@ -24,6 +24,8 @@
 
 using System.Collections.Generic;
 
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
 /// <summary>

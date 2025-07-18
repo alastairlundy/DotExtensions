@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,26 +36,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class TitleCaseExtensions
 {
-    /// <summary>
-    /// Checks whether a word is capitalized.
-    /// </summary>
-    /// <param name="word">The word to be checked.</param>
-    /// <returns>True if the word is capitalized; false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsWordTitleCase(this string word)
-    {
-        bool[] letterCapitalization = new bool[word.Length];
-
-        letterCapitalization[0] = word[0].IsUpperCaseCharacter();
-            
-        for (int index = 1; index < word.Length; index++)
-        {
-            letterCapitalization[index] = word[index].IsLowerCaseCharacter();
-        }
-
-        return letterCapitalization.All(x => x == true);
-    }
-
     /// <summary>
     /// Converts a string to Title Case.
     /// </summary>
@@ -79,9 +58,9 @@ public static class TitleCaseExtensions
         foreach (string str in words)
         {
             stringBuilder.Append(str.IsTitleCase() ? str :
-                str.CapitalizeFirstLetter());
+                str.CapitalizeChar(1));
         }
-
+        
         return stringBuilder.ToString();
     }
         
@@ -98,7 +77,7 @@ public static class TitleCaseExtensions
             
         for (int index = 0; index < words.Length; index++)
         {
-            results[index] = words[index].IsWordTitleCase();
+            results[index] = words[index].Equals(words[index].ToTitleCase());
         }
 
         return results.All(x => x == true);

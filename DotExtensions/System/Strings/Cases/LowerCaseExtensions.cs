@@ -31,17 +31,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class LowerCaseExtensions
 {
     /// <summary>
-    /// Returns whether a character is a lower case letter or not.
-    /// </summary>
-    /// <param name="c">The character to be checked.</param>
-    /// <returns>True, if the character is a lower case character; false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsLowerCaseCharacter(this char c)
-    {
-        return c.ToString().Equals(c.ToString().ToLower());
-    }
-        
-    /// <summary>
     /// Returns whether a string is lower case or not.
     /// </summary>
     /// <param name="s">The string to be checked.</param>

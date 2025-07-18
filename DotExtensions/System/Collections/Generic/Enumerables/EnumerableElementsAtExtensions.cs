@@ -23,7 +23,7 @@
    */
 
 using System.Collections.Generic;
-
+using System.Linq;
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -50,21 +50,8 @@ public static class EnumerableElementsAtExtensions
         {
             return IListElementsAtExtensions.ElementsAt(list, indices);
         }
-        
-        List<T> output = new();
-        IList<int> indicesList = indices as IList<int> ?? [..indices];
-        
-        int i = 0;
-        foreach (T item in source)
-        {
-            if (indicesList.Contains(i))
-            {
-                output.Add(item);
-            }
 
-            i++;
-        }
-            
-        return output;
+        return (from index in indices
+            select source.ElementAt(index));
     }
 }

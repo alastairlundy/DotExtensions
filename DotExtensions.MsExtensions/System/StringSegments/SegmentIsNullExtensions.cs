@@ -40,11 +40,11 @@ public static class SegmentIsNullExtensions
     {
         if (segment is null)
             return true;
-        
+
         return segment.Value.Length == 0 ||
                segment.Equals(StringSegment.Empty);
     }
-
+    
     /// <summary>
     /// Checks whether the specified string segment is null or empty.
     /// </summary>
