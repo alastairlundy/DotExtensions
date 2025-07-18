@@ -3,6 +3,7 @@
 using System;
 using DotExtensions.Benchmarking.Benchmarks.Collections;
 using BenchmarkDotNet.Running;
+using DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 
 
-BenchmarkRunner.Run<EnumerableElementsAtExtensionsBenchmarks>();
+BenchmarkRunner.Run<DigitCountingExperimentBenchmarks>();

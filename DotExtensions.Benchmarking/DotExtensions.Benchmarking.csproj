@@ -15,10 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Benchmarks\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
     </ItemGroup>
 

@@ -30,52 +30,53 @@ using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections;
-
-/// <summary>
-/// Provides string manipulation extensions for sequences of StringSegments.
-/// </summary>
-public static class SegmentEnumerableToStringExtensions
+namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
 {
-
     /// <summary>
-    /// Converts a sequence of StringSegments into a single string.
+    /// Provides string manipulation extensions for sequences of StringSegments.
     /// </summary>
-    /// <param name="segments">The sequence of StringSegments to convert.</param>
-    /// <param name="separator">Optional separator string between segments (default: space).</param>
-    /// <returns>The concatenated string representation of the input segments.</returns>
-    public static string ToString(this IEnumerable<StringSegment> segments, string separator = " ")
+    public static class SegmentEnumerableToStringExtensions
     {
-        StringBuilder stringBuilder = new StringBuilder();
+
+        /// <summary>
+        /// Converts a sequence of StringSegments into a single string.
+        /// </summary>
+        /// <param name="segments">The sequence of StringSegments to convert.</param>
+        /// <param name="separator">Optional separator string between segments (default: space).</param>
+        /// <returns>The concatenated string representation of the input segments.</returns>
+        public static string ToString(this IEnumerable<StringSegment> segments, string separator = " ")
+        {   
+            StringBuilder stringBuilder = new StringBuilder();
             
-        foreach (StringSegment segment in segments)
-        {
-            stringBuilder.Append(segment.ToCharArray());
-            stringBuilder.Append(separator);
-        }
+            foreach (StringSegment segment in segments)
+            {
+                stringBuilder.Append(segment.ToCharArray());
+                stringBuilder.Append(separator);
+            }
         
-        stringBuilder.Remove(stringBuilder.Length - separator.Length, separator.Length);
+            stringBuilder.Remove(stringBuilder.Length - separator.Length, separator.Length);
 
-        return stringBuilder.ToString();
-    }
-
-    /// <summary>
-    /// Converts a sequence of StringSegments into a single string.
-    /// </summary>
-    /// <param name="segments">The sequence of StringSegments to convert.</param>
-    /// <param name="separator">Optional separator character between segments (default: space).</param>
-    /// <returns>The concatenated string representation of the input segments.</returns>
-    public static string ToString(this IEnumerable<StringSegment> segments, char separator = ' ')
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-            
-        foreach(StringSegment segment in segments)
-        {
-            stringBuilder.Append(segment.ToCharArray());
-            stringBuilder.Append(separator);
+            return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// Converts a sequence of StringSegments into a single string.
+        /// </summary>
+        /// <param name="segments">The sequence of StringSegments to convert.</param>
+        /// <param name="separator">Optional separator character between segments (default: space).</param>
+        /// <returns>The concatenated string representation of the input segments.</returns>
+        public static string ToString(this IEnumerable<StringSegment> segments, char separator = ' ')
+        {
+            StringBuilder stringBuilder = new StringBuilder();
             
-        stringBuilder.Remove(stringBuilder.Length - 1, 1);
-        return stringBuilder.ToString();
+            foreach(StringSegment segment in segments)
+            {
+                stringBuilder.Append(segment.ToCharArray());
+                stringBuilder.Append(separator);
+            }
+            
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            return stringBuilder.ToString();
+        }
     }
 }
