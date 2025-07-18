@@ -36,12 +36,20 @@ public class StringAnyOfTests
 {
     private Lorem _lorem = new();
     
+    #if NETFRAMEWORK
+    private readonly Random _random = new();
+    #endif
+    
     [Fact]
     public void AnyOfChars()
     {
         char[] chars = Chars.UpperCase.Take(5).ToArray();
-        
+       
+#if NETFRAMEWORK
+        _random.Shuffle(chars);
+#else
         Random.Shared.Shuffle(chars);
+#endif
         
         string str = String.Join("", chars);
 
