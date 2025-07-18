@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlastairLundy.DotExtensions.Numbers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
@@ -78,34 +79,13 @@ public class DigitCountingExperimentBenchmarks
     }
     
     [Benchmark]
-    public int[] WhileLoop_Length()
+    public int[] DigitCounting()
     {
         int[] results = new int[N];
 
         for (int index = 0; index < numbers.Length; index++)
         {
-            int number = numbers[index];
-            int tempI = 0;
-
-            if (number < 0)
-            {
-                tempI = number * -1;
-            }
-
-            int WhileLoopFunc(int n)
-            {
-                int digits = n < 0 ? 2 : 1;
-
-                while ((n /= 10) != 0)
-                {
-                    ++digits;
-                }
-
-                return digits;
-            }
-
-
-            results[index] = WhileLoopFunc(tempI);
+            results[index] = numbers[index].CountNumberOfDigits();
         }
 
         return results;
