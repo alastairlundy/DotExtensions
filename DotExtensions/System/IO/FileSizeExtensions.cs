@@ -23,10 +23,9 @@
    */
 
 using System.IO;
-
 using AlastairLundy.DotExtensions.Numbers;
 
-namespace AlastairLundy.DotExtensions.DotPrimitives.IO;
+namespace AlastairLundy.DotExtensions.IO;
 
 internal static class FileSizeExtensions
 {
