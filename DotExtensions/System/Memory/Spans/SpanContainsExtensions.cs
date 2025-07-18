@@ -22,37 +22,37 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
+#if  NETSTANDARD2_0 || NETSTANDARD2_1
+using System;
+#endif
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
-/// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
+/// 
 /// </summary>
-public static class EnumerableFrequencyOfExtensions
+public static class SpanContainsExtensions
 {
-    /// <summary>
-    /// Calculates the number of times each distinct object appears in an IEnumerable.
-    /// </summary>
-    /// <param name="source">The IEnumerable to be searched.</param>
-    /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
-    /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
-    public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
-    {
-        Dictionary<T, int> items = new Dictionary<T, int>();
-
-        foreach (T item in source)
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+        /// <summary>
+        /// Checks to see if a Span contains the specified item.
+        /// </summary>
+        /// <param name="target">The span to check through.</param>
+        /// <param name="item">The item to search for in the span.</param>
+        /// <typeparam name="T">The type of items stored in the span.</typeparam>
+        /// <returns>True if the item is found in the span; false otherwise.</returns>
+        public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
         {
-#if NET6_0_OR_GREATER
-            if (items.TryAdd(item, 1) == false)
-#else
-                if (items.ContainsKey(item))
-#endif
+            foreach (T tItem in target)
             {
-                items[item] += 1;
+                if (tItem is not null && tItem.Equals(item))
+                {
+                    return true;
+                }
             }
+        
+            return false;
         }
-
-        return items;
-    }
+    
+#endif
 }

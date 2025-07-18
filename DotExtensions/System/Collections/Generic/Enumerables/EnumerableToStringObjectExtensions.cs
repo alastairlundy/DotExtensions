@@ -22,34 +22,39 @@
        SOFTWARE.
    */
 
-#if  NETSTANDARD2_0 || NETSTANDARD2_1
 using System;
-#endif
+using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+using AlastairLundy.DotExtensions.Deprecations;
 
-public static class SpanContainsExtensions
+// ReSharper disable RedundantBoolCompare
+// ReSharper disable RedundantToStringCallForValueType
+
+// ReSharper disable SuggestVarOrType_SimpleTypes
+
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+/// <summary>
+/// 
+/// </summary>
+public static class EnumerableToStringObjectExtensions
 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-        /// <summary>
-        /// Checks to see if a Span contains the specified item.
-        /// </summary>
-        /// <param name="target">The span to check through.</param>
-        /// <param name="item">The item to search for in the span.</param>
-        /// <typeparam name="T">The type of items stored in the span.</typeparam>
-        /// <returns>True if the item is found in the span; false otherwise.</returns>
-        public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
-        {
-            foreach (T t in target)
-            {
-                if (t is not null && t.Equals(item))
-                {
-                    return true;
-                }
-            }
-        
-            return false;
-        }
     
-#endif
+    /// <summary>
+    /// Converts an IEnumerable of Type T to a string separated by a separator string.
+    /// </summary>
+    /// <param name="source">The enumerable to be turned into a string.</param>
+    /// <param name="separator">The string to separate the items in the source enumerable.</param>
+    /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
+    /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV8)]
+    public static string ToString<T>(this IEnumerable<T> source, string separator)
+    {
+        if (source is IEnumerable<string> stringEnumerable)
+        {
+            return string.Join(separator, stringEnumerable);
+        }
+
+        return string.Join(separator, source);
+    }
 }

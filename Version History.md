@@ -7,6 +7,7 @@
 ### 7.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.5.1 | July 16th 2025 |
 | 7.5.0 | July 14th 2025 |
 | 7.5.0 Preview 2 | July 9th 2025 |
 | 7.5.0 Preview 1.1 | July 8th 2025 |
@@ -15,6 +16,7 @@
 ### 7.4
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.4.4 | July 14th 2025 | Main package only |
 | 7.4.3 | July 13th 2025 | Main package only |
 | 7.4.2 | July 9th 2025 | |
 | 7.4.1 | July 6th 2025 | Main package only |

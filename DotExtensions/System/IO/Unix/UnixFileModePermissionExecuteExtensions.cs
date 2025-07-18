@@ -22,35 +22,38 @@
        SOFTWARE.
    */
 
+#if NET7_0_OR_GREATER || UnixFileModeAvailable
 using System;
-using System.Collections.Generic;
+using System.IO;
 
-using AlastairLundy.DotExtensions.Deprecations;
+namespace AlastairLundy.DotExtensions.IO.Unix;
 
-// ReSharper disable RedundantBoolCompare
-// ReSharper disable RedundantToStringCallForValueType
-
-// ReSharper disable SuggestVarOrType_SimpleTypes
-
-namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
-
-public static class EnumerableToStringObjectExtensions
+/// <summary>
+/// 
+/// </summary>
+public static class UnixFileModePermissionExecuteExtensions
 {
     /// <summary>
-    /// Converts an IEnumerable of Type T to a string separated by a separator string.
+    /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>
-    /// <param name="source">The enumerable to be turned into a string.</param>
-    /// <param name="separator">The string to separate the items in the source enumerable.</param>
-    /// <typeparam name="T">The type of objects to be enumerated.</typeparam>
-    /// <returns>The string containing all the strings in the source enumerable separated by the separator.</returns>
-    [Obsolete(DeprecationMessages.DeprecationV8)]
-    public static string ToString<T>(this IEnumerable<T> source, string separator)
+    /// <param name="mode">The Unix file mode to check.</param>
+    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+    [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
+    public static bool IsExecutePermission(this UnixFileMode mode)
     {
-        if (source is IEnumerable<string> stringEnumerable)
-        {
-            return string.Join(separator, stringEnumerable);
-        }
-
-        return string.Join(separator, source);
+        return mode.HasExecutePermission();
+    }
+    
+    /// <summary>
+    /// Determines whether the specified Unix file mode has execute permission.
+    /// </summary>
+    /// <param name="mode">The Unix file mode to check.</param>
+    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+    public static bool HasExecutePermission(this UnixFileMode mode)
+    {
+        return mode.HasFlag(UnixFileMode.UserExecute) ||
+               mode.HasFlag(UnixFileMode.GroupExecute) ||
+               mode.HasFlag(UnixFileMode.OtherExecute);
     }
 }
+#endif

@@ -29,6 +29,7 @@ using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
+
 using AlastairLundy.DotExtensions.Deprecations;
 using AlastairLundy.DotExtensions.Localizations;
 

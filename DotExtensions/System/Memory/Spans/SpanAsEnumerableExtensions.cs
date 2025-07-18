@@ -27,6 +27,9 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanAsEnumerableExtensions
 {
     /// <summary>
@@ -34,20 +37,38 @@ public static class SpanAsEnumerableExtensions
     /// </summary>
     /// <remarks>This method works by creating a new Array of the same length as the span, copies files to the array, and returns it as an IEnumerable.
     /// <para>Conversion from a <see cref="Span{T}"/> to an <see cref="IEnumerable{T}"/> should not be done if performance is a concern.
-    /// Spans are faster to iterate over and work with than IEnumerables.</para>
+    /// Spans are faster to iterate over and work with than IEnumerable.</para>
     /// </remarks>
-    /// <param name="span">The span to convert.</param>
+    /// <param name="source">The span to convert.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>An IEnumerable collection containing the elements of the span.</returns>
-    public static IEnumerable<T> AsEnumerable<T>(this Span<T> span)
+    /// <returns>A sequence containing the elements of the span.</returns>
+    public static IEnumerable<T> AsEnumerable<T>(this Span<T> source)
     {
-        T[] array = new T[span.Length];
+        T[] array = new T[source.Length];
 
-        for (int i = 0; i < span.Length; i++)
+        for (int i = 0; i < source.Length; i++)
         {
-            array[i] = span[i];
+            array[i] = source[i];
         }
         
         return array;
+    }
+
+    /// <summary>
+    /// Converts a <see cref="Span{T}"/> to an <see cref="List{T}"/>.
+    /// </summary>
+    /// <param name="source">The span to convert.</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <returns>A list containing the elements of the span.</returns>
+    public static List<T> ToList<T>(this Span<T> source)
+    {
+        List<T> list = new List<T>();
+
+        foreach (T item in source)
+        {
+            list.Add(item);
+        }
+        
+        return list;
     }
 }

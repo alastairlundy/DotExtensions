@@ -1,7 +1,7 @@
 ﻿/*
         MIT License
 
-       Copyright (c) 2020-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
 
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,40 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
-
 using System;
+using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Strings;
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
-public static class UpperCaseExtensions
+namespace AlastairLundy.DotExtensions.Memory.Spans;
+
+/// <summary>
+/// 
+/// </summary>
+public static class SpanIndicesExtensions
 {
     /// <summary>
-    /// Returns whether a character is an upper case character or not.
+    /// Returns a collection of indices within the given span where the specified value occurs.
     /// </summary>
-    /// <param name="c">The character to be checked.</param>
-    /// <returns>True, if the character is an upper case character, false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsUpperCaseCharacter(this char c)
+    /// <param name="span">The initial span to search.</param>
+    /// <param name="item">The value to find in the span.</param>
+    /// <typeparam name="T">The type of elements within the span.</typeparam>
+    /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
+    public static ICollection<int> IndicesOf<T>(this Span<T> span, T item) where T : notnull
     {
-        return c.ToString().Equals(c.ToString().ToUpper());
-    }
+        List<int> indices = new List<int>();
+
+        for (int index = 0; index < span.Length; index++)
+        {
+            if (item is not null && item.Equals(span[index]))
+            {
+                indices.Add(index);
+            }
+        }
+
+        if (indices.IsEmpty())
+            return [-1];
         
-    /// <summary>
-    /// Returns whether a string is upper case or not.
-    /// </summary>
-    /// <param name="s">The string to be checked.</param>
-    /// <returns>True if the string is upper case; false otherwise.</returns>
-    // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsUpperCase(this string s)
-    { 
-        return s.Equals(s.ToUpper());
+        return indices;
     }
 }

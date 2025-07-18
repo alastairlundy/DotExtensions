@@ -1,18 +1,18 @@
 ﻿/*
         MIT License
-
-       Copyright (c) 2025 Alastair Lundy
-
+       
+       Copyright (c) 2024-2025 Alastair Lundy
+       
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-
+       
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-
+       
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,39 +22,38 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
-public static class SpanIndicesExtensions
+/// <summary>
+/// A class to assist in counting the number of times an object or objects appear in an IEnumerable.
+/// </summary>
+public static class EnumerableFrequencyOfExtensions
 {
     /// <summary>
-    /// Returns a collection of indices within the given span where the specified value occurs.
+    /// Calculates the number of times each distinct object appears in an IEnumerable.
     /// </summary>
-    /// <param name="span">The initial span to search.</param>
-    /// <param name="item">The value to find in the span.</param>
-    /// <typeparam name="T">The type of elements within the span.</typeparam>
-    /// <returns>A collection of indices that represent the occurrences of item in span.</returns>
-    public static ICollection<int> IndicesOf<T>(this Span<T> span, T item) where T : notnull
+    /// <param name="source">The IEnumerable to be searched.</param>
+    /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
+    /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
+    public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
     {
-        List<int> indices = new List<int>();
+        Dictionary<T, int> items = new Dictionary<T, int>();
 
-        for (int index = 0; index < span.Length; index++)
+        foreach (T item in source)
         {
-            if (item is not null && item.Equals(span[index]))
+#if NET6_0_OR_GREATER
+            if (items.TryAdd(item, 1) == false)
+#else
+            if (items.ContainsKey(item))
+#endif
             {
-                indices.Add(index);
+                items[item] += 1;
             }
         }
 
-        if (indices.Count == 0)
-        {
-            return [ -1];
-        }
-        else
-        {
-            return indices;
-        }
+        return items;
     }
+    
 }

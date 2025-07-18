@@ -1,18 +1,18 @@
-﻿/*
+/*
         MIT License
-       
-       Copyright (c) 2024-2025 Alastair Lundy
-       
+
+       Copyright (c) 2025 Alastair Lundy
+
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
        in the Software without restriction, including without limitation the rights
        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
        copies of the Software, and to permit persons to whom the Software is
        furnished to do so, subject to the following conditions:
-       
+
        The above copyright notice and this permission notice shall be included in all
        copies or substantial portions of the Software.
-       
+
        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,40 +22,40 @@
        SOFTWARE.
    */
 
+using Microsoft.Extensions.Primitives;
 
-using System;
-using System.IO;
-
-#if NET7_0_OR_GREATER || UnixFileModeAvailable
-
-namespace AlastairLundy.DotExtensions.IO.Unix;
+namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 /// <summary>
 /// 
 /// </summary>
-public static class UnixFileModePermissionExecuteExtensions
+public static class SegmentIsNullExtensions
 {
     /// <summary>
-    /// Determines whether the specified Unix file mode has execute permission.
+    /// Checks whether the specified string segment is null or empty.
     /// </summary>
-    /// <param name="mode">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
-    public static bool IsExecutePermission(this UnixFileMode mode)
+    /// <param name="segment">The string segment to check.</param>
+    /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+    public static bool IsNullOrEmpty(this StringSegment? segment)
     {
-        return mode.HasExecutePermission();
+        if (segment is null)
+            return true;
+        
+        return segment.Value.Length == 0 ||
+               segment.Equals(StringSegment.Empty);
     }
-    
+
     /// <summary>
-    /// Determines whether the specified Unix file mode has execute permission.
+    /// Checks whether the specified string segment is null or empty.
     /// </summary>
-    /// <param name="mode">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    public static bool HasExecutePermission(this UnixFileMode mode)
+    /// <param name="segment">The string segment to check.</param>
+    /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+    public static bool IsNullOrWhiteSpace(this StringSegment? segment)
     {
-        return mode.HasFlag(UnixFileMode.UserExecute) ||
-               mode.HasFlag(UnixFileMode.GroupExecute) ||
-               mode.HasFlag(UnixFileMode.OtherExecute);
+        if (segment is null)
+            return true;
+
+        return segment.Value.Contains(' ') ||
+               segment.Value.Contains(" ");
     }
 }
-#endif

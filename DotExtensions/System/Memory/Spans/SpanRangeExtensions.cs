@@ -26,11 +26,46 @@ using System;
 using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanRangeExtensions
 {
+    
+    /// <summary>
+    /// Inserts a collection of elements at the specified start index into the span.
+    /// </summary>
+    /// <param name="span">The original span to insert the range of items into.</param>
+    /// <param name="elements">The collection of elements to be inserted.</param>
+    /// <param name="startIndex">The zero-based starting index of the insertion.</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
+    public static void InsertRange<T>(this ref Span<T> span, ICollection<T> elements, int startIndex)
+    {
+        if (startIndex >= 0 == false && startIndex < span.Length == false)
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
+
+        int newLength = span.Length + elements.Count;
+        
+        span.Resize(newLength);
+        
+        int i = startIndex;
+        
+        foreach (T element in elements)
+        {
+            if (i > span.Length)
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            
+            span[i] = element;
+            
+            i++;
+        }
+    }
+    
     /// <summary>
     /// Returns a new Span with the specified range of elements,
     /// starting from the given start index and ending at the given end index.
@@ -82,8 +117,9 @@ public static class SpanRangeExtensions
     public static Span<T> GetRange<T>(this Span<T> target, ICollection<int> indices)
     {
         T[] array = new T[indices.Count];
-            
+        
         int newIndex = 0;
+        
         foreach (int index in indices)
         {
             if (index < 0 || index >= target.Length)
@@ -94,10 +130,47 @@ public static class SpanRangeExtensions
                     .Replace("{z}", $"{target.Length}"));
             }
                 
-            target[index] = target[newIndex];
+            target[newIndex] = target[index];
             newIndex++;
         }
             
         return new Span<T>(array);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="indices"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> RemoveRange<T>(this Span<T> target, ICollection<int> indices)
+    {
+        T[] array = new T[target.Length - indices.Count];
+
+        int count = 0;
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (indices.Contains(i) == false)
+            {
+                array[count] =  target[i];
+                count++;
+            }
+        }
+
+        return new Span<T>(array);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="startIndex"></param>
+    /// <param name="count"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count)
+    {
+        return RemoveRange(target, startIndex.RangeAsIList(count));
     }
 }

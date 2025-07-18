@@ -23,6 +23,9 @@
    */
 
 // ReSharper disable CheckNamespace
+
+using System;
+
 namespace AlastairLundy.DotExtensions.Strings;
 
 public static class CapitalizationExtensions
@@ -32,6 +35,7 @@ public static class CapitalizationExtensions
     /// </summary>
     /// <param name="word">The word to be modified.</param>
     /// <returns>The updated word with the first letter capitalized.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static string CapitalizeFirstLetter(this string word)
     {
         return word.CapitalizeChar(0);
@@ -46,11 +50,10 @@ public static class CapitalizationExtensions
     public static string CapitalizeChar(this string word, int index)
     {
         char oldChar = word[index];
-
-        if (oldChar.IsUpperCaseCharacter() == false)
+        if (char.IsUpper(oldChar) == false)
         {
             word = word.Remove(index, 1)
-                .Insert(index, oldChar.ToString().ToUpper());
+                .Insert(index, char.ToUpper(oldChar).ToString());
         }
 
         return word;
