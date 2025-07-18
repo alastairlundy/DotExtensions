@@ -63,39 +63,4 @@ public static class GenericCollectionElementAtExtensions
         throw new ArgumentException(Resources.Exceptions_ValueNotFound_AtIndex.Replace("{y}", nameof(source))
             .Replace("{x}",$"{index}"));
     }
-
-        
-    /// <summary>
-    /// Returns the elements at the specified indexes from the given collection.
-    /// </summary>
-    /// <param name="source">The source collection to extract elements from.</param>
-    /// <param name="indices">The indexes of the elements to extract.</param>
-    /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <returns>The extracted elements as a generic collection.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static ICollection<T> ElementsAt<T>(this ICollection<T> source, IEnumerable<int> indices)
-    {
-        #region IList Performance Optimizations
-        if (source is IList<T> list)
-        {
-            return IListElementsAtExtensions.ElementsAt(list, indices);
-        }
-        #endregion
-
-        List<T> output = new();
-        IList<int> indicesList = indices as IList<int> ?? [..indices];
-        
-        int i = 0;
-        foreach (T item in source)
-        {
-            if (indicesList.Contains(i))
-            {
-                output.Add(item);
-            }
-
-            i++;
-        }
-            
-        return output;
-    }
 }

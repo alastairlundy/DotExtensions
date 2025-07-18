@@ -30,16 +30,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 
 public static class UpperCaseExtensions
 {
-    /// <summary>
-    /// Returns whether a character is an upper case character or not.
-    /// </summary>
-    /// <param name="c">The character to be checked.</param>
-    /// <returns>True, if the character is an upper case character, false otherwise.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsUpperCaseCharacter(this char c)
-    {
-        return c.ToString().Equals(c.ToString().ToUpper());
-    }
         
     /// <summary>
     /// Returns whether a string is upper case or not.
