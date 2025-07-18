@@ -77,7 +77,7 @@ public static class SegmentLinqExtensions
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target)
     {
-        if (target.Length < 1)
+        if (target.IsEmpty())
             return null;
 
         return target[0];
@@ -111,7 +111,7 @@ public static class SegmentLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char Last(this StringSegment target)
     {
-        if (target.Length < 1)
+        if (target.IsEmpty())
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
@@ -140,7 +140,7 @@ public static class SegmentLinqExtensions
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target)
     {
-        if (target.Length < 1)
+        if (target.IsEmpty())
         {
             return null;
         }
@@ -171,7 +171,7 @@ public static class SegmentLinqExtensions
     /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
     public static StringSegment Reverse(this StringSegment target)
     {
-        if (target.Length > 0 == false)
+        if (target.IsEmpty())
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         char[] array = target.ToCharArray();
