@@ -155,7 +155,7 @@ public static class SegmentIndicesOfExtensions
     {
         List<int> indices = new();
 
-        if (str.Length < segment.Length || segment.Length == 0)
+        if (str.Length < segment.Length || segment.IsEmpty())
             return [-1];
 
         IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
