@@ -8,13 +8,21 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.5.1</Version>
+        <Version>7.6.0-preview.1</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Update DotExtensions dependency to 7.5.1</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+
+## 🚀 Features
+
+- Add StringSegment ``IsEmpty`` @alastairlundy (#77)
+- Add StringSegment ``IsNullOrEmpty`` and ``IsNullOrWhiteSpace`` @alastairlundy (#69)
+
+## 🧰 Maintenance
+- Re-organize DotExtensions directory structure @alastairlundy (#72)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -23,6 +31,7 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <RootNamespace>AlastairLundy.DotExtensions.MsExtensions</RootNamespace>
         <PackageId>AlastairLundy.DotExtensions.MsExtensions</PackageId>
+        <AssemblyName>AlastairLundy.DotExtensions.MsExtensions</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

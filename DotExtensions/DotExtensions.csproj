@@ -15,13 +15,17 @@
         <PackageReleaseNotes>## Changes
 
 ## 🚀 Features
+- Add UnixFilePermission and WindowsFilePermission ``HasExecutePermission``, ``HasWritePermission``, and ``HasReadPermission`` extensions @alastairlundy (#75)
+- Add FileInfo ``GetFileSizeString`` and ``GetFileSizeUnitString`` @alastairlundy (#74)
+- Add Digit counting extensions @alastairlundy (#73)
+- Add Span ``InsertRange(ICollection\&lt;T&gt;, int)`` @alastairlundy (#70)
+- Add Span ``CopyTo(out Span\&lt;T&gt;, int)`` and ``CopyTo(out Span\&lt;T&gt;, int, int)`` @alastairlundy (#71)
+- Add Span ``ForEach(Action\&lt;T&gt;`` and ``ForEach(Func\&lt;T, T&gt;)`` @alastairlundy (#68)
+- Add Span ``ToList\&lt;T&gt;()`` @alastairlundy (#67)
 
-- Simplify Integer `` RangeAsEnumerable([Type], [Type], IEnumerable\&lt;[Type]&gt;`` method code using LINQ @alastairlundy (#66)
+## 🧰 Maintenance
  
-## 🐛 Bug Fixes
-
-- Fixed an issue where Span ``FirstOrDefault`` wrongly returned ``default`` even if the Span contained more than 1 element  @alastairlundy (#65)
-</PackageReleaseNotes>
+- Re-organize DotExtensions directory structure @alastairlundy (#72)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -31,15 +35,13 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.5.1</Version>
+        <Version>7.6.0-preview.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
     </PropertyGroup>
     <ItemGroup>
       <Folder Include="DotPrimitives\" />
-      <Folder Include="IO\Windows\" />
-      <Folder Include="Memory\" />
     </ItemGroup>
     
     <ItemGroup>
@@ -47,7 +49,6 @@
         <PackagePath>README.md</PackagePath>
         <Link>README.md</Link>
       </Content>
-      <None Include="DotExtensions.targets" />
     </ItemGroup>
     
     <ItemGroup>
