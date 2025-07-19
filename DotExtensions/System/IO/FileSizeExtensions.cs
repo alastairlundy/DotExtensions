@@ -23,10 +23,14 @@
    */
 
 using System.IO;
+
 using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.DotExtensions.IO;
 
+/// <summary>
+/// 
+/// </summary>
 public static class FileSizeExtensions
 {
     /// <summary>
