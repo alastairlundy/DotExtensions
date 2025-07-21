@@ -31,6 +31,7 @@ using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 using AlastairLundy.DotExtensions.Deprecations;
+using AlastairLundy.DotExtensions.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -186,6 +187,6 @@ public static class EnumerableRangeExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
     {
-        return RemoveRange(source, itemsToBeRemoved);
+        return source.RemoveRange(itemsToBeRemoved);
     }
 }
