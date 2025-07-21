@@ -46,12 +46,6 @@ public static class EnumerableElementsAtExtensions
     /// <returns>A new IEnumerable containing the elements at the specified indexes from the original source.</returns>
     public static IEnumerable<T> ElementsAt<T>(this IEnumerable<T> source, IEnumerable<int> indices)
     {
-        if (source is IList<T> list)
-        {
-            return IListElementsAtExtensions.ElementsAt(list, indices);
-        }
-        
-        List<T> output = new();
         IList<int> indicesList = indices as IList<int> ?? [..indices];
         
         int i = 0;
@@ -59,12 +53,10 @@ public static class EnumerableElementsAtExtensions
         {
             if (indicesList.Contains(i))
             {
-                output.Add(item);
+                yield return item;
             }
 
             i++;
         }
-            
-        return output;
     }
 }
