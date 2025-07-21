@@ -42,6 +42,7 @@ public static class SpanAsEnumerableExtensions
     /// <param name="source">The span to convert.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <returns>A sequence containing the elements of the span.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> AsEnumerable<T>(this Span<T> source)
     {
         T[] array = new T[source.Length];
