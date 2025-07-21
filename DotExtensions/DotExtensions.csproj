@@ -42,6 +42,7 @@
     </PropertyGroup>
     <ItemGroup>
       <Folder Include="DotPrimitives\" />
+      <Folder Include="DotPrimitives\Collections\" />
     </ItemGroup>
     
     <ItemGroup>
