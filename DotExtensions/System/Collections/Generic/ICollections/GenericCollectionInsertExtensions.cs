@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,7 @@ public static class GenericCollectionInsertExtensions
     /// <param name="index">The zero-based index at which value should be inserted.</param>
     /// <param name="value">The element to insert into the collection.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static void Insert<T>(this ICollection<T> collection, int index, T value)
     {
         collection.InsertRange(index, [value]);
