@@ -145,6 +145,10 @@ public static class GenericCollectionRangeExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
     {
+        #if NET8_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+        #endif
+        
         List<T> output = new();
 
         #region Optimized IList code
