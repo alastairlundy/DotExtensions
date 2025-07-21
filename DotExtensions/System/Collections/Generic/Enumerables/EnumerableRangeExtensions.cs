@@ -150,7 +150,7 @@ public static class EnumerableRangeExtensions
             
         IList<T> enumerableList = source.ToList();
 
-        int limit;
+            int limit;
 
             if (enumerableList.Count >= (startIndex + count))
             {

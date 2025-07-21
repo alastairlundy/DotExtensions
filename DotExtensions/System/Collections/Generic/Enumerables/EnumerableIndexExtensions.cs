@@ -72,26 +72,20 @@ public static class EnumerableIndexExtensions
     /// <param name="source">The IEnumerable to be searched.</param>
     /// <param name="obj">The item to search for.</param>
     /// <typeparam name="T"></typeparam>
-    /// <returns>The indices if the object is found; a single element Enumerable with a value of -1 otherwise.</returns>
+    /// <returns>The indices if the object is found; an empty sequence otherwise.</returns>
     public static IEnumerable<int> IndicesOf<T>(this IEnumerable<T> source, T obj)
     {
-        List<int> indices = new List<int>();
-            
         int index = 0;
+        
         foreach (T item in source)
         {
             if (obj is not null && obj.Equals(item))
             {
-                indices.Add(index);
+                yield return index;
             }
 
             index += 1;
         }
-
-        if (indices.Count == 0)
-            return [-1];
-
-        return indices;
     }
         
 

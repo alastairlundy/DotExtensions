@@ -89,6 +89,7 @@ public static class GenericCollectionRangeExtensions
     /// <param name="values">The IEnumerable containing elements to insert at the specified index.</param>
     /// <typeparam name="T">The type of elements in the collection.</typeparam>
     /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of range for the collection.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static void InsertRange<T>(this ICollection<T> source, int index, IEnumerable<T> values)
     {
         if (index < 0 || index >= source.Count)
@@ -144,6 +145,10 @@ public static class GenericCollectionRangeExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static ICollection<T> GetRange<T>(this ICollection<T> source, IEnumerable<int> indices)
     {
+        #if NET8_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(source);
+        #endif
+        
         List<T> output = new();
 
         #region Optimized IList code
