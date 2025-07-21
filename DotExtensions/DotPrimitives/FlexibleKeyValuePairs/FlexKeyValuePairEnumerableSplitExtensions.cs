@@ -28,7 +28,7 @@ using AlastairLundy.DotPrimitives.Collections;
 
 namespace AlastairLundy.DotExtensions.DotPrimitives.FlexibleKeyValuePairs;
 
-internal static class FlexKeyValuePairEnumerableSplitExtensions
+public static class FlexKeyValuePairEnumerableSplitExtensions
 {
     /// <summary>
     /// 

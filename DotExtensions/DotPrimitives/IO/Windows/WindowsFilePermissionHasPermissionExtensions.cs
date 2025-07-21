@@ -29,7 +29,7 @@ namespace AlastairLundy.DotExtensions.DotPrimitives.IO.Windows;
 /// <summary>
 /// 
 /// </summary>
-internal static class WindowsFilePermissionHasPermissionExtensions
+public static class WindowsFilePermissionHasPermissionExtensions
 {
   
     /// <summary>
