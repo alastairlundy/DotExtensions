@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System;
+using System.Runtime.InteropServices;
 using AlastairLundy.DotExtensions.Strings;
 
 using Bogus.DataSets;
@@ -51,7 +53,7 @@ public class ContainsSpacesTests
     {
         bool actual = words.ContainsSpaceSeparatedSubStrings();
         
-        Assert.True(actual);
+        Assert.Equal(words.Contains(" "), actual);
     }
 
     [Fact]
