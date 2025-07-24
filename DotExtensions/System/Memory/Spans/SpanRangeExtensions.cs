@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using AlastairLundy.DotExtensions.Localizations;
 using AlastairLundy.DotExtensions.Numbers;
@@ -91,18 +92,10 @@ public static class SpanRangeExtensions
                 .Replace("{y}", $"0")
                 .Replace("{z}", $"{target.Length}"));
         }
-            
-        int count = end - start;
+        
+        target.CopyTo(out Span<T> destination, start, end - start);
 
-        T[] array = new T[count];
-
-        int newIndex = 0;
-        for (int i = start; i < end; i++)
-        {
-            array[newIndex] = target[i];
-        }
-
-        return new Span<T>(array);
+        return destination;
     }
 
         
@@ -146,19 +139,12 @@ public static class SpanRangeExtensions
     /// <returns></returns>
     public static Span<T> RemoveRange<T>(this Span<T> target, ICollection<int> indices)
     {
-        T[] array = new T[target.Length - indices.Count];
+        T[] elements = GetRange(target, indices)
+            .ToArray();
 
-        int count = 0;
-        for (int i = 0; i < target.Length; i++)
-        {
-            if (indices.Contains(i) == false)
-            {
-                array[count] =  target[i];
-                count++;
-            }
-        }
-
-        return new Span<T>(array);
+        return (from item in target
+            where elements.Contains(item) == false
+            select item);
     }
     
     /// <summary>

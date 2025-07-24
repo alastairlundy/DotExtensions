@@ -37,27 +37,6 @@ namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 /// </summary>
 public static class EnumerableSplitExtensions
 {
-    
-    /// <summary>
-    /// Splits an IEnumerable into an IEnumerable of IEnumerables by the CPU thread count.
-    /// </summary>
-    /// <param name="source">The IEnumerable to be split.</param>
-    /// <typeparam name="T">The type of item stored in the source IEnumerable.</typeparam>
-    /// <returns>An IEnumerable of IEnumerables split by the number of threads the CPU has.</returns>
-    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static IEnumerable<IEnumerable<T>> SplitByProcessorCount<T>(this IEnumerable<T> source)
-    {
-        ICollection<T> list = source as ICollection<T> ?? source.ToArray();
-        
-        if (list.Any() == false)
-            throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
-        
-        double itemsPerThread = list.Count / Convert.ToDouble(Environment.ProcessorCount);
-        
-        int enumerableLimit = Convert.ToInt32(Math.Round(itemsPerThread, MidpointRounding.AwayFromZero));
-
-        return SplitByCount(list, enumerableLimit);
-    }
 
     /// <summary>
     /// Splits an IEnumerable based on the maximum number of items allowed in each IEnumerable. 

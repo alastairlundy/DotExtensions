@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 
 using Microsoft.Extensions.Primitives;
@@ -47,18 +46,6 @@ public static class SegmentAsEnumerablesExtensions
         }
         
         return charArray;
-    }
-
-    /// <summary>
-    /// Returns the StringSegment as an IEnumerable.
-    /// </summary>
-    /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
-    /// <param name="segment">The StringSegment to enumerate.</param>
-    /// <returns>The StringSegment as an IEnumerable.</returns>
-    [Obsolete("This code is deprecated and will be removed in v8. Use AsEnumerable instead.")]
-    public static IEnumerable<char> ToEnumerable(this StringSegment segment)
-    {
-        return ToCharArray(segment);
     }
     
         
