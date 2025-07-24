@@ -91,18 +91,10 @@ public static class SpanRangeExtensions
                 .Replace("{y}", $"0")
                 .Replace("{z}", $"{target.Length}"));
         }
-            
-        int count = end - start;
+        
+        target.CopyTo(out Span<T> destination, start, end - start);
 
-        T[] array = new T[count];
-
-        int newIndex = 0;
-        for (int i = start; i < end; i++)
-        {
-            array[newIndex] = target[i];
-        }
-
-        return new Span<T>(array);
+        return destination;
     }
 
         
