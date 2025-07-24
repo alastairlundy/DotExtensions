@@ -23,6 +23,7 @@
    */
 
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,7 @@ using AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 using AlastairLundy.DotExtensions.Collections.ILists;
 
 using AlastairLundy.DotExtensions.Deprecations;
+using AlastairLundy.DotExtensions.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -68,27 +70,5 @@ public static class EnumerableRangeExtensions
 
             return list;
         }
-    }
-        
-    /// <summary>
-    /// Removes items from an IEnumerable.
-    /// </summary>
-    /// <param name="source">The IEnumerable to have items removed from.</param>
-    /// <param name="itemsToBeRemoved">The items to be removed.</param>
-    /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
-    /// <returns>The new IEnumerable with the specified items removed.</returns>
-    public static IEnumerable<T> RemoveRange<T>(this IEnumerable<T> source, IEnumerable<T> itemsToBeRemoved)
-    {
-        #region Optimized IList Code
-        if (source is IList<T> list && itemsToBeRemoved is IList<int> listTwo)
-        {
-            list.RemoveRange(listTwo);
-            return list;
-        }
-        #endregion
-            
-        return from item in source
-            where itemsToBeRemoved.Contains(item) == false
-            select item;
     }
 }

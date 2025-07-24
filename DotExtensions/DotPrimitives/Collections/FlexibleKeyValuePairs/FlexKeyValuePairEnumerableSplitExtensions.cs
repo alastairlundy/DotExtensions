@@ -59,27 +59,4 @@ public static class FlexKeyValuePairEnumerableSplitExtensions
         return (from pair in pairs
                 select pair.Value);
     }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="pairs"></param>
-    /// <param name="keys"></param>
-    /// <param name="values"></param>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TValue"></typeparam>
-    public static void ToSplitPairs<TKey, TValue>(this IEnumerable<FlexibleKeyValuePair<TKey, TValue>> pairs, out IEnumerable<TKey> keys, out IEnumerable<TValue> values)
-    {
-        List<TKey> outputKeys = new List<TKey>();
-        List<TValue> outputValues = new List<TValue>();
-
-        foreach (FlexibleKeyValuePair<TKey, TValue> pair in pairs)
-        {
-            outputKeys.Add(pair.Key);
-            outputValues.Add(pair.Value);
-        }
-        
-        keys = outputKeys;
-        values = outputValues;
-    }
 }

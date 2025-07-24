@@ -24,18 +24,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
-#if NET5_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Memory.Spans;
+using AlastairLundy.DotPrimitives.Collections.Groupings;
+#if NET5_0_OR_GREATER
 #endif
 
-using AlastairLundy.DotExtensions.Localizations;
-
-using AlastairLundy.DotPrimitives.Collections.Groupings;
 // ReSharper disable UseIndexFromEndExpression
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace AlastairLundy.DotExtensions.Linq.Spans;
 
 /// <summary>
 /// 
