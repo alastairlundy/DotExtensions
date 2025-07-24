@@ -79,57 +79,5 @@ public static class GenericCollectionRangeExtensions
             source.Add(item);
         }
     }
-
-
-    /// <summary>
-    /// Inserts elements at a specified position in the collection.
-    /// </summary>
-    /// <param name="source">The collection into which elements will be inserted.</param>
-    /// <param name="index">The index at which elements will be inserted.</param>
-    /// <param name="values">The IEnumerable containing elements to insert at the specified index.</param>
-    /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the specified index is out of range for the collection.</exception>
-    public static void InsertRange<T>(this ICollection<T> source, int index, IEnumerable<T> values)
-    {
-        if (index < 0 || index >= source.Count)
-        {
-            throw new IndexOutOfRangeException(Resources.Exceptions_IndexOutOfRange
-                .Replace("{x}", index.ToString())
-                .Replace("{y}", "0")
-                .Replace("{z}", $"{source.Count}"));
-        }
-            
-        #region Use IList Optimized Code Path if IList
-        if (source is IList<T> list)
-        {
-            IListRangeExtensions.InsertRange(list, index, values);
-            return;
-        }
-        #endregion
-
-        int numberOfItemsToBeRemoved = source.Count - index;
-
-        List<T> removedItems = new();
-
-        int i = 0;
-        foreach (T item in source)
-        {
-            if (i >= index && i < source.Count)
-            {
-                removedItems.Add(item);
-            }
-
-            i += 1;
-        }
-
-        List<T> newSource = source.ToList();
-        newSource.RemoveRange(index, numberOfItemsToBeRemoved);
-
-        newSource.AddRange(values);
-        newSource.AddRange(removedItems);
-        source.Clear();
-
-        AddRange(source, newSource);
-    }
     
 }
