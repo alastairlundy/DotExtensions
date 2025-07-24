@@ -50,7 +50,6 @@ public static class EnumerableSplitExtensions
     {
         int currentEnumerableCount = 0;
             
-        List<List<T>> outputList = new List<List<T>>();
         List<T> currentList = new List<T>();
 
         int sourceCount = 0;
@@ -64,15 +63,12 @@ public static class EnumerableSplitExtensions
             }
             else if (currentEnumerableCount == maxCount)
             {
-                outputList.Add(currentList);
-                currentList.Clear();
+                yield return currentList;
                 currentEnumerableCount = 0;
             }
         }
         
-        if(outputList.Any() == false && sourceCount == 0)
+        if(sourceCount == 0)
             throw new ArgumentException(Resources.Exceptions_EnumerablesSplit_Empty);
-
-        return outputList;
     }
 }

@@ -26,9 +26,12 @@ using System.IO;
 
 using AlastairLundy.DotExtensions.Numbers;
 
-namespace AlastairLundy.DotExtensions.DotPrimitives.IO;
+namespace AlastairLundy.DotExtensions.IO;
 
-internal static class FileSizeExtensions
+/// <summary>
+/// 
+/// </summary>
+public static class FileSizeExtensions
 {
     /// <summary>
     /// Returns a string representation of the file size, including the most suitable unit.

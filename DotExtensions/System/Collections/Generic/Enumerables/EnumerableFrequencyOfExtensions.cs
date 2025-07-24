@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -37,6 +38,7 @@ public static class EnumerableFrequencyOfExtensions
     /// <param name="source">The IEnumerable to be searched.</param>
     /// <typeparam name="T">The type of objects in the IEnumerable.</typeparam>
     /// <returns>A Dictionary containing objects and the number of times each one appears in the IEnumerable.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static Dictionary<T, int> FrequencyOfElements<T>(this IEnumerable<T> source) where T : notnull
     {
         Dictionary<T, int> items = new Dictionary<T, int>();

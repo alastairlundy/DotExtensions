@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 
 using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -40,6 +41,7 @@ public static class GenericCollectionReplaceExtensions
     /// <param name="oldValue">The value to replace.</param>
     /// <param name="newValue">The replacement value.</param>
     /// <typeparam name="T">The type of elements in the <see cref="ICollection{T}"/>.</typeparam>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static void Replace<T>(this ICollection<T> collection, T oldValue, T newValue)
     {
         int index = collection.IndexOf(oldValue);
