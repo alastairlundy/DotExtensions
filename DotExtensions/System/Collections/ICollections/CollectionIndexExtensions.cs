@@ -54,33 +54,6 @@ public static class CollectionIndexExtensions
     }
         
     /// <summary>
-    /// Attempts to get the indices of a specified element in a collection.
-    /// </summary>
-    /// <param name="collection">The collection to be searched.</param>
-    /// <param name="item">The item to attempt to get the indices of.</param>
-    /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
-    /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
-    public static bool TryGetIndicesOf(this ICollection collection, object item, out IEnumerable<int>? indices)
-    {
-        try
-        {
-            indices = IndicesOf(collection, item);
-
-            if (indices.Any() == false)
-            {
-                throw new KeyNotFoundException();    
-            }
-                
-            return true;
-        }
-        catch
-        {
-            indices = null;
-            return false;
-        }
-    }
-        
-    /// <summary>
     /// Gets the index of the specified item in a collection.
     /// </summary>
     /// <param name="collection">The collection to be searched.</param>
@@ -108,36 +81,5 @@ public static class CollectionIndexExtensions
         }
 
         throw new KeyNotFoundException();
-    }
-        
-    /// <summary>
-    /// Gets the indices of the specified item in a collection.
-    /// </summary>
-    /// <param name="collection">The collection to be searched.</param>
-    /// <param name="item">The item to get the indices of.</param>
-    /// <returns>The indices of an object in the collection.</returns>
-    public static IEnumerable<int> IndicesOf(this ICollection collection, object item)
-    {
-        List<int> indices = new List<int>();
-        indices.Clear();
-        int index = 0;
-            
-        IEnumerator enumerator = collection.GetEnumerator();
-        using var enumerator1 = enumerator as IDisposable;
-
-        while (enumerator.MoveNext())
-        {
-            if (enumerator.Current is not null)
-            {
-                if (enumerator.Current.Equals(item))
-                {
-                    indices.Add(index);
-                }
-            }
-
-            index++;
-        }
-
-        return indices;
     }
 }
