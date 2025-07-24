@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using AlastairLundy.DotExtensions.Linq.Spans;
 using AlastairLundy.DotExtensions.Localizations;
 using AlastairLundy.DotExtensions.Numbers;
 
