@@ -24,10 +24,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using AlastairLundy.DotPrimitives.Collections;
 
-namespace AlastairLundy.DotExtensions.DotPrimitives.FlexibleKeyValuePairs;
+namespace AlastairLundy.DotExtensions.DotPrimitives.Collections;
 
+/// <summary>
+/// 
+/// </summary>
 public static class FlexKeyValuePairEnumerableSplitExtensions
 {
     /// <summary>
