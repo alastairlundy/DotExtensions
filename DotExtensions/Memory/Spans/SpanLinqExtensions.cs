@@ -157,12 +157,12 @@ public static class SpanLinqExtensions
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
     public static T? FirstOrDefault<T>(this Span<T> target)
     {
-        if (target.Length <= 0)
+        if (target.Length > 0)
         {
-            return default;
+            return target.First();;
         }
 
-        return target[0];
+        return default;
     }
     
     /// <summary>
