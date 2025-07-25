@@ -24,18 +24,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
-#if NET5_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Memory.Spans;
+using AlastairLundy.DotPrimitives.Collections.Groupings;
+#if NET5_0_OR_GREATER
 #endif
 
-using AlastairLundy.DotExtensions.Localizations;
-
-using AlastairLundy.DotPrimitives.Collections.Groupings;
 // ReSharper disable UseIndexFromEndExpression
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace AlastairLundy.DotExtensions.Linq.Spans;
 
 /// <summary>
 /// 
@@ -80,23 +79,20 @@ public static class SpanLinqExtensions
     /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
     public static Span<T> Except<T>(this Span<T> first, Span<T> second) where T : IEquatable<T>
     {
-        List<T> list = new();
-        
         T[] firstArray = first.ToArray();
         T[] secondArray = second.ToArray();
-        
-        IEnumerable<T> resultOne = first
+
+        List<T> resultOne = first
             .SkipWhile(x => secondArray.Contains(x))
-            .AsEnumerable();
+            .ToList();
 
-        IEnumerable<T> resultTwo = second
+        List<T> resultTwo = second
             .SkipWhile(x => firstArray.Contains(x))
-            .AsEnumerable();
+            .ToList();
 
-        list.AddRange(resultOne);
-        list.AddRange(resultTwo);
+        resultOne.AddRange(resultTwo);
         
-        return new Span<T>(list.ToArray());
+        return new Span<T>(resultOne.ToArray());
     }
     
     /// <summary>

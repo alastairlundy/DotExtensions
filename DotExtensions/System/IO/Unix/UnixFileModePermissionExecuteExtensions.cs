@@ -33,17 +33,7 @@ namespace AlastairLundy.DotExtensions.IO.Unix;
 /// </summary>
 public static class UnixFileModePermissionExecuteExtensions
 {
-    /// <summary>
-    /// Determines whether the specified Unix file mode has execute permission.
-    /// </summary>
-    /// <param name="mode">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
-    public static bool IsExecutePermission(this UnixFileMode mode)
-    {
-        return mode.HasExecutePermission();
-    }
-    
+
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>

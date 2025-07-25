@@ -27,6 +27,9 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
 
+/// <summary>
+/// 
+/// </summary>
 public static class StringIndicesOfExtensions
 {
     /// <summary>

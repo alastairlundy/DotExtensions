@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
@@ -42,7 +43,7 @@ public static class SanitizeProcessNamesExtensions
     public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
     {
 #if NET8_0_OR_GREATER
-            return SanitizeProcessNames([process], excludeFileExtension).First();
+        return SanitizeProcessNames([process], excludeFileExtension).First();
 #else
         return SanitizeProcessNames(new Process[]{process}, excludeFileExtension).First();
 #endif
@@ -61,12 +62,12 @@ public static class SanitizeProcessNamesExtensions
         {
             return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
                 .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
-                    .Replace(")", string.Empty));
+                    .Remove(x.LastIndexOf(')')));
         }
         else
         {
             return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
-                .Replace(")", string.Empty));
+                    .Remove(x.ProcessName.LastIndexOf(')')));
         }
     }
 }

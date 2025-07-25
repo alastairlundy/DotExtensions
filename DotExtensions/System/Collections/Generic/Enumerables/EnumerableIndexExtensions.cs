@@ -33,6 +33,9 @@ using AlastairLundy.DotExtensions.Exceptions;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
+/// <summary>
+/// 
+/// </summary>
 public static class EnumerableIndexExtensions
 {
     /// <summary>
