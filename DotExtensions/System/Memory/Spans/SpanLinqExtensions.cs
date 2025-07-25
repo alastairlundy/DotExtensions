@@ -385,7 +385,7 @@ public static class SpanLinqExtensions
         }
 
         IEnumerable<IGrouping<TKey, TElement>> groups = (from kvp in dictionary
-            select new GroupByEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
+            select new GroupEnumerable<TKey, TElement>(kvp.Key, kvp.Value));
         
         return new  Span<IGrouping<TKey, TElement>>(groups.ToArray());
     }
