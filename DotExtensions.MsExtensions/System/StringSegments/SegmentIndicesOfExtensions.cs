@@ -99,9 +99,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = @this.Substring(index, segment.Length);
 
-            if (indexSegment.Equals(@this))
+            if (indexSegment.Equals(segment))
             {
                 return index;
             }
@@ -130,9 +130,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = @this.Subsegment(index, segment.Length);
 
-            if (indexSegment.Equals(@this))
+            if (indexSegment.Equals(segment))
             {
                 yield return index;
             }
@@ -158,9 +158,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = @this.Subsegment(index, segment.Length);
 
-            if (indexSegment.Equals(@this))
+            if (indexSegment.Equals(segment))
             {
                 indices.Add(index);
             }
@@ -184,9 +184,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = str.Substring(index, segment.Length);
 
-            if (indexSegment.Equals(str))
+            if (indexSegment.Equals(segment))
             {
                 return index;
             }
@@ -214,9 +214,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = str.Substring(index, segment.Length);
 
-            if (indexSegment.Equals(str))
+            if (indexSegment.Equals(segment))
             {
                 yield return index;
             }
@@ -240,9 +240,9 @@ public static class SegmentIndicesOfExtensions
 
         foreach (int index in indexes)
         {
-            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+            StringSegment indexSegment = str.Substring(index, segment.Length);
 
-            if (indexSegment.Equals(str))
+            if (indexSegment.Equals(segment))
             {
                 indices.Add(index);
             }
