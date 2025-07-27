@@ -37,23 +37,16 @@ public static class StringIndicesOfExtensions
     /// </summary>
     /// <param name="str">The input string.</param>
     /// <param name="c">A single character to find in the string.</param>
-    /// <returns>A sequence of indices where the character is found.</returns>
+    /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, char c)
     {
-        List<int> output = new List<int>();
-
         for(int i = 0; i < str.Length; i++)
         {
             if (str[i] == c)
             {
-                output.Add(i);
+                yield return i;
             }
         }
-
-        if (output.Count == 0)
-            output = [-1];
-        
-        return output;
     }
 
     
@@ -88,13 +81,14 @@ public static class StringIndicesOfExtensions
     /// </summary>
     /// <param name="str">The input string.</param>
     /// <param name="value">The substring to look for.</param>
-    /// <returns>A sequence of indices where the substring is found.</returns>
+    /// <returns>A sequence of indices where the character is found; an empty sequence if the character could not be found.</returns>
     public static IEnumerable<int> IndicesOf(this string str, string value)
     {
         if (str.Length < value.Length || value.Length == 0)
-            return [-1];
-        
-        List<int> output = new();
+        {
+            yield return -1;
+            yield break;
+        }
         
         IEnumerable<int> indices = str.IndicesOf(value.First()).Where(x => x != -1);
 
@@ -106,14 +100,9 @@ public static class StringIndicesOfExtensions
 
                 if (indexValue.Equals(str))
                 {
-                    output.Add(index);
+                    yield return index;
                 }
             }
         }
-
-        if(output.Count == 0)
-            output = [-1];
-        
-        return output;
     }
 }
