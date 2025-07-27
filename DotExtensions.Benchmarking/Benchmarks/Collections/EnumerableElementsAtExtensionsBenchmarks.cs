@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
-using AlastairLundy.DotExtensions.Collections.ILists;
-
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;

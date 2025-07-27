@@ -23,9 +23,10 @@
    */
 
 using System.Collections.Generic;
+
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Collections.ILists;
+namespace AlastairLundy.DotExtensions.Collections.Generic.ILists;
 
 public static class IListReplaceExtensions
 {

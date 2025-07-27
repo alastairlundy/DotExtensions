@@ -24,12 +24,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using AlastairLundy.DotExtensions.Localizations;
+
 using AlastairLundy.DotExtensions.Memory.Spans;
+
 using AlastairLundy.DotPrimitives.Collections.Groupings;
+
 #if NET5_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
 #endif
 
 // ReSharper disable UseIndexFromEndExpression
