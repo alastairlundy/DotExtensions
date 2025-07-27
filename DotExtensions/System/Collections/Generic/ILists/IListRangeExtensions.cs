@@ -30,6 +30,9 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ILists;
 
+/// <summary>
+/// 
+/// </summary>
 public static class IListRangeExtensions
 {
     

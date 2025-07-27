@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Linq;
+namespace AlastairLundy.DotExtensions.Linq.Enumerables;
 
 /// <summary>
 /// 

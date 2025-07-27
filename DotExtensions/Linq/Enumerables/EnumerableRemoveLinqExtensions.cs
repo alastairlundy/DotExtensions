@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Linq;
+namespace AlastairLundy.DotExtensions.Linq.Enumerables;
 
-public static class RemoveLinqExtensions
+public static class EnumerableRemoveLinqExtensions
 {
     /// <summary>
     /// Removes an item from an IEnumerable.

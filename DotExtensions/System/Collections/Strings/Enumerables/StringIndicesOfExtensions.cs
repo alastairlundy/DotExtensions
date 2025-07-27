@@ -107,7 +107,6 @@ public static class StringIndicesOfExtensions
     {
         if (str.Length < value.Length || value.Length == 0)
         {
-            yield return -1;
             yield break;
         }
         
@@ -119,7 +118,7 @@ public static class StringIndicesOfExtensions
             {
                 string indexValue = str.Substring(index, value.Length);
 
-                if (indexValue.Equals(str))
+                if (indexValue.Equals(value))
                 {
                     yield return index;
                 }
