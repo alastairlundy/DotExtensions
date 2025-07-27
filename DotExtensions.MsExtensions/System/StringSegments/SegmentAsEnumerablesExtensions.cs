@@ -32,7 +32,7 @@ public static class SegmentAsEnumerablesExtensions
 {
     
     /// <summary>
-    /// Returns the String segment as a Char Array.
+    /// Returns the <see cref="StringSegment"/> as a Char Array.
     /// </summary>
     /// <param name="segment">The string segment to enumerate.</param>
     /// <returns>The string segment as a char array.</returns>
@@ -49,14 +49,15 @@ public static class SegmentAsEnumerablesExtensions
     }
     
     /// <summary>
-    /// 
+    /// Returns the <see cref="StringSegment"/> as a List of type <see cref="char"/>.
     /// </summary>
-    /// <param name="segment"></param>
-    /// <returns></returns>
+    /// <param name="segment">The segment to enumerate as a list.</param>
+    /// <returns>A list of characters from the StringSegment if any characters are in the StringSegment,
+    /// an empty list otherwise.</returns>
     public static List<char> ToList(this StringSegment segment)
     {
         List<char> list = new List<char>();
-        
+            
         for (int i = 0; i < segment.Length; i++)
         {
             list.Add(segment[i]);
