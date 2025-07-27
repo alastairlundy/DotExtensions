@@ -12,23 +12,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
-
-## 🚀 Features
-
-- Use yield return for some IEnumerable\&lt;T&gt; methods @alastairlundy (#79)
-- Deprecate additional ICollection\&lt;T&gt; methods and ``FrequencyOf\&lt;T&gt;`` @alastairlundy (#78)
-- Add WindowsFilePermission ``HasExecutePermission``, ``HasWritePermission``, and ``HasReadPermission`` extensions @alastairlundy (#75)
-- Add FileInfo ``GetFileSizeString`` and ``GetFileSizeUnitString`` @alastairlundy (#74)
-- Add Digit counting extensions @alastairlundy (#73)
-- Add Span ``InsertRange(ICollection\&lt;T&gt;, int)`` @alastairlundy (#70)
-- Add Span ``CopyTo(out Span\&lt;T&gt;, int)`` and ``CopyTo(out Span\&lt;T&gt;, int, int)`` @alastairlundy (#71)
-- Add Span ``ForEach(Action\&lt;T&gt;`` and ``ForEach(Func\&lt;T, T&gt;)`` @alastairlundy (#68)
-- Add Span ``ToList\&lt;T&gt;()`` @alastairlundy (#67)
-
-## 🧰 Maintenance
-
-- Re-organize DotExtensions directory structure @alastairlundy (#72)</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.6.0
+* Fixed an issue where String ``IndexOf(string, string)`` extension method wouldn't get the first index of the specified value
+* Fixed an issue where String ``IndicesOf(string, string)`` extension method wouldn't get indices of the specified value
+* Prevent Nuget from updating DotPrimitives to 3.0.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -38,7 +25,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.0</Version>
+        <Version>7.6.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
