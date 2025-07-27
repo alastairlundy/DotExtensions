@@ -34,7 +34,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 public static class SegmentIndicesOfExtensions
 {
     /// <summary>
-    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
+    /// Finds all occurrences of the specified character within the provided StringSegment.
     /// </summary>
     /// <param name="this">The string segment to be searched.</param>
     /// <param name="c">The character to search for.</param>
@@ -57,6 +57,33 @@ public static class SegmentIndicesOfExtensions
         }
     }
 
+    /// <summary>
+    /// Finds all occurrences of the specified character within the provided StringSegment.
+    /// </summary>
+    /// <param name="this">The string segment to be searched.</param>
+    /// <param name="c">The character to search for.</param>
+    /// <returns>An array of Indices for all occurrences specified character within the String Segment;
+    /// empty if not found within the String Segment.
+    /// </returns>
+    public static int[] IndicesOfAsArray(this StringSegment @this, char c)
+    {
+        List<int> indices = new List<int>();
+        
+        for(int i = 0; i < @this.Length; i++)
+        {
+            if (@this[i] == c)
+            {
+                indices.Add(i);
+            }
+        }
+
+        if (indices.Count == 0)
+            indices = [-1];
+        
+        return indices.ToArray();
+    }
+
+    
     /// <summary>
     /// Finds the index of a specified StringSegment within another StringSegment.
     /// </summary>
@@ -113,6 +140,36 @@ public static class SegmentIndicesOfExtensions
     }
     
     /// <summary>
+    /// Finds all occurrences of the specified character within the provided StringSegment.
+    /// </summary>
+    /// <param name="this">The string segment to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>An array of Indices for all occurrences of the specified StringSegment within the String Segment;
+    /// an empty array otherwise.
+    /// </returns>
+    public static int[] IndicesOfAsArray(this StringSegment @this, StringSegment segment)
+    {
+        List<int> indices = new();
+
+        if (@this.Length < segment.Length || segment.Length == 0)
+            return [];
+
+        IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x => x != -1);
+
+        foreach (int index in indexes)
+        {
+            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+
+            if (indexSegment.Equals(@this))
+            {
+                indices.Add(index);
+            }
+        }
+        
+        return indices.ToArray();
+    }
+    
+    /// <summary>
     /// Finds the index of a specified StringSegment within a string.
     /// </summary>
     /// <param name="str">The string to be searched.</param>
@@ -164,5 +221,33 @@ public static class SegmentIndicesOfExtensions
                 yield return index;
             }
         }
+    }
+    
+    /// <summary>
+    /// Finds all occurrences of a specified StringSegment within a string.
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
+    /// <param name="segment">The StringSegment to search for.</param>
+    /// <returns>An array of Indices for all occurrences of the specified StringSegment within the string; empty if not found within the String Segment.</returns>
+    public static int[] IndicesOfAsArray(this string str, StringSegment segment)
+    {
+        List<int> indices = new();
+
+        if (str.Length < segment.Length || segment.IsEmpty())
+            return [];
+
+        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
+
+        foreach (int index in indexes)
+        {
+            StringSegment indexSegment = segment.Subsegment(index, segment.Length);
+
+            if (indexSegment.Equals(str))
+            {
+                indices.Add(index);
+            }
+        }
+        
+        return indices.ToArray();
     }
 }

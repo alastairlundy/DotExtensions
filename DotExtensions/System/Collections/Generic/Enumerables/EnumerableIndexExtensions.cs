@@ -23,8 +23,10 @@
    */
 
 using System.Collections.Generic;
+
+#if NET8_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+#endif
 
 using AlastairLundy.DotExtensions.Exceptions;
 
@@ -67,8 +69,7 @@ public static class EnumerableIndexExtensions
         
         return -1;
     }
-
-    
+        
     /// <summary>
     /// Gets the indices of the specified item within an IEnumerable.
     /// </summary>
@@ -90,8 +91,31 @@ public static class EnumerableIndexExtensions
             index += 1;
         }
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="item"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static int[] IndicesOfAsArray<T>(this IEnumerable<T> source, T item)
+    {
+        List<int> indices = new List<int>();
         
+        int index = 0;
 
+        foreach (T obj in source)
+        {
+            if (obj is not null && obj.Equals(item))
+            {
+                indices.Add(index);
+            }
+        }
+
+        return indices.ToArray();
+    }
+    
     /// <summary>
     /// Attempts to find the first index of a specified item in a collection.
     /// </summary>
@@ -114,40 +138,6 @@ public static class EnumerableIndexExtensions
         catch
         {
             index = null;
-            return false;
-        }
-    }
-
-        
-    /// <summary>
-    /// Attempts to find all the indices of a specified item in a collection.
-    /// </summary>
-    /// <param name="source">The collection of items to search through.</param>
-    /// <param name="item">The item to find within the collection.</param>
-    /// <param name="indices">An output parameter that will contain the indices of the found item, or null if the item is not found.</param>
-    /// <typeparam name="T">The type of elements in the collection.</typeparam>
-    /// <returns>True if the item was found, otherwise false.</returns>
-    /// <exception cref="KeyNotFoundException">Thrown when the item is not found in the collection.</exception>
-    public static bool TryGetIndicesOf<T>(this IEnumerable<T> source, T item, 
-        #if NET5_0_OR_GREATER
-        [NotNullWhen(returnValue: true)]
-        #endif
-        out IEnumerable<int>? indices)
-    {
-        try
-        {
-            indices = IndicesOf(source, item);
-
-            if (indices.Any() == false)
-            {
-                throw new KeyNotFoundException();    
-            }
-                
-            return true;
-        }
-        catch
-        {
-            indices = null;
             return false;
         }
     }

@@ -44,9 +44,9 @@ public static class SegmentSplitExtensions
         if (segment.Contains(separator) == false)
             return [];
 
-        List<int> indices = (List<int>)segment.IndicesOf(separator);
+        int[] indices = segment.IndicesOfAsArray(separator);
         
-        StringSegment[] output = new StringSegment[indices.Count];
+        StringSegment[] output = new StringSegment[indices.Length];
         
         if (indices.First().Equals(-1))
             return [segment];
@@ -54,7 +54,7 @@ public static class SegmentSplitExtensions
         int outputIndex = 0;
         int start = 0;
 
-        for (int i = 0; i < indices.Count; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             if (indices.Any(x => x == i))
             {
