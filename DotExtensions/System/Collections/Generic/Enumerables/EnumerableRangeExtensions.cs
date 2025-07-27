@@ -49,26 +49,14 @@ public static class EnumerableRangeExtensions
     /// <typeparam name="T">The type of element in the sequence and elements being added.</typeparam>
     public static IEnumerable<T> AddRange<T>(this IEnumerable<T> source, IEnumerable<T> toBeAdded)
     {
-        if (source is IList<T> sourceList && toBeAdded is IList<T> listTwo)
-        { 
-            IListRangeExtensions.AddRange(sourceList, listTwo);
-            return sourceList;
-        }
-        if (source is ICollection<T> sourceCollection)
+        foreach (T item in source)
         {
-            GenericCollectionRangeExtensions.AddRange(sourceCollection, toBeAdded);
-            return sourceCollection;
+            yield return item;
         }
-        else
-        {
-            List<T> list = new List<T>(source);
-            
-            foreach (T item in toBeAdded)
-            {
-                list.Add(item);
-            }
 
-            return list;
+        foreach (T item in toBeAdded)
+        {
+            yield return item;
         }
     }
 }
