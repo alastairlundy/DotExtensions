@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Extensions.Primitives;
@@ -34,7 +32,7 @@ using Microsoft.Extensions.Primitives;
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 /// <summary>
-/// 
+/// A class to hold extension methods for checking if a StringSegment Contains an item.
 /// </summary>
 public static class SegmentContainsExtensions
 {

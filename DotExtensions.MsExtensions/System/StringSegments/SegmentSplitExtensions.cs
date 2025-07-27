@@ -32,6 +32,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 public static class SegmentSplitExtensions
 {
+    
     /// <summary>
     /// Splits a StringSegment into StringSegment substrings using a specified separator.
     /// </summary>
