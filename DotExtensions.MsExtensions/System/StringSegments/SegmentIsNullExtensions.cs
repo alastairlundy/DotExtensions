@@ -27,7 +27,7 @@ using Microsoft.Extensions.Primitives;
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 /// <summary>
-/// 
+/// A class to hold StringSegment extension methods to check if a StringSegment is null, empty, whitespace, or a combination thereof.
 /// </summary>
 public static class SegmentIsNullExtensions
 {
