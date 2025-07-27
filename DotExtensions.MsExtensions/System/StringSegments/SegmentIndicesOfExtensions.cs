@@ -95,7 +95,8 @@ public static class SegmentIndicesOfExtensions
         if (@this.Length < segment.Length || segment.Length == 0)
             return -1;
         
-        IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x  => x != -1);
+        IEnumerable<int> indexes = IndicesOf(@this, segment.First())
+            .Where(x  => x != -1);
 
         foreach (int index in indexes)
         {
@@ -126,7 +127,8 @@ public static class SegmentIndicesOfExtensions
             yield break;
         }
 
-        IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x => x != -1);
+        IEnumerable<int> indexes = IndicesOf(@this, segment.First())
+            .Where(x => x != -1);
 
         foreach (int index in indexes)
         {
