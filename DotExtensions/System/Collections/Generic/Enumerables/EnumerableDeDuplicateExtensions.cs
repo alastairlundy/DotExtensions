@@ -42,6 +42,16 @@ public static class EnumerableDeDuplicateExtensions
     /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
     public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
     {
-        return source.Distinct().Equals(source) == false;
+        HashSet<T> hash = new();
+        
+        foreach (T item in source)
+        {
+           bool result = hash.Add(item);
+
+           if (result == false)
+               return true;
+        }
+
+        return false;
     }
 }
