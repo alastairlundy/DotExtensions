@@ -13,7 +13,7 @@ public static class DistinctListExtensions
     /// </summary>
     /// <param name="source">The list to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <returns>The new list with distinct items from the source list.</returns>
+    /// <returns>The new list with distinct elements from the source list.</returns>
     public static List<T> DistinctList<T>(this List<T> source)
     {
         HashSet<T> hash = new();
@@ -36,7 +36,7 @@ public static class DistinctListExtensions
     /// </summary>
     /// <param name="source">The array to de-duplicate.</param>
     /// <typeparam name="T">The type of elements in the array.</typeparam>
-    /// <returns></returns>
+    /// <returns>The new array with distinct elements from the source array.</returns>
     public static T[] DistinctArray<T>(this T[] source)
     {
         HashSet<T> hash = new();
