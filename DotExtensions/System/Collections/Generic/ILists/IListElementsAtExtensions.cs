@@ -22,13 +22,15 @@
        SOFTWARE.
    */
 
-
 using System.Collections.Generic;
 
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Collections.ILists;
+namespace AlastairLundy.DotExtensions.Collections.Generic.ILists;
 
+/// <summary>
+/// 
+/// </summary>
 public static class IListElementsAtExtensions
 {
     /// <summary>

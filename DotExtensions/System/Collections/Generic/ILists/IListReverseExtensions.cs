@@ -24,7 +24,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.ILists;
+namespace AlastairLundy.DotExtensions.Collections.Generic.ILists;
 
 public static class IListReverseExtensions
 {
