@@ -58,5 +58,21 @@ public static class SegmentAsEnumerablesExtensions
     public static IEnumerable<char> AsEnumerable(this StringSegment segment)
     {
         return ToCharArray(segment);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="segment"></param>
+    /// <returns></returns>
+    public static List<char> ToList(this StringSegment segment)
+    {
+        List<char> list = new List<char>();
+        
+        for (int i = 0; i < segment.Length; i++)
+        {
+            list.Add(segment[i]);
+        }
+        
+        return list;
     }
 }
