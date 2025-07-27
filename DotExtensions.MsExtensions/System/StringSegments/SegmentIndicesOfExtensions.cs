@@ -43,20 +43,18 @@ public static class SegmentIndicesOfExtensions
     /// </returns>
     public static IEnumerable<int> IndicesOf(this StringSegment @this, char c)
     {
-        List<int> indices = new List<int>();
+        if (@this.Contains(c) == false)
+        {
+            yield break;
+        }
         
         for(int i = 0; i < @this.Length; i++)
         {
             if (@this[i] == c)
             {
-                indices.Add(i);
+                yield return i;
             }
         }
-
-        if (indices.Count == 0)
-            indices = [-1];
-        
-        return indices;
     }
 
     /// <summary>
@@ -113,19 +111,20 @@ public static class SegmentIndicesOfExtensions
     }
 
     /// <summary>
-    /// Gets an IEnumerable of Indices for all occurrences of the specified character within the provided StringSegment.
+    /// Gets an <see cref="IEnumerable{T}"/> of Indices for all occurrences of the specified character within the provided StringSegment.
     /// </summary>
     /// <param name="this">The string segment to be searched.</param>
     /// <param name="segment">The StringSegment to search for.</param>
-    /// <returns>An IEnumerable of Indices for all occurrences specified StringSegment within the String Segment;
-    /// an empty sequence otherwise.
+    /// <returns>An <see cref="IEnumerable{T}"/> of Indices for all occurrences specified StringSegment within the String Segment;
+    /// an empty <see cref="IEnumerable{T}"/> otherwise.
     /// </returns>
     public static IEnumerable<int> IndicesOf(this StringSegment @this, StringSegment segment)
     {
-        List<int> indices = new();
-
         if (@this.Length < segment.Length || segment.Length == 0)
-            return [-1];
+        {
+            yield return -1;
+            yield break;
+        }
 
         IEnumerable<int> indexes = IndicesOf(@this, segment.First()).Where(x => x != -1);
 
@@ -135,14 +134,9 @@ public static class SegmentIndicesOfExtensions
 
             if (indexSegment.Equals(@this))
             {
-                indices.Add(index);
+                yield return index;
             }
         }
-
-        if(indices.Count == 0)
-            indices = [-1];
-        
-        return indices;
     }
     
     /// <summary>
@@ -210,10 +204,11 @@ public static class SegmentIndicesOfExtensions
     /// <returns>An IEnumerable of Indices for all occurrences of the specified StringSegment within the string; empty if not found within the String Segment.</returns>
     public static IEnumerable<int> IndicesOf(this string str, StringSegment segment)
     {
-        List<int> indices = new();
-
         if (str.Length < segment.Length || segment.IsEmpty())
-            return [-1];
+        {
+            yield return -1;
+            yield break;
+        }
 
         IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
 
@@ -223,14 +218,9 @@ public static class SegmentIndicesOfExtensions
 
             if (indexSegment.Equals(str))
             {
-                indices.Add(index);
+                yield return index;
             }
         }
-
-        if(indices.Count == 0)
-            indices = [-1];
-        
-        return indices;
     }
     
     /// <summary>
