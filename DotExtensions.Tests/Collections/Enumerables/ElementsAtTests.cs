@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
+using AlastairLundy.DotExtensions.Linq.Enumerables;
+
 using AlastairLundy.DotExtensions.Numbers;
+
 using Bogus;
 using Bogus.DataSets;
 

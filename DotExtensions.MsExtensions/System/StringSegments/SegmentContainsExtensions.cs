@@ -114,7 +114,7 @@ public static class SegmentContainsExtensions
     /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
     public static bool Contains(this StringSegment @this, string str)
     {
-        StringSegment val = new StringSegment(str);
+        StringSegment val = new(str);
 
         return Contains(@this, val);
     }
