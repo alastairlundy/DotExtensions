@@ -71,7 +71,7 @@ public static class StringIndicesOfExtensions
         {
             string indexValue = value.Substring(index, value.Length);
 
-            if (indexValue.Equals(str))
+            if (indexValue.Equals(value))
             {
                 return index;
             }
