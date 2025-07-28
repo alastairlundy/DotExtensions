@@ -60,9 +60,13 @@ public static class SpanCopyExtensions
     /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
-    public static void CopyTo<T>(this Span<T> source, out Span<T> destination, int startIndex)
+    public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex)
     {
-        destination = source.GetRange(startIndex, source.Length - startIndex);
+        for (int i = 0; i < source.Length; i++)
+        {
+            destination[startIndex] = source[i];
+            startIndex++;
+        }
     }
 
     /// <summary>
@@ -74,8 +78,12 @@ public static class SpanCopyExtensions
     /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span, or if the length exceeds the remaining elements.</exception>
-    public static void CopyTo<T>(this Span<T> source, out Span<T> destination, int startIndex, int length)
+    public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
     {
-        destination = source.GetRange(startIndex, length);
+        for (int i = 0; i < length; i++)
+        {
+            destination[startIndex] = source[i];
+            startIndex++;
+        }
     }
 }
