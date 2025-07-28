@@ -315,8 +315,13 @@ public static class SpanLinqExtensions
     /// <returns>A new Span with the items that match the predicate condition.</returns>
     public static Span<T> Where<T>(this Span<T> target, Func<T, bool> predicate)
     {
-        List<T> list = new();
+        List<T> list;
 
+        if (target.Length <= 100)
+            list = new(capacity: target.Length);
+        else
+            list = new();
+        
         foreach (T item in target)
         {
             if (predicate.Invoke(item))
