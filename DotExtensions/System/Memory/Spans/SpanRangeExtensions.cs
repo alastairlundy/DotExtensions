@@ -92,10 +92,13 @@ public static class SpanRangeExtensions
                 .Replace("{y}", $"0")
                 .Replace("{z}", $"{target.Length}"));
         }
-        
-        target.CopyTo(out Span<T> destination, start, end - start);
 
-        return destination;
+        Span<T> output = new Span<T>();
+        output.Resize(end - start);
+        
+        target.CopyTo(ref output, start, end);
+        
+        return output;
     }
 
         
