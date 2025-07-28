@@ -429,17 +429,10 @@ public static class SpanLinqExtensions
     /// <returns>A span containing the distinct elements from the source span.</returns>
     public static Span<T> Distinct<T>(this Span<T> source)
     {
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-        HashSet<T> set = new(capacity: source.Length);
-#else
-        HashSet<T> set = new();
-#endif
-        foreach (T item in source)
         {
-            set.Add(item);
+            
         }
         
-        return new Span<T>(set.ToArray());
     }
 
     /// <summary>
