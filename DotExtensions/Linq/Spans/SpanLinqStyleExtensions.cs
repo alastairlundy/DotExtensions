@@ -41,8 +41,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace AlastairLundy.DotExtensions.Linq.Spans;
 
 /// <summary>
-/// 
+/// A class to hold extension methods that bring LINQ Style methods to <see cref="Span{T}"/>.
 /// </summary>
+/// <remarks>
+/// The methods in this class are not implemented using Deferred Execution. The return value for each method is the computed result value.
+/// </remarks>
 public static class SpanLinqStyleExtensions
 {
 
