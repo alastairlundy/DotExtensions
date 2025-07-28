@@ -390,6 +390,7 @@ public static class SpanLinqStyleExtensions
         return new Span<T>(output);
     }
 #endif
+    
     /// <summary>
     /// Returns whether any item in a Span matches the predicate condition.
     /// </summary>
