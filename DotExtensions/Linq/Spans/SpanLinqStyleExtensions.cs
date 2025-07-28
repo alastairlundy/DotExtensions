@@ -390,6 +390,37 @@ public static class SpanLinqStyleExtensions
         return new Span<T>(output);
     }
 #endif
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="count"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static Span<T> TakeLast<T>(this Span<T> target, int count)
+    {
+        if(count <= 0)
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", $"{count}"));
+
+        if (count > target.Length)
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_Request_CountTooLarge);
+
+        T[] output =  new T[count];
+
+        int outputIndex = 0;
+        int startIndex = target.Length - count;
+
+        for (int i = startIndex; i < target.Length; i++)
+        {
+            output[outputIndex] = target[i];
+            outputIndex++;
+        }
+        
+        return new Span<T>(output);
+    }
     
     /// <summary>
     /// Returns whether any item in a Span matches the predicate condition.
