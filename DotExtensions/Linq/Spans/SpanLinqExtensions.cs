@@ -436,10 +436,73 @@ public static class SpanLinqExtensions
     {
         return Distinct(source, EqualityComparer<T>.Default);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="inner"></param>
+    /// <param name="outerKeySelector"></param>
+    /// <param name="innerKeySelector"></param>
+    /// <param name="resultSelector"></param>
+    /// <typeparam name="TOuter"></typeparam>
+    /// <typeparam name="TInner"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    /// <returns></returns>
+    public static Span<TResult> Join<TOuter, TInner, TKey, TResult>(this Span<TOuter> outer,
+        Span<TInner> inner, Func<TOuter, TKey> outerKeySelector,
+        Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector)
+    {
+        return Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
+    }
+    
+    
+    public static Span<TResult> Join<TOuter, TInner, TKey, TResult>(this Span<TOuter> outer,
+        Span<TInner> inner, Func<TOuter, TKey> outerKeySelector,
+        Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector, 
+        IEqualityComparer<TKey>? comparer)
+    {
+        comparer ??= EqualityComparer<TKey>.Default;
+
+        List<TResult>? results = new();
+        
+        var outerResults = (from o in outer
+                select new {Outer = o, Key = outerKeySelector.Invoke(o)});
+
+        var innerResults = (from i in inner
+                select new {Inner = i, Key = innerKeySelector.Invoke(i)});
+        
+        if (innerResults.Length != outerResults.Length)
+        {
+            throw new ArgumentException("The number of inner results does not match the number of outer results.");    
+        }
+
+        Dictionary<TOuter, TInner> matches = new Dictionary<TOuter, TInner>();
+
+        
+        
+        for (int i = 0; i < outerResults.Length; i++)
         {
             
         }
         
+        for (int index = 0; index < outerResults.Length; index++)
+        {
+            var innerIndex = innerResults[index];
+
+            var outerInnerMatch = outerResults.First(x => comparer.Equals(x.Key, innerIndex.Key));
+
+            if (comparer.Equals(outerInnerMatch.Key, innerIndex.Key))
+            {
+                TResult? result = resultSelector.Invoke(outerInnerMatch.Outer, innerIndex.Inner);
+
+                if(result is not null)
+                    results.Add(result);
+            }
+        }
+
+        return new Span<TResult>(results.ToArray());
     }
 
     /// <summary>
