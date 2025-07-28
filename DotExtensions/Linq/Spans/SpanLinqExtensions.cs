@@ -436,11 +436,6 @@ public static class SpanLinqExtensions
     {
         return Distinct(source, EqualityComparer<T>.Default);
     }
-        {
-            
-        }
-        
-    }
 
     /// <summary>
     /// Returns a new span containing distinct elements from the source span, using the specified equality comparer.
