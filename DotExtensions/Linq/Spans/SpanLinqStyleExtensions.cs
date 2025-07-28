@@ -43,7 +43,7 @@ namespace AlastairLundy.DotExtensions.Linq.Spans;
 /// <summary>
 /// 
 /// </summary>
-public static class SpanLinqExtensions
+public static class SpanLinqStyleExtensions
 {
 
     /// <summary>
@@ -331,8 +331,65 @@ public static class SpanLinqExtensions
         }
         
         return new Span<T>(list.ToArray());
-    } 
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="count"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Span<T> Take<T>(this Span<T> target, int count)
+    {
+        if(count > target.Length)
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
+        
+        T[] output = new T[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            output[i] = target[i];
+        }
+        
+        return new Span<T>(output);
+    }
     
+#if NET8_0_OR_GREATER
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="range"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static Span<T> Take<T>(this Span<T> target, Range range)
+    {
+        int startIndex = range.Start.Value;
+        int endIndex = range.End.Value;
+        
+        int count = endIndex - startIndex;
+        
+        if(count <= 0)
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Count_LessThanZero.Replace("{x}", $"{count}"));
+
+        if (count > target.Length)
+            throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_Request_CountTooLarge);
+        
+        if (startIndex == 0)
+            return Take(target, endIndex);
+
+        T[] output = new T[count];
+
+        for (int i = startIndex; i < count; i++)
+        {
+            output[i] = target[i];
+        }
+        
+        return new Span<T>(output);
+    }
+#endif
     /// <summary>
     /// Returns whether any item in a Span matches the predicate condition.
     /// </summary>
