@@ -429,6 +429,8 @@ public static class SpanLinqExtensions
     /// <returns>A span containing the distinct elements from the source span.</returns>
     public static Span<T> Distinct<T>(this Span<T> source)
     {
+        return Distinct(source, EqualityComparer<T>.Default);
+    }
         {
             
         }
