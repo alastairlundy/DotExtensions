@@ -110,10 +110,8 @@ public static class SpanLinqStyleExtensions
     {
         if (count > target.Length)
             throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
-            
-        int end = target.Length - count;
-
-        return target.GetRange(start: count, end: end);
+        
+        return target.GetRange(start: count, end: target.Length - count);
     }
 
     /// <summary>
@@ -254,13 +252,13 @@ public static class SpanLinqStyleExtensions
     {
         TResult[] array = new  TResult[source.Length];
         
-        for (int index = 0; index < source.Length; index++)
+        int index = 0;
+        
+        source.ForEach(x =>
         {
-            TSource item = source[index];
-            TResult res = selector.Invoke(item);
-
-            array[index] = res;
-        }
+            array[index] = selector.Invoke(x);
+            index++;
+        });
 
         return new Span<TResult>(array);
     }
