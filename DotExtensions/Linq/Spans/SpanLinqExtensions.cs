@@ -449,8 +449,10 @@ public static class SpanLinqExtensions
     /// <param name="comparer">The equality comparer to use for comparing elements.</param>
     /// <typeparam name="T">The type of elements in the source span.</typeparam>
     /// <returns>A span containing the distinct elements from the source span.</returns>
-    public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T> comparer)
+    public static Span<T> Distinct<T>(this Span<T> source, IEqualityComparer<T>? comparer)
     {
+        comparer ??= EqualityComparer<T>.Default;
+        
 #if NET5_0_OR_GREATER || NETSTANDARD2_1
         HashSet<T> set = new(capacity: source.Length, comparer: comparer);
 #else
