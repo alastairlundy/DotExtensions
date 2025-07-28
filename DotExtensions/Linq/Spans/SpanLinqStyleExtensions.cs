@@ -145,7 +145,6 @@ public static class SpanLinqStyleExtensions
             select item;
     }
 
-
     /// <summary>
     /// Returns a new Span with all items in the Span that match the predicate condition.
     /// </summary>
