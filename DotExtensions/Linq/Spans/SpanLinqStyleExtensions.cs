@@ -271,10 +271,8 @@ public static class SpanLinqStyleExtensions
     /// <param name="source">The source span from which to extract distinct elements.</param>
     /// <typeparam name="T">The type of elements in the source span.</typeparam>
     /// <returns>A span containing the distinct elements from the source span.</returns>
-    public static Span<T> Distinct<T>(this Span<T> source)
-    {
-        return Distinct(source, EqualityComparer<T>.Default);
-    }
+    public static Span<T> Distinct<T>(this Span<T> source) => 
+        Distinct(source, EqualityComparer<T>.Default);
 
     /// <summary>
     /// Returns a new span containing distinct elements from the source span, using the specified equality comparer.
