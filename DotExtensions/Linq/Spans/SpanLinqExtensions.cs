@@ -462,7 +462,6 @@ public static class SpanLinqExtensions
         
         foreach (T item in source)
         {
-            set.Add(item);
             bool result = set.Add(item);
 
             if (result)
