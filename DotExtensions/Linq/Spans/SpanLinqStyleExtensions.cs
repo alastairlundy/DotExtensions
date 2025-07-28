@@ -85,18 +85,15 @@ public static class SpanLinqStyleExtensions
     {
         T[] firstArray = first.ToArray();
         T[] secondArray = second.ToArray();
-
-        List<T> resultOne = first
-            .SkipWhile(x => secondArray.Contains(x))
-            .ToList();
-
-        List<T> resultTwo = second
-            .SkipWhile(x => firstArray.Contains(x))
-            .ToList();
-
-        resultOne.AddRange(resultTwo);
         
-        return new Span<T>(resultOne.ToArray());
+        Span<T> resultOne = first.SkipWhile(x => secondArray.Contains(x));
+        Span<T> resultTwo = second.SkipWhile(x => firstArray.Contains(x));
+
+        resultOne.Resize(resultOne.Length + resultTwo.Length);
+        
+        resultTwo.CopyTo(ref resultOne, resultOne.Length);
+
+        return resultOne;
     }
     
     /// <summary>
