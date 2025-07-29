@@ -35,7 +35,6 @@ DotExtensions supports:
 * .NET 8
 * .NET 9
 * .NET Standard 2.0
-* .NET Standard 2.1
 
 However, it is important to note that not all features may be supported by all TFMs. 
 
@@ -52,7 +51,6 @@ The current build targets include:
 * .NET 8
 * .NET 9
 * .NET Standard 2.0
-* .NET Standard 2.1
 
 Any version of the .NET 9 SDK can be used, but using the latest version is preferred.
 
