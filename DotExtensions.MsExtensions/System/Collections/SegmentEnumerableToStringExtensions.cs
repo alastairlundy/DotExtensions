@@ -43,7 +43,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
         /// <param name="segments">The sequence of StringSegments to convert.</param>
         /// <param name="separator">Optional separator string between segments (default: space).</param>
         /// <returns>The concatenated string representation of the input segments.</returns>
-        public static string ToString(this IEnumerable<StringSegment> segments, string separator = " ")
+        public static string ToString(this IEnumerable<StringSegment> segments, string separator)
         {   
             StringBuilder stringBuilder = new StringBuilder();
             
@@ -64,7 +64,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
         /// <param name="segments">The sequence of StringSegments to convert.</param>
         /// <param name="separator">Optional separator character between segments (default: space).</param>
         /// <returns>The concatenated string representation of the input segments.</returns>
-        public static string ToString(this IEnumerable<StringSegment> segments, char separator = ' ')
+        public static string ToString(this IEnumerable<StringSegment> segments, char separator)
         {
             StringBuilder stringBuilder = new StringBuilder();
             
