@@ -57,29 +57,4 @@ public static class KeyValuePairEnumerableSplitExtensions
         return from pair in source
             select pair.Value;
     }
-        
-    /// <summary>
-    /// Splits an IEnumerable of flexible key-value pairs into separate sequences of keys and values.
-    /// </summary>
-    /// <remarks>This method returns an Empty IEnumerable for an out parameter if the input contains no Values or Keys.</remarks>
-    /// <param name="source">The IEnumerable of key-value pairs to split.</param>
-    /// <param name="keys">A sequence to hold the extracted keys if any are found; An empty IEnumerable otherwise.</param>
-    /// <param name="values">A sequence to hold the extracted values if any are found; An empty IEnumerable otherwise.</param>
-    /// <typeparam name="TKey">The type of Key in the KeyValuePair.</typeparam>
-    /// <typeparam name="TValue">The type of Value in the KeyValuePair.</typeparam>
-    public static void ToSplitPairs<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source,
-        out IEnumerable<TKey> keys, out IEnumerable<TValue> values)
-    {
-        List<TKey> outputKeys = new List<TKey>();
-        List<TValue> outputValues = new List<TValue>();
-
-        foreach (KeyValuePair<TKey, TValue> pair in source)
-        {
-            outputKeys.Add(pair.Key);
-            outputValues.Add(pair.Value);
-        }
-        
-        keys = outputKeys;
-        values = outputValues;
-    }
 }
