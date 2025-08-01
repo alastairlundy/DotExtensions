@@ -212,9 +212,10 @@ public static class SegmentIndicesOfExtensions
             yield break;
         }
 
-        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
+        IEnumerable<int> indices = str.IndicesOf(segment.First())
+            .Where(x => x != -1);
 
-        foreach (int index in indexes)
+        foreach (int index in indices)
         {
             StringSegment indexSegment = str.Substring(index, segment.Length);
 
