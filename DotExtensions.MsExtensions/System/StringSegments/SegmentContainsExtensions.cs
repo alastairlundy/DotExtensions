@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Linq;
-
 using Microsoft.Extensions.Primitives;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -70,37 +68,25 @@ public static class SegmentContainsExtensions
         if (segment.Length > @this.Length || segment.IsEmpty())
             return false;
         
-        char[] segmentArray = segment.ToCharArray();
-        
-        bool containsAllChars = @this.All(c => segmentArray.Contains(c));
-        
-        if (containsAllChars == false)
-        {
+        // Return false if the segment to compare doesn't contain all characters in this segment
+        if (@this.All(c => segment.Contains(c)) == false)
             return false;
-        }
         
-        int startIndex = 0;
+        bool found = false;
 
         for (int originIndex = 0; originIndex < @this.Length; originIndex++)
         {
-            char c = @this[originIndex];
-            bool found = false;
-
-            for (int i = startIndex; i < segment.Length; i++)
+            for (int i = 0; i < segment.Length; i++)
             {
-                if (segmentArray[i] == c)
+                if (@this[i] == @this[originIndex])
                 {
                     found = true;
-                    startIndex = i + 1;
                     break;
                 }
             }
 
             if (found == true)
-            {
                 return true;
-            }
-            
         }
 
         return false;

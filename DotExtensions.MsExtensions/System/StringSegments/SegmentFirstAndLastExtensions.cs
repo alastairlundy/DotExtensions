@@ -24,7 +24,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
@@ -57,7 +56,7 @@ public static class SegmentFirstAndLastExtensions
     /// <exception cref="ArgumentException">Thrown if no characters in the StringSegment meet the predicate condition.</exception>
     public static char First(this StringSegment target, Func<char, bool> predicate)
     {
-        IEnumerable<char> results = (from c in target.ToCharArray()
+        IEnumerable<char> results = (from c in target
             where predicate.Invoke(c)
             select c);
 
@@ -90,8 +89,8 @@ public static class SegmentFirstAndLastExtensions
     /// <returns>The first character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target, Func<char, bool> predicate)
     {
-        IEnumerable<char> results = (from c in target.ToCharArray()
-            where predicate.Invoke(c)
+        IEnumerable<char> results = (from c in target
+            where predicate(c)
             select c);
 
         foreach (char result in results)
