@@ -66,7 +66,6 @@ public static class SegmentIsNullExtensions
         if (segment is null)
             return true;
 
-        return segment.Value.Contains(' ') ||
-               segment.Value.Contains(" ");
+        return segment.Value.All(x => x == ' ') || segment.Value.Equals(" ");
     }
 }
