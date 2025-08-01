@@ -22,13 +22,10 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using AlastairLundy.DotExtensions.Collections.Generic.ILists;
-using AlastairLundy.DotExtensions.Deprecations;
-using AlastairLundy.DotExtensions.Localizations;
-using AlastairLundy.DotExtensions.Numbers;
+
 
 namespace AlastairLundy.DotExtensions.Collections.Generic.ICollections;
 
