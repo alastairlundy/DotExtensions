@@ -68,7 +68,7 @@ public static class SegmentLinqExtensions
     public static bool Any(this StringSegment target, Func<char, bool> predicate)
     {
         IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate.Invoke(c)
+                group c by predicate(c)
                 into g
                 where g.Key
                 select g.Any()
@@ -83,31 +83,31 @@ public static class SegmentLinqExtensions
     /// Returns an IEnumerable of chars that match the predicate. 
     /// </summary>
     /// <param name="target">The StringSegment to search.</param>
-    /// <param name="predicate">The predicate to check each char against.</param>
+    /// <param name="selector">The predicate to check each char against.</param>
     /// <returns>An IEnumerable of chars that matches the predicate.</returns>
-    public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> predicate)
+    public static IEnumerable<char> Where(this StringSegment target, Func<char, bool> selector)
     {
-        return (from c in target.ToCharArray()
-            where predicate.Invoke(c)
-            select c);
+        for (int i = 0; i < target.Length; i++)
+        {
+            if(selector(target[i]))
+                yield return target[i];
+        }
     }
 
     /// <summary>
     /// Counts the number of chars in the StringSegment that match the predicate.
     /// </summary>
     /// <param name="target">The StringSegment to search.</param>
-    /// <param name="predicate">The predicate to check each char against.</param>
+    /// <param name="selector">The predicate to check each char against.</param>
     /// <returns>The number of chars matching the predicate condition as an integer.</returns>
-    public static int Count(this StringSegment target,  Func<char, bool> predicate)
+    public static int Count(this StringSegment target,  Func<char, bool> selector)
     {
         int output = 0;
 
-        foreach (char c in target.ToCharArray())
+        for (int i =  0; i < target.Length; i++)
         {
-            if (predicate.Invoke(c))
-            {
+            if (selector(target[i])) 
                 output++;
-            }
         }
             
         return output;
