@@ -67,7 +67,7 @@ public static class SegmentContainsExtensions
         if (@this.Length == segment.Length)
             return @this.Equals(segment);
         
-        if (segment.Length > @this.Length || segment.Length == 0)
+        if (segment.Length > @this.Length || segment.IsEmpty())
             return false;
         
         char[] segmentArray = segment.ToCharArray();
