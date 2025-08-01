@@ -46,10 +46,11 @@ public static class SegmentLinqExtensions
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         char[] array = target.ToCharArray();
-        IEnumerable<int> indexes = Enumerable.Range(0, target.Length);
+        
+        IEnumerable<int> indices = Enumerable.Range(0, target.Length);
         
         IEnumerable<char> reversedEnumerable = (from c in array
-                join i in indexes
+                join i in indices
                     on c equals array[i]
                 orderby i descending 
                 select c
