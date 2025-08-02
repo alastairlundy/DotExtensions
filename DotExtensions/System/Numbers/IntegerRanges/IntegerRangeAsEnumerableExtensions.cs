@@ -49,9 +49,7 @@ public static class IntegerRangeAsEnumerableExtensions
     public static IEnumerable<ushort> RangeAsEnumerable(this ushort startIndex, ushort count)
     {
         if (startIndex + count > ushort.MaxValue)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        }
         
         for (ushort i = startIndex; i < count; i++)
         {
@@ -71,14 +69,10 @@ public static class IntegerRangeAsEnumerableExtensions
     public static IEnumerable<short> RangeAsEnumerable(this short start, short count)
     {
         if (start + count > short.MaxValue)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        }
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
         for (short i = start; i < count; i++)
         {
@@ -96,10 +90,8 @@ public static class IntegerRangeAsEnumerableExtensions
     public static IEnumerable<int> RangeAsEnumerable(this int start, int count)
     {
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
         for (int i = start; i < count; i++)
         {
@@ -119,10 +111,8 @@ public static class IntegerRangeAsEnumerableExtensions
     public static IEnumerable<long> RangeAsEnumerable(this long start, long count)
     {
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
         for (long i = start; i < count; i++)
         {
