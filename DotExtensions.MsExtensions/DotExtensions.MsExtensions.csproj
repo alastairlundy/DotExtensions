@@ -8,23 +8,17 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.0</Version>
+        <Version>8.0.0-preview.1</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes
-
-## 🚀 Features
-* Updated to DotExtensions 7.6.0
-- Add StringSegment ``IsEmpty`` @alastairlundy (#77)
-- Add StringSegment ``IsNullOrEmpty`` and ``IsNullOrWhiteSpace`` @alastairlundy (#69)
-
-## 🧰 Maintenance
-
-- Re-organize DotExtensions directory structure @alastairlundy (#72)
-</PackageReleaseNotes>
+        <PackageReleaseNotes>* Moved LINQ style extensions for StringSegment to a different library.
+* Updated StringSegment AsEnumerable method
+* Re-worked StringSegment Contains methods
+* Removed StringSegment IsNullOrEmpty extension method as redundant
+* Removed reliance on DotExtensions main package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
