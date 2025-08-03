@@ -24,7 +24,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Numbers;
@@ -44,21 +44,25 @@ public static class IntegerRangeAsListExtensions
     /// <returns>An <see cref="IList{T}"/> containing the generated list of unsigned short values,
     /// incremented by 1 from the starting point.</returns>
     /// <exception cref="ArgumentException">Thrown when the count + startIndex are greater than ushort.MaxValue </exception>
-    public static IList<ushort> RangeAsIList(this ushort startIndex, ushort count)
+    public static ushort[] RangeAsArray(this ushort startIndex, ushort count)
     {
         if (startIndex + count > ushort.MaxValue)
         {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
         
-        List<ushort> list = new List<ushort>();
+        ushort[] output = new ushort[count + 1];
 
+        int index = 0;
+        
         for (ushort i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
+            index++;
+
         }
         
-        return list;
+        return output;
     }
     
     /// <summary>
@@ -70,26 +74,26 @@ public static class IntegerRangeAsListExtensions
     /// <returns>An <see cref="IList{T}"/> containing the generated list of short values,
     /// incremented by 1 from the starting point.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IList<short> RangeAsIList(this short startIndex, short count)
+    public static short[] RangeAsArray(this short startIndex, short count)
     {
         if (startIndex + count > short.MaxValue)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        }
+        
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
-        List<short> list = new List<short>();
+        short[] output = new short[count + 1];
 
+        int index = 0;
+        
         for (short i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
+            index++;
         }
         
-        return list;
+        return output;
     }
     
     /// <summary>
@@ -99,7 +103,7 @@ public static class IntegerRangeAsListExtensions
     /// <param name="count">The number of integers to generate.</param>
     /// <returns>An IList list of integers from the start index up to count.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IList<int> RangeAsIList(this int startIndex, int count)
+    public static int[] RangeAsArray(this int startIndex, int count)
     {
         if (count < 0)
         {
@@ -107,14 +111,17 @@ public static class IntegerRangeAsListExtensions
                 .Replace("{x}", $"{count}"));
         }
         
-        List<int> list = new List<int>();
+        int[] output = new int[count + 1];
 
+        int index = 0;
+        
         for (int i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
+            index++;
         }
-        
-        return list;
+
+        return output;
     }
     
     /// <summary>
@@ -126,22 +133,23 @@ public static class IntegerRangeAsListExtensions
     /// <returns>An <see cref="IList{T}"/> containing the generated list of long values,
     /// incremented by 1 from the starting point.</returns>
     /// <exception cref="ArgumentException">Thrown when the count is less than zero.</exception>
-    public static IList<long> RangeAsIList(this long startIndex, long count)
+    public static long[] RangeAsArray(this long startIndex, long count)
     {
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
-        List<long> list = new List<long>();
+        long[] output = new long[count + 1];
 
+        int index = 0;
+        
         for (long i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
+            index++;
         }
         
-        return list;
+        return output;
     }
     
 
@@ -153,20 +161,20 @@ public static class IntegerRangeAsListExtensions
     /// <param name="count">The number of values to generate in the list.</param>
     /// <returns>An <see cref="IList{T}"/> containing the generated list of unsigned integer values,
     /// incremented by 1 from the starting point.</returns>
-    public static IList<uint> RangeAsIList(this uint startIndex, uint count)
+    public static uint[] RangeAsArray(this uint startIndex, uint count)
     {
-        List<uint> list = new List<uint>();
+        uint[] output = new uint[count + 1];
+        int index = 0;
         
         for (uint i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
         }
         
-        return list;
+        return output;
     }
     
-
-
+    
     /// <summary>
     /// Generates a list of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -175,16 +183,18 @@ public static class IntegerRangeAsListExtensions
     /// <param name="count">The number of values to generate in the list.</param>
     /// <returns>An <see cref="IList{T}"/> containing the generated list of unsigned long values,
     /// incremented by 1 from the starting point.</returns>
-    public static IList<ulong> RangeAsIList(this ulong startIndex, ulong count)
+    public static ulong[] RangeAsArray(this ulong startIndex, ulong count)
     {
-        List<ulong> list = new List<ulong>();
-
+        ulong[] output = new  ulong[count + 1];
+        
+        int index = 0;
+        
         for (ulong i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            output[index] = i;
         }
         
-        return list;
+        return output;
     }
 
     /// <summary>
@@ -195,25 +205,31 @@ public static class IntegerRangeAsListExtensions
     /// <param name="numbersToSkip">The numbers to skip from the range.</param>
     /// <returns>An IList list of integers from the start index up to count.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IList<int> RangeAsIList(this int startIndex, int count, IList<int> numbersToSkip)
+    public static int[] RangeAsArray(this int startIndex, int count, int[] numbersToSkip)
     {
-        if (count < 0)
-        {
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
+
+        if (numbersToSkip.Length > count)
+            throw new ArgumentException();
         
-        List<int> list = new List<int>();
+        if (numbersToSkip.Length == 0)
+            return RangeAsArray(startIndex, count);
+        
+        int[] output = new int[count + 1];
+        
+        int index = 0;
         
         for (int i = startIndex; i < count; i++)
         {
             if (numbersToSkip.Contains(i) == false)
             {
-                list.Add(i);
+                output[index] = i;
             }
         }
         
-        return list;
+        return output;
     }
     
 
@@ -227,25 +243,30 @@ public static class IntegerRangeAsListExtensions
     /// <returns>An <see cref="IList{T}"/> containing the generated list of long values,
     /// excluding the skipped numbers.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IList<long> RangeAsIList(this long startIndex, long count, IList<long> numbersToSkip)
+    public static long[] RangeAsArray(this long startIndex, long count, long[] numbersToSkip)
     {
         if (count < 0)
-        {
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
-        }
         
-        List<long> list = new List<long>();
-
+        if (numbersToSkip.Length > (int)count)
+            throw new ArgumentException();
+        
+        if (numbersToSkip.Length == 0)
+            return RangeAsArray(startIndex, count);
+        
+        long[] output = new long[(int)count + 1];
+        int index = 0;
+        
         for (long i = startIndex; i < count; i++)
         {
             if (numbersToSkip.Contains(i) == false)
             {
-                list.Add(i);
+                output[index] = i;
             }
         }
         
-        return list;
+        return output;
     }
     
 
@@ -258,19 +279,30 @@ public static class IntegerRangeAsListExtensions
     /// <param name="numbersToSkip">An <see cref="IList{T}"/> of unsigned long values to skip in the generated list.</param>
     /// <returns>An <see cref="IList{T}"/> containing the generated list of unsigned long values,
     /// excluding the skipped numbers.</returns>
-    public static IList<ulong> RangeAsIList(this ulong startIndex, ulong count, IList<ulong> numbersToSkip)
+    public static ulong[] RangeAsArray(this ulong startIndex, ulong count, ulong[] numbersToSkip)
     {
-        List<ulong> list = new List<ulong>();
-
+        if (numbersToSkip.Length > (int)count)
+            throw new ArgumentException();
+        
+        if (numbersToSkip.Length == 0)
+            return RangeAsArray(startIndex, count);
+        
+        ulong[] output = new ulong[(int)count + 1];
+        
+        int index = 0;
+        
         for (ulong i = startIndex; i < count; i++)
         {
             if (numbersToSkip.Contains(i) == false)
             {
-                list.Add(i);
+                output[index] = i;
+                index++;
             }
         }
         
-        return list;
+        Array.Resize(ref output, index);
+
+        return output;
     }
     
     
@@ -283,18 +315,29 @@ public static class IntegerRangeAsListExtensions
     /// <param name="numbersToSkip">An <see cref="IList{T}"/> of unsigned integer values to skip in the generated list.</param>
     /// <returns>An <see cref="IList{T}"/> containing the generated list of unsigned integer values,
     /// excluding the skipped numbers.</returns>
-    public static IList<uint> RangeAsIList(this uint startIndex, uint count, IList<uint> numbersToSkip)
+    public static uint[] RangeAsArray(this uint startIndex, uint count, uint[] numbersToSkip)
     {
-        List<uint> list = new List<uint>();
+        uint[] output = new uint[(int)count + 1];
 
+        if (numbersToSkip.Length > (int)count)
+            throw new ArgumentException();
+        
+        if (numbersToSkip.Length == 0)
+            return RangeAsArray(startIndex, count);
+        
+        int index = 0;
+        
         for (uint i = startIndex; i < count; i++)
         {
             if (numbersToSkip.Contains(i) == false)
             {
-                list.Add(i);
+                output[index] = i;
+                index++;
             }
         }
         
-        return list;
+        Array.Resize(ref output, index);
+
+        return output;
     }
 }
