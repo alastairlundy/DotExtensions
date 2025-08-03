@@ -51,6 +51,16 @@ public static class SegmentIsNullExtensions
         if (segment is null)
             return true;
 
-        return segment.Value.All(x => x == ' ') || segment.Value.Equals(" ");
+        if (segment.Value.Equals(" "))
+            return true;
+
+        bool[] hasWhitespace = new bool[segment.Value.Length];
+        
+        for (int i = 0; i < segment.Value.Length; i++)
+        {
+            hasWhitespace[i] = segment.Value[i] == ' ';
+        }
+
+        return hasWhitespace.All(x => x);
     }
 }
