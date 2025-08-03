@@ -110,4 +110,77 @@ public static class SpanCopyExtensions
             startIndex++;
         }
     }
+
+    /// <summary>
+    /// Attempts to copy elements from one <see cref="Span{T}"/> to another.
+    /// </summary>
+    /// <param name="source">The source span.</param>
+    /// <param name="destination">The destination span.</param>
+    /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <returns>True if copying to the destination <see cref="Span{T}"/> was successful; false otherwise.</returns>
+    public static bool TryCopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex)
+    {
+        if (startIndex < 0 || startIndex > source.Length)
+            return false;
+
+        try
+        {
+            OptimisticCopy(source, ref destination, startIndex);
+            
+            for (int i = startIndex; i < source.Length; i++)
+            {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                if (destination[i] is not null && destination[i]
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        .Equals(source[i]) == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Attempts to copy elements from one <see cref="Span{T}"/> to another.
+    /// </summary>
+    /// <param name="source">The source span.</param>
+    /// <param name="destination">The destination span.</param>
+    /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
+    /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    /// <returns>True if copying to the destination <see cref="Span{T}"/> was successful; false otherwise.</returns>
+    public static bool TryCopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
+    {
+        if (startIndex < 0 || startIndex > source.Length)
+            return false;
+
+        try
+        {
+            OptimisticCopy(source, ref destination, startIndex, length);
+            
+            for (int i = startIndex; i < source.Length; i++)
+            {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                if (destination[i] is not null && destination[i]
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                        .Equals(source[i]) == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }
