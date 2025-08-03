@@ -29,5 +29,4 @@ public static class SpanResizeExtensions
         
         target = destination;
     }
-
 }
