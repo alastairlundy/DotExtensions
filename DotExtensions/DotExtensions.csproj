@@ -12,23 +12,16 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
-
-## 🚀 Features
-
-- Use yield return for some IEnumerable\&lt;T&gt; methods @alastairlundy (#79)
-- Deprecate additional ICollection\&lt;T&gt; methods and ``FrequencyOf\&lt;T&gt;`` @alastairlundy (#78)
-- Add WindowsFilePermission ``HasExecutePermission``, ``HasWritePermission``, and ``HasReadPermission`` extensions @alastairlundy (#75)
-- Add FileInfo ``GetFileSizeString`` and ``GetFileSizeUnitString`` @alastairlundy (#74)
-- Add Digit counting extensions @alastairlundy (#73)
-- Add Span ``InsertRange(ICollection\&lt;T&gt;, int)`` @alastairlundy (#70)
-- Add Span ``CopyTo(out Span\&lt;T&gt;, int)`` and ``CopyTo(out Span\&lt;T&gt;, int, int)`` @alastairlundy (#71)
-- Add Span ``ForEach(Action\&lt;T&gt;`` and ``ForEach(Func\&lt;T, T&gt;)`` @alastairlundy (#68)
-- Add Span ``ToList\&lt;T&gt;()`` @alastairlundy (#67)
-
-## 🧰 Maintenance
-
-- Re-organize DotExtensions directory structure @alastairlundy (#72)</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.6.x
+* Removed .NET Standard 2.1 TFM - .NET Standard 2.1 is implicitly supported through the .NET Standard 2.0 TFM
+* Removed deprecated code
+* Moved most LINQ style Span&lt;T&gt; and IEnumerable&lt;T&gt;, ICollection&lt;T&gt;, and IList&lt;T&gt; extensions out of DotExtensions to a different library
+* Reworked Span ``Resize`` method
+* Reworked Span CopyTo methods
+* Added Span ``TryCopyTo`` extension methods
+* Added Span ``OptimisticCopy`` extension methods
+* Changed ``RangeAsIList`` methods to return arrays and renamed them to ``RangeAsArray``
+* Removed no longer needed dependencies</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
