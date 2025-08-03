@@ -120,7 +120,6 @@ public static class IntegerRangeAsEnumerableExtensions
         }
     }
     
-
     /// <summary>
     /// Generates a sequence of unsigned integer (uint) values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -137,8 +136,6 @@ public static class IntegerRangeAsEnumerableExtensions
         }
     }
     
-
-
     /// <summary>
     /// Generates a sequence of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -163,12 +160,10 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="numbersToSkip">The numbers to skip from the range.</param>
     /// <returns>An IEnumerable sequence of integers from the start index up to count.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IEnumerable<int> RangeAsEnumerable(this int start, int count, IEnumerable<int> numbersToSkip)
-    {
-        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
-    }
+    public static IEnumerable<int> RangeAsEnumerable(this int start, int count, IEnumerable<int> numbersToSkip) =>
+        RangeAsEnumerable(start, count)
+            .SkipWhile(x => numbersToSkip.Contains(x));
     
-
     /// <summary>
     /// Generates a sequence of long values starting from a specified value and continuing for a specified count,
     /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
@@ -179,12 +174,10 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of long values,
     /// excluding the skipped numbers.</returns>
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
-    public static IEnumerable<long> RangeAsEnumerable(this long start, long count, IEnumerable<long> numbersToSkip)
-    {
-        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
-    }
+    public static IEnumerable<long> RangeAsEnumerable(this long start, long count, IEnumerable<long> numbersToSkip) =>
+        RangeAsEnumerable(start, count)
+            .SkipWhile(x => numbersToSkip.Contains(x));
     
-
     /// <summary>
     /// Generates a sequence of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
     /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
@@ -194,12 +187,10 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="numbersToSkip">An <see cref="IEnumerable{T}"/> of unsigned long values to skip in the generated sequence.</param>
     /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned long values,
     /// excluding the skipped numbers.</returns>
-    public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count, IEnumerable<ulong> numbersToSkip)
-    {
-        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
-    }
-    
-    
+    public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count, IEnumerable<ulong> numbersToSkip) =>
+        RangeAsEnumerable(start, count)
+            .SkipWhile(x => numbersToSkip.Contains(x));
+
     /// <summary>
     /// Generates a sequence of unsigned integer (uint) values starting from a specified value and continuing for a specified count,
     /// while skipping specified numbers in the sequence, with each value incremented by 1 from the starting point.
@@ -209,8 +200,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <param name="numbersToSkip">An <see cref="IEnumerable{T}"/> of unsigned integer values to skip in the generated sequence.</param>
     /// <returns>An <see cref="IEnumerable{T}"/> containing the generated sequence of unsigned integer values,
     /// excluding the skipped numbers.</returns>
-    public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count, IEnumerable<uint> numbersToSkip)
-    {
-        return RangeAsEnumerable(start, count).SkipWhile(x => numbersToSkip.Contains(x));
-    }
+    public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count, IEnumerable<uint> numbersToSkip) =>
+        RangeAsEnumerable(start, count)
+            .SkipWhile(x => numbersToSkip.Contains(x));
 }
