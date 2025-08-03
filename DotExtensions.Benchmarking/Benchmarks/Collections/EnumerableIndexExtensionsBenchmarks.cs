@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
@@ -50,4 +50,4 @@ public class EnumerableIndexExtensionsBenchmarks
     {
         int index = fakeData.IndexOf(fakeData[indexes[Random.Shared.Next(0, N)]]);
     }
-}
+}*/
