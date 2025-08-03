@@ -34,50 +34,9 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 public static class SegmentLinqExtensions
 {
-    /// <summary>
-    /// Reverses the contents of the StringSegment.
-    /// </summary>
-    /// <param name="target">The StringSegment to reverse.</param>
-    /// <returns>The reversed StringSegment.</returns>
-    /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
-    public static StringSegment Reverse(this StringSegment target)
-    {
-        if (target.IsEmpty())
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
-        
-        char[] array = target.ToCharArray();
-        
-        IEnumerable<int> indices = Enumerable.Range(0, target.Length);
-        
-        IEnumerable<char> reversedEnumerable = (from c in array
-                join i in indices
-                    on c equals array[i]
-                orderby i descending 
-                select c
-            );
-        
-        return new StringSegment(string.Join("", reversedEnumerable));
-    }
+
     
-    /// <summary>
-    /// Returns whether any char in a StringSegment matches the predicate condition.
-    /// </summary>
-    /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each char in the StringSegment.</param>
-    /// <returns>True if any char in the StringSegment matches the predicate; false otherwise.</returns>
-    public static bool Any(this StringSegment target, Func<char, bool> predicate)
-    {
-        IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate(c)
-                into g
-                where g.Key
-                select g.Any()
-            );
 
-        bool? result = groups.FirstOrDefault();
-
-        return result ?? false;
-    }
 
     /// <summary>
     /// Returns an IEnumerable of chars that match the predicate. 
@@ -94,39 +53,6 @@ public static class SegmentLinqExtensions
         }
     }
 
-    /// <summary>
-    /// Counts the number of chars in the StringSegment that match the predicate.
-    /// </summary>
-    /// <param name="target">The StringSegment to search.</param>
-    /// <param name="selector">The predicate to check each char against.</param>
-    /// <returns>The number of chars matching the predicate condition as an integer.</returns>
-    public static int Count(this StringSegment target,  Func<char, bool> selector)
-    {
-        int output = 0;
 
-        for (int i =  0; i < target.Length; i++)
-        {
-            if (selector(target[i])) 
-                output++;
-        }
-            
-        return output;
-    }
-    
-    /// <summary>
-    /// Returns whether all chars in a StringSegment match the predicate condition.
-    /// </summary>
-    /// <param name="target">The StringSegment to be searched.</param>
-    /// <param name="predicate">The predicate func to be invoked on each item in the StringSegment.</param>
-    /// <returns>True if all chars in the StringSegment match the predicate; false otherwise.</returns>
-    public static bool All(this StringSegment target, Func<char, bool> predicate)
-    {
-        IEnumerable<bool> groups = (from c in target.ToCharArray()
-                group c by predicate.Invoke(c)
-                into g
-                    select g.Any()
-            );
 
-        return groups.Distinct().Count() == 1;
-    }
 }
