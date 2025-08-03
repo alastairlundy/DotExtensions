@@ -28,8 +28,20 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
-public static class SegmentAsEnumerablesExtensions
+public static class SegmentToCharsExtensions
 {
+    /// <summary>
+    /// Enumerates the specified StringSegment.
+    /// </summary>
+    /// <param name="segment">The string segment to enumerate.</param>
+    /// <returns>The <see cref="IEnumerable{T}"/> of chars from the <see cref="StringSegment"/>.</returns>
+    public static IEnumerable<char> AsEnumerable(this StringSegment segment)
+    {
+        for (int i = 0; i < segment.Length; i++)
+        {
+            yield return segment[i];
+        }
+    }
     
     /// <summary>
     /// Returns the <see cref="StringSegment"/> as a Char Array.
