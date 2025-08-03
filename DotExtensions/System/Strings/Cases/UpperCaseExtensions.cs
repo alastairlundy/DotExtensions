@@ -24,8 +24,6 @@
 
 // ReSharper disable CheckNamespace
 
-using System;
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 public static class UpperCaseExtensions

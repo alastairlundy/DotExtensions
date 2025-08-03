@@ -89,7 +89,7 @@ public static class SegmentFirstAndLastExtensions
         if (StringSegment.IsNullOrEmpty(target))
             return null;
         
-#if NET6_0_OR_GREATER || NETSTANDARD2_1
+#if NET6_0_OR_GREATER
         return target[^1];
 #else
         return target[target.Length - 1];

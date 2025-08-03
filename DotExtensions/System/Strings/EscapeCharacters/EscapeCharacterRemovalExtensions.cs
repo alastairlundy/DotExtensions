@@ -24,10 +24,7 @@
 
 // ReSharper disable CheckNamespace
 
-using System.Collections.Generic;
 using System.Linq;
-
-using AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
 
 namespace AlastairLundy.DotExtensions.Strings;
 
