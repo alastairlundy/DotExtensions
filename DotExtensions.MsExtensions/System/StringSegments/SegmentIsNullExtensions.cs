@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -36,6 +37,7 @@ public static class SegmentIsNullExtensions
     /// </summary>
     /// <param name="segment">The string segment to check.</param>
     /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+    [Obsolete("This method is deprecated and will be removed in version 8.")]
     public static bool IsNullOrEmpty(this StringSegment? segment)
     {
         if (segment is null)

@@ -55,22 +55,16 @@ public static class SegmentAsEnumerablesExtensions
     /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
     /// <param name="segment">The StringSegment to enumerate.</param>
     /// <returns>The StringSegment as an IEnumerable.</returns>
-    [Obsolete("This code is deprecated and will be removed in v8. Use AsEnumerable instead.")]
-    public static IEnumerable<char> ToEnumerable(this StringSegment segment)
-    {
-        return ToCharArray(segment);
-    }
-    
-        
+    [Obsolete("This code is deprecated and will be removed in v8. Use ToCharArray instead.")]
+    public static IEnumerable<char> ToEnumerable(this StringSegment segment) => ToCharArray(segment);
+
+
     /// <summary>
     /// Returns the StringSegment as an IEnumerable.
     /// </summary>
     /// <remarks>Internally calls DotExtensions' ToCharArray extension method.</remarks>
     /// <param name="segment">The StringSegment to enumerate.</param>
     /// <returns>The StringSegment as an IEnumerable.</returns>
-    [Obsolete("This code is deprecated and will be removed in v8. Use AsEnumerable instead.")]
-    public static IEnumerable<char> AsEnumerable(this StringSegment segment)
-    {
-        return ToCharArray(segment);
-    }
+    [Obsolete("This code is deprecated and will be removed in v8. Use ToCharArray instead.")]
+    public static IEnumerable<char> AsEnumerable(this StringSegment segment) => ToCharArray(segment);
 }
