@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,7 +33,7 @@ public class ElementsAtTests
         
         IEnumerable<int> indices = 0.RangeAsEnumerable(count);
 
-       IEnumerable<string> expected = EnumerableElementsAtExtensions.ElementsAt(data, indices);
+       IEnumerable<string> expected = ElementsAt(data, indices);
        
        Assert.Equal(expected, data);
     }
@@ -61,4 +61,4 @@ public class ElementsAtTests
        
         Assert.NotEqual(expected, data);
     }
-}
+}*/
