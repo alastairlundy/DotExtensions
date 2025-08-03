@@ -48,28 +48,6 @@ public static class StringIndicesOfExtensions
             }
         }
     }
-
-    
-    /// <summary>
-    /// Finds all occurrences of a specified char within a string, starting from the beginning of the string.
-    /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="c">A single character to find in the string.</param>
-    /// <returns>An array of indices where the character is found.</returns>
-    public static int[] IndicesOfAsArray(this string str, char c)
-    {
-        List<int> output = new List<int>();
-
-        for(int i = 0; i < str.Length; i++)
-        {
-            if (str[i] == c)
-            {
-                output.Add(i);
-            }
-        }
-
-        return output.ToArray();
-    }
     
     /// <summary>
     /// Finds the first occurrence of a specified substring within a string, starting from the beginning of the string.
@@ -124,36 +102,5 @@ public static class StringIndicesOfExtensions
                 }
             }
         }
-    }
-    
-    /// <summary>
-    /// Finds all occurrences of a specified substring within a string, starting from the beginning of the string.
-    /// </summary>
-    /// <param name="str">The input string.</param>
-    /// <param name="value">The substring to look for.</param>
-    /// <returns>An array of indices where the substring is found.</returns>
-    public static int[] IndicesOfAsArray(this string str, string value)
-    {
-        if (str.Length < value.Length || value.Length == 0)
-            return [];
-        
-        List<int> output = new();
-        
-        IEnumerable<int> indices = str.IndicesOf(value.First()).Where(x => x != -1);
-
-        foreach (int index in indices)
-        {
-            if (index >= 0 && index <= str.Length && (index + value.Length <= str.Length))
-            {
-                string indexValue = str.Substring(index, value.Length);
-
-                if (indexValue.Equals(str))
-                {
-                    output.Add(index);
-                }
-            }
-        }
-        
-        return output.ToArray();
     }
 }
