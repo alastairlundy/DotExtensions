@@ -32,29 +32,46 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 public static class SpanCopyExtensions
 {
     /// <summary>
-    /// Resizes the span to the specified new size and copies the elements of the old span to the new Span.
+    /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
     /// </summary>
-    /// <param name="target">The span to be resized.</param>
-    /// <param name="newSize">The desired new size of the span.</param>
+    /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.</remarks>
+    /// <param name="source">The source span.</param>
+    /// <param name="destination">The destination span.</param>
+    /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the new size is less than or equal to zero.</exception>
-    public static void Resize<T>(this ref Span<T> target, int newSize)
+    public static void OptimisticCopy<T>(this Span<T> source, ref Span<T> destination, int startIndex)
+    => OptimisticCopy(source, ref destination, startIndex, destination.Length);
+    
+    /// <summary>
+    /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
+    /// </summary>
+    /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.</remarks>
+    /// <param name="source">The source span.</param>
+    /// <param name="destination">The destination span.</param>
+    /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
+    /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
+    /// <typeparam name="T">The type of elements in the span.</typeparam>
+    public static void OptimisticCopy<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
     {
-        if (newSize <= 0)
-            throw new ArgumentOutOfRangeException(nameof(newSize));
-
-        T[] newTargetArray = new T[newSize];
-
-        int endCopy = target.Length < newSize ? target.Length : newSize;
-
-        for (int i = 0; i < endCopy; i++)
-        {
-            newTargetArray[i] = target[i];
-        }
+        if(startIndex < 0 || startIndex > source.Length)
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
         
-        target = new Span<T>(newTargetArray);
-    }
+        int expectedEnd = startIndex + length;
+        int actualEnd = destination.Length;
 
+        int end = actualEnd;
+
+        if (actualEnd <= expectedEnd)
+            end = actualEnd;
+        if (expectedEnd <= actualEnd)
+            end = expectedEnd;
+
+        for (int i = startIndex; i < end; i++)
+        {
+            destination[i] = source[i];
+        } 
+    }
+    
     /// <summary>
     /// Copies the elements of the span to a destination span, starting from a specified index.
     /// </summary>
