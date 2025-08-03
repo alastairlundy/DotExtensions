@@ -42,7 +42,7 @@ public static class SegmentFirstAndLastExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char First(this StringSegment target)
     {
-        if (target.IsEmpty())
+        if (StringSegment.IsNullOrEmpty(target))
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         return target[0];
@@ -56,7 +56,7 @@ public static class SegmentFirstAndLastExtensions
     public static char? FirstOrDefault(this StringSegment target)
     {
         if (StringSegment.IsNullOrEmpty(target))
-            return default;
+            return null;
 
         return target[0];
     }
@@ -69,7 +69,7 @@ public static class SegmentFirstAndLastExtensions
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
     public static char Last(this StringSegment target)
     {
-        if (target.IsEmpty())
+        if (StringSegment.IsNullOrEmpty(target))
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
 #if NET6_0_OR_GREATER
@@ -87,10 +87,8 @@ public static class SegmentFirstAndLastExtensions
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target)
     {
-        if (target.IsEmpty())
-        {
+        if (StringSegment.IsNullOrEmpty(target))
             return null;
-        }
         
 #if NET6_0_OR_GREATER || NETSTANDARD2_1
         return target[^1];
