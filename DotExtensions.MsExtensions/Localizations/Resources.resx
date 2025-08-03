@@ -21,7 +21,4 @@
     <data name="Exceptions.Enumerables.InvalidOperation.EmptySequence" xml:space="preserve">
         <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
     </data>
-    <data name="Exceptions.StringSegment.NoPredicateMatches" xml:space="preserve">
-        <value>No matches of the predicate were found.</value>
-    </data>
 </root>
