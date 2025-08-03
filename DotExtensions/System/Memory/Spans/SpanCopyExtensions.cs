@@ -101,7 +101,7 @@ public static class SpanCopyExtensions
         if(startIndex < 0 || startIndex > source.Length)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
         
-        if (source.CopyRequiresResize(destination, startIndex))
+        if (destination.Length < source.Length || destination.Length < startIndex + length)
             throw new ArgumentException();
         
         for (int i = 0; i < length; i++)
