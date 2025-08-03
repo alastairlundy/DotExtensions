@@ -26,6 +26,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SpanCopyExtensions
 {
     /// <summary>

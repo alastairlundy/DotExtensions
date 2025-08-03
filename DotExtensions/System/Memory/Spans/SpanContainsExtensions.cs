@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanContainsExtensions
 {
-#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if NETSTANDARD2_0
         /// <summary>
         /// Checks to see if a Span contains the specified item.
         /// </summary>
@@ -43,9 +43,9 @@ public static class SpanContainsExtensions
         /// <returns>True if the item is found in the span; false otherwise.</returns>
         public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
         {
-            foreach (T tItem in target)
+            foreach (T spanItem in target)
             {
-                if (tItem is not null && tItem.Equals(item))
+                if (spanItem is not null && spanItem.Equals(item))
                 {
                     return true;
                 }

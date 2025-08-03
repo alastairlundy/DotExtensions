@@ -27,7 +27,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 
 namespace AlastairLundy.DotExtensions.Processes;
 

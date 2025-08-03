@@ -41,7 +41,7 @@ public static class SpanAsEnumerableExtensions
     public static List<T> ToList<T>(this Span<T> source)
     {
         List<T> list = new List<T>();
-
+        
         foreach (T item in source)
         {
             list.Add(item);
