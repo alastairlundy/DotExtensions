@@ -75,6 +75,7 @@ public static class SpanCopyExtensions
     /// <summary>
     /// Copies the elements of the span to a destination span, starting from a specified index.
     /// </summary>
+    /// <remarks>Copying from a larger source <see cref="Span{T}"/> to a smaller destination <see cref="Span{T}"/> is not supported.</remarks>
     /// <param name="source">The source span.</param>
     /// <param name="destination">The destination span.</param>
     /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
