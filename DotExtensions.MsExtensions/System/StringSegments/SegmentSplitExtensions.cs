@@ -1,4 +1,4 @@
-/*
+/*/*
         MIT License
 
        Copyright (c) 2025 Alastair Lundy
@@ -73,4 +73,4 @@ public static class SegmentSplitExtensions
 
         return output;
     }
-}
+}*/
