@@ -94,8 +94,16 @@ public static class SpanCopyExtensions
     /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span, or if the length exceeds the remaining elements.</exception>
+    /// <exception cref="ArgumentException">Thrown if the source <see cref="Span{T}"/> is larger than the destination <see cref="Span{T}"/>.</exception>
+    /// <remarks>Copying from a larger source <see cref="Span{T}"/> to a smaller destination <see cref="Span{T}"/> is not supported.</remarks>
     public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
     {
+        if(startIndex < 0 || startIndex > source.Length)
+            throw new ArgumentOutOfRangeException(nameof(startIndex));
+        
+        if (source.CopyRequiresResize(destination, startIndex))
+            throw new ArgumentException();
+        
         for (int i = 0; i < length; i++)
         {
             destination[startIndex] = source[i];
