@@ -52,8 +52,7 @@ public static class SegmentLinqExtensions
                 join i in indices
                     on c equals array[i]
                 orderby i descending 
-                select c
-            );
+                select c);
         
         return new StringSegment(string.Join("", reversedEnumerable));
     }
