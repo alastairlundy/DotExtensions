@@ -52,14 +52,10 @@ public static class IntegerRangeAsEnumerableExtensions
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         }
         
-        List<ushort> list = new List<ushort>();
-
         for (ushort i = startIndex; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
     
     /// <summary>
@@ -83,14 +79,10 @@ public static class IntegerRangeAsEnumerableExtensions
                 .Replace("{x}", $"{count}"));
         }
         
-        List<short> list = new List<short>();
-
         for (short i = start; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
     
     /// <summary>
@@ -108,14 +100,10 @@ public static class IntegerRangeAsEnumerableExtensions
                 .Replace("{x}", $"{count}"));
         }
         
-        List<int> list = new List<int>();
-
         for (int i = start; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
     
     /// <summary>
@@ -135,14 +123,10 @@ public static class IntegerRangeAsEnumerableExtensions
                 .Replace("{x}", $"{count}"));
         }
         
-        List<long> list = new List<long>();
-
         for (long i = start; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
     
 
@@ -156,18 +140,13 @@ public static class IntegerRangeAsEnumerableExtensions
     /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count)
     {
-        List<uint> list = new List<uint>();
-        
         for (uint i = start; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
     
-
-
+    
     /// <summary>
     /// Generates a sequence of unsigned long (ulong) values starting from a specified value and continuing for a specified count,
     /// with each value incremented by 1 from the starting point.
@@ -178,14 +157,10 @@ public static class IntegerRangeAsEnumerableExtensions
     /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count)
     {
-        List<ulong> list = new List<ulong>();
-
         for (ulong i = start; i < count; i++)
         {
-            list.Add(i);
+            yield return i;
         }
-        
-        return list;
     }
 
     /// <summary>
