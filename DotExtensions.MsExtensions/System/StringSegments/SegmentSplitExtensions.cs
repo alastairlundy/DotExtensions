@@ -23,9 +23,8 @@
    */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -43,17 +42,17 @@ public static class SegmentSplitExtensions
         if (segment.Contains(separator) == false)
             return [];
 
-        List<int> indices = (List<int>)segment.IndicesOf(separator);
+        int[] indices = segment.IndicesOf(separator).ToArray();
         
-        StringSegment[] output = new StringSegment[indices.Count];
+        StringSegment[] output = new StringSegment[indices.Length];
         
-        if (indices.First().Equals(-1))
+        if (indices.First().Equals(-1) || indices.IsEmpty())
             return [segment];
 
         int outputIndex = 0;
         int start = 0;
 
-        for (int i = 0; i < indices.Count; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             if (indices.Any(x => x == i))
             {
