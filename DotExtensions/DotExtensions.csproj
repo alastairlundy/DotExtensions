@@ -12,11 +12,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 7.6.1
-* Fixed an issue where Span ``CopyTo`` methods relied on Span ``GetRange`` methods and vice versa causing an infinite loop
-* Fixed an issue where Span ``CopyTo`` methods created a new destination Span rather than adding to an already existing Span - This is a breaking change, as it changes the destination from ``out destination`` to ``ref destination`` but corrects unintended prior behaviour.
-* Optimized Span ``RemoveRange`` and ``GetRange`` code
-* Deprecated ``TryGetIndicesOf``, ``TryGetIndexOf`` IEnumerable&lt;T&gt; extension methods for removal in v8 - Please use the ``IndicesOf`` or ``IndexOf``, and check for an empty IEnumerable&lt;T&gt; or -1 respectively for cases where the item isn't found.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Reduced code duplication in SpanAsEnumerable class
+* Improved Span ``Except`` extension method performance
+* Deprecated IEnumerable&lt;string&gt; ``ContainsSeparator`` extension methods
+* Use yield return for IntegerRangeAsEnumerable class' extension methods</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +25,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.2</Version>
+        <Version>7.6.3</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
