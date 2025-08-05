@@ -38,6 +38,7 @@ public static class StringEnumerableContainsSeparatorExtensions
     /// <param name="args">The IEnumerable to be searched.</param>
     /// <param name="separator">The separator to look for.</param>
     /// <returns>True, if the separator character is found in the IEnumerable, returns false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool ContainsSeparator(this IEnumerable<string> args, char separator)
     {
         return args.Any(x => x.Contains(separator) && x.Split(separator).Length > 1);
@@ -50,6 +51,7 @@ public static class StringEnumerableContainsSeparatorExtensions
     /// <param name="separator">The separator to look for.</param>
     /// <returns>True, if the separator character string is found in the IEnumerable,
     /// returns false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool ContainsSeparator(this IEnumerable<string> args, string separator)
     {
         return args.Any(x => x.Contains(separator) && x.Split([separator], StringSplitOptions.None).Length > 1);
