@@ -72,14 +72,10 @@ public static class SegmentContainsExtensions
         if (segment.Length > @this.Length || segment.Length == 0)
             return false;
         
-        char[] segmentArray = segment.ToCharArray();
-        
-        bool containsAllChars = @this.All(c => segmentArray.Contains(c));
+        bool containsAllChars = @this.All(c => @this.Contains(c));
         
         if (containsAllChars == false)
-        {
             return false;
-        }
         
         int startIndex = 0;
 
@@ -90,7 +86,7 @@ public static class SegmentContainsExtensions
 
             for (int i = startIndex; i < segment.Length; i++)
             {
-                if (segmentArray[i] == c)
+                if (@this[i] == c)
                 {
                     found = true;
                     startIndex = i + 1;
