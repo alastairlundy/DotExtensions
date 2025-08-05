@@ -14,6 +14,7 @@
 #### 7.6
 | Version | Release Date | Notes | 
 |-|-|-|
+| 7.6.3 | August 5th 2025 | |
 | 7.6.2 | July 28th 2025 | |
 | 7.6.1 | July 27th 2025 | | 
 | 7.6.0 | July 24th 2025 | |
