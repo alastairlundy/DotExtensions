@@ -44,16 +44,7 @@ public static class SpanAsEnumerableExtensions
     /// <returns>A sequence containing the elements of the span.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> AsEnumerable<T>(this Span<T> source)
-    {
-        T[] array = new T[source.Length];
-
-        for (int i = 0; i < source.Length; i++)
-        {
-            array[i] = source[i];
-        }
-        
-        return array;
-    }
+        => ToList(source);
 
     /// <summary>
     /// Converts a <see cref="Span{T}"/> to an <see cref="List{T}"/>.
