@@ -80,23 +80,20 @@ public static class SpanLinqExtensions
     /// <returns>A new Span with all the elements of Span One and Span Two that were not in the other Span.</returns>
     public static Span<T> Except<T>(this Span<T> first, Span<T> second) where T : IEquatable<T>
     {
-        List<T> list = new();
-        
         T[] firstArray = first.ToArray();
         T[] secondArray = second.ToArray();
-        
-        IEnumerable<T> resultOne = first
-            .SkipWhile(x => secondArray.Contains(x))
-            .AsEnumerable();
 
-        IEnumerable<T> resultTwo = second
-            .SkipWhile(x => firstArray.Contains(x))
-            .AsEnumerable();
+        Span<T> resultOne = first
+            .SkipWhile(x => secondArray.Contains(x));
 
-        list.AddRange(resultOne);
-        list.AddRange(resultTwo);
+        Span<T> resultTwo = second
+            .SkipWhile(x => firstArray.Contains(x));
         
-        return new Span<T>(list.ToArray());
+        Span<T> output = new  Span<T>(new T[resultOne.Length + resultTwo.Length]);
+        resultOne.CopyTo(ref output, 0);
+        resultTwo.CopyTo(ref output, resultOne.Length);
+
+        return output;
     }
     
     /// <summary>
