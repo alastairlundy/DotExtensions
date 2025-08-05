@@ -8,15 +8,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.2</Version>
+        <Version>7.6.3</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### Changes since 7.6.1
-* Fixed potential issues with StringSegment ``IndicesOf`` extension methods not finding any indices of the specified item (char, stringsegment, string)
-* Deprecated ``IEnumerable&lt;char&gt; AsEnumerable()`` extension method for StringSegment for removal in v8 - Please use the ``char[] ToCharArray()`` method available in v7 onwards or the upcoming ``List&lt;char&gt; ToList()`` method that will be available from v8 Alpha 1 instead.</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.6.2
+* Fixed an issue with StringSegment ``IsNullOrWhiteSpace`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
