@@ -58,20 +58,19 @@ public static class ProcessHasStartedOrExitedExtensions
     /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
     public static bool HasExited(this Process process)
     {
-        if (process.MachineName.Equals(Environment.MachineName))
+        if (process.MachineName.Equals(Environment.MachineName) == false)
         {
-            try
-            {
-                return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
-            }
-            catch
-            {
-                return false;
-            }
+            throw new NotSupportedException(
+                Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
         }
-        else
+
+        try
         {
-            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
+            return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
+        }
+        catch
+        {
+            return false;
         }
     }
 }
