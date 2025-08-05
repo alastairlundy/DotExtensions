@@ -42,10 +42,8 @@ public static class IsProcessRunningExtensions
         {
             return process.HasExited() == false;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
         
     /// <summary>
