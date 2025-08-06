@@ -23,6 +23,7 @@
    */
 
 using System;
+
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions;
