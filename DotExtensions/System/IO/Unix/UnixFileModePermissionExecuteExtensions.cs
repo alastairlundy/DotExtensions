@@ -23,7 +23,6 @@
    */
 
 #if NET7_0_OR_GREATER
-using System;
 using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
