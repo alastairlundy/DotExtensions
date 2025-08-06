@@ -37,7 +37,7 @@ public static class DateTimeSubtractExtensions
     /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
     public static DateTime Subtract(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
-        TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+        TimeSpan timeSpan = dateTimeTwo.Abs(dateTimeOne);
         return dateTimeOne.Subtract(timeSpan);
     }
         

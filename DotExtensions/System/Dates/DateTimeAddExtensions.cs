@@ -39,7 +39,7 @@ public static class DateTimeAddExtensions
     /// <returns>The sum of the two input dates and times.</returns>
     public static DateTime Add(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
-        TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+        TimeSpan timeSpan = dateTimeTwo.Abs(dateTimeOne);
         return dateTimeOne.Add(timeSpan);
     }
     
