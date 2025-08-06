@@ -42,15 +42,12 @@ public static class IsDirectoryEmptyExtensions
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
     public static bool IsDirectoryEmpty(this DirectoryInfo directory)
     {
-        if (Directory.Exists(directory.FullName))
-        {
-            return directory.GetFiles().Any() == false &&
-                   directory.GetDirectories().Any() == false;
-        }
-        else
-        {
-            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-        }
+        if (Directory.Exists(directory.FullName) == false)
+            throw new DirectoryNotFoundException(
+                Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
+        
+        return directory.GetFiles().Any() == false &&
+               directory.GetDirectories().Any() == false;
     }
 
 }
