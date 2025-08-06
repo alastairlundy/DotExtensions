@@ -42,7 +42,6 @@ public static class DateTimeAddExtensions
         TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
         return dateTimeOne.Add(timeSpan);
     }
-
     
     /// <summary>
     /// Adds a specified number of days to a given date and time.

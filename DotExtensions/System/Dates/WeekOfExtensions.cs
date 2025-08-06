@@ -45,15 +45,11 @@ public static class WeekOfExtensions
         {
             DateTime currentDate = new DateTime(date.Year, date.Month, day);
 
-            if (currentDate.DayOfWeek == firstDayOfWeek)
-            {
+            if (currentDate.DayOfWeek == firstDayOfWeek) 
                 weekCount++;
-            }
 
             if (currentDate.Day == date.Day)
-            {
                 break;
-            }
         }
 
         return weekCount;
@@ -76,29 +72,19 @@ public static class WeekOfExtensions
             DateTime currentDate = new DateTime(date.Year, date.Month, day);
 
             if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
-            {
                 weekCount = 1;
-            }
             else if (day == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
-            {
                 weekCount = 1;
-            }
             else if (day == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
-            {
                 weekCount = 1;
-            }
             else
             {
-                if (currentDate.DayOfWeek == firstDayOfWeek)
-                {
+                if (currentDate.DayOfWeek == firstDayOfWeek) 
                     weekCount++;
-                }
             }
 
             if (currentDate.Day == date.Day)
-            {
                 break;
-            }
         }
         
         return weekCount;
