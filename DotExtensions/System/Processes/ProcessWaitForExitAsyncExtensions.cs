@@ -27,6 +27,7 @@ using System.Diagnostics;
 
 using System.Threading;
 using System.Threading.Tasks;
+
 using AlastairLundy.DotPrimitives.Processes;
 using AlastairLundy.DotPrimitives.Processes.Policies;
 
