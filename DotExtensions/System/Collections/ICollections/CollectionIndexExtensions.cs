@@ -122,8 +122,6 @@ public static class CollectionIndexExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<int> IndicesOf(this ICollection collection, object item)
     {
-        List<int> indices = new List<int>();
-        indices.Clear();
         int index = 0;
             
         IEnumerator enumerator = collection.GetEnumerator();
@@ -135,13 +133,11 @@ public static class CollectionIndexExtensions
             {
                 if (enumerator.Current.Equals(item))
                 {
-                    indices.Add(index);
+                    yield return index;
                 }
             }
 
             index++;
         }
-
-        return indices;
     }
 }
