@@ -51,6 +51,9 @@ public static class IntegerRangeAsEnumerableExtensions
         if (startIndex + count > ushort.MaxValue)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
         
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         for (ushort i = startIndex; i < count; i++)
         {
             yield return i;
@@ -70,7 +73,7 @@ public static class IntegerRangeAsEnumerableExtensions
     {
         if (start + count > short.MaxValue)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
-        if (count < 0)
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
         
@@ -89,7 +92,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static IEnumerable<int> RangeAsEnumerable(this int start, int count)
     {
-        if (count < 0)
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
         
@@ -110,7 +113,7 @@ public static class IntegerRangeAsEnumerableExtensions
     /// <exception cref="ArgumentException">Thrown when the count is less than zero.</exception>
     public static IEnumerable<long> RangeAsEnumerable(this long start, long count)
     {
-        if (count < 0)
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
         
@@ -130,6 +133,9 @@ public static class IntegerRangeAsEnumerableExtensions
     /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<uint> RangeAsEnumerable(this uint start, uint count)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         for (uint i = start; i < count; i++)
         {
             yield return i;
@@ -146,6 +152,9 @@ public static class IntegerRangeAsEnumerableExtensions
     /// incremented by 1 from the starting point.</returns>
     public static IEnumerable<ulong> RangeAsEnumerable(this ulong start, ulong count)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+            
         for (ulong i = start; i < count; i++)
         {
             yield return i;
