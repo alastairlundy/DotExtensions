@@ -58,6 +58,7 @@ public static class EnumerableRemoveExtensions
     /// <param name="itemToBeRemoved">The item to be removed.</param>
     /// <typeparam name="T">The type of elements stored in the IEnumerable.</typeparam>
     /// <returns>The new IEnumerable with the specified item removed.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<T> Remove<T>(this IEnumerable<T> source, T itemToBeRemoved)
     {
         #region IList Optimized Code

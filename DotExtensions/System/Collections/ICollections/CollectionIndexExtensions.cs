@@ -116,6 +116,7 @@ public static class CollectionIndexExtensions
     /// <param name="collection">The collection to be searched.</param>
     /// <param name="item">The item to get the indices of.</param>
     /// <returns>The indices of an object in the collection.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<int> IndicesOf(this ICollection collection, object item)
     {
         List<int> indices = new List<int>();

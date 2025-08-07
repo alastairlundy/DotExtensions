@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 // ReSharper disable InconsistentNaming
 
@@ -37,6 +38,7 @@ public static class IListReplaceExtensions
     /// <param name="newValue">The replacement value.</param>
     /// <typeparam name="T">The type of value.</typeparam>
     /// <returns>The modified IList if the IList contains the value to be replaced; Otherwise the original IList is returned.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IList<T> Replace<T>(this IList<T> source, T oldValue, T newValue)
     {
         int index = source.IndexOf(oldValue);

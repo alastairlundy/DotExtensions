@@ -37,6 +37,7 @@ public static class CollectionElementAtExtensions
     /// <param name="index">The index position to search an element for.</param>
     /// <param name="value">The value at the index position if one is found; null otherwise.</param>
     /// <returns>True if an item is found at the specified index position; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool TryGetElementAt(this ICollection collection, int index, out object? value)
     {
         try
@@ -59,6 +60,7 @@ public static class CollectionElementAtExtensions
     /// <returns>The item associated with the specified index in the collection.</returns>
     /// <exception cref="IndexOutOfRangeException">Thrown if the greater is larger than the collection or is less than 0.</exception>
     /// <exception cref="KeyNotFoundException">Thrown if no item is found at the specified index.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static object? ElementAt(this ICollection collection, int index)
     {
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER

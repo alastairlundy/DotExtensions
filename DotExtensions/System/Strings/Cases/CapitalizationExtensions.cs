@@ -36,11 +36,8 @@ public static class CapitalizationExtensions
     /// <param name="word">The word to be modified.</param>
     /// <returns>The updated word with the first letter capitalized.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static string CapitalizeFirstLetter(this string word)
-    {
-        return word.CapitalizeChar(0);
-    }
-        
+    public static string CapitalizeFirstLetter(this string word) => word.CapitalizeChar(0);
+
     /// <summary>
     /// Capitalizes the specified letter in the specified word.
     /// </summary>
