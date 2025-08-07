@@ -62,11 +62,8 @@ public static class TitleCaseExtensions
     /// </summary>
     /// <param name="str">The string to be converted.</param>
     /// <returns>The title case version of the input string.</returns>
-    public static string ToTitleCase(this string str)
-    {
-        return ToTitleCase([str]);
-    }
-        
+    public static string ToTitleCase(this string str) => ToTitleCase([str]);
+
     /// <summary>
     /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
     /// </summary>
@@ -79,7 +76,7 @@ public static class TitleCaseExtensions
         foreach (string str in words)
         {
             stringBuilder.Append(str.IsTitleCase() ? str :
-                str.CapitalizeFirstLetter());
+                str.CapitalizeChar(0));
         }
 
         return stringBuilder.ToString();
