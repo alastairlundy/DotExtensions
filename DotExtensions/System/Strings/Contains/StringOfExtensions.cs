@@ -45,10 +45,9 @@ public static class StringContainsOfExtensions
     /// <returns>True if all the values are found in the string; false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool ContainsAllOf(this string source, IEnumerable<char> values)
-    {
-        return values.Select(t => source.Contains(t)).All(containsSource => containsSource == true);
-    }
-        
+        => values.Select(t => source.Contains(t))
+            .All(containsSource => containsSource == true);
+
     /// <summary>
     /// Returns whether a string contains any of the specified possible chars.
     /// </summary>
@@ -56,8 +55,7 @@ public static class StringContainsOfExtensions
     /// <param name="possibleValues">The possible values to search for.</param>
     /// <returns>True if any of the possible values is found, false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool ContainsAnyOf(this string source, IEnumerable<char> possibleValues)
-    {
-        return possibleValues.Select(c => source.Contains(c)).Any(containsValue => containsValue == true);
-    }
+    public static bool ContainsAnyOf(this string source, IEnumerable<char> possibleValues) 
+        => possibleValues.Select(c => source.Contains(c)).
+            Any(containsValue => containsValue == true);
 }

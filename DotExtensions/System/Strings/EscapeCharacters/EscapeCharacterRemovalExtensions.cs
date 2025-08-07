@@ -38,12 +38,10 @@ public static class EscapeCharacterRemovalExtensions
     /// </summary>
     /// <param name="str">The string to be searched.</param>
     /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
-    public static bool ContainsEscapeCharacters(this string str)
-    {
+    public static bool ContainsEscapeCharacters(this string str) =>
         // ReSharper disable once ConvertClosureToMethodGroup
-        return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
-    }
-        
+        CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
+
     /// <summary>
     /// Removes escape characters from a string.
     /// </summary>
