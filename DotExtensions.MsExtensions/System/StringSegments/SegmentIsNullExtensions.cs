@@ -23,6 +23,7 @@
    */
 
 using System.Linq;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
