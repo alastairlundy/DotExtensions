@@ -84,6 +84,7 @@ public static class ProcessWaitForExitAsyncExtensions
     /// <param name="timeout">The timeout timespan to wait for before cancelling.</param>
     /// <param name="cancellationMode">The cancellation mode to use in case the Process hasn't exited before the timeout time.</param>
     /// <param name="cancellationToken">A cancellation token that determines whether the operation should continue to run or be cancelled.</param>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process,
         TimeSpan timeout,
         ProcessCancellationMode cancellationMode,
@@ -155,6 +156,7 @@ public static class ProcessWaitForExitAsyncExtensions
     /// <param name="timeoutPolicy">The ProcessTimeoutPolicy to use for the process.</param>
     /// <param name="cancellationToken">A cancellation token that determines whether the operation
     /// should continue to run or be cancelled.</param>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process,
         ProcessTimeoutPolicy timeoutPolicy,
         CancellationToken cancellationToken = default)
