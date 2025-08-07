@@ -39,6 +39,7 @@ public static class CollectionIndexExtensions
     /// <param name="item">The item to get the index of.</param>
     /// <param name="index">The index position of an item to search for.</param>
     /// <returns>True if an index can be found for an item in a collection; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool TryGetIndexOf(this ICollection collection, object item, out int? index)
     {
         try
@@ -60,6 +61,7 @@ public static class CollectionIndexExtensions
     /// <param name="item">The item to attempt to get the indices of.</param>
     /// <param name="indices">the indices of an object in a collection if found; null otherwise.</param>
     /// <returns>True if one or more indices can be found for an item in a collection; false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool TryGetIndicesOf(this ICollection collection, object item, out IEnumerable<int>? indices)
     {
         try
@@ -87,6 +89,7 @@ public static class CollectionIndexExtensions
     /// <param name="item">The item to get the index of.</param>
     /// <returns>The index of an object in the collection.</returns>
     /// <exception cref="KeyNotFoundException">Thrown if the item could not be found within the collection.</exception>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static int IndexOf(this ICollection collection, object item)
     {
         int index = 0;
