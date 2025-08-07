@@ -40,8 +40,6 @@ public static class EnumerableDeDuplicateExtensions
     /// <param name="source">The <see cref="IEnumerable{T}"/> to be searched.</param>
     /// <typeparam name="T">The type of objects in the <see cref="IEnumerable{T}"/>.</typeparam>
     /// <returns>True if the <see cref="IEnumerable{T}"/> contains duplicate objects; false otherwise.</returns>
-    public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull
-    {
-        return source.FrequencyOfElements().Any(x => x.Value > 1);
-    }
+    public static bool ContainsDuplicates<T>(this IEnumerable<T> source) where T : notnull 
+        => source.Equals(source.Distinct());
 }

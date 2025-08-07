@@ -89,13 +89,24 @@ public static class TitleCaseExtensions
     /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
     public static bool IsTitleCase(this string phrase)
     {
-        string[] words = phrase.Split();
+        string[] words = phrase.Split(' ');
             
         bool[] results = new bool[words.Length];
             
         for (int index = 0; index < words.Length; index++)
         {
-            results[index] = words[index].IsWordTitleCase();
+            string word = words[index];
+
+            bool[]  letterCapitalization = new bool[word.Length];
+
+            letterCapitalization[0] = words[index].First().ToString().Equals(words[0].ToUpper());
+            
+            for (int cIndex = 1; cIndex < word.Length; cIndex++)
+            {
+                letterCapitalization[cIndex] = words[index][cIndex].ToString().Equals(words[cIndex].ToLower());
+            }
+            
+            results[index] = letterCapitalization.All(x => x == true);
         }
 
         return results.All(x => x == true);
