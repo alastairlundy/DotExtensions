@@ -7,7 +7,8 @@
 #### 8.0
 | Version | Release Date | Notes | 
 |-|-|-|
-| 8.0.0 Alpha 1 | August 3rd 2025 | | 
+| 8.0.0 Preview 2 | August 7th 2025 | | 
+| 8.0.0 Preview 1 | August 3rd 2025 | | 
 
 ### Version 7.x
 
