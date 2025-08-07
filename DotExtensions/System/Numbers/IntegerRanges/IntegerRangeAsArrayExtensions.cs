@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// <summary>
 /// 
 /// </summary>
-public static class IntegerRangeAsListExtensions
+public static class IntegerRangeAsArrayExtensions
 {
     
     /// <summary>
@@ -136,7 +136,7 @@ public static class IntegerRangeAsListExtensions
     /// <exception cref="ArgumentException">Thrown when the count is less than zero.</exception>
     public static long[] RangeAsArray(this long startIndex, long count)
     {
-        if (count < 0)
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
         
@@ -164,6 +164,9 @@ public static class IntegerRangeAsListExtensions
     /// incremented by 1 from the starting point.</returns>
     public static uint[] RangeAsArray(this uint startIndex, uint count)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         uint[] output = new uint[count + 1];
         int index = 0;
         
@@ -186,6 +189,9 @@ public static class IntegerRangeAsListExtensions
     /// incremented by 1 from the starting point.</returns>
     public static ulong[] RangeAsArray(this ulong startIndex, ulong count)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         ulong[] output = new  ulong[count + 1];
         
         int index = 0;
@@ -246,7 +252,7 @@ public static class IntegerRangeAsListExtensions
     /// <exception cref="ArgumentException">Thrown if the count is less than zero.</exception>
     public static long[] RangeAsArray(this long startIndex, long count, long[] numbersToSkip)
     {
-        if (count < 0)
+        if (count <= 0)
             throw new ArgumentException(Resources.Exceptions_Count_LessThanZero
                 .Replace("{x}", $"{count}"));
         
@@ -282,6 +288,9 @@ public static class IntegerRangeAsListExtensions
     /// excluding the skipped numbers.</returns>
     public static ulong[] RangeAsArray(this ulong startIndex, ulong count, ulong[] numbersToSkip)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         if (numbersToSkip.Length > (int)count)
             throw new ArgumentException();
         
@@ -318,6 +327,9 @@ public static class IntegerRangeAsListExtensions
     /// excluding the skipped numbers.</returns>
     public static uint[] RangeAsArray(this uint startIndex, uint count, uint[] numbersToSkip)
     {
+        if (count == 0)
+            throw new ArgumentException(Resources.Exceptions_Count_LessThanZero);
+        
         uint[] output = new uint[(int)count + 1];
 
         if (numbersToSkip.Length > (int)count)
