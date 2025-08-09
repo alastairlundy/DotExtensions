@@ -29,6 +29,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Versions;
 
+/// <summary>
+/// 
+/// </summary>
 public static class HumanReadableVersionStringExtensions
 {
     /// <summary>
@@ -46,20 +49,14 @@ public static class HumanReadableVersionStringExtensions
         {
             case true:
                 return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
-            default:
+            case false:
             {
                 if (showBuild)
-                {
                     return $"{version.Major}.{version.Minor}.{version.Build}";
-                }
-                else if(showMinor)
-                {
+                else if (showMinor)
                     return $"{version.Major}.{version.Minor}";
-                }
                 else
-                {
                     return version.Major.ToString();
-                }
             }
         }
     }

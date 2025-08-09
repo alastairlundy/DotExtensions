@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 // ReSharper disable CheckNamespace
+// ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable RedundantBoolCompare
 
@@ -43,19 +44,11 @@ public static class TitleCaseExtensions
     /// <returns>The title case version of the input string.</returns>
     public static string ToTitleCase(this string str)
     {
-        return ToTitleCase([str]);
-    }
+        string[] words = str.Split(' ');
         
-    /// <summary>
-    /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
-    /// </summary>
-    /// <param name="words">The array of strings to be converted.</param>
-    /// <returns>The converted title case string enumerable.</returns>
-    public static string ToTitleCase(this IEnumerable<string> words)
-    {
         StringBuilder stringBuilder = new StringBuilder();
             
-        foreach (string str in words)
+        foreach (string word in words)
         {
             stringBuilder.Append(str.IsTitleCase() ? str :
                 str.CapitalizeChar(1));
