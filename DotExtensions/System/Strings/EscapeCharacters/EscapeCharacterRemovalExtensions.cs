@@ -25,6 +25,7 @@
 // ReSharper disable CheckNamespace
 
 using System.Linq;
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -36,7 +37,6 @@ public static class EscapeCharacterRemovalExtensions
     /// <param name="str">The string to be searched.</param>
     /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
     public static bool ContainsEscapeCharacters(this string str) =>
-        // ReSharper disable once ConvertClosureToMethodGroup
         CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
 
     /// <summary>
