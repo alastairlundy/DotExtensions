@@ -42,7 +42,6 @@ public static class DateTimeAbsoluteExtensions
         return TimeSpan.FromTicks(absoluteTicks);
     }
 
-    #if NET6_0_OR_GREATER
     /// <summary>
     /// Determines the absolute difference of two <see cref="TimeOnly"/> objects.
     /// </summary>
@@ -118,6 +117,4 @@ public static class DateTimeAbsoluteExtensions
         
         return TimeSpan.FromDays(days);
     }
-    
-    #endif
 }

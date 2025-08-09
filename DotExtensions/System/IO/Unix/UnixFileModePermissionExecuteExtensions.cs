@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET7_0_OR_GREATER
 using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Unix;
@@ -45,4 +44,3 @@ public static class UnixFileModePermissionExecuteExtensions
                mode.HasFlag(UnixFileMode.OtherExecute);
     }
 }
-#endif

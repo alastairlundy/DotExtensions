@@ -41,11 +41,7 @@ public static class SanitizeProcessNamesExtensions
     /// <returns>The sanitized process names.</returns>
     public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
     {
-#if NET8_0_OR_GREATER
         return SanitizeProcessNames([process], excludeFileExtension).First();
-#else
-        return SanitizeProcessNames(new Process[]{process}, excludeFileExtension).First();
-#endif
     }
 
     /// <summary>
@@ -57,14 +53,16 @@ public static class SanitizeProcessNamesExtensions
     /// <returns>The sanitized process names.</returns>
     public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
     {
-        IEnumerable<string> names = processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
-            .Remove(x.ProcessName.LastIndexOf(')')));
-        
         if (excludeFileExtensions)
         {
-            names = names.Select(x => x.Replace(Path.GetExtension(x), string.Empty));
+            return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
+                .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
+                    .Replace(")", string.Empty));
         }
-        
-        return names;
+        else
+        {
+            return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+                .Replace(")", string.Empty));
+        }
     }
 }

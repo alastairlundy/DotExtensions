@@ -71,12 +71,7 @@ public static class SegmentFirstAndLastExtensions
         if (StringSegment.IsNullOrEmpty(target))
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
-#if NET6_0_OR_GREATER
-            return target[^1];
-#else
-        // ReSharper disable once UseIndexFromEndExpression
-        return target[target.Length - 1];
-#endif
+        return target[^1];
     }
     
     /// <summary>
@@ -89,10 +84,6 @@ public static class SegmentFirstAndLastExtensions
         if (StringSegment.IsNullOrEmpty(target))
             return null;
         
-#if NET6_0_OR_GREATER
         return target[^1];
-#else
-        return target[target.Length - 1];
-#endif
     }
 }

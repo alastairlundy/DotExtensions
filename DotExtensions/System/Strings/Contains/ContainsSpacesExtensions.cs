@@ -35,10 +35,6 @@ public static class ContainsSpacesExtensions
     /// <returns>True if the string contains space separated strings within it; false otherwise.</returns>
     public static bool ContainsSpaceSeparatedSubStrings(this string s)
     {
-#if NETSTANDARD2_0
-        return s.Contains(" ") && s.Split(' ').Length > 1;
-#else
             return s.Contains(' ') && s.Split(' ').Length > 1;
-#endif
     }
 }
