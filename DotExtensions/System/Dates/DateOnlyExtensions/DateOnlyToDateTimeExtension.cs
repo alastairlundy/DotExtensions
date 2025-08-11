@@ -34,8 +34,6 @@ public static class DateOnlyToDateTimeExtension
     /// </summary>
     /// <param name="dateOnly">The date to be converted to a DateTime object.</param>
     /// <returns>the newly created DateTime object.</returns>
-    public static DateTime ToDateTime(this DateOnly dateOnly)
-    {
-        return DateTime.Parse(dateOnly.ToLongDateString());
-    }
+    public static DateTime ToDateTime(this DateOnly dateOnly) 
+        => DateTime.Parse(dateOnly.ToLongDateString());
 }
