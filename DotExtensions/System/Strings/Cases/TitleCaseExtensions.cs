@@ -50,8 +50,8 @@ public static class TitleCaseExtensions
             
         foreach (string word in words)
         {
-            stringBuilder.Append(str.IsTitleCase() ? str :
-                str.CapitalizeChar(1));
+            stringBuilder.Append(word.IsTitleCase() ? word :
+                word.CapitalizeChar(1));
         }
         
         return stringBuilder.ToString();
