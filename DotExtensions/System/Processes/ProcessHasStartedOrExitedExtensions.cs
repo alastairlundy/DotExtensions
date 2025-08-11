@@ -26,6 +26,10 @@
 using System;
 using System.Diagnostics;
 
+#if NET8_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Processes;
@@ -37,6 +41,10 @@ public static class ProcessHasStartedOrExitedExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has started; false otherwise.</returns>
+    #if NET8_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    #endif
     public static bool HasStarted(this Process process)
     {
         try
