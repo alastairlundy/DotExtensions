@@ -48,9 +48,7 @@ public static class SegmentContainsExtensions
         for (int i = 0; i < @this.Length; i++)
         {
             if (@this[i] == character)
-            {
                 return true;
-            }
         }
         
         return false;

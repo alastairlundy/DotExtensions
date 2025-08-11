@@ -26,6 +26,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+/// <summary>
+/// 
+/// </summary>
 public static class DateTimeSubtractExtensions
 {
         
@@ -47,21 +50,17 @@ public static class DateTimeSubtractExtensions
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="microseconds">The number of microseconds to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractMicroseconds(this DateTime dateTime, double microseconds)
-    {
-        return dateTime.Subtract(TimeSpan.FromMicroseconds(microseconds));
-    }
-        
+    public static DateTime SubtractMicroseconds(this DateTime dateTime, double microseconds) 
+        => dateTime.Subtract(TimeSpan.FromMicroseconds(microseconds));
+
     /// <summary>
     /// Subtract a specified number of milliseconds from a DateTime.
     /// </summary>
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="milliseconds">The number of milliseconds to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractMilliseconds(this DateTime dateTime, double milliseconds)
-    {
-        return dateTime.Subtract(TimeSpan.FromMilliseconds(milliseconds));
-    }
+    public static DateTime SubtractMilliseconds(this DateTime dateTime, double milliseconds) 
+        => dateTime.Subtract(TimeSpan.FromMilliseconds(milliseconds));
 
     /// <summary>
     /// Subtract a specified number of seconds from a DateTime.
@@ -69,44 +68,36 @@ public static class DateTimeSubtractExtensions
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="seconds">The number of seconds to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractSeconds(this DateTime dateTime, double seconds)
-    {
-        return dateTime.Subtract(TimeSpan.FromSeconds(seconds));
-    }
-        
+    public static DateTime SubtractSeconds(this DateTime dateTime, double seconds) 
+        => dateTime.Subtract(TimeSpan.FromSeconds(seconds));
+
     /// <summary>
     /// Subtract a specified number of minutes from a DateTime.
     /// </summary>
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="minutes">The number of minutes to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractMinutes(this DateTime dateTime, double minutes)
-    {
-        return dateTime.Subtract(TimeSpan.FromMinutes(minutes));
-    }
-        
+    public static DateTime SubtractMinutes(this DateTime dateTime, double minutes) 
+        => dateTime.Subtract(TimeSpan.FromMinutes(minutes));
+
     /// <summary>
     /// Subtract a specified number of hours from a DateTime.
     /// </summary>
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="hours">The number of hours to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractHours(this DateTime dateTime, double hours)
-    {
-        return dateTime.Subtract(TimeSpan.FromHours(hours));
-    }
-        
+    public static DateTime SubtractHours(this DateTime dateTime, double hours) 
+        => dateTime.Subtract(TimeSpan.FromHours(hours));
+
     /// <summary>
     /// Subtract a specified number of days from a DateTime.
     /// </summary>
     /// <param name="dateTime">The DateTime to be subtracted from.</param>
     /// <param name="days">The number of days to subtract from the specified DateTime.</param>
     /// <returns>The modified DateTime object.</returns>
-    public static DateTime SubtractDays(this DateTime dateTime, double days)
-    {
-        return dateTime.Subtract(TimeSpan.FromDays(days));
-    }
-        
+    public static DateTime SubtractDays(this DateTime dateTime, double days) 
+        => dateTime.Subtract(TimeSpan.FromDays(days));
+
     /// <summary>
     /// Subtract a specified number of months from a DateTime.
     /// </summary>

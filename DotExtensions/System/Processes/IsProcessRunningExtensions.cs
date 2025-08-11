@@ -36,16 +36,9 @@ public static class IsProcessRunningExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if the specified process is running; returns false otherwise.</returns>
-    public static bool IsRunning(this Process process)
-    {
-        if (process.HasStarted())
-        {
-            return process.HasExited() == false;
-        }
+    public static bool IsRunning(this Process process) => 
+        process.HasStarted() && process.HasExited() == false;
 
-        return false;
-    }
-        
     /// <summary>
     /// Check to see if a specified process is running or not.
     /// </summary>

@@ -39,10 +39,8 @@ public static class SanitizeProcessNamesExtensions
     /// <param name="excludeFileExtension">Whether to remove the file extension from the Process
     /// when sanitizing the process name.</param>
     /// <returns>The sanitized process names.</returns>
-    public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
-    {
-        return SanitizeProcessNames([process], excludeFileExtension).First();
-    }
+    public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true) 
+        => SanitizeProcessNames([process], excludeFileExtension).First();
 
     /// <summary>
     /// Sanitizes Process Names from a list of Process objects.
