@@ -160,10 +160,9 @@ public static class ProcessWaitForExitAsyncExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process,
         ProcessTimeoutPolicy timeoutPolicy,
-        CancellationToken cancellationToken = default)
-    {
-        await WaitForExitAsync(process, timeoutPolicy.TimeoutThreshold, timeoutPolicy.CancellationMode, cancellationToken);
-    }
+        CancellationToken cancellationToken = default) =>
+        await WaitForExitAsync(process, timeoutPolicy.TimeoutThreshold,
+            timeoutPolicy.CancellationMode, cancellationToken);
 
     /// <summary>
     /// Waits for the specified process to exit or for the timeout time, whichever is sooner.
@@ -176,11 +175,9 @@ public static class ProcessWaitForExitAsyncExtensions
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static async Task WaitForExitAsync(this Process process, int millisecondTimeout,
         bool endProcessAtTimeout = false,
-        CancellationToken cancellationToken = default)
-    { 
+        CancellationToken cancellationToken = default) =>
         await WaitForExitAsync(process, 
             TimeSpan.FromMilliseconds(Convert.ToDouble(millisecondTimeout)),
             endProcessAtTimeout,
             cancellationToken);
-    }
 }

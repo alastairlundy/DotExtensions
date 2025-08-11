@@ -39,11 +39,9 @@ public static class UnixFileModePermissionExecuteExtensions
     /// <param name="mode">The Unix file mode to check.</param>
     /// <returns>True if the mode includes execute permission, false otherwise.</returns>
     [Obsolete("This method is deprecated and will be removed in v8. Use HasExecutePermission instead.")]
-    public static bool IsExecutePermission(this UnixFileMode mode)
-    {
-        return mode.HasExecutePermission();
-    }
-    
+    public static bool IsExecutePermission(this UnixFileMode mode) 
+        => mode.HasExecutePermission();
+
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
     /// </summary>

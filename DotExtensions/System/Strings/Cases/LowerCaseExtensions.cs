@@ -43,8 +43,5 @@ public static class LowerCaseExtensions
     /// </summary>
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if a string is lower case; false otherwise.</returns>
-    public static bool IsLowerCase(this string s)
-    {
-        return s.Equals(s.ToLower());
-    }
+    public static bool IsLowerCase(this string s) => s.Equals(s.ToLower());
 }

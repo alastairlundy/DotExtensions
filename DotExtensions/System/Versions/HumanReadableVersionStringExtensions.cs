@@ -46,7 +46,7 @@ public static class HumanReadableVersionStringExtensions
         {
             case true:
                 return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
-            default:
+            case false:
             {
                 if (showBuild)
                 {
