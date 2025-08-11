@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using AlastairLundy.DotPrimitives.IO.Permissions;
 
 namespace AlastairLundy.DotExtensions.DotPrimitives.IO.Windows;
@@ -37,6 +38,7 @@ public static class WindowsFilePermissionHasPermissionExtensions
     /// </summary>
     /// <param name="permission">The Windows file permission to check.</param>
     /// <returns>True if the permission includes execute permission, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool HasExecutePermission(this WindowsFilePermission permission)
     {
         return permission.HasFlag(WindowsFilePermission.GroupReadAndExecute) ||
@@ -52,6 +54,7 @@ public static class WindowsFilePermissionHasPermissionExtensions
     /// </summary>
     /// <param name="permission">The Windows file permission to check.</param>
     /// <returns>True if the permission includes execute permission, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool HasWritePermission(this WindowsFilePermission permission)
     {
         return permission.HasFlag(WindowsFilePermission.GroupWrite) ||
@@ -67,6 +70,7 @@ public static class WindowsFilePermissionHasPermissionExtensions
     /// </summary>
     /// <param name="permission">The Windows file permission to check.</param>
     /// <returns>True if the permission includes execute permission, false otherwise.</returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool HasReadPermission(this WindowsFilePermission permission)
     {
         return permission.HasFlag(WindowsFilePermission.GroupRead) ||

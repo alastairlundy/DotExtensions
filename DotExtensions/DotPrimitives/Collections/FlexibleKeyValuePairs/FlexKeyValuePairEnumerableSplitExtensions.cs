@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,6 +42,7 @@ public static class FlexKeyValuePairEnumerableSplitExtensions
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<TKey> ToKeys<TKey, TValue>(this IEnumerable<FlexibleKeyValuePair<TKey, TValue>> pairs)
     {
         return (from pair in pairs
@@ -53,7 +55,7 @@ public static class FlexKeyValuePairEnumerableSplitExtensions
     /// <param name="pairs"></param>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <returns></returns>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static IEnumerable<TValue> ToValues<TKey, TValue>(this IEnumerable<FlexibleKeyValuePair<TKey, TValue>> pairs)
     {
         return (from pair in pairs
@@ -68,6 +70,7 @@ public static class FlexKeyValuePairEnumerableSplitExtensions
     /// <param name="values"></param>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
+    [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static void ToSplitPairs<TKey, TValue>(this IEnumerable<FlexibleKeyValuePair<TKey, TValue>> pairs, out IEnumerable<TKey> keys, out IEnumerable<TValue> values)
     {
         List<TKey> outputKeys = new List<TKey>();
