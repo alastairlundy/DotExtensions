@@ -186,11 +186,9 @@ public static class SpanLinqExtensions
     /// <param name="target">The span to search for the first element.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
-    public static T? FirstOrDefault<T>(this Span<T> target)
-    {
-        return target.IsEmpty == false ? target[0] : default;
-    }
-    
+    public static T? FirstOrDefault<T>(this Span<T> target) 
+        => target.IsEmpty == false ? target[0] : default;
+
     /// <summary>
     /// Returns the first element of a span that satisfies a specified condition,
     /// or a default value if no such element is found.
