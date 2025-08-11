@@ -158,8 +158,6 @@ public static class SpanRangeExtensions
     /// <param name="count"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count)
-    {
-        return RemoveRange(target, startIndex.RangeAsIList(count));
-    }
+    public static Span<T> RemoveRange<T>(this Span<T> target, int startIndex, int count) 
+        => RemoveRange(target, startIndex.RangeAsIList(count));
 }

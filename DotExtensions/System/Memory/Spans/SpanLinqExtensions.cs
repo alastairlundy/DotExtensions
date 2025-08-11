@@ -170,11 +170,8 @@ public static class SpanLinqExtensions
     {
         for (int index = 0; index < target.Length; index++)
         {
-            T item = target[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
+            if (predicate.Invoke(target[index]))
+                return target[index];
         }
 
         throw new ArgumentException();
@@ -202,11 +199,8 @@ public static class SpanLinqExtensions
     {
         for (int index = 0; index < target.Length; index++)
         {
-            T item = target[index];
-            if (predicate.Invoke(item))
-            {
-                return item;
-            }
+            if (predicate.Invoke(target[index]))
+                return target[index];
         }
 
         return default;
