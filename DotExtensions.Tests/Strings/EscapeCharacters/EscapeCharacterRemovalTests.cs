@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using AlastairLundy.DotExtensions.Strings;
-using Bogus;
-using SystemExtensions.Tests.TestData;
+﻿using AlastairLundy.DotExtensions.Strings;
+using DotExtensions.Tests.TestData;
 
-namespace SystemExtensions.Tests.Strings.EscapeCharacters;
+namespace DotExtensions.Tests.Strings.EscapeCharacters;
 
 public class EscapeCharacterRemovalTests
 {

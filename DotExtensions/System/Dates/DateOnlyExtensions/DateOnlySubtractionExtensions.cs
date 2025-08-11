@@ -21,7 +21,6 @@
        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
        SOFTWARE.
    */
-#if NET6_0_OR_GREATER
 using System;
 
 namespace AlastairLundy.DotExtensions.Dates
@@ -67,4 +66,3 @@ namespace AlastairLundy.DotExtensions.Dates
         } 
     }
 }
-#endif

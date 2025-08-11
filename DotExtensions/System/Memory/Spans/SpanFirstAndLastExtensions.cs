@@ -72,11 +72,7 @@ public static class SpanFirstAndLastExtensions
         if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
-#if NET6_0_OR_GREATER
         return target.Length > 1 ? target[^1] : target.First();
-#else
-        return target.Length > 1 ? target[target.Length - 1] : target.First();
-#endif
     }
 
     /// <summary>
@@ -91,11 +87,6 @@ public static class SpanFirstAndLastExtensions
         if (target.IsEmpty)
             return default;
         
-#if NET6_0_OR_GREATER
         return target.Length > 1 ? target[^1] : target.FirstOrDefault();
-#else
-
-       return target.Length > 1 ? target[target.Length - 1] : target.FirstOrDefault();
-#endif
     }
 }

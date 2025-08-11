@@ -22,13 +22,8 @@
        SOFTWARE.
    */
 
-#if !NET7_0_OR_GREATER
-using System;
-using System.Linq;
-#else
 using System.Globalization;
 using System.Numerics;
-#endif
 
 // ReSharper disable ConvertClosureToMethodGroup
 
@@ -44,7 +39,6 @@ namespace AlastairLundy.DotExtensions.Numbers;
 public static class CountDigitsExtensions
 {
     
-#if NET7_0_OR_GREATER
     /// <summary>
     /// Counts the number of digits in the numerical value.
     /// </summary>
@@ -67,59 +61,4 @@ public static class CountDigitsExtensions
 
         return digits;
     }
-#else
-    private static int CountNumberOfDigits<TNumber>(this TNumber number)
-    {
-        if(number is null)
-            throw new  ArgumentNullException(nameof(number));
-
-        double dNumber = double.Parse(number.ToString());
-        
-        if (dNumber < 0.0)
-        {
-            dNumber *= -1.0;
-        }
-        
-        int digits = dNumber < 0.0 ? 2 : 1;
-
-        while ((dNumber /= 10.0) != 0.0)
-        {
-            ++digits;
-        }
-
-        return digits;
-    }
-
-    /// <summary>
-    /// Calculates the number of digits in a given 32-Bit Integer value.
-    /// </summary>
-    /// <param name="number">The 32-Bit Integer value to count the digits for.</param>
-    /// <returns>The number of digits in the specified value.</returns>
-    public static int CountNumberOfDigits(this int number)
-    {
-        return CountNumberOfDigits<int>(number);
-    }
-
-    /// <summary>
-    /// Calculates the number of digits in a given 64-Bit Integer value.
-    /// </summary>
-    /// <param name="number">The 64-Bit Integer value to count the digits for.</param>
-    /// <returns>The number of digits in the specified value.</returns>
-    public static int CountNumberOfDigits(this long number)
-    {
-        return CountNumberOfDigits<long>(number);
-    }
-
-    /// <summary>
-    /// Calculates the number of digits in a given double value.
-    /// </summary>
-    /// <param name="number">The double value to count the digits for.</param>
-    /// <returns>The number of digits in the specified value.</returns>
-    public static int CountNumberOfDigits(this double number)
-    {
-        return CountNumberOfDigits<double>(number);
-    }
-#endif
-
-    
 }

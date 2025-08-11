@@ -1,9 +1,7 @@
-﻿
-using AlastairLundy.DotExtensions.Strings;
-using Bogus;
-using SystemExtensions.Tests.TestData;
+﻿using AlastairLundy.DotExtensions.Strings;
+using DotExtensions.Tests.TestData;
 
-namespace SystemExtensions.Tests.Strings.SpecialCharacters;
+namespace DotExtensions.Tests.Strings.SpecialCharacters;
 
 public class SpecialCharacterDetectorTests
 {

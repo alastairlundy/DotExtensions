@@ -38,18 +38,14 @@ public static class SpecialCharacterDetectionExtension
     /// </summary>
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if the string contains a special character; false otherwise.</returns>
-    public static bool ContainsSpecialCharacter(this string s)
-    {
-        return s.Any(x => IsSpecialCharacter(x));
-    }
-        
+    public static bool ContainsSpecialCharacter(this string s) 
+        => s.Any(x => IsSpecialCharacter(x));
+
     /// <summary>
     /// Returns whether a character is a special character or not.
     /// </summary>
     /// <param name="c">The character to be checked.</param>
     /// <returns>True if the character is a special character; false otherwise.</returns>
-    public static bool IsSpecialCharacter(this char c)
-    {
-        return CharacterConstants.SpecialCharacters.Any(sc => sc == c);
-    }
+    public static bool IsSpecialCharacter(this char c) 
+        => CharacterConstants.SpecialCharacters.Any(sc => sc == c);
 }

@@ -25,8 +25,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Collections.Generic.Dictionaries;
+namespace AlastairLundy.DotExtensions.Collections.Dictionaries;
 
+/// <summary>
+/// 
+/// </summary>
 public static class DictionaryRangeExtensions
 {
         

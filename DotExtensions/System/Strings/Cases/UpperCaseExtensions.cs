@@ -35,8 +35,6 @@ public static class UpperCaseExtensions
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if the string is upper case; false otherwise.</returns>
     // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsUpperCase(this string s)
-    { 
-        return s.Equals(s.ToUpper());
-    }
+    public static bool IsUpperCase(this string s) 
+        => s.Equals(s.ToUpper());
 }

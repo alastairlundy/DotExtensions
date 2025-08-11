@@ -22,15 +22,11 @@
        SOFTWARE.
    */
 
-using System;
-using System.Runtime.InteropServices;
 using AlastairLundy.DotExtensions.Strings;
-
 using Bogus.DataSets;
-using SystemExtensions.Tests.TestData;
-using Xunit;
+using DotExtensions.Tests.TestData;
 
-namespace SystemExtensions.Tests.Strings.Contains;
+namespace DotExtensions.Tests.Strings.Contains;
 
 public class ContainsSpacesTests
 {

@@ -22,9 +22,7 @@
        SOFTWARE.
    */
 
-#if NET5_0_OR_GREATER
 using System;
-#endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
@@ -34,7 +32,6 @@ namespace AlastairLundy.DotExtensions.Numbers;
 public static class NumberRangeExtensions
 {
     
-#if NET5_0_OR_GREATER
     /// <summary>
     /// Creates a new instance of the Range struct based on the given start value and length.
     /// </summary>
@@ -56,5 +53,4 @@ public static class NumberRangeExtensions
     {
         return new Range(start, count);
     }
-#endif
 }
