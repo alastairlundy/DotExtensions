@@ -26,6 +26,9 @@
 
 namespace AlastairLundy.DotExtensions.Strings;
 
+/// <summary>
+/// 
+/// </summary>
 public static class CapitalizationExtensions
 {
         
@@ -38,11 +41,12 @@ public static class CapitalizationExtensions
     public static string CapitalizeChar(this string word, int index)
     {
         char oldChar = word[index];
-        if (char.IsUpper(oldChar) == false)
-        {
-            word = word.Remove(index, 1)
-                .Insert(index, char.ToUpper(oldChar).ToString());
-        }
+
+        if (char.IsUpper(oldChar)) 
+            return word;
+        
+        word = word.Remove(index, 1)
+            .Insert(index, char.ToUpper(oldChar));
 
         return word;
     }
