@@ -1,4 +1,4 @@
-﻿/*
+/*
         MIT License
 
        Copyright (c) 2020-2025 Alastair Lundy
@@ -22,32 +22,46 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
+using System;
+using System.Text;
 
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
 /// 
 /// </summary>
-public static class CapitalizationExtensions
+public static class StringInsertExtensions
 {
-        
     /// <summary>
-    /// Capitalizes the specified letter in the specified word.
+    /// Inserts a character in a string at a specified index.
     /// </summary>
-    /// <param name="index">The letter position to be made upper case.</param>
-    /// <param name="word">The word to be modified.</param>
-    /// <returns>The specified word with the specified letter made upper case.</returns>
-    public static string CapitalizeChar(this string word, int index)
+    /// <param name="str">The string to insert a character into.</param>
+    /// <param name="index">The index to insert the new character at.</param>
+    /// <param name="c">The character to insert in the string.</param>
+    /// <returns>The updated string with the inserted character at the specified index.</returns>
+    public static string Insert(this string str, int index, char c)
     {
-        char oldChar = word[index];
-
-        if (char.IsUpper(oldChar)) 
-            return word;
+        if (index < 0 || index >= str.Length)
+            throw new IndexOutOfRangeException();
         
-        word = word.Remove(index, 1)
-            .Insert(index, char.ToUpper(oldChar));
+        if (str[index] == c)
+            return str;
 
-        return word;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int start = 0;
+        
+        if (index > 1)
+        {
+            stringBuilder.Append(str.Substring(0, index - 1));
+            start = index;
+        }
+        
+        for (int i = start; i < str.Length; i++)
+        {
+            stringBuilder.Append(i == index ? c : str[i]);
+        }
+        
+        return stringBuilder.ToString();
     }
 }
