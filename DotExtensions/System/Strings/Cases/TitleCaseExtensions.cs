@@ -44,18 +44,7 @@ public static class TitleCaseExtensions
     /// <returns>True if the word is capitalized; false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static bool IsWordTitleCase(this string word)
-    {
-        bool[] letterCapitalization = new bool[word.Length];
-
-        letterCapitalization[0] = word[0].IsUpperCaseCharacter();
-            
-        for (int index = 1; index < word.Length; index++)
-        {
-            letterCapitalization[index] = word[index].IsLowerCaseCharacter();
-        }
-
-        return letterCapitalization.All(x => x == true);
-    }
+        => IsTitleCase(word);
 
     /// <summary>
     /// Converts a string to Title Case.
