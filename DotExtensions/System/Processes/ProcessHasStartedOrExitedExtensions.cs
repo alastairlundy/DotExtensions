@@ -25,7 +25,7 @@
 
 using System;
 using System.Diagnostics;
-
+using System.Runtime.Versioning;
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Processes;
@@ -37,6 +37,8 @@ public static class ProcessHasStartedOrExitedExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has started; false otherwise.</returns>
+    [UnsupportedOSPlatform("tvos")]
+    [UnsupportedOSPlatform("ios")]
     public static bool HasStarted(this Process process)
     {
         try
