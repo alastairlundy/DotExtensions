@@ -51,21 +51,16 @@ public static class TitleCaseExtensions
     /// </summary>
     /// <param name="str">The string to be converted.</param>
     /// <returns>The title case version of the input string.</returns>
-    public static string ToTitleCase(this string str) => ToTitleCase([str]);
-
-    /// <summary>
-    /// Converts an IEnumerable of regular strings to an IEnumerable of Title Case Strings Like This.
-    /// </summary>
-    /// <param name="words">The array of strings to be converted.</param>
-    /// <returns>The converted title case string enumerable.</returns>
     public static string ToTitleCase(this string str)
     {
         StringBuilder stringBuilder = new StringBuilder();
+        
+        string[] words = str.Split(' ');
             
-        foreach (string str in words)
+        foreach (string word in words)
         {
-            stringBuilder.Append(str.IsTitleCase() ? str :
-                str.CapitalizeChar(0));
+            stringBuilder.Append(word.IsTitleCase() ? word :
+                word.CapitalizeChar(0));
         }
 
         return stringBuilder.ToString();
@@ -78,6 +73,8 @@ public static class TitleCaseExtensions
     /// <returns>The converted title case string enumerable.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
     public static string ToTitleCase(this IEnumerable<string> words) 
+        => string.Join(" ", words.Select(x => x.ToTitleCase()));
+
     /// <summary>
     /// Returns whether the specified phrase to be checked is in Title Case or not.
     /// </summary>
