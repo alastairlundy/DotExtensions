@@ -53,9 +53,6 @@ public static class SegmentIsNullExtensions
         if (segment is null)
             return true;
 
-        if (segment.Value.Equals(" "))
-            return true;
-
         bool[] hasWhitespace = new bool[segment.Value.Length];
         
         for (int i = 0; i < segment.Value.Length; i++)
