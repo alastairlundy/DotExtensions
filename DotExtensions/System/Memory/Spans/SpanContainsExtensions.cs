@@ -41,6 +41,7 @@ public static class SpanContainsExtensions
         /// <param name="item">The item to search for in the span.</param>
         /// <typeparam name="T">The type of items stored in the span.</typeparam>
         /// <returns>True if the item is found in the span; false otherwise.</returns>
+        [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
         public static bool Contains<T>(this Span<T> target, T item) where T : IEquatable<T>
         {
             foreach (T tItem in target)
