@@ -90,16 +90,19 @@ public static class TitleCaseExtensions
         {
             string word = words[index];
 
-            bool[]  letterCapitalization = new bool[word.Length];
-
-            letterCapitalization[0] = words[index].First().ToString().Equals(words[0].ToUpper());
+            bool[] letterCapitalization = new bool[word.Length];
+            
+            letterCapitalization[0] = char.IsUpper(word.First());
             
             for (int cIndex = 1; cIndex < word.Length; cIndex++)
             {
-                letterCapitalization[cIndex] = words[index][cIndex].ToString().Equals(words[cIndex].ToLower());
+                letterCapitalization[cIndex] = char.IsLower(word[cIndex]);
             }
             
             results[index] = letterCapitalization.All(x => x == true);
+
+            if (results[index] == false)
+                return false;
         }
 
         return results.All(x => x == true);
