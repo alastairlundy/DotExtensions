@@ -24,7 +24,7 @@
 
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// A class to hold StringSegment extension methods to check if a StringSegment is null, empty,

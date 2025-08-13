@@ -28,7 +28,7 @@ using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 public static class SegmentFirstAndLastExtensions
 {

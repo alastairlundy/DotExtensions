@@ -24,12 +24,9 @@
 
 using System.Collections.Generic;
 using System.Text;
-
-using AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
-
 using Microsoft.Extensions.Primitives;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
+namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments.Collections
 {
     /// <summary>
     /// Provides string manipulation extensions for sequences of StringSegments.

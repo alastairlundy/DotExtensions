@@ -23,13 +23,12 @@
    */
 
 using System.Linq;
-
 using Microsoft.Extensions.Primitives;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
+namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// A class to hold extension methods for checking if a StringSegment Contains an item.
