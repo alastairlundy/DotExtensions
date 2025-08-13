@@ -98,17 +98,4 @@ public static class SegmentContainsExtensions
 
         return false;
     }
-
-    /// <summary>
-    /// Returns whether a string segment contains a string.
-    /// </summary>
-    /// <param name="this">The StringSegment to be searched.</param>
-    /// <param name="str">The string to search for.</param>
-    /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, string str)
-    {
-        StringSegment val = new(str);
-
-        return Contains(@this, val);
-    }
 }

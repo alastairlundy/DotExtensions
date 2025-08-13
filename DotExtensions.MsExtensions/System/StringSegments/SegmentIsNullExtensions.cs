@@ -29,7 +29,8 @@ using Microsoft.Extensions.Primitives;
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
 /// <summary>
-/// A class to hold StringSegment extension methods to check if a StringSegment is null, empty, whitespace, or a combination thereof.
+/// A class to hold StringSegment extension methods to check if a StringSegment is null, empty,
+/// whitespace, or a combination thereof.
 /// </summary>
 public static class SegmentIsNullExtensions
 {
@@ -38,10 +39,7 @@ public static class SegmentIsNullExtensions
     /// </summary>
     /// <param name="segment">The string segment to check.</param>
     /// <returns>True if the string segment is empty; otherwise, false.</returns>
-    public static bool IsEmpty(this StringSegment segment)
-    {
-        return segment.Equals(StringSegment.Empty);
-    }
+    public static bool IsEmpty(this StringSegment segment) => segment.Equals(StringSegment.Empty);
 
     /// <summary>
     /// Checks whether the specified string segment is null or empty.

@@ -43,14 +43,14 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.Collections
         /// <param name="segments">The sequence of StringSegments to convert.</param>
         /// <param name="separator">Optional separator string between segments (default: space).</param>
         /// <returns>The concatenated string representation of the input segments.</returns>
-        public static string ToString(this IEnumerable<StringSegment> segments, string separator)
+        public static string ToString(this IEnumerable<StringSegment> segments, StringSegment separator)
         {   
             StringBuilder stringBuilder = new StringBuilder();
             
             foreach (StringSegment segment in segments)
             {
                 stringBuilder.Append(segment.ToCharArray());
-                stringBuilder.Append(separator);
+                stringBuilder.Append(separator.ToCharArray());
             }
         
             stringBuilder.Remove(stringBuilder.Length - separator.Length, separator.Length);
