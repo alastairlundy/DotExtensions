@@ -38,7 +38,7 @@ public static class NumberRangeExtensions
     /// <param name="start">The starting index or integer value of the range.</param>
     /// <param name="count">The number of elements in the range.</param>
     /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this int start, int count) => new(start, start + count);
+    public static Range AsRange(this int start, int count) => new(new Index(start), new Index(start + count));
 
     /// <summary>
     /// Creates a new instance of the Range struct based on the given Index value and length.
@@ -46,5 +46,5 @@ public static class NumberRangeExtensions
     /// <param name="start">The starting Index value.</param>
     /// <param name="count">The number of elements in the range.</param>
     /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this Index start, int count) => new(start, start.Value + count);
+    public static Range AsRange(this Index start, int count) => new(start, new Index(start.Value + count));
 }
