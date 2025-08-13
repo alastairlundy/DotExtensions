@@ -8,13 +8,26 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.0.0-preview.2</Version>
+        <Version>8.0.0-preview.3</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Updated Microsoft.Extensions.Primitives to 9.0.8 from 9.0.7</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 8.0.0 Preview 2
+* Removed .NET Standard 2.0 support
+* Improved code formatting
+* Clarified unsupported Operating Systems for Process ``HasStarted`` extension method
+* Added new string ``Insert(int index, char c)`` extension method
+* Fixed an issue with ``ToTitleCase`` method - 7.6.x is not affected.
+* Moved Integer Range enumerable and array methods to ExtraLinq
+* Moved Span non-predicate First and Last extension methods to ExtraLinq
+* Fixed an issue with Range ``AsRange`` extension methods not providing the correct range - Backported to 7.6.4
+* Other optimisations and improvements
+
+### MsExtensions only
+* Renamed StringSegment ``ToList`` method to ``AsList`` 
+* Improve whitespace detection in StringSegment ``IsNullOrWhiteSpace`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
