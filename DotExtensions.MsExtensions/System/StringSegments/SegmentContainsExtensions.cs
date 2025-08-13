@@ -110,6 +110,7 @@ public static class SegmentContainsExtensions
     /// <param name="this">The StringSegment to be searched.</param>
     /// <param name="str">The string to search for.</param>
     /// <returns>True if the String Segment contains the specified string; false otherwise.</returns>
+    [Obsolete]
     public static bool Contains(this StringSegment @this, string str)
     {
         StringSegment val = new StringSegment(str);
