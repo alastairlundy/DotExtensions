@@ -12,13 +12,16 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 8.0.0 Preview 1
-* Added DateTime, DateOnly, and TimeOnly ``Abs`` absolute difference extension methods
-* Updated DateTime and DateOnly ``Subtract`` extension method internal code
-* Moved String ``IndexOf`` extension method
-* Removed String ``IndicesOf`` extension methods - These methods will be moved to ExtraLinq
-* Updated Number Range Enumerable and Array extensions to throw exceptions if count parameter is 0
-* Cleaned up code</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 8.0.0 Preview 2
+* Removed .NET Standard 2.0 support
+* Improved code formatting
+* Clarified unsupported Operating Systems for Process ``HasStarted`` extension method
+* Added new string ``Insert(int index, char c)`` extension method
+* Fixed an issue with ``ToTitleCase`` method - 7.6.x is not affected.
+* Moved Integer Range enumerable and array methods to ExtraLinq
+* Moved Span non-predicate First and Last extension methods to ExtraLinq
+* Fixed an issue with Range ``AsRange`` extension methods not providing the correct range - Backported to 7.6.4
+* Other optimisations and improvements</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -28,7 +31,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.0.0-preview.2</Version>
+        <Version>8.0.0-preview.3</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
