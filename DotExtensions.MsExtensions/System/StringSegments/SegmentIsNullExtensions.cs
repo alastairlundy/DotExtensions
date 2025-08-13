@@ -53,10 +53,10 @@ public static class SegmentIsNullExtensions
         
         for (int i = 0; i < segment.Value.Length; i++)
         {
-            if (char.IsWhiteSpace(segment.Value[i]))
-                return true;
+            if (char.IsWhiteSpace(segment.Value[i]) == false)
+                return false;
         }
 
-        return false;
+        return true;
     }
 }
