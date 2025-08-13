@@ -54,8 +54,7 @@ public static class SegmentIsNullExtensions
     /// <returns>True if the string segment is empty; otherwise, false.</returns>
     public static bool IsEmpty(this StringSegment segment) 
         => segment.Equals(StringSegment.Empty);
-
-
+    
     /// <summary>
     /// Checks whether the specified string segment is null or empty.
     /// </summary>
