@@ -54,7 +54,7 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the first character.</param>
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
     public static char? FirstOrDefault(this StringSegment target) 
-        => StringSegment.IsNullOrEmpty(target) ? target[0] : null;
+        => StringSegment.IsNullOrEmpty(target) ? null : target[0];
 
     /// <summary>
     /// Returns the last char in the StringSegment.
@@ -77,5 +77,5 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     public static char? LastOrDefault(this StringSegment target) 
-        => StringSegment.IsNullOrEmpty(target) ? target[^1] : null;
+        => StringSegment.IsNullOrEmpty(target) ? null : target[^1];
 }
