@@ -35,7 +35,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 public static class SegmentLinqExtensions
 {
     /// <summary>
-    /// Reverses the contents of the StringSegment.
+    /// Returns a new StringSegment with the contents of the original StringSegment reversed.
     /// </summary>
     /// <param name="target">The StringSegment to reverse.</param>
     /// <returns>The reversed StringSegment.</returns>
@@ -45,16 +45,21 @@ public static class SegmentLinqExtensions
         if (target.IsEmpty())
             throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
-        char[] array = target.ToCharArray();
-        IEnumerable<int> indices = Enumerable.Range(0, array.Length);
+        char[] results = new char[target.Length];
+        int index = 0;
         
-        IEnumerable<char> reversedEnumerable = (from c in array
-                join i in indices
-                    on c equals array[i]
-                orderby i descending 
-                select c);
+        for (int i = target.Length - 1; i >= 0; i--)
+        {
+            results[index] = target[i];
+            index++;
+        }
+
+        for (int i = 0; i < target.Length; i++)
+        {
+            results[i] = target[i];
+        }
         
-        return new StringSegment(string.Join("", reversedEnumerable));
+        return new StringSegment(string.Join(string.Empty, results));
     }
     
     /// <summary>
