@@ -25,8 +25,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using AlastairLundy.DotExtensions.Collections.Strings.Enumerables;
-
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -115,7 +113,8 @@ public static class SegmentIndicesOfExtensions
         if (str.Length < segment.Length || segment.Length == 0)
             return -1;
         
-        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x  => x != -1);
+        IEnumerable<int> indexes = new StringSegment(str)
+            .IndicesOf(segment.First()).Where(x  => x != -1);
 
         foreach (int index in indexes)
         {
@@ -142,7 +141,8 @@ public static class SegmentIndicesOfExtensions
         if (str.Length < segment.Length || segment.IsEmpty())
             yield break;
 
-        IEnumerable<int> indexes = str.IndicesOf(segment.First()).Where(x => x != -1);
+        IEnumerable<int> indexes = new StringSegment(str)
+            .IndicesOf(segment.First()).Where(x => x != -1);
 
         foreach (int index in indexes)
         {

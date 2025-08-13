@@ -24,7 +24,7 @@
 
 using System;
 using System.Linq;
-using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
@@ -46,7 +46,7 @@ public static class SegmentSplitExtensions
         
         StringSegment[] output = new StringSegment[indices.Length];
         
-        if (indices.First().Equals(-1) || indices.IsEmpty())
+        if (indices.First().Equals(-1) || indices.Length == 0)
             return [segment];
 
         int outputIndex = 0;
