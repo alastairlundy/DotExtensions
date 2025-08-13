@@ -50,14 +50,13 @@ public static class SegmentIsNullExtensions
     {
         if (segment is null)
             return true;
-
-        bool[] hasWhitespace = new bool[segment.Value.Length];
         
         for (int i = 0; i < segment.Value.Length; i++)
         {
-            hasWhitespace[i] = segment.Value[i] == ' ';
+            if (char.IsWhiteSpace(segment.Value[i]))
+                return true;
         }
 
-        return hasWhitespace.All(x => x);
+        return false;
     }
 }
