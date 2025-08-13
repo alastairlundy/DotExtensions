@@ -156,8 +156,6 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The StringSegment to be searched.</param>
     /// <param name="predicate">The predicate func condition to be checked against each char in the StringSegment.</param>
     /// <returns>The last character of the segment that meets the predicate condition if any match; otherwise, null.</returns>
-    public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate)
-    {
-        return FirstOrDefault(target.Reverse(), predicate);
-    }
+    public static char? LastOrDefault(this StringSegment target, Func<char, bool> predicate) 
+        => FirstOrDefault(target.Reverse(), predicate);
 }
