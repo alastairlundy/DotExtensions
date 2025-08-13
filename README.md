@@ -12,8 +12,6 @@ An extension method library that enhances the experience of using .NET's types w
 * [License](#license)
 
 ## Features
-* Brings LINQ style extension methods to Span<T> and StringSegment ^1
-* A number of IEnumerable<T>, ICollection<T>, and IList<T> extension methods including ``AddRange``, ``GetRange``, ``RemoveRange`` and more.
 * Empty directory detection via ``IsDirectoryEmpty`` extension method for the ``DirectoryInfo`` class.
 * Support for comparing versions via easy to understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
 * DateTime and DateOnly extensions e.g. DateOnly's ToDateTime extension
@@ -34,7 +32,6 @@ DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code 
 DotExtensions supports:
 * .NET 8
 * .NET 9
-* .NET Standard 2.0
 
 However, it is important to note that not all features may be supported by all TFMs. 
 
@@ -50,7 +47,6 @@ Currently, the required .NET SDK is .NET 9.
 The current build targets include:
 * .NET 8
 * .NET 9
-* .NET Standard 2.0
 
 Any version of the .NET 9 SDK can be used, but using the latest version is preferred.
 
