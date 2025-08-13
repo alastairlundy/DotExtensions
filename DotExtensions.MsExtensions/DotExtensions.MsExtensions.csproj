@@ -8,17 +8,15 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.3</Version>
+        <Version>7.6.4</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Deprecated StringSegment ``IsNullOrEmpty`` method 
-* Fixed an issue with StringSegment ``IsNullOrWhiteSpace`` extension method
-* Updated Microsoft.Extensions.Primitives to 9.0.8 from 9.0.7
-* Improved StringSegment ``Contains(StringSegment`` extension method performance
-* Updated ``IndicesOf`` extension methods to use yield return</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 7.6.3
+* Improved StringSegment ``Reverse`` extension method
+* Improved code maintainability</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
