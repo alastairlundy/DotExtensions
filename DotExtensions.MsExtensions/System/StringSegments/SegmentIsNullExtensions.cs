@@ -24,6 +24,7 @@
 
 using System;
 using Microsoft.Extensions.Primitives;
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.MsExtensions.System.StringSegments;
 
@@ -56,7 +57,7 @@ public static class SegmentIsNullExtensions
         => segment.Equals(StringSegment.Empty);
     
     /// <summary>
-    /// Checks whether the specified string segment is null or empty.
+    /// Checks whether the specified string segment is null or white-space.
     /// </summary>
     /// <param name="segment">The string segment to check.</param>
     /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
@@ -65,6 +66,6 @@ public static class SegmentIsNullExtensions
         if (segment is null)
             return true;
 
-        return segment.Value.All(x => x == ' ') || segment.Value.Equals(" ");
+        return segment.Value.Any(x => char.IsWhiteSpace(x) == false) == false;
     }
 }
