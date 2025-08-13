@@ -58,7 +58,6 @@ public static class SegmentAsEnumerablesExtensions
     [Obsolete("This code is deprecated and will be removed in v8. Use ToCharArray instead.")]
     public static IEnumerable<char> ToEnumerable(this StringSegment segment) => ToCharArray(segment);
 
-
     /// <summary>
     /// Returns the StringSegment as an IEnumerable.
     /// </summary>
