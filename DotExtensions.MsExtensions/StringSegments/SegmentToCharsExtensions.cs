@@ -65,7 +65,7 @@ public static class SegmentToCharsExtensions
     /// <param name="segment">The segment to enumerate as a list.</param>
     /// <returns>A list of characters from the StringSegment if any characters are in the StringSegment,
     /// an empty list otherwise.</returns>
-    public static List<char> AsList(this StringSegment segment)
+    public static List<char> ToList(this StringSegment segment)
     {
         List<char> list = new List<char>();
             
