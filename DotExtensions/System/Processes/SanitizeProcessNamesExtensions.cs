@@ -39,8 +39,18 @@ public static class SanitizeProcessNamesExtensions
     /// <param name="excludeFileExtension">Whether to remove the file extension from the Process
     /// when sanitizing the process name.</param>
     /// <returns>The sanitized process names.</returns>
-    public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true) 
-        => SanitizeProcessNames([process], excludeFileExtension).First();
+    public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
+    {
+        string newName = process.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+            .Replace(")", string.Empty);
+        
+        if (excludeFileExtension)
+        {
+            newName = newName.Replace(Path.GetExtension(process.ProcessName), string.Empty);
+        }
+        
+        return newName;
+    }
 
     /// <summary>
     /// Sanitizes Process Names from a list of Process objects.
@@ -51,16 +61,14 @@ public static class SanitizeProcessNamesExtensions
     /// <returns>The sanitized process names.</returns>
     public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
     {
+        IEnumerable<string> newProcessNames = processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
+            .Replace(")", string.Empty));
+        
         if (excludeFileExtensions)
         {
-            return processNames.Select(x => x.ProcessName.Replace(Path.GetExtension(x.ProcessName), string.Empty))
-                .Select(x => x.Replace("System.Diagnostics.Process (", string.Empty)
-                    .Replace(")", string.Empty));
+            newProcessNames = newProcessNames.Select(x => x.Replace(Path.GetExtension(x), string.Empty));
         }
-        else
-        {
-            return processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
-                .Replace(")", string.Empty));
-        }
+        
+        return newProcessNames;
     }
 }
