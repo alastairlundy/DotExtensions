@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Versioning;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
@@ -36,6 +37,8 @@ public static class IsProcessRunningExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if the specified process is running; returns false otherwise.</returns>
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
     public static bool IsRunning(this Process process) => 
         process.HasStarted() && process.HasExited() == false;
 
