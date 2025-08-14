@@ -45,9 +45,7 @@ public static class CapitalizationExtensions
         if (char.IsUpper(oldChar)) 
             return word;
         
-        word = word.Remove(index, 1)
+        return word.Remove(index, 1)
             .Insert(index, char.ToUpper(oldChar));
-
-        return word;
     }
 }
