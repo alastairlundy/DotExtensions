@@ -66,13 +66,6 @@ public static class TitleCaseExtensions
     {
         string[] words = phrase.Split();
             
-        bool[] results = new bool[words.Length];
-            
-        for (int index = 0; index < words.Length; index++)
-        {
-            results[index] = words[index].Equals(words[index].ToTitleCase());
-        }
-
-        return results.All(x => x == true);
+        return words.All(x => char.IsUpper(x[0]) && x.Substring(1, x.Length - 1).IsLowerCase());
     }
 }
