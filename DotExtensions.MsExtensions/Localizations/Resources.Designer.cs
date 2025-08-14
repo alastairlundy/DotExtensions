@@ -67,5 +67,11 @@ namespace AlastairLundy.DotExtensions.MsExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.Enumerables.InvalidOperation.EmptySequence", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_Arguments_Segment_Empty {
+            get {
+                return ResourceManager.GetString("Exceptions.Arguments.Segment.Empty", resourceCulture);
+            }
+        }
     }
 }

@@ -21,4 +21,7 @@
     <data name="Exceptions.Enumerables.InvalidOperation.EmptySequence" xml:space="preserve">
         <value>The enumeration of elements yielded zero items. The sequence was empty. </value>
     </data>
+    <data name="Exceptions.Arguments.Segment.Empty" xml:space="preserve">
+        <value>StringSegment parameter cannot be null or empty.</value>
+    </data>
 </root>
