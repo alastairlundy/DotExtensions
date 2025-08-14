@@ -62,8 +62,7 @@ public static class ProcessHasStartedOrExitedExtensions
     {
         if (process.MachineName.Equals(Environment.MachineName) == false)
         {
-            throw new NotSupportedException(
-                Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
+            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
         }
 
         try

@@ -23,6 +23,7 @@
    */
 
 using System.Linq;
+
 using Microsoft.Extensions.Primitives;
 
 // ReSharper disable MemberCanBePrivate.Global
