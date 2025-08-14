@@ -24,6 +24,10 @@
 
 // ReSharper disable CheckNamespace
 
+using System.Collections.Generic;
+
+using System.Text;
+
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
@@ -33,19 +37,37 @@ public static class CapitalizationExtensions
 {
         
     /// <summary>
-    /// Capitalizes the specified letter in the specified word.
+    /// Capitalizes the char at the specified index in the specified string.
     /// </summary>
-    /// <param name="index">The letter position to be made upper case.</param>
-    /// <param name="word">The word to be modified.</param>
-    /// <returns>The specified word with the specified letter made upper case.</returns>
-    public static string CapitalizeChar(this string word, int index)
+    /// <param name="index">The index of the char to be made upper case.</param>
+    /// <param name="str">The string to be modified.</param>
+    /// <returns>A string with the specified char made upper case.</returns>
+    public static string CapitalizeChar(this string str, int index)
     {
-        char oldChar = word[index];
+        char c = str[index];
 
-        if (char.IsUpper(oldChar)) 
-            return word;
+        if (char.IsUpper(c)) 
+            return str;
+
+        return $"{str.Substring(0, index)}{char.ToUpper(c)}{str.Substring(index + 1)}";
+    }
+
+    /// <summary>
+    /// Capitalizes the chars at the specified indices in the specified string.
+    /// </summary>
+    /// <param name="str">The string to have chars capitalized.</param>
+    /// <param name="indices">The indices of the chars to capitalize.</param>
+    /// <returns>A string with all the chars at the specified indices capitalized.</returns>
+    public static string CapitalizeChars(this string str, IEnumerable<int> indices)
+    {
+        StringBuilder stringBuilder = new StringBuilder(str);
         
-        return word.Remove(index, 1)
-            .Insert(index, char.ToUpper(oldChar));
+        foreach (int index in indices)
+        {
+            if (char.IsUpper(str[index]) == false)
+                stringBuilder[index] = char.ToUpper(str[index]);
+        }
+
+        return stringBuilder.ToString();
     }
 }
