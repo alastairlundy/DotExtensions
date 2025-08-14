@@ -8,25 +8,26 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.0.0-preview.3</Version>
+        <Version>8.0.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### Changes since 8.0.0 Preview 2
-* Removed .NET Standard 2.0 support
-* Improved code formatting
-* Clarified unsupported Operating Systems for Process ``HasStarted`` extension method
-* Added new string ``Insert(int index, char c)`` extension method
-* Fixed an issue with ``ToTitleCase`` method - 7.6.x is not affected.
-* Moved Integer Range enumerable and array methods to ExtraLinq
-* Moved Span non-predicate First and Last extension methods to ExtraLinq
-* Fixed an issue with Range ``AsRange`` extension methods not providing the correct range - Backported to 7.6.4
-* Other optimisations and improvements
+        <PackageReleaseNotes>## Changes since 7.6.x
 
-### MsExtensions only
-* Renamed StringSegment ``ToList`` method to ``AsList`` 
+__Breaking Changes__:
+* Removed .NET Standard 2.0 and 2.1 support
+* Removed deprecated code
+* Moved LINQ style extensions for StringSegment to a different library.
+
+### Non Breaking Changes
+* Add StringSegment case detection extensions
+* Add StringSegment case ``CapitalizeChar`` and ``CapitalizeChars``
+* Updated StringSegment ``AsEnumerable`` method
+* Re-worked StringSegment ``Contains`` methods
+* Removed StringSegment ``IsNullOrEmpty`` extension method as redundant
+* Removed reliance on DotExtensions main package
 * Improve whitespace detection in StringSegment ``IsNullOrWhiteSpace`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
