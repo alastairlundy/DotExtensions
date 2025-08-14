@@ -25,6 +25,9 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+/// <summary>
+/// 
+/// </summary>
 public static class DateOnlySubtractionExtensions
 {
     /// <summary>

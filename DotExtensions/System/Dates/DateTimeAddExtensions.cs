@@ -49,8 +49,6 @@ public static class DateTimeAddExtensions
     /// <param name="dateTime">The initial date and time to add days to.</param>
     /// <param name="days">The number of days to add.</param>
     /// <returns>The resulting date and time after adding the specified number of days.</returns>
-    public static DateTime AddDays(this DateTime dateTime, int days)
-    {
-        return dateTime.AddDays(Convert.ToDouble(days));
-    }
+    public static DateTime AddDays(this DateTime dateTime, int days) 
+        => dateTime.AddDays(Convert.ToDouble(days));
 }
