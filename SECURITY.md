@@ -14,6 +14,7 @@ These are the currently supported versions of DotExtensions
 
 | Version | Standard Security Support | Extended Security Support |
 | ------- | ------------------ |----|
+| 8.0.0 | Until DotExtensions 8.1.x | Until DotExtensions 8.1.x |
 | 7.6.x | Until DotExtensions 8.1.x | Until DotExtensions 8.1.x |
 | < 7.6.x  | :x: | :x: |
 
