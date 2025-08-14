@@ -27,6 +27,9 @@ using System.Globalization;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+/// <summary>
+/// 
+/// </summary>
 public static class WeekOfExtensions
 {
     /// <summary>
