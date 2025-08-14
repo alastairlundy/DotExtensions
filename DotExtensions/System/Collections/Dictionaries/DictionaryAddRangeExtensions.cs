@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Collections.Dictionaries;
 /// <summary>
 /// 
 /// </summary>
-public static class DictionaryRangeExtensions
+public static class DictionaryAddRangeExtensions
 {
         
     /// <summary>
@@ -66,6 +66,9 @@ public static class DictionaryRangeExtensions
     public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
         IDictionary<TKey, TValue> dictionaryToAdd)
     {
+        if(source.IsReadOnly)
+            throw new InvalidOperationException($"{nameof(source)} is read-only.");
+        
         if (source.Count == int.MaxValue)
         {
             throw new OverflowException($"{nameof(source)} contains the maximum size of {int.MaxValue} and cannot be added to.");
