@@ -110,7 +110,7 @@ public static class SpanLinqExtensions
             
         int end = target.Length - count;
 
-        return target.GetRange(start: count, end: end);
+        return target.Slice(start: count, length: end);
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ public static class SpanLinqExtensions
         if (count > target.Length)
             throw new ArgumentOutOfRangeException(Resources.Exceptions_Span_SkipCountTooLarge);
             
-        return target.GetRange(start: 0, end: target.Length - count);
+        return target.Slice(start: 0, length: target.Length - count);
     }
 
     /// <summary>

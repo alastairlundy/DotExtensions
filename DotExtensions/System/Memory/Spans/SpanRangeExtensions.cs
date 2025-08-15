@@ -93,12 +93,7 @@ public static class SpanRangeExtensions
                 .Replace("{z}", $"{target.Length}"));
         }
 
-        Span<T> output = new Span<T>();
-        output.Resize(end - start);
-        
-        target.CopyTo(ref output, start, end);
-        
-        return output;
+        return target.Slice(start, end - start);
     }
 
         
