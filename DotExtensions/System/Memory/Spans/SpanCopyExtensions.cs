@@ -42,6 +42,12 @@ public static class SpanCopyExtensions
 
         T[] newTargetArray = new T[newSize];
 
+        if (newSize < target.Length)
+        {
+            target = target.Slice(0, newSize);
+            return;
+        }
+        
         int endCopy = target.Length < newSize ? target.Length : newSize;
 
         for (int i = 0; i < endCopy; i++)
