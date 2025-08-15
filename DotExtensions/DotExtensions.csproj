@@ -36,7 +36,6 @@ __Non Breaking Changes__:
 * Reworked string case detection and capitalization methods
 * Clarified unsupported Operating Systems for Process ``HasStarted`` extension method</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
         <IncludeSymbols>true</IncludeSymbols>
