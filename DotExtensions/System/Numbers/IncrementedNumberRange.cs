@@ -31,17 +31,17 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// <summary>
 /// 
 /// </summary>
-public static class ContinuallyIncrementedNumbers
+public static class IncrementedNumberRange
 {
     
     /// <summary>
-    /// 
+    /// Determines if a list of numbers is incremented by an expected amount starting from the first number in the list.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="expectedIncrement"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
-    public static bool IsContinuallyIncrementedRange<TNumber>(this IList<TNumber> source,
+    /// <param name="source">The list of numbers to check.</param>
+    /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
+    /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
+    /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
+    public static bool IsIncrementedNumberRange<TNumber>(this IList<TNumber> source,
         TNumber expectedIncrement) where TNumber : INumber<TNumber>
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -63,18 +63,18 @@ public static class ContinuallyIncrementedNumbers
     }
 
     /// <summary>
-    /// 
+    /// Determines if a sequence of numbers is incremented by an expected amount starting from the first number in the sequence.
     /// </summary>
-    /// <param name="source"></param>
-    /// <param name="expectedIncrement"></param>
-    /// <typeparam name="TNumber"></typeparam>
-    /// <returns></returns>
-    public static bool IsContinuallyIncrementedRange<TNumber>(this IEnumerable<TNumber> source, TNumber expectedIncrement) where TNumber : INumber<TNumber>
+    /// <param name="source">The sequence of numbers to check.</param>
+    /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
+    /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
+    /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
+    public static bool IsIncrementedNumberRange<TNumber>(this IEnumerable<TNumber> source, TNumber expectedIncrement) where TNumber : INumber<TNumber>
     {
         ArgumentNullException.ThrowIfNull(source);
 
         if (source is IList<TNumber> list)
-            return IsContinuallyIncrementedRange(list, expectedIncrement);
+            return IsIncrementedNumberRange(list, expectedIncrement);
         
         bool foundFirstNumber = false;
         
