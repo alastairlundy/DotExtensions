@@ -1,22 +1,16 @@
 # Security Policy
 
-## Definitions
+These are the currently supported versions of DotExtensions:
 
-Standard Security Support covers bug fixes and all accepted security vulnerabilities of Low, Moderate, High, or Critical severity.
-
-Extended Security Support covers all accepted security vulnerabilities of Moderate, High, or Critical severity.
-
-## Versions
-
-### Supported Versions
+## Supported Versions
 
 These are the currently supported versions of DotExtensions
 
-| Version | Standard Security Support | Extended Security Support |
-| ------- | ------------------ |----|
-| 8.0.0 | Until DotExtensions 8.1.x | Until DotExtensions 8.1.x |
-| 7.6.x | Until DotExtensions 8.1.x | Until DotExtensions 8.1.x |
-| < 7.6.x  | :x: | :x: |
+| Version | Supported with Bug Fixes | Supported with Security Updates |
+| ------- | ------------------ | ------------------ |
+| 8.0 | Until DotExtensions 8.2 | Until DotExtensions 8.2 |
+| 7.6 | Until DotExtensions 8.1 | Until DotExtensions 8.1 |
+| < 7.6  | :x: | :x: |
 
 
 ### Security Vulnerabilities
@@ -28,8 +22,4 @@ I will attempt to provide acknowledgement of receipt of the reported security vu
 
 It may take a few days to investigate the issue and subsequently decide how to handle the potential vulnerability if is accepted as one.
 
-Whilst a vulnerability is being investigated, please do not publish any details about the vulnerability.
-By Public Disclosure I mean:
-* Disclosure in a publicly accessible or publicly visible form
-* Discussion with people outside of your immediate colleagues or team
-* Leaking or anonymously communicating the details of the vulnerability to another person or other people
+Whilst a vulnerability is being investigated, please do not publish any details about the vulnerability with others.
