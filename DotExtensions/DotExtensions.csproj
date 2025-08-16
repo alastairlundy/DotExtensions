@@ -12,11 +12,13 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 7.6.3
-* Fixed an issue with Number Range ``AsRange`` extension methods
-* Improved Title Case detection performance
-* Removed reliance on deprecated code
-* Deprecate additional methods</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 7.6.4
+* Improved Span ``GetRange``, ``Skip`` and ``SkipLast`` extension method performance
+* Improved Span ``ReSize`` method performance in some circumstances
+* Improved String and Char case detection code
+
+### Note:
+Final planned update for 7.6.x series. Please upgrade to DotExtensions 8.x or newer.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -26,7 +28,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.4</Version>
+        <Version>7.6.5</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
