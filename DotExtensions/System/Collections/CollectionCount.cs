@@ -14,13 +14,12 @@ public static class CollectionCount
     /// <returns></returns>
     public static TNumber Count<TNumber, TSource>(this IEnumerable<TSource> source) where TNumber : INumber<TNumber>
     {
-        TNumber count = TNumber.Zero;
-
-        foreach (TSource item in source)
+        // Faster code path if the source implements ICollection<T>
+        if (source is ICollection<TSource> collection)
         {
-            count += TNumber.One;
+            return Count<TNumber, TSource>(collection);
         }
 
-        return count;
+        return source.Count().ToDestinationNumber<int, TNumber>();
     }
 }
