@@ -43,6 +43,12 @@ public static class SpanResizeExtensions
         if (newSize <= 0)
             throw new ArgumentOutOfRangeException(nameof(newSize));
 
+        if (newSize < target.Length)
+        {
+            target = target.Slice(0, newSize);
+            return;
+        }
+        
         T[] newTargetArray = new T[newSize];
         
         Span<T> destination = new  Span<T>(newTargetArray);

@@ -55,6 +55,12 @@ public static class SpanCopyExtensions
     {
         if(startIndex < 0 || startIndex > source.Length)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
+
+        if (destination.Length < startIndex + length)
+        {
+            destination = source.Slice(startIndex, length);
+            return;
+        }
         
         int expectedEnd = startIndex + length;
         int actualEnd = destination.Length;
