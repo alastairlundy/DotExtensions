@@ -25,6 +25,8 @@
 // ReSharper disable CheckNamespace
 
 using System;
+using System.Linq;
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -36,7 +38,7 @@ public static class UpperCaseExtensions
     /// <param name="c">The character to be checked.</param>
     /// <returns>True, if the character is an upper case character, false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsUpperCaseCharacter(this char c) => IsUpperCase(c.ToString());
+    public static bool IsUpperCaseCharacter(this char c) => char.IsUpper(c);
 
     /// <summary>
     /// Returns whether a string is upper case or not.
@@ -44,5 +46,5 @@ public static class UpperCaseExtensions
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if the string is upper case; false otherwise.</returns>
     // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsUpperCase(this string s) => s.Equals(s.ToUpper());
+    public static bool IsUpperCase(this string s) => s.All(x => char.IsUpper(x));
 }

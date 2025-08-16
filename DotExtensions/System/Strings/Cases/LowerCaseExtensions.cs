@@ -25,6 +25,8 @@
 // ReSharper disable CheckNamespace
 
 using System;
+using System.Linq;
+// ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -36,12 +38,12 @@ public static class LowerCaseExtensions
     /// <param name="c">The character to be checked.</param>
     /// <returns>True, if the character is a lower case character; false otherwise.</returns>
     [Obsolete(Deprecations.DeprecationMessages.DeprecationV8)]
-    public static bool IsLowerCaseCharacter(this char c) => IsLowerCase(c.ToString());
+    public static bool IsLowerCaseCharacter(this char c) => char.IsLower(c);
 
     /// <summary>
     /// Returns whether a string is lower case or not.
     /// </summary>
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if a string is lower case; false otherwise.</returns>
-    public static bool IsLowerCase(this string s) => s.Equals(s.ToLower());
+    public static bool IsLowerCase(this string s) => s.All(x => char.IsLower(x));
 }
