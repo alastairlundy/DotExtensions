@@ -58,13 +58,18 @@ public static class SegmentCapitalizationExtensions
     /// <returns>The specified <see cref="StringSegment"/> with the specified chars made upper case.</returns>
     public static StringSegment CapitalizeChars(this StringSegment segment, IEnumerable<int> indices)
     {
-        char[] array = segment.ToCharArray();
+        StringBuilder stringBuilder = new();
+        
+        for (int i = 0; i < segment.Length; i++)
+        {
+           stringBuilder.Append(segment[i]);
+        }
         
         foreach (int index in indices)
         {
-            array[index] = char.ToUpper(array[index]);
+            stringBuilder[index] = char.ToUpper(stringBuilder[index]);
         }
         
-        return new StringSegment(string.Join("", array));
+        return new StringSegment(stringBuilder.ToString());
     }
 }
