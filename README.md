@@ -26,6 +26,7 @@ DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code 
 | Package Name                | Nuget Link                                                                                  | .NET SDK CLI command                               |
 |-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|
 | AlastairLundy.DotExtensions | [AlastairLundy.DotExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions) | ``dotnet add package AlastairLundy.DotExtensions`` |
+| AlastairLundy.DotExtensions.MsExtensions | [AlastairLundy.DotExtensions.MsExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions) | ``dotnet add package AlastairLundy.DotExtensions.MsExtensions`` |
 
 
 ### Compatibility
