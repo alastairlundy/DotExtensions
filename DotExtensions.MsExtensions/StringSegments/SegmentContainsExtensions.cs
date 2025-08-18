@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using System.Linq;
+using System.Collections.Generic;
 
 using Microsoft.Extensions.Primitives;
 
@@ -53,46 +53,28 @@ public static class SegmentContainsExtensions
         
         return false;
     }
-    
+
     /// <summary>
     /// Returns whether the String Segment contains another String Segment.
     /// </summary>
-    /// <param name="this">The string segment to search.</param>
+    /// <param name="source">The string segment to search.</param>
     /// <param name="segment">The string segment to search for.</param>
     /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, StringSegment segment)
+    public static bool Contains(this StringSegment source, StringSegment segment)
     {
-        if (@this.Length == segment.Length)
-            return @this.Equals(segment);
+        if (source.Length == segment.Length)
+            return source.Equals(segment);
         
-        if (segment.Length > @this.Length || segment.IsEmpty())
+        if (segment.Length > source.Length || segment.IsEmpty())
             return false;
 
-        bool[] containsChars = new  bool[segment.Length];
+        List<int> indices = source.IndicesOf(segment[0]);
 
-        for (int i = 0; i < @this.Length; i++)
+        foreach (int index in indices)
         {
-            containsChars[i] = segment.Contains(@this[i]);
-        }
-        
-        // Return false if the segment to compare doesn't contain all characters in this segment
-        if (containsChars.All(x => x == false))
-            return false;
-        
-        bool found = false;
+            StringSegment comparison = source.Subsegment(index, segment.Length);
 
-        for (int originIndex = 0; originIndex < @this.Length; originIndex++)
-        {
-            for (int i = 0; i < segment.Length; i++)
-            {
-                if (@this[i] == @this[originIndex])
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (found == true)
+            if (segment.Equals(comparison))
                 return true;
         }
 
