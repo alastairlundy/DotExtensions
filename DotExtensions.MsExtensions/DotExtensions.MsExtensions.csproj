@@ -8,27 +8,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.0.0</Version>
+        <Version>8.1.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 7.6.x
-
-__Breaking Changes__:
-* Removed .NET Standard 2.0 and 2.1 support
-* Removed deprecated code
-* Moved LINQ style extensions for StringSegment to a different library.
-
-### Non Breaking Changes
-* Add StringSegment case detection extensions
-* Add StringSegment case ``CapitalizeChar`` and ``CapitalizeChars``
-* Updated StringSegment ``AsEnumerable`` method
-* Re-worked StringSegment ``Contains`` methods
-* Removed StringSegment ``IsNullOrEmpty`` extension method as redundant
-* Removed reliance on DotExtensions main package
-* Improve whitespace detection in StringSegment ``IsNullOrWhiteSpace`` extension method</PackageReleaseNotes>
+        <PackageReleaseNotes>* Improved performance of several StringSegment extension methods
+* Fixed an issue of an incorrect namespace for a class</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>

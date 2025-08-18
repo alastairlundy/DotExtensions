@@ -12,29 +12,9 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 7.6.x
-
-__Breaking Changes__:
-* Removed .NET Standard 2.0 and 2.1 support
-* Removed deprecated code
-* Moved most LINQ style Span and IEnumerable, ICollection, and IList extensions out of DotExtensions to a different library
-* Improved code formatting
-* Removed String ``IndicesOf`` extension methods - These methods will be moved to ExtraLinq
-* Updated Number Range Enumerable and Array extensions to throw exceptions if count parameter is 0
-* Moved Integer Range enumerable and array methods to ExtraLinq
-
-__Non Breaking Changes__:
-* Added new string Insert(int index, char c) extension method
-* Improved code formatting
-* Reworked Span Resize method
-* Reworked Span CopyTo methods
-* Added Span TryCopyTo extension methods
-* Added Span OptimisticCopy extension methods
-* Moved LINQ style extensions for StringSegment to a different library.
-* Added DateTime, DateOnly, and TimeOnly Abs absolute difference extension methods
-* Updated DateTime and DateOnly Subtract extension method internal code
-* Reworked string case detection and capitalization methods
-* Clarified unsupported Operating Systems for Process ``HasStarted`` extension method</PackageReleaseNotes>
+        <PackageReleaseNotes>- Add Collection ``TNumber Count\&lt;TNumber, TSource&gt;`` IEnumerable\&lt;TSource&gt; and ICollection\&lt;TSource&gt; and ToDestinationNumber @alastairlundy (#96)
+- Add ``IsIncrementedNumberRange`` IEnumerable\&lt;TNumber&gt; and IList\&lt;TNumber&gt; extension methods @alastairlundy (#95)
+- Improve Span ``GetRange``, ``OptimisticCopy`` and ``Resize`` performance @alastairlundy (#94)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -43,7 +23,7 @@ __Non Breaking Changes__:
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.0.0</Version>
+        <Version>8.1.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
