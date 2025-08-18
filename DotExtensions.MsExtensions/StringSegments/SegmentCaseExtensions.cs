@@ -35,10 +35,10 @@ public static class SegmentCaseExtensions
 {
 
     /// <summary>
-    /// Returns whether a string is upper case or not.
+    /// Returns whether a <see cref="StringSegment"/> is upper case or not.
     /// </summary>
-    /// <param name="segment">The string to be checked.</param>
-    /// <returns>True if the string is upper case; false otherwise.</returns>
+    /// <param name="segment">The <see cref="StringSegment"/> to be checked.</param>
+    /// <returns>True if the <see cref="StringSegment"/> is upper case; false otherwise.</returns>
     public static bool IsUpperCase(this StringSegment segment)
     {
         for (int i = 0; i < segment.Length; i++)
@@ -46,14 +46,15 @@ public static class SegmentCaseExtensions
             if (char.IsLower(segment[i]))
                 return false;
         }
+        
         return true;
     }
 
     /// <summary>
-    /// Returns whether a string is lower case or not.
+    /// Returns whether a <see cref="StringSegment"/> is lower case or not.
     /// </summary>
-    /// <param name="segment">The string to be checked.</param>
-    /// <returns>True if a string is lower case; false otherwise.</returns>
+    /// <param name="segment">The <see cref="StringSegment"/> to be checked.</param>
+    /// <returns>True if a <see cref="StringSegment"/> is a lower case; false otherwise.</returns>
     public static bool IsLowerCase(this StringSegment segment)
     {
         for (int i = 0; i < segment.Length; i++)
