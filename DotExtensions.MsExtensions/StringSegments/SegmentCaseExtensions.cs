@@ -22,13 +22,11 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
-
 using Microsoft.Extensions.Primitives;
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// 
