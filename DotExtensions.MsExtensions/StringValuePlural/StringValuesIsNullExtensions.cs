@@ -31,10 +31,10 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 public static class StringValuesIsNullExtensions
 {
     /// <summary>
-    /// 
+    /// Determines if the <see cref="StringValues"/> is empty.
     /// </summary>
-    /// <param name="stringValues"></param>
-    /// <returns></returns>
+    /// <param name="stringValues">The <see cref="StringValues"/> to search.</param>
+    /// <returns>True if it is empty, false otherwise.</returns>
     public static bool IsEmpty(this StringValues stringValues) 
         => stringValues.Equals(StringValues.Empty);
 
