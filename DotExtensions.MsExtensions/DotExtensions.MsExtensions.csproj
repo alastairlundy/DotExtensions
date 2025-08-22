@@ -8,14 +8,17 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.1.0</Version>
+        <Version>8.2.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>* Improved performance of several StringSegment extension methods
-* Fixed an issue of an incorrect namespace for a class</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 8.1.0
+* Deprecated StringSegment ``AsEnumerable`` method for removal in version 9
+* Re-added StringSegment ``Reverse`` extension method
+- Rework StringSegment ``Contains(StringSegment)`` method and reduce technical debt @alastairlundy (#99)
+- Add StringValues ``IsEmpty`` and ``IsNullOrWhiteSpace`` extension methods @alastairlundy (#100)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
