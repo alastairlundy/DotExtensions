@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-
 using Microsoft.Extensions.Primitives;
 
 // ReSharper disable MemberCanBePrivate.Global
