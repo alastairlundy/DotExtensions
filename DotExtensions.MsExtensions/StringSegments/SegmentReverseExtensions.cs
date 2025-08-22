@@ -26,6 +26,8 @@ using System;
 
 using System.Text;
 
+using AlastairLundy.DotExtensions.MsExtensions.Localizations;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
