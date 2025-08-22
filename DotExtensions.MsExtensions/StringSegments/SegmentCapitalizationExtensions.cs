@@ -24,6 +24,7 @@
 
 using System.Collections.Generic;
 using System.Text;
+
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -58,7 +59,7 @@ public static class SegmentCapitalizationExtensions
     /// <returns>The specified <see cref="StringSegment"/> with the specified chars made upper case.</returns>
     public static StringSegment CapitalizeChars(this StringSegment segment, IEnumerable<int> indices)
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder stringBuilder = new(capacity: segment.Length);
         
         for (int i = 0; i < segment.Length; i++)
         {
