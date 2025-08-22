@@ -43,7 +43,8 @@ public static class SpanFirstAndLast
     public static T First<T>(this Span<T> target)
     {
         if (target.IsEmpty)
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+            throw new InvalidOperationException(Resources.
+                Exceptions_Enumerables_InvalidOperation_EmptySequence);
         
         return target[0];
     }
@@ -67,9 +68,10 @@ public static class SpanFirstAndLast
     public static T Last<T>(this Span<T> target)
     {
         if (target.IsEmpty)
-            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+            throw new InvalidOperationException(Resources.
+                Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
-        return target.Length > 1 ? target[^1] : target.First();
+        return target[^1];
     }
 
     /// <summary>
@@ -84,6 +86,6 @@ public static class SpanFirstAndLast
         if (target.IsEmpty)
             return default;
         
-        return target.Length > 1 ? target[^1] : target.FirstOrDefault();
+        return target[^1];
     }
 }
