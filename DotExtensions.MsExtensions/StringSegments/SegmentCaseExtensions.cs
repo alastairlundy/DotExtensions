@@ -43,7 +43,7 @@ public static class SegmentCaseExtensions
     {
         for (int i = 0; i < segment.Length; i++)
         {
-            if (char.IsLower(segment[i]))
+            if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
                 return false;
         }
         
@@ -59,7 +59,7 @@ public static class SegmentCaseExtensions
     {
         for (int i = 0; i < segment.Length; i++)
         {
-            if (char.IsUpper(segment[i]))
+            if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
                 return false;
         }
 
