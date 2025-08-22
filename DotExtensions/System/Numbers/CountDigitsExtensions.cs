@@ -49,12 +49,12 @@ public static class CountDigitsExtensions
     {
         if (number < TNumber.Zero)
         {
-            number *= TNumber.Parse("-1", NumberFormatInfo.InvariantInfo);
+            number *= (-1.ToNumber<TNumber>());
         }
         
         int digits = number < TNumber.Zero ? 2 : 1;
-
-        while ((number /= TNumber.Parse("10", NumberFormatInfo.InvariantInfo)) != TNumber.Zero)
+        
+        while ((number /= 10.ToNumber<TNumber>()) != TNumber.Zero)
         {
             ++digits;
         }
