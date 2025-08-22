@@ -68,10 +68,14 @@ public static class SegmentContainsExtensions
         if (segment.Length > source.Length || segment.IsEmpty())
             return false;
 
-        List<int> indices = source.IndicesOf(segment.First());
+        int start = -1;
+        int index = 0;
 
-        foreach (int index in indices)
-        {
+        while (index != -1)
+        { 
+            index = source.IndexOf(segment.First(), start + 1);
+            start = index;
+            
             StringSegment comparison = source.Subsegment(index, segment.Length);
 
             if (segment.Equals(comparison))
