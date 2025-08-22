@@ -28,7 +28,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
-public static class SegmentIndices
+internal static class SegmentIndices
 {
     
     /// <summary>
@@ -40,6 +40,9 @@ public static class SegmentIndices
     internal static List<int> IndicesOf(this StringSegment source, char c)
     {
         List<int> output = new();
+
+        if (source.IsEmpty())
+            return output;
 
         for (int i = 0; i < source.Length; i++)
         {
