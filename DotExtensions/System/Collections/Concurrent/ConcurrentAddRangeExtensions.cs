@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Collections.Concurrent;
 /// <summary>
 /// 
 /// </summary>
-public static class ConcurrentRangeExtensions
+public static class ConcurrentAddRangeExtensions
 {
     
     /// <summary>
