@@ -50,7 +50,6 @@ public static class SpanResizeExtensions
         }
         
         T[] newTargetArray = new T[newSize];
-        
         Span<T> destination = new  Span<T>(newTargetArray);
         
         int endCopy = target.Length < newSize ? target.Length : newSize;
