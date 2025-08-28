@@ -58,7 +58,7 @@ public static class SegmentEnumerableToStringExtensions
             }
         }
         
-        stringBuilder.Remove(stringBuilder.Length - separator.Length, separator.Length);
+        stringBuilder.Remove(startIndex: stringBuilder.Length - separator.Length, length: separator.Length);
 
         return stringBuilder.ToString();
     }
@@ -83,7 +83,7 @@ public static class SegmentEnumerableToStringExtensions
             stringBuilder.Append(separator);
         }
             
-        stringBuilder.Remove(stringBuilder.Length - 1, 1);
+        stringBuilder.Remove(startIndex: stringBuilder.Length - 1, length: 1);
         return stringBuilder.ToString();
     }
 }
