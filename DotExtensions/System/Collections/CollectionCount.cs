@@ -43,10 +43,8 @@ public static class CollectionCount
     /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
     /// <returns>The number of elements in the <see cref="ICollection{T}"/> as a <see cref="TNumber"/> number.</returns>
     public static TNumber Count<TNumber, TSource>(this ICollection<TSource> source) where TNumber : INumber<TNumber>
-    {
-        return source.Count.ToDestinationNumber<int, TNumber>();
-    }
-    
+        => source.Count.ToDestinationNumber<int, TNumber>();
+
     /// <summary>
     /// Determines the number of elements in a <see cref="IEnumerable{T}"/> and returns it as a <see cref="TNumber"/>.
     /// </summary>
