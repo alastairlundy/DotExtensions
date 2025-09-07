@@ -22,19 +22,20 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
+
+using AlastairLundy.DotExtensions.IO.Directories;
 
 namespace AlastairLundy.DotExtensions.IO.Drives;
 
 public static class DrivesIsEmptyExtensions
 {
     /// <summary>
-    /// 
+    /// Determines if a Drive is empty or not.
     /// </summary>
-    /// <param name="driveInfo"></param>
-    /// <returns></returns>
-    public static bool IsEmpty(this DriveInfo driveInfo)
+    /// <param name="driveInfo">The drive to be examined.</param>
+    /// <returns>True if the drive is empty, false otherwise.</returns>
+    public static bool IsDriveEmpty(this DriveInfo driveInfo)
     {
         if (driveInfo.IsReady == false)
             return false;
