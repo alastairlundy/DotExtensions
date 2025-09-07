@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
-
 using System.Collections.Generic;
 
 using System.Text;

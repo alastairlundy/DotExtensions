@@ -73,11 +73,14 @@ public static class SegmentContainsExtensions
         { 
             index = source.IndexOf(segment.First(), start + 1);
             start = index;
-            
-            StringSegment comparison = source.Subsegment(index, segment.Length);
 
-            if (segment.Equals(comparison))
-                return true;
+            if (index != -1)
+            {
+                StringSegment comparison = source.Subsegment(index, segment.Length);
+
+                if (segment.Equals(comparison))
+                    return true;
+            }
         }
 
         return false;

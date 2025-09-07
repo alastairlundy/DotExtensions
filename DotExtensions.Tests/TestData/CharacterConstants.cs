@@ -22,48 +22,31 @@
        SOFTWARE.
    */
 
-using System.Linq;
-using System.Text;
-// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ConvertToAutoProperty
 
-// ReSharper disable RedundantBoolCompare
-
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Tests.TestData;
 
 /// <summary>
 /// 
 /// </summary>
-public static class TitleCaseExtensions
+internal static class CharacterConstants
 {
-    /// <summary>
-    /// Converts a string to Title Case.
-    /// </summary>
-    /// <param name="str">The string to be converted.</param>
-    /// <returns>The title case version of the input string.</returns>
-    public static string ToTitleCase(this string str)
-    {
-        string[] words = str.Split(' ');
+    private static readonly char[] SpecialChars =
+    [
+        ',', '.', '\\', '/', '^', '*', '&', '?', '!', '#', '~', '_', '+',
+        '-', '@', '<', '>', '=', '(', ')', '%', '$', '£', '"', ';', ':', '{', '}', '[', ']'
+    ];
         
-        StringBuilder stringBuilder = new StringBuilder();
-            
-        foreach (string word in words)
-        {
-            stringBuilder.Append(word.IsTitleCase() ? word :
-                word.CapitalizeChar(1));
-        }
-        
-        return stringBuilder.ToString();
-    }
+    private static readonly string[] EscapeChars = 
+        ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b",  @"\NNN", @"\xHH", "\\"];
         
     /// <summary>
-    /// Returns whether the specified phrase to be checked is in Title Case or not.
+    /// 
     /// </summary>
-    /// <param name="phrase">The phrase to be checked.</param>
-    /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
-    public static bool IsTitleCase(this string phrase)
-    {
-        string[] words = phrase.Split();
-            
-        return words.All(x => char.IsUpper(x[0]) && x.Substring(1, x.Length - 1).IsLowerCase());
-    }
+    internal static char[] SpecialCharacters => SpecialChars;
+        
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static string[] EscapeCharacters => EscapeChars;
 }
