@@ -23,6 +23,7 @@
    */
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -74,13 +75,10 @@ public static class StringInsertExtensions
     /// <param name="chars">The characters to insert starting at the specified index.</param>
     /// <returns>The updated string with the inserted characters starting at the specified index.</returns>
     /// <exception cref="IndexOutOfRangeException"></exception>
-    public static string InsertRange(this string str, int index, char[] chars)
+    public static string InsertRange(this string str, int index, IEnumerable<char> chars)
     {
         if (index < 0 || index >= str.Length)
             throw new IndexOutOfRangeException();
-        
-        if (chars.Any() == false)
-            return str;
         
         StringBuilder stringBuilder = new StringBuilder();
         
