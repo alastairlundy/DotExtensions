@@ -27,7 +27,6 @@ DotExtensions.MsExtensions can be installed via the .NET SDK CLI, Nuget via your
 DotExtensions.MsExtensions supports:
 * .NET 8
 * .NET 9
-* .NET Standard 2.0
 
 However, it is important to note that not all features may be supported by all TFMs.
 
@@ -41,7 +40,6 @@ Currently, the required .NET SDK is .NET 9.
 The current build targets include:
 * .NET 8
 * .NET 9
-* .NET Standard 2.0
 
 Any version of the .NET 9 SDK can be used, but using the latest version is preferred.
 
