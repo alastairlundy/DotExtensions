@@ -24,7 +24,6 @@
 
 using System.Linq;
 using System.Text;
-// ReSharper disable CheckNamespace
 // ReSharper disable MemberCanBePrivate.Global
 
 // ReSharper disable RedundantBoolCompare

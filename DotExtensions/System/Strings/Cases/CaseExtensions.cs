@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
 
 using System.Linq;
 // ReSharper disable ConvertClosureToMethodGroup
