@@ -46,6 +46,6 @@ public static class SpecialCharacterDetectionExtension
     /// </summary>
     /// <param name="c">The character to be checked.</param>
     /// <returns>True if the character is a special character; false otherwise.</returns>
-    public static bool IsSpecialCharacter(this char c) 
-        => CharacterConstants.SpecialCharacters.Any(sc => sc == c);
+    public static bool IsSpecialCharacter(this char c) => 
+        char.IsLetterOrDigit(c) == false && (char.IsPunctuation(c) || char.IsSymbol(c));
 }
