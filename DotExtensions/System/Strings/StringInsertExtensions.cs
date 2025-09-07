@@ -23,6 +23,7 @@
    */
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace AlastairLundy.DotExtensions.Strings;
@@ -48,7 +49,7 @@ public static class StringInsertExtensions
             return str;
 
         StringBuilder stringBuilder = new StringBuilder();
-
+        
         int start = 0;
         
         if (index > 1)
@@ -61,6 +62,39 @@ public static class StringInsertExtensions
         {
             stringBuilder.Append(i == index ? c : str[i]);
         }
+        
+        return stringBuilder.ToString();
+    }
+
+    /// <summary>
+    /// Inserts characters in a string at a specified index.
+    /// </summary>
+    /// <param name="str">The string to insert characters into.</param>
+    /// <param name="index">The index to insert the new characters at.</param>
+    /// <param name="chars">The characters to insert starting at the specified index.</param>
+    /// <returns>The updated string with the inserted characters starting at the specified index.</returns>
+    /// <exception cref="IndexOutOfRangeException"></exception>
+    public static string InsertRange(this string str, int index, IEnumerable<char> chars)
+    {
+        if (index < 0 || index >= str.Length)
+            throw new IndexOutOfRangeException();
+        
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        int start = 0;
+        
+        if (index > 1)
+        {
+            stringBuilder.Append(str.Substring(0, index - 1));
+            start = index;
+        }
+
+        foreach (char ch in chars)
+        {
+            stringBuilder.Append(ch);
+        }
+        
+        stringBuilder.Append(str.Substring(start + 1, str.Length - (start + 1)));
         
         return stringBuilder.ToString();
     }
