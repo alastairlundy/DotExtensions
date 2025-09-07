@@ -27,9 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Generics\" />
       <Folder Include="Memory\" />
-      <Folder Include="Strings\Cases\" />
     </ItemGroup>
 
     <ItemGroup>
