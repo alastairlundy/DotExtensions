@@ -22,7 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
+using System.Text;
+
 // ReSharper disable CheckNamespace
 // ReSharper disable ConvertClosureToMethodGroup
 
@@ -48,4 +51,29 @@ public static class SpecialCharacterDetectionExtension
     /// <returns>True if the character is a special character; false otherwise.</returns>
     public static bool IsSpecialCharacter(this char c) => 
         char.IsLetterOrDigit(c) == false && (char.IsPunctuation(c) || char.IsSymbol(c));
+
+    /// <summary>
+    /// Removes special characters from a string.
+    /// </summary>
+    /// <param name="str">The string to have special characters removed.</param>
+    /// <returns>A new string with all the characters of the input string without special characters.</returns>
+    /// <exception cref="ArgumentException">Thrown if the input string is null or empty.</exception>
+    public static string RemoveSpecialCharacters(this string str)
+    {
+        if (string.IsNullOrEmpty(str))
+            throw new ArgumentException();
+        
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        foreach (char c in str)
+        {
+            if(IsSpecialCharacter(c))
+                continue;
+            
+            stringBuilder.Append(c);
+        }
+        
+        return stringBuilder.ToString();
+    }
+
 }
