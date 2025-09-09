@@ -12,11 +12,11 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>### Changes since 8.1.0
-- Add Memory&lt;T&gt; ``First``, ``FirstOrDefault``, ``Last``, and ``LastOrDefault`` non-predicate methods @alastairlundy (#98)
-- Add Memory&lt;T&gt; ``ElementAt`` @alastairlundy (#97)
-- Add Span ``IsEmpty`` extension method
-- Refactored CountDigits Extension methods</PackageReleaseNotes>
+        <PackageReleaseNotes>- Add string ``RemoveSpecialCharacters`` extension method @alastairlundy (#106)
+- Add string ``InsertRange(int index, IEnumerable\&lt;char&gt; chars)`` @alastairlundy (#103)
+- Add DriveInfo ``IsDriveEmpty`` method @alastairlundy (#102)
+- Add string ``Reverse`` method @alastairlundy (#101)
+- Improve Special Char detection performance  @alastairlundy (#104)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -25,7 +25,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.2.0</Version>
+        <Version>8.3.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
