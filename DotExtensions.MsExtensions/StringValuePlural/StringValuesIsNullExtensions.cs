@@ -25,6 +25,7 @@
 using System.Linq;
 using Microsoft.Extensions.Primitives;
 // ReSharper disable ConvertClosureToMethodGroup
+// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 
@@ -60,6 +61,6 @@ public static class StringValuesIsNullExtensions
             vals[index] = string.IsNullOrWhiteSpace(val);
         }
 
-        return vals.Any(x => x == false);
+        return vals.Any(x => x == true);
     }
 }
