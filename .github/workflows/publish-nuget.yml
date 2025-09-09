@@ -23,7 +23,11 @@ jobs:
       run: dotnet restore
     - name: Create packages
       run: dotnet build -c Release
-    - name: Publish the package to nuget.org
+    - name: Publish the main package to nuget.org
       run: dotnet nuget push DotExtensions/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+      env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    - name: Publish the MsExtensions package to nuget.org
+      run: dotnet nuget push DotExtensions.MsExtensions/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
       env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
