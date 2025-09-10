@@ -8,7 +8,7 @@
 | Version | Release Date | Notes | 
 |-|-|-|
 | 8.3.1 | September 10th 2025 | MsExtensions package only |
-| 8.3.0 | September 8th 2025 | |
+| 8.3.0 | September 9th 2025 | |
 
 ### 8.2
 | Version | Release Date | Notes | 
