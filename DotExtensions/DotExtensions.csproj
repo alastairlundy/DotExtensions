@@ -47,9 +47,8 @@ Final planned update for 7.6.x series. Please upgrade to DotExtensions 8.x or ne
     
     <ItemGroup>
         <PackageReference Include="AlastairLundy.DotPrimitives" Version="[2.0.0, 3.0.0)" />
-        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="[2.1.0, 3.0.0)" />
-        <PackageReference Include="System.Memory" Version="4.6.3"
-                          Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+        <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
+        <PackageReference Include="System.Memory" Version="4.6.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
     </ItemGroup>
     
     <ItemGroup>
