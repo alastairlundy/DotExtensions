@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// <summary>
 /// 
 /// </summary>
-public static class SpanAsEnumerableExtensions
+public static class SpanAsListExtensions
 {
     /// <summary>
     /// Converts a <see cref="Span{T}"/> to a <see cref="List{T}"/>.
