@@ -31,11 +31,11 @@ namespace AlastairLundy.DotExtensions.Processes;
 public static class ProcessApplyEnvironmentVariablesExtensions
 {
     /// <summary>
-    /// Applies environment variables to a specified ProcessStartInfo object.
+    /// Sets environment variables for a specified ProcessStartInfo object.
     /// </summary>
-    /// <param name="processStartInfo">The ProcessStartInfo object to apply environment variables to.</param>
+    /// <param name="processStartInfo">The ProcessStartInfo object to set environment variables for.</param>
     /// <param name="environmentVariables">A dictionary of environment variable names and their corresponding values.</param>
-    public static void ApplyEnvironmentVariables(this ProcessStartInfo processStartInfo,
+    public static void SetEnvironmentVariables(this ProcessStartInfo processStartInfo,
         IDictionary<string, string> environmentVariables)
     {
         if (environmentVariables.Any() == false)
