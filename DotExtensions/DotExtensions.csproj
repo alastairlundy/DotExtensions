@@ -12,13 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 7.6.4
-* Improved Span ``GetRange``, ``Skip`` and ``SkipLast`` extension method performance
-* Improved Span ``ReSize`` method performance in some circumstances
-* Improved String and Char case detection code
-
-### Note:
-Final planned update for 7.6.x series. Please upgrade to DotExtensions 8.x or newer.</PackageReleaseNotes>
+        <PackageReleaseNotes>
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -28,7 +23,7 @@ Final planned update for 7.6.x series. Please upgrade to DotExtensions 8.x or ne
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>7.6.5</Version>
+        <Version>7.7.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
@@ -46,7 +41,7 @@ Final planned update for 7.6.x series. Please upgrade to DotExtensions 8.x or ne
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotPrimitives" Version="3.2.0" />
+        <PackageReference Include="AlastairLundy.DotPrimitives" Version="3.3.0" />
         <PackageReference Include="AlastairLundy.DotPrimitives.Collections" Version="3.2.0" />
         <PackageReference Include="System.Memory" Version="4.6.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
     </ItemGroup>
