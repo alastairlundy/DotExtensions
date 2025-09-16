@@ -26,15 +26,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.Configurations;
 
-public static class HasKeyExtensions
+public static class ContainsKeyExtensions
 {
     /// <summary>
-    /// Determines if a configuration has a specified key.
+    /// Determines if a configuration contains a specified key.
     /// </summary>
     /// <param name="configuration">The configuration to search.</param>
     /// <param name="keyName">The key name to search for.</param>
     /// <returns>True if the key is found within the configuration, false otherwise.</returns>
-    public static bool HasKey(this IConfiguration configuration, string keyName)
+    public static bool ContainsKey(this IConfiguration configuration, string keyName)
     {
         IConfigurationSection config = configuration.GetSection(keyName);
 
