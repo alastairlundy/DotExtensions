@@ -40,6 +40,7 @@ public static class SpanFirstAndLast
     /// <typeparam name="T">The type of items stored in the span.</typeparam>
     /// <returns>The first item in the span if any items are in the Span.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T First<T>(this Span<T> target)
     {
         if (target.IsEmpty)
@@ -55,6 +56,7 @@ public static class SpanFirstAndLast
     /// <param name="target">The span to search for the first element.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <returns>The first element of the span that satisfies the condition, or null if the span is empty.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T? FirstOrDefault<T>(this Span<T> target) 
         => target.IsEmpty == false ? target[0] : default;
 
@@ -65,6 +67,7 @@ public static class SpanFirstAndLast
     /// <typeparam name="T">The type of items stored in the span.</typeparam>
     /// <returns>The last item in the span if any items are in the Span.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the Span contains zero items.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T Last<T>(this Span<T> target)
     {
         if (target.IsEmpty)
@@ -81,6 +84,7 @@ public static class SpanFirstAndLast
     /// <param name="target">The span to search for the last element.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <returns>The last element of the span, or null if the span is empty.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T? LastOrDefault<T>(this Span<T> target)
     {
         if (target.IsEmpty)

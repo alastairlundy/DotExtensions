@@ -37,6 +37,7 @@ public static class MemoryFirstAndLast
     /// <param name="source">The source Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
     /// <returns>The first element of the Memory sequence.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T First<T>(this Memory<T> source)
     {
         if (source.IsEmpty)
@@ -51,6 +52,7 @@ public static class MemoryFirstAndLast
     /// <param name="source">The source Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
     /// <returns>The first element of the Memory or default if no elements were found.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T? FirstOrDefault<T>(this Memory<T> source)
     {
         if(source.IsEmpty)
@@ -65,6 +67,7 @@ public static class MemoryFirstAndLast
     /// <param name="source">The source Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
     /// <returns>The last element of the Memory sequence.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T Last<T>(this Memory<T> source)
     {
         if(source.IsEmpty)
@@ -79,6 +82,7 @@ public static class MemoryFirstAndLast
     /// <param name="source">The source Memory sequence.</param>
     /// <typeparam name="T">The type of elements in the Memory sequence.</typeparam>
     /// <returns>The last element of the Memory or default if no elements were found.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T? LastOrDefault<T>(this Memory<T> source)
     {
         if(source.IsEmpty)
