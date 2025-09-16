@@ -30,6 +30,11 @@
 
 ### Version 7.x
 
+#### 7.7
+| Version | Release Date | Notes | 
+|-|-|-|
+| 7.7.0 | September 16th 2025 | Main package only| 
+
 #### 7.6
 | Version | Release Date | Notes | 
 |-|-|-|
