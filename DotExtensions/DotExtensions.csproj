@@ -12,8 +12,15 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>
-</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 7.6.5
+* Updated DotPrimitives from 2.0.0 to 3.3.0
+* Updated DotPrimitives.Collections from 2.1.0 to 3.3.0
+
+### Breaking Changes
+* Removed ``FlexibleKeyValuePair`` extension methods as they have been moved to DotPrimitives.Collections directly and conflicted with newer DotPrimitives.Collections versions
+* Removed Process ``WaitForExitAsync`` overloads with ProcessTimeoutPolicy support and ProcessCancellationMode support - This was needed since DotPrimitives no longer contains those Primitives from version 3 onwards
+
+**NOTE**: Final intended update for DotExtensions version 7.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,7 +37,6 @@
     </PropertyGroup>
     <ItemGroup>
       <Folder Include="DotPrimitives\" />
-      <Folder Include="DotPrimitives\Collections\" />
     </ItemGroup>
     
     <ItemGroup>
