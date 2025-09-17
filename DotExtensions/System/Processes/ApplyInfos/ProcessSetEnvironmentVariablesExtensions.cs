@@ -28,7 +28,7 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
-public static class ProcessApplyEnvironmentVariablesExtensions
+public static class ProcessSetEnvironmentVariablesExtensions
 {
     /// <summary>
     /// Sets environment variables for a specified ProcessStartInfo object.
