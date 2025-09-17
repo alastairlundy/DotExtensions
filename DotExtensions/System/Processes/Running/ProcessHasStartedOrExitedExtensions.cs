@@ -37,8 +37,14 @@ public static class ProcessHasStartedOrExitedExtensions
     /// </summary>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has started; false otherwise.</returns>
-    [UnsupportedOSPlatform("tvos")]
     [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+    [SupportedOSPlatform("macos")]
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    [SupportedOSPlatform("android")]
     public static bool HasStarted(this Process process)
     {
         try
@@ -58,6 +64,14 @@ public static class ProcessHasStartedOrExitedExtensions
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has exited; false if it is still running.</returns>
     /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+    [SupportedOSPlatform("macos")]
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    [SupportedOSPlatform("android")]
     public static bool HasExited(this Process process)
     {
         if (process.MachineName.Equals(Environment.MachineName) == false)

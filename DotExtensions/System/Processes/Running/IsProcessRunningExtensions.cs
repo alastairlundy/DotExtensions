@@ -39,6 +39,12 @@ public static class IsProcessRunningExtensions
     /// <returns>True if the specified process is running; returns false otherwise.</returns>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+    [SupportedOSPlatform("macos")]
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    [SupportedOSPlatform("android")]
     public static bool IsRunning(this Process process) => 
         process.HasStarted() && process.HasExited() == false;
 
