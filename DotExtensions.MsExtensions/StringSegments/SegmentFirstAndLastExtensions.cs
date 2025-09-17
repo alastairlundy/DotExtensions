@@ -24,6 +24,7 @@
 
 using System;
 
+using AlastairLundy.DotExtensions.MsExtensions.Internal;
 using AlastairLundy.DotExtensions.MsExtensions.Localizations;
 
 using Microsoft.Extensions.Primitives;
@@ -39,6 +40,7 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The StringSegment to be searched.</param>
     /// <returns>The first char in the StringSegment.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static char First(this StringSegment target)
     {
         if (StringSegment.IsNullOrEmpty(target))
@@ -47,12 +49,13 @@ public static class SegmentFirstAndLastExtensions
         
         return target[0];
     }
-    
+
     /// <summary>
     /// Returns the first character of the specified <see cref="StringSegment"/> or null if the segment is empty.
     /// </summary>
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the first character.</param>
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static char? FirstOrDefault(this StringSegment target) 
         => StringSegment.IsNullOrEmpty(target) ? null : target[0];
 
@@ -62,6 +65,7 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The StringSegment to be searched.</param>
     /// <returns>The last char in the StringSegment.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the StringSegment contains zero chars.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static char Last(this StringSegment target)
     {
         if (StringSegment.IsNullOrEmpty(target))
@@ -70,12 +74,13 @@ public static class SegmentFirstAndLastExtensions
 
         return target[^1];
     }
-    
+
     /// <summary>
     /// Returns the last character of the specified <see cref="StringSegment"/> that meets the predicate condition or a null if the segment is empty.
     /// </summary>
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static char? LastOrDefault(this StringSegment target) 
         => StringSegment.IsNullOrEmpty(target) ? null : target[^1];
 }
