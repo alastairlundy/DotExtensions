@@ -66,7 +66,7 @@ public static class SanitizeProcessNamesExtensions
         
         if (excludeFileExtensions)
         {
-            newProcessNames = newProcessNames.Select(x => x.Replace(Path.GetExtension(x), string.Empty));
+            return newProcessNames.Select(x => x.Replace(Path.GetExtension(x), string.Empty));
         }
         
         return newProcessNames;
