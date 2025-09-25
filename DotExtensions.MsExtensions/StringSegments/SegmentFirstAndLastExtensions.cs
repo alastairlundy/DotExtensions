@@ -55,7 +55,7 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the first character.</param>
     /// <returns>The first character of the segment if it exists; otherwise, null.</returns>
     [Obsolete(DeprecationMessages.DeprecationV9)]
-    public static char? FirstOrDefault(this StringSegment target) 
+    public static char? FirstOrDefault(this StringSegment target)
         => StringSegment.IsNullOrEmpty(target) ? null : target[0];
 
     /// <summary>
