@@ -55,7 +55,7 @@ public static class ProcessCancellationExtensions
     /// </summary>
     /// <param name="process">The process to cancel.</param>
     /// <param name="timeoutThreshold">The delay to wait before requesting cancellation.</param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the timeout threshold is less than 0.</exception>
     /// <exception cref="NotSupportedException">Thrown if run on a remote computer or device.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
