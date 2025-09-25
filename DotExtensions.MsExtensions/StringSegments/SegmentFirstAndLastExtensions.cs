@@ -44,9 +44,8 @@ public static class SegmentFirstAndLastExtensions
     public static char First(this StringSegment target)
     {
         if (StringSegment.IsNullOrEmpty(target))
-            throw new InvalidOperationException(Resources.
-                Exceptions_Enumerables_InvalidOperation_EmptySequence);
-        
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
+
         return target[0];
     }
 
