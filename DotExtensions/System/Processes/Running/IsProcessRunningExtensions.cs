@@ -65,6 +65,7 @@ public static class IsProcessRunningExtensions
     /// <param name="processName">The name of the process to be checked.</param>
     /// <param name="sanitizeProcessName"></param>
     /// <returns>true if the specified process is running; returns false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
     {
         IEnumerable<string> processes;
