@@ -23,6 +23,7 @@
    */
 
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -39,6 +40,7 @@ public static class SanitizeProcessNamesExtensions
     /// <param name="excludeFileExtension">Whether to remove the file extension from the Process
     /// when sanitizing the process name.</param>
     /// <returns>The sanitized process names.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static string SanitizeProcessName(this Process process, bool excludeFileExtension = true)
     {
         string newName = process.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
@@ -59,6 +61,7 @@ public static class SanitizeProcessNamesExtensions
     /// <param name="excludeFileExtensions">Whether to remove the file extension from the Process
     /// when sanitizing the process name.</param>
     /// <returns>The sanitized process names.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static IEnumerable<string> SanitizeProcessNames(this IEnumerable<Process> processNames, bool excludeFileExtensions = true)
     {
         IEnumerable<string> newProcessNames = processNames.Select(x => x.ProcessName.Replace("System.Diagnostics.Process (", string.Empty)
