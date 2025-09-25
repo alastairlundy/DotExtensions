@@ -12,8 +12,13 @@ An extension method library that enhances the experience of using Microsoft.Exte
 * [License](#license)
 
 ## Features
-* Support for comparing ``StringSegment``s
-
+* Helpful ``StringSegment`` extension methods:
+  * ``Contains(char)`` and ``Contains(StringSegment)``
+  * ``Reverse(StringSegment)``
+  * ``IsEmpty`` and ``IsNullOrWhiteSpace(StringSegment)``
+  * ``ToCharArray(StringSegment)``
+* Helpful ``StringValues`` extension methods:
+  * ``IsEmpty`` and ``IsNullOrWhiteSpace(StringValues)``
 
 ## How to install and use DotExtensions.MsExtensions
 DotExtensions.MsExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
@@ -25,6 +30,7 @@ DotExtensions.MsExtensions can be installed via the .NET SDK CLI, Nuget via your
 
 ### Compatibility
 DotExtensions.MsExtensions supports:
+* .NET Standard 2.0
 * .NET 8
 * .NET 9
 
