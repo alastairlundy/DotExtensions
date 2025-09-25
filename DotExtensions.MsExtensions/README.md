@@ -44,6 +44,7 @@ DotExtensions.MsExtensions requires the latest stable .NET release SDK to be ins
 Currently, the required .NET SDK is .NET 9.
 
 The current build targets include:
+* .NET Standard 2.0
 * .NET 8
 * .NET 9
 
