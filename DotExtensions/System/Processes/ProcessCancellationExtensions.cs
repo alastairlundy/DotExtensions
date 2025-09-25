@@ -1,7 +1,7 @@
-﻿/*
+/*
         MIT License
        
-       Copyright (c) 2024-2025 Alastair Lundy
+       Copyright (c) 2025 Alastair Lundy
        
        Permission is hereby granted, free of charge, to any person obtaining a copy
        of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,23 @@
        SOFTWARE.
    */
 
-
 using System;
 using System.Diagnostics;
 using System.Runtime.Versioning;
-
-using AlastairLundy.DotExtensions.Localizations;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
-public static class ProcessHasStartedOrExitedExtensions
+public static class ProcessCancellationExtensions
 {
+    
     /// <summary>
-    /// Determines if a process has started.
+    /// Requests the immediate cancellation of a process.
     /// </summary>
-    /// <param name="process">The process to be checked.</param>
-    /// <returns>True if it has started; false otherwise.</returns>
+    /// <param name="process">The process to be cancelled.</param>
+    /// <returns></returns>
+    /// <exception cref="NotSupportedException">Thrown if run on a remote computer or device.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
     [SupportedOSPlatform("maccatalyst")]
@@ -46,25 +47,16 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static bool HasStarted(this Process process)
-    {
-        try
-        {
-            return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
+    public static async Task<bool> RequestCancellationAsync(this Process process)
+        => await RequestCancellationAsync(process, TimeSpan.Zero);
+    
     /// <summary>
-    /// Determines if a process has exited.
+    /// Requests cancellation
     /// </summary>
-    /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
-    /// <param name="process">The process to be checked.</param>
-    /// <returns>True if it has exited; false if it is still running.</returns>
-    /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
+    /// <param name="process">The process to cancel.</param>
+    /// <param name="delay">The delay to wait before requesting cancellation.</param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="NotSupportedException">Thrown if run on a remote computer or device.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
     [SupportedOSPlatform("maccatalyst")]
@@ -73,20 +65,20 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static bool HasExited(this Process process)
+    public static async Task<bool> RequestCancellationAsync(this Process process,TimeSpan delay)
     {
+        if (delay < TimeSpan.Zero)
+            throw new ArgumentOutOfRangeException();
+        
         if (process.IsRunningOnRemoteDevice())
-        {
-            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
-        }
+            throw new NotSupportedException();
+        
+        CancellationTokenSource cts = new CancellationTokenSource();
+        
+        cts.CancelAfter(delay);
+        
+        await process.WaitForExitAsync(cts.Token);
 
-        try
-        {
-            return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
-        }
-        catch
-        {
-            return false;
-        }
+        return process.HasExited();
     }
 }
