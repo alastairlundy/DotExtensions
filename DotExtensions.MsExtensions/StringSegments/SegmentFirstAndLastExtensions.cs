@@ -68,10 +68,13 @@ public static class SegmentFirstAndLastExtensions
     public static char Last(this StringSegment target)
     {
         if (StringSegment.IsNullOrEmpty(target))
-            throw new InvalidOperationException(Resources.
-                Exceptions_Enumerables_InvalidOperation_EmptySequence);
+            throw new InvalidOperationException(Resources.Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
+#if NET8_0_OR_GREATER
         return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
 
     /// <summary>
@@ -80,6 +83,14 @@ public static class SegmentFirstAndLastExtensions
     /// <param name="target">The <see cref="StringSegment"/> from which to retrieve the last character.</param>
     /// <returns>The last character of the segment if it contains any characters; otherwise, null.</returns>
     [Obsolete(DeprecationMessages.DeprecationV9)]
-    public static char? LastOrDefault(this StringSegment target) 
-        => StringSegment.IsNullOrEmpty(target) ? null : target[^1];
+    public static char? LastOrDefault(this StringSegment target)
+    {
+#if NET8_0_OR_GREATER
+        char last = target[^1];
+#else
+        char last = target[target.Length - 1];
+#endif
+
+        return StringSegment.IsNullOrEmpty(target) ? null : last;
+    }
 }

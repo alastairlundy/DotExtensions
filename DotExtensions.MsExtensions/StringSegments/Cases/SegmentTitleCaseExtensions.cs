@@ -44,8 +44,13 @@ public static class SegmentTitleCaseExtensions
         
         foreach (StringSegment word in wordsTokenizer)
         {
+#if NET8_0_OR_GREATER
             stringBuilder.Append(word.IsTitleCase() ? word.AsSpan() :
                 word.CapitalizeChar(1).AsSpan());
+#else
+            stringBuilder.Append(word.IsTitleCase() ? word.ToCharArray() :
+                word.CapitalizeChar(1).ToCharArray());
+#endif
         }
         
         return stringBuilder.ToString();
@@ -60,7 +65,7 @@ public static class SegmentTitleCaseExtensions
     {
         StringTokenizer wordsTokenizer = segment.Split([' ']);
             
-        return wordsTokenizer.All(x => char.IsUpper(x.First()) && 
+        return wordsTokenizer.All(x => char.IsUpper(x[0]) && 
                                        x.Subsegment(1, x.Length - 1)
                                            .IsLowerCase());
     }
