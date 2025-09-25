@@ -47,14 +47,14 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static async Task<bool> RequestCancellationAsync(this Process process)
-        => await RequestCancellationAsync(process, TimeSpan.Zero);
+    public static async Task RequestCancellationAsync(this Process process)
+        => await WaitForExitAsync(process, TimeSpan.Zero);
     
     /// <summary>
-    /// Requests cancellation
+    /// Asynchronously waits for the process to exit or for the <param name="timeoutThreshold"/> to be exceeded, whichever is sooner.
     /// </summary>
     /// <param name="process">The process to cancel.</param>
-    /// <param name="delay">The delay to wait before requesting cancellation.</param>
+    /// <param name="timeoutThreshold">The delay to wait before requesting cancellation.</param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     /// <exception cref="NotSupportedException">Thrown if run on a remote computer or device.</exception>
     [UnsupportedOSPlatform("ios")]
@@ -65,9 +65,9 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static async Task<bool> RequestCancellationAsync(this Process process,TimeSpan delay)
+    public static async Task WaitForExitAsync(this Process process,TimeSpan timeoutThreshold)
     {
-        if (delay < TimeSpan.Zero)
+        if (timeoutThreshold < TimeSpan.Zero)
             throw new ArgumentOutOfRangeException();
         
         if (process.IsRunningOnRemoteDevice())
@@ -75,10 +75,8 @@ public static class ProcessCancellationExtensions
         
         CancellationTokenSource cts = new CancellationTokenSource();
         
-        cts.CancelAfter(delay);
+        cts.CancelAfter(timeoutThreshold);
         
         await process.WaitForExitAsync(cts.Token);
-
-        return process.HasExited();
     }
 }
