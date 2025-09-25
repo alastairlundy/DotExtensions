@@ -74,7 +74,7 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("android")]
     public static bool HasExited(this Process process)
     {
-        if (process.MachineName.Equals(Environment.MachineName) == false)
+        if (process.IsRunningOnRemoteDevice())
         {
             throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
         }

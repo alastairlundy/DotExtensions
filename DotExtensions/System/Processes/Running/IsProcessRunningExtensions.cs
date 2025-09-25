@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -48,6 +49,16 @@ public static class IsProcessRunningExtensions
     public static bool IsRunning(this Process process) => 
         process.HasStarted() && process.HasExited() == false;
 
+    /// <summary>
+    /// Detects whether a process is running on a remote device.
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns>True if the process is running on a remote device, false otherwise.</returns>
+    public static bool IsRunningOnRemoteDevice(this Process process)
+    {
+        return process.MachineName.Equals(Environment.MachineName) == false;
+    }
+    
     /// <summary>
     /// Check to see if a specified process is running or not.
     /// </summary>
