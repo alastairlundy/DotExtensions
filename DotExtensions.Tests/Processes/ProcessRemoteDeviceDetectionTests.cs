@@ -16,7 +16,7 @@ public class ProcessRemoteDeviceDetectionTests
     [SupportedOSPlatform("macos")]
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
-    public void LocalProcess_Detected_Successfully()
+    public async Task LocalProcess_Detected_Successfully()
     {
         string filePath = "";
 
@@ -55,10 +55,8 @@ public class ProcessRemoteDeviceDetectionTests
         process.Start();
         
         bool actual = process.IsRunningOnRemoteDevice();
-
-        Task.Delay(1000, TestContext.Current.CancellationToken);
         
-        process.Kill(true);
+        await process.WaitForExitAsync(TestContext.Current.CancellationToken);
         
         process.Dispose();
         
