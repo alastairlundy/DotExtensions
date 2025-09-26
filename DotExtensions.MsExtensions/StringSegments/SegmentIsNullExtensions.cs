@@ -40,7 +40,26 @@ public static class SegmentIsNullExtensions
     public static bool IsEmpty(this StringSegment segment) => segment.Equals(StringSegment.Empty);
 
     /// <summary>
-    /// Checks whether the specified string segment is null or empty.
+    /// Checks whether the specified string segment is null or whitespace.
+    /// </summary>
+    /// <param name="segment">The string segment to check.</param>
+    /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+    public static bool IsNullOrWhiteSpace(this StringSegment segment)
+    {
+        if (segment.HasValue == false)
+            return true;
+        
+        foreach (char c in segment.Value)
+        {
+            if (char.IsWhiteSpace(c) == false)
+                return false;
+        }
+
+        return true;
+    }
+    
+    /// <summary>
+    /// Checks whether the specified string segment is null or whitespace.
     /// </summary>
     /// <param name="segment">The string segment to check.</param>
     /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
@@ -49,12 +68,6 @@ public static class SegmentIsNullExtensions
         if (segment is null)
             return true;
         
-        for (int i = 0; i < segment.Value.Length; i++)
-        {
-            if (char.IsWhiteSpace(segment.Value[i]) == false)
-                return false;
-        }
-
-        return true;
+        return IsNullOrWhiteSpace(segment.Value);
     }
 }
