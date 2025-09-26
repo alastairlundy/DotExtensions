@@ -26,6 +26,7 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+#if NET8_0_OR_GREATER
 
 public static class DateOnlyToDateTimeExtension
 {
@@ -37,3 +38,5 @@ public static class DateOnlyToDateTimeExtension
     public static DateTime ToDateTime(this DateOnly dateOnly) 
         => DateTime.Parse(dateOnly.ToLongDateString());
 }
+
+#endif

@@ -24,7 +24,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
+#if NET8_0_OR_GREATER
 using System.Numerics;
+#endif
 
 using AlastairLundy.DotExtensions.Numbers;
 

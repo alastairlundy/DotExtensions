@@ -43,7 +43,8 @@ public static class DateTimeSubtractExtensions
         TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
         return dateTimeOne.Subtract(timeSpan);
     }
-        
+
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Subtract a specified number of microseconds from a DateTime.
     /// </summary>
@@ -52,6 +53,7 @@ public static class DateTimeSubtractExtensions
     /// <returns>The modified DateTime object.</returns>
     public static DateTime SubtractMicroseconds(this DateTime dateTime, double microseconds) 
         => dateTime.Subtract(TimeSpan.FromMicroseconds(microseconds));
+#endif
 
     /// <summary>
     /// Subtract a specified number of milliseconds from a DateTime.

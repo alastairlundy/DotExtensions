@@ -41,8 +41,10 @@ public static class CollectionAddRange
     /// <exception cref="NotSupportedException">Thrown if adding to the collection is not supported.</exception>
     public static void AddRange<T>(this ICollection<T> source, IEnumerable<T> enumerableToAdd)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(enumerableToAdd);
+#endif
 
         if (source.IsReadOnly)
             throw new NotSupportedException();
@@ -66,9 +68,11 @@ public static class CollectionAddRange
     /// <typeparam name="T">The type of elements in both collections.</typeparam>
     public static void AddRange<T>(this ICollection<T> source, ICollection<T> collectionToAdd)
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(collectionToAdd);
-        
+#endif        
+
         if (source.IsReadOnly)
             throw new NotSupportedException();
         
