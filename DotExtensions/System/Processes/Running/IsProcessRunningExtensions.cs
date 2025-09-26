@@ -54,9 +54,17 @@ public static class IsProcessRunningExtensions
     /// </summary>
     /// <param name="process"></param>
     /// <returns>True if the process is running on a remote device, false otherwise.</returns>
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+    [SupportedOSPlatform("macos")]
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    [SupportedOSPlatform("android")]
     public static bool IsRunningOnRemoteDevice(this Process process)
     {
-        return process.MachineName.Equals(Environment.MachineName) == false;
+        return process.IsRunning() && process.MachineName.Equals(Environment.MachineName) == false;
     }
     
     /// <summary>
