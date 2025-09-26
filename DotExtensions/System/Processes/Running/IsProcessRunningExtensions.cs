@@ -54,6 +54,7 @@ public static class IsProcessRunningExtensions
     /// </summary>
     /// <param name="process"></param>
     /// <returns>True if the process is running on a remote device, false otherwise.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the process has been disposed of.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
     [SupportedOSPlatform("maccatalyst")]
@@ -64,7 +65,16 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("android")]
     public static bool IsRunningOnRemoteDevice(this Process process)
     {
-        return process.IsRunning() && process.MachineName.Equals(Environment.MachineName) == false;
+        if (process.IsRunning() == false)
+            return false;
+
+        if (process.IsDisposed() == false)
+        {
+            return Process.GetProcesses().All(x => x.Id != process.Id) && 
+                   process.MachineName.Equals(Environment.MachineName) == false;
+        }
+        
+        throw new InvalidOperationException();
     }
     
     /// <summary>
