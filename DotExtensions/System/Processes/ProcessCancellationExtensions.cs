@@ -48,7 +48,7 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
     public static async Task RequestCancellationAsync(this Process process)
-        => await WaitForExitAsync(process, TimeSpan.Zero);
+        => await WaitForExitOrTimeoutAsync(process, TimeSpan.Zero);
     
     /// <summary>
     /// Asynchronously waits for the process to exit or for the <param name="timeoutThreshold"/> to be exceeded, whichever is sooner.
@@ -65,7 +65,7 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static async Task WaitForExitAsync(this Process process,TimeSpan timeoutThreshold)
+    public static async Task WaitForExitOrTimeoutAsync(this Process process,TimeSpan timeoutThreshold)
     {
         if (timeoutThreshold < TimeSpan.Zero)
             throw new ArgumentOutOfRangeException();
