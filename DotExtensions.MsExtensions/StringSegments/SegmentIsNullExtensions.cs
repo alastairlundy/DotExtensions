@@ -49,9 +49,9 @@ public static class SegmentIsNullExtensions
         if (segment.HasValue == false)
             return true;
         
-        for (int i = 0; i < segment.Value.Length; i++)
+        foreach (char c in segment.Value)
         {
-            if (char.IsWhiteSpace(segment.Value[i]) == false)
+            if (char.IsWhiteSpace(c) == false)
                 return false;
         }
 
