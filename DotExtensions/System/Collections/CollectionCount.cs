@@ -38,6 +38,7 @@ namespace AlastairLundy.DotExtensions.Collections;
 /// </summary>
 public static class CollectionCount
 {
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Determines the number of elements in a <see cref="ICollection{T}"/> and returns it as a <see cref="TNumber"/>.
     /// </summary>
@@ -66,4 +67,5 @@ public static class CollectionCount
 
         return source.Count().ToDestinationNumber<int, TNumber>();
     }
+#endif
 }
