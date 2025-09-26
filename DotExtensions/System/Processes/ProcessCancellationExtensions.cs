@@ -30,6 +30,9 @@ using System.Threading.Tasks;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ProcessCancellationExtensions
 {
     
