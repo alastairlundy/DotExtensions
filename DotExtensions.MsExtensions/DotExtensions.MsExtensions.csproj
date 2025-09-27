@@ -8,20 +8,19 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.4.0</Version>
+        <Version>8.5.0</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>
-			## Changes
+        <PackageReleaseNotes>## Changes since 8.4.0
 
 			## 🚀 Features
 
-			- add IConfiguration ``ContainsKey`` extension in MsExtensions package @alastairlundy (#108)
-			- Deprecated StringSegment ``First``, ``FirstOrDefault``, ``Last``, and ``LastOrDefault`` non predicate methods - These will be moved to EnhancedLinq in DotExtensions version 9. (MsExtensions package)
-		</PackageReleaseNotes>
+### MsExtensions package
+- Add StringSegment ``IsNullOrWhiteSpace`` overload for use in nullable disabled contexts @alastairlundy (#112)
+- Re-add .NET Standard 2.0 support for DotExtensions.MsExtensions @alastairlundy (#111)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
