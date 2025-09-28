@@ -22,11 +22,15 @@
        SOFTWARE.
    */
 
+#if NET8_0_OR_GREATER
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+#endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
+
+#if NET8_0_OR_GREATER
 
 /// <summary>
 /// 
@@ -44,7 +48,9 @@ public static class IncrementedNumberRange
     public static bool IsIncrementedNumberRange<TNumber>(this IList<TNumber> source,
         TNumber expectedIncrement) where TNumber : INumber<TNumber>
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
+#endif
 
         TNumber expectedNumber = source[0];
 
@@ -69,10 +75,13 @@ public static class IncrementedNumberRange
     /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
     /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
     /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-    public static bool IsIncrementedNumberRange<TNumber>(this IEnumerable<TNumber> source, TNumber expectedIncrement) where TNumber : INumber<TNumber>
+    public static bool IsIncrementedNumberRange<TNumber>(this IEnumerable<TNumber> source, 
+        TNumber expectedIncrement) where TNumber : INumber<TNumber>
     {
+#if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
-
+#endif
+        
         if (source is IList<TNumber> list)
             return IsIncrementedNumberRange(list, expectedIncrement);
         
@@ -99,3 +108,5 @@ public static class IncrementedNumberRange
         return true;
     }
 }
+
+#endif

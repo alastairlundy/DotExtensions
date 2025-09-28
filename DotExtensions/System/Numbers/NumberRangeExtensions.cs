@@ -22,7 +22,9 @@
        SOFTWARE.
    */
 
+#if NET8_0_OR_GREATER
 using System;
+#endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
@@ -31,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class NumberRangeExtensions
 {
-    
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Creates a new instance of the Range struct based on the given start value and length.
     /// </summary>
@@ -47,4 +49,5 @@ public static class NumberRangeExtensions
     /// <param name="count">The number of elements in the range.</param>
     /// <returns>A new Range instance representing the specified sequence of values.</returns>
     public static Range AsRange(this Index start, int count) => new(start, new Index(start.Value + count));
+#endif
 }

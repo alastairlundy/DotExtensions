@@ -22,7 +22,9 @@
        SOFTWARE.
    */
 
+#if NET8_0_OR_GREATER
 using System.Numerics;
+#endif
 
 // ReSharper disable ConvertClosureToMethodGroup
 
@@ -59,7 +61,7 @@ public static class CountDigitsExtensions
 
         return digits;
     }
-    
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Counts the number of digits in the numerical value.
     /// </summary>
@@ -82,4 +84,5 @@ public static class CountDigitsExtensions
 
         return digits;
     }
+#endif
 }
