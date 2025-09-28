@@ -81,6 +81,9 @@ public static class SegmentRemoveAndReplaceExtensions
         
         if(startIndex + length > segment.Length || length < 0 || length > segment.Length)
             throw new ArgumentOutOfRangeException();
+
+        if (startIndex + length == segment.Length - 1)
+            return Remove(segment, startIndex);
         
         int firstSegmentEnd = startIndex - 1;
         
