@@ -40,6 +40,7 @@ public static class MemoryElementAtExtensions
     /// <typeparam name="T">The type of items stored in the Memory.</typeparam>
     /// <returns>A new source <see cref="Memory{T}"/> containing a single element starting at the specified index in the Memory.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the source <see cref="Memory{T}"/> has no elements or the index is out of range.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static T ElementAt<T>(this Memory<T> source, int index)
     {
         if (source.Length == 0)
