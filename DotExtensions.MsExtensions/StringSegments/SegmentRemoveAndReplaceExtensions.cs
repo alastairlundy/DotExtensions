@@ -62,12 +62,12 @@ public static class SegmentRemoveAndReplaceExtensions
     /// </summary>
     /// <param name="segment">The segment to remove characters from.</param>
     /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
-    /// <param name="count">The number of characters to remove from the StringSegment if </param>
+    /// <param name="count">The number of characters to remove from the StringSegment from the start index.</param>
     /// <returns>A <see cref="StringSegment"/> where the characters occurring within the <paramref name="count"/> number of characters after the specified index are removed.</returns>
     /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
     /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
     /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the length is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
     public static StringSegment Remove(this StringSegment segment, int startIndex, int count)
     {
         if (segment.IsNullOrWhiteSpace())
