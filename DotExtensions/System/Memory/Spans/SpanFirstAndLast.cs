@@ -74,7 +74,11 @@ public static class SpanFirstAndLast
             throw new InvalidOperationException(Resources.
                 Exceptions_Enumerables_InvalidOperation_EmptySequence);
 
+#if NET8_0_OR_GREATER
         return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
 
     /// <summary>
@@ -90,6 +94,10 @@ public static class SpanFirstAndLast
         if (target.IsEmpty)
             return default;
         
+#if NET8_0_OR_GREATER
         return target[^1];
+#else
+        return target[target.Length - 1];
+#endif
     }
 }

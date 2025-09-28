@@ -65,6 +65,10 @@ public static class MemoryElementAtExtensions
         if (source.Length == 0)
             throw new ArgumentOutOfRangeException(nameof(index));
 
+#if NET8_0_OR_GREATER
         return source[new Range(index, index + count)];
+#else
+        return source.Slice(index, index + count);
+#endif
     }
 }

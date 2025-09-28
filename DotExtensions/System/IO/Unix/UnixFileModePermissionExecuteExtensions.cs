@@ -31,6 +31,7 @@ namespace AlastairLundy.DotExtensions.IO.Unix;
 /// </summary>
 public static class UnixFileModePermissionExecuteExtensions
 {
+    #if NET8_0_OR_GREATER
 
     /// <summary>
     /// Determines whether the specified Unix file mode has execute permission.
@@ -43,4 +44,5 @@ public static class UnixFileModePermissionExecuteExtensions
                mode.HasFlag(UnixFileMode.GroupExecute) ||
                mode.HasFlag(UnixFileMode.OtherExecute);
     }
+    #endif
 }

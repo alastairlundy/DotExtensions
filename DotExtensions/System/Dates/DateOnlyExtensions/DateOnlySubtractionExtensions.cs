@@ -25,6 +25,8 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+#if NET8_0_OR_GREATER
+
 /// <summary>
 /// 
 /// </summary>
@@ -67,3 +69,5 @@ public static class DateOnlySubtractionExtensions
         return DateOnly.FromDateTime(result);
     } 
 }
+
+#endif
