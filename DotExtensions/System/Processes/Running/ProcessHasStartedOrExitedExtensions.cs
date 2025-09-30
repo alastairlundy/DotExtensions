@@ -75,11 +75,6 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("android")]
     public static bool HasExited(this Process process)
     {
-        if (process.IsRunningOnRemoteDevice())
-        {
-            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
-        }
-
         try
         {
             return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
