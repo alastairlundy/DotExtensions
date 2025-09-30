@@ -40,8 +40,6 @@ public static class ProcessDisposalExtensions
     {
         try
         {
-            process.Refresh();
-
             return string.IsNullOrEmpty(process.Id.ToString());
         }
         catch
