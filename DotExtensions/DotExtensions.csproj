@@ -13,13 +13,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
         <PackageReleaseNotes>## Changes
-
-			## 🚀 Features
-- Add Process ``RequestCancellationAsync`` Cancellation extension method @alastairlundy (#110)
-- Add Process ``IsRunningOnRemoteDevice`` extension method
-- Add Process ``IsDisposed`` extension method
-- Deprecate Process Name Sanitization extension methods for removal in v9
-- Add Process ``WaitForExitOrTimeoutAsync`` that supports cancellation after a timeout period is reached.</PackageReleaseNotes>
+* Fixed an issue where an infinite loop would be caused
+* Fixed an issue with Process disposal detection</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -28,7 +23,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.5.0</Version>
+        <Version>8.5.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
