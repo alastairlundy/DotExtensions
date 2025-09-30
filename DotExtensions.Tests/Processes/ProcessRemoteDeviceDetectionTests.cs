@@ -24,17 +24,17 @@ public class ProcessRemoteDeviceDetectionTests
         {
             filePath = TargetFilePaths.CmdFilePath;
         }
-        else if(OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD())
+        else if(OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsAndroid())
         {
             filePath = TargetFilePaths.LinuxEchoFilePath;
         }
         else if (OperatingSystem.IsMacOS())
         {
-            
+            filePath = "echo";
         }
         else
         {
-            
+            throw new PlatformNotSupportedException();
         }
             //Act 
         ProcessStartInfo startInfo = new ProcessStartInfo
