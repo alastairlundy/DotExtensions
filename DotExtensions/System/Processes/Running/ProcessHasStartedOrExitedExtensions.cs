@@ -46,6 +46,7 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool HasStarted(this Process process)
     {
         try

@@ -52,6 +52,7 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static async Task RequestCancellationAsync(this Process process)
         => await WaitForExitOrTimeoutAsync(process, TimeSpan.Zero);
     
@@ -70,6 +71,7 @@ public static class ProcessCancellationExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static async Task WaitForExitOrTimeoutAsync(this Process process,TimeSpan timeoutThreshold)
     {
         if (timeoutThreshold < TimeSpan.Zero)
