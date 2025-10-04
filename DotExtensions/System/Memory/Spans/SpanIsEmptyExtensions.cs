@@ -29,20 +29,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 public static class SpanIsEmptyExtensions
 {
-    /// <summary>
-    /// Determines if a span is empty.
-    /// </summary>
-    /// <param name="source">The span to search.</param>
-    /// <typeparam name="T">The type of elements in the Span.</typeparam>
-    /// <returns>True if the span is empty, false otherwise.</returns>
-    public static bool IsEmpty<T>(this Span<T> source)
-    {
-        if(source.Length == 0 || source == Span<T>.Empty)
-            return true;
-        
-        return false;
-    }
-
+    
     /// <summary>
     /// Determines if a span is empty or whitespace.
     /// </summary>
@@ -50,7 +37,7 @@ public static class SpanIsEmptyExtensions
     /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
     public static bool IsEmptyOrWhiteSpace(this Span<char> source)
     {
-        if(IsEmpty(source))
+        if(source.IsEmpty)
             return true;
         
         bool[] isWhiteSpace = new bool[source.Length];
