@@ -35,6 +35,7 @@ public static class SpanIsEmptyExtensions
     /// <param name="source">The span to search.</param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     /// <returns>True if the span is empty, false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsEmpty<T>(this Span<T> source)
     {
         if(source.Length == 0 || source == Span<T>.Empty)
@@ -50,7 +51,7 @@ public static class SpanIsEmptyExtensions
     /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
     public static bool IsEmptyOrWhiteSpace(this Span<char> source)
     {
-        if(IsEmpty(source))
+        if(source.IsEmpty)
             return true;
         
         bool[] isWhiteSpace = new bool[source.Length];
