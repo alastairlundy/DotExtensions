@@ -37,6 +37,6 @@ public static class FormattableToStringExtensions
     /// </summary>
     /// <param name="formattable">The IFormattable to be converted to a string.</param>
     /// <returns>The newly created string.</returns>
-    public static string? ToString(this IFormattable formattable) 
-        => (string?)CultureInfo.CurrentCulture.GetFormat(formattable.GetType());
+    public static string ToString(this IFormattable formattable) 
+        => formattable.ToString(null, CultureInfo.CurrentCulture);
 }
