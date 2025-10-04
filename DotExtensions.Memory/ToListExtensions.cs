@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// <summary>
 /// 
 /// </summary>
-public static class SpanToListExtensions
+public static class ToListExtensions
 {
     /// <summary>
     /// Converts a <see cref="Span{T}"/> to a <see cref="List{T}"/>.
@@ -43,6 +43,16 @@ public static class SpanToListExtensions
         List<T> list = new List<T>();
         
         foreach (T item in source)
+        {
+            list.Add(item);
+        }
+        
+        return list;
+    }
+
+        List<T> list = new List<T>();
+        
+        foreach (T item in source.Span)
         {
             list.Add(item);
         }
