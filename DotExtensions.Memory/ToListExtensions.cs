@@ -50,6 +50,23 @@ public static class ToListExtensions
         return list;
     }
 
+    /// <summary>
+    /// Converts a <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
+    /// </summary>
+    /// <param name="source">The span to convert.</param>
+    /// <typeparam name="T">The type of elements in the Span.</typeparam>
+    /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
+    public static Memory<T> ToMemory<T>(this Span<T> source) 
+        => new(source.ToArray());
+
+    /// <summary>
+    /// Converts a <see cref="Memory{T}"/> to a <see cref="List{T}"/>
+    /// </summary>
+    /// <param name="source">The memory to convert.</param>
+    /// <typeparam name="T">The type of elements in the Memory.</typeparam>
+    /// <returns>A list containing the elements of the Memory.</returns>
+    public static List<T> ToList<T>(this Memory<T> source)
+    {
         List<T> list = new List<T>();
         
         foreach (T item in source.Span)
