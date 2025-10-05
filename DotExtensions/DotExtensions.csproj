@@ -12,14 +12,17 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
+        <PackageReleaseNotes>## Changes since 8.5.x
 
-			## 🚀 Features
-- Add Process ``RequestCancellationAsync`` Cancellation extension method @alastairlundy (#110)
-- Add Process ``IsRunningOnRemoteDevice`` extension method
-- Add Process ``IsDisposed`` extension method
-- Deprecate Process Name Sanitization extension methods for removal in v9
-- Add Process ``WaitForExitOrTimeoutAsync`` that supports cancellation after a timeout period is reached.</PackageReleaseNotes>
+### Main package
+* Re-added limited .NET Standard 2.0 support - DateOnly, TimeOnly, UnixFileMode, and System.Numerics based extension methods are not supported on .NET Standard 2.0
+* Deprecated Process ``IsRunningOnRemoteDevice`` extension method - This is being replaced with the ``IsProcessOnRemoteDevice`` extension method
+* Deprecated Process ``RequestCancellationAsync`` and ``WaitForExitOrTimeoutAsync`` extension methods
+* Updated Process ``HasStarted`` and ``HasExited`` extension methods to throw an NotSupportedException if the Process is run on a remote device/machine.
+* Reworked IFormattable ``ToString`` extension method overload
+
+## Notes
+* 8.7 is currently intended as the final minor update (in Major.Minor.Build format) for version 8</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -28,7 +31,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.5.0</Version>
+        <Version>8.6.0</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
