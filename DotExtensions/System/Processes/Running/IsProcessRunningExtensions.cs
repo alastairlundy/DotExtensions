@@ -63,18 +63,31 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsRunningOnRemoteDevice(this Process process)
+        => IsProcessOnRemoteDevice(process);
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+    [SupportedOSPlatform("macos")]
+    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform("linux")]
+    [SupportedOSPlatform("freebsd")]
+    [SupportedOSPlatform("android")]
+    public static bool IsProcessOnRemoteDevice(this Process process)
     {
-        if (process.IsRunning() == false)
-            return false;
-
-        if (process.IsDisposed() == false)
-        {
-            return Process.GetProcesses().All(x => x.Id != process.Id) && 
-                   process.MachineName.Equals(Environment.MachineName) == false;
-        }
+        if (process.IsDisposed() != false) 
+            throw new NotSupportedException("Process is running on remote device");
         
-        throw new InvalidOperationException();
+        return Process.GetProcesses().All(x => x.Id != process.Id) && 
+               process.MachineName.Equals(Environment.MachineName) == false;
     }
     
     /// <summary>
@@ -100,7 +113,6 @@ public static class IsProcessRunningExtensions
             processes = Process.GetProcesses().Select(x => x.ProcessName);
         }
             
-        return processes.Where(x => x.Contains(tempProcessName))
-            .Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
+        return processes.Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
     }
 }
