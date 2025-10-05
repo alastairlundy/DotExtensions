@@ -46,9 +46,11 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool HasStarted(this Process process)
     {
+        if (process.IsProcessOnRemoteDevice())
+            throw new NotSupportedException("Process is running on remote device");
+        
         try
         {
             return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
@@ -76,6 +78,9 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("android")]
     public static bool HasExited(this Process process)
     {
+        if (process.IsProcessOnRemoteDevice())
+            throw new NotSupportedException("Process is running on remote device");
+
         try
         {
             return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
