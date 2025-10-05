@@ -68,11 +68,11 @@ public static class IsProcessRunningExtensions
         => IsProcessOnRemoteDevice(process);
     
     /// <summary>
-    /// 
+    /// Determines whether a process exists on a remote device or locally.
     /// </summary>
     /// <param name="process"></param>
-    /// <returns></returns>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <returns>True if the process exists on a remote device, false if it exists locally.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the process has been disposed of.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
     [SupportedOSPlatform("maccatalyst")]
