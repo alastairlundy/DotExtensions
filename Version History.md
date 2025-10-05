@@ -4,6 +4,11 @@
 
 ### Version 8.x
 
+### 8.6
+| Version | Release Date | Notes | 
+|-|-|-|
+| 8.6.0 | October 5th 2025 |  |
+
 ### 8.5
 | Version | Release Date | Notes | 
 |-|-|-|
