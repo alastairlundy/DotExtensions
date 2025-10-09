@@ -8,16 +8,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.6.0</Version>
+        <Version>8.6.1</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 8.5.x
-
-### MsExtensions package
-* Added StringSegment ``Remove(int startIndex)`` and ``Remove(int startIndex, int count)`` extensions</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.0
+* Fixed a potential issue with incorrect Localization Resource embeddings in DotExtensions Nuget package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
