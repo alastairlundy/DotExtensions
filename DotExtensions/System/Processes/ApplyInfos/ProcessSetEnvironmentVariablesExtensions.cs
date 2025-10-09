@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -36,7 +35,6 @@ public static class ProcessSetEnvironmentVariablesExtensions
     /// </summary>
     /// <param name="processStartInfo">The ProcessStartInfo object to set environment variables for.</param>
     /// <param name="environmentVariables">A dictionary of environment variable names and their corresponding values.</param>
-    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static void SetEnvironmentVariables(this ProcessStartInfo processStartInfo,
         IDictionary<string, string> environmentVariables)
     {

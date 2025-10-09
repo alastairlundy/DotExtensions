@@ -23,10 +23,7 @@
    */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.Versioning;
 
 namespace AlastairLundy.DotExtensions.Processes;
@@ -48,12 +45,12 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("android")]
     public static bool IsRunning(this Process process) => 
         process.HasStarted() && process.HasExited() == false;
-
+    
     /// <summary>
-    /// Detects whether a process is running on a remote device.
+    /// Determines whether a process exists on a remote device or locally.
     /// </summary>
     /// <param name="process"></param>
-    /// <returns>True if the process is running on a remote device, false otherwise.</returns>
+    /// <returns>True if the process exists on a remote device, false if it exists locally.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the process has been disposed of.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
@@ -63,44 +60,23 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
-    public static bool IsRunningOnRemoteDevice(this Process process)
+    public static bool IsProcessOnRemoteDevice(this Process process)
     {
-        if (process.IsRunning() == false)
-            return false;
+        if (process.IsDisposed())
+            throw new InvalidOperationException();
 
-        if (process.IsDisposed() == false)
+        try
         {
-            return Process.GetProcesses().All(x => x.Id != process.Id) && 
-                   process.MachineName.Equals(Environment.MachineName) == false;
-        }
-        
-        throw new InvalidOperationException();
-    }
-    
-    /// <summary>
-    /// Check to see if a specified process is running or not.
-    /// </summary>
-    /// <param name="processName">The name of the process to be checked.</param>
-    /// <param name="sanitizeProcessName"></param>
-    /// <returns>true if the specified process is running; returns false otherwise.</returns>
-    [Obsolete(DeprecationMessages.DeprecationV9)]
-    public static bool IsProcessRunning(this string processName, bool sanitizeProcessName = true)
-    {
-        IEnumerable<string> processes;
+            bool hasExited = process.HasExited;
 
-        string tempProcessName = processName;
+            if (hasExited)
+                return false;
             
-        if (sanitizeProcessName)
-        {
-            tempProcessName = Path.GetFileNameWithoutExtension(processName);
-            processes = Process.GetProcesses().SanitizeProcessNames(excludeFileExtensions: true);
+            return hasExited;
         }
-        else
+        catch (NotSupportedException exception)
         {
-            processes = Process.GetProcesses().Select(x => x.ProcessName);
+            return true;
         }
-            
-        return processes.Where(x => x.Contains(tempProcessName))
-            .Any(x => x.ToLower().Equals(tempProcessName.ToLower()));
     }
 }

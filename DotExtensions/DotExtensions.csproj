@@ -6,20 +6,14 @@
         <Nullable>enable</Nullable>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <TargetFrameworks>net8.0;net9.0;netstandard2.0;</TargetFrameworks>
-        <Title>AlastairLundy.DotExtensions</Title>
+        <Title>DotExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes
-
-			## 🚀 Features
-- Add Process ``RequestCancellationAsync`` Cancellation extension method @alastairlundy (#110)
-- Add Process ``IsRunningOnRemoteDevice`` extension method
-- Add Process ``IsDisposed`` extension method
-- Deprecate Process Name Sanitization extension methods for removal in v9
-- Add Process ``WaitForExitOrTimeoutAsync`` that supports cancellation after a timeout period is reached.</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.0
+* Fixed a potential issue with incorrect Localization Resource embeddings in DotExtensions Nuget package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -28,20 +22,15 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.5.0</Version>
+        <Version>8.6.1</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
     </PropertyGroup>
     
-
     
     <ItemGroup>
-      <Compile Update="Localizations\Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-      </Compile>
-      <Compile Update="Localizations\Resources.Designer.cs">
+      <Compile Update="Internal\Localizations\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
@@ -49,10 +38,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Localizations\Resources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
       <EmbeddedResource Update="Internal\Localizations\Resources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
