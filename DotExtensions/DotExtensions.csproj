@@ -37,14 +37,9 @@
         <PackageId>AlastairLundy.DotExtensions</PackageId>
     </PropertyGroup>
     
-
     
     <ItemGroup>
-      <Compile Update="Localizations\Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-      </Compile>
-      <Compile Update="Localizations\Resources.Designer.cs">
+      <Compile Update="Internal\Localizations\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
@@ -52,10 +47,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Localizations\Resources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
       <EmbeddedResource Update="Internal\Localizations\Resources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
