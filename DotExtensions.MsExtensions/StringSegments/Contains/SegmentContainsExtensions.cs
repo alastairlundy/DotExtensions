@@ -71,7 +71,7 @@ public static class SegmentContainsExtensions
 
         while (index != -1)
         { 
-            index = source.IndexOf(segment.First(), start + 1);
+            index = source.IndexOf(segment[0], start + 1);
             start = index;
 
             if (index != -1)

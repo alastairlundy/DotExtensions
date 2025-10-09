@@ -4,9 +4,16 @@
 
 ### Version 8.x
 
+### 8.6
+| Version | Release Date | Notes | 
+|-|-|-|
+| 8.6.1 | October 9th 2025 |  |
+| 8.6.0 | October 5th 2025 |  |
+
 ### 8.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 8.5.1 | September 30th 2025 | Main package only |
 | 8.5.0 | September 27th 2025 | |
 
 ### 8.4

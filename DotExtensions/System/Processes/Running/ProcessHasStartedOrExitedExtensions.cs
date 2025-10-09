@@ -49,7 +49,7 @@ public static class ProcessHasStartedOrExitedExtensions
     public static bool HasStarted(this Process process)
     {
         if (process.IsProcessOnRemoteDevice())
-            throw new NotSupportedException("Process is running on remote device");
+            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
         
         try
         {
@@ -79,7 +79,7 @@ public static class ProcessHasStartedOrExitedExtensions
     public static bool HasExited(this Process process)
     {
         if (process.IsProcessOnRemoteDevice())
-            throw new NotSupportedException("Process is running on remote device");
+            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
 
         try
         {

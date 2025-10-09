@@ -54,7 +54,7 @@ public class ProcessRemoteDeviceDetectionTests
        
         process.Start();
         
-        bool actual = process.IsRunningOnRemoteDevice();
+        bool actual = process.IsProcessOnRemoteDevice();
         
         await process.WaitForExitAsync(TestContext.Current.CancellationToken);
         

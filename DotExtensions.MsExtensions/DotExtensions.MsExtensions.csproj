@@ -8,19 +8,14 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.5.0</Version>
+        <Version>8.6.1</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 8.4.0
-
-			## 🚀 Features
-
-### MsExtensions package
-- Add StringSegment ``IsNullOrWhiteSpace`` overload for use in nullable disabled contexts @alastairlundy (#112)
-- Re-add .NET Standard 2.0 support for DotExtensions.MsExtensions @alastairlundy (#111)</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.0
+* Fixed a potential issue with incorrect Localization Resource embeddings in DotExtensions Nuget package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -47,7 +42,7 @@
 
 
     <ItemGroup>
-      <EmbeddedResource Update="Localizations\Resources.resx">
+      <EmbeddedResource Update="Internal\Localizations\Resources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
@@ -55,7 +50,7 @@
 
 
     <ItemGroup>
-      <Compile Update="Localizations\Resources.Designer.cs">
+      <Compile Update="Internal\Localizations\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
