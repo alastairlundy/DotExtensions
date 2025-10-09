@@ -72,7 +72,7 @@ public static class IsProcessRunningExtensions
 
         try
         {
-            var hasExited = process.HasExited;
+            bool hasExited = process.HasExited;
 
             if (hasExited)
                 return false;
