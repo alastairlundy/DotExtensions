@@ -33,24 +33,6 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 public static class SegmentToCharsExtensions
 {
     /// <summary>
-    /// Enumerates the specified StringSegment.
-    /// </summary>
-    /// <param name="segment">The string segment to enumerate.</param>
-    /// <returns>The <see cref="IEnumerable{T}"/> of chars from the <see cref="StringSegment"/>.</returns>
-    /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
-    [Obsolete(DeprecationMessages.DeprecationV9)]
-    public static IEnumerable<char> AsEnumerable(this StringSegment segment)
-    {
-        if (StringSegment.IsNullOrEmpty(segment))
-            throw new ArgumentException(Resources.Exceptions_Arguments_Segment_Empty);
-        
-        for (int i = 0; i < segment.Length; i++)
-        {
-            yield return segment[i];
-        }
-    }
-    
-    /// <summary>
     /// Returns the <see cref="StringSegment"/> as a Char Array.
     /// </summary>
     /// <param name="segment">The string segment to enumerate.</param>
