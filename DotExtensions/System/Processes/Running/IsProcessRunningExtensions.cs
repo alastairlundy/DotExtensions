@@ -83,8 +83,8 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("android")]
     public static bool IsProcessOnRemoteDevice(this Process process)
     {
-        if (process.IsDisposed() != false) 
-            throw new NotSupportedException("Process is running on remote device");
+        if (process.IsDisposed())
+            throw new InvalidOperationException();
         
         try
         {
