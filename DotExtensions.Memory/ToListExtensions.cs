@@ -25,7 +25,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>
 /// 
