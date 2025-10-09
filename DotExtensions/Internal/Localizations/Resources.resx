@@ -18,12 +18,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Processes.Exceptions.IncorrectProcessName" xml:space="preserve">
-        <value>Process {x} could not be found but a similarly named process {y} was found.</value>
-    </data>
-    <data name="Processes.Exceptions.ProcessNotRunning" xml:space="preserve">
-        <value>Process {x} is not currently running. Please try again later.</value>
-    </data>
     <data name="Exceptions.ValueNotFound" xml:space="preserve">
         <value>Value {x} Not Found within Key Value Pair</value>
     </data>
@@ -44,9 +38,6 @@
     </data>
     <data name="Exceptions.Count.LessThanZero" xml:space="preserve">
         <value>Count cannot be 0 or less. Provided count was {x}.</value>
-    </data>
-    <data name="Exceptions.Processes.NotSupportedOnRemoteProcess" xml:space="preserve">
-        <value>This feature or functionality is not supported on remote Processes (e.g. Processes not running on this machine).</value>
     </data>
     <data name="Exceptions.Span.Request.CountTooLarge" xml:space="preserve">
         <value>Cannot request more elements than the target span contains.</value>

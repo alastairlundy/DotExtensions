@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>AlastairLundy.DotExtensions.Memory</AssemblyName>
+        <RootNamespace>AlastairLundy.DotExtensions.Memory</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>AlastairLundy.DotExtensions.Memory</PackageId>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <IncludeSymbols>true</IncludeSymbols>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Version>8.6.0</Version>
+        <Title>DotExtensions.Memory</Title>
+        <Authors>Alastair Lundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/dotextensions</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release as separate package</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+        <PackageReference Include="System.Memory" Version="4.6.3"/>
+    </ItemGroup>
+</Project>
