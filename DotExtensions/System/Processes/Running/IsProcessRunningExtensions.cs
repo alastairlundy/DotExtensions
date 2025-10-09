@@ -65,16 +65,24 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("android")]
     public static bool IsRunningOnRemoteDevice(this Process process)
     {
-        if (process.IsRunning() == false)
-            return false;
-
         if (process.IsDisposed())
         {
             throw new InvalidOperationException();
         }
-        
-        return Process.GetProcesses().All(x => x.Id != process.Id) && 
-               process.MachineName.Equals(Environment.MachineName) == false;
+
+        try
+        {
+            var hasExited = process.HasExited;
+
+            if (hasExited)
+                return false;
+            else
+                return false;
+        }
+        catch (NotSupportedException exception)
+        {
+            return true;
+        }
     }
     
     /// <summary>
