@@ -85,7 +85,7 @@ public static class IsProcessRunningExtensions
     {
         if (process.IsDisposed())
             throw new InvalidOperationException();
-        
+
         try
         {
             bool hasExited = process.HasExited;
