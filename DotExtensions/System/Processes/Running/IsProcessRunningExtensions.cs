@@ -86,8 +86,19 @@ public static class IsProcessRunningExtensions
         if (process.IsDisposed() != false) 
             throw new NotSupportedException("Process is running on remote device");
         
-        return Process.GetProcesses().All(x => x.Id != process.Id) && 
-               process.MachineName.Equals(Environment.MachineName) == false;
+        try
+        {
+            bool hasExited = process.HasExited;
+
+            if (hasExited)
+                return false;
+            else
+                return false;
+        }
+        catch (NotSupportedException exception)
+        {
+            return true;
+        }
     }
     
     /// <summary>
