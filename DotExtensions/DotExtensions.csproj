@@ -12,8 +12,8 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 8.6.0
-* Fixed a potential issue with incorrect Localization Resource embeddings in DotExtensions Nuget package</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.1
+* Fixed an issue with the ``IsProcessOnRemoteDevice`` method returning false positives</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -22,7 +22,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.6.1</Version>
+        <Version>8.6.2</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
