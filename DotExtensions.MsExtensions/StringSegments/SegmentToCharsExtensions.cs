@@ -25,8 +25,7 @@
 using System;
 using System.Collections.Generic;
 using AlastairLundy.DotExtensions.MsExtensions.Internal;
-using AlastairLundy.DotExtensions.MsExtensions.Localizations;
-
+using AlastairLundy.DotExtensions.MsExtensions.Internal.Localizations;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
