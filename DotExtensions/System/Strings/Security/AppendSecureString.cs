@@ -71,14 +71,38 @@ public static class AppendSecureStringExtensions
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     /// <param name="chars"></param>
     /// <exception cref="InvalidOperationException"></exception>
-    public static void SetChars(this SecureString secureString, params IEnumerable<char> chars)
+    public static void SetChars(this SecureString secureString, params ICollection<char> chars)
     {
-        if (secureString.IsReadOnly())
+        if (secureString.IsReadOnly() && chars.Count > secureString.Length)
             throw new InvalidOperationException();
+
+        if (secureString.IsReadOnly() && chars.Count == secureString.Length)
+        {
+            int i = 0;
+            foreach(char c in chars)
+            {
+                secureString.SetAt(i, c);
+                i++;
+            }
+        }
+        else if (secureString.IsReadOnly())
+        {
+            secureString.Clear();
+            secureString = new SecureString();
+            secureString.AppendChars(chars);
+            secureString.MakeReadOnly();
+        }
+        else
+        {
+            secureString.Clear();
         
-        secureString.Clear();
+            secureString.AppendChars(chars);
+        }
         
-        AppendChars(secureString, chars);
+        foreach (char c in chars)
+        {
+            secureString.AppendChar(c);
+        } 
     }
 
     /// <summary>
@@ -89,11 +113,28 @@ public static class AppendSecureStringExtensions
     /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read only and the new value is greater than the length of this <see cref="SecureString"/>.</exception>
     public static void SetString(this SecureString secureString, string value)
     {
-        if (secureString.IsReadOnly())
+        if (secureString.IsReadOnly() && value.Length > secureString.Length)
             throw new InvalidOperationException();
+
+        if (secureString.IsReadOnly() && value.Length == secureString.Length)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                secureString.SetAt(i, value[i]);
+            }
+        }
+        else if (secureString.IsReadOnly())
+        {
+            secureString.Clear();
+            secureString = new SecureString();
+            secureString.AppendString(value);
+            secureString.MakeReadOnly();
+        }
+        else
+        {
+            secureString.Clear();
         
-        secureString.Clear();
-        
-        AppendString(secureString, value);
+            secureString.AppendString(value);
+        }
     }
 }
