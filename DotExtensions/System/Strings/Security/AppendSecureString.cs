@@ -45,7 +45,7 @@ public static class AppendSecureStringExtensions
         foreach (char c in value)
         {
             secureString.AppendChar(c);
-        } 
+        }
     }
     
     /// <summary>
@@ -66,11 +66,11 @@ public static class AppendSecureStringExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets this <see cref="SecureString"/> to the specified characters.
     /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
-    /// <param name="chars"></param>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <param name="chars">The characters to set to this <see cref="SecureString"/>.</param>
+    /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read only and the number of characters to set is greater than the length of this <see cref="SecureString"/>.</exception>
     public static void SetChars(this SecureString secureString, params ICollection<char> chars)
     {
         if (secureString.IsReadOnly() && chars.Count > secureString.Length)
