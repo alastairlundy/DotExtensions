@@ -32,11 +32,11 @@ namespace AlastairLundy.DotExtensions.Strings.Security;
 public static class AppendSecureStringExtensions
 {
     /// <summary>
-    /// 
+    /// Appends a string to this <see cref="SecureString"/>.
     /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to append a value to.</param>
-    /// <param name="value"></param>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <param name="value">The string to append to this <see cref="SecureString"/>.</param>
+    /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read only.</exception>
     public static void AppendString(this SecureString secureString, string value)
     {
         if (secureString.IsReadOnly())
@@ -49,11 +49,11 @@ public static class AppendSecureStringExtensions
     }
     
     /// <summary>
-    /// 
+    /// Appends a sequence of characters to this <see cref="SecureString"/>.
     /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to append chars to.</param>
-    /// <param name="chars"></param>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <param name="chars">The sequence of characters to append to this <see cref="SecureString"/>.</param>
+    /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read only.</exception>
     public static void AppendChars(this SecureString secureString, params IEnumerable<char> chars)
     {
         if (secureString.IsReadOnly())
