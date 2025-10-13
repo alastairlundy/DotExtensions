@@ -34,8 +34,9 @@ public static class AppendSecureStringExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="secureString"></param>
+    /// <param name="secureString">The <see cref="SecureString"/> to append a value to.</param>
     /// <param name="value"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     public static void AppendString(this SecureString secureString, string value)
     {
         if (secureString.IsReadOnly())
@@ -50,8 +51,9 @@ public static class AppendSecureStringExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="secureString"></param>
+    /// <param name="secureString">The <see cref="SecureString"/> to append chars to.</param>
     /// <param name="chars"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     public static void AppendChars(this SecureString secureString, params IEnumerable<char> chars)
     {
         if (secureString.IsReadOnly())
@@ -66,7 +68,7 @@ public static class AppendSecureStringExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="secureString"></param>
+    /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     /// <param name="chars"></param>
     /// <exception cref="InvalidOperationException"></exception>
     public static void SetChars(this SecureString secureString, params IEnumerable<char> chars)
@@ -80,11 +82,11 @@ public static class AppendSecureStringExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets this <see cref="SecureString"/> to the specified value.
     /// </summary>
-    /// <param name="secureString"></param>
-    /// <param name="value"></param>
-    /// <exception cref="InvalidOperationException"></exception>
+    /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
+    /// <param name="value">The value to set to the <see cref="SecureString"/>.</param>
+    /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read only and the new value is greater than the length of this <see cref="SecureString"/>.</exception>
     public static void SetString(this SecureString secureString, string value)
     {
         if (secureString.IsReadOnly())
