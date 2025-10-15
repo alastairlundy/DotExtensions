@@ -22,6 +22,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>Initial Release as separate package</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
