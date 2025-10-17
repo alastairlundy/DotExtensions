@@ -85,7 +85,7 @@ To manually build for release, enter ``dotnet build -c Release`` for a release w
 Builds should generally always include SourceLink and symbol packages if intended for wider distribution.
 
 ## How to Contribute
-Thank you in advance for considering contributing to DotExtensions .
+Thank you in advance for considering contributing to DotExtensions.
 
 Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/DotExtensions/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
@@ -99,7 +99,7 @@ DotExtensions aims to make working with different types in the System namespace 
 
 All stable releases must be stable and should not contain regressions.
 
-Future updates should aim focus on one or more of the following:
+Future updates should aim to focus on one or more of the following:
 * Adding extension methods that improve ease of use
 * Enhancing existing extension methods
 
