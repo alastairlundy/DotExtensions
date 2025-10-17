@@ -31,6 +31,7 @@ DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code 
 
 ### Compatibility
 DotExtensions supports:
+* .NET Standard 2.0 (Limited Support)
 * .NET 8
 * .NET 9
 
