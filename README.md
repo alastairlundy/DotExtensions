@@ -1,7 +1,11 @@
 # DotExtensions
 An extension method library that enhances the experience of using .NET's types with useful features.
 
-[DotExtensions](https://www.nuget.org/packages/AlastairLundy.DotExtensions/) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
+[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
+[![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
+[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
+![License](https://img.shields.io/github/license/alastairlundy/DotExtensions)
+
 
 ## Table of Contents
 * [Features](#features)
