@@ -14,8 +14,10 @@
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 8.6.2
-* Removed deprecated code marked for removal in v9</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 8.6.1
+Update to Microsoft.Extensions.Primitives to 9.0.10
+Update to Microsoft.Extensions.Configuration.Abstractions 9.0.10
+Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>

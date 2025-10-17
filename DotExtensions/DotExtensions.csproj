@@ -12,11 +12,12 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 8.6.2
-* Add Dictionary TryAddRange extension methods
-* Removed code deprecated for removal in v9
-* Moved Memory and Span code to DotExtensions.Memory
-* Move Process related extensions to CliInvoke @alastairlundy (#116)</PackageReleaseNotes>
+        <PackageReleaseNotes>Main package
+
+    Add SecureString AppendString, AppendChars, SetString and SetChars extension methods @alastairlundy (#118)
+    Move Span and Memory related code to new DotExtensions.Memory package @alastairlundy (#117)
+    Move Process related extensions to CliInvoke @alastairlundy (#116)
+    Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
