@@ -2,6 +2,12 @@
 
 ## As DotExtensions
 
+### Version 9.x
+### 9.0
+| Version | Release Date | Notes | 
+|-|-|-|
+| 9.0.0 Preview 1 | October 17th 2025 | |
+
 ### Version 8.x
 
 ### 8.6
