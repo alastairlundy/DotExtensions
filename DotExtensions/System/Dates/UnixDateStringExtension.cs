@@ -27,7 +27,8 @@ using System;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides an extension method to format a DateTime object
+/// as a Unix-compatible date string.
 /// </summary>
 public static class UnixDateStringExtension
 {

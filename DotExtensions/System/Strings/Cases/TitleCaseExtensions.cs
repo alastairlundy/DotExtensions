@@ -31,7 +31,7 @@ using System.Text;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for converting strings to title case and checking if a string is in title case.
 /// </summary>
 public static class TitleCaseExtensions
 {

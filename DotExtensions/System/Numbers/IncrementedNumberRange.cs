@@ -31,9 +31,8 @@ using System.Numerics;
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
-
 /// <summary>
-/// 
+/// Provides methods for verifying if a sequence or list of numbers follows a specific incremental pattern.
 /// </summary>
 public static class IncrementedNumberRange
 {

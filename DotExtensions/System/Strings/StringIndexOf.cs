@@ -28,7 +28,7 @@ using System.Linq;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing index-based operations on strings.
 /// </summary>
 public static class StringIndexOf
 {

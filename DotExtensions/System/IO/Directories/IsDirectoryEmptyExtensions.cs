@@ -30,7 +30,7 @@ using AlastairLundy.DotExtensions.Localizations;
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
 /// <summary>
-/// 
+/// Provides extension methods for directory operations.
 /// </summary>
 public static class IsDirectoryEmptyExtensions
 {

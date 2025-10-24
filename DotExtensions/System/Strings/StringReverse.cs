@@ -28,7 +28,7 @@ using System.Text;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides functionality for reversing the contents of a string.
 /// </summary>
 public static class StringReverse
 {

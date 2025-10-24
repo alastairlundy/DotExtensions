@@ -28,6 +28,9 @@ namespace AlastairLundy.DotExtensions.Dates;
 
 #if NET8_0_OR_GREATER
 
+/// <summary>
+/// Provides an extension method for the DateOnly struct to convert it to a DateTime object.
+/// </summary>
 public static class DateOnlyToDateTimeExtension
 {
     /// <summary>

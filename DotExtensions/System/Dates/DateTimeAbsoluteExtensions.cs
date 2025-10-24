@@ -28,7 +28,7 @@ using System;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for <see cref="DateTime"/> to compute absolute differences.
 /// </summary>
 public static class DateTimeAbsoluteExtensions
 {

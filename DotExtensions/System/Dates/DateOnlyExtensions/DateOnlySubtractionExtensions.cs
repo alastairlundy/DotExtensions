@@ -28,7 +28,7 @@ namespace AlastairLundy.DotExtensions.Dates;
 #if NET8_0_OR_GREATER
 
 /// <summary>
-/// 
+/// Provides extension methods for subtracting days, months, and years from a DateOnly object.
 /// </summary>
 public static class DateOnlySubtractionExtensions
 {

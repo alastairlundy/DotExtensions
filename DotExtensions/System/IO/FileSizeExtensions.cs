@@ -29,7 +29,7 @@ using AlastairLundy.DotExtensions.Numbers;
 namespace AlastairLundy.DotExtensions.IO;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with file sizes in a more human-readable format.
 /// </summary>
 public static class FileSizeExtensions
 {

@@ -27,7 +27,7 @@ using System.IO;
 namespace AlastairLundy.DotExtensions.IO.Unix;
 
 /// <summary>
-/// 
+/// Provides extension methods related to Unix file mode permission checks for execute permissions.
 /// </summary>
 public static class UnixFileModePermissionExecuteExtensions
 {

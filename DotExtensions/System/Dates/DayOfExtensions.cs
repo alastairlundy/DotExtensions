@@ -27,6 +27,9 @@ using System.Globalization;
 
 namespace AlastairLundy.DotExtensions.Dates;
 
+/// <summary>
+/// Provides extension methods for working with day-related functionality for <see cref="DateTime"/> instances.
+/// </summary>
 public static class DayOfExtensions
 {
         

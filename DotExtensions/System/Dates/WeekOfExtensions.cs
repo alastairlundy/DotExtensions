@@ -28,7 +28,7 @@ using System.Globalization;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for calculating week information from a given DateTime object.
 /// </summary>
 public static class WeekOfExtensions
 {

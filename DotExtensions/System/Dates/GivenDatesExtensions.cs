@@ -27,7 +27,7 @@ using System;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for DateTime objects with specific formatting utilities.
 /// </summary>
 public static class GivenDateExtensions
 {

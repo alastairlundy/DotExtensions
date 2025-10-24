@@ -29,7 +29,7 @@ using System.Text;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for inserting characters or a range of characters into a string at a specified position.
 /// </summary>
 public static class StringInsertExtensions
 {
