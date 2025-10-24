@@ -33,10 +33,6 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// <summary>
 /// 
 /// </summary>
-/// <remarks>The performance of this class' Digit Counting code in .NET Standard 2.0 and 2.1 may be slower than in .NET 7 and newer.
-/// <para/>
-/// <para>Try to target .NET 8 or newer as a TFM where possible if Digit Counting performance is important to your code.</para>
-/// </remarks>
 public static class CountDigitsExtensions
 {
     
