@@ -30,7 +30,7 @@ using Microsoft.Extensions.Primitives;
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
-/// 
+/// Provides extension methods for modifying the capitalization of characters in <see cref="StringSegment"/> instances.
 /// </summary>
 public static class SegmentCapitalizationExtensions
 {

@@ -29,6 +29,9 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
+/// <summary>
+/// Provides extension methods for working with <see cref="StringSegment"/> objects in Title Case formatting.
+/// </summary>
 public static class SegmentTitleCaseExtensions
 {
     /// <summary>

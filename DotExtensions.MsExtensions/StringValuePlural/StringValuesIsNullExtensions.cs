@@ -29,6 +29,10 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 
+/// <summary>
+/// Provides extension methods for working with <see cref="StringValues"/> to determine
+/// if they are null, empty, or contain only null or whitespace values.
+/// </summary>
 public static class StringValuesIsNullExtensions
 {
     /// <summary>

@@ -30,6 +30,9 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
+/// <summary>
+/// Provides extension methods for reversing the content of StringSegment objects.
+/// </summary>
 public static class SegmentReverseExtensions
 {
     /// <summary>

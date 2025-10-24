@@ -29,6 +29,9 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
+/// <summary>
+/// Provides extension methods for performing removal and replacement operations on <see cref="StringSegment"/> objects.
+/// </summary>
 public static class SegmentRemoveAndReplaceExtensions
 {
     
