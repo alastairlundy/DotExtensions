@@ -56,9 +56,9 @@
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-        <PackageReference Include="Polyfill" Version="8.9.0" PrivateAssets="all">
+       <!-- <PackageReference Include="Polyfill" Version="8.9.0" PrivateAssets="all">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        </PackageReference>-->
     </ItemGroup>
 
 </Project>
