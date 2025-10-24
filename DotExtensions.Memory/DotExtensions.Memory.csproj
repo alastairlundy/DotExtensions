@@ -14,13 +14,15 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>8.6.0</Version>
+        <Version>9.0.0-preview.1</Version>
         <Title>DotExtensions.Memory</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/dotextensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>Initial Release as separate package</PackageReleaseNotes>
+        <PackageReleaseNotes>
+    Initial release with Span and Memory code from Main package.
+</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
     </PropertyGroup>
