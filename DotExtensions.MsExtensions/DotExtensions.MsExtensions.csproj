@@ -27,6 +27,8 @@ Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
         <RootNamespace>AlastairLundy.DotExtensions.MsExtensions</RootNamespace>
         <PackageId>AlastairLundy.DotExtensions.MsExtensions</PackageId>
         <AssemblyName>AlastairLundy.DotExtensions.MsExtensions</AssemblyName>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
     </PropertyGroup>
 
     <ItemGroup>
