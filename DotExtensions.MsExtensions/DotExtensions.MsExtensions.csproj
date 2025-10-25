@@ -32,8 +32,8 @@ Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
-        <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.10" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0-rc.2.25502.107" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.0-rc.2.25502.107" />
     </ItemGroup>
 
 
