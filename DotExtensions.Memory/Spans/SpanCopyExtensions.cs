@@ -27,7 +27,7 @@ using System;
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing copy operations on <see cref="Span{T}"/> instances.
 /// </summary>
 public static class SpanCopyExtensions
 {

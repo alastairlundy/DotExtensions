@@ -28,7 +28,7 @@ using System.Collections.Generic;
 namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>
-/// 
+/// Provides extension methods for converting spans and memory to lists or other types.
 /// </summary>
 public static class ToListExtensions
 {

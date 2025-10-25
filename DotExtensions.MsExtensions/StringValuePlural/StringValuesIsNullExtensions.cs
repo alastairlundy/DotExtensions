@@ -24,6 +24,7 @@
 
 using System.Linq;
 using Microsoft.Extensions.Primitives;
+
 // ReSharper disable ConvertClosureToMethodGroup
 // ReSharper disable RedundantBoolCompare
 

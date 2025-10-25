@@ -31,7 +31,7 @@ using System.Numerics;
 namespace AlastairLundy.DotExtensions.Numbers;
 
 /// <summary>
-/// Provides an extension method for counting the number of digits in numerical values that implement <see cref="INumber{TSelf}"/>.
+/// Provides an extension method for counting the number of digits in numerical values that implement Generic Numerics' INumber{TSelf}.
 /// </summary>
 public static class CountDigitsExtensions
 {

@@ -34,7 +34,7 @@ using AlastairLundy.DotExtensions.Numbers;
 namespace AlastairLundy.DotExtensions.Collections;
 
 /// <summary>
-/// 
+/// Provides extension methods to get the count of a collection or sequence as a specified numeric type.
 /// </summary>
 public static class CollectionCount
 {
