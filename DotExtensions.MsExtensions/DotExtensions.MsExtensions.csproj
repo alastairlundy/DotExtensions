@@ -29,6 +29,7 @@ Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
         <AssemblyName>AlastairLundy.DotExtensions.MsExtensions</AssemblyName>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <ItemGroup>
