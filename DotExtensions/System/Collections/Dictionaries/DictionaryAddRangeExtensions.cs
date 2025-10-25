@@ -41,6 +41,7 @@ public static class DictionaryAddRangeExtensions
     /// <typeparam name="TKey">The type representing the Keys.</typeparam>
     /// <typeparam name="TValue">The type representing the Values.</typeparam>
     /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the Key Value Pairs to be added.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
         IEnumerable<KeyValuePair<TKey, TValue>> pairsToAdd)
     {
@@ -63,6 +64,7 @@ public static class DictionaryAddRangeExtensions
     /// <typeparam name="TKey">The type representing the Keys.</typeparam>
     /// <typeparam name="TValue">The type representing the Values.</typeparam>
     /// <exception cref="OverflowException">Thrown if the dictionary is unable to store all the dictionary values to be added.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> source,
         IDictionary<TKey, TValue> dictionaryToAdd)
     {

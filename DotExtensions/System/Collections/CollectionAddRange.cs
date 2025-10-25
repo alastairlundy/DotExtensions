@@ -39,6 +39,7 @@ public static class CollectionAddRange
     /// <param name="enumerableToAdd">The IEnumerable containing elements to append to the original collection.</param>
     /// <typeparam name="T">The type of elements in both collections.</typeparam>
     /// <exception cref="NotSupportedException">Thrown if adding to the collection is not supported.</exception>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static void AddRange<T>(this ICollection<T> source, IEnumerable<T> enumerableToAdd)
     {
 #if NET8_0_OR_GREATER
@@ -66,6 +67,7 @@ public static class CollectionAddRange
     /// <param name="source">The collection into which elements will be appended.</param>
     /// <param name="collectionToAdd">The collection containing elements to append to the original collection.</param>
     /// <typeparam name="T">The type of elements in both collections.</typeparam>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static void AddRange<T>(this ICollection<T> source, ICollection<T> collectionToAdd)
     {
 #if NET8_0_OR_GREATER

@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
@@ -40,6 +41,7 @@ public static class ConcurrentAddRangeExtensions
     /// <param name="items">The collection of objects to be added to the collection.</param>
     /// <typeparam name="T">The type of elements contained within the collection.</typeparam>
     /// <returns>True if all objects were successfully added, false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool TryAddRange<T>(this IProducerConsumerCollection<T> collection, IEnumerable<T> items)
     {
         foreach (T item in items)
