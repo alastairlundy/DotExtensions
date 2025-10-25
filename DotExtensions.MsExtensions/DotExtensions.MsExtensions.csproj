@@ -8,16 +8,15 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>9.0.0-preview.1</Version>
+        <Version>9.0.0-preview.2</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### Changes since 8.6.1
-Update to Microsoft.Extensions.Primitives to 9.0.10
-Update to Microsoft.Extensions.Configuration.Abstractions 9.0.10
-Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
+        <PackageReleaseNotes>### MsExtensions package
+* Enabled Trim Analyzer for Memory package
+* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
