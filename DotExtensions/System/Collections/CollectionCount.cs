@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,6 +47,7 @@ public static class CollectionCount
     /// <typeparam name="TNumber">The type of number to represent the count of <see cref="ICollection{T}"/>.</typeparam>
     /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
     /// <returns>The number of elements in the <see cref="ICollection{T}"/> as a <see cref="TNumber"/> number.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static TNumber Count<TNumber, TSource>(this ICollection<TSource> source) where TNumber : INumber<TNumber>
         => source.Count.ToDestinationNumber<int, TNumber>();
 
@@ -57,6 +59,7 @@ public static class CollectionCount
     /// <typeparam name="TNumber">The type of number to represent the count of <see cref="IEnumerable{T}"/>.</typeparam>
     /// <typeparam name="TSource">The type of elements in the sequence.</typeparam>
     /// <returns>The number of elements in the <see cref="IEnumerable{T}"/> as a <see cref="TNumber"/> number.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static TNumber Count<TNumber, TSource>(this IEnumerable<TSource> source) where TNumber : INumber<TNumber>
     {
         // Faster code path if the source implements ICollection<T>
