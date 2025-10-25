@@ -22,9 +22,9 @@
         <RepositoryType>git</RepositoryType>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <PackageReleaseNotes>
-    Initial release with Span and Memory code from Main package.
-</PackageReleaseNotes>
+        <IsTrimmable>true</IsTrimmable>
+        <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
+* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
     </PropertyGroup>
