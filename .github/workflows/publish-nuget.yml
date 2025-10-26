@@ -35,7 +35,5 @@ jobs:
       run: dotnet build -c Release
     - name: Publish the MAIN package to nuget.org
       run: dotnet nuget push DotExtensions/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  -s https://api.nuget.org/v3/index.json --skip-duplicate
-    - name: Publish the MEMORY package to nuget.org
-      run: dotnet nuget push DotExtensions.Memory/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Publish the MsExtensions package to nuget.org
       run: dotnet nuget push DotExtensions.MsExtensions/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
