@@ -40,8 +40,7 @@ public static class DateOnlySubtractionExtensions
     /// <returns>the modified DateOnly object.</returns>
     public static DateOnly SubtractDays(this DateOnly dateOnly, int days)
     {
-        TimeSpan timeSpan = TimeSpan.FromDays(days);
-        DateTime result = dateOnly.ToDateTime().Subtract(timeSpan);
+        DateTime result = dateOnly.ToDateTime().Subtract(TimeSpan.FromDays(days));
         return DateOnly.FromDateTime(result);
     }
 
