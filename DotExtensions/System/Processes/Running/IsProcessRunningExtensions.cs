@@ -79,7 +79,7 @@ public static class IsProcessRunningExtensions
             else
                 return false;
         }
-        catch (NotSupportedException exception)
+        catch (NotSupportedException)
         {
             return true;
         }
