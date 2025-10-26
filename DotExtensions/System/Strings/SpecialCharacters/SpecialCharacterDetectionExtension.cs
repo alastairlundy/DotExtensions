@@ -67,10 +67,9 @@ public static class SpecialCharacterDetectionExtension
         
         foreach (char c in str)
         {
-            if(IsSpecialCharacter(c))
-                continue;
+            if (IsSpecialCharacter(c) == false) 
+                stringBuilder.Append(c);
             
-            stringBuilder.Append(c);
         }
         
         return stringBuilder.ToString();
