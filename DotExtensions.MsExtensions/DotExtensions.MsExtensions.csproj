@@ -8,14 +8,15 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>8.6.1</Version>
+        <Version>8.6.3</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>## Changes since 8.6.0
-* Fixed a potential issue with incorrect Localization Resource embeddings in DotExtensions Nuget package</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.2
+* Updated to Microsoft.Extensions.Primitives from 9.0.9 to 9.0.10
+* Updated to Microsoft.Extensions.Configuration.Abstractions from 9.0.9 to 9.0.10</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
