@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write 
+    environment: production
 
     steps:
     - uses: actions/checkout@v5.0.0
@@ -19,15 +21,21 @@ jobs:
       with:
         dotnet-version: 9.0.x
         working-directory: DotExtensions
+    
+    # Get a short-lived NuGet API key
+    - name: NuGet login (OIDC → temp API key)
+      uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1.1.0
+      id: login
+      with:
+            user: ${{ secrets.NUGET_USER }}
+    
     - name: Restore dependencies
       run: dotnet restore
     - name: Create packages
       run: dotnet build -c Release
-    - name: Publish the main package to nuget.org
-      run: dotnet nuget push DotExtensions/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
-      env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    - name: Publish the MAIN package to nuget.org
+      run: dotnet nuget push DotExtensions/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  -s https://api.nuget.org/v3/index.json --skip-duplicate
+    - name: Publish the MEMORY package to nuget.org
+      run: dotnet nuget push DotExtensions.Memory/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Publish the MsExtensions package to nuget.org
-      run: dotnet nuget push DotExtensions.MsExtensions/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
-      env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+      run: dotnet nuget push DotExtensions.MsExtensions/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
