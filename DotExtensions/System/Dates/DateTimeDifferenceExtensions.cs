@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// <summary>
 /// Provides extension methods for <see cref="DateTime"/> to compute absolute differences.
 /// </summary>
-public static class DateTimeAbsoluteExtensions
+public static class DateTimeDifferenceExtensions
 {
     /// <summary>
     /// Determines the absolute difference of two <see cref="DateTime"/> objects.
