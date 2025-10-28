@@ -25,7 +25,6 @@
 using System.IO;
 using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
-// ReSharper disable UnusedMember.Global
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
