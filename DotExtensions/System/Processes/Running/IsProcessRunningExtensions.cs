@@ -31,6 +31,9 @@ using System.Runtime.Versioning;
 
 namespace AlastairLundy.DotExtensions.Processes;
 
+/// <summary>
+/// 
+/// </summary>
 public static class IsProcessRunningExtensions
 {
     /// <summary>
@@ -95,7 +98,7 @@ public static class IsProcessRunningExtensions
             else
                 return false;
         }
-        catch (NotSupportedException exception)
+        catch (NotSupportedException)
         {
             return true;
         }
