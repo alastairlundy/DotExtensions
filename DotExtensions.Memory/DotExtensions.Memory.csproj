@@ -14,15 +14,17 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>9.0.0-preview.1</Version>
+        <Version>9.0.0-rc.1</Version>
         <Title>DotExtensions.Memory</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/dotextensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>
-    Initial release with Span and Memory code from Main package.
-</PackageReleaseNotes>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
+        <IsTrimmable>true</IsTrimmable>
+        <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
+* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
     </PropertyGroup>

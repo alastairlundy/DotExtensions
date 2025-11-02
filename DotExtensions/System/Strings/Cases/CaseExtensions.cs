@@ -29,7 +29,7 @@ using System.Linq;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for string case-related operations.
 /// </summary>
 public static class CaseExtensions
 {

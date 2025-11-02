@@ -27,6 +27,9 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
+/// <summary>
+/// Provides extension methods for working with spans.
+/// </summary>
 public static class SpanIsEmptyExtensions
 {
     /// <summary>

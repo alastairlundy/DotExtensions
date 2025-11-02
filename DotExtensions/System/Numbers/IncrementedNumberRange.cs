@@ -22,22 +22,21 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+
 #if NET8_0_OR_GREATER
 using System;
-using System.Collections.Generic;
 using System.Numerics;
 #endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
-#if NET8_0_OR_GREATER
-
 /// <summary>
-/// 
+/// Provides methods for verifying if a sequence or list of numbers follows a specific incremental pattern.
 /// </summary>
 public static class IncrementedNumberRange
 {
-    
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Determines if a list of numbers is incremented by an expected amount starting from the first number in the list.
     /// </summary>
@@ -107,6 +106,66 @@ public static class IncrementedNumberRange
 
         return true;
     }
+#else
+    /// <summary>
+    /// Determines if a list of numbers is incremented by an expected amount starting from the first number in the list.
+    /// </summary>
+    /// <param name="source">The list of numbers to check.</param>
+    /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
+    /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
+    public static bool IsIncrementedNumberRange(this IList<int> source,
+        int expectedIncrement)
+    {
+        int expectedNumber = source[0];
+
+        for (int index = 0; index < source.Count; index++)
+        {
+            int actual = source[index];
+            
+            if (index > 0)
+                expectedNumber += expectedIncrement;
+            
+            if (expectedNumber != actual)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Determines if a sequence of numbers is incremented by an expected amount starting from the first number in the sequence.
+    /// </summary>
+    /// <param name="source">The sequence of numbers to check.</param>
+    /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
+    /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
+    public static bool IsIncrementedNumberRange(this IEnumerable<int> source, 
+        int expectedIncrement)
+    {
+        if (source is IList<int> list)
+            return IsIncrementedNumberRange(list, expectedIncrement);
+        
+        bool foundFirstNumber = false;
+
+        int expectedNumber = 0;
+        
+        foreach (int actual in source)
+        {
+            if (foundFirstNumber == false)
+            {
+                expectedNumber = actual;
+                foundFirstNumber = true;
+            }
+            else
+            {
+                expectedNumber += expectedIncrement;
+            }
+            
+            if (expectedNumber != actual)
+                return false;
+        }
+
+        return true;
+    }
+#endif
 }
 
-#endif

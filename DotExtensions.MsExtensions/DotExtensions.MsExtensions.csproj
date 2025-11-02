@@ -8,16 +8,13 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>9.0.0-preview.1</Version>
+        <Version>9.0.0-preview.3</Version>
         <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### Changes since 8.6.1
-Update to Microsoft.Extensions.Primitives to 9.0.10
-Update to Microsoft.Extensions.Configuration.Abstractions 9.0.10
-Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
+        <PackageReleaseNotes>* Removed Title case string extensions</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
@@ -27,11 +24,14 @@ Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
         <RootNamespace>AlastairLundy.DotExtensions.MsExtensions</RootNamespace>
         <PackageId>AlastairLundy.DotExtensions.MsExtensions</PackageId>
         <AssemblyName>AlastairLundy.DotExtensions.MsExtensions</AssemblyName>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
-        <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.10" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0-rc.2.25502.107" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.0-rc.2.25502.107" />
     </ItemGroup>
 
 

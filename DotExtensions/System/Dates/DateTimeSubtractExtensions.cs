@@ -27,7 +27,8 @@ using System;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for subtracting various time intervals or other DateTime values
+/// from a DateTime instance.
 /// </summary>
 public static class DateTimeSubtractExtensions
 {

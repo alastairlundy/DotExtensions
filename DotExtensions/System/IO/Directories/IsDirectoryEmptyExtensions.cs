@@ -25,12 +25,11 @@
 using System.IO;
 using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
-// ReSharper disable UnusedMember.Global
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
 /// <summary>
-/// 
+/// Provides extension methods for directory operations.
 /// </summary>
 public static class IsDirectoryEmptyExtensions
 {

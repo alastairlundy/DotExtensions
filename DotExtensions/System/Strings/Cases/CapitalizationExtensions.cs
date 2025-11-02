@@ -29,7 +29,7 @@ using System.Text;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for capitalizing characters within strings.
 /// </summary>
 public static class CapitalizationExtensions
 {

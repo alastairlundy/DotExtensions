@@ -26,6 +26,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.Configurations;
 
+/// <summary>
+/// Provides extension methods for working with configurations in Microsoft.Extensions.Configuration.
+/// </summary>
 public static class ContainsKeyExtensions
 {
     /// <summary>

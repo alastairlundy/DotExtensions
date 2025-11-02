@@ -30,7 +30,8 @@ using System;
 namespace AlastairLundy.DotExtensions.Versions;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with
+/// version information in a human-readable format.
 /// </summary>
 public static class HumanReadableVersionStringExtensions
 {

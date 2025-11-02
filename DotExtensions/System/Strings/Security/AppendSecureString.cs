@@ -30,7 +30,7 @@ using System.Security;
 namespace AlastairLundy.DotExtensions.Strings.Security;
 
 /// <summary>
-/// 
+/// Provides extension methods for securely modifying instances of <see cref="SecureString"/>.
 /// </summary>
 public static class AppendSecureStringExtensions
 {

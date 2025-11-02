@@ -27,7 +27,7 @@
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides predefined constants related to characters, specifically escape characters.
 /// </summary>
 public static class CharacterConstants
 {

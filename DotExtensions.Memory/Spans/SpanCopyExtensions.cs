@@ -27,7 +27,7 @@ using System;
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
-/// 
+/// Provides extension methods for performing copy operations on <see cref="Span{T}"/> instances.
 /// </summary>
 public static class SpanCopyExtensions
 {
@@ -99,7 +99,7 @@ public static class SpanCopyExtensions
     /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
     /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span, or if the length exceeds the remaining elements.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span or if the length exceeds the remaining elements.</exception>
     /// <exception cref="ArgumentException">Thrown if the source <see cref="Span{T}"/> is larger than the destination <see cref="Span{T}"/>.</exception>
     /// <remarks>Copying from a larger source <see cref="Span{T}"/> to a smaller destination <see cref="Span{T}"/> is not supported.</remarks>
     public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)

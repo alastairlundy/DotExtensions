@@ -29,6 +29,9 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Strings;
 
+/// <summary>
+/// Provides extension methods for working with strings related to escape character detection and removal.
+/// </summary>
 public static class EscapeCharacterRemovalExtensions
 {
     /// <summary>

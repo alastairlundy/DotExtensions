@@ -30,6 +30,10 @@ using System.Linq;
 
 namespace AlastairLundy.DotExtensions.Strings;
 
+/// <summary>
+/// Provides extension methods for working with strings to evaluate the presence of
+/// space-separated substrings within them.
+/// </summary>
 public static class ContainsSpacesExtensions
 {
 

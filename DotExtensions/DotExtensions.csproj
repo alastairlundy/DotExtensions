@@ -5,19 +5,17 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <TargetFrameworks>netstandard2.0;net8.0;net9.0;</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0;netstandard2.0;</TargetFrameworks>
         <Title>DotExtensions</Title>
         <Authors>Alastair Lundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>Main package
-
-    Add SecureString AppendString, AppendChars, SetString and SetChars extension methods @alastairlundy (#118)
-    Move Span and Memory related code to new DotExtensions.Memory package @alastairlundy (#117)
-    Move Process related extensions to CliInvoke @alastairlundy (#116)
-    Remove deprecated code for v9 @alastairlundy (#115)</PackageReleaseNotes>
+        <PackageReleaseNotes>* Removed Title case string extensions
+* Renamed DateTime, TimeOnly, and DateOnly Abs extension methods to Difference
+* Removed DateTime ToGivenDateString extension method
+*  Removed Collection Count Generic Numerics extension methods</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
@@ -26,10 +24,12 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>9.0.0-preview.1</Version>
+        <Version>9.0.0-preview.3</Version>
         <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
         <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
         <PackageId>AlastairLundy.DotExtensions</PackageId>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+        <TrimmerSingleWarn>false</TrimmerSingleWarn>
     </PropertyGroup>
     
     
@@ -55,10 +55,10 @@
       </Content>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-       <!-- <PackageReference Include="Polyfill" Version="8.9.0" PrivateAssets="all">
+<!--    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+        <PackageReference Include="Polyfill" Version="8.9.0" PrivateAssets="all">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>-->
-    </ItemGroup>
+        </PackageReference>
+    </ItemGroup>-->
 
 </Project>

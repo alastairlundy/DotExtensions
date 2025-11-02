@@ -28,6 +28,9 @@ using AlastairLundy.DotExtensions.IO.Directories;
 
 namespace AlastairLundy.DotExtensions.IO.Drives;
 
+/// <summary>
+/// Provides extension methods for working with drive-related operations.
+/// </summary>
 public static class DrivesIsEmptyExtensions
 {
     /// <summary>

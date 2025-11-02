@@ -28,9 +28,9 @@ using System;
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for <see cref="DateTime"/> to compute absolute differences.
 /// </summary>
-public static class DateTimeAbsoluteExtensions
+public static class DateTimeDifferenceExtensions
 {
     /// <summary>
     /// Determines the absolute difference of two <see cref="DateTime"/> objects.
@@ -38,7 +38,7 @@ public static class DateTimeAbsoluteExtensions
     /// <param name="dateTimeOne">The first date to be subtracted.</param>
     /// <param name="dateTimeTwo">The second date to be subtracted.</param>
     /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Abs(this DateTime dateTimeOne, DateTime dateTimeTwo)
+    public static TimeSpan Difference(this DateTime dateTimeOne, DateTime dateTimeTwo)
     {
         long absoluteTicks = Math.Abs(dateTimeOne.Ticks - dateTimeTwo.Ticks);
 
@@ -52,7 +52,7 @@ public static class DateTimeAbsoluteExtensions
     /// <param name="timeOnlyOne">The first time to be subtracted.</param>
     /// <param name="timeOnlyTwo">The second time to be subtracted.</param>
     /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Abs(this TimeOnly timeOnlyOne, TimeOnly timeOnlyTwo)
+    public static TimeSpan Difference(this TimeOnly timeOnlyOne, TimeOnly timeOnlyTwo)
     {
         long absoluteTicks = Math.Abs(timeOnlyOne.Ticks - timeOnlyTwo.Ticks);
         
@@ -65,62 +65,8 @@ public static class DateTimeAbsoluteExtensions
     /// <param name="dateOnlyOne">The first date to be subtracted.</param>
     /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
     /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Abs(this DateOnly dateOnlyOne, DateOnly dateOnlyTwo)
-    {
-        int yearDifference = Math.Abs(dateOnlyOne.Year - dateOnlyTwo.Year);
-        
-        if(yearDifference == 0)
-            return TimeSpan.FromDays(Math.Abs(dateOnlyOne.DayOfYear - dateOnlyTwo.DayOfYear));
-        
-        int days = 0;
-        
-        int startYear, endYear;
-        
-        if(dateOnlyOne.Year <  dateOnlyTwo.Year)
-            startYear = dateOnlyOne.Year;
-        else
-            startYear = dateOnlyTwo.Year;
-        
-        if(startYear == dateOnlyOne.Year)
-            endYear = dateOnlyTwo.Year;
-        else
-            endYear = dateOnlyOne.Year;
-
-        for (int year = startYear; year <= endYear; year++)
-        {
-            if (year == endYear)
-            {
-                int startMonth, endMonth;
-
-                if (dateOnlyOne.Month > dateOnlyTwo.Month)
-                {
-                    startMonth = dateOnlyTwo.Month;
-                    endMonth = dateOnlyOne.Month;
-                }
-                else
-                {
-                    startMonth = dateOnlyOne.Month;
-                    endMonth = dateOnlyTwo.Month;
-                }
-                
-                for (int month = startMonth; month <= endMonth; month++)
-                {
-                    days += DateTime.DaysInMonth(year, month);
-                }
-            }
-            else
-            {
-                for (int month = 1; month <= 12; month++)
-                {
-                    days += DateTime.DaysInMonth(year, month);
-                }
-            }
-
-        }
-        days += Math.Abs(dateOnlyOne.Day - dateOnlyTwo.Day);
-        
-        return TimeSpan.FromDays(days);
-    }
+    public static TimeSpan Difference(this DateOnly dateOnlyOne, DateOnly dateOnlyTwo)
+        => Difference(dateOnlyOne.ToDateTime().Date, dateOnlyTwo.ToDateTime().Date);
 #endif
 
 }

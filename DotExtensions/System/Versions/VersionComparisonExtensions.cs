@@ -27,7 +27,7 @@ using System;
 namespace AlastairLundy.DotExtensions.Versions;
 
 /// <summary>
-/// 
+/// Provides extension methods for comparing <see cref="Version"/> objects.
 /// </summary>
 public static class VersionComparisonExtensions
 {

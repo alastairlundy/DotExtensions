@@ -30,6 +30,9 @@ using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
+/// <summary>
+/// Provides extension methods for converting <see cref="StringSegment"/> objects into various character collections.
+/// </summary>
 public static class SegmentToCharsExtensions
 {
     /// <summary>

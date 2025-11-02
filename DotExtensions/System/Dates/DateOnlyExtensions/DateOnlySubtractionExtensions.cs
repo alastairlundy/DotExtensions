@@ -28,7 +28,7 @@ namespace AlastairLundy.DotExtensions.Dates;
 #if NET8_0_OR_GREATER
 
 /// <summary>
-/// 
+/// Provides extension methods for subtracting days, months, and years from a DateOnly object.
 /// </summary>
 public static class DateOnlySubtractionExtensions
 {
@@ -40,8 +40,7 @@ public static class DateOnlySubtractionExtensions
     /// <returns>the modified DateOnly object.</returns>
     public static DateOnly SubtractDays(this DateOnly dateOnly, int days)
     {
-        TimeSpan timeSpan = TimeSpan.FromDays(days);
-        DateTime result = dateOnly.ToDateTime().Subtract(timeSpan);
+        DateTime result = dateOnly.ToDateTime().Subtract(TimeSpan.FromDays(days));
         return DateOnly.FromDateTime(result);
     }
 

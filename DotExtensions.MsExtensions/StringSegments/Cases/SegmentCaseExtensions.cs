@@ -29,7 +29,7 @@ using Microsoft.Extensions.Primitives;
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
-/// 
+/// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
 /// </summary>
 public static class SegmentCaseExtensions
 {

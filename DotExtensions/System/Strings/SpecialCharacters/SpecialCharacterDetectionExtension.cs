@@ -32,7 +32,7 @@ using System.Text;
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
-/// 
+/// Provides extension methods for handling special characters in strings and characters.
 /// </summary>
 public static class SpecialCharacterDetectionExtension
 {
@@ -67,10 +67,9 @@ public static class SpecialCharacterDetectionExtension
         
         foreach (char c in str)
         {
-            if(IsSpecialCharacter(c))
-                continue;
+            if (IsSpecialCharacter(c) == false) 
+                stringBuilder.Append(c);
             
-            stringBuilder.Append(c);
         }
         
         return stringBuilder.ToString();
