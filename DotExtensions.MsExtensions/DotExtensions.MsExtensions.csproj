@@ -14,9 +14,7 @@
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>### MsExtensions package
-* Enabled Trim Analyzer for Memory package
-* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Removed Title case string extensions</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
         <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>

@@ -12,11 +12,10 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>* Move Collection AddRange related code to EnhancedLinq
-* Added .NET Standard 2 fallback methods 	for CountDigitsExtensions
-* Added .NET Standard 2 int fallback methods for IncrementedNumberRange
-* Enabled Trim Analyzer for package
-* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
+        <PackageReleaseNotes>* Removed Title case string extensions
+* Renamed DateTime, TimeOnly, and DateOnly Abs extension methods to Difference
+* Removed DateTime ToGivenDateString extension method
+*  Removed Collection Count Generic Numerics extension methods</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
