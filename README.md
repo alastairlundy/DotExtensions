@@ -15,7 +15,7 @@ An extension method library that enhances the experience of using .NET's types w
 
 ## Features
 * Empty directory detection via ``IsDirectoryEmpty`` extension method for the ``DirectoryInfo`` class.
-* Support for comparing versions via easy to understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
+* Support for comparing versions via easy-to-understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
 * DateTime and DateOnly extensions e.g. DateOnly's ToDateTime extension
 * Support for Detecting and Removing Special Characters
 * Support for Detecting and Removing Escape Characters
