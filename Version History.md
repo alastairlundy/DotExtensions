@@ -6,10 +6,16 @@
 ### 9.0
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.0.0 Preview 3 | November 2nd 2025 | |
 | 9.0.0 Preview 2 | October 25th 2025 | |
 | 9.0.0 Preview 1 | October 17th 2025 | |
 
 ### Version 8.x
+
+### 8.7
+| Version | Release Date | Notes | 
+|-|-|-|
+| 8.7.0 | November 9th 2025 | |
 
 ### 8.6
 | Version | Release Date | Notes | 
