@@ -84,6 +84,7 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsProcessOnRemoteDevice(this Process process)
     {
         if (process.IsDisposed())

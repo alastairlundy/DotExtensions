@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Diagnostics;
 
 namespace AlastairLundy.DotExtensions.Processes;
@@ -32,10 +33,11 @@ namespace AlastairLundy.DotExtensions.Processes;
 public static class ProcessDisposalExtensions
 {
     /// <summary>
-    /// Determines if a process has been disposed.
+    /// Determines if a process has been disposed of.
     /// </summary>
     /// <param name="process">The process to check if the process has been disposed of.</param>
     /// <returns>True if the process has been disposed of, false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsDisposed(this Process process)
     {
         try
