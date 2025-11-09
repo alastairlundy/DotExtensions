@@ -49,6 +49,7 @@ public static class IsProcessRunningExtensions
     [SupportedOSPlatform("linux")]
     [SupportedOSPlatform("freebsd")]
     [SupportedOSPlatform("android")]
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsRunning(this Process process) => 
         process.HasStarted() && process.HasExited() == false;
 
