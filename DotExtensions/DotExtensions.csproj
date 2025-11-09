@@ -12,9 +12,16 @@
         <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>## Changes since 8.6.2
-* Deprecated Collection AddRange extension methods for removal in v9
-* Deprecated Collection Count Generic Numerics for removal in v9</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 8.6.x
+**Note**: Final minor version (in Major.Minor.Patch) before 9.0 
+
+### Main package
+* Moved Memory and Span extension methods to DotExtensions.Memory
+* Deprecate Process related extensions for removal in v9
+* Deprecated string TitleCase related extensions for removal in v9
+* Deprecated Given Date extension for removal in v9
+* Backported CountDigits int and double .NET Standard 2.0 fallback methods from 9.x branch
+* Updated internal Polyfill dependency from 8.9.0 to 8.9.1</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Description>A collection of useful extension methods for .NET .</Description>
