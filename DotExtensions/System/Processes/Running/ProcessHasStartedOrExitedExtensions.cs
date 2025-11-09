@@ -27,8 +27,6 @@ using System;
 using System.Diagnostics;
 using System.Runtime.Versioning;
 
-using AlastairLundy.DotExtensions.Localizations;
-
 namespace AlastairLundy.DotExtensions.Processes;
 
 public static class ProcessHasStartedOrExitedExtensions
@@ -48,14 +46,11 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("android")]
     public static bool HasStarted(this Process process)
     {
-        if (process.IsProcessOnRemoteDevice())
-            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
-        
         try
         {
             return process.StartTime.ToUniversalTime() <= DateTime.UtcNow;
         }
-        catch
+        catch(InvalidOperationException)
         {
             return false;
         }
@@ -67,7 +62,6 @@ public static class ProcessHasStartedOrExitedExtensions
     /// <remarks>This extension method exists because accessing the Exited property on a Process can cause an exception to be thrown.</remarks>
     /// <param name="process">The process to be checked.</param>
     /// <returns>True if it has exited; false if it is still running.</returns>
-    /// <exception cref="NotSupportedException">Thrown if checking whether a Process has exited on a remote device.</exception>
     [UnsupportedOSPlatform("ios")]
     [UnsupportedOSPlatform("tvos")]
     [SupportedOSPlatform("maccatalyst")]
@@ -78,14 +72,11 @@ public static class ProcessHasStartedOrExitedExtensions
     [SupportedOSPlatform("android")]
     public static bool HasExited(this Process process)
     {
-        if (process.IsProcessOnRemoteDevice())
-            throw new NotSupportedException(Resources.Exceptions_Processes_NotSupportedOnRemoteProcess);
-
         try
         {
             return process.ExitTime.ToUniversalTime() <= DateTime.UtcNow;
         }
-        catch
+        catch(InvalidOperationException)
         {
             return false;
         }
