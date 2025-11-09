@@ -24,6 +24,7 @@
 
 using System;
 using System.Linq;
+using AlastairLundy.DotExtensions.Memory.Internal;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 

@@ -23,6 +23,7 @@
    */
 
 using System;
+using AlastairLundy.DotExtensions.Memory.Internal;
 
 namespace AlastairLundy.DotExtensions.Memory;
 

@@ -24,7 +24,8 @@
 
 using System;
 
-using AlastairLundy.DotExtensions.Localizations;
+using AlastairLundy.DotExtensions.Memory.Internal;
+using AlastairLundy.DotExtensions.Memory.Internal.Localizations;
 
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
@@ -45,7 +46,7 @@ public static class SpanFirstAndLast
     {
         if (target.IsEmpty)
             throw new InvalidOperationException(Resources.
-                Exceptions_Enumerables_InvalidOperation_EmptySequence);
+                Exceptions_Spans_InvalidOperation_EmptySpan);
         
         return target[0];
     }
@@ -72,7 +73,7 @@ public static class SpanFirstAndLast
     {
         if (target.IsEmpty)
             throw new InvalidOperationException(Resources.
-                Exceptions_Enumerables_InvalidOperation_EmptySequence);
+                Exceptions_Spans_InvalidOperation_EmptySpan);
 
 #if NET8_0_OR_GREATER
         return target[^1];
