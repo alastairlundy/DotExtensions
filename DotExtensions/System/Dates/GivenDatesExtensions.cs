@@ -36,6 +36,7 @@ public static class GivenDateExtensions
     /// </summary>
     /// <param name="date">The dateTime object to be used.</param>
     /// <returns>The given date in the RFC 1123 format to string.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static string ToGivenDateString(this DateTime date) 
         => date.ToString("R");
 }

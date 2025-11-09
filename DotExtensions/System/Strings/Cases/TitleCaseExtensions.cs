@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 using System.Text;
 // ReSharper disable MemberCanBePrivate.Global
@@ -40,6 +41,7 @@ public static class TitleCaseExtensions
     /// </summary>
     /// <param name="str">The string to be converted.</param>
     /// <returns>The title case version of the input string.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static string ToTitleCase(this string str)
     {
         string[] words = str.Split(' ');
@@ -60,6 +62,7 @@ public static class TitleCaseExtensions
     /// </summary>
     /// <param name="phrase">The phrase to be checked.</param>
     /// <returns>True if the specified phrase is in Title Case, false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsTitleCase(this string phrase)
     {
         string[] words = phrase.Split();

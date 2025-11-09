@@ -22,9 +22,10 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 using System.Text;
-
+using AlastairLundy.DotExtensions.MsExtensions.Internal;
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -36,6 +37,7 @@ public static class SegmentTitleCaseExtensions
     /// </summary>
     /// <param name="segment">The <see cref="StringSegment"/> to be converted.</param>
     /// <returns>The title case version of the input <see cref="StringSegment"/>.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static StringSegment ToTitleCase(this StringSegment segment)
     {
         StringTokenizer wordsTokenizer = segment.Split([' ']);
@@ -61,6 +63,7 @@ public static class SegmentTitleCaseExtensions
     /// </summary>
     /// <param name="segment">The <see cref="StringSegment"/> to be checked.</param>
     /// <returns>True if the specified <see cref="StringSegment"/> is in Title Case, false otherwise.</returns>
+    [Obsolete(DeprecationMessages.DeprecationV9)]
     public static bool IsTitleCase(this StringSegment segment)
     {
         StringTokenizer wordsTokenizer = segment.Split([' ']);
