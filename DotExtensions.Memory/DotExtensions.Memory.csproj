@@ -29,10 +29,15 @@
 
     <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
         <PackageReference Include="System.Memory" Version="4.6.3" />
-     <!--   <PackageReference Include="Polyfill" Version="8.9.1" PrivateAssets="all">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>-->
     </ItemGroup>
+    
+    <ItemGroup>
+        <Content Include="README.md">
+            <PackagePath>README.md</PackagePath>
+            <Link>README.md</Link>
+        </Content>
+    </ItemGroup>
+
 
     <ItemGroup>
       <EmbeddedResource Update="Internal\Localizations\Resources.resx">
