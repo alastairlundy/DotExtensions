@@ -84,5 +84,49 @@ public static class CountDigitsExtensions
 
         return digits;
     }
+#else
+   /// <summary>
+    /// Counts the number of digits in the numerical value.
+    /// </summary>
+    /// <param name="number">The numerical value to count the digits of.</param>
+    /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+    public static int CountNumberOfDigits(this int number)
+    {
+        if (number < 0)
+        {
+            number *= -1;
+        }
+        
+        int digits = number < 0 ? 2 : 1;
+        
+        while ((number /= 10) != 0)
+        {
+            ++digits;
+        }
+
+        return digits;
+    }
+   
+    /// <summary>
+    /// Counts the number of digits in the numerical value.
+    /// </summary>
+    /// <param name="number">The numerical value to count the digits of.</param>
+    /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+    public static int CountNumberOfDigits(this double number)
+    {
+        if (number < 0.0)
+        {
+            number *= -1.0;
+        }
+        
+        int digits = number < 0 ? 2 : 1;
+        
+        while ((number /= 10.0) != 0.0)
+        {
+            ++digits;
+        }
+
+        return digits;
+    }
 #endif
 }
