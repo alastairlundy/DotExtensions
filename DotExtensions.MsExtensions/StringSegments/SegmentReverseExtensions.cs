@@ -43,7 +43,7 @@ public static class SegmentReverseExtensions
     /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
     public static StringSegment Reverse(this StringSegment target)
     {
-        if (target.IsEmpty())
+        if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_Arguments_Segment_Empty);
     
         StringBuilder stringBuilder = new();

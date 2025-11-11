@@ -46,10 +46,10 @@ public static class SegmentRemoveAndReplaceExtensions
     /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
     public static StringSegment Remove(this StringSegment segment, int startIndex)
     {
-        if (segment.IsNullOrWhiteSpace())
+        if (StringSegment.IsNullOrWhiteSpace(segment))
             throw new NullReferenceException();
         
-        if(segment.IsEmpty())
+        if(segment.IsEmpty)
             throw new InvalidOperationException();
         
         if (startIndex < 0 || startIndex >= segment.Length)
@@ -73,10 +73,10 @@ public static class SegmentRemoveAndReplaceExtensions
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
     public static StringSegment Remove(this StringSegment segment, int startIndex, int count)
     {
-        if (segment.IsNullOrWhiteSpace())
+        if (StringSegment.IsNullOrWhiteSpace(segment))
             throw new NullReferenceException();
         
-        if(segment.IsEmpty())
+        if(segment.IsEmpty)
             throw new InvalidOperationException();
 
         if (startIndex < 0 || startIndex >= segment.Length)

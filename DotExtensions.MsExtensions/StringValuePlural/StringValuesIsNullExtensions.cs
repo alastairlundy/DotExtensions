@@ -36,36 +36,40 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 /// </summary>
 public static class StringValuesIsNullExtensions
 {
-    /// <summary>
-    /// Determines if the <see cref="StringValues"/> is empty.
-    /// </summary>
-    /// <param name="stringValues">The <see cref="StringValues"/> to search.</param>
-    /// <returns>True if it is empty, false otherwise.</returns>
-    public static bool IsEmpty(this StringValues stringValues) 
-        => stringValues.Equals(StringValues.Empty);
-
-    /// <summary>
-    /// Indicates whether a <see cref="StringValues"/> contains any strings that are null or whitespace./>
-    /// </summary>
-    /// <param name="strValues">The <see cref="StringValues"/> to search.</param>
-    /// <returns>True if any of the strings is WhiteSpace or null.</returns>
-    public static bool IsNullOrWhiteSpace(this StringValues? strValues)
+    extension(StringValues strValues)
     {
-        if (strValues is null)
-            return true;
+        /// <summary>
+        /// Whether this <see cref="StringValues"/> is empty.
+        /// </summary>
+        /// <returns>True if it is empty, false otherwise.</returns>
+        public bool IsEmpty => strValues.Equals(StringValues.Empty);
+    }
 
-        bool[] vals = new bool[strValues.Value.Count];
-        
-        for(int index = 0; index < strValues.Value.Count; index++)
+    extension(StringValues? strValues)
+    {
+        /// <summary>
+        /// Determines whether a <see cref="StringValues"/> contains any strings that are null or whitespace./>
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>True if any of the strings is WhiteSpace or null.</returns>
+        public static bool IsNullOrWhiteSpace(StringValues? other)
         {
-            string? val = strValues.Value[index];
-            
-            if(val is null)
+            if (other is null)
                 return true;
             
-            vals[index] = string.IsNullOrWhiteSpace(val);
-        }
+            bool[] vals = new bool[other.Value.Count];
+        
+            for(int index = 0; index < other.Value.Count; index++)
+            {
+                string? val = other.Value[index];
+            
+                if(val is null)
+                    return true;
+            
+                vals[index] = string.IsNullOrWhiteSpace(val);
+            }
 
-        return vals.Any(x => x == true);
+            return vals.Any(x => x == true);
+        }
     }
 }
