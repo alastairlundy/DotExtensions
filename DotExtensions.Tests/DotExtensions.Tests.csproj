@@ -9,7 +9,7 @@
         <AssemblyName>DotExtensions.Tests</AssemblyName>
         <RootNamespace>DotExtensions.Tests</RootNamespace>
         <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-        <LangVersion>13</LangVersion>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
