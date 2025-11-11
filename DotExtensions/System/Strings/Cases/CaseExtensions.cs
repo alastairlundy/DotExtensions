@@ -22,8 +22,8 @@
        SOFTWARE.
    */
 
-
 using System.Linq;
+
 // ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
@@ -33,7 +33,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class CaseExtensions
 {
-
     extension(string s)
     {
         /// <summary>
@@ -42,7 +41,7 @@ public static class CaseExtensions
         /// <para>True if the string is upper case; false otherwise.</para>
         /// </summary>
         public bool IsUpperCase() => s.All(x => char.IsUpper(x));
-        
+
         /// <summary>
         /// Returns whether a string is lower case or not.
         ///

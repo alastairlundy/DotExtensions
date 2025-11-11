@@ -39,9 +39,12 @@ public static class SpanCopyExtensions
     /// <param name="destination">The destination span.</param>
     /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    public static void OptimisticCopy<T>(this Span<T> source, ref Span<T> destination, int startIndex)
-    => OptimisticCopy(source, ref destination, startIndex, destination.Length);
-    
+    public static void OptimisticCopy<T>(
+        this Span<T> source,
+        ref Span<T> destination,
+        int startIndex
+    ) => OptimisticCopy(source, ref destination, startIndex, destination.Length);
+
     /// <summary>
     /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
     /// </summary>
@@ -51,9 +54,14 @@ public static class SpanCopyExtensions
     /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
     /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
-    public static void OptimisticCopy<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
+    public static void OptimisticCopy<T>(
+        this Span<T> source,
+        ref Span<T> destination,
+        int startIndex,
+        int length
+    )
     {
-        if(startIndex < 0 || startIndex > source.Length)
+        if (startIndex < 0 || startIndex > source.Length)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
 
         if (destination.Length < startIndex + length)
@@ -61,7 +69,7 @@ public static class SpanCopyExtensions
             destination = source.Slice(startIndex, length);
             return;
         }
-        
+
         int expectedEnd = startIndex + length;
         int actualEnd = destination.Length;
 
@@ -75,9 +83,9 @@ public static class SpanCopyExtensions
         for (int i = startIndex; i < end; i++)
         {
             destination[i] = source[i];
-        } 
+        }
     }
-    
+
     /// <summary>
     /// Copies the elements of the span to a destination span, starting from a specified index.
     /// </summary>
@@ -88,8 +96,8 @@ public static class SpanCopyExtensions
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
     /// <exception cref="ArgumentException">Thrown if the source <see cref="Span{T}"/> is larger than the destination <see cref="Span{T}"/>.</exception>
-    public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex) 
-        => source.CopyTo(ref destination, startIndex, Math.Abs(source.Length - startIndex));
+    public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex) =>
+        source.CopyTo(ref destination, startIndex, Math.Abs(source.Length - startIndex));
 
     /// <summary>
     /// Copies a specified range of elements from the source span to the destination span.
@@ -102,14 +110,19 @@ public static class SpanCopyExtensions
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span or if the length exceeds the remaining elements.</exception>
     /// <exception cref="ArgumentException">Thrown if the source <see cref="Span{T}"/> is larger than the destination <see cref="Span{T}"/>.</exception>
     /// <remarks>Copying from a larger source <see cref="Span{T}"/> to a smaller destination <see cref="Span{T}"/> is not supported.</remarks>
-    public static void CopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
+    public static void CopyTo<T>(
+        this Span<T> source,
+        ref Span<T> destination,
+        int startIndex,
+        int length
+    )
     {
-        if(startIndex < 0 || startIndex > source.Length)
+        if (startIndex < 0 || startIndex > source.Length)
             throw new ArgumentOutOfRangeException(nameof(startIndex));
-        
+
         if (destination.Length < source.Length || destination.Length < startIndex + length)
             throw new ArgumentException();
-        
+
         for (int i = 0; i < length; i++)
         {
             destination[startIndex] = source[i];
@@ -133,13 +146,13 @@ public static class SpanCopyExtensions
         try
         {
             OptimisticCopy(source, ref destination, startIndex);
-            
+
             for (int i = startIndex; i < source.Length; i++)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 if (destination[i] is not null && destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                        .Equals(source[i]) == false)
+                    .Equals(source[i]) == false)
                 {
                     return false;
                 }
@@ -162,7 +175,12 @@ public static class SpanCopyExtensions
     /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     /// <returns>True if copying to the destination <see cref="Span{T}"/> was successful; false otherwise.</returns>
-    public static bool TryCopyTo<T>(this Span<T> source, ref Span<T> destination, int startIndex, int length)
+    public static bool TryCopyTo<T>(
+        this Span<T> source,
+        ref Span<T> destination,
+        int startIndex,
+        int length
+    )
     {
         if (startIndex < 0 || startIndex > source.Length)
             return false;
@@ -170,13 +188,13 @@ public static class SpanCopyExtensions
         try
         {
             OptimisticCopy(source, ref destination, startIndex, length);
-            
+
             for (int i = startIndex; i < source.Length; i++)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 if (destination[i] is not null && destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                        .Equals(source[i]) == false)
+                    .Equals(source[i]) == false)
                 {
                     return false;
                 }

@@ -34,7 +34,6 @@ public static class SegmentContainsSpacesExtensions
 {
     extension(StringSegment segment)
     {
-
         /// <summary>
         /// Whether a <see cref="StringSegment"/> contains space separated subsegments within it.
         ///
@@ -42,12 +41,12 @@ public static class SegmentContainsSpacesExtensions
         /// </summary>
         public bool ContainsSpaceSeparatedSubSegments()
         {
-                if (segment.IsEmpty)
-                    return false;
-        
-                StringTokenizer tokenizer = segment.Split([' ']);
+            if (segment.IsEmpty)
+                return false;
 
-                return segment.Contains(' ') && tokenizer.Count() > 1;
+            StringTokenizer tokenizer = segment.Split([' ']);
+
+            return segment.Contains(' ') && tokenizer.Count() > 1;
         }
     }
 }

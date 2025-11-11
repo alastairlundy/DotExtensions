@@ -43,8 +43,8 @@ public static class NumberToTNumber
     /// <param name="number">The number to be converted.</param>
     /// <typeparam name="TNumber">The destination number type to convert the source number to.</typeparam>
     /// <returns>The source number converted to the <see cref="TNumber"/> type.</returns>
-    public static TNumber ToNumber<TNumber>(this int number) where TNumber : INumber<TNumber> 
-        => ToDestinationNumber<int, TNumber>(number);
+    public static TNumber ToNumber<TNumber>(this int number)
+        where TNumber : INumber<TNumber> => ToDestinationNumber<int, TNumber>(number);
 
     /// <summary>
     /// Converts a number of <see cref="TSourceNumber"/> to a number of type <see cref="TDestinationNumber"/>.
@@ -54,9 +54,11 @@ public static class NumberToTNumber
     /// <typeparam name="TSourceNumber">The source number type to convert.</typeparam>
     /// <typeparam name="TDestinationNumber">The destination number type to convert the source number to.</typeparam>
     /// <returns>The source number converted to the <see cref="TDestinationNumber"/> type.</returns>
-    public static TDestinationNumber ToDestinationNumber<TSourceNumber, TDestinationNumber>(this TSourceNumber number)
-    where TSourceNumber : INumber<TSourceNumber>
-    where TDestinationNumber : INumber<TDestinationNumber>
+    public static TDestinationNumber ToDestinationNumber<TSourceNumber, TDestinationNumber>(
+        this TSourceNumber number
+    )
+        where TSourceNumber : INumber<TSourceNumber>
+        where TDestinationNumber : INumber<TDestinationNumber>
     {
         return TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
     }

@@ -32,7 +32,7 @@ namespace AlastairLundy.DotExtensions.Versions;
 public static class VersionComparisonExtensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="version">The current version object.</param>
     extension(Version version)
@@ -42,24 +42,21 @@ public static class VersionComparisonExtensions
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than or equal to this version, returns false otherwise.</returns>
-        public bool IsAtLeast(Version versionToBeCompared) 
-            => versionToBeCompared >= version;
+        public bool IsAtLeast(Version versionToBeCompared) => versionToBeCompared >= version;
 
         /// <summary>
         /// Returns whether this version is older than the current Version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is older than this version, returns false otherwise.</returns>
-        public bool IsOlderThan(Version versionToBeCompared) 
-            => versionToBeCompared < version;
+        public bool IsOlderThan(Version versionToBeCompared) => versionToBeCompared < version;
 
         /// <summary>
         /// Returns whether this version is newer than the current version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than this version, returns false otherwise.</returns>
-        public bool IsNewerThan(Version versionToBeCompared) 
-            => version > versionToBeCompared;
+        public bool IsNewerThan(Version versionToBeCompared) => version > versionToBeCompared;
     }
 
     /// <summary>

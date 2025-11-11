@@ -1,37 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <AssemblyName>DotExtensions.Tests</AssemblyName>
+    <RootNamespace>DotExtensions.Tests</RootNamespace>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <LangVersion>14</LangVersion>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <IsPackable>false</IsPackable>
-        <IsTestProject>true</IsTestProject>
-        <AssemblyName>DotExtensions.Tests</AssemblyName>
-        <RootNamespace>DotExtensions.Tests</RootNamespace>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-        <LangVersion>14</LangVersion>
-    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.5" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="xunit.v3" Version="3.1.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Bogus" Version="35.6.5" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
-        <PackageReference Include="xunit.v3" Version="3.1.0" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <Using Include="Xunit"/>
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Memory\" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Memory\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
-    </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
+  </ItemGroup>
 </Project>

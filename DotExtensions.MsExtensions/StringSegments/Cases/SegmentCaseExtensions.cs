@@ -33,7 +33,6 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentCaseExtensions
 {
-
     extension(StringSegment segment)
     {
         /// <summary>
@@ -41,13 +40,13 @@ public static class SegmentCaseExtensions
         /// </summary>
         public bool IsUpperCase()
         {
-                for (int i = 0; i < segment.Length; i++)
-                {
-                    if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
-                        return false;
-                }
-        
-                return true;
+            for (int i = 0; i < segment.Length; i++)
+            {
+                if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -55,13 +54,13 @@ public static class SegmentCaseExtensions
         /// </summary>
         public bool IsLowerCase()
         {
-                for (int i = 0; i < segment.Length; i++)
-                {
-                    if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
-                        return false;
-                }
+            for (int i = 0; i < segment.Length; i++)
+            {
+                if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
+                    return false;
+            }
 
-                return true;
+            return true;
         }
     }
 }

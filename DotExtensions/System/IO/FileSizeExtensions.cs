@@ -23,7 +23,6 @@
    */
 
 using System.IO;
-
 using AlastairLundy.DotExtensions.Numbers;
 
 namespace AlastairLundy.DotExtensions.IO;
@@ -42,7 +41,7 @@ public static class FileSizeExtensions
         public string GetFileSizeString()
         {
             long quantity = file.Length;
-        
+
             while (quantity > 1000)
             {
                 quantity /= 1000;
@@ -50,7 +49,7 @@ public static class FileSizeExtensions
 
             return $"{quantity}{GetFileSizeUnitString(file)}";
         }
-        
+
         /// <summary>
         /// Gets a string representation of the most suitable file size unit.
         /// </summary>
@@ -66,7 +65,7 @@ public static class FileSizeExtensions
                 >= 10 and <= 12 => "GB",
                 >= 7 and <= 9 => "MB",
                 >= 4 and <= 6 => "KB",
-                <= 3 => "B"
+                <= 3 => "B",
             };
         }
     }

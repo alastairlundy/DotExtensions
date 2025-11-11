@@ -35,7 +35,6 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class CountDigitsExtensions
 {
-    
 #if NET8_0_OR_GREATER
     /// <summary>
     /// Counts the number of digits in the numerical value.
@@ -43,15 +42,16 @@ public static class CountDigitsExtensions
     /// <param name="number">The numerical value to count the digits of.</param>
     /// <typeparam name="TNumber">The type inheriting from <see cref="INumber{TSelf}"/></typeparam>
     /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-    public static int CountNumberOfDigits<TNumber>(this TNumber number) where TNumber : INumber<TNumber>
+    public static int CountNumberOfDigits<TNumber>(this TNumber number)
+        where TNumber : INumber<TNumber>
     {
         if (number < TNumber.Zero)
         {
             number *= (-1.ToNumber<TNumber>());
         }
-        
+
         int digits = number < TNumber.Zero ? 2 : 1;
-        
+
         while ((number /= 10.ToNumber<TNumber>()) != TNumber.Zero)
         {
             ++digits;
@@ -65,15 +65,15 @@ public static class CountDigitsExtensions
     /// </summary>
     /// <param name="number">The numerical value to count the digits of.</param>
     /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-    public static int CountNumberOfDigits(this int number) 
+    public static int CountNumberOfDigits(this int number)
     {
         if (number < 0)
         {
             number *= -1;
         }
-        
+
         int digits = number < 0 ? 2 : 1;
-        
+
         while ((number /= 10) != 0)
         {
             ++digits;
@@ -81,7 +81,7 @@ public static class CountDigitsExtensions
 
         return digits;
     }
-    
+
     /// <summary>
     /// Counts the number of digits in the numerical value.
     /// </summary>
@@ -93,9 +93,9 @@ public static class CountDigitsExtensions
         {
             number *= -1;
         }
-        
+
         int digits = number < 0 ? 2 : 1;
-        
+
         while ((number /= 10) != 0)
         {
             ++digits;
@@ -103,7 +103,7 @@ public static class CountDigitsExtensions
 
         return digits;
     }
-    
+
     /// <summary>
     /// Counts the number of digits in the numerical value.
     /// </summary>
@@ -115,9 +115,9 @@ public static class CountDigitsExtensions
         {
             number *= -1.0;
         }
-        
+
         int digits = number < 0 ? 2 : 1;
-        
+
         while ((number /= 10.0) != 0.0)
         {
             ++digits;

@@ -23,7 +23,6 @@
    */
 
 using System;
-
 using System.Text;
 using AlastairLundy.DotExtensions.MsExtensions.Internal.Localizations;
 using Microsoft.Extensions.Primitives;
@@ -45,15 +44,15 @@ public static class SegmentReverseExtensions
     {
         if (target.IsEmpty)
             throw new InvalidOperationException(Resources.Exceptions_Arguments_Segment_Empty);
-    
+
         StringBuilder stringBuilder = new();
 
         for (int i = 0; i < target.Length; i++)
         {
-            if(target.Length - 1 - i >= 0)
+            if (target.Length - 1 - i >= 0)
                 stringBuilder.Append(target[target.Length - 1 - i]);
         }
-        
+
         return new StringSegment(stringBuilder.ToString());
     }
 }

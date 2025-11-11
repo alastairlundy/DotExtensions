@@ -10,7 +10,7 @@ public class EscapeCharacterRemovalTests
     public void ContainsEscapedCharactersTest(string escapeCharacters)
     {
         bool actual = escapeCharacters.ContainsEscapeCharacters();
-        
+
         Assert.True(actual);
     }
 
@@ -19,10 +19,10 @@ public class EscapeCharacterRemovalTests
     public void DoesntContainEscapeCharactersTest(string word)
     {
         bool actual = word.ContainsEscapeCharacters();
-        
+
         Assert.False(actual);
     }
-    
+
     [Theory]
     [ClassData(typeof(EscapeCharacterTestData))]
     public void SuccessfullyRemoveEscapeCharsTests(string escapeCharacter)
@@ -30,9 +30,9 @@ public class EscapeCharacterRemovalTests
         string text = $"Hello World {escapeCharacter}";
 
         string expected = "Hello World";
-        
+
         string actual = text.RemoveEscapeCharacters();
-        
+
         Assert.Equal(expected, actual);
     }
 }

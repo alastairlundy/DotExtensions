@@ -41,8 +41,8 @@ public static class SpecialCharacterDetectionExtension
     /// </summary>
     /// <param name="s">The string to be checked.</param>
     /// <returns>True if the string contains a special character; false otherwise.</returns>
-    public static bool ContainsSpecialCharacter(this string s) 
-        => s.Any(x => char.IsSpecialCharacter(x));
+    public static bool ContainsSpecialCharacter(this string s) =>
+        s.Any(x => char.IsSpecialCharacter(x));
 
     extension(char ch)
     {
@@ -52,11 +52,11 @@ public static class SpecialCharacterDetectionExtension
         /// <param name="c">The character to search</param>
         /// <returns>True if the char is a special character; false otherwise.</returns>
         public static bool IsSpecialCharacter(char c)
-        { 
+        {
             return char.IsLetterOrDigit(c) == false && (char.IsPunctuation(c) || char.IsSymbol(c));
         }
     }
-    
+
     /// <summary>
     /// Removes special characters from a string.
     /// </summary>
@@ -67,16 +67,15 @@ public static class SpecialCharacterDetectionExtension
     {
         if (string.IsNullOrEmpty(str))
             throw new ArgumentException();
-        
+
         StringBuilder stringBuilder = new StringBuilder();
-        
+
         foreach (char c in str)
         {
-            if (!char.IsSpecialCharacter(c)) 
+            if (!char.IsSpecialCharacter(c))
                 stringBuilder.Append(c);
         }
-        
+
         return stringBuilder.ToString();
     }
-
 }

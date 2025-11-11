@@ -24,7 +24,6 @@
 
 using System.Collections.Generic;
 using System.Text;
-
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -35,7 +34,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 public static class SegmentCapitalizationExtensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="segment">The StringSegment to be modified.</param>
     extension(StringSegment segment)
@@ -49,10 +48,12 @@ public static class SegmentCapitalizationExtensions
         {
             char c = segment[index];
 
-            if (char.IsUpper(c)) 
+            if (char.IsUpper(c))
                 return segment;
 
-            return new StringSegment($"{segment.Substring(0, index)}{char.ToUpper(c)}{segment.Substring(index + 1)}");
+            return new StringSegment(
+                $"{segment.Substring(0, index)}{char.ToUpper(c)}{segment.Substring(index + 1)}"
+            );
         }
 
         /// <summary>
@@ -63,18 +64,18 @@ public static class SegmentCapitalizationExtensions
         public StringSegment CapitalizeChars(IEnumerable<int> indices)
         {
             StringBuilder stringBuilder = new(capacity: segment.Length);
-        
+
             for (int i = 0; i < segment.Length; i++)
             {
                 stringBuilder.Append(segment[i]);
             }
-        
+
             foreach (int index in indices)
             {
                 stringBuilder[index] = char.ToUpper(stringBuilder[index]);
             }
-        
+
             return new StringSegment(stringBuilder.ToString());
-        }   
+        }
     }
 }

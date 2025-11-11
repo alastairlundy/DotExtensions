@@ -6,7 +6,6 @@ namespace DotExtensions.Tests.TestData;
 
 public class AlphabeticalCharacterTestData : IEnumerable<object[]>
 {
-    
     public IEnumerator<object[]> GetEnumerator()
     {
         foreach (char c in Chars.UpperCase)

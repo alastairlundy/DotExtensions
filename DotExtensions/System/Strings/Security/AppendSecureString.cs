@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 using System;
 using System.Collections.Generic;
 using System.Security;
@@ -35,7 +34,7 @@ namespace AlastairLundy.DotExtensions.Strings.Security;
 public static class AppendSecureStringExtensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to append a value to.</param>
     extension(SecureString secureString)
@@ -74,7 +73,7 @@ public static class AppendSecureStringExtensions
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     extension(SecureString secureString)
@@ -93,7 +92,7 @@ public static class AppendSecureStringExtensions
             if (secureString.IsReadOnly() && chars.Count == secureString.Length)
             {
                 int i = 0;
-                foreach(char c in chars)
+                foreach (char c in chars)
                 {
                     secureString.SetAt(i, c);
                     i++;
@@ -109,16 +108,16 @@ public static class AppendSecureStringExtensions
             else
             {
                 secureString.Clear();
-        
+
                 secureString.AppendChars(chars);
             }
-        
+
             foreach (char c in chars)
             {
                 secureString.AppendChar(c);
-            } 
+            }
         }
-        
+
         /// <summary>
         /// Sets this <see cref="SecureString"/> to the specified value.
         /// </summary>
@@ -147,7 +146,7 @@ public static class AppendSecureStringExtensions
             else
             {
                 secureString.Clear();
-        
+
                 secureString.AppendString(value);
             }
         }

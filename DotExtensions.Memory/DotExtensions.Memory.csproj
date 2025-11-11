@@ -1,35 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;</TargetFrameworks>
-        <LangVersion>14</LangVersion>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AssemblyName>AlastairLundy.DotExtensions.Memory</AssemblyName>
-        <RootNamespace>AlastairLundy.DotExtensions.Memory</RootNamespace>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>AlastairLundy.DotExtensions.Memory</PackageId>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <IncludeSymbols>true</IncludeSymbols>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <Version>9.0.0-rc.1</Version>
-        <Title>DotExtensions.Memory</Title>
-        <Authors>Alastair Lundy</Authors>
-        <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
-        <RepositoryUrl>https://github.com/alastairlundy/dotextensions</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <TrimmerSingleWarn>false</TrimmerSingleWarn>
-        <IsTrimmable>true</IsTrimmable>
-        <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;</TargetFrameworks>
+    <LangVersion>14</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>AlastairLundy.DotExtensions.Memory</AssemblyName>
+    <RootNamespace>AlastairLundy.DotExtensions.Memory</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>AlastairLundy.DotExtensions.Memory</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Version>9.0.0-rc.1</Version>
+    <Title>DotExtensions.Memory</Title>
+    <Authors>Alastair Lundy</Authors>
+    <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+    <RepositoryUrl>https://github.com/alastairlundy/dotextensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <TrimmerSingleWarn>false</TrimmerSingleWarn>
+    <IsTrimmable>true</IsTrimmable>
+    <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
 * Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
-    </PropertyGroup>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
+  </PropertyGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-        <PackageReference Include="System.Memory" Version="4.6.3"/>
-    </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory" Version="4.6.3" />
+  </ItemGroup>
 </Project>

@@ -6,11 +6,11 @@ namespace DotExtensions.Tests.Strings.SpecialCharacters;
 public class SpecialCharacterDetectorTests
 {
     [Theory]
-    [ClassData(typeof(AlphabeticalCharacterTestData))]   
+    [ClassData(typeof(AlphabeticalCharacterTestData))]
     public void NotASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
-        
+
         Assert.False(actual);
     }
 
@@ -19,7 +19,7 @@ public class SpecialCharacterDetectorTests
     public void IsASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
-        
+
         Assert.True(actual);
     }
 }

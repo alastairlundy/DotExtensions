@@ -56,16 +56,16 @@ public static class StringValuesIsNullExtensions
         {
             if (other is null)
                 return true;
-            
+
             bool[] vals = new bool[other.Value.Count];
-        
-            for(int index = 0; index < other.Value.Count; index++)
+
+            for (int index = 0; index < other.Value.Count; index++)
             {
                 string? val = other.Value[index];
-            
-                if(val is null)
+
+                if (val is null)
                     return true;
-            
+
                 vals[index] = string.IsNullOrWhiteSpace(val);
             }
 

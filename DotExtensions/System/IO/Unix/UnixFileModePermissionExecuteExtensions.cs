@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.IO.Unix;
 /// </summary>
 public static class UnixFileModePermissionExecuteExtensions
 {
-    #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
 
     extension(UnixFileMode mode)
     {
@@ -40,11 +40,10 @@ public static class UnixFileModePermissionExecuteExtensions
         /// </summary>
         /// <returns>True if the mode includes execute permission, false otherwise.</returns>
         public bool HasExecutePermission =>
-            mode.HasFlag(UnixFileMode.UserExecute) ||
-            mode.HasFlag(UnixFileMode.GroupExecute) ||
-            mode.HasFlag(UnixFileMode.OtherExecute);
+            mode.HasFlag(UnixFileMode.UserExecute)
+            || mode.HasFlag(UnixFileMode.GroupExecute)
+            || mode.HasFlag(UnixFileMode.OtherExecute);
     }
-    
 
-    #endif
+#endif
 }

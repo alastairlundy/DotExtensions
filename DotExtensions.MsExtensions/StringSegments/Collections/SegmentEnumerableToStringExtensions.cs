@@ -24,7 +24,6 @@
 
 using System.Collections.Generic;
 using System.Text;
-
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments.Collections;
@@ -34,7 +33,6 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments.Collections;
 /// </summary>
 public static class SegmentEnumerableToStringExtensions
 {
-
     extension(IEnumerable<StringSegment> segments)
     {
         /// <summary>
@@ -43,9 +41,9 @@ public static class SegmentEnumerableToStringExtensions
         /// <param name="separator">Optional separator string between segments (default: space).</param>
         /// <returns>The concatenated string representation of the input segments.</returns>
         public string ToString(StringSegment separator)
-        {   
+        {
             StringBuilder stringBuilder = new StringBuilder();
-            
+
             foreach (StringSegment segment in segments)
             {
                 for (int i = 0; i < segment.Length; i++)
@@ -58,12 +56,15 @@ public static class SegmentEnumerableToStringExtensions
                     stringBuilder.Append(separator[i2]);
                 }
             }
-        
-            stringBuilder.Remove(startIndex: stringBuilder.Length - separator.Length, length: separator.Length);
+
+            stringBuilder.Remove(
+                startIndex: stringBuilder.Length - separator.Length,
+                length: separator.Length
+            );
 
             return stringBuilder.ToString();
         }
-        
+
         /// <summary>
         /// Converts a sequence of StringSegments into a single string.
         /// </summary>
@@ -72,17 +73,17 @@ public static class SegmentEnumerableToStringExtensions
         public string ToString(char separator)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            
-            foreach(StringSegment segment in segments)
+
+            foreach (StringSegment segment in segments)
             {
                 for (int i = 0; i < segment.Length; i++)
                 {
                     stringBuilder.Append(segment[i]);
                 }
-            
+
                 stringBuilder.Append(separator);
             }
-            
+
             stringBuilder.Remove(startIndex: stringBuilder.Length - 1, length: 1);
             return stringBuilder.ToString();
         }

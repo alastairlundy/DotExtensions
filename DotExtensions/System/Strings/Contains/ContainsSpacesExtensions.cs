@@ -36,7 +36,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class ContainsSpacesExtensions
 {
-
     extension(string s)
     {
         /// <summary>
@@ -47,9 +46,9 @@ public static class ContainsSpacesExtensions
         public bool ContainsSpaceSeparatedSubStrings()
         {
 #if NET8_0_OR_GREATER
-                return s.Contains(' ') && s.Split(' ').Length > 1;
+            return s.Contains(' ') && s.Split(' ').Length > 1;
 #else
-        return s.Contains(' ') && s.Split(' ').Length > 1;
+            return s.Contains(' ') && s.Split(' ').Length > 1;
 #endif
         }
     }

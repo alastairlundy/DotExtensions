@@ -34,9 +34,8 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentContainsExtensions
 {
-    
     /// <summary>
-    /// Returns whether the String Segment contains a character. 
+    /// Returns whether the String Segment contains a character.
     /// </summary>
     /// <param name="this">The string segment to search.</param>
     /// <param name="character">The char to search for.</param>
@@ -48,7 +47,7 @@ public static class SegmentContainsExtensions
             if (@this[i] == character)
                 return true;
         }
-        
+
         return false;
     }
 
@@ -62,7 +61,7 @@ public static class SegmentContainsExtensions
     {
         if (source.Length == segment.Length)
             return source.Equals(segment);
-        
+
         if (segment.Length > source.Length || segment.IsEmpty)
             return false;
 
@@ -70,7 +69,7 @@ public static class SegmentContainsExtensions
         int index = 0;
 
         while (index != -1)
-        { 
+        {
             index = source.IndexOf(segment[0], start + 1);
             start = index;
 

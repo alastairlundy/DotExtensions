@@ -56,7 +56,7 @@ public static class SegmentIsNullExtensions
             for (int index = 0; index < other.Value.Length; index++)
             {
                 char c = other.Value[index];
-                
+
                 if (char.IsWhiteSpace(c) == false)
                     return false;
             }

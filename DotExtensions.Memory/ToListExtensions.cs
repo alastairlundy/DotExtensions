@@ -42,15 +42,15 @@ public static class ToListExtensions
         public List<T> ToList()
         {
             List<T> list = new List<T>();
-        
+
             foreach (T item in source)
             {
                 list.Add(item);
             }
-        
+
             return list;
         }
-        
+
         /// <summary>
         /// Converts this <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
         /// </summary>
@@ -69,12 +69,12 @@ public static class ToListExtensions
         public List<T> ToList()
         {
             List<T> list = new List<T>();
-        
+
             foreach (T item in source.Span)
             {
                 list.Add(item);
             }
-        
+
             return list;
         }
     }

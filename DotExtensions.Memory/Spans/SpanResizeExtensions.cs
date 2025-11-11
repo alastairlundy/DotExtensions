@@ -31,7 +31,6 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanResizeExtensions
 {
-    
     /// <summary>
     /// Resizes the span to the specified new size and optimistically copies the elements of the old span to the new Span.
     /// </summary>
@@ -49,14 +48,14 @@ public static class SpanResizeExtensions
             target = target.Slice(0, newSize);
             return;
         }
-        
+
         T[] newTargetArray = new T[newSize];
-        Span<T> destination = new  Span<T>(newTargetArray);
-        
+        Span<T> destination = new Span<T>(newTargetArray);
+
         int endCopy = target.Length < newSize ? target.Length : newSize;
-        
+
         target.OptimisticCopy(ref destination, 0, endCopy);
-        
+
         target = destination;
     }
 }

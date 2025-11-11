@@ -52,10 +52,10 @@ public static class SegmentToCharsExtensions
             {
                 charArray[i] = segment[i];
             }
-        
+
             return charArray;
         }
-        
+
         /// <summary>
         /// Returns the <see cref="StringSegment"/> as a List of type <see cref="char"/>.
         /// </summary>
@@ -65,14 +65,14 @@ public static class SegmentToCharsExtensions
         {
             if (StringSegment.IsNullOrEmpty(segment))
                 throw new ArgumentException(Resources.Exceptions_Arguments_Segment_Empty);
-        
+
             List<char> list = new List<char>();
-            
+
             for (int i = 0; i < segment.Length; i++)
             {
                 list.Add(segment[i]);
             }
-        
+
             return list;
         }
     }

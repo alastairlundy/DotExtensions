@@ -23,7 +23,6 @@
    */
 
 using System.Collections.Generic;
-
 #if NET8_0_OR_GREATER
 using System;
 using System.Numerics;
@@ -44,8 +43,11 @@ public static class IncrementedNumberRange
     /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
     /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
     /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-    public static bool IsIncrementedNumberRange<TNumber>(this IList<TNumber> source,
-        TNumber expectedIncrement) where TNumber : INumber<TNumber>
+    public static bool IsIncrementedNumberRange<TNumber>(
+        this IList<TNumber> source,
+        TNumber expectedIncrement
+    )
+        where TNumber : INumber<TNumber>
     {
 #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
@@ -56,10 +58,10 @@ public static class IncrementedNumberRange
         for (int index = 0; index < source.Count; index++)
         {
             TNumber actual = source[index];
-            
+
             if (index > 0)
                 expectedNumber += expectedIncrement;
-            
+
             if (expectedNumber != actual)
                 return false;
         }
@@ -74,20 +76,22 @@ public static class IncrementedNumberRange
     /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
     /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
     /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-    public static bool IsIncrementedNumberRange<TNumber>(this IEnumerable<TNumber> source, 
-        TNumber expectedIncrement) where TNumber : INumber<TNumber>
+    public static bool IsIncrementedNumberRange<TNumber>(
+        this IEnumerable<TNumber> source,
+        TNumber expectedIncrement
+    )
+        where TNumber : INumber<TNumber>
     {
 #if NET8_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(source);
 #endif
-        
         if (source is IList<TNumber> list)
             return IsIncrementedNumberRange(list, expectedIncrement);
-        
+
         bool foundFirstNumber = false;
-        
+
         TNumber expectedNumber = TNumber.Zero;
-        
+
         foreach (TNumber actual in source)
         {
             if (foundFirstNumber == false)
@@ -99,7 +103,7 @@ public static class IncrementedNumberRange
             {
                 expectedNumber += expectedIncrement;
             }
-            
+
             if (expectedNumber != actual)
                 return false;
         }
@@ -113,18 +117,17 @@ public static class IncrementedNumberRange
     /// <param name="source">The list of numbers to check.</param>
     /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
     /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-    public static bool IsIncrementedNumberRange(this IList<int> source,
-        int expectedIncrement)
+    public static bool IsIncrementedNumberRange(this IList<int> source, int expectedIncrement)
     {
         int expectedNumber = source[0];
 
         for (int index = 0; index < source.Count; index++)
         {
             int actual = source[index];
-            
+
             if (index > 0)
                 expectedNumber += expectedIncrement;
-            
+
             if (expectedNumber != actual)
                 return false;
         }
@@ -138,16 +141,15 @@ public static class IncrementedNumberRange
     /// <param name="source">The sequence of numbers to check.</param>
     /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
     /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-    public static bool IsIncrementedNumberRange(this IEnumerable<int> source, 
-        int expectedIncrement)
+    public static bool IsIncrementedNumberRange(this IEnumerable<int> source, int expectedIncrement)
     {
         if (source is IList<int> list)
             return IsIncrementedNumberRange(list, expectedIncrement);
-        
+
         bool foundFirstNumber = false;
 
         int expectedNumber = 0;
-        
+
         foreach (int actual in source)
         {
             if (foundFirstNumber == false)
@@ -159,7 +161,7 @@ public static class IncrementedNumberRange
             {
                 expectedNumber += expectedIncrement;
             }
-            
+
             if (expectedNumber != actual)
                 return false;
         }
@@ -168,4 +170,3 @@ public static class IncrementedNumberRange
     }
 #endif
 }
-

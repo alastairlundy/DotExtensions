@@ -23,7 +23,6 @@
    */
 
 using System.IO;
-
 using AlastairLundy.DotExtensions.IO.Directories;
 
 namespace AlastairLundy.DotExtensions.IO.Drives;
@@ -34,7 +33,6 @@ namespace AlastairLundy.DotExtensions.IO.Drives;
 public static class DrivesIsEmptyExtensions
 {
     /// <param name="driveInfo">The drive to be examined.</param>
-
     extension(DriveInfo driveInfo)
     {
         /// <summary>
@@ -47,11 +45,9 @@ public static class DrivesIsEmptyExtensions
                 if (!driveInfo.IsReady)
                     return false;
 
-                return driveInfo.TotalFreeSpace == driveInfo.TotalSize &&
-                       driveInfo.RootDirectory.IsEmpty;
+                return driveInfo.TotalFreeSpace == driveInfo.TotalSize
+                    && driveInfo.RootDirectory.IsEmpty;
             }
         }
     }
-    
-
 }

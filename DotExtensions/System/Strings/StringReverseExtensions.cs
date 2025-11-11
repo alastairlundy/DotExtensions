@@ -33,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class StringReverseExtensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="str">The string to reverse.</param>
     extension(string str)
@@ -48,14 +48,14 @@ public static class StringReverseExtensions
         {
             if (string.IsNullOrEmpty(str))
                 throw new ArgumentException();
-        
-            StringBuilder stringBuilder =  new(capacity: str.Length);
+
+            StringBuilder stringBuilder = new(capacity: str.Length);
 
             for (int i = str.Length - 1; i >= 0; i--)
             {
                 stringBuilder.Append(str[i]);
             }
-        
+
             return stringBuilder.ToString();
         }
     }

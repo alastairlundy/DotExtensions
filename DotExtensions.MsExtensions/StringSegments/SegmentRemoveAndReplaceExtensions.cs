@@ -22,9 +22,7 @@
        SOFTWARE.
    */
 
-
 using System;
-
 using Microsoft.Extensions.Primitives;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -34,7 +32,6 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentRemoveAndReplaceExtensions
 {
-    
     /// <summary>
     /// Removes characters from a <see cref="StringSegment"/> starting at a specified index.
     /// </summary>
@@ -48,13 +45,13 @@ public static class SegmentRemoveAndReplaceExtensions
     {
         if (StringSegment.IsNullOrWhiteSpace(segment))
             throw new NullReferenceException();
-        
-        if(segment.IsEmpty)
+
+        if (segment.IsEmpty)
             throw new InvalidOperationException();
-        
+
         if (startIndex < 0 || startIndex >= segment.Length)
             throw new IndexOutOfRangeException();
-            
+
         int length = segment.Length - startIndex - 1;
 
         return segment.Subsegment(0, length);
@@ -75,21 +72,21 @@ public static class SegmentRemoveAndReplaceExtensions
     {
         if (StringSegment.IsNullOrWhiteSpace(segment))
             throw new NullReferenceException();
-        
-        if(segment.IsEmpty)
+
+        if (segment.IsEmpty)
             throw new InvalidOperationException();
 
         if (startIndex < 0 || startIndex >= segment.Length)
             throw new IndexOutOfRangeException();
-        
-        if(startIndex + count > segment.Length || count < 0 || count > segment.Length)
+
+        if (startIndex + count > segment.Length || count < 0 || count > segment.Length)
             throw new ArgumentOutOfRangeException();
 
         if (startIndex + count == segment.Length - 1)
             return Remove(segment, startIndex);
-        
+
         int firstSegmentEnd = startIndex - 1;
-        
+
         int secondSegmentStart = startIndex + count + 1;
         int secondSegmentEnd = segment.Length - secondSegmentStart;
 

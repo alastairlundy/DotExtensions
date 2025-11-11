@@ -31,12 +31,24 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class CharacterConstants
 {
-    
-    private static readonly string[] EscapeChars = 
-        ["\r", "\n", "\t", "\v", @"\c", @"\e", "\f", "\a", "\b",  @"\NNN", @"\xHH", "\\"];
-    
+    private static readonly string[] EscapeChars =
+    [
+        "\r",
+        "\n",
+        "\t",
+        "\v",
+        @"\c",
+        @"\e",
+        "\f",
+        "\a",
+        "\b",
+        @"\NNN",
+        @"\xHH",
+        "\\",
+    ];
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static string[] EscapeCharacters => EscapeChars;
 }

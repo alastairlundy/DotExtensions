@@ -12,7 +12,6 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 [CsvMeasurementsExporter]
 public class DigitCountingExperimentBenchmarks
 {
-
     private int[] numbers;
 
     [GlobalSetup]
@@ -25,12 +24,13 @@ public class DigitCountingExperimentBenchmarks
             numbers[i] = Random.Shared.Next(int.MinValue, int.MaxValue);
         }
     }
-    
+
     [Params(
-//    10_000_000,
-    100_000_000)]
+        //    10_000_000,
+        100_000_000
+    )]
     public int N;
-    
+
     [Benchmark]
     public int[] String_Linq()
     {
@@ -47,8 +47,7 @@ public class DigitCountingExperimentBenchmarks
             }
 
             // String Implementation
-            results[index] = tempI.ToString()
-                .Count(char.IsDigit);
+            results[index] = tempI.ToString().Count(char.IsDigit);
         }
 
         return results;
@@ -70,13 +69,12 @@ public class DigitCountingExperimentBenchmarks
             }
 
             // String Implementation
-            results[index] = tempI.ToString()
-                .Length;
+            results[index] = tempI.ToString().Length;
         }
 
         return results;
     }
-    
+
     [Benchmark]
     public int[] DigitCounting()
     {

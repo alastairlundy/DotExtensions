@@ -23,7 +23,6 @@
    */
 
 using System;
-
 using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions;
@@ -35,14 +34,10 @@ namespace AlastairLundy.DotExtensions.Exceptions;
 /// <para>This exception is typically thrown by methods that access or manipulate collections.</para></remarks>
 public class KeyValuePairNotFoundException : Exception
 {
-
     ///<summary>
     /// Initializes a new instance of the <see cref="KeyValuePairNotFoundException"/> class.
     /// </summary>
     /// <param name="collectionName">The name of the collection that was not found.</param>
-    public KeyValuePairNotFoundException(string collectionName) : base(
-        $"{Resources.Exceptions_KeyValuePairNotFound}: {collectionName}")
-    {
-            
-    }
+    public KeyValuePairNotFoundException(string collectionName)
+        : base($"{Resources.Exceptions_KeyValuePairNotFound}: {collectionName}") { }
 }

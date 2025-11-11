@@ -1,64 +1,61 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <LangVersion>14</LangVersion>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;</TargetFrameworks>
-        <Title>DotExtensions</Title>
-        <Authors>Alastair Lundy</Authors>
-        <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
-        <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
-        <PackageReleaseNotes>* Removed Title case string extensions
+  <PropertyGroup>
+    <LangVersion>14</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;</TargetFrameworks>
+    <Title>DotExtensions</Title>
+    <Authors>Alastair Lundy</Authors>
+    <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
+    <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
+    <PackageReleaseNotes>* Removed Title case string extensions
 * Renamed DateTime, TimeOnly, and DateOnly Abs extension methods to Difference
 * Removed DateTime ToGivenDateString extension method
 *  Removed Collection Count Generic Numerics extension methods</PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Description>A collection of useful extension methods for .NET .</Description>
-        <IncludeSymbols>true</IncludeSymbols>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>9.0.0-preview.3</Version>
-        <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
-        <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
-        <PackageId>AlastairLundy.DotExtensions</PackageId>
-        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <TrimmerSingleWarn>false</TrimmerSingleWarn>
-    </PropertyGroup>
-    
-    
-    <ItemGroup>
-      <Compile Update="Internal\Localizations\Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Resources.resx</DependentUpon>
-      </Compile>
-    </ItemGroup>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A collection of useful extension methods for .NET .</Description>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>9.0.0-preview.3</Version>
+    <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
+    <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
+    <PackageId>AlastairLundy.DotExtensions</PackageId>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <TrimmerSingleWarn>false</TrimmerSingleWarn>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Update="Internal\Localizations\Resources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Content Include="..\README.md">
-        <Link>README.md</Link>
-          <PackagePath>README.md</PackagePath>
-      </Content>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Internal\Localizations\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-        <PackageReference Include="Polyfill" Version="9.0.0-beta.24" PrivateAssets="all">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Internal\Localizations\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\README.md">
+      <Link>README.md</Link>
+      <PackagePath>README.md</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Polyfill" Version="9.0.0-beta.24" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>

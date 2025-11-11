@@ -46,16 +46,16 @@ public static class SpanIsEmptyExtensions
         {
             get
             {
-                if(source.Length == 0 || source == Span<T>.Empty)
+                if (source.Length == 0 || source == Span<T>.Empty)
                     return true;
-        
+
                 return false;
             }
         }
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="span"></param>
     extension(Span<char> span)
@@ -67,9 +67,9 @@ public static class SpanIsEmptyExtensions
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         public static bool IsEmptyOrWhiteSpace(Span<char> source)
         {
-            if(source.IsEmpty)
+            if (source.IsEmpty)
                 return true;
-        
+
             bool[] isWhiteSpace = new bool[source.Length];
             for (int i = 0; i < source.Length; i++)
             {

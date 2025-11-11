@@ -23,7 +23,6 @@
    */
 
 using System.Collections.Generic;
-
 using System.Text;
 
 namespace AlastairLundy.DotExtensions.Strings;
@@ -34,7 +33,7 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class CapitalizationExtensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="str">The string to be modified.</param>
     extension(string str)
@@ -48,12 +47,12 @@ public static class CapitalizationExtensions
         {
             char c = str[index];
 
-            if (char.IsUpper(c)) 
+            if (char.IsUpper(c))
                 return str;
 
             return $"{str.Substring(0, index)}{char.ToUpper(c)}{str.Substring(index + 1)}";
         }
-        
+
         /// <summary>
         /// Capitalizes the chars at the specified indices in the specified string.
         /// </summary>
@@ -62,7 +61,7 @@ public static class CapitalizationExtensions
         public string CapitalizeChars(IEnumerable<int> indices)
         {
             StringBuilder stringBuilder = new StringBuilder(str);
-        
+
             foreach (int index in indices)
             {
                 if (char.IsUpper(str[index]) == false)
