@@ -33,14 +33,14 @@ namespace AlastairLundy.DotExtensions.Versions;
 /// Provides extension methods for working with
 /// version information in a human-readable format.
 /// </summary>
-public static class HumanReadableVersionStringExtensions
+public static class ReadableVersionStringExtensions
 {
     /// <summary>
     /// Converts a Version object to a human-readable friendly string.
     /// </summary>
     /// <param name="version">The Version object to convert.</param>
     /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
-    public static string ToHumanReadableString(this Version version)
+    public static string ToReadableString(this Version version)
     {
         bool showMinor = version.Minor != 0;
         bool showBuild = version.Build != 0;
