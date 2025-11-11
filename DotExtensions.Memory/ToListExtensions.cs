@@ -32,48 +32,50 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class ToListExtensions
 {
-    /// <summary>
-    /// Converts a <see cref="Span{T}"/> to a <see cref="List{T}"/>.
-    /// </summary>
-    /// <param name="source">The span to convert.</param>
-    /// <typeparam name="T">The type of elements in the span.</typeparam>
-    /// <returns>A list containing the elements of the span.</returns>
-    public static List<T> ToList<T>(this Span<T> source)
+    extension<T>(Span<T> source)
     {
-        List<T> list = new List<T>();
-        
-        foreach (T item in source)
+        /// <summary>
+        /// Converts this <see cref="Span{T}"/> to a <see cref="List{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the span.</typeparam>
+        /// <returns>A list containing the elements of the span.</returns>
+        public List<T> ToList()
         {
-            list.Add(item);
+            List<T> list = new List<T>();
+        
+            foreach (T item in source)
+            {
+                list.Add(item);
+            }
+        
+            return list;
         }
         
-        return list;
+        /// <summary>
+        /// Converts this <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the Span.</typeparam>
+        /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
+        public Memory<T> ToMemory() => new(source.ToArray());
     }
 
-    /// <summary>
-    /// Converts a <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
-    /// </summary>
-    /// <param name="source">The span to convert.</param>
-    /// <typeparam name="T">The type of elements in the Span.</typeparam>
-    /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
-    public static Memory<T> ToMemory<T>(this Span<T> source) 
-        => new(source.ToArray());
-
-    /// <summary>
-    /// Converts a <see cref="Memory{T}"/> to a <see cref="List{T}"/>
-    /// </summary>
-    /// <param name="source">The memory to convert.</param>
-    /// <typeparam name="T">The type of elements in the Memory.</typeparam>
-    /// <returns>A list containing the elements of the Memory.</returns>
-    public static List<T> ToList<T>(this Memory<T> source)
+    extension<T>(Memory<T> source)
     {
-        List<T> list = new List<T>();
-        
-        foreach (T item in source.Span)
+        /// <summary>
+        /// Converts this <see cref="Memory{T}"/> to a <see cref="List{T}"/>
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the Memory.</typeparam>
+        /// <returns>A list containing the elements of the Memory.</returns>
+        public List<T> ToList()
         {
-            list.Add(item);
-        }
+            List<T> list = new List<T>();
         
-        return list;
+            foreach (T item in source.Span)
+            {
+                list.Add(item);
+            }
+        
+            return list;
+        }
     }
 }

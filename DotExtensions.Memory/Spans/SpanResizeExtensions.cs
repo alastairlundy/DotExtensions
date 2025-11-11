@@ -31,6 +31,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanResizeExtensions
 {
+    
     /// <summary>
     /// Resizes the span to the specified new size and optimistically copies the elements of the old span to the new Span.
     /// </summary>

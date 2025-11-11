@@ -33,35 +33,50 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 public static class SpanIsEmptyExtensions
 {
     /// <summary>
-    /// Determines if a span is empty.
+    /// Provides extension methods for checking if a span is empty.
     /// </summary>
-    /// <param name="source">The span to search.</param>
-    /// <typeparam name="T">The type of elements in the Span.</typeparam>
-    /// <returns>True if the span is empty, false otherwise.</returns>
-    public static bool IsEmpty<T>(this Span<T> source)
+    extension<T>(Span<T> source)
     {
-        if(source.Length == 0 || source == Span<T>.Empty)
-            return true;
+        /// <summary>
+        /// Determines if a span is empty.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the Span.</typeparam>
+        /// <returns>True if the span is empty, false otherwise.</returns>
+        public bool IsEmpty
+        {
+            get
+            {
+                if(source.Length == 0 || source == Span<T>.Empty)
+                    return true;
         
-        return false;
+                return false;
+            }
+        }
     }
 
     /// <summary>
-    /// Determines if a span is empty or whitespace.
+    /// 
     /// </summary>
-    /// <param name="source">The span to search.</param>
-    /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-    public static bool IsEmptyOrWhiteSpace(this Span<char> source)
+    /// <param name="span"></param>
+    extension(Span<char> span)
     {
-        if(IsEmpty(source))
-            return true;
-        
-        bool[] isWhiteSpace = new bool[source.Length];
-        for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// Determines if a span is empty or whitespace.
+        /// </summary>
+        /// <param name="source">The span to search.</param>
+        /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
+        public static bool IsEmptyOrWhiteSpace(Span<char> source)
         {
-            isWhiteSpace[i] = char.IsWhiteSpace(source[i]);
-        }
+            if(source.IsEmpty)
+                return true;
+        
+            bool[] isWhiteSpace = new bool[source.Length];
+            for (int i = 0; i < source.Length; i++)
+            {
+                isWhiteSpace[i] = char.IsWhiteSpace(source[i]);
+            }
 
-        return isWhiteSpace.All(x => x);
+            return isWhiteSpace.All(x => x);
+        }
     }
 }
