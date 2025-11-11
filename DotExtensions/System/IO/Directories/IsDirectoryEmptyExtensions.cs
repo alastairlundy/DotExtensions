@@ -33,20 +33,30 @@ namespace AlastairLundy.DotExtensions.IO.Directories;
 /// </summary>
 public static class IsDirectoryEmptyExtensions
 {
-    ///<summary>
-    /// Checks if a Directory is empty or not.
+    /// <summary>
+    /// Provides extension methods for checking if a directory is empty.
     /// </summary>
-    /// <param name="directory">The directory to be searched.</param>
-    /// <returns>True if the directory is empty; false otherwise.</returns>
-    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
-    public static bool IsDirectoryEmpty(this DirectoryInfo directory)
+    extension(DirectoryInfo directory)
     {
-        if (Directory.Exists(directory.FullName) == false)
-            throw new DirectoryNotFoundException(
-                Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
+        ///<summary>
+        /// Checks if a Directory is empty or not.
+        /// </summary>
+        /// <returns>True if the directory is empty; false otherwise.</returns>
+        /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
+        public bool IsEmpty
+        {
+           get
+           {
+               if (Directory.Exists(directory.FullName) == false)
+                   throw new DirectoryNotFoundException(
+                       Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
         
-        return directory.GetFiles().Any() == false &&
-               directory.GetDirectories().Any() == false;
+               return directory.GetFiles().Any() == false &&
+                      directory.GetDirectories().Any() == false;
+           }
+        }
     }
+    
+
 
 }

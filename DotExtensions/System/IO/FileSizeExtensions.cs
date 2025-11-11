@@ -33,40 +33,41 @@ namespace AlastairLundy.DotExtensions.IO;
 /// </summary>
 public static class FileSizeExtensions
 {
-    /// <summary>
-    /// Returns a string representation of the file size, including the most suitable unit.
-    /// </summary>
-    /// <param name="file">The FileInfo to get the file size for.</param>
-    /// <returns>A string representation of the file size with the most suitable unit.</returns>
-    public static string GetFileSizeString(this FileInfo file)
+    extension(FileInfo file)
     {
-        long quantity = file.Length;
+        /// <summary>
+        /// Returns a string representation of the file size, including the most suitable unit.
+        /// </summary>
+        /// <returns>A string representation of the file size with the most suitable unit.</returns>
+        public string GetFileSizeString()
+        {
+            long quantity = file.Length;
         
-        while (quantity > 1000)
-        {
-            quantity /= 1000;
+            while (quantity > 1000)
+            {
+                quantity /= 1000;
+            }
+
+            return $"{quantity}{GetFileSizeUnitString(file)}";
         }
-
-        return $"{quantity}{GetFileSizeUnitString(file)}";
-    }
-
-    /// <summary>
-    /// Gets a string representation of the most suitable file size unit.
-    /// </summary>
-    /// <param name="file">The FileInfo to get the file size unit for.</param>
-    /// <returns>A string representation of the most suitable file size unit.</returns>
-    public static string GetFileSizeUnitString(this FileInfo file)
-    {
-        int numberOfDigits = file.Length.CountNumberOfDigits();
-
-        return numberOfDigits switch
+        
+        /// <summary>
+        /// Gets a string representation of the most suitable file size unit.
+        /// </summary>
+        /// <returns>A string representation of the most suitable file size unit.</returns>
+        public string GetFileSizeUnitString()
         {
-            >= 16 => "PB",
-            >= 13 and <= 15 => "TB",
-            >= 10 and <= 12 => "GB",
-            >= 7 and <= 9 => "MB",
-            >= 4 and <= 6 => "KB",
-            <= 3 => "B"
-        };
+            int numberOfDigits = file.Length.CountNumberOfDigits();
+
+            return numberOfDigits switch
+            {
+                >= 16 => "PB",
+                >= 13 and <= 15 => "TB",
+                >= 10 and <= 12 => "GB",
+                >= 7 and <= 9 => "MB",
+                >= 4 and <= 6 => "KB",
+                <= 3 => "B"
+            };
+        }
     }
 }

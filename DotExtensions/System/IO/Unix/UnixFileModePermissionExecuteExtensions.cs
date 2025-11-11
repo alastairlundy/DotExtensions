@@ -33,16 +33,18 @@ public static class UnixFileModePermissionExecuteExtensions
 {
     #if NET8_0_OR_GREATER
 
-    /// <summary>
-    /// Determines whether the specified Unix file mode has execute permission.
-    /// </summary>
-    /// <param name="mode">The Unix file mode to check.</param>
-    /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-    public static bool HasExecutePermission(this UnixFileMode mode)
+    extension(UnixFileMode mode)
     {
-        return mode.HasFlag(UnixFileMode.UserExecute) ||
-               mode.HasFlag(UnixFileMode.GroupExecute) ||
-               mode.HasFlag(UnixFileMode.OtherExecute);
+        /// <summary>
+        /// Determines whether the specified Unix file mode has execute permission.
+        /// </summary>
+        /// <returns>True if the mode includes execute permission, false otherwise.</returns>
+        public bool HasExecutePermission =>
+            mode.HasFlag(UnixFileMode.UserExecute) ||
+            mode.HasFlag(UnixFileMode.GroupExecute) ||
+            mode.HasFlag(UnixFileMode.OtherExecute);
     }
+    
+
     #endif
 }

@@ -33,17 +33,25 @@ namespace AlastairLundy.DotExtensions.IO.Drives;
 /// </summary>
 public static class DrivesIsEmptyExtensions
 {
-    /// <summary>
-    /// Determines if a Drive is empty or not.
-    /// </summary>
     /// <param name="driveInfo">The drive to be examined.</param>
-    /// <returns>True if the drive is empty, false otherwise.</returns>
-    public static bool IsDriveEmpty(this DriveInfo driveInfo)
-    {
-        if (driveInfo.IsReady == false)
-            return false;
 
-        return driveInfo.TotalFreeSpace == driveInfo.TotalSize &&
-               driveInfo.RootDirectory.IsDirectoryEmpty();
+    extension(DriveInfo driveInfo)
+    {
+        /// <summary>
+        /// Whether a Drive is empty or not.
+        /// </summary>
+        public bool IsEmpty
+        {
+            get
+            {
+                if (!driveInfo.IsReady)
+                    return false;
+
+                return driveInfo.TotalFreeSpace == driveInfo.TotalSize &&
+                       driveInfo.RootDirectory.IsEmpty;
+            }
+        }
     }
+    
+
 }
