@@ -63,7 +63,7 @@ public static class SegmentContainsExtensions
         if (source.Length == segment.Length)
             return source.Equals(segment);
         
-        if (segment.Length > source.Length || segment.IsEmpty())
+        if (segment.Length > source.Length || segment.IsEmpty)
             return false;
 
         int start = -1;

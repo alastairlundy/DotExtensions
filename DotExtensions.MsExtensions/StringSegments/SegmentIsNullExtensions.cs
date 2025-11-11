@@ -32,42 +32,36 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentIsNullExtensions
 {
-    /// <summary>
-    /// Returns true if the specified string segment is empty.
-    /// </summary>
-    /// <param name="segment">The string segment to check.</param>
-    /// <returns>True if the string segment is empty; otherwise, false.</returns>
-    public static bool IsEmpty(this StringSegment segment) => segment.Equals(StringSegment.Empty);
-
-    /// <summary>
-    /// Checks whether the specified string segment is null or whitespace.
-    /// </summary>
-    /// <param name="segment">The string segment to check.</param>
-    /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
-    public static bool IsNullOrWhiteSpace(this StringSegment segment)
+    extension(StringSegment segment)
     {
-        if (segment.HasValue == false)
-            return true;
-        
-        foreach (char c in segment.Value)
-        {
-            if (char.IsWhiteSpace(c) == false)
-                return false;
-        }
-
-        return true;
+        /// <summary>
+        /// Returns true if this string segment is empty.
+        /// </summary>
+        /// <returns>True if the string segment is empty; otherwise, false.</returns>
+        public bool IsEmpty => segment.Equals(StringSegment.Empty);
     }
-    
-    /// <summary>
-    /// Checks whether the specified string segment is null or whitespace.
-    /// </summary>
-    /// <param name="segment">The string segment to check.</param>
-    /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
-    public static bool IsNullOrWhiteSpace(this StringSegment? segment)
+
+    extension(StringSegment segment)
     {
-        if (segment is null)
+        /// <summary>
+        /// Checks whether the specified string segment is null or whitespace.
+        /// </summary>
+        /// <paramref name="other"></paramref>
+        /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+        public static bool IsNullOrWhiteSpace(StringSegment? other)
+        {
+            if (other.HasValue == false)
+                return true;
+
+            for (int index = 0; index < other.Value.Length; index++)
+            {
+                char c = other.Value[index];
+                
+                if (char.IsWhiteSpace(c) == false)
+                    return false;
+            }
+
             return true;
-        
-        return IsNullOrWhiteSpace(segment.Value);
+        }
     }
 }

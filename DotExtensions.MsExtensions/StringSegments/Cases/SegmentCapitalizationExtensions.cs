@@ -34,43 +34,47 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentCapitalizationExtensions
 {
-        
     /// <summary>
-    /// Capitalizes the char at the specified index in the specified <see cref="StringSegment"/>.
-    /// </summary>
-    /// <param name="index">The index of the char to be made upper case.</param>
-    /// <param name="segment">The StringSegment to be modified.</param>
-    /// <returns>The specified <see cref="StringSegment"/> with the specified char made upper case.</returns>
-    public static StringSegment CapitalizeChar(this StringSegment segment, int index)
-    {
-        char c = segment[index];
-
-        if (char.IsUpper(c)) 
-            return segment;
-
-        return new StringSegment($"{segment.Substring(0, index)}{char.ToUpper(c)}{segment.Substring(index + 1)}");
-    }
-
-    /// <summary>
-    /// Capitalizes the chars at the specified indices in the specified <see cref="StringSegment"/>.
+    /// 
     /// </summary>
     /// <param name="segment">The StringSegment to be modified.</param>
-    /// <param name="indices">The indices of the chars to be made upper case.</param>
-    /// <returns>The specified <see cref="StringSegment"/> with the specified chars made upper case.</returns>
-    public static StringSegment CapitalizeChars(this StringSegment segment, IEnumerable<int> indices)
+    extension(StringSegment segment)
     {
-        StringBuilder stringBuilder = new(capacity: segment.Length);
-        
-        for (int i = 0; i < segment.Length; i++)
+        /// <summary>
+        /// Capitalizes the char at the specified index in the specified <see cref="StringSegment"/>.
+        /// </summary>
+        /// <param name="index">The index of the char to be made upper case.</param>
+        /// <returns>The specified <see cref="StringSegment"/> with the specified char made upper case.</returns>
+        public StringSegment CapitalizeChar(int index)
         {
-           stringBuilder.Append(segment[i]);
+            char c = segment[index];
+
+            if (char.IsUpper(c)) 
+                return segment;
+
+            return new StringSegment($"{segment.Substring(0, index)}{char.ToUpper(c)}{segment.Substring(index + 1)}");
         }
-        
-        foreach (int index in indices)
+
+        /// <summary>
+        /// Capitalizes the chars at the specified indices in the specified <see cref="StringSegment"/>.
+        /// </summary>
+        /// <param name="indices">The indices of the chars to be made upper case.</param>
+        /// <returns>The specified <see cref="StringSegment"/> with the specified chars made upper case.</returns>
+        public StringSegment CapitalizeChars(IEnumerable<int> indices)
         {
-            stringBuilder[index] = char.ToUpper(stringBuilder[index]);
-        }
+            StringBuilder stringBuilder = new(capacity: segment.Length);
         
-        return new StringSegment(stringBuilder.ToString());
+            for (int i = 0; i < segment.Length; i++)
+            {
+                stringBuilder.Append(segment[i]);
+            }
+        
+            foreach (int index in indices)
+            {
+                stringBuilder[index] = char.ToUpper(stringBuilder[index]);
+            }
+        
+            return new StringSegment(stringBuilder.ToString());
+        }   
     }
 }

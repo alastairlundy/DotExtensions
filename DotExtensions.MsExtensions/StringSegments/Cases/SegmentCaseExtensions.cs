@@ -34,35 +34,34 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 public static class SegmentCaseExtensions
 {
 
-    /// <summary>
-    /// Returns whether a <see cref="StringSegment"/> is upper case or not.
-    /// </summary>
-    /// <param name="segment">The <see cref="StringSegment"/> to be checked.</param>
-    /// <returns>True if the <see cref="StringSegment"/> is upper case; false otherwise.</returns>
-    public static bool IsUpperCase(this StringSegment segment)
+    extension(StringSegment segment)
     {
-        for (int i = 0; i < segment.Length; i++)
+        /// <summary>
+        /// Returns whether this <see cref="StringSegment"/> is upper case or not.
+        /// </summary>
+        public bool IsUpperCase()
         {
-            if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
-                return false;
-        }
+                for (int i = 0; i < segment.Length; i++)
+                {
+                    if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
+                        return false;
+                }
         
-        return true;
-    }
-
-    /// <summary>
-    /// Returns whether a <see cref="StringSegment"/> is lower case or not.
-    /// </summary>
-    /// <param name="segment">The <see cref="StringSegment"/> to be checked.</param>
-    /// <returns>True if a <see cref="StringSegment"/> is a lower case; false otherwise.</returns>
-    public static bool IsLowerCase(this StringSegment segment)
-    {
-        for (int i = 0; i < segment.Length; i++)
-        {
-            if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
-                return false;
+                return true;
         }
 
-        return true;
+        /// <summary>
+        /// Returns whether a <see cref="StringSegment"/> is lower case or not.
+        /// </summary>
+        public bool IsLowerCase()
+        {
+                for (int i = 0; i < segment.Length; i++)
+                {
+                    if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
+                        return false;
+                }
+
+                return true;
+        }
     }
 }

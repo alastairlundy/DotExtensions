@@ -32,18 +32,22 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentContainsSpacesExtensions
 {
-    /// <summary>
-    /// Determines if a <see cref="StringSegment"/> contains space separated subsegments within it.
-    /// </summary>
-    /// <param name="segment">The <see cref="StringSegment"/> to search.</param>
-    /// <returns>True if the <see cref="StringSegment"/> contains space separated <see cref="StringSegment"/>s within it; false otherwise.</returns>
-    public static bool ContainsSpaceSeparatedSubSegments(this StringSegment segment)
+    extension(StringSegment segment)
     {
-        if (segment.IsEmpty())
-            return false;
-        
-        StringTokenizer tokenizer = segment.Split([' ']);
 
-        return segment.Contains(' ') && tokenizer.Count() > 1;
+        /// <summary>
+        /// Whether a <see cref="StringSegment"/> contains space separated subsegments within it.
+        ///
+        /// <para>True if the <see cref="StringSegment"/> contains space separated <see cref="StringSegment"/>s within it; false otherwise.</para>
+        /// </summary>
+        public bool ContainsSpaceSeparatedSubSegments()
+        {
+                if (segment.IsEmpty)
+                    return false;
+        
+                StringTokenizer tokenizer = segment.Split([' ']);
+
+                return segment.Contains(' ') && tokenizer.Count() > 1;
+        }
     }
 }
