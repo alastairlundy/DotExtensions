@@ -14,8 +14,8 @@ public class UnixFileModeExtensionTests
         UnixFileMode expectedGroup = UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute;
         UnixFileMode expectedOthers = UnixFileMode.OtherRead |  UnixFileMode.OtherWrite | UnixFileMode.OtherExecute;
         
-        Assert.True(expectedUser.HasExecutePermission());
-        Assert.True(expectedGroup.HasExecutePermission());
-        Assert.True(expectedOthers.HasExecutePermission());
+        Assert.True(expectedUser.HasExecutePermission);
+        Assert.True(expectedGroup.HasExecutePermission);
+        Assert.True(expectedOthers.HasExecutePermission);
     }
 }

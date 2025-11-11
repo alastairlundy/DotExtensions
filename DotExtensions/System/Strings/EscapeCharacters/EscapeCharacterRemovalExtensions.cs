@@ -34,13 +34,16 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class EscapeCharacterRemovalExtensions
 {
-    /// <summary>
-    /// Returns whether the string contains an Escape Character.
-    /// </summary>
-    /// <param name="str">The string to be searched.</param>
-    /// <returns>True if the string contains an Escape Character; returns false otherwise.</returns>
-    public static bool ContainsEscapeCharacters(this string str) =>
-        CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
+    extension(string str)
+    {
+        
+        /// <summary>
+        /// Whether this string contains an Escape Character.
+        ///
+        /// <para>True if the string contains an Escape Character; returns false otherwise.</para>
+        /// </summary>
+        public bool ContainsEscapeCharacters() => CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
+    }
 
     /// <summary>
     /// Removes escape characters from a string.
@@ -49,7 +52,7 @@ public static class EscapeCharacterRemovalExtensions
     /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
     public static string RemoveEscapeCharacters(this string str)
     {
-        if (ContainsEscapeCharacters(str))
+        if (str.ContainsEscapeCharacters())
         {
             foreach (string escapeChar in CharacterConstants.EscapeCharacters)
             {

@@ -33,39 +33,43 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class CapitalizationExtensions
 {
-        
     /// <summary>
-    /// Capitalizes the char at the specified index in the specified string.
+    /// 
     /// </summary>
-    /// <param name="index">The index of the char to be made upper case.</param>
     /// <param name="str">The string to be modified.</param>
-    /// <returns>A string with the specified char made upper case.</returns>
-    public static string CapitalizeChar(this string str, int index)
+    extension(string str)
     {
-        char c = str[index];
-
-        if (char.IsUpper(c)) 
-            return str;
-
-        return $"{str.Substring(0, index)}{char.ToUpper(c)}{str.Substring(index + 1)}";
-    }
-
-    /// <summary>
-    /// Capitalizes the chars at the specified indices in the specified string.
-    /// </summary>
-    /// <param name="str">The string to have chars capitalized.</param>
-    /// <param name="indices">The indices of the chars to capitalize.</param>
-    /// <returns>A string with all the chars at the specified indices capitalized.</returns>
-    public static string CapitalizeChars(this string str, IEnumerable<int> indices)
-    {
-        StringBuilder stringBuilder = new StringBuilder(str);
-        
-        foreach (int index in indices)
+        /// <summary>
+        /// Capitalizes the char at the specified index in the specified string.
+        /// </summary>
+        /// <param name="index">The index of the char to be made upper case.</param>
+        /// <returns>A string with the specified char made upper case.</returns>
+        public string CapitalizeChar(int index)
         {
-            if (char.IsUpper(str[index]) == false)
-                stringBuilder[index] = char.ToUpper(str[index]);
-        }
+            char c = str[index];
 
-        return stringBuilder.ToString();
+            if (char.IsUpper(c)) 
+                return str;
+
+            return $"{str.Substring(0, index)}{char.ToUpper(c)}{str.Substring(index + 1)}";
+        }
+        
+        /// <summary>
+        /// Capitalizes the chars at the specified indices in the specified string.
+        /// </summary>
+        /// <param name="indices">The indices of the chars to capitalize.</param>
+        /// <returns>A string with all the chars at the specified indices capitalized.</returns>
+        public string CapitalizeChars(IEnumerable<int> indices)
+        {
+            StringBuilder stringBuilder = new StringBuilder(str);
+        
+            foreach (int index in indices)
+            {
+                if (char.IsUpper(str[index]) == false)
+                    stringBuilder[index] = char.ToUpper(str[index]);
+            }
+
+            return stringBuilder.ToString();
+        }
     }
 }

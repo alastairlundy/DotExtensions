@@ -37,17 +37,20 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class ContainsSpacesExtensions
 {
 
-    /// <summary>
-    /// Determines if a string contains space separated substrings within it.
-    /// </summary>
-    /// <param name="s">The string to search.</param>
-    /// <returns>True if the string contains space separated strings within it; false otherwise.</returns>
-    public static bool ContainsSpaceSeparatedSubStrings(this string s)
+    extension(string s)
     {
+        /// <summary>
+        /// Determines if a string contains space separated substrings within it.
+        ///
+        /// <para>True if the string contains space separated strings within it; false otherwise. </para>
+        /// </summary>
+        public bool ContainsSpaceSeparatedSubStrings()
+        {
 #if NET8_0_OR_GREATER
-        return s.Contains(' ') && s.Split(' ').Length > 1;
+                return s.Contains(' ') && s.Split(' ').Length > 1;
 #else
         return s.Contains(' ') && s.Split(' ').Length > 1;
 #endif
+        }
     }
 }

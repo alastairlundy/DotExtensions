@@ -9,7 +9,7 @@ public class SpecialCharacterDetectorTests
     [ClassData(typeof(AlphabeticalCharacterTestData))]   
     public void NotASpecialCharacter(char character)
     {
-        bool actual = character.IsSpecialCharacter();
+        bool actual = char.IsSpecialCharacter(character);
         
         Assert.False(actual);
     }
@@ -18,7 +18,7 @@ public class SpecialCharacterDetectorTests
     [ClassData(typeof(SpecialCharacterTestData))]
     public void IsASpecialCharacter(char character)
     {
-        bool actual = character.IsSpecialCharacter();
+        bool actual = char.IsSpecialCharacter(character);
         
         Assert.True(actual);
     }

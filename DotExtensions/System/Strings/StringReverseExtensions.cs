@@ -33,24 +33,30 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class StringReverseExtensions
 {
     /// <summary>
-    /// Reverses the contents of a string.
+    /// 
     /// </summary>
-    /// <remarks>This method builds a reversed string using a <see cref="StringBuilder"/> for improved performance.</remarks>
     /// <param name="str">The string to reverse.</param>
-    /// <returns>A new string with the reversed contents of the source string.</returns>
-    /// <exception cref="ArgumentException">Thrown if the source string is null or empty.</exception>
-    public static string Reverse(this string str)
+    extension(string str)
     {
-        if (string.IsNullOrEmpty(str))
-            throw new ArgumentException();
-        
-        StringBuilder stringBuilder =  new(capacity: str.Length);
-
-        for (int i = str.Length - 1; i >= 0; i--)
+        /// <summary>
+        /// Reverses the contents of a string.
+        /// </summary>
+        /// <remarks>This method builds a reversed string using a <see cref="StringBuilder"/> for improved performance.</remarks>
+        /// <returns>A new string with the reversed contents of the source string.</returns>
+        /// <exception cref="ArgumentException">Thrown if the source string is null or empty.</exception>
+        public string Reverse()
         {
-            stringBuilder.Append(str[i]);
-        }
+            if (string.IsNullOrEmpty(str))
+                throw new ArgumentException();
         
-        return stringBuilder.ToString();
+            StringBuilder stringBuilder =  new(capacity: str.Length);
+
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                stringBuilder.Append(str[i]);
+            }
+        
+            return stringBuilder.ToString();
+        }
     }
 }

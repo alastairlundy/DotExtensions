@@ -34,20 +34,20 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class CaseExtensions
 {
 
-    /// <summary>
-    /// Returns whether a string is upper case or not.
-    /// </summary>
-    /// <param name="s">The string to be checked.</param>
-    /// <returns>True if the string is upper case; false otherwise.</returns>
-    // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsUpperCase(this string s)
-        => s.All(x => char.IsUpper(x));
-    
-    /// <summary>
-    /// Returns whether a string is lower case or not.
-    /// </summary>
-    /// <param name="s">The string to be checked.</param>
-    /// <returns>True if a string is lower case; false otherwise.</returns>
-    public static bool IsLowerCase(this string s)
-        => s.All(x => char.IsLower(x));
+    extension(string s)
+    {
+        /// <summary>
+        /// Returns whether this string is in the upper case or not.
+        ///
+        /// <para>True if the string is upper case; false otherwise.</para>
+        /// </summary>
+        public bool IsUpperCase() => s.All(x => char.IsUpper(x));
+        
+        /// <summary>
+        /// Returns whether a string is lower case or not.
+        ///
+        /// <para>True if a string is lower case; false otherwise.</para>
+        /// </summary>
+        bool IsLowerCase() => s.All(x => char.IsLower(x));
+    }
 }
