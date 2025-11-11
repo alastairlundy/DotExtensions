@@ -36,6 +36,10 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class ContainsSpacesExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="s"></param>
     extension(string s)
     {
         /// <summary>

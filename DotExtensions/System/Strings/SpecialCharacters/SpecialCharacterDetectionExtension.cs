@@ -36,13 +36,7 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class SpecialCharacterDetectionExtension
 {
-    /// <summary>
-    /// Returns whether a string contains a special character or not.
-    /// </summary>
-    /// <param name="s">The string to be checked.</param>
-    /// <returns>True if the string contains a special character; false otherwise.</returns>
-    public static bool ContainsSpecialCharacter(this string s) =>
-        s.Any(x => char.IsSpecialCharacter(x));
+
 
     extension(char ch)
     {
@@ -58,24 +52,36 @@ public static class SpecialCharacterDetectionExtension
     }
 
     /// <summary>
-    /// Removes special characters from a string.
+    /// 
     /// </summary>
-    /// <param name="str">The string to have special characters removed.</param>
-    /// <returns>A new string with all the characters of the input string without special characters.</returns>
-    /// <exception cref="ArgumentException">Thrown if the input string is null or empty.</exception>
-    public static string RemoveSpecialCharacters(this string str)
+    /// <param name="str">The string to search or modify.</param>
+    extension(string str)
     {
-        if (string.IsNullOrEmpty(str))
-            throw new ArgumentException();
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        foreach (char c in str)
+        /// <summary>
+        /// Returns whether a string contains a special character or not.
+        /// </summary>
+        /// <returns>True if the string contains a special character; false otherwise.</returns>
+        public bool ContainsSpecialCharacter() => str.Any(x => char.IsSpecialCharacter(x));
+        
+        /// <summary>
+        /// Removes special characters from a string.
+        /// </summary>
+        /// <returns>A new string with all the characters of the input string without special characters.</returns>
+        /// <exception cref="ArgumentException">Thrown if the input string is null or empty.</exception>
+        public string RemoveSpecialCharacters()
         {
-            if (!char.IsSpecialCharacter(c))
-                stringBuilder.Append(c);
-        }
+            if (string.IsNullOrEmpty(str))
+                throw new ArgumentException();
 
-        return stringBuilder.ToString();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (char c in str)
+            {
+                if (!char.IsSpecialCharacter(c))
+                    stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
     }
 }

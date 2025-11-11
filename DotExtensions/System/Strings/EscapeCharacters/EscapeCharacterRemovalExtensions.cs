@@ -35,6 +35,11 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class EscapeCharacterRemovalExtensions
 {
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="str">The string to be searched.</param>
     extension(string str)
     {
         /// <summary>
@@ -44,29 +49,28 @@ public static class EscapeCharacterRemovalExtensions
         /// </summary>
         public bool ContainsEscapeCharacters() =>
             CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
-    }
-
-    /// <summary>
-    /// Removes escape characters from a string.
-    /// </summary>
-    /// <param name="str">The string to be searched.</param>
-    /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
-    public static string RemoveEscapeCharacters(this string str)
-    {
-        if (str.ContainsEscapeCharacters())
+        
+        /// <summary>
+        /// Removes escape characters from a string.
+        /// </summary>
+        /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
+        public string RemoveEscapeCharacters()
         {
-            foreach (string escapeChar in CharacterConstants.EscapeCharacters)
+            if (str.ContainsEscapeCharacters())
             {
-                if (str.Contains(escapeChar))
+                foreach (string escapeChar in CharacterConstants.EscapeCharacters)
                 {
-                    str = str.Replace(escapeChar, string.Empty);
+                    if (str.Contains(escapeChar))
+                    {
+                        str = str.Replace(escapeChar, string.Empty);
 
-                    if (str.EndsWith(" "))
-                        str = str.Remove(str.LastIndexOf(' '), 1);
+                        if (str.EndsWith(" "))
+                            str = str.Remove(str.LastIndexOf(' '), 1);
+                    }
                 }
             }
-        }
 
-        return str;
+            return str;
+        }   
     }
 }

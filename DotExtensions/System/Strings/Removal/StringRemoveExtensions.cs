@@ -31,86 +31,95 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class StringRemoveExtensions
 {
-    /// <summary>
-    /// Removes all occurrences of a specified substring from the given string,
-    /// using the specified string comparison rules.
-    /// </summary>
-    /// <param name="str">The string to remove the substring from.</param>
-    /// <param name="value">The substring to remove.</param>
-    /// <param name="stringComparison">The rules to use for the substring comparison.</param>
-    /// <returns>A new string with all occurrences of the specified substring removed.</returns>
-    /// <exception cref="ArgumentException">
-    /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty.
-    /// </exception>
-    public static string RemoveAll(this string str, string value,
-        StringComparison stringComparison = StringComparison.CurrentCulture)
+    extension(string str)
     {
+        /// <summary>
+        /// Removes all occurrences of a specified substring from the given string,
+        /// using the specified string comparison rules.
+        /// </summary>
+        /// <param name="str">The string to remove the substring from.</param>
+        /// <param name="value">The substring to remove.</param>
+        /// <param name="stringComparison">The rules to use for the substring comparison.</param>
+        /// <returns>A new string with all occurrences of the specified substring removed.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty.
+        /// </exception>
+        public string RemoveAll(
+            string value,
+            StringComparison stringComparison = StringComparison.CurrentCulture
+        )
+        {
 #if NET8_0_OR_GREATER
-        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-        ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
+            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
 #endif
 
-        while (str.Contains(value, stringComparison))
-        {
-            str = str.RemoveFirst(value);
+            while (str.Contains(value, stringComparison))
+            {
+                str = str.RemoveFirst(value);
+            }
+
+            return str;
         }
 
-        return str;
-    }
-
-    /// <summary>
-    /// Removes the first occurrence of a specified substring from the given string,
-    /// using the specified string comparison rules.
-    /// </summary>
-    /// <param name="str">The string to remove the substring from.</param>
-    /// <param name="value">The substring to remove.</param>
-    /// <param name="stringComparison">The rules to use for the substring comparison.</param>
-    /// <returns>A new string with the first occurrence of the specified substring removed.</returns>
-    /// <exception cref="ArgumentException">
-    /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
-    /// or when the substring is not found in the string.
-    /// </exception>
-    public static string RemoveFirst(this string str, string value,
-        StringComparison stringComparison = StringComparison.CurrentCulture)
-    {
+        /// <summary>
+        /// Removes the first occurrence of a specified substring from the given string,
+        /// using the specified string comparison rules.
+        /// </summary>
+        /// <param name="str">The string to remove the substring from.</param>
+        /// <param name="value">The substring to remove.</param>
+        /// <param name="stringComparison">The rules to use for the substring comparison.</param>
+        /// <returns>A new string with the first occurrence of the specified substring removed.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
+        /// or when the substring is not found in the string.
+        /// </exception>
+        public string RemoveFirst(
+            string value,
+            StringComparison stringComparison = StringComparison.CurrentCulture
+        )
+        {
 #if NET8_0_OR_GREATER
-        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-        ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
+            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
 #endif
-        
-        int index = str.IndexOf(value, stringComparison);
 
-        if (index == -1)
-            throw new ArgumentException($"Could not find {value} in string {str}");
-        
-        return str.Remove(index, value.Length);
-    }
+            int index = str.IndexOf(value, stringComparison);
 
-    /// <summary>
-    /// Removes the last occurrence of a specified substring from the given string,
-    /// using the specified string comparison rules.
-    /// </summary>
-    /// <param name="str">The string to remove the substring from.</param>
-    /// <param name="value">The substring to remove.</param>
-    /// <param name="stringComparison">The rules to use for the substring comparison.</param>
-    /// <returns>A new string with the last occurrence of the specified substring removed.</returns>
-    /// <exception cref="ArgumentException">
-    /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
-    /// or when the substring is not found in the string.
-    /// </exception>
-    public static string RemoveLast(this string str, string value,
-        StringComparison stringComparison = StringComparison.CurrentCulture)
-    {
+            if (index == -1)
+                throw new ArgumentException($"Could not find {value} in string {str}");
+
+            return str.Remove(index, value.Length);
+        }
+
+        /// <summary>
+        /// Removes the last occurrence of a specified substring from the given string,
+        /// using the specified string comparison rules.
+        /// </summary>
+        /// <param name="str">The string to remove the substring from.</param>
+        /// <param name="value">The substring to remove.</param>
+        /// <param name="stringComparison">The rules to use for the substring comparison.</param>
+        /// <returns>A new string with the last occurrence of the specified substring removed.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
+        /// or when the substring is not found in the string.
+        /// </exception>
+        public string RemoveLast(
+            string value,
+            StringComparison stringComparison = StringComparison.CurrentCulture
+        )
+        {
 #if NET8_0_OR_GREATER
-        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-        ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
+            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
 #endif
-        
-        int index = str.LastIndexOf(value, stringComparison);
 
-        if (index == -1)
-            throw new ArgumentException($"Could not find {value} in string {str}");
-        
-        return str.Remove(index, value.Length);
+            int index = str.LastIndexOf(value, stringComparison);
+
+            if (index == -1)
+                throw new ArgumentException($"Could not find {value} in string {str}");
+
+            return str.Remove(index, value.Length);
+        }
     }
 }

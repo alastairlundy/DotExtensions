@@ -32,49 +32,62 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class StringReplaceLastExtensions
 {
     /// <summary>
-    /// Replaces the first occurrence of a specified substring with a new value in the given string.
+    ///
     /// </summary>
     /// <param name="str">The input string in which the replacement is performed.</param>
-    /// <param name="oldValue">The substring to be replaced.</param>
-    /// <param name="newValue">The substring to replace the first occurrence of <paramref name="oldValue"/>.</param>
-    /// <returns>
-    /// A new string where the first occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
-    /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
-    /// </returns>
-    public static string ReplaceFirst(this string str, string oldValue, string newValue)
+    extension(string str)
     {
-        int lastIndex = str.IndexOf(oldValue, StringComparison.Ordinal);
+        /// <summary>
+        /// Replaces the first occurrence of a specified substring with a new value in the given string.
+        /// </summary>
+        /// <param name="oldValue">The substring to be replaced.</param>
+        /// <param name="newValue">The substring to replace the first occurrence of <paramref name="oldValue"/>.</param>
+        /// <returns>
+        /// A new string where the first occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
+        /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
+        /// </returns>
+        public string ReplaceFirst(
+            string oldValue,
+            string newValue,
+            StringComparison stringComparison = StringComparison.CurrentCulture
+        )
+        {
+            int lastIndex = str.IndexOf(oldValue, stringComparison);
 
-        if (lastIndex == -1)
+            if (lastIndex == -1)
+                return str;
+
+            str = str.Remove(lastIndex, oldValue.Length);
+
+            str = str.Insert(lastIndex, newValue);
             return str;
-        
-        str = str.Remove(lastIndex, oldValue.Length);
-        
-        str = str.Insert(lastIndex, newValue);
-        return str;
-    }
+        }
 
+        /// <summary>
+        /// Replaces the last occurrence of a specified substring with a new value in the given string.
+        /// </summary>
+        /// <param name="oldValue">The substring to be replaced.</param>
+        /// <param name="newValue">The substring to replace the last occurrence of <paramref name="oldValue"/>.</param>
+        /// <param name="stringComparison"></param>
+        /// <returns>
+        /// A new string where the last occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
+        /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
+        /// </returns>
+        public string ReplaceLast(
+            string oldValue,
+            string newValue,
+            StringComparison stringComparison = StringComparison.CurrentCulture
+        )
+        {
+            int lastIndex = str.LastIndexOf(oldValue, stringComparison);
 
-    /// <summary>
-    /// Replaces the last occurrence of a specified substring with a new value in the given string.
-    /// </summary>
-    /// <param name="str">The input string in which the replacement is performed.</param>
-    /// <param name="oldValue">The substring to be replaced.</param>
-    /// <param name="newValue">The substring to replace the last occurrence of <paramref name="oldValue"/>.</param>
-    /// <returns>
-    /// A new string where the last occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
-    /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
-    /// </returns>
-    public static string ReplaceLast(this string str, string oldValue, string newValue)
-    {
-        int lastIndex = str.LastIndexOf(oldValue, StringComparison.Ordinal);
+            if (lastIndex == -1)
+                return str;
 
-        if (lastIndex == -1)
+            str = str.Remove(lastIndex, oldValue.Length);
+
+            str = str.Insert(lastIndex, newValue);
             return str;
-        
-        str = str.Remove(lastIndex, oldValue.Length);
-        
-        str = str.Insert(lastIndex, newValue);
-        return str;
+        }
     }
 }
