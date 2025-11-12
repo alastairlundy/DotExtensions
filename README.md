@@ -1,5 +1,7 @@
 # DotExtensions
-An extension method library that enhances the experience of using .NET's types with useful features.
+An extension member library that enhances the experience of using .NET's types with useful features.
+
+Now updated to take advantage of C# 14 as of version 9.
 
 [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
 [![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
@@ -68,4 +70,5 @@ Future updates should aim to focus on one or more of the following:
 
 ## License
 This project is licensed under the MIT license.
+
 
