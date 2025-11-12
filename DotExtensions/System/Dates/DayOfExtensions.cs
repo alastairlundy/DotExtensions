@@ -32,39 +32,44 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class DayOfExtensions
 {
-        
     /// <summary>
-    /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
+    ///
     /// </summary>
     /// <param name="date">The date </param>
-    /// <returns>The day of the week as a 32-Bit integer.</returns>
-    public static int DayOfWeekInt(this DateTime date)
+    extension(DateTime date)
     {
-        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        
-        int dayOfWeek;
-        
-        if (DayOfWeek.Sunday == firstDayOfWeek)
+        /// <summary>
+        /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
+        /// </summary>
+        /// <returns>The day of the week as a 32-Bit integer.</returns>
+        public int DayOfWeekInt()
         {
-            dayOfWeek = (int)date.DayOfWeek + 1;
-        }
-        else if (DayOfWeek.Monday == firstDayOfWeek)
-        {
-            switch (date.DayOfWeek)
+            DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+
+            int dayOfWeek;
+
+            if (DayOfWeek.Sunday == firstDayOfWeek)
             {
-                case DayOfWeek.Sunday:
-                    dayOfWeek = 7;
-                    break;
-                default:
-                    dayOfWeek = (int)date.DayOfWeek;
-                    break;
+                dayOfWeek = (int)date.DayOfWeek + 1;
             }
+            else if (DayOfWeek.Monday == firstDayOfWeek)
+            {
+                switch (date.DayOfWeek)
+                {
+                    case DayOfWeek.Sunday:
+                        dayOfWeek = 7;
+                        break;
+                    default:
+                        dayOfWeek = (int)date.DayOfWeek;
+                        break;
+                }
+            }
+            else
+            {
+                dayOfWeek = (int)date.DayOfWeek + 1;
+            }
+
+            return dayOfWeek;
         }
-        else
-        {
-            dayOfWeek = (int)date.DayOfWeek + 1;
-        }
-        
-        return dayOfWeek;
     }
 }

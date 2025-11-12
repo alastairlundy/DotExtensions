@@ -36,6 +36,10 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 /// </summary>
 public static class StringValuesIsNullExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="strValues"></param>
     extension(StringValues strValues)
     {
         /// <summary>
@@ -45,6 +49,10 @@ public static class StringValuesIsNullExtensions
         public bool IsEmpty => strValues.Equals(StringValues.Empty);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="strValues"></param>
     extension(StringValues? strValues)
     {
         /// <summary>

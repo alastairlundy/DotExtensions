@@ -42,6 +42,7 @@ public static class StringReplaceLastExtensions
         /// </summary>
         /// <param name="oldValue">The substring to be replaced.</param>
         /// <param name="newValue">The substring to replace the first occurrence of <paramref name="oldValue"/>.</param>
+        /// <param name="stringComparison"></param>
         /// <returns>
         /// A new string where the first occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
         /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.

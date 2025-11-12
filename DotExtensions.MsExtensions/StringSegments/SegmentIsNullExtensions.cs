@@ -50,14 +50,14 @@ public static class SegmentIsNullExtensions
         /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
         public static bool IsNullOrWhiteSpace(StringSegment? other)
         {
-            if (other.HasValue == false)
+            if (!other.HasValue)
                 return true;
 
             for (int index = 0; index < other.Value.Length; index++)
             {
                 char c = other.Value[index];
 
-                if (char.IsWhiteSpace(c) == false)
+                if (!char.IsWhiteSpace(c))
                     return false;
             }
 

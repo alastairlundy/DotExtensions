@@ -33,6 +33,10 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments.Collections;
 /// </summary>
 public static class SegmentEnumerableToStringExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="segments"></param>
     extension(IEnumerable<StringSegment> segments)
     {
         /// <summary>

@@ -34,25 +34,28 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentReverseExtensions
 {
-    /// <summary>
-    /// Reverses the contents of the StringSegment.
-    /// </summary>
     /// <param name="target">The StringSegment to reverse.</param>
-    /// <returns>The reversed StringSegment.</returns>
-    /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
-    public static StringSegment Reverse(this StringSegment target)
+    extension(StringSegment target)
     {
-        if (target.IsEmpty)
-            throw new InvalidOperationException(Resources.Exceptions_Arguments_Segment_Empty);
-
-        StringBuilder stringBuilder = new();
-
-        for (int i = 0; i < target.Length; i++)
+        /// <summary>
+        /// Reverses the contents of the StringSegment.
+        /// </summary>
+        /// <returns>The reversed StringSegment.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
+        public StringSegment Reverse()
         {
-            if (target.Length - 1 - i >= 0)
-                stringBuilder.Append(target[target.Length - 1 - i]);
-        }
+            if (target.IsEmpty)
+                throw new InvalidOperationException(Resources.Exceptions_Arguments_Segment_Empty);
 
-        return new StringSegment(stringBuilder.ToString());
+            StringBuilder stringBuilder = new();
+
+            for (int i = 0; i < target.Length; i++)
+            {
+                if (target.Length - 1 - i >= 0)
+                    stringBuilder.Append(target[target.Length - 1 - i]);
+            }
+
+            return new StringSegment(stringBuilder.ToString());
+        }
     }
 }

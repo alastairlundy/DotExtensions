@@ -36,94 +36,105 @@ namespace AlastairLundy.DotExtensions.Numbers;
 public static class CountDigitsExtensions
 {
 #if NET8_0_OR_GREATER
-    /// <summary>
-    /// Counts the number of digits in the numerical value.
-    /// </summary>
     /// <param name="number">The numerical value to count the digits of.</param>
     /// <typeparam name="TNumber">The type inheriting from <see cref="INumber{TSelf}"/></typeparam>
-    /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-    public static int CountNumberOfDigits<TNumber>(this TNumber number)
-        where TNumber : INumber<TNumber>
+    extension<TNumber>(TNumber number) where TNumber : INumber<TNumber>
     {
-        if (number < TNumber.Zero)
+        /// <summary>
+        /// Counts the number of digits in the numerical value.
+        /// </summary>
+        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+        public int CountNumberOfDigits()
         {
-            number *= (-1.ToNumber<TNumber>());
+            if (number < TNumber.Zero)
+            {
+                number *= (-1.ToNumber<TNumber>());
+            }
+
+            int digits = number < TNumber.Zero ? 2 : 1;
+
+            while ((number /= 10.ToNumber<TNumber>()) != TNumber.Zero)
+            {
+                ++digits;
+            }
+
+            return digits;
         }
-
-        int digits = number < TNumber.Zero ? 2 : 1;
-
-        while ((number /= 10.ToNumber<TNumber>()) != TNumber.Zero)
-        {
-            ++digits;
-        }
-
-        return digits;
     }
 #else
-    /// <summary>
-    /// Counts the number of digits in the integer value.
-    /// </summary>
     /// <param name="number">The numerical value to count the digits of.</param>
-    /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-    public static int CountNumberOfDigits(this int number)
+    extension(int number)
     {
-        if (number < 0)
+        /// <summary>
+        /// Counts the number of digits in the integer value.
+        /// </summary>
+        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+        public int CountNumberOfDigits()
         {
-            number *= -1;
+            if (number < 0)
+            {
+                number *= -1;
+            }
+
+            int digits = number < 0 ? 2 : 1;
+
+            while ((number /= 10) != 0)
+            {
+                ++digits;
+            }
+
+            return digits;
         }
-
-        int digits = number < 0 ? 2 : 1;
-
-        while ((number /= 10) != 0)
-        {
-            ++digits;
-        }
-
-        return digits;
     }
 
-    /// <summary>
-    /// Counts the number of digits in the numerical value.
-    /// </summary>
     /// <param name="number">The numerical value to count the digits of.</param>
-    /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-    public static int CountNumberOfDigits(this long number)
+    extension(long number)
     {
-        if (number < 0)
+        /// <summary>
+        /// Counts the number of digits in the numerical value.
+        /// </summary>
+        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+        public int CountNumberOfDigits()
         {
-            number *= -1;
+            if (number < 0)
+            {
+                number *= -1;
+            }
+
+            int digits = number < 0 ? 2 : 1;
+
+            while ((number /= 10) != 0)
+            {
+                ++digits;
+            }
+
+            return digits;
         }
-
-        int digits = number < 0 ? 2 : 1;
-
-        while ((number /= 10) != 0)
-        {
-            ++digits;
-        }
-
-        return digits;
     }
 
-    /// <summary>
-    /// Counts the number of digits in the numerical value.
-    /// </summary>
     /// <param name="number">The numerical value to count the digits of.</param>
-    /// <returns>The number of digits in the numerical value, returned as a double precision floating point number.</returns>
-    public static int CountNumberOfDigits(this double number)
+    extension(double number)
     {
-        if (number < 0.0)
+        /// <summary>
+        /// Counts the number of digits in the numerical value.
+        /// </summary>
+        /// <returns>The number of digits in the numerical value, returned as a double precision floating point number.</returns>
+        public int CountNumberOfDigits()
         {
-            number *= -1.0;
+            if (number < 0.0)
+            {
+                number *= -1.0;
+            }
+
+            int digits = number < 0 ? 2 : 1;
+
+            while ((number /= 10.0) != 0.0)
+            {
+                ++digits;
+            }
+
+            return digits;
         }
-
-        int digits = number < 0 ? 2 : 1;
-
-        while ((number /= 10.0) != 0.0)
-        {
-            ++digits;
-        }
-
-        return digits;
     }
 #endif
 }

@@ -23,6 +23,7 @@
    */
 
 using System;
+// ReSharper disable RedundantCallerArgumentExpressionDefaultValue
 
 namespace AlastairLundy.DotExtensions.Strings;
 
@@ -31,13 +32,13 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class StringRemoveExtensions
 {
+    /// <param name="str">The string to remove the substring from.</param>
     extension(string str)
     {
         /// <summary>
         /// Removes all occurrences of a specified substring from the given string,
         /// using the specified string comparison rules.
         /// </summary>
-        /// <param name="str">The string to remove the substring from.</param>
         /// <param name="value">The substring to remove.</param>
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with all occurrences of the specified substring removed.</returns>
@@ -66,7 +67,6 @@ public static class StringRemoveExtensions
         /// Removes the first occurrence of a specified substring from the given string,
         /// using the specified string comparison rules.
         /// </summary>
-        /// <param name="str">The string to remove the substring from.</param>
         /// <param name="value">The substring to remove.</param>
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with the first occurrence of the specified substring removed.</returns>
@@ -86,17 +86,15 @@ public static class StringRemoveExtensions
 
             int index = str.IndexOf(value, stringComparison);
 
-            if (index == -1)
-                throw new ArgumentException($"Could not find {value} in string {str}");
-
-            return str.Remove(index, value.Length);
+            return index == -1
+                ? throw new ArgumentException($"Could not find {value} in string {str}")
+                : str.Remove(index, value.Length);
         }
 
         /// <summary>
         /// Removes the last occurrence of a specified substring from the given string,
         /// using the specified string comparison rules.
         /// </summary>
-        /// <param name="str">The string to remove the substring from.</param>
         /// <param name="value">The substring to remove.</param>
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with the last occurrence of the specified substring removed.</returns>
@@ -116,10 +114,9 @@ public static class StringRemoveExtensions
 
             int index = str.LastIndexOf(value, stringComparison);
 
-            if (index == -1)
-                throw new ArgumentException($"Could not find {value} in string {str}");
-
-            return str.Remove(index, value.Length);
+            return index == -1
+                ? throw new ArgumentException($"Could not find {value} in string {str}")
+                : str.Remove(index, value.Length);
         }
     }
 }

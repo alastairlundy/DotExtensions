@@ -33,6 +33,10 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentCaseExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="segment"></param>
     extension(StringSegment segment)
     {
         /// <summary>

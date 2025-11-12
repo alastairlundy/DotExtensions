@@ -34,22 +34,28 @@ namespace AlastairLundy.DotExtensions.Numbers;
 public static class NumberRangeExtensions
 {
 #if NET8_0_OR_GREATER
-    /// <summary>
-    /// Creates a new instance of the Range struct based on the given start value and length.
-    /// </summary>
     /// <param name="start">The starting index or integer value of the range.</param>
-    /// <param name="count">The number of elements in the range.</param>
-    /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this int start, int count) =>
-        new(new Index(start), new Index(start + count));
+    extension(int start)
+    {
+        /// <summary>
+        /// Creates a new instance of the Range struct based on the given start value and length.
+        /// </summary>
+        /// <param name="count">The number of elements in the range.</param>
+        /// <returns>A new Range instance representing the specified sequence of values.</returns>
+        public Range AsRange(int count) =>
+            new(new Index(start), new Index(start + count));
+    }
 
-    /// <summary>
-    /// Creates a new instance of the Range struct based on the given Index value and length.
-    /// </summary>
     /// <param name="start">The starting Index value.</param>
-    /// <param name="count">The number of elements in the range.</param>
-    /// <returns>A new Range instance representing the specified sequence of values.</returns>
-    public static Range AsRange(this Index start, int count) =>
-        new(start, new Index(start.Value + count));
+    extension(Index start)
+    {
+        /// <summary>
+        /// Creates a new instance of the Range struct based on the given Index value and length.
+        /// </summary>
+        /// <param name="count">The number of elements in the range.</param>
+        /// <returns>A new Range instance representing the specified sequence of values.</returns>
+        public Range AsRange(int count) =>
+            new(start, new Index(start.Value + count));
+    }
 #endif
 }

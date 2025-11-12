@@ -32,67 +32,69 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentRemoveAndReplaceExtensions
 {
-    /// <summary>
-    /// Removes characters from a <see cref="StringSegment"/> starting at a specified index.
-    /// </summary>
     /// <param name="segment">The segment to remove characters from.</param>
-    /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
-    /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index are removed.</returns>
-    /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
-    public static StringSegment Remove(this StringSegment segment, int startIndex)
+    extension(StringSegment segment)
     {
-        if (StringSegment.IsNullOrWhiteSpace(segment))
-            throw new NullReferenceException();
+        /// <summary>
+        /// Removes characters from a <see cref="StringSegment"/> starting at a specified index.
+        /// </summary>
+        /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
+        /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index are removed.</returns>
+        /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        public StringSegment Remove(int startIndex)
+        {
+            if (StringSegment.IsNullOrWhiteSpace(segment))
+                throw new NullReferenceException();
 
-        if (segment.IsEmpty)
-            throw new InvalidOperationException();
+            if (segment.IsEmpty)
+                throw new InvalidOperationException();
 
-        if (startIndex < 0 || startIndex >= segment.Length)
-            throw new IndexOutOfRangeException();
+            if (startIndex < 0 || startIndex >= segment.Length)
+                throw new IndexOutOfRangeException();
 
-        int length = segment.Length - startIndex - 1;
+            int length = segment.Length - startIndex - 1;
 
-        return segment.Subsegment(0, length);
-    }
+            return segment.Subsegment(0, length);
+        }
 
-    /// <summary>
-    /// Removes characters from a <see cref="StringSegment"/> starting at a specified index for <paramref name="count"/> number of characters.
-    /// </summary>
-    /// <param name="segment">The segment to remove characters from.</param>
-    /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
-    /// <param name="count">The number of characters to remove from the StringSegment from the start index.</param>
-    /// <returns>A <see cref="StringSegment"/> where the characters occurring within the <paramref name="count"/> number of characters after the specified index are removed.</returns>
-    /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
-    /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
-    public static StringSegment Remove(this StringSegment segment, int startIndex, int count)
-    {
-        if (StringSegment.IsNullOrWhiteSpace(segment))
-            throw new NullReferenceException();
+        /// <summary>
+        /// Removes characters from a <see cref="StringSegment"/> starting at a specified index for <paramref name="count"/> number of characters.
+        /// </summary>
+        /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
+        /// <param name="count">The number of characters to remove from the StringSegment from the start index.</param>
+        /// <returns>A <see cref="StringSegment"/> where the characters occurring within the <paramref name="count"/> number of characters after the specified index are removed.</returns>
+        /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
+        public StringSegment Remove(int startIndex, int count)
+        {
+            if (StringSegment.IsNullOrWhiteSpace(segment))
+                throw new NullReferenceException();
 
-        if (segment.IsEmpty)
-            throw new InvalidOperationException();
+            if (segment.IsEmpty)
+                throw new InvalidOperationException();
 
-        if (startIndex < 0 || startIndex >= segment.Length)
-            throw new IndexOutOfRangeException();
+            if (startIndex < 0 || startIndex >= segment.Length)
+                throw new IndexOutOfRangeException();
 
-        if (startIndex + count > segment.Length || count < 0 || count > segment.Length)
-            throw new ArgumentOutOfRangeException();
+            if (startIndex + count > segment.Length || count < 0 || count > segment.Length)
+                throw new ArgumentOutOfRangeException();
 
-        if (startIndex + count == segment.Length - 1)
-            return Remove(segment, startIndex);
+            if (startIndex + count == segment.Length - 1)
+                return Remove(segment, startIndex);
 
-        int firstSegmentEnd = startIndex - 1;
+            int firstSegmentEnd = startIndex - 1;
 
-        int secondSegmentStart = startIndex + count + 1;
-        int secondSegmentEnd = segment.Length - secondSegmentStart;
+            int secondSegmentStart = startIndex + count + 1;
+            int secondSegmentEnd = segment.Length - secondSegmentStart;
 
-        StringSegment firstSegment = segment.Subsegment(0, firstSegmentEnd);
-        StringSegment secondSegment = segment.Subsegment(secondSegmentStart, secondSegmentEnd);
+            StringSegment firstSegment = segment.Subsegment(0, firstSegmentEnd);
+            StringSegment secondSegment = segment.Subsegment(secondSegmentStart, secondSegmentEnd);
 
-        return new StringSegment($"{firstSegment}{secondSegment}");
+            return new StringSegment($"{firstSegment}{secondSegment}");
+        }
     }
 }

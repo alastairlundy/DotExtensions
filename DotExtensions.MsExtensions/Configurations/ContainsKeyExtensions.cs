@@ -31,16 +31,19 @@ namespace AlastairLundy.DotExtensions.MsExtensions.Configurations;
 /// </summary>
 public static class ContainsKeyExtensions
 {
-    /// <summary>
-    /// Determines if a configuration contains a specified key.
-    /// </summary>
     /// <param name="configuration">The configuration to search.</param>
-    /// <param name="keyName">The key name to search for.</param>
-    /// <returns>True if the key is found within the configuration, false otherwise.</returns>
-    public static bool ContainsKey(this IConfiguration configuration, string keyName)
+    extension(IConfiguration configuration)
     {
-        IConfigurationSection config = configuration.GetSection(keyName);
+        /// <summary>
+        /// Determines if a configuration contains a specified key.
+        /// </summary>
+        /// <param name="keyName">The key name to search for.</param>
+        /// <returns>True if the key is found within the configuration, false otherwise.</returns>
+        public bool ContainsKey(string keyName)
+        {
+            IConfigurationSection config = configuration.GetSection(keyName);
 
-        return config.Exists();
+            return config.Exists();
+        }
     }
 }

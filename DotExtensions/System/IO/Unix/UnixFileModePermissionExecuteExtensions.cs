@@ -33,6 +33,10 @@ public static class UnixFileModePermissionExecuteExtensions
 {
 #if NET8_0_OR_GREATER
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="mode"></param>
     extension(UnixFileMode mode)
     {
         /// <summary>

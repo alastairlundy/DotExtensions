@@ -56,17 +56,17 @@ public static class EscapeCharacterRemovalExtensions
         /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
         public string RemoveEscapeCharacters()
         {
-            if (str.ContainsEscapeCharacters())
+            if (!str.ContainsEscapeCharacters()) 
+                return str;
+            
+            foreach (string escapeChar in CharacterConstants.EscapeCharacters)
             {
-                foreach (string escapeChar in CharacterConstants.EscapeCharacters)
+                if (str.Contains(escapeChar))
                 {
-                    if (str.Contains(escapeChar))
-                    {
-                        str = str.Replace(escapeChar, string.Empty);
+                    str = str.Replace(escapeChar, string.Empty);
 
-                        if (str.EndsWith(" "))
-                            str = str.Remove(str.LastIndexOf(' '), 1);
-                    }
+                    if (str.EndsWith(" "))
+                        str = str.Remove(str.LastIndexOf(' '), 1);
                 }
             }
 

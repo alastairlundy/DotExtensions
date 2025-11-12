@@ -47,10 +47,9 @@ public static class CapitalizationExtensions
         {
             char c = str[index];
 
-            if (char.IsUpper(c))
-                return str;
-
-            return $"{str.Substring(0, index)}{char.ToUpper(c)}{str.Substring(index + 1)}";
+            return char.IsUpper(c) ? str : string.Format("{0}{1}{2}", str.Substring(0, index),
+                char.ToUpper(c),
+                str.Substring(index + 1));
         }
 
         /// <summary>

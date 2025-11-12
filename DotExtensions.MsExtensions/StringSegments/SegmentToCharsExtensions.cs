@@ -34,6 +34,10 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentToCharsExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="segment"></param>
     extension(StringSegment segment)
     {
         /// <summary>
@@ -66,7 +70,7 @@ public static class SegmentToCharsExtensions
             if (StringSegment.IsNullOrEmpty(segment))
                 throw new ArgumentException(Resources.Exceptions_Arguments_Segment_Empty);
 
-            List<char> list = new List<char>();
+            List<char> list = [];
 
             for (int i = 0; i < segment.Length; i++)
             {

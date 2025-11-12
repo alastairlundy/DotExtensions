@@ -37,6 +37,6 @@ public static class UnixDateStringExtension
     /// </summary>
     /// <param name="dateTime">The dateTime object to be used.</param>
     /// <returns>the current date in the format of the unix Date command.</returns>
-    public static string ToUnixDateString(this DateTime dateTime) 
-        => dateTime.ToString("R").Replace(",", string.Empty);
+    public static string ToUnixDateString(this DateTime dateTime) =>
+        dateTime.ToString("R").Replace(",", string.Empty);
 }

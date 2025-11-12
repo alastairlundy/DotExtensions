@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 using System;
 
 namespace AlastairLundy.DotExtensions.Dates;
@@ -32,41 +31,49 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class DateTimeDifferenceExtensions
 {
-    /// <summary>
-    /// Determines the absolute difference of two <see cref="DateTime"/> objects.
-    /// </summary>
     /// <param name="dateTimeOne">The first date to be subtracted.</param>
-    /// <param name="dateTimeTwo">The second date to be subtracted.</param>
-    /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Difference(this DateTime dateTimeOne, DateTime dateTimeTwo)
+    extension(DateTime dateTimeOne)
     {
-        long absoluteTicks = Math.Abs(dateTimeOne.Ticks - dateTimeTwo.Ticks);
+        /// <summary>
+        /// Determines the absolute difference of two <see cref="DateTime"/> objects.
+        /// </summary>
+        /// <param name="dateTimeTwo">The second date to be subtracted.</param>
+        /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
+        public TimeSpan Difference(DateTime dateTimeTwo)
+        {
+            long absoluteTicks = Math.Abs(dateTimeOne.Ticks - dateTimeTwo.Ticks);
 
-        return TimeSpan.FromTicks(absoluteTicks);
+            return TimeSpan.FromTicks(absoluteTicks);
+        }
     }
 
 #if NET8_0_OR_GREATER
-    /// <summary>
-    /// Determines the absolute difference of two <see cref="TimeOnly"/> objects.
-    /// </summary>
     /// <param name="timeOnlyOne">The first time to be subtracted.</param>
-    /// <param name="timeOnlyTwo">The second time to be subtracted.</param>
-    /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Difference(this TimeOnly timeOnlyOne, TimeOnly timeOnlyTwo)
+    extension(TimeOnly timeOnlyOne)
     {
-        long absoluteTicks = Math.Abs(timeOnlyOne.Ticks - timeOnlyTwo.Ticks);
-        
-        return TimeSpan.FromTicks(absoluteTicks);
+        /// <summary>
+        /// Determines the absolute difference of two <see cref="TimeOnly"/> objects.
+        /// </summary>
+        /// <param name="timeOnlyTwo">The second time to be subtracted.</param>
+        /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
+        public TimeSpan Difference(TimeOnly timeOnlyTwo)
+        {
+            long absoluteTicks = Math.Abs(timeOnlyOne.Ticks - timeOnlyTwo.Ticks);
+
+            return TimeSpan.FromTicks(absoluteTicks);
+        }
     }
 
-    /// <summary>
-    /// Determines the absolute difference of two <see cref="DateOnly"/> objects.
-    /// </summary>
     /// <param name="dateOnlyOne">The first date to be subtracted.</param>
-    /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
-    /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-    public static TimeSpan Difference(this DateOnly dateOnlyOne, DateOnly dateOnlyTwo)
-        => Difference(dateOnlyOne.ToDateTime().Date, dateOnlyTwo.ToDateTime().Date);
+    extension(DateOnly dateOnlyOne)
+    {
+        /// <summary>
+        /// Determines the absolute difference of two <see cref="DateOnly"/> objects.
+        /// </summary>
+        /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
+        /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
+        public TimeSpan Difference(DateOnly dateOnlyTwo) =>
+            Difference(DateOnly.ToDateTime(dateOnlyOne).Date, DateOnly.ToDateTime(dateOnlyTwo).Date);
+    }
 #endif
-
 }

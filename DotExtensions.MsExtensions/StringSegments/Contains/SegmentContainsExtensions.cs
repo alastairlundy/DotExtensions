@@ -34,54 +34,56 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentContainsExtensions
 {
-    /// <summary>
-    /// Returns whether the String Segment contains a character.
-    /// </summary>
-    /// <param name="this">The string segment to search.</param>
-    /// <param name="character">The char to search for.</param>
-    /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
-    public static bool Contains(this StringSegment @this, char character)
-    {
-        for (int i = 0; i < @this.Length; i++)
-        {
-            if (@this[i] == character)
-                return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Returns whether the String Segment contains another String Segment.
-    /// </summary>
+    
     /// <param name="source">The string segment to search.</param>
-    /// <param name="segment">The string segment to search for.</param>
-    /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
-    public static bool Contains(this StringSegment source, StringSegment segment)
+    extension(StringSegment source)
     {
-        if (source.Length == segment.Length)
-            return source.Equals(segment);
-
-        if (segment.Length > source.Length || segment.IsEmpty)
-            return false;
-
-        int start = -1;
-        int index = 0;
-
-        while (index != -1)
+        /// <summary>
+        /// Returns whether the String Segment contains a character.
+        /// </summary>
+        /// <param name="character">The char to search for.</param>
+        /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
+        public bool Contains(char character)
         {
-            index = source.IndexOf(segment[0], start + 1);
-            start = index;
-
-            if (index != -1)
+            for (int i = 0; i < source.Length; i++)
             {
-                StringSegment comparison = source.Subsegment(index, segment.Length);
-
-                if (segment.Equals(comparison))
+                if (source[i] == character)
                     return true;
             }
-        }
 
-        return false;
+            return false;
+        }
+        
+        /// <summary>
+        /// Returns whether the String Segment contains another String Segment.
+        /// </summary>
+        /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
+        public bool Contains(StringSegment segment)
+        {
+            if (source.Length == segment.Length)
+                return source.Equals(segment);
+
+            if (segment.Length > source.Length || segment.IsEmpty)
+                return false;
+
+            int start = -1;
+            int index = 0;
+
+            while (index != -1)
+            {
+                index = source.IndexOf(segment[0], start + 1);
+                start = index;
+
+                if (index != -1)
+                {
+                    StringSegment comparison = source.Subsegment(index, segment.Length);
+
+                    if (segment.Equals(comparison))
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

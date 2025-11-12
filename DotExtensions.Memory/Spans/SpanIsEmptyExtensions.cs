@@ -32,9 +32,13 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanIsEmptyExtensions
 {
+
+    
     /// <summary>
-    /// Provides extension methods for checking if a span is empty.
+    /// 
     /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
     extension<T>(Span<T> source)
     {
         /// <summary>
