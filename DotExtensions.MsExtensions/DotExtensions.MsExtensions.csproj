@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.0.0-preview.3</Version>
+    <Version>9.0.0</Version>
     <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -15,8 +15,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>* Removed Title case string extensions</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>A collection of useful extension methods for Microsoft.Extensions.* packages.</Description>
-    <PackageTags>primitives-extensions, StringSegment, extensions</PackageTags>
+    <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
+    <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

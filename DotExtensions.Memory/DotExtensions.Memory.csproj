@@ -13,7 +13,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.0.0-rc.1</Version>
+    <Version>9.0.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -25,10 +25,18 @@
     <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
 * Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>A collection of useful extension methods for Span and Memory types in .NET.</Description>
+    <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
+    <PackageTags>extension-members, extensions, span, memory,</PackageTags>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Memory" Version="4.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="README.md">
+      <PackagePath>README.md</PackagePath>
+      <Link>README.md</Link>
+    </Content>
   </ItemGroup>
 </Project>

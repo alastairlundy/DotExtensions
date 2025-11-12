@@ -10,14 +10,14 @@
     <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>extensions, extension-methods, ienumerable-extensions,</PackageTags>
+    <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
     <PackageReleaseNotes>* Removed Title case string extensions
 * Renamed DateTime, TimeOnly, and DateOnly Abs extension methods to Difference
 * Removed DateTime ToGivenDateString extension method
 *  Removed Collection Count Generic Numerics extension methods</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>A collection of useful extension methods for .NET .</Description>
+    <Description>A collection of useful extension members and extension methods for .NET .</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
