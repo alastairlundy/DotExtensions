@@ -11,10 +11,27 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Removed Title case string extensions
-* Renamed DateTime, TimeOnly, and DateOnly Abs extension methods to Difference
-* Removed DateTime ToGivenDateString extension method
-*  Removed Collection Count Generic Numerics extension methods</PackageReleaseNotes>
+    <PackageReleaseNotes>## Changes since 8.7.x
+### All packages
+* Added .NET 10 TFM
+* Updated to C# Language Version 14
+* Converted extension methods to C# 14 extension members
+* Removed deprecated code
+* Enabled Trim Analyzer for package
+* Marked package with ``&lt;IsTrimmable&gt;`` set to true.
+
+### Main package
+* Updated from Polyfill 8.9.1 to 9.0.1
+* Add SecureString AppendString, AppendChars, SetString and SetChars extension methods @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/118)
+* Move Process related extensions to CliInvoke @alastairlundy (https://github.com/alastairlundy/DotExtensions/pull/116)
+* Renamed DateTime, TimeOnly, and DateOnly ``Abs`` extension methods to ``Difference``
+* Renamed DirectoryInfo ``IsDirectoryEmpty`` extension to ``IsEmpty`` and converted it to a C# 14 extension property
+* Renamed DriveInfo ``IsDriveEmpty`` extension to ``IsEmpty`` and converted it to a C# 14 extension property
+* Converted UnixFileMode ``HasExecutePermission`` extension method to C# 14 extension property
+* Renamed Version ``ToHumanReadableString`` C# extension member method to ``ToReadableString``
+* Renamed Version comparison extension methods to remove redundant ``Version`` suffix
+* Added Version ``GetNewerVersion`` C# 14 static extension member method to get the newer version out of 2 specified versions
+* Added Version ``GetOlderVersion`` C# 14 static extension member method to get the older version out of 2 specified versions</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -27,6 +44,7 @@
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
+      <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
   </PropertyGroup>

@@ -22,8 +22,20 @@
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
-    <PackageReleaseNotes>* Enabled Trim Analyzer for Memory package
-* Marked package with ``&lt;IsTrimmable&gt;`` set to true.</PackageReleaseNotes>
+    <PackageReleaseNotes>## Changes since 8.7.x
+### All packages
+* Added .NET 10 TFM
+* Updated to C# Language Version 14
+* Converted extension methods to C# 14 extension members
+* Removed deprecated code
+* Enabled Trim Analyzer for package
+* Marked package with ``&lt;IsTrimmable&gt;`` set to true.
+
+
+### Memory package
+* Added .NET Standard 2 int fallback methods for ``IncrementedNumberRange``
+* Converted Span ``IsEmpty`` extension method to C# 14 extension property
+* Converted ``IsEmptyOrWhitespace`` extension method to C# 14 static extension member method</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
