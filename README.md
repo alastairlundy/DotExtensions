@@ -38,10 +38,11 @@ DotExtensions supports:
 * .NET Standard 2.0 (Limited Support)
 * .NET 8
 * .NET 9
+* .NET 10
 
 However, it is important to note that not all features may be supported by all TFMs. 
 
-**Note for DateOnly**: Though DateOnly was originally part of .NET 6, this library's DateOnly extension methods are only supported for .NET 8 and .NET 9 users since we don't target .NET 6 as a TFM due to being out of support.
+**Note for DateOnly**: Though DateOnly was originally part of .NET 6, this library's DateOnly extension methods are only supported for .NET 8 and newer .NET users since we don't target .NET 6 as a TFM due to being out of support.
 
 ## How to Build the code
 Please see [Building.md](https://github.com/alastairlundy/DotExtensions/blob/main/docs/Building.md).
