@@ -24,14 +24,10 @@
 
 using System.IO;
 
-namespace AlastairLundy.DotExtensions.IO.Unix;
+namespace AlastairLundy.DotExtensions.IO.Permissions;
 
-/// <summary>
-/// Provides extension methods related to Unix file mode permission checks for execute permissions.
-/// </summary>
-public static class UnixFileModePermissionExecuteExtensions
+public static partial class PermissionExtensions
 {
-#if NET8_0_OR_GREATER
 
     /// <summary>
     /// 
@@ -40,14 +36,43 @@ public static class UnixFileModePermissionExecuteExtensions
     extension(UnixFileMode mode)
     {
         /// <summary>
-        /// Determines whether the specified Unix file mode has execute permission.
+        /// Whether the specified Unix file mode has execute permission.
         /// </summary>
-        /// <returns>True if the mode includes execute permission, false otherwise.</returns>
-        public bool HasExecutePermission =>
-            mode.HasFlag(UnixFileMode.UserExecute)
-            || mode.HasFlag(UnixFileMode.GroupExecute)
-            || mode.HasFlag(UnixFileMode.OtherExecute);
-    }
-
+#if NET8_0_OR_GREATER
+        public
+#else
+            internal
 #endif
+            bool HasExecutePermission =>
+                mode.HasFlag(UnixFileMode.UserExecute)
+                || mode.HasFlag(UnixFileMode.GroupExecute)
+                || mode.HasFlag(UnixFileMode.OtherExecute);
+        
+        /// <summary>
+        /// Whether the specified Unix file mode has read permission.
+        /// </summary>
+#if NET8_0_OR_GREATER
+        public
+#else
+            internal
+#endif
+            bool HasReadPermission =>
+                mode.HasFlag(UnixFileMode.UserRead)
+                || mode.HasFlag(UnixFileMode.GroupRead)
+                || mode.HasFlag(UnixFileMode.OtherRead);
+        
+        /// <summary>
+        /// Whether the specified Unix file mode has write permission.
+        /// </summary>
+#if NET8_0_OR_GREATER
+        public
+#else
+            internal
+#endif
+        bool HasWritePermission =>
+            mode.HasFlag(UnixFileMode.UserWrite)
+            || mode.HasFlag(UnixFileMode.GroupWrite)
+            || mode.HasFlag(UnixFileMode.OtherWrite);
+    }
+    
 }
