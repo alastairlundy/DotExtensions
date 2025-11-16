@@ -22,7 +22,7 @@
     SOFTWARE.
  */
 
-using AlastairLundy.DotPrimitives.IO.Permissions;
+using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;
 

@@ -93,7 +93,7 @@ public static partial class PermissionExtensions
                 WindowsFilePermission filePermission = WindowsFilePermissionManager
                     .GetFilePermission(fileInfo.FullName);
 
-                return filePermission.HasReadPermission();
+                return filePermission.HasReadPermission;
             }
             else
             {
@@ -125,7 +125,7 @@ public static partial class PermissionExtensions
                 WindowsFilePermission filePermission = WindowsFilePermissionManager
                     .GetFilePermission(fileInfo.FullName);
 
-                return filePermission.HasWritePermission();
+                return filePermission.HasWritePermission;
             }
             else
             {

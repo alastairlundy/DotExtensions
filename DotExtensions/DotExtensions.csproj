@@ -79,6 +79,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AlastairLundy.DotPrimitives" Version="4.0.0-preview.1" />
+    <PackageReference Include="AlastairLundy.DotPrimitives" Version="4.0.0-preview.2" />
   </ItemGroup>
 </Project>
