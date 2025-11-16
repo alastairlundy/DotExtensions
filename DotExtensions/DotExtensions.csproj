@@ -11,7 +11,14 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>## Changes since 9.0.0
+* Update readme to clarify C# language version requirement
+* Updated from Polyfill 9.0.1 to 9.0.3 
+* Renamed TimeSpan returning ``Difference`` extension methods to ``TimeSpanDifference``
+* Added DateSpan returning ``DateSpanDifference`` extension methods
+* Moved ``WindowsFilePermission`` static extension members from DotPrimitives
+* Added FileInfo static extension method members ``HasExecutePermissions``, ``HasReadPermissionms``, and ``HasWritePermissions`` - These support both Unix and Windows based operating systems.
+* Moved Unix Numeric Permission notation parsing and Unix Rwx Symbolic notation parsing via static extension method members on ``UnixFileMode``.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>

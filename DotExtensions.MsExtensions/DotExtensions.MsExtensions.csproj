@@ -7,26 +7,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.0.0</Version>
+    <Version>9.1.0-preview.1</Version>
     <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>## Changes since 8.7.x
-### All packages
-* Added .NET 10 TFM
-* Updated to C# Language Version 14
-* Converted extension methods to C# 14 extension members
-* Removed deprecated code
-* Enabled Trim Analyzer for package
-* Marked package with ``&lt;IsTrimmable&gt;`` set to true.
-### MsExtensions package
-* Updated to Microsoft.Extensions.Primitives from 9.0.10 to 10.0.0
-* Updated to Microsoft.Extensions.Configuration.Abstractions from 9.0.10 to 10.0.0
-* Converted StringValues and StringSegment``IsEmpty`` extension methods to C# 14 extension properties
-* Converted StringValues and StringSegment ``IsNullOrWhitespace`` extension methods to C# 14 static extension member method
-* Removed StringSegment non-null ``IsNullOrWhitespace`` extension method </PackageReleaseNotes>
+    <PackageReleaseNotes>* Update readme to clarify C# language version requirement</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>
