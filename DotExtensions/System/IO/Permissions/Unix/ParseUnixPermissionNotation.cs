@@ -64,7 +64,8 @@ public static partial class UnixPermissionsExtensions
             if(IsValidRwxSymbolNotation(input))
                 return ParseRwxSymbolNotation(input);
 
-            throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation.Replace("{x}",  input));
+            throw new ArgumentException(Resources.
+                Exceptions_Permissions_Unix_InvalidSymbolicNotation.Replace("{x}",  input));
         }
 
         /// <summary>
