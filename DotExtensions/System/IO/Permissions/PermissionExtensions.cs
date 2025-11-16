@@ -42,9 +42,14 @@ public static partial class PermissionExtensions
     extension(FileInfo fileInfo)
     {
         /// <summary>
-        /// 
+        /// Determines whether the specified file has execute permission.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// <c>true</c> if the file has execute permission; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if the <see cref="FileInfo"/> object is null.
+        /// </exception>
         public bool HasExecutePermission()
         {
 #if NET8_0_OR_GREATER
@@ -67,13 +72,18 @@ public static partial class PermissionExtensions
         }
 
         /// <summary>
-        /// 
+        /// Determines whether the specified file has read permission.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// <c>true</c> if the file has read permission; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if the <see cref="FileInfo"/> object is null.
+        /// </exception>
         public bool HasReadPermission()
         {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(fileInfo);
+            ArgumentNullException.ThrowIfNull(fileInfo);
 #else
             fileInfo = Ensure.NotNull(fileInfo);
 #endif
@@ -89,20 +99,23 @@ public static partial class PermissionExtensions
             {
                 UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
-                return unixFileMode.HasFlag(UnixFileMode.GroupRead) ||
-                       unixFileMode.HasFlag(UnixFileMode.OtherRead) ||
-                       unixFileMode.HasFlag(UnixFileMode.UserRead);
+                return unixFileMode.HasReadPermission;
             }
         }
-        
+
         /// <summary>
-        /// 
+        /// Determines whether the specified file has write permission.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// <c>true</c> if the file has write permission; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if the <see cref="FileInfo"/> object is null.
+        /// </exception>
         public bool HasWritePermission()
         {
 #if NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(fileInfo);
+            ArgumentNullException.ThrowIfNull(fileInfo);
 #else
             fileInfo = Ensure.NotNull(fileInfo);
 #endif
@@ -118,9 +131,7 @@ public static partial class PermissionExtensions
             {
                 UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
-                return unixFileMode.HasFlag(UnixFileMode.GroupWrite) ||
-                       unixFileMode.HasFlag(UnixFileMode.OtherWrite) ||
-                       unixFileMode.HasFlag(UnixFileMode.UserWrite);
+                return unixFileMode.HasWritePermission;
             }
         }
     }

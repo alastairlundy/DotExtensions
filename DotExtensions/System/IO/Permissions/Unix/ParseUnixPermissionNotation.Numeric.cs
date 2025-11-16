@@ -8,10 +8,12 @@ namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
 public static partial class UnixPermissionsExtensions
 {
     /// <summary>
-    /// 
+    /// Validates if the provided numeric notation string represents a valid Unix permission in numeric format.
     /// </summary>
-    /// <param name="notation"></param>
-    /// <returns></returns>
+    /// <param name="notation">The numeric notation string to validate. It can be in three-digit (e.g., "777") or four-digit (e.g., "0777") formats.</param>
+    /// <returns>
+    /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
+    /// </returns>
     public static bool IsValidNumericNotation(string notation)
     {
         if (notation.Length is >= 3 and <= 4 || int.TryParse(notation, out int result) == false) 
@@ -23,7 +25,20 @@ public static partial class UnixPermissionsExtensions
         else
             return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
     }
-    
+
+    /// <summary>
+    /// Parses a numeric notation string representing Unix file permissions into a corresponding <see cref="UnixFileMode"/> value.
+    /// </summary>
+    /// <param name="notation">
+    /// The numeric notation string to parse. It can be in three-digit (e.g., "777") or four-digit (e.g., "0777") formats.
+    /// The notation must be valid according to Unix file permission rules.
+    /// </param>
+    /// <returns>
+    /// A <see cref="UnixFileMode"/> value that represents the parsed file permissions.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown when the provided <paramref name="notation"/> is null, empty, or not a valid Unix numeric notation format.
+    /// </exception>
     private static UnixFileMode ParseNumericNotation(string notation)
     {
 #if NET8_0_OR_GREATER
