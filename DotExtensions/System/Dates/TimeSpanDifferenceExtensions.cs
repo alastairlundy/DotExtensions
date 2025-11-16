@@ -29,7 +29,7 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// <summary>
 /// Provides extension methods for <see cref="DateTime"/> to compute absolute differences.
 /// </summary>
-public static class DateTimeDifferenceExtensions
+public static class TimeSpanDifferenceExtensions
 {
     /// <param name="dateTimeOne">The first date to be subtracted.</param>
     extension(DateTime dateTimeOne)
@@ -39,7 +39,7 @@ public static class DateTimeDifferenceExtensions
         /// </summary>
         /// <param name="dateTimeTwo">The second date to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan Difference(DateTime dateTimeTwo)
+        public TimeSpan TimeSpanDifference(DateTime dateTimeTwo)
         {
             long absoluteTicks = Math.Abs(dateTimeOne.Ticks - dateTimeTwo.Ticks);
 
@@ -56,7 +56,7 @@ public static class DateTimeDifferenceExtensions
         /// </summary>
         /// <param name="timeOnlyTwo">The second time to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan Difference(TimeOnly timeOnlyTwo)
+        public TimeSpan TimeSpanDifference(TimeOnly timeOnlyTwo)
         {
             long absoluteTicks = Math.Abs(timeOnlyOne.Ticks - timeOnlyTwo.Ticks);
 
@@ -72,8 +72,8 @@ public static class DateTimeDifferenceExtensions
         /// </summary>
         /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan Difference(DateOnly dateOnlyTwo) =>
-            Difference(DateOnly.ToDateTime(dateOnlyOne).Date, DateOnly.ToDateTime(dateOnlyTwo).Date);
+        public TimeSpan TimeSpanDifference(DateOnly dateOnlyTwo) =>
+            TimeSpanDifference(DateOnly.ToDateTime(dateOnlyOne).Date, DateOnly.ToDateTime(dateOnlyTwo).Date);
     }
 #endif
 }
