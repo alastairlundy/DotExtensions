@@ -30,28 +30,31 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
 
-
 /// <summary>
-/// 
+/// Contains extension methods for handling Unix file permission operations.
 /// </summary>
 public static partial class UnixPermissionsExtensions
 {
     /// <summary>
-    /// 
+    /// Provides extension methods for working with Unix file permissions represented as <see cref="UnixFileMode"/>.
     /// </summary>
     extension(UnixFileMode)
     {
         /// <summary>
-        /// 
+        /// Parses the provided string representation of a Unix file mode into a corresponding <see cref="UnixFileMode"/> object.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="input">The input string representing the Unix file mode in numeric or symbolic format.</param>
+        /// <returns>
+        /// The parsed <see cref="UnixFileMode"/> object if the input string is in a valid format.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the input string is null, empty, or does not represent a valid Unix file mode in either numeric or symbolic notation.
+        /// </exception>
         public static UnixFileMode Parse(string input)
         {
-            #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
             ArgumentException.ThrowIfNullOrEmpty(input);
-            #else
+#else
             input = Ensure.NotNullOrEmpty(input);
             #endif
             
