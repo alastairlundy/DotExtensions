@@ -3,7 +3,7 @@ An extension member library that enhances the experience of using .NET's types w
 
 Now updated to take advantage of C# 14 as of version 9.
 
-**NOTE**: Version 9.0 and onwards requires projects using DotExtension to set language version to 14 or higher.
+**NOTE**: Version 9.0 and onwards requires projects using DotExtension to set C# language version to 14 or higher.
 
 [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
 [![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)

@@ -1,7 +1,7 @@
 # DotExtensions.Memory
 A collection of useful Span<T> and Memory<T> related extension methods for .NET.
 
-**NOTE**: Version 9.0 and onwards requires projects using DotExtension.Memory to set language version to 14 or higher.
+**NOTE**: Version 9.0 and onwards requires projects using DotExtension.Memory to set C# language version to 14 or higher.
 
 
  [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.Memory.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions.Memory/)  
