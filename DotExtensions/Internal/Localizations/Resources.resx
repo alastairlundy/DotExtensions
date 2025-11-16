@@ -45,4 +45,10 @@
     <data name="Exceptions.ThrowIfNullOrEmpty.Empty" xml:space="preserve">
         <value>Argument cannot be empty</value>
     </data>
+    <data name="Exceptions.Permissions.Unix.InvalidNumericNotation" xml:space="preserve">
+        <value>An Invalid Unix Numeric file permission notation of {x} was provided.</value>
+    </data>
+    <data name="Exceptions.Permissions.Unix.InvalidSymbolicNotation" xml:space="preserve">
+        <value>An Invalid Unix Symbolic file permission notation of {x} was provided.</value>
+    </data>
 </root>

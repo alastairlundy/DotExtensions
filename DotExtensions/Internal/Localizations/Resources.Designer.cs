@@ -98,5 +98,17 @@ namespace AlastairLundy.DotExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.ThrowIfNullOrEmpty.Empty", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_Permissions_Unix_InvalidNumericNotation {
+            get {
+                return ResourceManager.GetString("Exceptions.Permissions.Unix.InvalidNumericNotation", resourceCulture);
+            }
+        }
+        
+        internal static string Exceptions_Permissions_Unix_InvalidSymbolicNotation {
+            get {
+                return ResourceManager.GetString("Exceptions.Permissions.Unix.InvalidSymbolicNotation", resourceCulture);
+            }
+        }
     }
 }
