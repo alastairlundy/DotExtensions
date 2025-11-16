@@ -42,4 +42,7 @@
     <data name="Exceptions.Span.Request.CountTooLarge" xml:space="preserve">
         <value>Cannot request more elements than the target span contains.</value>
     </data>
+    <data name="Exceptions.ThrowIfNullOrEmpty.Empty" xml:space="preserve">
+        <value>Argument cannot be empty</value>
+    </data>
 </root>

@@ -92,5 +92,11 @@ namespace AlastairLundy.DotExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.Span.Request.CountTooLarge", resourceCulture);
             }
         }
+        
+        internal static string Exceptions_ThrowIfNullOrEmpty_Empty {
+            get {
+                return ResourceManager.GetString("Exceptions.ThrowIfNullOrEmpty.Empty", resourceCulture);
+            }
+        }
     }
 }
