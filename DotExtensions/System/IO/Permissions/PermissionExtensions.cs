@@ -24,8 +24,7 @@
 
 using System;
 using System.IO;
-
-using AlastairLundy.DotPrimitives.IO.Permissions;
+using System.Runtime.Versioning;
 using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;
@@ -50,6 +49,12 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
+        [SupportedOSPlatform("windows")]
+        [SupportedOSPlatform("macos")]
+        [SupportedOSPlatform("maccatalyst")]
+        [SupportedOSPlatform("linux")]
+        [SupportedOSPlatform("freebsd")]
+        [SupportedOSPlatform("android")]
         public bool HasExecutePermission()
         {
 #if NET8_0_OR_GREATER
@@ -80,6 +85,12 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
+        [SupportedOSPlatform("windows")]
+        [SupportedOSPlatform("macos")]
+        [SupportedOSPlatform("maccatalyst")]
+        [SupportedOSPlatform("linux")]
+        [SupportedOSPlatform("freebsd")]
+        [SupportedOSPlatform("android")]
         public bool HasReadPermission()
         {
 #if NET8_0_OR_GREATER
@@ -112,6 +123,12 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
+        [SupportedOSPlatform("windows")]
+        [SupportedOSPlatform("macos")]
+        [SupportedOSPlatform("maccatalyst")]
+        [SupportedOSPlatform("linux")]
+        [SupportedOSPlatform("freebsd")]
+        [SupportedOSPlatform("android")]
         public bool HasWritePermission()
         {
 #if NET8_0_OR_GREATER
