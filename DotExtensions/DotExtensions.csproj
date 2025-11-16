@@ -77,4 +77,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AlastairLundy.DotPrimitives" Version="4.0.0-preview.1" />
+  </ItemGroup>
 </Project>
