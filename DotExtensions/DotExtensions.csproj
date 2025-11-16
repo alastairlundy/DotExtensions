@@ -47,6 +47,7 @@
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
+      <PolyEnsure>true</PolyEnsure>
   </PropertyGroup>
 
   <ItemGroup>
