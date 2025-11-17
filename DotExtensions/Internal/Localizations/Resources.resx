@@ -24,9 +24,6 @@
     <data name="Exceptions.KeyValuePairNotFound" xml:space="preserve">
         <value>KeyValuePair not found within the collection</value>
     </data>
-    <data name="Exceptions.Span.SkipCountTooLarge" xml:space="preserve">
-        <value>Cannot skip more elements than the target span contains.</value>
-    </data>
     <data name="Exceptions.EnumerablesSplit.Empty" xml:space="preserve">
         <value>Cannot split an empty enumerable.</value>
     </data>
@@ -38,8 +35,5 @@
     </data>
     <data name="Exceptions.Count.LessThanZero" xml:space="preserve">
         <value>Count cannot be 0 or less. Provided count was {x}.</value>
-    </data>
-    <data name="Exceptions.Span.Request.CountTooLarge" xml:space="preserve">
-        <value>Cannot request more elements than the target span contains.</value>
     </data>
 </root>

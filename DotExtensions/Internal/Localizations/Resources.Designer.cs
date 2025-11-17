@@ -57,12 +57,6 @@ namespace AlastairLundy.DotExtensions.Localizations {
             }
         }
         
-        internal static string Exceptions_Span_SkipCountTooLarge {
-            get {
-                return ResourceManager.GetString("Exceptions.Span.SkipCountTooLarge", resourceCulture);
-            }
-        }
-        
         internal static string Exceptions_EnumerablesSplit_Empty {
             get {
                 return ResourceManager.GetString("Exceptions.EnumerablesSplit.Empty", resourceCulture);
@@ -84,12 +78,6 @@ namespace AlastairLundy.DotExtensions.Localizations {
         internal static string Exceptions_Count_LessThanZero {
             get {
                 return ResourceManager.GetString("Exceptions.Count.LessThanZero", resourceCulture);
-            }
-        }
-        
-        internal static string Exceptions_Span_Request_CountTooLarge {
-            get {
-                return ResourceManager.GetString("Exceptions.Span.Request.CountTooLarge", resourceCulture);
             }
         }
     }
