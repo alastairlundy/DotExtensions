@@ -49,7 +49,7 @@ public static class DateSpanDifferenceExtensions
             {
                 TimeSpan dayTimeSpan = TimeSpan.FromDays(Math.Abs(first.DayOfYear - second.DayOfYear));
 
-                return new DateSpan(dayTimeSpan.TotalDays, 0, 0);
+                return DateSpan.FromDays(dayTimeSpan.TotalDays);
             }
         
             double days = 0;
@@ -90,7 +90,7 @@ public static class DateSpanDifferenceExtensions
             }
             days += Math.Abs(first.Day - second.Day);
 
-            return new DateSpan(days, 0, 0);
+            return DateSpan.FromDays(days);
         }
     }
 
