@@ -54,15 +54,11 @@ public static class DayOfExtensions
             }
             else if (DayOfWeek.Monday == firstDayOfWeek)
             {
-                switch (date.DayOfWeek)
+                dayOfWeek = date.DayOfWeek switch
                 {
-                    case DayOfWeek.Sunday:
-                        dayOfWeek = 7;
-                        break;
-                    default:
-                        dayOfWeek = (int)date.DayOfWeek;
-                        break;
-                }
+                    DayOfWeek.Sunday => 7,
+                    _ => (int)date.DayOfWeek
+                };
             }
             else
             {
