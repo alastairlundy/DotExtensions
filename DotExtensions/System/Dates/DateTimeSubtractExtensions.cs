@@ -110,8 +110,7 @@ public static class DateTimeSubtractExtensions
                     remainder * Convert.ToDouble(DateTime.DaysInMonth(result.Year, result.Month))
                 );
             }
-
-            if (months <= 12)
+            else
             {
                 for (double index = 1.0; index <= months; index += 1.0)
                 {
