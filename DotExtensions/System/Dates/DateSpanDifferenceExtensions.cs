@@ -33,6 +33,14 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class DateSpanDifferenceExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    extension(DateSpan)
+    {
+
+    }
+
     /// <param name="first">The first <see cref="DateTime"/> value in the calculation.</param>
     extension(DateTime first)
     {
@@ -59,35 +67,48 @@ public static class DateSpanDifferenceExtensions
 
             for (int year = startYear; year <= endYear; year++)
             {
-                if (year == endYear)
+                if (year != endYear)
                 {
-                    int startMonth, endMonth;
-
-                    if (first.Month > second.Month)
-                    {
-                        startMonth = second.Month;
-                        endMonth = first.Month;
-                    }
-                    else
-                    {
-                        startMonth = first.Month;
-                        endMonth = second.Month;
-                    }
-                
-                    for (int month = startMonth; month <= endMonth; month++)
-                    {
-                        days += DateTime.DaysInMonth(year, month);
-                    }
+                    days += Convert.ToDouble(DayInExtensions.DaysInYear(year));
                 }
                 else
                 {
-                    for (int month = 1; month <= 12; month++)
-                    {
-                        days += DateTime.DaysInMonth(year, month);
-                    }
-                }
+                        // Determine month range for the current 'year' iteration.
+                        // - If this is the only year (both dates in same year), sum months between the two months.
+                        // - If this is the start year, sum from the start date's month to December.
+                        // - If this is the end year, sum from January to the end date's month.
+                        // - If this is an intermediate year, sum all months.
+                        int startMonth, endMonth;
 
+                    bool isStartYear = year == startYear;
+                    bool isEndYear = year == endYear;
+
+                        if (isStartYear)
+                        {
+                            // pick the month from whichever date belongs to the start year
+                            startMonth = (first.Year == startYear) ? first.Month : second.Month;
+                            endMonth = 12;
+                        }
+                        else if (isEndYear)
+                        {
+                            startMonth = 1;
+                            // pick the month from whichever date belongs to the end year
+                            endMonth = (first.Year == endYear) ? first.Month : second.Month;
+                        }
+                        else
+                        {
+                            // full intermediate year
+                            startMonth = 1;
+                            endMonth = 12;
+                        }
+
+                        for (int month = startMonth; month <= endMonth; month++)
+                        {
+                            days += DateTime.DaysInMonth(year, month);
+                        }
+                }
             }
+            
             days += Math.Abs(first.Day - second.Day);
 
             return DateSpan.FromDays(days);
