@@ -39,7 +39,7 @@ public static class TimeSpanDifferenceExtensions
         /// </summary>
         /// <param name="dateTimeTwo">The second date to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan TimeSpanDifference(DateTime dateTimeTwo)
+        public TimeSpan Difference(DateTime dateTimeTwo)
         {
             long absoluteTicks = Math.Abs(dateTimeOne.Ticks - dateTimeTwo.Ticks);
 
@@ -56,7 +56,7 @@ public static class TimeSpanDifferenceExtensions
         /// </summary>
         /// <param name="timeOnlyTwo">The second time to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan TimeSpanDifference(TimeOnly timeOnlyTwo)
+        public TimeSpan Difference(TimeOnly timeOnlyTwo)
         {
             long absoluteTicks = Math.Abs(timeOnlyOne.Ticks - timeOnlyTwo.Ticks);
 
@@ -72,8 +72,8 @@ public static class TimeSpanDifferenceExtensions
         /// </summary>
         /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan TimeSpanDifference(DateOnly dateOnlyTwo) =>
-            TimeSpanDifference(DateOnly.ToDateTime(dateOnlyOne).Date, DateOnly.ToDateTime(dateOnlyTwo).Date);
+        public TimeSpan Difference(DateOnly dateOnlyTwo) =>
+            Difference(DateOnly.ToDateTime(dateOnlyOne).Date, DateOnly.ToDateTime(dateOnlyTwo).Date);
     }
 #endif
 }
