@@ -50,11 +50,9 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
-
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
+            
             while (str.Contains(value, stringComparison))
             {
                 str = str.RemoveFirst(value);
@@ -79,10 +77,8 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
 
             int index = str.IndexOf(value, stringComparison);
 
@@ -107,10 +103,8 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
 
             int index = str.LastIndexOf(value, stringComparison);
 

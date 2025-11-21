@@ -24,6 +24,8 @@
 
 // ReSharper disable CheckNamespace
 
+
+using System;
 #if NETSTANDARD2_0
 using System.Linq;
 #endif
@@ -49,6 +51,8 @@ public static class ContainsSpacesExtensions
         /// </summary>
         public bool ContainsSpaceSeparatedSubStrings()
         {
+            ArgumentException.ThrowIfNullOrEmpty(s);
+
 #if NET8_0_OR_GREATER
             return s.Contains(' ') && s.Split(' ').Length > 1;
 #else

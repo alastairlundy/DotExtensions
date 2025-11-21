@@ -46,6 +46,8 @@ public static class AppendSecureStringExtensions
         /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
         public void AppendString(string value)
         {
+            ArgumentException.ThrowIfNullOrEmpty(value);
+
             if (secureString.IsReadOnly())
                 throw new InvalidOperationException();
 
@@ -126,6 +128,8 @@ public static class AppendSecureStringExtensions
         /// greater than the length of this <see cref="SecureString"/>.</exception>
         public void SetString(string value)
         {
+            ArgumentException.ThrowIfNullOrEmpty(value);
+
             if (secureString.IsReadOnly() && value.Length > secureString.Length)
                 throw new InvalidOperationException();
 

@@ -47,6 +47,7 @@
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
+      <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
 
   <ItemGroup>
@@ -72,7 +73,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Polyfill" Version="9.0.3" PrivateAssets="all">
+    <PackageReference Include="Polyfill" Version="9.2.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>

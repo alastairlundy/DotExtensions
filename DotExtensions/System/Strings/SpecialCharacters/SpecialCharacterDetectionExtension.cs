@@ -47,7 +47,7 @@ public static class SpecialCharacterDetectionExtension
         /// <returns>True if the char is a special character; false otherwise.</returns>
         public static bool IsSpecialCharacter(char c)
         {
-            return char.IsLetterOrDigit(c) == false && (char.IsPunctuation(c) || char.IsSymbol(c));
+            return !char.IsLetterOrDigit(c) && (char.IsPunctuation(c) || char.IsSymbol(c));
         }
     }
 
@@ -70,8 +70,7 @@ public static class SpecialCharacterDetectionExtension
         /// <exception cref="ArgumentException">Thrown if the input string is null or empty.</exception>
         public string RemoveSpecialCharacters()
         {
-            if (string.IsNullOrEmpty(str))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrEmpty(str);
 
             StringBuilder stringBuilder = new StringBuilder();
 
