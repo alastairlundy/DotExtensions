@@ -1,7 +1,7 @@
 # DotExtensions
 An extension member library that enhances the experience of using .NET's types with useful features.
 
-Now updated to take advantage of C# 14 as of version 9.
+Version 9.0 and onwards requires .csproj C# language version to be set to 14 or higher.
 
 [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
 [![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
@@ -19,7 +19,7 @@ Now updated to take advantage of C# 14 as of version 9.
 
 ## Features
 * Empty directory detection via ``IsDirectoryEmpty`` extension method for the ``DirectoryInfo`` class.
-* Support for comparing versions via easy to understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
+* Support for comparing versions via easy-to-understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
 * DateTime and DateOnly extensions e.g. DateOnly's ToDateTime extension
 * Support for Detecting and Removing Special Characters
 * Support for Detecting and Removing Escape Characters
@@ -44,7 +44,8 @@ DotExtensions supports:
 
 However, it is important to note that not all features may be supported by all TFMs. 
 
-**Note for DateOnly**: Though DateOnly was originally part of .NET 6, this library's DateOnly extension methods are only supported for .NET 8 and newer .NET users since we don't target .NET 6 as a TFM due to being out of support.
+**Note for DateOnly**: Though DateOnly was originally released as part of .NET 6, this library's DateOnly extension methods are only supported for .NET 8 and newer .NET users,
+since we don't target .NET 6 as a TFM due to being out of support.
 
 ## How to Build the code
 Please see [Building.md](https://github.com/alastairlundy/DotExtensions/blob/main/docs/Building.md).

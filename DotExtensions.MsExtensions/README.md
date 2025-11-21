@@ -1,6 +1,8 @@
 ﻿# DotExtensions.MsExtensions
 An extension method library that enhances the experience of using Microsoft.Extensions.* packages with useful features.
 
+Version 9.0 and onwards requires .csproj C# language version to be set to 14 or higher.
+
 [DotExtensions](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/)
 
 ## Table of Contents
