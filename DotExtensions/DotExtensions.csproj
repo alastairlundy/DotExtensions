@@ -49,7 +49,6 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Update="Internal\Localizations\Resources.Designer.cs">
       <DesignTime>True</DesignTime>

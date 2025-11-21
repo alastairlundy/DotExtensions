@@ -45,10 +45,9 @@ public static class StringReverseExtensions
         /// <returns>A new string with the reversed contents of the source string.</returns>
         /// <exception cref="ArgumentException">Thrown if the source string is null or empty.</exception>
         public string Reverse()
-        {
-            if (string.IsNullOrEmpty(str))
-                throw new ArgumentException();
-
+        {            
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            
             StringBuilder stringBuilder = new(capacity: str.Length);
 
             for (int i = str.Length - 1; i >= 0; i--)
