@@ -57,12 +57,8 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasExecutePermission()
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(fileInfo);
-#else
-            fileInfo = Ensure.NotNull(fileInfo);
-#endif
-            
+
             if (OperatingSystem.IsWindows())
             {
                 WindowsFilePermission filePermission = WindowsFilePermissionManager
@@ -93,11 +89,7 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasReadPermission()
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(fileInfo);
-#else
-            fileInfo = Ensure.NotNull(fileInfo);
-#endif
             
             if (OperatingSystem.IsWindows())
             {
@@ -131,11 +123,7 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasWritePermission()
         {
-#if NET8_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(fileInfo);
-#else
-            fileInfo = Ensure.NotNull(fileInfo);
-#endif
             
             if (OperatingSystem.IsWindows())
             {
