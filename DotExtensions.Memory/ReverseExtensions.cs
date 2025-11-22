@@ -41,7 +41,7 @@ public static class ReverseExtensions
         }
     }
     
-    /// <typeparam name="T">The type of elements in the memory.</typeparam>
+    /// <typeparam name="T">The type of elements in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
     /// <param name="memory">The read-only memory span to reverse.</param>
     extension<T>(ref ReadOnlyMemory<T> memory)
     {
