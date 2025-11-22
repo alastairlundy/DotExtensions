@@ -11,14 +11,11 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>## Changes since 9.0.0
-* Update readme to clarify C# language version requirement
-* Updated from Polyfill 9.0.1 to 9.0.3 
-* Renamed TimeSpan returning ``Difference`` extension methods to ``TimeSpanDifference``
-* Added DateSpan returning ``DateSpanDifference`` extension methods
-* Moved ``WindowsFilePermission`` static extension members from DotPrimitives
-* Added FileInfo static extension method members ``HasExecutePermissions``, ``HasReadPermissionms``, and ``HasWritePermissions`` - These support both Unix and Windows based operating systems.
-* Moved Unix Numeric Permission notation parsing and Unix Rwx Symbolic notation parsing via static extension method members on ``UnixFileMode``.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Reverted TimeSpan Difference method name change
+* Reverted addition of DateSpan Difference extensions
+* Updated Polyfill from 9.0.3 to 9.2.0
+* Added DateTime ``DaysInYear`` extension
+* Improved Argument Null and Out of Range throwing</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -27,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.0-preview.1</Version>
+    <Version>9.1.0-preview.2</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
