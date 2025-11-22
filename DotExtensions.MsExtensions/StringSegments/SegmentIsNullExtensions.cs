@@ -30,6 +30,7 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentIsNullExtensions
 {
+    
     extension(StringSegment segment)
     {
         /// <summary>
@@ -37,10 +38,20 @@ public static class SegmentIsNullExtensions
         /// </summary>
         /// <returns>True if the string segment is empty; otherwise, false.</returns>
         public bool IsEmpty => segment.Equals(StringSegment.Empty);
-    }
+        
+        /// <summary>
+        /// Checks whether the specified string segment is null or whitespace.
+        /// </summary>
+        /// <paramref name="other"></paramref>
+        /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+        public static bool IsNullOrEmpty(StringSegment? other)
+        {
+            if (!other.HasValue)
+                return true;
 
-    extension(StringSegment segment)
-    {
+            return other.Value.IsEmpty;
+        }
+        
         /// <summary>
         /// Checks whether the specified string segment is null or whitespace.
         /// </summary>

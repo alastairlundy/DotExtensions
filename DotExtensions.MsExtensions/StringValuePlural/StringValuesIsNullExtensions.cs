@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using System.Linq;
+
 
 // ReSharper disable ConvertClosureToMethodGroup
 // ReSharper disable RedundantBoolCompare
@@ -51,8 +51,7 @@ public static class StringValuesIsNullExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="strValues"></param>
-    extension(StringValues? strValues)
+    extension(StringValues)
     {
         /// <summary>
         /// Determines whether a <see cref="StringValues"/> contains any strings that are null or whitespace./>

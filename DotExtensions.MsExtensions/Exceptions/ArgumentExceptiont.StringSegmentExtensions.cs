@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using System.Linq;
+using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 namespace AlastairLundy.DotExtensions.MsExtensions.Exceptions;
 
@@ -52,7 +52,7 @@ public static class ArgumentExceptionStringSegmentExtensions
 
             ArgumentNullException.ThrowIfNull(target, paramName);
 
-            if(target.Value.Length == 0)
+            if(StringSegment.IsNullOrEmpty(target))
                 throw new ArgumentNullException(paramName);
         }
 
@@ -72,14 +72,7 @@ public static class ArgumentExceptionStringSegmentExtensions
 
             ArgumentNullException.ThrowIfNull(target, paramName);
             
-            bool[] results = new  bool[target.Value.Length];
-
-            for (int i = 0; i < target.Value.Length; i++)
-            {
-                results[i] = target.Value[i] == ' ';
-            }
-
-            if(results.All(x => x == true))
+            if(StringSegment.IsNullOrWhiteSpace(target))
                 throw new ArgumentNullException(paramName);
         }
     }
