@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System;
-
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
@@ -57,9 +55,10 @@ public static class SpanCopyExtensions
             int length
         )
         {
-            if (startIndex < 0 || startIndex > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
-
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            
             if (destination.Length < startIndex + length)
             {
                 destination = source.Slice(startIndex, length);
@@ -107,9 +106,11 @@ public static class SpanCopyExtensions
             int length
         )
         {
-            if (startIndex < 0 || startIndex > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
-
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
+            
             if (destination.Length < source.Length || destination.Length < startIndex + length)
                 throw new ArgumentException();
 
