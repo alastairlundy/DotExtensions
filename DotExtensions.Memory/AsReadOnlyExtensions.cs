@@ -24,6 +24,9 @@
 
 namespace AlastairLundy.DotExtensions.Memory;
 
+/// <summary>
+/// Provides a set of extension methods to facilitate the conversion of mutable memory structures to their read-only equivalents.
+/// </summary>
 public static class AsReadOnlyExtensions
 {
     /// <summary>
