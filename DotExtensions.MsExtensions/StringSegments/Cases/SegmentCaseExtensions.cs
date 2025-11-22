@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using Microsoft.Extensions.Primitives;
+
 
 // ReSharper disable ConvertClosureToMethodGroup
 

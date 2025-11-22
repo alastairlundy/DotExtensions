@@ -22,11 +22,6 @@
        SOFTWARE.
    */
 
-using System;
-using System.Collections.Generic;
-using AlastairLundy.DotExtensions.MsExtensions.Internal.Localizations;
-using Microsoft.Extensions.Primitives;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
@@ -46,7 +41,7 @@ public static class SegmentToCharsExtensions
         /// <returns>The string segment as a char array.</returns>
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
         public char[] ToCharArray()
-        {
+        { 
             if (StringSegment.IsNullOrEmpty(segment))
                 throw new ArgumentException(Resources.Exceptions_Arguments_Segment_Empty);
 

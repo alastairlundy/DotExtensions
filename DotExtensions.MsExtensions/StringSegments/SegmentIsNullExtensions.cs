@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using Microsoft.Extensions.Primitives;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
