@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -45,11 +46,17 @@ public static class CapitalizationExtensions
         /// <returns>A string with the specified char made upper case.</returns>
         public string CapitalizeChar(int index)
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            
             char c = str[index];
 
-            return char.IsUpper(c) ? str : string.Format("{0}{1}{2}", str.Substring(0, index),
-                char.ToUpper(c),
-                str.Substring(index + 1));
+            return char.IsUpper(c)
+                ? str
+                : new StringBuilder()
+                    .Append(str, 0, index)
+                    .Append(char.ToUpper(c))
+                    .Append(str.Substring(index + 1))
+                    .ToString();
         }
 
         /// <summary>
@@ -59,11 +66,13 @@ public static class CapitalizationExtensions
         /// <returns>A string with all the chars at the specified indices capitalized.</returns>
         public string CapitalizeChars(IEnumerable<int> indices)
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            
             StringBuilder stringBuilder = new StringBuilder(str);
 
             foreach (int index in indices)
             {
-                if (char.IsUpper(str[index]) == false)
+                if (!char.IsUpper(str[index]))
                     stringBuilder[index] = char.ToUpper(str[index]);
             }
 

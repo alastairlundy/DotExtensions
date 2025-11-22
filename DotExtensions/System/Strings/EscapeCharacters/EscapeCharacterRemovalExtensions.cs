@@ -24,6 +24,7 @@
 
 // ReSharper disable CheckNamespace
 
+using System;
 using System.Linq;
 
 // ReSharper disable ConvertClosureToMethodGroup
@@ -47,15 +48,21 @@ public static class EscapeCharacterRemovalExtensions
         ///
         /// <para>True if the string contains an Escape Character; returns false otherwise.</para>
         /// </summary>
-        public bool ContainsEscapeCharacters() =>
-            CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
-        
+        public bool ContainsEscapeCharacters()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+
+            return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
+        }
+
         /// <summary>
         /// Removes escape characters from a string.
         /// </summary>
         /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
         public string RemoveEscapeCharacters()
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+
             if (!str.ContainsEscapeCharacters()) 
                 return str;
             

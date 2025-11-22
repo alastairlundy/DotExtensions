@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;
@@ -43,11 +44,19 @@ public static partial class PermissionExtensions
 #else
             internal
 #endif
-            bool HasExecutePermission =>
-                mode.HasFlag(UnixFileMode.UserExecute)
-                || mode.HasFlag(UnixFileMode.GroupExecute)
-                || mode.HasFlag(UnixFileMode.OtherExecute);
-        
+            bool HasExecutePermission
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(mode);
+                
+                if (mode.HasFlag(UnixFileMode.UserExecute)
+                    || mode.HasFlag(UnixFileMode.GroupExecute)
+                    || mode.HasFlag(UnixFileMode.OtherExecute)) return true;
+                return false;
+            }
+        }
+
         /// <summary>
         /// Whether the specified Unix file mode has read permission.
         /// </summary>
@@ -56,11 +65,19 @@ public static partial class PermissionExtensions
 #else
             internal
 #endif
-            bool HasReadPermission =>
-                mode.HasFlag(UnixFileMode.UserRead)
-                || mode.HasFlag(UnixFileMode.GroupRead)
-                || mode.HasFlag(UnixFileMode.OtherRead);
-        
+            bool HasReadPermission
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(mode);
+
+                if (mode.HasFlag(UnixFileMode.UserRead)
+                    || mode.HasFlag(UnixFileMode.GroupRead)
+                    || mode.HasFlag(UnixFileMode.OtherRead)) return true;
+                return false;
+            }
+        }
+
         /// <summary>
         /// Whether the specified Unix file mode has write permission.
         /// </summary>
@@ -69,10 +86,18 @@ public static partial class PermissionExtensions
 #else
             internal
 #endif
-        bool HasWritePermission =>
-            mode.HasFlag(UnixFileMode.UserWrite)
-            || mode.HasFlag(UnixFileMode.GroupWrite)
-            || mode.HasFlag(UnixFileMode.OtherWrite);
+        bool HasWritePermission
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(mode);
+
+                if (mode.HasFlag(UnixFileMode.UserWrite)
+                    || mode.HasFlag(UnixFileMode.GroupWrite)
+                    || mode.HasFlag(UnixFileMode.OtherWrite)) return true;
+                return false;
+            }
+        }
     }
     
 }

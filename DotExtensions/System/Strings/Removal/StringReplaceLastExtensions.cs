@@ -53,6 +53,10 @@ public static class StringReplaceLastExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
+            ArgumentException.ThrowIfNullOrEmpty(oldValue);
+            ArgumentException.ThrowIfNullOrEmpty(newValue);
+            ArgumentNullException.ThrowIfNull(stringComparison);
+
             int lastIndex = str.IndexOf(oldValue, stringComparison);
 
             if (lastIndex == -1)
@@ -80,6 +84,10 @@ public static class StringReplaceLastExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
+            ArgumentException.ThrowIfNullOrEmpty(oldValue);
+            ArgumentException.ThrowIfNullOrEmpty(newValue);
+            ArgumentNullException.ThrowIfNull(stringComparison);
+            
             int lastIndex = str.LastIndexOf(oldValue, stringComparison);
 
             if (lastIndex == -1)

@@ -49,7 +49,7 @@ public static class FileSizeExtensions
                 quantity /= 1000;
             }
 
-            return $"{quantity}{GetFileSizeUnitString(file)}";
+            return $"{quantity}{file.GetFileSizeUnitString()}";
         }
 
         /// <summary>

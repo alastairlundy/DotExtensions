@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.IO;
 using AlastairLundy.DotExtensions.IO.Directories;
 
@@ -42,6 +43,8 @@ public static class DrivesIsEmptyExtensions
         {
             get
             {
+                ArgumentNullException.ThrowIfNull(driveInfo);
+                
                 if (!driveInfo.IsReady)
                     return false;
 

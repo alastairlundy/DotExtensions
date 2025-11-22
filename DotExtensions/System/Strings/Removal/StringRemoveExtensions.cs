@@ -50,10 +50,8 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
 
             while (str.Contains(value, stringComparison))
             {
@@ -79,16 +77,15 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(value.Length, str.Length);
 
             int index = str.IndexOf(value, stringComparison);
 
-            return index == -1
-                ? throw new ArgumentException($"Could not find {value} in string {str}")
-                : str.Remove(index, value.Length);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            
+            return str.Remove(index, value.Length);
         }
 
         /// <summary>
@@ -107,16 +104,15 @@ public static class StringRemoveExtensions
             StringComparison stringComparison = StringComparison.CurrentCulture
         )
         {
-#if NET8_0_OR_GREATER
-            ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
-            ArgumentException.ThrowIfNullOrEmpty(value, nameof(value));
-#endif
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentException.ThrowIfNullOrEmpty(value);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(value.Length, str.Length);
 
             int index = str.LastIndexOf(value, stringComparison);
 
-            return index == -1
-                ? throw new ArgumentException($"Could not find {value} in string {str}")
-                : str.Remove(index, value.Length);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            
+            return str.Remove(index, value.Length);
         }
     }
 }

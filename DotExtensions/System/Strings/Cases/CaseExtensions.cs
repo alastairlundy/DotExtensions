@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.Linq;
 
 // ReSharper disable ConvertClosureToMethodGroup
@@ -44,13 +45,23 @@ public static class CaseExtensions
         ///
         /// <para>True if the string is upper case; false otherwise.</para>
         /// </summary>
-        public bool IsUpperCase() => s.All(x => char.IsUpper(x));
+        public bool IsUpperCase()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(s);
+
+            return s.All(x => char.IsUpper(x));
+        }
 
         /// <summary>
         /// Returns whether a string is lower case or not.
         ///
         /// <para>True if a string is lower case; false otherwise.</para>
         /// </summary>
-        bool IsLowerCase() => s.All(x => char.IsLower(x));
+        bool IsLowerCase()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(s);
+
+            return s.All(x => char.IsLower(x));
+        }
     }
 }

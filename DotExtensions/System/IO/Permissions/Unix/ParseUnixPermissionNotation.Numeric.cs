@@ -41,6 +41,8 @@ public static partial class UnixPermissionsExtensions
     /// </returns>
     public static bool IsValidNumericNotation(string notation)
     {
+        ArgumentException.ThrowIfNullOrEmpty(notation);
+
         if (notation.Length is >= 3 and <= 4 || int.TryParse(notation, out int result) == false) 
             return false;
 
@@ -56,7 +58,7 @@ public static partial class UnixPermissionsExtensions
     /// </summary>
     /// <param name="notation">
     /// The numeric notation string to parse. It can be in three-digit (e.g., "777") or four-digit (e.g., "0777") formats.
-    /// The notation must be valid according to Unix file permission rules.
+    /// The notation must be valid, according to Unix file permission rules.
     /// </param>
     /// <returns>
     /// A <see cref="UnixFileMode"/> value that represents the parsed file permissions.
@@ -66,9 +68,7 @@ public static partial class UnixPermissionsExtensions
     /// </exception>
     private static UnixFileMode ParseNumericNotation(string notation)
     {
-#if NET8_0_OR_GREATER
-        ArgumentException.ThrowIfNullOrEmpty(notation, nameof(notation));
-#endif
+        ArgumentException.ThrowIfNullOrEmpty(notation);
         
         if (!IsValidNumericNotation(notation))
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation);

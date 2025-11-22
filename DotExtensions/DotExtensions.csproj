@@ -34,6 +34,7 @@
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
+      <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
 
     <ItemGroup>

@@ -47,6 +47,10 @@ public static class StringInsertExtensions
         /// <returns>The updated string with the inserted character at the specified index.</returns>
         public string Insert(int index, char c)
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
+            
             if (index < 0 || index >= str.Length)
                 throw new IndexOutOfRangeException();
 
@@ -80,6 +84,10 @@ public static class StringInsertExtensions
         /// <exception cref="IndexOutOfRangeException"></exception>
         public string InsertRange(int index, IEnumerable<char> chars)
         {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
+
             if (index < 0 || index >= str.Length)
                 throw new IndexOutOfRangeException();
 

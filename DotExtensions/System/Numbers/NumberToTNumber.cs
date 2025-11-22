@@ -46,7 +46,8 @@ public static class NumberToTNumber
         /// <typeparam name="TNumber">The destination number type to convert the source number to.</typeparam>
         /// <returns>The source number converted to the <see cref="TNumber"/> type.</returns>
         public TNumber ToNumber<TNumber>()
-            where TNumber : INumber<TNumber> => ToDestinationNumber<int, TNumber>(number);
+            where TNumber : INumber<TNumber> 
+            => ToDestinationNumber<int, TNumber>(number);
     }
 
     /// <param name="number">The number to be converted.</param>
@@ -59,10 +60,9 @@ public static class NumberToTNumber
         /// <remarks>If <see cref="TDestinationNumber"/> type has a lower level of precision than <see cref="TSourceNumber"/>, this conversion may be lossy.</remarks>
         /// <typeparam name="TDestinationNumber">The destination number type to convert the source number to.</typeparam>
         /// <returns>The source number converted to the <see cref="TDestinationNumber"/> type.</returns>
-        public TDestinationNumber ToDestinationNumber<TDestinationNumber>() where TDestinationNumber : INumber<TDestinationNumber>
-        {
-            return TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
-        }
+        public TDestinationNumber ToDestinationNumber<TDestinationNumber>()
+            where TDestinationNumber : INumber<TDestinationNumber> 
+            => TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
     }
 }
 

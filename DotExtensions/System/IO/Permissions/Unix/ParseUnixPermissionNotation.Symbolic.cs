@@ -37,6 +37,8 @@ public static partial class UnixPermissionsExtensions
     /// <returns>A boolean value indicating whether the input notation is valid.</returns>
     public static bool IsValidRwxSymbolNotation(string notation)
     {
+        ArgumentException.ThrowIfNullOrEmpty(notation);
+
         if (notation.Length != 10) 
             return false;
         
@@ -65,6 +67,8 @@ public static partial class UnixPermissionsExtensions
     /// <exception cref="ArgumentException">Thrown when the provided <paramref name="notation"/> is not a valid symbolic notation format.</exception>
     private static UnixFileMode ParseRwxSymbolNotation(string notation)
     {
+        ArgumentException.ThrowIfNullOrEmpty(notation);
+
         if (!IsValidRwxSymbolNotation(notation))
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation);
 

@@ -22,6 +22,7 @@
        SOFTWARE.
    */
 
+using System;
 using System.IO;
 using System.Linq;
 using AlastairLundy.DotExtensions.Localizations;
@@ -47,13 +48,15 @@ public static class IsDirectoryEmptyExtensions
         {
             get
             {
-                if (Directory.Exists(directory.FullName) == false)
+                ArgumentNullException.ThrowIfNull(directory);
+
+                if (!Directory.Exists(directory.FullName))
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName)
                     );
 
-                return directory.GetFiles().Any() == false
-                    && directory.GetDirectories().Any() == false;
+                return !directory.GetFiles().Any()
+                    && !directory.GetDirectories().Any();
             }
         }
     }

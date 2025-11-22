@@ -36,8 +36,7 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class SpecialCharacterDetectionExtension
 {
-
-
+    
     extension(char ch)
     {
         /// <summary>
@@ -47,7 +46,7 @@ public static class SpecialCharacterDetectionExtension
         /// <returns>True if the char is a special character; false otherwise.</returns>
         public static bool IsSpecialCharacter(char c)
         {
-            return char.IsLetterOrDigit(c) == false && (char.IsPunctuation(c) || char.IsSymbol(c));
+            return !char.IsLetterOrDigit(c) && (char.IsPunctuation(c) || char.IsSymbol(c));
         }
     }
 
@@ -61,8 +60,13 @@ public static class SpecialCharacterDetectionExtension
         /// Returns whether a string contains a special character or not.
         /// </summary>
         /// <returns>True if the string contains a special character; false otherwise.</returns>
-        public bool ContainsSpecialCharacter() => str.Any(x => char.IsSpecialCharacter(x));
-        
+        public bool ContainsSpecialCharacter()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(str);
+
+            return str.Any(x => char.IsSpecialCharacter(x));
+        }
+
         /// <summary>
         /// Removes special characters from a string.
         /// </summary>
@@ -70,8 +74,7 @@ public static class SpecialCharacterDetectionExtension
         /// <exception cref="ArgumentException">Thrown if the input string is null or empty.</exception>
         public string RemoveSpecialCharacters()
         {
-            if (string.IsNullOrEmpty(str))
-                throw new ArgumentException();
+            ArgumentException.ThrowIfNullOrEmpty(str);
 
             StringBuilder stringBuilder = new StringBuilder();
 

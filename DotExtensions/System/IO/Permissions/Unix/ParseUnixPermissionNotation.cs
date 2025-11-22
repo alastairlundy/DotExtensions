@@ -52,11 +52,7 @@ public static partial class UnixPermissionsExtensions
         /// </exception>
         public static UnixFileMode Parse(string input)
         {
-#if NET8_0_OR_GREATER
             ArgumentException.ThrowIfNullOrEmpty(input);
-#else
-            input = Ensure.NotNullOrEmpty(input);
-            #endif
             
             if(IsValidNumericNotation(input))
                 return ParseNumericNotation(input);
@@ -82,6 +78,8 @@ public static partial class UnixPermissionsExtensions
         {
             try
             {
+                ArgumentException.ThrowIfNullOrEmpty(input);
+                
                 result = Parse(input);
                 return true;
             }
