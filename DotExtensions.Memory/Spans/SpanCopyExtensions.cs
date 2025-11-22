@@ -142,9 +142,9 @@ public static class SpanCopyExtensions
             for (int i = startIndex; i < source.Length; i++)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-                if (destination[i] is not null && destination[i]
+                if (destination[i] is not null && !destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    .Equals(source[i]) == false)
+                        .Equals(source[i]))
                 {
                     return false;
                 }
@@ -184,9 +184,9 @@ public static class SpanCopyExtensions
             for (int i = startIndex; i < source.Length; i++)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-                if (destination[i] is not null && destination[i]
+                if (destination[i] is not null && !destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    .Equals(source[i]) == false)
+                        .Equals(source[i]))
                 {
                     return false;
                 }
