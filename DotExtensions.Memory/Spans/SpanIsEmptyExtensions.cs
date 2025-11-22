@@ -22,9 +22,6 @@
        SOFTWARE.
    */
 
-using System;
-using System.Linq;
-
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
