@@ -46,7 +46,7 @@ public static class ToListExtensions
         /// <returns>A list containing the elements of the span.</returns>
         public List<T> ToList()
         {
-            List<T> list = new List<T>();
+            List<T> list = new(capacity: source.Length);
 
             foreach (T item in source)
             {
@@ -61,7 +61,8 @@ public static class ToListExtensions
         /// </summary>
         /// <typeparam name="T">The type of elements in the Span.</typeparam>
         /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
-        public Memory<T> ToMemory() => new(source.ToArray());
+        public Memory<T> ToMemory() 
+            => new(source.ToArray());
     }
 
     /// <summary>
@@ -78,7 +79,7 @@ public static class ToListExtensions
         /// <returns>A list containing the elements of the Memory.</returns>
         public List<T> ToList()
         {
-            List<T> list = new List<T>();
+            List<T> list = new(capacity: source.Length);
 
             foreach (T item in source.Span)
             {
