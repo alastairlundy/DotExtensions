@@ -45,6 +45,7 @@ public static class ToListExtensions
         /// <returns>A list containing the elements of the span.</returns>
         public List<T> ToList()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             List<T> list = new List<T>();
 
             foreach (T item in source)
@@ -77,6 +78,7 @@ public static class ToListExtensions
         /// <returns>A list containing the elements of the Memory.</returns>
         public List<T> ToList()
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             List<T> list = new List<T>();
 
             foreach (T item in source.Span)

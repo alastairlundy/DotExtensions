@@ -11,6 +11,7 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
+            InvalidOperationException.ThrowIfSpanIsEmpty(span);
             T[] array = new T[span.Length];
 
             for(int index = span.Length - 1; index > 0; index--)
@@ -21,7 +22,10 @@ public static class ReverseExtensions
             span = array;
         }
     }
-    
+
+    /// <summary>
+    /// Provides extension methods for reversing the contents of memory.
+    /// </summary>
     extension<T>(ref Memory<T> memory)
     {
         /// <summary>
@@ -30,6 +34,7 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
             T[] array = new T[memory.Length];
 
             for(int index = memory.Length - 1; index > 0; index--)
@@ -51,6 +56,8 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
+
             T[] array = new T[memory.Length];
 
             for(int index = memory.Length - 1; index > 0; index--)

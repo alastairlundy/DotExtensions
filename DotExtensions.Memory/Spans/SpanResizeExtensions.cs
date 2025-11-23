@@ -40,8 +40,7 @@ public static class SpanResizeExtensions
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the new size is less than or equal to zero.</exception>
         public void Resize(int newSize)
         {
-            if (newSize <= 0)
-                throw new ArgumentOutOfRangeException(nameof(newSize));
+            InvalidOperationException.ThrowIfSpanIsEmpty(target);
 
             if (newSize < target.Length)
             {
