@@ -57,6 +57,11 @@ public static class SpanCopyExtensions
             int length
         )
         {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            
             if (startIndex < 0 || startIndex > source.Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
 
@@ -107,9 +112,11 @@ public static class SpanCopyExtensions
             int length
         )
         {
-            if (startIndex < 0 || startIndex > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(startIndex));
-
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            
             if (destination.Length < source.Length || destination.Length < startIndex + length)
                 throw new ArgumentException();
 
@@ -173,9 +180,10 @@ public static class SpanCopyExtensions
         int length
     )
     {
-        if (startIndex < 0 || startIndex > source.Length)
+        if (startIndex < 0 || startIndex > source.Length || source.Length == 0 || destination.Length == 0
+            || length == 0 || length > source.Length || length > destination.Length)
             return false;
-
+        
         try
         {
             OptimisticCopy(source, ref destination, startIndex, length);

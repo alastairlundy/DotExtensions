@@ -22,6 +22,7 @@
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
+    <PolyArgumentExceptions>true</PolyArgumentExceptions>
     <PackageReleaseNotes>## Changes since 8.7.x
 ### All packages
 * Added .NET 10 TFM
@@ -43,6 +44,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="Polyfill" Version="9.2.0" PrivateAssets="all"/>
   </ItemGroup>
 
   <ItemGroup>
