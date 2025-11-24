@@ -34,7 +34,7 @@ using System.Runtime.Versioning;
 namespace AlastairLundy.DotExtensions.Exceptions;
 
 /// <summary>
-/// 
+/// Contains extension methods for enhancing the handling of <see cref="PlatformNotSupportedException"/> exceptions.
 /// </summary>
 public static partial class PlatformNotSupportedExceptionExtensions
 {
@@ -48,13 +48,22 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// specified <see cref="OSPlatform"/>.
         /// </summary>
         /// <param name="osPlatform">The <see cref="OSPlatform"/> to check against the current platform.</param>
+        /// <param name="exceptionMessage">
+        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        /// If not provided, a default message is used.
+        /// </param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform matches the specified <see cref="OSPlatform"/>.
         /// </exception>
-        public static void ThrowIfOSPlatform(OSPlatform osPlatform)
+        public static void ThrowIfOSPlatform(OSPlatform osPlatform, string? exceptionMessage = null)
         {
             if (RuntimeInformation.IsOSPlatform(osPlatform))
+            {
+                if (exceptionMessage is not null)
+                    throw new PlatformNotSupportedException(exceptionMessage);
+                    
                 throw new PlatformNotSupportedException();
+            }
         }
 
         /// <summary>
@@ -62,13 +71,20 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// specified <see cref="OSPlatform"/>.
         /// </summary>
         /// <param name="osPlatform">The <see cref="OSPlatform"/> to check against the current platform.</param>
+        /// <param name="exceptionMessage">
+        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        /// If not provided, a default message is used.
+        /// </param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match the specified <see cref="OSPlatform"/>.
         /// </exception>
-        public static void ThrowIfNotOSPlatform(OSPlatform osPlatform)
+        public static void ThrowIfNotOSPlatform(OSPlatform osPlatform, string? exceptionMessage = null)
         {
             if (!RuntimeInformation.IsOSPlatform(osPlatform))
-                throw new PlatformNotSupportedException();
+                if (exceptionMessage is not null)
+                    throw new PlatformNotSupportedException(exceptionMessage);
+                    
+            throw new PlatformNotSupportedException();
         }
 
         /// <summary>
