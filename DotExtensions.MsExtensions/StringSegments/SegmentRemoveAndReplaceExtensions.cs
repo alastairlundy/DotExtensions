@@ -39,14 +39,13 @@ public static class SegmentRemoveAndReplaceExtensions
         /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index are removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
         public StringSegment Remove(int startIndex)
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
-
-            if (segment.IsEmpty)
-                throw new InvalidOperationException();
-
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
+            
             if (startIndex < 0 || startIndex >= segment.Length)
                 throw new IndexOutOfRangeException();
 
@@ -62,16 +61,15 @@ public static class SegmentRemoveAndReplaceExtensions
         /// <param name="count">The number of characters to remove from the StringSegment from the start index.</param>
         /// <returns>A <see cref="StringSegment"/> where the characters occurring within the <paramref name="count"/> number of characters after the specified index are removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
-        /// <exception cref="IndexOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
         public StringSegment Remove(int startIndex, int count)
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
-
-            if (startIndex < 0 || startIndex >= segment.Length)
-                throw new IndexOutOfRangeException();
-
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
+            
             if (startIndex + count > segment.Length || count < 0 || count > segment.Length)
                 throw new ArgumentOutOfRangeException();
 
