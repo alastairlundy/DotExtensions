@@ -18,19 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Exceptions.InvalidOperation.EmptySpan" xml:space="preserve">
-        <value>Span must not be empty for this operation to be performed successfully.</value>
+    <data name="DotExtensions.AoT.Messages.Intro" xml:space="preserve">
+        <value>DotExtensions AoT smoke test starting...</value>
     </data>
-    <data name="Exceptions.InvalidOperation.EmptyMemory" xml:space="preserve">
-        <value>Memory must not be empty for this operation to be performed successfully.</value>
-    </data>
-    <data name="Exceptions.Argument.WhiteSpace.Memory" xml:space="preserve">
-        <value>Memory must not contain chars or strings with whitespace.</value>
-    </data>
-    <data name="Exceptions.Argument.WhiteSpace.Span" xml:space="preserve">
-        <value>Span must not contain chars or strings with whitespace.</value>
-    </data>
-    <data name="DotExtensions.Tests.AoT.Intro" xml:space="preserve">
-        <value />
+    <data name="DotExtensions.AoT.Messages.Outro" xml:space="preserve">
+        <value>DotExtensions AoT smoke test completed.</value>
     </data>
 </root>

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Enable AoT analyzers during build to surface warnings early -->
+    <PublishAot>true</PublishAot>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+    <!-- Ensure references are validated for AoT compatibility where supported -->
+    <VerifyReferenceAotCompatibility>true</VerifyReferenceAotCompatibility>
+    <!-- This project can be published with NativeAOT locally. See README.md for commands. -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
+    <ProjectReference Include="..\DotExtensions.MsExtensions\DotExtensions.MsExtensions.csproj" />
+    <ProjectReference Include="..\DotExtensions.Memory\DotExtensions.Memory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localizations\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localizations\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

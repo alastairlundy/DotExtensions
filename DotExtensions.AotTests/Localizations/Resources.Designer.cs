@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlastairLundy.DotExtensions.Memory.Internal.Localizations {
+namespace DotExtensions.AotTests.Localizations {
     using System;
     
     
@@ -28,7 +28,7 @@ namespace AlastairLundy.DotExtensions.Memory.Internal.Localizations {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AlastairLundy.DotExtensions.Memory.Internal.Localizations.Resources", typeof(Resources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("DotExtensions.AotTests.Localizations.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -45,33 +45,15 @@ namespace AlastairLundy.DotExtensions.Memory.Internal.Localizations {
             }
         }
         
-        internal static string Exceptions_InvalidOperation_EmptySpan {
+        internal static string DotExtensions_AoT_Messages_Intro {
             get {
-                return ResourceManager.GetString("Exceptions.InvalidOperation.EmptySpan", resourceCulture);
+                return ResourceManager.GetString("DotExtensions.AoT.Messages.Intro", resourceCulture);
             }
         }
         
-        internal static string Exceptions_InvalidOperation_EmptyMemory {
+        internal static string DotExtensions_AoT_Messages_Outro {
             get {
-                return ResourceManager.GetString("Exceptions.InvalidOperation.EmptyMemory", resourceCulture);
-            }
-        }
-        
-        internal static string Exceptions_Argument_WhiteSpace_Memory {
-            get {
-                return ResourceManager.GetString("Exceptions.Argument.WhiteSpace.Memory", resourceCulture);
-            }
-        }
-        
-        internal static string Exceptions_Argument_WhiteSpace_Span {
-            get {
-                return ResourceManager.GetString("Exceptions.Argument.WhiteSpace.Span", resourceCulture);
-            }
-        }
-        
-        internal static string DotExtensions_Tests_AoT_Intro {
-            get {
-                return ResourceManager.GetString("DotExtensions.Tests.AoT.Intro", resourceCulture);
+                return ResourceManager.GetString("DotExtensions.AoT.Messages.Outro", resourceCulture);
             }
         }
     }
