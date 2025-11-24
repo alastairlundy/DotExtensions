@@ -24,8 +24,6 @@
 
 using System;
 
-// ReSharper disable CheckNamespace
-
 // ReSharper disable RedundantIfElseBlock
 
 namespace AlastairLundy.DotExtensions.Versions;
