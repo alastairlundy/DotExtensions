@@ -36,13 +36,12 @@ public static class InvalidOperationThrowIfEmptyExtensions
    /// <summary>
    /// 
    /// </summary>
-   /// <typeparam name="T"></typeparam>
+   /// <typeparam name="T">The type of elements in the Span or memory.</typeparam>
    extension<T>(InvalidOperationException)
    {
       /// <summary>
       /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Span{T}"/> is empty.
       /// </summary>
-      /// <typeparam name="T">The type of elements in the span.</typeparam>
       /// <param name="span">The span to check for emptiness.</param>
       /// <exception cref="InvalidOperationException">
       /// Thrown when the provided span is empty.
@@ -56,7 +55,6 @@ public static class InvalidOperationThrowIfEmptyExtensions
       /// <summary>
       /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Span{T}"/> is empty.
       /// </summary>
-      /// <typeparam name="T">The type of elements in the span.</typeparam>
       /// <param name="span">The span to check for emptiness.</param>
       /// <exception cref="InvalidOperationException">
       /// Thrown when the provided span is empty.
@@ -70,7 +68,6 @@ public static class InvalidOperationThrowIfEmptyExtensions
       /// <summary>
       /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Memory{T}"/> is empty.
       /// </summary>
-      /// <typeparam name="T">The type of elements in the memory.</typeparam>
       /// <param name="memory">The memory to check for emptiness.</param>
       /// <exception cref="InvalidOperationException">
       /// Thrown when the provided memory is empty.
@@ -84,7 +81,6 @@ public static class InvalidOperationThrowIfEmptyExtensions
       /// <summary>
       /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Memory{T}"/> is empty.
       /// </summary>
-      /// <typeparam name="T">The type of elements in the memory.</typeparam>
       /// <param name="memory">The memory to check for emptiness.</param>
       /// <exception cref="InvalidOperationException">
       /// Thrown when the provided memory is empty.

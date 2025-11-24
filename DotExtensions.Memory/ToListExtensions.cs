@@ -41,7 +41,6 @@ public static class ToListExtensions
         /// <summary>
         /// Converts this <see cref="Span{T}"/> to a <see cref="List{T}"/>.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the span.</typeparam>
         /// <returns>A list containing the elements of the span.</returns>
         public List<T> ToList()
         {
@@ -59,7 +58,6 @@ public static class ToListExtensions
         /// <summary>
         /// Converts this <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
         /// </summary>
-        /// <typeparam name="T">The type of elements in the Span.</typeparam>
         /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
         public Memory<T> ToMemory() => new(source.ToArray());
     }
@@ -74,7 +72,6 @@ public static class ToListExtensions
         /// <summary>
         /// Converts this <see cref="Memory{T}"/> to a <see cref="List{T}"/>
         /// </summary>
-        /// <typeparam name="T">The type of elements in the Memory.</typeparam>
         /// <returns>A list containing the elements of the Memory.</returns>
         public List<T> ToList()
         {

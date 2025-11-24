@@ -55,7 +55,6 @@ public static class StringReplaceLastExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
             ArgumentException.ThrowIfNullOrEmpty(newValue);
-            ArgumentNullException.ThrowIfNull(stringComparison);
 
             int lastIndex = str.IndexOf(oldValue, stringComparison);
 
@@ -86,7 +85,6 @@ public static class StringReplaceLastExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
             ArgumentException.ThrowIfNullOrEmpty(newValue);
-            ArgumentNullException.ThrowIfNull(stringComparison);
             
             int lastIndex = str.LastIndexOf(oldValue, stringComparison);
 

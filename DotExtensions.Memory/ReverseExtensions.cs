@@ -24,6 +24,9 @@
 
 namespace AlastairLundy.DotExtensions.Memory;
 
+/// <summary>
+/// Provides extension methods for reversing spans or sequences of elements in memory.
+/// </summary>
 public static class ReverseExtensions
 {
     /// <typeparam name="T">The type of elements in the span.</typeparam>

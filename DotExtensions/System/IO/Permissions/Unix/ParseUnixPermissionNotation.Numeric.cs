@@ -30,6 +30,9 @@ using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class UnixPermissionsExtensions
 {
     /// <summary>

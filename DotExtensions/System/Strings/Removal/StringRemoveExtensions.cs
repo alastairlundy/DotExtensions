@@ -43,7 +43,7 @@ public static class StringRemoveExtensions
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with all occurrences of the specified substring removed.</returns>
         /// <exception cref="ArgumentException">
-        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty.
+        /// Thrown when either the source string or <paramref name="value"/> is null or empty.
         /// </exception>
         public string RemoveAll(
             string value,
@@ -69,7 +69,7 @@ public static class StringRemoveExtensions
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with the first occurrence of the specified substring removed.</returns>
         /// <exception cref="ArgumentException">
-        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
+        /// Thrown when either the source string or <paramref name="value"/> is null or empty,
         /// or when the substring is not found in the string.
         /// </exception>
         public string RemoveFirst(
@@ -96,7 +96,7 @@ public static class StringRemoveExtensions
         /// <param name="stringComparison">The rules to use for the substring comparison.</param>
         /// <returns>A new string with the last occurrence of the specified substring removed.</returns>
         /// <exception cref="ArgumentException">
-        /// Thrown when either <paramref name="str"/> or <paramref name="value"/> is null or empty,
+        /// Thrown when either the source string or <paramref name="value"/> is null or empty,
         /// or when the substring is not found in the string.
         /// </exception>
         public string RemoveLast(

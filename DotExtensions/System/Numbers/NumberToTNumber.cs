@@ -40,11 +40,11 @@ public static class NumberToTNumber
     extension(int number)
     {
         /// <summary>
-        /// Converts a number of type <see cref="int"/> to a <see cref="TNumber"/> .
+        /// Converts a number of type <see cref="int"/> to a <see cref="INumber{TSelf}"/> .
         /// </summary>
-        /// <remarks>If <see cref="TNumber"/> type has a lower level of precision than <see cref="int"/>, this conversion may be lossy.</remarks>
+        /// <remarks>If <see cref="INumber{TSelf}"/> type has a lower level of precision than <see cref="int"/>, this conversion may be lossy.</remarks>
         /// <typeparam name="TNumber">The destination number type to convert the source number to.</typeparam>
-        /// <returns>The source number converted to the <see cref="TNumber"/> type.</returns>
+        /// <returns>The source number converted to the <see cref="INumber{TSelf}"/> type.</returns>
         public TNumber ToNumber<TNumber>()
             where TNumber : INumber<TNumber> 
             => ToDestinationNumber<int, TNumber>(number);
@@ -55,11 +55,11 @@ public static class NumberToTNumber
     extension<TSourceNumber>(TSourceNumber number) where TSourceNumber : INumber<TSourceNumber>
     {
         /// <summary>
-        /// Converts a number of <see cref="TSourceNumber"/> to a number of type <see cref="TDestinationNumber"/>.
+        /// Converts a number of <see cref="INumber{TSourceNumber}"/> to a number of type <see cref="INumber{TDestinationNumber}"/>.
         /// </summary>
-        /// <remarks>If <see cref="TDestinationNumber"/> type has a lower level of precision than <see cref="TSourceNumber"/>, this conversion may be lossy.</remarks>
+        /// <remarks>If <see cref="INumber{TDestinationNumber}"/> type has a lower level of precision than <see cref="INumber{TSourceNumber}"/>, this conversion may be lossy.</remarks>
         /// <typeparam name="TDestinationNumber">The destination number type to convert the source number to.</typeparam>
-        /// <returns>The source number converted to the <see cref="TDestinationNumber"/> type.</returns>
+        /// <returns>The source number converted to the <see cref="INumber{TDestinationNumber}"/> type.</returns>
         public TDestinationNumber ToDestinationNumber<TDestinationNumber>()
             where TDestinationNumber : INumber<TDestinationNumber> 
             => TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);

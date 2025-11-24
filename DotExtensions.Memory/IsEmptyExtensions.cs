@@ -34,13 +34,12 @@ public static class IsEmptyExtensions
     /// 
     /// </summary>
     /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(Span<T> source)
     {
         /// <summary>
         /// Determines if a span is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the Span.</typeparam>
         /// <returns>True if the span is empty, false otherwise.</returns>
         public bool IsEmpty
         {
@@ -58,13 +57,12 @@ public static class IsEmptyExtensions
     /// 
     /// </summary>
     /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
     {
         /// <summary>
         /// Determines if a span is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the Span.</typeparam>
         /// <returns>True if the span is empty, false otherwise.</returns>
         public bool IsEmpty
         {
@@ -82,13 +80,12 @@ public static class IsEmptyExtensions
     /// 
     /// </summary>
     /// <param name="memory"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements in the memory.</typeparam>
     extension<T>(Memory<T> memory)
     {
         /// <summary>
         /// Indicates whether the memory is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the memory.</typeparam>
         /// <returns>True if the memory is empty or has a length of zero; otherwise, false.</returns>
         public bool IsEmpty => memory.Equals(Memory<T>.Empty) || memory.Length == 0;
     }
@@ -97,13 +94,12 @@ public static class IsEmptyExtensions
     /// 
     /// </summary>
     /// <param name="memory"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of elements in the read-only memory.</typeparam>
     extension<T>(ReadOnlyMemory<T> memory)
     {
         /// <summary>
         /// Indicates whether the specified read-only memory is empty.
         /// </summary>
-        /// <typeparam name="T">The type of elements in the read-only memory.</typeparam>
         /// <returns>True if the read-only memory is empty or has a length of zero; otherwise, false.</returns>
         public bool IsEmpty => memory.Equals(ReadOnlyMemory<T>.Empty) || memory.Length == 0;
     }
@@ -137,7 +133,6 @@ public static class IsEmptyExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="???"></param>
     extension(ReadOnlySpan<char>)
     {
         /// <summary>
@@ -159,19 +154,17 @@ public static class IsEmptyExtensions
             return isWhiteSpace.All(x => x);
         }
     }
-    
+
     /// <summary>
-    /// 
+    /// Provides extension methods for working with spans of memory.
     /// </summary>
-    /// <param name="???"></param>
     extension(Memory<char>)
     {
-
         /// <summary>
-        /// 
+        /// Determines whether a span of memory containing characters is empty or consists only of whitespace.
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
+        /// <param name="source">The memory of characters to evaluate.</param>
+        /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
         public static bool IsEmptyOrWhiteSpace(Memory<char> source)
         {
             if (source.IsEmpty)
@@ -190,12 +183,11 @@ public static class IsEmptyExtensions
     
     extension(ReadOnlyMemory<char>)
     {
-
         /// <summary>
-        /// 
+        /// Determines whether the provided read-only memory of characters is empty or consists solely of whitespace characters.
         /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
+        /// <param name="source">The read-only memory to evaluate.</param>
+        /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
         public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<char> source)
         {
             if (source.IsEmpty)
@@ -217,7 +209,6 @@ public static class IsEmptyExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="???"></param>
         extension(Span<string>)
     {
         /// <summary>
@@ -265,7 +256,6 @@ public static class IsEmptyExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="???"></param>
     extension(Memory<string>)
     {
         /// <summary>
@@ -293,7 +283,6 @@ public static class IsEmptyExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="???"></param>
     extension(ReadOnlyMemory<string>)
     {
         /// <summary>

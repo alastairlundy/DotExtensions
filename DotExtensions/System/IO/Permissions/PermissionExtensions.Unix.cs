@@ -48,8 +48,6 @@ public static partial class PermissionExtensions
         {
             get
             {
-                ArgumentNullException.ThrowIfNull(mode);
-                
                 if (mode.HasFlag(UnixFileMode.UserExecute)
                     || mode.HasFlag(UnixFileMode.GroupExecute)
                     || mode.HasFlag(UnixFileMode.OtherExecute)) return true;
@@ -69,8 +67,6 @@ public static partial class PermissionExtensions
         {
             get
             {
-                ArgumentNullException.ThrowIfNull(mode);
-
                 if (mode.HasFlag(UnixFileMode.UserRead)
                     || mode.HasFlag(UnixFileMode.GroupRead)
                     || mode.HasFlag(UnixFileMode.OtherRead)) return true;
@@ -90,8 +86,6 @@ public static partial class PermissionExtensions
         {
             get
             {
-                ArgumentNullException.ThrowIfNull(mode);
-
                 if (mode.HasFlag(UnixFileMode.UserWrite)
                     || mode.HasFlag(UnixFileMode.GroupWrite)
                     || mode.HasFlag(UnixFileMode.OtherWrite)) return true;
