@@ -25,5 +25,5 @@ To produce a NativeAOT binary, use a supported runtime identifier (RID) for your
   - dotnet publish DotExtensions.AotTests -c Release -r osx-arm64 -p:PublishAot=true --self-contained true
 
 Note:
-- The project enables AoT analyzers during normal builds to surface potential issues early.
+- The project enables AoT analysers during normal builds to surface potential issues early.
 - Some APIs in the libraries may be conditionally compiled or marked as not AoT-safe; the test app avoids reflection/dynamic features and uses representative APIs.
