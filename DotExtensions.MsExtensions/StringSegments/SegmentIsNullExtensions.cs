@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
@@ -59,12 +61,25 @@ public static class SegmentIsNullExtensions
         /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
         public static bool IsNullOrWhiteSpace(StringSegment? other)
         {
-            if (!other.HasValue)
+            if (other is null)
                 return true;
 
-            for (int index = 0; index < other.Value.Length; index++)
+            return StringSegment.IsWhiteSpace((StringSegment)other);
+        }
+
+        /// <summary>
+        /// Determines whether the specified string segment consists entirely of whitespace characters.
+        /// </summary>
+        /// <param name="other">The string segment to evaluate.</param>
+        /// <returns>True if the string segment consists only of whitespace characters; otherwise, false.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the provided <see cref="StringSegment"/> is null.</exception>
+        public static bool IsWhiteSpace(StringSegment other)
+        {
+            ArgumentNullException.ThrowIfNull(other);
+            
+            for (int index = 0; index < other.Length; index++)
             {
-                char c = other.Value[index];
+                char c = other[index];
 
                 if (!char.IsWhiteSpace(c))
                     return false;

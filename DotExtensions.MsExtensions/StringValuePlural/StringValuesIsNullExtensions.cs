@@ -27,6 +27,8 @@
 // ReSharper disable ConvertClosureToMethodGroup
 // ReSharper disable RedundantBoolCompare
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 
 /// <summary>
@@ -63,15 +65,26 @@ public static class StringValuesIsNullExtensions
             if (other is null)
                 return true;
 
-            bool[] vals = new bool[other.Value.Count];
+            return StringValues.IsWhiteSpace((StringValues)other);
+        }
 
-            for (int index = 0; index < other.Value.Count; index++)
+        /// <summary>
+        /// Determines whether a <see cref="StringValues"/> contains only strings that consist entirely of whitespace characters.
+        /// </summary>
+        /// <param name="other">The <see cref="StringValues"/> to check for whitespace characters.</param>
+        /// <returns>True if all strings in the <see cref="StringValues"/> consist entirely of whitespace characters; otherwise, false.</returns>
+        public static bool IsWhiteSpace(StringValues other)
+        {
+            ArgumentNullException.ThrowIfNull(other);
+            
+            bool[] vals = new bool[other.Count];
+
+            for (int index = 0; index < other.Count; index++)
             {
-                string? val = other.Value[index];
+                string? val = other[index];
 
-                if (val is null)
-                    return true;
-
+                ArgumentNullException.ThrowIfNull(val);
+                
                 vals[index] = string.IsNullOrWhiteSpace(val);
             }
 
