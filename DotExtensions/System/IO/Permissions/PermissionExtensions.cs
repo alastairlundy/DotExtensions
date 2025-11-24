@@ -98,12 +98,10 @@ public static partial class PermissionExtensions
 
                 return filePermission.HasReadPermission;
             }
-            else
-            {
-                UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
-                return unixFileMode.HasReadPermission;
-            }
+            UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
+
+            return unixFileMode.HasReadPermission;
         }
 
         /// <summary>
@@ -132,12 +130,10 @@ public static partial class PermissionExtensions
 
                 return filePermission.HasWritePermission;
             }
-            else
-            {
-                UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
-                return unixFileMode.HasWritePermission;
-            }
+            UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
+
+            return unixFileMode.HasWritePermission;
         }
     }
 }
