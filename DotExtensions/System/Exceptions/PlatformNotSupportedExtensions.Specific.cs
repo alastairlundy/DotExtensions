@@ -28,10 +28,7 @@ using System;
 
 namespace AlastairLundy.DotExtensions.Exceptions;
 
-/// <summary>
-/// 
-/// </summary>
-public static class PlatformNotSupportedExceptionExtensionsSpecific
+public static partial class PlatformNotSupportedExceptionExtensions
 {
     /// <summary>
     /// Provides extension methods to throw <see cref="PlatformNotSupportedException"/>
