@@ -31,6 +31,8 @@
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
+      <EnableAotAnalyzer>true</EnableAotAnalyzer>
+      <IsAoTCompatible>true</IsAoTCompatible>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
 

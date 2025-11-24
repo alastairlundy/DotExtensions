@@ -22,6 +22,8 @@
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+    <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReleaseNotes>* Added ``Reverse`` extension for ``Memory&lt;T&gt;``, ``ReadOnlySpan&lt;T&gt;``, and ``ReadOnlyMemory&lt;T&gt;``
 * Converted package to use global usings
 * Added Span ``AsReadOnlySpan`` and Memory ``AsReadOnlyMemory``
