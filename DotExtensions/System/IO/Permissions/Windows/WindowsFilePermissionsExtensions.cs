@@ -24,7 +24,9 @@
 
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using AlastairLundy.DotExtensions.Exceptions;
 using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Windows;
@@ -51,8 +53,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("ios")]
         public WindowsFilePermission GetWindowsFilePermission()
         {
-            if(!OperatingSystem.IsWindows())
-                throw new PlatformNotSupportedException();
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
         
             return WindowsFilePermissionManager.GetFilePermission(fileInfo.FullName);
         }
@@ -75,8 +76,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("ios")]
         public void SetWindowsFilePermission(WindowsFilePermission permission)
         {
-            if(!OperatingSystem.IsWindows())
-                throw new PlatformNotSupportedException();
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
 
             WindowsFilePermissionManager.SetFilePermission(fileInfo.FullName, permission);
         }
@@ -99,8 +99,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("ios")]
         public void SetWindowsDirectoryPermission(WindowsFilePermission permission)
         {
-            if(!OperatingSystem.IsWindows())
-                throw new PlatformNotSupportedException();
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
 
             WindowsFilePermissionManager.SetDirectoryPermission(directoryInfo.FullName, permission);
         }
@@ -119,9 +118,8 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("ios")]
         public WindowsFilePermission GetWindowsDirectoryPermission()
         {
-            if(!OperatingSystem.IsWindows())
-                throw new PlatformNotSupportedException();
-        
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            
             return WindowsFilePermissionManager.GetDirectoryPermission(directoryInfo.FullName);
         }
     }
