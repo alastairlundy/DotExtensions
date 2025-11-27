@@ -12,14 +12,13 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
     <PackageReleaseNotes>## Changes since 9.0.x
-
 ### All packages
 * Added Trimming Support
 * Added AoT Compatibility Support
 * Addressed compiler warnings
 
 ### Main Package
-* Added ``PlatformNotSupportExtension`` Throw static extension member methods
+* Added ``PlatformNotSupportException`` Throw static extension member methods
 * Moved ``WindowsFilePermission`` static extension members from DotPrimitives
 * Added FileInfo static extension method members ``HasExecutePermissions``, ``HasReadPermissionms``, and ``HasWritePermissions`` - These support both Unix and Windows based operating systems.
 * Moved Unix Numeric Permission notation parsing and Unix Rwx Symbolic notation parsing via static extension method members on UnixFileMode.
