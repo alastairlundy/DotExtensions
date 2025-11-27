@@ -8,8 +8,9 @@ These are the currently supported versions of DotExtensions
 
 | Version | Supported with Bug Fixes | Supported with Security Updates |
 | ------- | ------------------ | ------------------ |
+| 9.1 | Until DotExtensions 9.3 | Until DotExtensions 9.4 |
 | 9.0 | Until DotExtensions 9.2 | Until DotExtensions 9.3 |
-| 8.7 | Until DotExtensions 9.1 | Until DotExtensions 9.2 |
+| 8.7 | :x:, ended November 27th 2025 | Until DotExtensions 9.2 |
 | < 8.7 | :x: | :x: |
 
 
