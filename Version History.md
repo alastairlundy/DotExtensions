@@ -6,6 +6,7 @@
 ### 9.1
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.1.1 | December 2nd 2025 | |
 | 9.1.0 | November 27th 2025 | |
 | 9.1.0 Preview 2 | November 22nd 2025 | |
 | 9.1.0 Preview 1 | November 16th 2025 | |
