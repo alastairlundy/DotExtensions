@@ -59,17 +59,24 @@ public static partial class PermissionExtensions
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
 
-            if (OperatingSystem.IsWindows())
+            try
             {
-                WindowsFilePermission filePermission = WindowsFilePermissionManager
-                    .GetFilePermission(fileInfo.FullName);
+                if (OperatingSystem.IsWindows())
+                {
+                    WindowsFilePermission filePermission = WindowsFilePermissionManager
+                        .GetFilePermission(fileInfo.FullName);
 
-                return filePermission.HasExecutePermission;
+                    return filePermission.HasExecutePermission;
+                }
+                
+                UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
+
+                return unixFileMode.HasExecutePermission;
             }
-
-            UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
-
-            return unixFileMode.HasExecutePermission;
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -90,18 +97,25 @@ public static partial class PermissionExtensions
         public bool HasReadPermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
-            
-            if (OperatingSystem.IsWindows())
+
+            try
             {
-                WindowsFilePermission filePermission = WindowsFilePermissionManager
-                    .GetFilePermission(fileInfo.FullName);
+                if (OperatingSystem.IsWindows())
+                {
+                    WindowsFilePermission filePermission = WindowsFilePermissionManager
+                        .GetFilePermission(fileInfo.FullName);
 
-                return filePermission.HasReadPermission;
+                    return filePermission.HasReadPermission;
+                }
+                
+                UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
+
+                return unixFileMode.HasReadPermission;
             }
-
-            UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
-
-            return unixFileMode.HasReadPermission;
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -122,18 +136,25 @@ public static partial class PermissionExtensions
         public bool HasWritePermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
-            
-            if (OperatingSystem.IsWindows())
+
+            try
             {
-                WindowsFilePermission filePermission = WindowsFilePermissionManager
-                    .GetFilePermission(fileInfo.FullName);
+                if (OperatingSystem.IsWindows())
+                {
+                    WindowsFilePermission filePermission = WindowsFilePermissionManager
+                        .GetFilePermission(fileInfo.FullName);
 
-                return filePermission.HasWritePermission;
+                    return filePermission.HasWritePermission;
+                }
+                
+                UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
+
+                return unixFileMode.HasWritePermission;
             }
-
-            UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
-
-            return unixFileMode.HasWritePermission;
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
         }
     }
 }
