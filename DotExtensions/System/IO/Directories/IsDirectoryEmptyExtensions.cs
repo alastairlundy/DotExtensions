@@ -55,8 +55,15 @@ public static class IsDirectoryEmptyExtensions
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName)
                     );
 
-                return !directory.GetFiles().Any()
-                    && !directory.GetDirectories().Any();
+                try
+                {
+                    return !directory.EnumerateFiles().Any()
+                           && !directory.EnumerateDirectories().Any();
+                }
+                catch(UnauthorizedAccessException)
+                {
+                    return false;
+                }
             }
         }
     }
