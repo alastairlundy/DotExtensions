@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
