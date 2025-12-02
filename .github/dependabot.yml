@@ -11,26 +11,6 @@ updates:
       interval: daily
 
   - package-ecosystem: nuget
-    directory: DotExtensions.Benchmarking
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: DotExtensions.Memory
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: DotExtensions.MsExtensions
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: DotExtensions.Tests
-    schedule:
-      interval: daily
-
-  - package-ecosystem: nuget
-    directory: DotExtensions
+    directory: /
     schedule:
       interval: daily
