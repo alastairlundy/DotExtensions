@@ -7,24 +7,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.0</Version>
+    <Version>9.1.1</Version>
     <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>## Changes since 9.0.x
-
-### All packages
-* Added Trimming Support
-* Added AoT Compatibility Support
-* Addressed compiler warnings
-
-### MsExtensions Package
-* Added ``StringSegment`` ArgumentException ``ThrowIfNullOrWhiteSpace`` and ``ThrowIfNullOrEmpty`` static extension method members
-* Re-added StringSegment ``IsNullOrEmpty`` static extension member (originally removed in v8 to v9 transition)
-* Added ``StringSegment`` ``IsWhiteSpace`` method
-* Added more Argument Exception throwing in case Empty or Whitespace StringSegment objects are passed to methods</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated to Polyfill 9.3.1 from 9.3.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>

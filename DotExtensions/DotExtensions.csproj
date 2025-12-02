@@ -11,20 +11,11 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>## Changes since 9.0.x
-### All packages
-* Added Trimming Support
-* Added AoT Compatibility Support
-* Addressed compiler warnings
-
+    <PackageReleaseNotes>## Changes since 9.1.0
 ### Main Package
-* Added ``PlatformNotSupportedException`` Throw static extension member methods
-* Moved ``WindowsFilePermission`` static extension members from DotPrimitives
-* Added FileInfo static extension method members ``HasExecutePermissions``, ``HasReadPermissionms``, and ``HasWritePermissions`` - These support both Unix and Windows based operating systems.
-* Moved Unix Numeric Permission notation parsing and Unix Rwx Symbolic notation parsing via static extension method members on UnixFileMode.
-* Updated Polyfill from 9.2.0 to 9.3.0
-* Added DateTime ``DaysInYear`` extension
-* Improved Argument Null and Out of Range throwing</PackageReleaseNotes>
+* Updated to Polyfill 9.3.1 from 9.3.0
+* Updated ``DirectoryInfo`` ``IsEmpty`` static extension member to catch thrown UnauthorizedAccessException and return false if not authorized
+* Updated ``FileInfo`` ``HasExecutePermission``, ``HasReadPermission``, and ``HasWritePermission`` C#14 extension methods to catch thrown UnauthorizedAccess exception and return false if not authorized</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -33,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.0</Version>
+    <Version>9.1.1</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
