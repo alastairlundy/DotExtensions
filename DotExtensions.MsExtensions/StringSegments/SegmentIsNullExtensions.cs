@@ -73,7 +73,9 @@ public static class SegmentIsNullExtensions
         /// <exception cref="ArgumentNullException">Thrown if the provided <see cref="StringSegment"/> is null.</exception>
         public static bool IsWhiteSpace(StringSegment other)
         {
+            #if NETSTANDARD2_0
             ArgumentNullException.ThrowIfNull(other);
+            #endif
             
             for (int index = 0; index < other.Length; index++)
             {

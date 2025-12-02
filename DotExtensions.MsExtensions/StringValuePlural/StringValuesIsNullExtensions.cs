@@ -75,8 +75,6 @@ public static class StringValuesIsNullExtensions
         /// <returns>True if all strings in the <see cref="StringValues"/> consist entirely of whitespace characters; otherwise, false.</returns>
         public static bool IsWhiteSpace(StringValues other)
         {
-            ArgumentNullException.ThrowIfNull(other);
-            
             bool[] vals = new bool[other.Count];
 
             for (int index = 0; index < other.Count; index++)
