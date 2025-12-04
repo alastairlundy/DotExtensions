@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System;
-
 namespace AlastairLundy.DotExtensions.Dates;
 
 #if NET8_0_OR_GREATER

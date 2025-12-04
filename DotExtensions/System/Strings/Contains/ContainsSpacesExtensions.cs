@@ -25,7 +25,6 @@
 // ReSharper disable CheckNamespace
 
 
-using System;
 #if NETSTANDARD2_0
 using System.Linq;
 #endif

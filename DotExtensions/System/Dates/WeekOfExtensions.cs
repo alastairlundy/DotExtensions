@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.Globalization;
 
 namespace AlastairLundy.DotExtensions.Dates;

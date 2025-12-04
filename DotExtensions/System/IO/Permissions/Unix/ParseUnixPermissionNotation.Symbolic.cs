@@ -22,9 +22,7 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
-using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
 

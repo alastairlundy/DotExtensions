@@ -22,10 +22,8 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
 using System.Linq;
-using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 

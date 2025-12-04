@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
 using AlastairLundy.DotExtensions.IO.Directories;
 

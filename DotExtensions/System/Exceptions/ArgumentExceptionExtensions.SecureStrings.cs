@@ -22,14 +22,13 @@
        SOFTWARE.
    */
 
-using System;
 using System.Security;
-using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with <see cref="ArgumentException"/>
+/// to enhance functionality and handling of exceptions in various contexts.
 /// </summary>
 public static partial class ArgumentExceptionExtensions
 {

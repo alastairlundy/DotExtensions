@@ -22,9 +22,8 @@
        SOFTWARE.
    */
 
-using System;
 
-// ReSharper disable RedundantIfElseBlock
+
 
 namespace AlastairLundy.DotExtensions.Versions;
 
@@ -53,10 +52,10 @@ public static class ReadableVersionStringExtensions
             {
                 if (showBuild)
                     return $"{version.Major}.{version.Minor}.{version.Build}";
-                else if (showMinor)
+                if (showMinor)
                     return $"{version.Major}.{version.Minor}";
-                else
-                    return version.Major.ToString();
+                
+                return version.Major.ToString();
             }
         }
     }

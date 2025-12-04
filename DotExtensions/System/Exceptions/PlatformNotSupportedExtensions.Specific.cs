@@ -23,7 +23,7 @@
    */
 
 
-using System;
+
 // ReSharper disable InconsistentNaming
 
 namespace AlastairLundy.DotExtensions.Exceptions;
