@@ -22,10 +22,9 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
-
 using System.Collections.Generic;
 using System.IO;
+using System.Security;
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
@@ -67,6 +66,89 @@ public static class DirectorySafeEnumerationExtensions
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern, SearchOption searchOption,
             bool ignoreCase = false)
         {
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
+            return directoryInfo.SafeFileEnumeration_Net8Plus(searchPattern, searchOption, ignoreCase);
+#else
+            return directoryInfo.SafeFileEnumeration_NetStandard20(searchPattern, searchOption, ignoreCase);
+#endif
+        }
+        
+#if NETSTANDARD2_0
+        private IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
+            bool ignoreCase)
+        {
+            List<FileInfo> output = new();
+            
+            try
+            {
+                if (!directoryInfo.Exists)
+                    throw new DirectoryNotFoundException();
+
+                IEnumerable<FileSystemInfo> fileSystemInfos = directoryInfo.EnumerateFileSystemInfos();
+
+                foreach (var fileSystemInfo in fileSystemInfos)
+                {
+                    try
+                    {
+                        if (fileSystemInfo is FileInfo fileInfo)
+                        {
+                            if (ignoreCase)
+                            {
+                                if (fileInfo.Name.ToLower().Contains(searchPattern.ToLower()))
+                                    output.Add(fileInfo);
+                            }
+                            else
+                            {
+                                if (fileInfo.Name.Contains(searchPattern))
+                                    output.Add(fileInfo);
+                            }
+                        }
+                        if (fileSystemInfo is DirectoryInfo dirInfo)
+                        {
+                            if (!dirInfo.Exists)
+                                continue;
+                            
+                            IEnumerable<FileInfo> files =  dirInfo.EnumerateFiles(searchPattern, searchOption);
+
+                            foreach (FileInfo f in files)
+                            {
+                                if (ignoreCase && f.Name.ToLower().Contains(searchPattern.ToLower()))
+                                {
+                                    output.Add(f);
+                                }
+                                else if(!ignoreCase && f.Name.Contains(searchPattern))
+                                {
+                                    output.Add(f);
+                                }
+                            }
+                        }
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        continue;
+                    }
+                    catch (SecurityException)
+                    {
+                        continue;
+                    }
+                }
+
+                return output;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return output;
+            }
+            catch (SecurityException)
+            {
+                return output;
+            }
+        }
+#endif
+        
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
+        private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        {
             EnumerationOptions enumerationOptions = new()
             {
                 IgnoreInaccessible = true,
@@ -75,9 +157,9 @@ public static class DirectorySafeEnumerationExtensions
                 MatchType = MatchType.Simple,
                 MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
             };
-            
+
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
+#endif
     }   
 }
-#endif
