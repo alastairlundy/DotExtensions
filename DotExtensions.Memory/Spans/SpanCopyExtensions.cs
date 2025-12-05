@@ -219,7 +219,7 @@ public static class SpanCopyExtensions
         /// <remarks>The source and destination <see cref="ReadOnlySpan{T}"/> do not have to be the same size.</remarks>
         /// <param name="destination">The destination <see cref="Span{T}"/>.</param>
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
-        public void OptimisticCopy(ref ReadOnlySpan<T> destination,
+        public void OptimisticCopy(ref Span<T> destination,
             int startIndex
         ) => OptimisticCopy(source, ref destination, startIndex, destination.Length);
 
@@ -230,7 +230,7 @@ public static class SpanCopyExtensions
         /// <param name="destination">The destination <see cref="ReadOnlySpan{T}"/>.</param>
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
-        public void OptimisticCopy(ref ReadOnlySpan<T> destination,
+        public void OptimisticCopy(ref Span<T> destination,
             int startIndex,
             int length
         )
@@ -242,7 +242,8 @@ public static class SpanCopyExtensions
             
             if (destination.Length < startIndex + length)
             {
-                destination = source.Slice(startIndex, length);
+                ReadOnlySpan<T> spanRes = source.Slice(startIndex, length);
+                spanRes.CopyTo(destination);   
                 return;
             }
 
@@ -263,7 +264,7 @@ public static class SpanCopyExtensions
                 output[i] = source[i];
             }
 
-            destination = new ReadOnlySpan<T>(output);
+            destination = new Span<T>(output);
         }
     }
 
