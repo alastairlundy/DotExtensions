@@ -23,9 +23,7 @@
    */
 
 
-
 // ReSharper disable InconsistentNaming
-
 namespace AlastairLundy.DotExtensions.Exceptions;
 
 public static partial class PlatformNotSupportedExceptionExtensions
