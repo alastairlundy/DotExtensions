@@ -27,6 +27,7 @@ using System.IO;
 
 #if NETSTANDARD2_0
 using System.Security;
+// ReSharper disable InconsistentNaming
 #endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
@@ -35,7 +36,7 @@ namespace AlastairLundy.DotExtensions.IO.Directories;
 /// Contains extension methods for performing safe file and directory enumerations
 /// to avoid common exceptions caused by inaccessible or locked file system entries.
 /// </summary>
-public static partial class SafeIoEnumerationExtensions
+public static partial class SafeIOEnumerationExtensions
 {
     #region  Safe File Enumeration.
     /// <summary>
