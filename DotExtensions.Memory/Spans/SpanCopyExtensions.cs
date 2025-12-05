@@ -29,6 +29,7 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanCopyExtensions
 {
+    #region Span version
     /// <param name="source">The source span.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> source)
@@ -202,4 +203,69 @@ public static class SpanCopyExtensions
             return false;
         }
     }
+    #endregion
+    #region ReadOnlySpan version
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    extension<T>(ReadOnlySpan<T> source)
+    {
+                /// <summary>
+        /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>
+        /// </summary>
+        /// <remarks>The source and destination <see cref="ReadOnlySpan{T}"/> do not have to be the same size.</remarks>
+        /// <param name="destination">The destination <see cref="Span{T}"/>.</param>
+        /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
+        public void OptimisticCopy(ref ReadOnlySpan<T> destination,
+            int startIndex
+        ) => OptimisticCopy(source, ref destination, startIndex, destination.Length);
+
+        /// <summary>
+        /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>
+        /// </summary>
+        /// <remarks>The source and destination <see cref="ReadOnlySpan{T}"/> do not have to be the same size.</remarks>
+        /// <param name="destination">The destination <see cref="ReadOnlySpan{T}"/>.</param>
+        /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
+        /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
+        public void OptimisticCopy(ref ReadOnlySpan<T> destination,
+            int startIndex,
+            int length
+        )
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            
+            if (destination.Length < startIndex + length)
+            {
+                destination = source.Slice(startIndex, length);
+                return;
+            }
+
+            int expectedEnd = startIndex + length;
+            int actualEnd = destination.Length;
+
+            int end = actualEnd;
+
+            if (actualEnd <= expectedEnd)
+                end = actualEnd;
+            if (expectedEnd <= actualEnd)
+                end = expectedEnd;
+
+            T[] output = new T[Math.Abs(end - startIndex)];
+            
+            for (int i = startIndex; i < end; i++)
+            {
+                output[i] = source[i];
+            }
+
+            destination = new ReadOnlySpan<T>(output);
+        }
+    }
+
+    #endregion
 }
