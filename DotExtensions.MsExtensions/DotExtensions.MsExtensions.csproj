@@ -14,7 +14,6 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>### MsExtensions package
-* Allow empty StringSegments to be reversed - Previously this would have thrown an Arguemnt Exception.
 * Fixed a potential issue where Empty StringSegments would be considered to have WhiteSpace.
 * Improved robustness of Argument Exception throwing</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
