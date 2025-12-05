@@ -27,18 +27,20 @@ using System.IO;
 
 #if NETSTANDARD2_0
 using System.Security;
+
 // ReSharper disable InconsistentNaming
 #endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
- 
+
 /// <summary>
 /// Contains extension methods for performing safe file and directory enumerations
 /// to avoid common exceptions caused by inaccessible or locked file system entries.
 /// </summary>
 public static partial class SafeIOEnumerationExtensions
 {
-    #region  Safe File Enumeration.
+    #region Safe File Enumeration.
+
     /// <summary>
     /// Provides extension methods for safe enumeration of files in directories.
     /// </summary>
@@ -58,7 +60,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern">The search string to match against the names of files in the directory.</param>
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern)
-        => SafelyEnumerateFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+            => SafelyEnumerateFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates files in the specified directory, handling inaccessible or special directories
@@ -77,50 +79,33 @@ public static partial class SafeIOEnumerationExtensions
             return directoryInfo.SafeFileEnumeration_NetStandard20(searchPattern, searchOption, ignoreCase);
 #endif
         }
-        
-        private FileInfo? SafelyEnumerateFile(FileSystemInfo info, string searchPattern, SearchOption searchOption, bool ignoreCase)
-                        {
-                            try
-                            {
-                                if (info is FileInfo fileInfo)
-                                {
-                                    if (ignoreCase)
-                                    {
-                                        if (fileInfo.Name.ToLower().Contains(searchPattern.ToLower()))
-                                            return fileInfo;
-                                    }
-                                    else
-                                    {
-                                        if (fileInfo.Name.Contains(searchPattern))
-                                            return fileInfo;
-                                    }
-                                }
 
-                                if (info is DirectoryInfo dirInfo)
-                                {
-                                    if (!dirInfo.Exists)
-                                        return null;
+        private FileInfo? SafelyEnumerateFile(FileSystemInfo info, string searchPattern, bool ignoreCase)
+        {
+            try
+            {
+                if (info is FileInfo fileInfo)
+                {
+                    if (ignoreCase)
+                    {
+                        if (fileInfo.Name.ToLower().Contains(searchPattern.ToLower()))
+                            return fileInfo;
+                    }
+                    else
+                    {
+                        if (fileInfo.Name.Contains(searchPattern))
+                            return fileInfo;
+                    }
+                }
 
-                                    IEnumerable<FileInfo> files = dirInfo.EnumerateFiles(searchPattern, searchOption);
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-                                    foreach (FileInfo f in files)
-                                    {
-                                        if (ignoreCase && f.Name.ToLower().Contains(searchPattern.ToLower()) ||
-                                            !ignoreCase && f.Name.Contains(searchPattern))
-                                        {
-                                            return f;
-                                        }
-                                    }
-                                }
-
-                                return null;
-                            }
-                            catch
-                            {
-                                return null;
-                            }
-                        }
-        
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
         {
@@ -146,7 +131,7 @@ public static partial class SafeIOEnumerationExtensions
 
             try
             {
-                fileSystemInfos = directoryInfo.EnumerateFileSystemInfos();
+                fileSystemInfos = directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
             }
             catch (UnauthorizedAccessException)
             {
@@ -162,18 +147,19 @@ public static partial class SafeIOEnumerationExtensions
 
             foreach (FileSystemInfo fileSystemInfo in fileSystemInfos)
             {
-                FileInfo? file = SafelyEnumerateFile(directoryInfo, fileSystemInfo, searchPattern, searchOption, ignoreCase);
-                    
-                if(file is null)
+                FileInfo? file = SafelyEnumerateFile(directoryInfo, fileSystemInfo, searchPattern, ignoreCase);
+
+                if (file is null)
                     continue;
 
                 yield return file;
             }
         }
 #endif
-        
-    }   
+    }
+
     #endregion
+
     #region Safely Get Files
 
     /// <summary>
@@ -216,7 +202,7 @@ public static partial class SafeIOEnumerationExtensions
             return directoryInfo.SafeFileGetting_NetStandard20(searchPattern, searchOption, ignoreCase);
 #endif
         }
-        
+
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private FileInfo[] SafeFileGetting_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
         {
@@ -236,13 +222,14 @@ public static partial class SafeIOEnumerationExtensions
             bool ignoreCase)
         {
             List<FileInfo> output = new();
-            
+
+            if (!directoryInfo.Exists)
+                throw new DirectoryNotFoundException();
+
             try
             {
-                if (!directoryInfo.Exists)
-                    throw new DirectoryNotFoundException();
-
-                IEnumerable<FileSystemInfo> fileSystemInfos = directoryInfo.EnumerateFileSystemInfos();
+                IEnumerable<FileSystemInfo> fileSystemInfos =
+                    directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
 
                 foreach (var fileSystemInfo in fileSystemInfos)
                 {
@@ -259,25 +246,6 @@ public static partial class SafeIOEnumerationExtensions
                             {
                                 if (fileInfo.Name.Contains(searchPattern))
                                     output.Add(fileInfo);
-                            }
-                        }
-                        if (fileSystemInfo is DirectoryInfo dirInfo)
-                        {
-                            if (!dirInfo.Exists)
-                                continue;
-                            
-                            IEnumerable<FileInfo> files =  dirInfo.EnumerateFiles(searchPattern, searchOption);
-
-                            foreach (FileInfo f in files)
-                            {
-                                if (ignoreCase && f.Name.ToLower().Contains(searchPattern.ToLower()))
-                                {
-                                    output.Add(f);
-                                }
-                                else if(!ignoreCase && f.Name.Contains(searchPattern))
-                                {
-                                    output.Add(f);
-                                }
                             }
                         }
                     }
@@ -302,6 +270,6 @@ public static partial class SafeIOEnumerationExtensions
         }
 #endif
     }
+
     #endregion
-    
 }
