@@ -37,14 +37,11 @@ public static class SegmentReverseExtensions
         /// Reverses the contents of the StringSegment.
         /// </summary>
         /// <returns>The reversed StringSegment.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the target StringSegment is Empty.</exception>
+        /// <exception cref="ArgumentException">Thrown if the target is null or empty.</exception>
         public StringSegment Reverse()
         {
-            ArgumentNullException.ThrowIfNull(target);
-
-            if (target.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_Arguments_Segment_Empty);
-
+            ArgumentException.ThrowIfNullOrEmpty(target);
+            
             StringBuilder stringBuilder = new();
 
             for (int i = 0; i < target.Length; i++)
