@@ -42,6 +42,9 @@ public static class SegmentEnumerableToStringExtensions
         /// <returns>The concatenated string representation of the input segments.</returns>
         public string ToString(StringSegment separator)
         {
+            ArgumentNullException.ThrowIfNull(segments);
+            ArgumentException.ThrowIfNullOrEmpty(separator);
+            
             StringBuilder stringBuilder = new StringBuilder();
 
             foreach (StringSegment segment in segments)
@@ -72,6 +75,8 @@ public static class SegmentEnumerableToStringExtensions
         /// <returns>The concatenated string representation of the input segments.</returns>
         public string ToString(char separator)
         {
+            ArgumentNullException.ThrowIfNull(segments);
+
             StringBuilder stringBuilder = new StringBuilder();
 
             foreach (StringSegment segment in segments)

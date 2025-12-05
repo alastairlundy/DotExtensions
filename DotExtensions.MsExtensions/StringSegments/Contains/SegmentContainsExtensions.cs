@@ -45,6 +45,8 @@ public static class SegmentContainsExtensions
         /// <returns>True if the character is found in the StringSegment, false otherwise.</returns>
         public bool Contains(char character)
         {
+            ArgumentNullException.ThrowIfNull(source);
+
             for (int i = 0; i < source.Length; i++)
             {
                 if (source[i] == character)
@@ -60,6 +62,12 @@ public static class SegmentContainsExtensions
         /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
         public bool Contains(StringSegment segment)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(segment);
+
+            if (source.IsEmpty && !segment.IsEmpty || segment.IsEmpty && !source.IsEmpty)
+                return false;
+            
             if (source.Length == segment.Length)
                 return source.Equals(segment);
 

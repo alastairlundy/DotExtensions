@@ -42,6 +42,10 @@ public static class SegmentCapitalizationExtensions
         /// <returns>The specified <see cref="StringSegment"/> with the specified char made upper case.</returns>
         public StringSegment CapitalizeChar(int index)
         {
+            ArgumentException.ThrowIfNullOrEmpty(segment);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
+            
             char c = segment[index];
 
             if (char.IsUpper(c))
@@ -59,6 +63,9 @@ public static class SegmentCapitalizationExtensions
         /// <returns>The specified <see cref="StringSegment"/> with the specified chars made upper case.</returns>
         public StringSegment CapitalizeChars(IEnumerable<int> indices)
         {
+            ArgumentException.ThrowIfNullOrEmpty(segment);
+            ArgumentNullException.ThrowIfNull(indices);
+            
             StringBuilder stringBuilder = new(capacity: segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
@@ -68,6 +75,9 @@ public static class SegmentCapitalizationExtensions
 
             foreach (int index in indices)
             {
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
+                
                 stringBuilder[index] = char.ToUpper(stringBuilder[index]);
             }
 

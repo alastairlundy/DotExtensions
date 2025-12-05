@@ -44,6 +44,8 @@ public static class SegmentCaseExtensions
         /// </summary>
         public bool IsUpperCase()
         {
+            ArgumentNullException.ThrowIfNull(segment);
+            
             for (int i = 0; i < segment.Length; i++)
             {
                 if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
@@ -58,6 +60,8 @@ public static class SegmentCaseExtensions
         /// </summary>
         public bool IsLowerCase()
         {
+            ArgumentNullException.ThrowIfNull(segment);
+
             for (int i = 0; i < segment.Length; i++)
             {
                 if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
