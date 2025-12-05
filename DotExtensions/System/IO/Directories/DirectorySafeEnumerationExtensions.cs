@@ -24,7 +24,11 @@
 
 using System.Collections.Generic;
 using System.IO;
+
+#if NETSTANDARD2_0
 using System.Security;
+using System.Linq;
+#endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
@@ -34,6 +38,7 @@ namespace AlastairLundy.DotExtensions.IO.Directories;
 /// </summary>
 public static class DirectorySafeEnumerationExtensions
 {
+    #region  Safe File Enumeration.
     /// <summary>
     /// Provides extension methods for safe enumeration of files in directories.
     /// </summary>
@@ -74,7 +79,7 @@ public static class DirectorySafeEnumerationExtensions
         }
         
 #if NETSTANDARD2_0
-        private IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
+        private IList<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
             bool ignoreCase)
         {
             List<FileInfo> output = new();
@@ -161,5 +166,69 @@ public static class DirectorySafeEnumerationExtensions
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
 #endif
+        
     }   
+    #endregion
+    #region Safely Get Files
+
+    /// <summary>
+    /// Provides extension methods for safer file enumeration operations on directories while handling
+    /// inaccessible or locked files gracefully.
+    /// </summary>
+    extension(DirectoryInfo directoryInfo)
+    {
+        /// <summary>
+        /// Safely retrieves an array of files in the specified directory, using a default
+        /// search pattern of "*", while handling inaccessible or locked files gracefully.
+        /// </summary>
+        /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
+        public FileInfo[] SafelyGetFiles()
+            => SafelyGetFiles(directoryInfo, "*");
+
+        /// <summary>
+        /// Safely retrieves an array of files in the specified directory, optionally using a search pattern,
+        /// while handling inaccessible or locked files gracefully.
+        /// </summary>
+        /// <param name="searchPattern">The search string used to match file names. The default is "*".</param>
+        /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
+        public FileInfo[] SafelyGetFiles(string searchPattern)
+            => SafelyGetFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// Safely retrieves an array of files from the specified directory, using the provided
+        /// search pattern, search option, and case sensitivity, while handling inaccessible or locked files gracefully.
+        /// </summary>
+        /// <param name="searchPattern">The search pattern to match against the file names in the directory.</param>
+        /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories.</param>
+        /// <param name="ignoreCase">Indicates whether the search pattern should be treated as case-insensitive.</param>
+        /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
+        public FileInfo[] SafelyGetFiles(string searchPattern, SearchOption searchOption,
+            bool ignoreCase = false)
+        {
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
+            return directoryInfo.SafeFileGetting_Net8Plus(searchPattern, searchOption, ignoreCase);
+#else
+            return directoryInfo.SafeFileEnumeration_NetStandard20(searchPattern, searchOption, ignoreCase)
+                .ToArray();
+#endif
+        }
+        
+        #if NET8_0_OR_GREATER
+        private FileInfo[] SafeFileGetting_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        {
+            EnumerationOptions enumerationOptions = new()
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
+                ReturnSpecialDirectories = true,
+                MatchType = MatchType.Simple,
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
+            };
+
+            return directoryInfo.GetFiles(searchPattern, enumerationOptions);
+        }
+        #endif
+    }
+    #endregion
+    
 }
