@@ -11,11 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>## Changes since 9.1.0
-### Main Package
-* Updated to Polyfill 9.3.1 from 9.3.0
-* Updated ``DirectoryInfo`` ``IsEmpty`` static extension member to catch thrown UnauthorizedAccessException and return false if not authorized
-* Updated ``FileInfo`` ``HasExecutePermission``, ``HasReadPermission``, and ``HasWritePermission`` C#14 extension methods to catch thrown UnauthorizedAccess exception and return false if not authorized</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added ``DirectoryInfo`` ``SafelyEnumerateFiles`` C# 14 extension everything method with several overloads to help avoid ``UnauthorizedAccessException`` being thrown when enumerating files in case access isn't permitted - This works on all TFMs although .NET 8+ TFMs have what is likely to be a more efficient implementation than the .NET Standard 2 implementation. 
+* Added the ``FileInfo[]`` returning equivalent method and overloads to ``SafelyEnumerateFiles`` called ``SafelyGetFiles``.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -24,7 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.1</Version>
+    <Version>9.2.0-preview.1</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>

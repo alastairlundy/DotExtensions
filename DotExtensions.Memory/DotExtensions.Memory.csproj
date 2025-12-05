@@ -13,7 +13,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.1.1</Version>
+    <Version>9.2.0-preview.1</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -24,7 +24,8 @@
     <IsTrimmable>true</IsTrimmable>
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
-    <PackageReleaseNotes>* Updated to Polyfill 9.3.1 from 9.3.0</PackageReleaseNotes>
+    <PackageReleaseNotes>### Memory package
+* Add ``OptimisticCopy`` extensions for ``ReadOnlySpan&lt;T&gt;`` to allow Optimistic Copy from ``ReadOnlySpan&lt;T&gt;`` to ``Span&lt;T&gt;``</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
