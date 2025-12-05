@@ -30,7 +30,7 @@ using System.Security;
 #endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
-
+ 
 /// <summary>
 /// Contains extension methods for performing safe file and directory enumerations
 /// to avoid common exceptions caused by inaccessible or locked file system entries.
