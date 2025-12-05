@@ -36,7 +36,7 @@ namespace AlastairLundy.DotExtensions.IO.Directories;
 /// Contains extension methods for performing safe file and directory enumerations
 /// to avoid common exceptions caused by inaccessible or locked file system entries.
 /// </summary>
-public static class DirectorySafeEnumerationExtensions
+public static class DirectorySafeFileEnumerationExtensions
 {
     #region  Safe File Enumeration.
     /// <summary>
