@@ -1,8 +1,7 @@
 version = 1
 
 [[annotations]]
-path = ["**/*.csproj", "**/*.csproj.DotSettings", "**/*.sln", "**/*.slnx", "**/*.resx"]
-style= "html"
+path = ["**/*.csproj", "**/*.csproj.DotSettings", "**/*.sln", "**/*.slnx", "**/*.resx", "**/*.md"]
 SPDX-FileCopyrightText = "Copyright (c) 2025 Alastair Lundy"
 SPDX-License-Identifier = "MIT"
 precedence="override"
