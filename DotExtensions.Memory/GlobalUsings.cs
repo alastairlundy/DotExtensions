@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2025 Alastair Lundy
+ * Copyright (C) 2025 Alastair Lundy
  *
+ * SPDX-License-Identifier: MIT
  */
 
 // Global using directives
