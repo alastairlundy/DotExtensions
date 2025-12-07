@@ -25,11 +25,8 @@
 #if NET8_0_OR_GREATER
 using System.Globalization;
 using System.Numerics;
-#endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
-
-#if NET8_0_OR_GREATER
 
 /// <summary>
 /// Provides extension methods for converting numbers between different number types.
