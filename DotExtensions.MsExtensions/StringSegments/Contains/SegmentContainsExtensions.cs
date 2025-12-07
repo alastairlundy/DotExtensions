@@ -1,11 +1,10 @@
 /*
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ * Copyright (c) 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */
 
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 

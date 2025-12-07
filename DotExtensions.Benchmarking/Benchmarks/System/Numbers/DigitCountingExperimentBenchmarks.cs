@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ * Copyright (c) 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */

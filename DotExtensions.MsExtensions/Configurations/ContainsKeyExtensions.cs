@@ -1,9 +1,4 @@
-/*
- * Copyright (c) 2025 Alastair Lundy
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
- *
- * SPDX-License-Identifier: MIT
- */
+
 
 using Microsoft.Extensions.Configuration;
 

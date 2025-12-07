@@ -1,11 +1,9 @@
 /*
  * Copyright (c) 2025 Alastair Lundy
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */
 
-// ReSharper disable InconsistentNaming
 namespace AlastairLundy.DotExtensions.Exceptions;
 
 public static partial class PlatformNotSupportedExceptionExtensions

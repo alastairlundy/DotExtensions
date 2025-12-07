@@ -1,8 +1,9 @@
 /*
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ * Copyright (c) 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using Bogus;

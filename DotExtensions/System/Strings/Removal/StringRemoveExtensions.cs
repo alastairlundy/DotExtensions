@@ -1,11 +1,9 @@
 /*
  * Copyright (c) 2020-2025 Alastair Lundy
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */
 
-// ReSharper disable RedundantCallerArgumentExpressionDefaultValue
 
 namespace AlastairLundy.DotExtensions.Strings;
 
