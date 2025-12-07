@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
