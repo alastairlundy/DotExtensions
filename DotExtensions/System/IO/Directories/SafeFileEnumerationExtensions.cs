@@ -24,6 +24,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 #if NETSTANDARD2_0
 using System.Security;
@@ -199,7 +200,8 @@ public static partial class SafeIOEnumerationExtensions
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
             return directoryInfo.SafeFileGetting_Net8Plus(searchPattern, searchOption, ignoreCase);
 #else
-            return directoryInfo.SafeFileGetting_NetStandard20(searchPattern, searchOption, ignoreCase);
+            return directoryInfo.SafelyEnumerateFiles(searchPattern, searchOption, ignoreCase)
+                .ToArray();
 #endif
         }
 
@@ -216,57 +218,6 @@ public static partial class SafeIOEnumerationExtensions
             };
 
             return directoryInfo.GetFiles(searchPattern, enumerationOptions);
-        }
-#else
-        private FileInfo[] SafeFileGetting_NetStandard20(string searchPattern, SearchOption searchOption,
-            bool ignoreCase)
-        {
-            List<FileInfo> output = new();
-
-            if (!directoryInfo.Exists)
-                throw new DirectoryNotFoundException();
-
-            try
-            {
-                IEnumerable<FileSystemInfo> fileSystemInfos =
-                    directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
-
-                foreach (var fileSystemInfo in fileSystemInfos)
-                {
-                    try
-                    {
-                        if (fileSystemInfo is FileInfo fileInfo)
-                        {
-                            if (ignoreCase)
-                            {
-                                if (fileInfo.Name.ToLower().Contains(searchPattern.ToLower()))
-                                    output.Add(fileInfo);
-                            }
-                            else
-                            {
-                                if (fileInfo.Name.Contains(searchPattern))
-                                    output.Add(fileInfo);
-                            }
-                        }
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                    }
-                    catch (SecurityException)
-                    {
-                    }
-                }
-
-                return output.ToArray();
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return output.ToArray();
-            }
-            catch (SecurityException)
-            {
-                return output.ToArray();
-            }
         }
 #endif
     }
