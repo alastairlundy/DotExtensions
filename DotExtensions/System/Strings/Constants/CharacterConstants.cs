@@ -23,7 +23,6 @@
    */
 
 // ReSharper disable ConvertToAutoProperty
-// ReSharper disable CheckNamespace
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
@@ -48,7 +47,9 @@ public static class CharacterConstants
     ];
 
     /// <summary>
-    ///
+    /// Represents an array of predefined escape characters commonly used in strings.
+    /// Provides a set of constants that can be referenced for operations involving
+    /// the detection or removal of escape characters from strings.
     /// </summary>
     public static string[] EscapeCharacters => EscapeChars;
 }

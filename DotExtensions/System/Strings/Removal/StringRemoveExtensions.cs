@@ -22,9 +22,6 @@
        SOFTWARE.
    */
 
-
-// ReSharper disable RedundantCallerArgumentExpressionDefaultValue
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>

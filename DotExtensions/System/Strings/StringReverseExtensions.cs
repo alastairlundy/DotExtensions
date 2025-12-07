@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Text;
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>

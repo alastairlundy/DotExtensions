@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 // ReSharper disable InconsistentNaming
 namespace AlastairLundy.DotExtensions.Exceptions;
 

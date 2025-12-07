@@ -23,9 +23,7 @@
    */
 
 using System.Linq;
-using System.Text;
 
-// ReSharper disable CheckNamespace
 // ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.Strings;
@@ -35,8 +33,10 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class SpecialCharacterDetectionExtension
 {
-    
-    extension(char ch)
+    /// <summary>
+    /// Provides extension methods for handling special characters in strings and characters.
+    /// </summary>
+    extension(char)
     {
         /// <summary>
         /// Returns whether a character is a special character or not.
