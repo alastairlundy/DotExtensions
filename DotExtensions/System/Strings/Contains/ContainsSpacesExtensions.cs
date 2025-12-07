@@ -24,11 +24,6 @@
 
 // ReSharper disable CheckNamespace
 
-
-#if NETSTANDARD2_0
-using System.Linq;
-#endif
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
@@ -38,9 +33,9 @@ namespace AlastairLundy.DotExtensions.Strings;
 public static class ContainsSpacesExtensions
 {
     /// <summary>
-    /// 
+    /// Provides a polyfill implementation of string-related utility methods for
+    /// compatibility with newer .NET features in older frameworks.
     /// </summary>
-    /// <param name="s"></param>
     extension(string s)
     {
         /// <summary>
@@ -52,11 +47,7 @@ public static class ContainsSpacesExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-#if NET8_0_OR_GREATER
             return s.Contains(' ') && s.Split(' ').Length > 1;
-#else
-            return s.Contains(' ') && s.Split(' ').Length > 1;
-#endif
         }
     }
 }
