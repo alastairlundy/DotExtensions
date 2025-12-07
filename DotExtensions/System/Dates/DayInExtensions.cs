@@ -7,7 +7,7 @@
 namespace AlastairLundy.DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for calculating day-related values within a year.
 /// </summary>
 public static class DayInExtensions
 {
