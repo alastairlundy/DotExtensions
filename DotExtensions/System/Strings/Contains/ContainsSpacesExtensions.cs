@@ -4,13 +4,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-// ReSharper disable CheckNamespace
-
-
-#if NETSTANDARD2_0
-using System.Linq;
-#endif
-
 namespace AlastairLundy.DotExtensions.Strings;
 
 /// <summary>
@@ -34,11 +27,7 @@ public static class ContainsSpacesExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-#if NET8_0_OR_GREATER
             return s.Contains(' ') && s.Split(' ').Length > 1;
-#else
-            return s.Contains(' ') && s.Split(' ').Length > 1;
-#endif
         }
     }
 }
