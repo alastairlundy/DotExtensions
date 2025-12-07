@@ -179,5 +179,82 @@ public static partial class SafeIOEnumerationExtensions
         }
 #endif
         #endregion
+
+        #region Safe Directory Getting
+
+        /// <summary>
+        /// Safely retrieves directories in the current directory, ignoring
+        /// inaccessible directories and handling exceptions that may occur during
+        /// the directory traversal process.
+        /// </summary>
+        /// <returns>
+        /// An array of <see cref="DirectoryInfo"/> objects representing the
+        /// directories found in the current directory based on the default pattern "*".
+        /// </returns>
+        public DirectoryInfo[] SafelyGetDirectories()
+            => SafelyGetDirectories(directoryInfo, "*");
+
+
+        /// <summary>
+        /// Safely retrieves an array of directories in the current directory using the specified search pattern,
+        /// ensuring that inaccessible directories or exceptions during directory traversal are handled gracefully.
+        /// </summary>
+        /// <returns>
+        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found in the current directory
+        /// based on the default pattern "*".
+        /// </returns>
+        public DirectoryInfo[] SafelyGetDirectories(string searchPattern)
+            => SafelyGetDirectories(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+
+
+        /// <summary>
+        /// Safely retrieves directories from the specified directory, handling exceptions
+        /// and ignoring inaccessible directories during the directory traversal process.
+        /// </summary>
+        /// <param name="searchPattern">
+        /// The search string to match against directory names in the directory.
+        /// </param>
+        /// <param name="searchOption">
+        /// Specifies whether the search operation should include only the current directory
+        /// or all subdirectories. Use <see cref="SearchOption.TopDirectoryOnly"/> to include
+        /// only the current directory, or <see cref="SearchOption.AllDirectories"/> to include
+        /// all subdirectories.
+        /// </param>
+        /// <param name="ignoreCase">
+        /// A boolean value indicating whether the search pattern matching should ignore case sensitivity.
+        /// </param>
+        /// <returns>
+        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found
+        /// based on the specified search parameters.
+        /// </returns>
+        public DirectoryInfo[] SafelyGetDirectories(string searchPattern, SearchOption searchOption,
+            bool ignoreCase = true)
+        {
+#if NETSTANDARD2_1 || NET8_0_OR_GREATER
+            return directoryInfo.SafeDirectoryGetting_Net8Plus(searchPattern, searchOption, ignoreCase);
+#else
+            return directoryInfo.SafelyEnumerateDirectories(searchPattern, searchOption, ignoreCase)
+                .ToArray();
+#endif
+        }
+
+#if NET8_0_OR_GREATER || NETSTANDARD2_1
+        private DirectoryInfo[] SafeDirectoryGetting_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        {
+            EnumerationOptions enumerationOptions = new()
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories =  searchOption == SearchOption.AllDirectories,
+                ReturnSpecialDirectories = true,
+                MatchCasing = ignoreCase ? MatchCasing.CaseSensitive : MatchCasing.CaseInsensitive,
+                MatchType = MatchType.Simple,
+                MaxRecursionDepth = searchOption == SearchOption.AllDirectories ? int.MaxValue : 0
+            };
+            
+            return directoryInfo.GetDirectories(searchPattern, enumerationOptions);
+        }
+#endif
+
+        #endregion
     }
 }
