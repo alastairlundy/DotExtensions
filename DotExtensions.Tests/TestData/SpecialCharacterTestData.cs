@@ -1,4 +1,10 @@
-﻿using System.Collections;
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DotExtensions.Tests.TestData;

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 namespace AlastairLundy.DotExtensions;
 
 internal static class DeprecationMessages

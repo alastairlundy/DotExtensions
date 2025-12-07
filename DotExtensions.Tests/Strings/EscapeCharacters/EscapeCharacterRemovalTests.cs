@@ -1,4 +1,9 @@
-﻿using AlastairLundy.DotExtensions.Strings;
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 using DotExtensions.Tests.TestData;
 
 namespace DotExtensions.Tests.Strings.EscapeCharacters;

@@ -1,4 +1,10 @@
-﻿using System;
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Bogus.DataSets;

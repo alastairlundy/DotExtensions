@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 using System.IO;
 using AlastairLundy.DotExtensions.IO.Permissions;
 

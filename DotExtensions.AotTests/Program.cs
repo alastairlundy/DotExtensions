@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Alastair Lundy
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 using AlastairLundy.DotExtensions.Numbers;
 using AlastairLundy.DotExtensions.Strings;
 using AlastairLundy.DotExtensions.Memory.Spans;
