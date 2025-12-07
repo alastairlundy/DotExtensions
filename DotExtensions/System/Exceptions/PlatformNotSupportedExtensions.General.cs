@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2025 Alastair Lundy
- * SPDX-FileCopyrightText: 2025 Alastair Lundy
  *
  * SPDX-License-Identifier: MIT
  */
@@ -8,7 +7,6 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 
-// ReSharper disable InconsistentNaming
 
 namespace AlastairLundy.DotExtensions.Exceptions;
 
