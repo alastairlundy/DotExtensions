@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using AlastairLundy.DotExtensions.Memory.Internal.Localizations;
-
 namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>

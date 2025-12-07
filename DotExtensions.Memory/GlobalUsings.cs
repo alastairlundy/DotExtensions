@@ -2,3 +2,4 @@
 
 global using System;
 global using System.Linq;
+global using AlastairLundy.DotExtensions.Memory.Internal.Localizations;

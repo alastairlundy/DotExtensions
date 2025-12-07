@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using Microsoft.Extensions.Configuration;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.Configurations;
 
 /// <summary>

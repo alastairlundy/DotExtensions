@@ -27,8 +27,6 @@
 // ReSharper disable ConvertClosureToMethodGroup
 // ReSharper disable RedundantBoolCompare
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 
 /// <summary>

@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using AlastairLundy.DotExtensions.MsExtensions.StringSegments;
-
 namespace AlastairLundy.DotExtensions.MsExtensions.Exceptions;
 
 /// <summary>

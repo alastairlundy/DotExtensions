@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using AlastairLundy.DotExtensions.Memory.Internal.Localizations;
-
 namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>
@@ -32,6 +30,10 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class ArgumentExceptionExtensions
 {
+    /// <summary>
+    /// Provides extension methods for validating and throwing exceptions for spans and memory constructs
+    /// based on their content, specifically checking for emptiness or white spaces.
+    /// </summary>
     extension(ArgumentException)
     {
         /// <summary>
