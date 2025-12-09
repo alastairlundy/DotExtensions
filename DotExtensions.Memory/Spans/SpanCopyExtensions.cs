@@ -62,7 +62,7 @@ public static class SpanCopyExtensions
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
             
-            if (startIndex < 0 || startIndex > source.Length)
+            if (startIndex > source.Length)
                 throw new ArgumentOutOfRangeException(nameof(startIndex));
 
             if (destination.Length < startIndex + length)
@@ -150,7 +150,7 @@ public static class SpanCopyExtensions
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 if (destination[i] is not null && destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    .Equals(source[i]) == false)
+                        .Equals(source[i]) == false)
                 {
                     return false;
                 }
@@ -193,7 +193,7 @@ public static class SpanCopyExtensions
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 if (destination[i] is not null && destination[i]
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-                    .Equals(source[i]) == false)
+                        .Equals(source[i]) == false)
                 {
                     return false;
                 }

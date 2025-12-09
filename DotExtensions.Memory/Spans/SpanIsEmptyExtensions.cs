@@ -32,7 +32,6 @@ namespace AlastairLundy.DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanIsEmptyExtensions
 {
-    
     /// <summary>
     /// 
     /// </summary>
