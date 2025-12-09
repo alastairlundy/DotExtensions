@@ -53,6 +53,9 @@ public static class SegmentIsNullExtensions
             if (!other.HasValue)
                 return true;
 
+            if (other.Value.IsEmpty)
+                return false;
+
             for (int index = 0; index < other.Value.Length; index++)
             {
                 char c = other.Value[index];
