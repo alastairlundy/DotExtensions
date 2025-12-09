@@ -22,7 +22,6 @@
     SOFTWARE.
  */
 
-using System;
 using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;

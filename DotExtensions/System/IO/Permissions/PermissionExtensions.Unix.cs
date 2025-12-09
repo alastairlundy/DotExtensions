@@ -22,14 +22,12 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions
 {
-
     /// <summary>
     /// 
     /// </summary>
@@ -82,7 +80,7 @@ public static partial class PermissionExtensions
 #else
             internal
 #endif
-        bool HasWritePermission
+            bool HasWritePermission
         {
             get
             {
@@ -93,5 +91,4 @@ public static partial class PermissionExtensions
             }
         }
     }
-    
 }

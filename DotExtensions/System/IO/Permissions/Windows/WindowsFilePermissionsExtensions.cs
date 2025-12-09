@@ -22,11 +22,9 @@
     SOFTWARE.
  */
 
-using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
-using AlastairLundy.DotExtensions.Exceptions;
 using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Windows;

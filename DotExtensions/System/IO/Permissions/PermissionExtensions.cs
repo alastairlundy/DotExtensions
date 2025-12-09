@@ -22,7 +22,6 @@
     SOFTWARE.
  */
 
-using System;
 using System.IO;
 using System.Runtime.Versioning;
 using AlastairLundy.DotPrimitives.IO.Permissions.Windows;

@@ -22,10 +22,8 @@
        SOFTWARE.
    */
 
-using System;
 using System.Collections.Generic;
 using System.Security;
-using AlastairLundy.DotExtensions.Exceptions;
 
 namespace AlastairLundy.DotExtensions.Strings.Security;
 

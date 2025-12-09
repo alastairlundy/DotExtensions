@@ -22,16 +22,14 @@
        SOFTWARE.
    */
 
-using System;
 using System.Security;
-using AlastairLundy.DotExtensions.Localizations;
 
 namespace AlastairLundy.DotExtensions.Exceptions;
 
 /// <summary>
 /// 
 /// </summary>
-public static partial class ArgumentExceptionExtensions
+public static class ArgumentExceptionExtensions
 {
     /// <summary>
     /// Provides extension methods for handling <see cref="ArgumentNullException"/> related to <see cref="SecureString"/> values.

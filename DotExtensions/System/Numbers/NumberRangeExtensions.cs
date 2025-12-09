@@ -23,8 +23,6 @@
    */
 
 #if NET8_0_OR_GREATER
-using System;
-#endif
 
 namespace AlastairLundy.DotExtensions.Numbers;
 
@@ -33,7 +31,6 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class NumberRangeExtensions
 {
-#if NET8_0_OR_GREATER
     /// <param name="start">The starting index or integer value of the range.</param>
     extension(int start)
     {
@@ -57,5 +54,5 @@ public static class NumberRangeExtensions
         public Range AsRange(int count) =>
             new(start, new Index(start.Value + count));
     }
-#endif
 }
+#endif

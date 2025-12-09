@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.IO;
 using AlastairLundy.DotExtensions.IO.Directories;
 
@@ -49,7 +48,7 @@ public static class DrivesIsEmptyExtensions
                     return false;
 
                 return driveInfo.TotalFreeSpace == driveInfo.TotalSize
-                    && driveInfo.RootDirectory.IsEmpty;
+                       && driveInfo.RootDirectory.IsEmpty;
             }
         }
     }
