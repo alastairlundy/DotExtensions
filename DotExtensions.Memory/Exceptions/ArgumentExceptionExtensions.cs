@@ -32,6 +32,9 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class ArgumentExceptionExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     extension(ArgumentException)
     {
         /// <summary>

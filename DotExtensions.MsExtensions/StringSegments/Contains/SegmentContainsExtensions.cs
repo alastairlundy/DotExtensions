@@ -23,8 +23,6 @@
    */
 
 
-
-// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -34,7 +32,6 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentContainsExtensions
 {
-    
     /// <param name="source">The string segment to search.</param>
     extension(StringSegment source)
     {

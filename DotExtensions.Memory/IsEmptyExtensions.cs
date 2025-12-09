@@ -29,7 +29,6 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class IsEmptyExtensions
 {
-    
     /// <summary>
     /// 
     /// </summary>
@@ -181,6 +180,10 @@ public static class IsEmptyExtensions
         }
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="???"></param>
     extension(ReadOnlyMemory<char>)
     {
         /// <summary>
@@ -209,7 +212,7 @@ public static class IsEmptyExtensions
     /// <summary>
     /// 
     /// </summary>
-        extension(Span<string>)
+    extension(Span<string>)
     {
         /// <summary>
         /// Determines if a span is empty or whitespace.
@@ -231,6 +234,9 @@ public static class IsEmptyExtensions
         }
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
     extension(ReadOnlySpan<string>)
     {
         /// <summary>
