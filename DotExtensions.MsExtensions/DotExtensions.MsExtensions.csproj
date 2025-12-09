@@ -7,13 +7,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.1</Version>
-    <Title>AlastairLundy.DotExtensions.MsExtensions</Title>
+    <Version>9.1.2</Version>
+    <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>* Updated to Polyfill 9.3.1 from 9.3.0</PackageReleaseNotes>
+    <PackageReleaseNotes>### MsExtensions package
+* Fixed a potential issue where Empty StringSegments would be considered to have WhiteSpace.
+* Updated to Polyfill 9.3.2 from 9.3.1</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>
