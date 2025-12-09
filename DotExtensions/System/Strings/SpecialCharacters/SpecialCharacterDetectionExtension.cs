@@ -36,8 +36,10 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class SpecialCharacterDetectionExtension
 {
-    
-    extension(char ch)
+    /// <summary>
+    /// 
+    /// </summary>
+    extension(char)
     {
         /// <summary>
         /// Returns whether a character is a special character or not.
