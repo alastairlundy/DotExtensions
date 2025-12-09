@@ -21,6 +21,7 @@
 ### 9.0
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.0.2 | December 9th 2025 | Main package and MsExtensions package only|
 | 9.0.1 | November 23rd 2025 | |
 | 9.0.0 | November 12th 2025 | |
 | 9.0.0 Preview 3 | November 2nd 2025 | |
@@ -32,7 +33,7 @@
 ### 8.7
 | Version | Release Date | Notes | 
 |-|-|-|
-| 8.7.1 | November 12th 2025 | Main package and MsExtensions packages only |
+| 8.7.1 | November 12th 2025 | Main package and MsExtensions package only |
 | 8.7.0 | November 9th 2025 | |
 
 ### 8.6
