@@ -73,7 +73,7 @@ public static class SpecialCharacterDetectionExtension
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             foreach (char c in str)
             {

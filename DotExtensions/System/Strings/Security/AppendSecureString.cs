@@ -109,7 +109,7 @@ public static class AppendSecureStringExtensions
             else if (secureString.IsReadOnly())
             {
                 secureString.Clear();
-                secureString = new SecureString();
+                secureString = new();
                 secureString.AppendChars(chars);
                 secureString.MakeReadOnly();
             }
@@ -150,7 +150,7 @@ public static class AppendSecureStringExtensions
             else if (secureString.IsReadOnly())
             {
                 secureString.Clear();
-                secureString = new SecureString();
+                secureString = new();
                 secureString.AppendString(value);
                 secureString.MakeReadOnly();
             }

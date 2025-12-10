@@ -48,7 +48,7 @@ public static class WeekOfExtensions
 
             for (int day = 1; day < daysInMonth; day++)
             {
-                DateTime currentDate = new DateTime(date.Year, date.Month, day);
+                DateTime currentDate = new(date.Year, date.Month, day);
 
                 if (currentDate.DayOfWeek == firstDayOfWeek)
                     weekCount++;
@@ -73,7 +73,7 @@ public static class WeekOfExtensions
 
             for (int day = 1; day < daysInYear; day++)
             {
-                DateTime currentDate = new DateTime(date.Year, date.Month, day);
+                DateTime currentDate = new(date.Year, date.Month, day);
 
                 if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
                     weekCount = 1;

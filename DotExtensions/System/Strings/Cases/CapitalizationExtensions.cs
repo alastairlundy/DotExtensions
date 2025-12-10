@@ -66,7 +66,7 @@ public static class CapitalizationExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             
-            StringBuilder stringBuilder = new StringBuilder(str);
+            StringBuilder stringBuilder = new(str);
 
             foreach (int index in indices)
             {
