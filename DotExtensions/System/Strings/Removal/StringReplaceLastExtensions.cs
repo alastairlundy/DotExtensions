@@ -32,7 +32,7 @@ public static class StringReplaceLastExtensions
     /// <summary>
     ///
     /// </summary>
-    /// <param name="str">The input string in which the replacement is performed.</param>
+    /// <param name="str">The input string to replace a section of.</param>
     extension(string str)
     {
         /// <summary>
@@ -43,7 +43,7 @@ public static class StringReplaceLastExtensions
         /// <param name="stringComparison"></param>
         /// <returns>
         /// A new string where the first occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
-        /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
+        /// Returns the original string if <paramref name="oldValue"/> is not found in the input string.
         /// </returns>
         public string ReplaceFirst(
             string oldValue,
@@ -73,7 +73,7 @@ public static class StringReplaceLastExtensions
         /// <param name="stringComparison"></param>
         /// <returns>
         /// A new string where the last occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
-        /// If <paramref name="oldValue"/> is not found in the input string, the original string is returned.
+        /// Returns the original string if <paramref name="oldValue"/> is not found.
         /// </returns>
         public string ReplaceLast(
             string oldValue,

@@ -34,7 +34,6 @@ namespace AlastairLundy.DotExtensions.Strings;
 /// </summary>
 public static class EscapeCharacterRemovalExtensions
 {
-    
     /// <summary>
     /// 
     /// </summary>
@@ -56,7 +55,7 @@ public static class EscapeCharacterRemovalExtensions
         /// <summary>
         /// Removes escape characters from a string.
         /// </summary>
-        /// <returns>The modified string, if one or more escape characters were found, returns the original string otherwise.</returns>
+        /// <returns>Returns the modified string if one or more escape characters were found, returns the original string otherwise.</returns>
         public string RemoveEscapeCharacters()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);

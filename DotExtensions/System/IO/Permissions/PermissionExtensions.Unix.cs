@@ -28,11 +28,10 @@ namespace AlastairLundy.DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions
 {
-
     /// <summary>
-    /// 
+    /// Provides extension methods for working with Unix file permissions.
     /// </summary>
-    /// <param name="mode"></param>
+    /// <paramref name="mode">The mode to determine the permission of.</paramref>
     extension(UnixFileMode mode)
     {
         /// <summary>
@@ -81,7 +80,7 @@ public static partial class PermissionExtensions
 #else
             internal
 #endif
-        bool HasWritePermission
+            bool HasWritePermission
         {
             get
             {
@@ -92,5 +91,4 @@ public static partial class PermissionExtensions
             }
         }
     }
-    
 }

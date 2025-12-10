@@ -36,7 +36,7 @@ public static class CaseExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="s"></param>
+    /// <param name="s">The string to search.</param>
     extension(string s)
     {
         /// <summary>

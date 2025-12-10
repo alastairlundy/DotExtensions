@@ -40,7 +40,7 @@ public static class IncrementedNumberRange
     extension<TNumber>(IList<TNumber> source) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Determines if a list of numbers is incremented by an expected amount starting from the first number in the list.
+        /// Determines if an expected amount starting from the first number in the list increments a list of numbers.
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
@@ -71,7 +71,7 @@ public static class IncrementedNumberRange
     extension<TNumber>(IEnumerable<TNumber> source) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Determines if a sequence of numbers is incremented by an expected amount starting from the first number in the sequence.
+        /// Determines if an expected amount starting from the first number in the sequence increments a sequence of numbers.
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
@@ -111,7 +111,7 @@ public static class IncrementedNumberRange
     extension(IList<int> source)
     {
         /// <summary>
-        /// Determines if a list of numbers is incremented by an expected amount starting from the first number in the list.
+        /// Determines if an expected amount starting from the first number in the list increments a list of numbers.
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
@@ -138,7 +138,7 @@ public static class IncrementedNumberRange
     extension(IEnumerable<int> source)
     {
         /// <summary>
-        /// Determines if a sequence of numbers is incremented by an expected amount starting from the first number in the sequence.
+        /// Determines if an expected amount starting from the first number in the sequence increments a sequence of numbers.
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
