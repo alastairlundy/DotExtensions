@@ -30,7 +30,7 @@ namespace AlastairLundy.DotExtensions.Exceptions;
 /// Provides extension methods for working with <see cref="ArgumentException"/>
 /// to enhance functionality and handling of exceptions in various contexts.
 /// </summary>
-public static partial class ArgumentExceptionExtensions
+public static class ArgumentExceptionExtensions
 {
     /// <summary>
     /// Provides extension methods for handling <see cref="ArgumentNullException"/> related to <see cref="SecureString"/> values.
