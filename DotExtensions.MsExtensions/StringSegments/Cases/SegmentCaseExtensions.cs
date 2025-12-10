@@ -23,7 +23,6 @@
    */
 
 
-
 // ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;

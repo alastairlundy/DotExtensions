@@ -36,7 +36,8 @@ public static class SegmentRemoveAndReplaceExtensions
         /// Removes characters from a <see cref="StringSegment"/> starting at a specified index.
         /// </summary>
         /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
-        /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index are removed.</returns>
+        /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index
+        /// have been removed.</returns>
         /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
         /// <exception cref="ArgumentException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>

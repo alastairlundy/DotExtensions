@@ -25,7 +25,9 @@
 namespace AlastairLundy.DotExtensions.MsExtensions.Exceptions;
 
 /// <summary>
-/// 
+/// Provides extension methods for working with <see cref="ArgumentException"/> in combination
+/// with StringSegment values. This class simplifies exception handling
+/// and validating string segments in .NET applications.
 /// </summary>
 public static class ArgumentExceptionStringSegmentExtensions
 {
