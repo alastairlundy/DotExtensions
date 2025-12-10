@@ -49,7 +49,7 @@ public static class StringInsertExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
             
-            if (index < 0 || index >= str.Length)
+            if (index >= str.Length)
                 throw new IndexOutOfRangeException();
 
             if (str[index] == c)
@@ -86,7 +86,7 @@ public static class StringInsertExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
 
-            if (index < 0 || index >= str.Length)
+            if (index >= str.Length)
                 throw new IndexOutOfRangeException();
 
             StringBuilder stringBuilder = new();
