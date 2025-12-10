@@ -56,7 +56,7 @@ public static class CaseExtensions
         ///
         /// <para>True if a string is lower case; false otherwise.</para>
         /// </summary>
-        bool IsLowerCase()
+        public bool IsLowerCase()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
 
