@@ -29,7 +29,7 @@ namespace AlastairLundy.DotExtensions.Numbers;
 /// </summary>
 public static class NumberRangeExtensions
 {
-#if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER || NETSTANDARD2_1
     /// <param name="start">The starting index or integer value of the range.</param>
     extension(int start)
     {
