@@ -32,7 +32,6 @@ namespace AlastairLundy.DotExtensions.IO;
 /// </summary>
 public static class FileSizeExtensions
 {
-
     /// <param name="file"></param>
     extension(FileInfo file)
     {

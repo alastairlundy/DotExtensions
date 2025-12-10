@@ -80,6 +80,7 @@ public static partial class SafeIOEnumerationExtensions
 #endif
         }
 
+#if NETSTANDARD2_0
         private FileInfo? SafelyEnumerateFile(FileSystemInfo info, string searchPattern, bool ignoreCase)
         {
             try
@@ -105,6 +106,7 @@ public static partial class SafeIOEnumerationExtensions
                 return null;
             }
         }
+#endif
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
