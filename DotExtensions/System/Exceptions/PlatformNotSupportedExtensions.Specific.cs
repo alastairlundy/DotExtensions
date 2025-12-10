@@ -36,7 +36,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is iOS.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the iOS platform.</exception>
         public static void ThrowIfIOS(string? exceptionMessage = null)
         {
@@ -52,7 +52,8 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is watchOS.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception.
+        /// If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the watchOS platform.</exception>
         public static void ThrowIfWatchOS(string? exceptionMessage = null)
         {
@@ -68,7 +69,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is tvOS.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the tvOS platform.</exception>
         public static void ThrowIfTvOS(string? exceptionMessage = null)
         {
@@ -84,7 +85,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is a browser.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on a browser platform.</exception>
         public static void ThrowIfBrowser(string? exceptionMessage = null)
         {
@@ -100,7 +101,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is Android.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Android platform.</exception>
         public static void ThrowIfAndroid(string? exceptionMessage = null)
         {
@@ -117,7 +118,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is macOS or Mac Catalyst.
         /// </summary>
         /// <param name="exceptionMessage">
-        /// Optional exception message to include in the thrown exception. If null, a default message will be used.
+        /// Optional exception message to include in the thrown exception. If null, a default message is used.
         /// </param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown if the application is running on the macOS or Mac Catalyst platform.
@@ -136,7 +137,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is Linux.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Linux platform.</exception>
         public static void ThrowIfLinux(string? exceptionMessage = null)
         {
@@ -152,7 +153,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is FreeBSD.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the FreeBSD platform.</exception>
         public static void ThrowIfFreeBSD(string? exceptionMessage = null)
         {
@@ -168,7 +169,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is Windows.
         /// </summary>
-        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message will be used.</param>
+        /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Windows platform.</exception>
         public static void ThrowIfWindows(string? exceptionMessage = null)
         {

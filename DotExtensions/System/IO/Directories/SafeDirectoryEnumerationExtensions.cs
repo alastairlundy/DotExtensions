@@ -37,7 +37,7 @@ public static partial class SafeIOEnumerationExtensions
 {
     /// <summary>
     /// Provides extension methods for safely enumerating directories. This ensures that
-    /// inaccessible directories or exceptions during directory traversal are handled without
+    /// inaccessible directories or exceptions during directory traversal are skipped without
     /// disrupting the enumeration process.
     /// </summary>
     extension(DirectoryInfo directoryInfo)
@@ -197,7 +197,7 @@ public static partial class SafeIOEnumerationExtensions
 
         /// <summary>
         /// Safely retrieves an array of directories in the current directory using the specified search pattern,
-        /// ensuring that inaccessible directories or exceptions during directory traversal are handled gracefully.
+        /// ensuring that inaccessible directories or exceptions during directory traversal are skipped gracefully.
         /// </summary>
         /// <returns>
         /// An array of <see cref="DirectoryInfo"/> objects representing the directories found in the current directory

@@ -60,7 +60,7 @@ public static partial class UnixPermissionsExtensions
     /// <summary>
     /// Parses a Unix file permission symbolic notation string (rwx format) into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
-    /// <param name="notation">The symbolic notation string representing Unix file permissions. The expected format is a 10-character string starting with a file type indicator (e.g., "-", "d"), followed by three permission segments for user, group, and others.</param>
+    /// <param name="notation">The symbolic notation string representing Unix file permissions. The expected format is a 10-character string starting with a file type indicator (e.g. "-", "d"), followed by three permission segments for user, group, and others.</param>
     /// <returns>A <see cref="UnixFileMode"/> value representing the permissions described by the notation.</returns>
     /// <exception cref="ArgumentException">Thrown when the provided <paramref name="notation"/> is not a valid symbolic notation format.</exception>
     private static UnixFileMode ParseRwxSymbolNotation(string notation)
@@ -115,6 +115,5 @@ public static partial class UnixPermissionsExtensions
         };
 
         return userPermissions | groupPermissions | othersPermissions;
-
     }
 }

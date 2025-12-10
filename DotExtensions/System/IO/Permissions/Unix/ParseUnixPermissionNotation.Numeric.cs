@@ -35,7 +35,7 @@ public static partial class UnixPermissionsExtensions
     /// <summary>
     /// Validates if the provided numeric notation string represents a valid Unix permission in numeric format.
     /// </summary>
-    /// <param name="notation">The numeric notation string to validate. It can be in three-digit (e.g., "777") or four-digit (e.g., "0777") formats.</param>
+    /// <param name="notation">The numeric notation string to validate. It can be in three-digit (e.g. "777") or four-digit (e.g. "0777") formats.</param>
     /// <returns>
     /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
     /// </returns>
@@ -57,7 +57,7 @@ public static partial class UnixPermissionsExtensions
     /// Parses a numeric notation string representing Unix file permissions into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
     /// <param name="notation">
-    /// The numeric notation string to parse. It can be in three-digit (e.g., "777") or four-digit (e.g., "0777") formats.
+    /// The numeric notation string to parse. It can be in three-digit (e.g. "777") or four-digit (e.g. "0777") formats.
     /// The notation must be valid, according to Unix file permission rules.
     /// </param>
     /// <returns>
@@ -80,7 +80,7 @@ public static partial class UnixPermissionsExtensions
         int group = int.Parse(notation[^2].ToString());
         int others = int.Parse(notation.Last().ToString());
         
-       UnixFileMode userPermissions = user switch
+        UnixFileMode userPermissions = user switch
         {
             0 => UnixFileMode.None,
             1 => UnixFileMode.UserExecute,

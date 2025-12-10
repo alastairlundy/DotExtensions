@@ -23,7 +23,6 @@
    */
 
 #if NET8_0_OR_GREATER
-
 using System.IO;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
