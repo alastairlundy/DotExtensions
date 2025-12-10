@@ -23,7 +23,6 @@
    */
 
 
-
 // ReSharper disable ConvertClosureToMethodGroup
 // ReSharper disable RedundantBoolCompare
 

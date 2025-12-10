@@ -213,7 +213,7 @@ public static class SpanCopyExtensions
     /// <typeparam name="T"></typeparam>
     extension<T>(ReadOnlySpan<T> source)
     {
-                /// <summary>
+        /// <summary>
         /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>
         /// </summary>
         /// <remarks>The source and destination <see cref="ReadOnlySpan{T}"/> do not have to be the same size.</remarks>
