@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>

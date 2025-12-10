@@ -26,7 +26,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>
 /// Provides extension methods for validating and throwing an <see cref="InvalidOperationException"/>
-/// if a collection or enumerable is empty. These extensions are designed to simplify
+/// if a collection or enumerable is empty. These extensions simplify
 /// defensive programming by reducing boilerplate code for common validation operations.
 /// </summary>
 public static class InvalidOperationThrowIfEmptyExtensions

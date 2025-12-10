@@ -30,7 +30,11 @@ namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentIsNullExtensions
 {
-    
+    /// <summary>
+    /// A static class that provides extension methods for working with StringSegment objects to determine
+    /// whether they are null, empty, or consist only of whitespace characters.
+    /// </summary>
+    /// <paramref name="segment"></paramref>
     extension(StringSegment segment)
     {
         /// <summary>
