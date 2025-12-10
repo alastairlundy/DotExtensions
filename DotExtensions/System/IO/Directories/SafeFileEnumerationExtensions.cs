@@ -25,11 +25,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+// ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
 using System.Security;
-
-// ReSharper disable InconsistentNaming
 #endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;

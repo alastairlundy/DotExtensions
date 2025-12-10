@@ -48,7 +48,7 @@ public static class DrivesIsEmptyExtensions
                     return false;
 
                 return driveInfo.TotalFreeSpace == driveInfo.TotalSize
-                    && driveInfo.RootDirectory.IsEmpty;
+                       && driveInfo.RootDirectory.IsEmpty;
             }
         }
     }
