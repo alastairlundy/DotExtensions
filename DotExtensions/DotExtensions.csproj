@@ -11,11 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>### All packages
-* Updated to Polyfill 9.3.2 from 9.3.1
-
-### Main package
-* Fixed an issue where a string related extension block method was missing its access modifier - It is now public again.</PackageReleaseNotes>
+    <PackageReleaseNotes>### Main package
+* Updated internal Polyfill version from 9.3.2 to 9.3.4</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -24,7 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.1.2</Version>
+    <Version>9.1.3</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
