@@ -6,12 +6,14 @@
 ### 9.2
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.2.0 | December 11th 2025 | |
 | 9.2.0 Preview 2 | December 7th 2025 | |
 | 9.2.0 Preview 1 | December 5th 2025 | |
 
 ### 9.1
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.1.3 | December 11th 2025 | |
 | 9.1.2 | December 9th 2025 | |
 | 9.1.1 | December 2nd 2025 | |
 | 9.1.0 | November 27th 2025 | |
