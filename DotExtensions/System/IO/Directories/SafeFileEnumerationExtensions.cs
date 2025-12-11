@@ -24,11 +24,11 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 // ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
 using System.Security;
+using System.Linq;
 #endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
