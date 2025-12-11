@@ -193,7 +193,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </summary>
         /// <param name="searchPattern">The search pattern to match against the file names in the directory.</param>
         /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories.</param>
-        /// <param name="ignoreCase">Indicates whether the search pattern should be treated as case-insensitive.</param>
+        /// <param name="ignoreCase">Indicates whether the search pattern will be treated as case-insensitive.</param>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles(string searchPattern, SearchOption searchOption,
             bool ignoreCase = false)
