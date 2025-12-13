@@ -27,9 +27,11 @@ using System.Collections.Generic;
 namespace AlastairLundy.DotExtensions.Memory;
 
 /// <summary>
-/// Provides extension methods for in-memory sorting operations that may not be natively available in certain runtime environments.
+/// Provides extension methods for sorting operations on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/>.
+/// This class contains utilities to perform sorting directly on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/> instances
+/// without converting them to other data structures.
 /// </summary>
-public static class MemorySortPolyfill
+internal static class ReadOnlyMemorySortExtensions
 {
     /// <summary>
     /// 
