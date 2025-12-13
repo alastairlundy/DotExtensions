@@ -45,7 +45,7 @@ public static class ToListExtensions
         public List<T> ToList()
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            List<T> list = new List<T>();
+            List<T> list = new(capacity: source.Length);
 
             foreach (T item in source)
             {
@@ -76,7 +76,7 @@ public static class ToListExtensions
         public List<T> ToList()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
-            List<T> list = new List<T>();
+            List<T> list = new(capacity: source.Length);
 
             foreach (T item in source.Span)
             {
