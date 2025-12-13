@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Buffers;
-
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
