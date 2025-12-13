@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System.Buffers;
+
 namespace AlastairLundy.DotExtensions.Memory.Spans;
 
 /// <summary>
@@ -48,14 +50,16 @@ public static class SpanResizeExtensions
                 return;
             }
 
-            T[] newTargetArray = new T[newSize];
+            T[] newTargetArray = ArrayPool<T>.Shared.Rent(newSize);
             Span<T> destination = new(newTargetArray);
+            destination = destination.Slice(0, newSize);
 
             int endCopy = target.Length < newSize ? target.Length : newSize;
 
             target.OptimisticCopy(ref destination, 0, endCopy);
-
+            
             target = destination;
+            ArrayPool<T>.Shared.Return(newTargetArray);
         }
     }
 }
