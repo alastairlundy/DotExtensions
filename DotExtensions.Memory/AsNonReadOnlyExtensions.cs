@@ -30,17 +30,15 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class AsNonReadOnlyExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">The type of the elements in the span.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
     {
         /// <summary>
-        /// 
+        /// Converts a <see cref="ReadOnlySpan{T}"/> instance to a writable <see cref="Span{T}"/> instance.
+        /// The method creates a copy of the original data to ensure it is writable without modifying the source.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A <see cref="Span{T}"/> instance containing a copied version of the data from the source.</returns>
         public Span<T> AsSpan()
         {
             T[] array = ArrayPool<T>.Shared.Rent(source.Length);
