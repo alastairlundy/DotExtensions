@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// This class contains utilities to perform sorting directly on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/> instances
 /// without converting them to other data structures.
 /// </summary>
-internal static class ReadOnlyMemorySortExtensions
+public static class ReadOnlyMemorySortExtensions
 {
     /// <summary>
     /// 
@@ -124,12 +124,11 @@ internal static class ReadOnlyMemorySortExtensions
                 ArrayPool<T>.Shared.Return(array);
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="comparison"></param>
-        /// <returns></returns>
         public void Sort(Comparison<T> comparison)
         {
             ArgumentNullException.ThrowIfNull(comparison);
