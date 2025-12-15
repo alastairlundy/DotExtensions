@@ -61,7 +61,7 @@ public static class SegmentEnumerableToStringExtensions
             }
 
             stringBuilder.Remove(
-                startIndex: stringBuilder.Length - separator.Length,
+                stringBuilder.Length - separator.Length,
                 length: separator.Length
             );
 
@@ -89,7 +89,7 @@ public static class SegmentEnumerableToStringExtensions
                 stringBuilder.Append(separator);
             }
 
-            stringBuilder.Remove(startIndex: stringBuilder.Length - 1, length: 1);
+            stringBuilder.Remove(stringBuilder.Length - 1, length: 1);
             return stringBuilder.ToString();
         }
     }
