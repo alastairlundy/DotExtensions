@@ -41,7 +41,7 @@ public static class ContainsKeyExtensions
         {
             IConfigurationSection config = configuration.GetSection(keyName);
 
-            return config.Exists();
+            return config.Exists() && config.Value is not null;
         }
     }
 }
