@@ -31,10 +31,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class ToListExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+    /// <param name="source">The span to convert.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> source)
     {
@@ -61,6 +58,28 @@ public static class ToListExtensions
         /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
         public Memory<T> ToMemory() => new(source.ToArray());
     }
+    
+    /// <param name="source"></param>
+    /// <typeparam name="T">The type of elements in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+    extension<T>(ReadOnlySpan<T> source)
+    {
+        /// <summary>
+        /// Converts this <see cref="ReadOnlySpan{T}"/> to a <see cref="List{T}"/>.
+        /// </summary>
+        /// <returns>A list containing the elements of the span.</returns>
+        public List<T> ToList()
+        {
+            InvalidOperationException.ThrowIfSpanIsEmpty(source);
+            List<T> list = new(capacity: source.Length);
+
+            foreach (T item in source)
+            {
+                list.Add(item);
+            }
+
+            return list;
+        }
+    }
 
     /// <summary>
     /// 
@@ -73,6 +92,31 @@ public static class ToListExtensions
         /// Converts this <see cref="Memory{T}"/> to a <see cref="List{T}"/>
         /// </summary>
         /// <returns>A list containing the elements of the Memory.</returns>
+        public List<T> ToList()
+        {
+            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
+            List<T> list = new(capacity: source.Length);
+
+            foreach (T item in source.Span)
+            {
+                list.Add(item);
+            }
+
+            return list;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T">The type of elements in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
+    extension<T>(ReadOnlyMemory<T> source)
+    {
+        /// <summary>
+        /// Converts the provided <see cref="ReadOnlyMemory{T}"/> of type T to a List of type T.
+        /// </summary>
+        /// <returns>A new List containing all elements from the <see cref="ReadOnlyMemory{T}"/>.</returns>
         public List<T> ToList()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
