@@ -39,14 +39,22 @@ public static class ReverseExtensions
         public void Reverse()
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
-            T[] array = new T[span.Length];
-
-            for(int index = span.Length - 1; index > 0; index--)
-            {
-                array[(span.Length - 1) - index] = span[index];
-            }
             
-            span = array;
+            T[] array = ArrayPool<T>.Shared.Rent(span.Length);
+
+            try
+            {
+                for (int index = span.Length - 1; index > 0; index--)
+                {
+                    array[(span.Length - 1) - index] = span[index];
+                }
+
+                span = new ReadOnlySpan<T>(array);
+            }
+            finally
+            {
+                ArrayPool<T>.Shared.Return(array);
+            }
         }
     }
 
@@ -62,14 +70,25 @@ public static class ReverseExtensions
         public void Reverse()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
-            T[] array = new T[memory.Length];
-
-            for(int index = memory.Length - 1; index > 0; index--)
-            {
-                array[(memory.Length - 1) - index] = memory.Span[index];
-            }
             
-            memory = array;
+            T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
+
+            try
+            {
+                for (int index = memory.Length - 1; index > 0; index--)
+                {
+                    array[(memory.Length - 1) - index] = memory.Span[index];
+                }
+
+                for (int i = 0; i < memory.Length; i++)
+                {
+                    memory.Span[i] = array[i];
+                }
+            }
+            finally
+            {
+                ArrayPool<T>.Shared.Return(array);
+            }
         }
     }
     
@@ -84,14 +103,21 @@ public static class ReverseExtensions
         public void Reverse()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
-            T[] array = new T[memory.Length];
+            T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
 
-            for(int index = memory.Length - 1; index > 0; index--)
+            try
             {
-                array[(memory.Length - 1) - index] = memory.Span[index];
+                for (int index = memory.Length - 1; index > 0; index--)
+                {
+                    array[(memory.Length - 1) - index] = memory.Span[index];
+                }
+
+                memory = new ReadOnlyMemory<T>(array);
             }
-            
-            memory = array;
+            finally
+            {
+                ArrayPool<T>.Shared.Return(array);
+            }
         }
     }
 }

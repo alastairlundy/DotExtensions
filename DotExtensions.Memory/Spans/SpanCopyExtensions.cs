@@ -254,14 +254,17 @@ public static class SpanCopyExtensions
             if (expectedEnd <= actualEnd)
                 end = expectedEnd;
 
-            T[] output = new T[Math.Abs(end - startIndex)];
+            int actualLength = Math.Abs(end - startIndex);
             
+            T[] output = ArrayPool<T>.Shared.Rent(actualLength);
+           
             for (int i = startIndex; i < end; i++)
             {
                 output[i] = source[i];
             }
 
-            destination = new Span<T>(output);
+            destination = new Span<T>(output).Slice(0, actualLength);
+            ArrayPool<T>.Shared.Return(output);
         }
     }
 
