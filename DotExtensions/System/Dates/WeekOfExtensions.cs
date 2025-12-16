@@ -31,7 +31,6 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class WeekOfExtensions
 {
-
     /// <param name="date">The date to be used.</param>
     extension(DateTime date)
     {

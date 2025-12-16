@@ -29,11 +29,6 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class DayInExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="year"></param>
-    /// <returns></returns>
     internal static int DaysInYear(int year)
     {
         int days = 0;
