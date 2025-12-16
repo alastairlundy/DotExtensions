@@ -6,6 +6,7 @@
 ### 9.2
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.2.1 | December 16th 2025 | |
 | 9.2.0 | December 11th 2025 | |
 | 9.2.0 Preview 2 | December 7th 2025 | |
 | 9.2.0 Preview 1 | December 5th 2025 | |
