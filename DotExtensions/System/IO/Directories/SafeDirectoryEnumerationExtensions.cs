@@ -117,7 +117,6 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
         }
-//#else
 #endif
         internal IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
             SearchOption searchOption,
@@ -126,12 +125,13 @@ public static partial class SafeIOEnumerationExtensions
             if (!directoryInfo.Exists)
                 throw new DirectoryNotFoundException();
 
-            IEnumerable<DirectoryInfo> fileSystemInfos = directoryInfo.EnumerateDirectories(searchPattern, searchOption)
+            IEnumerable<DirectoryInfo> directories = directoryInfo.
+                EnumerateDirectories(searchPattern, searchOption)
                 .Where(f =>
                 {
                     try
                     {
-                        return f.Name != string.Empty;
+                        return f.Exists;
                     }
                     catch
                     {
@@ -139,41 +139,31 @@ public static partial class SafeIOEnumerationExtensions
                     }
                 });
 
-            foreach (DirectoryInfo dirInfo in fileSystemInfos)
+            foreach (DirectoryInfo directory in directories)
             {
-                DirectoryInfo? directory = SafelyEnumerateDirectory(directoryInfo, dirInfo, ignoreCase);
-                    
-                if(directory is null)
-                    continue;
+                if (searchPattern != "*" && searchPattern != "?")
+                {
+                    if (!directory.Exists)
+                        continue;
+                        
+                    string baseDirectory = Path.GetDirectoryName(directoryInfo.FullName) ?? directoryInfo.Name;
 
-                yield return directory;
+                    StringComparison comparison = ignoreCase
+                        ? StringComparison.InvariantCultureIgnoreCase
+                        : StringComparison.InvariantCulture;
+
+                    bool result = directory.FullName.StartsWith(baseDirectory, comparison) ||
+                                  directory.FullName.Contains(baseDirectory, comparison);
+
+                    if (result)
+                        yield return directory;
+                }
+                else if(searchPattern.Contains('*') || searchPattern.Contains('?'))
+                {
+                    yield return directory;
+                }
             }
         }
-
-        private DirectoryInfo? SafelyEnumerateDirectory(DirectoryInfo dirInfo, bool ignoreCase)
-        {
-            try
-            {
-                if (!dirInfo.Exists)
-                    return null;
-                    
-                string baseDirectory = Path.GetDirectoryName(dirInfo.FullName) ?? dirInfo.Name;
-
-                StringComparison comparison = ignoreCase
-                    ? StringComparison.InvariantCultureIgnoreCase
-                    : StringComparison.InvariantCulture;
-                
-                return dirInfo.FullName.StartsWith(baseDirectory, comparison) ||
-                       dirInfo.FullName.Contains(baseDirectory, comparison)
-                    ? dirInfo
-                    : null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-//#endif
         #endregion
 
         #region Safe Directory Getting
