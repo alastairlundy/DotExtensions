@@ -30,11 +30,14 @@ namespace AlastairLundy.DotExtensions.Dates;
 /// </summary>
 public static class UnixDateStringExtension
 {
-    /// <summary>
-    /// Gets the current date in the format of the unix Date command.
-    /// </summary>
     /// <param name="dateTime">The dateTime object to be used.</param>
-    /// <returns>the current date in the format of the unix Date command.</returns>
-    public static string ToUnixDateString(this DateTime dateTime) =>
-        dateTime.ToString("R").Replace(",", string.Empty);
+    extension(DateTime dateTime)
+    {
+        /// <summary>
+        /// Gets the current date in the format of the unix Date command.
+        /// </summary>
+        /// <returns>the current date in the format of the unix Date command.</returns>
+        public string ToUnixDateString() =>
+            dateTime.ToString("R").Replace(",", string.Empty);
+    }
 }
