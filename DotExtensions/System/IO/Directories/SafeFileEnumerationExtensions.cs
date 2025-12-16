@@ -25,14 +25,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security;
 
 // ReSharper disable InconsistentNaming
-
-#if NETSTANDARD2_0
-using System.Security;
-using System.Linq;
-#endif
 
 namespace AlastairLundy.DotExtensions.IO.Directories;
 
@@ -83,29 +77,6 @@ public static partial class SafeIOEnumerationExtensions
 #endif
         }
 
-        private FileInfo? SafelyEnumerateFile(FileInfo info, string searchPattern, bool ignoreCase)
-        {
-            try
-            {
-                if (ignoreCase)
-                {
-                    if (info.Name.ToLower().Contains(searchPattern.ToLower()))
-                        return info;
-                }
-                else
-                {
-                    if (info.Name.Contains(searchPattern))
-                        return info;
-                }
-
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
         {
@@ -120,7 +91,6 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
-//#else
 #endif
         internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
             bool ignoreCase)
@@ -143,12 +113,19 @@ public static partial class SafeIOEnumerationExtensions
 
             foreach (FileInfo fileInfo in files)
             {
-                FileInfo? file = SafelyEnumerateFile(directoryInfo, fileInfo, searchPattern, ignoreCase);
+                StringComparison stringComparison = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
-                if (file is null)
-                    continue;
-
-                yield return file;
+                if (searchPattern != "*" && searchPattern != "?")
+                {
+                    bool result = fileInfo.Name.Contains(searchPattern, stringComparison);
+                
+                    if (result)
+                        yield return fileInfo;
+                }
+                else if(searchPattern.Contains("*") || searchPattern.Contains("?"))
+                {
+                    yield return fileInfo;
+                }
             }
         }
     }
