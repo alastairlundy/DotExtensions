@@ -11,10 +11,11 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added DirectoryInfo SafelyEnumerateFiles C# 14 extension everything method with several overloads to help avoid UnauthorizedAccessException being thrown when enumerating files in case access isn't permitted - This works on all TFMs although .NET 8+ TFMs have what is likely to be a more efficient implementation than the .NET Standard 2 implementation.
-* Added the FileInfo[] returning equivalent method and overloads to SafelyEnumerateFiles called SafelyGetFiles.
-* Added DirectoryInfo SafelyEnumerateDirectories C# 14 extension everything method with several overloads to help avoid UnauthorizedAccessException being thrown when enumerating files in case access isn't permitted - This works on all TFMs although .NET 8+ TFMs have what is likely to be a more efficient implementation than the .NET Standard 2 implementation.
-* Added the FileInfo[] returning equivalent method and overloads to SafelyEnumerateDirectories called SafelyGetDirectories.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added ``Version`` methods ``Max`` and ``Min`` C#14 static extension methods.
+* Deprecated ``Version`` methods ``GetNewerVersion`` and ``GetOlderVersion`` for removal in v10 - Use the newly added ``Max`` and ``Min`` C#14 static extension methods instead.
+* Added ``Directory`` static C# extension methods for Safe File Enumeration and Safe Directory Enumeration
+* Fixed issues with .NET Standard 2.0 fallback for Safe File Enumeration &amp; Getting that would return empty sequences and arrays respectively - .NET 8+ method is unaffected. Backported to 9.2.x branch.
+* Fixed issues with .NET Standard 2.0 fallback for Safe Directory Enumeration_ &amp; Getting that would return empty sequences and arrays respectively - .NET 8+ method is unaffected. Backported to 9.2.x branch.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -23,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.2.0</Version>
+    <Version>9.3.0-preview.1</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
