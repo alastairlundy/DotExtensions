@@ -29,9 +29,6 @@ namespace AlastairLundy.DotExtensions.Versions;
 /// </summary>
 public static class VersionComparisonExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="version">The current version object.</param>
     extension(Version version)
     {
