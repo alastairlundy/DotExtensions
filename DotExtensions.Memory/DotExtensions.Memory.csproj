@@ -24,6 +24,7 @@
     <IsTrimmable>true</IsTrimmable>
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>* Potential performance improvements in some Span and Memory extensions
 * Added ``AsSpan&lt;T&gt;`` and ``AsMemory&lt;T&gt;`` extensions for ``ReadOnlySpan&lt;T&gt;`` and ``ReadOnlyMemory&lt;T&gt;`` respectively
 * Added Memory Sort extensions for ``ReadOnlySpan&lt;T&gt;`` and ``ReadOnlyMemory&lt;T&gt;``
