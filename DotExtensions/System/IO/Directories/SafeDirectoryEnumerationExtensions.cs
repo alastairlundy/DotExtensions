@@ -24,10 +24,11 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+
 // ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
-using System.Security;
 using System.Linq;
 #endif
 
@@ -114,70 +115,53 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
         }
-#else
-        private IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
+#endif
+        internal IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
             SearchOption searchOption,
             bool ignoreCase)
         {
             if (!directoryInfo.Exists)
                 throw new DirectoryNotFoundException();
 
-            IEnumerable<FileSystemInfo>? fileSystemInfos;
+            IEnumerable<DirectoryInfo> directories = directoryInfo.
+                EnumerateDirectories(searchPattern, searchOption)
+                .Where(f =>
+                {
+                    try
+                    {
+                        return f.Exists;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
 
-            try
+            foreach (DirectoryInfo directory in directories)
             {
-                fileSystemInfos = directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                fileSystemInfos = null;
-            }
-            catch (SecurityException)
-            {
-                fileSystemInfos = null;
-            }
+                if (searchPattern != "*" && searchPattern != "?")
+                {
+                    if (!directory.Exists)
+                        continue;
+                        
+                    string baseDirectory = Path.GetDirectoryName(directoryInfo.FullName) ?? directoryInfo.Name;
 
-            if (fileSystemInfos is null)
-                yield break;
+                    StringComparison comparison = ignoreCase
+                        ? StringComparison.InvariantCultureIgnoreCase
+                        : StringComparison.InvariantCulture;
 
-            foreach (FileSystemInfo fileSystemInfo in fileSystemInfos)
-            {
-                DirectoryInfo? directory = SafelyEnumerateDirectory(directoryInfo, fileSystemInfo, ignoreCase);
-                    
-                if(directory is null)
-                    continue;
+                    bool result = directory.FullName.StartsWith(baseDirectory, comparison) ||
+                                  directory.FullName.Contains(baseDirectory, comparison);
 
-                yield return directory;
-            }
-        }
-
-        private DirectoryInfo? SafelyEnumerateDirectory(FileSystemInfo fileSystemInfo, bool ignoreCase)
-        {
-            try
-            {
-                if (fileSystemInfo is not DirectoryInfo dirInfo) 
-                    return null;
-                
-                if (!dirInfo.Exists)
-                    return null;
-                    
-                string baseDirectory = Path.GetDirectoryName(directoryInfo.FullName) ?? directoryInfo.Name;
-
-                StringComparison comparison = ignoreCase
-                    ? StringComparison.InvariantCultureIgnoreCase
-                    : StringComparison.InvariantCulture;
-                
-                return dirInfo.FullName.StartsWith(baseDirectory, comparison) ||
-                       dirInfo.FullName.Contains(baseDirectory, comparison)
-                    ? dirInfo
-                    : null;
-            }
-            catch
-            {
-                return null;
+                    if (result)
+                        yield return directory;
+                }
+                else if(searchPattern.Contains('*') || searchPattern.Contains('?'))
+                {
+                    yield return directory;
+                }
             }
         }
-#endif
         #endregion
 
         #region Safe Directory Getting

@@ -24,10 +24,11 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+
 // ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
-using System.Security;
 using System.Linq;
 #endif
 
@@ -80,34 +81,6 @@ public static partial class SafeIOEnumerationExtensions
 #endif
         }
 
-#if NETSTANDARD2_0
-        private FileInfo? SafelyEnumerateFile(FileSystemInfo info, string searchPattern, bool ignoreCase)
-        {
-            try
-            {
-                if (info is FileInfo fileInfo)
-                {
-                    if (ignoreCase)
-                    {
-                        if (fileInfo.Name.ToLower().Contains(searchPattern.ToLower()))
-                            return fileInfo;
-                    }
-                    else
-                    {
-                        if (fileInfo.Name.Contains(searchPattern))
-                            return fileInfo;
-                    }
-                }
-
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-#endif
-
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
         {
@@ -122,42 +95,43 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
-#else
-        private IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
+#endif
+        internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
             bool ignoreCase)
         {
             if (!directoryInfo.Exists)
                 throw new DirectoryNotFoundException();
 
-            IEnumerable<FileSystemInfo>? fileSystemInfos;
+            IEnumerable<FileInfo> files = directoryInfo.EnumerateFiles(searchPattern, searchOption)
+                .Where(f =>
+                {
+                    try
+                    {
+                        return f.Exists;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
 
-            try
+            foreach (FileInfo fileInfo in files)
             {
-                fileSystemInfos = directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                fileSystemInfos = null;
-            }
-            catch (SecurityException)
-            {
-                fileSystemInfos = null;
-            }
+                StringComparison stringComparison = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
-            if (fileSystemInfos is null)
-                yield break;
-
-            foreach (FileSystemInfo fileSystemInfo in fileSystemInfos)
-            {
-                FileInfo? file = SafelyEnumerateFile(directoryInfo, fileSystemInfo, searchPattern, ignoreCase);
-
-                if (file is null)
-                    continue;
-
-                yield return file;
+                if (searchPattern != "*" && searchPattern != "?")
+                {
+                    bool result = fileInfo.Name.Contains(searchPattern, stringComparison);
+                
+                    if (result)
+                        yield return fileInfo;
+                }
+                else if(searchPattern.Contains("*") || searchPattern.Contains("?"))
+                {
+                    yield return fileInfo;
+                }
             }
         }
-#endif
     }
 
     #endregion
