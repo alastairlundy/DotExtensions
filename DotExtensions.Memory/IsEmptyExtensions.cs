@@ -29,10 +29,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class IsEmptyExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+    /// <param name="source">The span to search.</param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(Span<T> source)
     {
@@ -40,16 +37,7 @@ public static class IsEmptyExtensions
         /// Determines if a span is empty.
         /// </summary>
         /// <returns>True if the span is empty, false otherwise.</returns>
-        public bool IsEmpty
-        {
-            get
-            {
-                if (source.Length == 0 || source == Span<T>.Empty)
-                    return true;
-
-                return false;
-            }
-        }
+        public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
     }
 
     /// <summary>
@@ -63,16 +51,7 @@ public static class IsEmptyExtensions
         /// Determines if a span is empty.
         /// </summary>
         /// <returns>True if the span is empty, false otherwise.</returns>
-        public bool IsEmpty
-        {
-            get
-            {
-                if (source.Length == 0 || source == Span<T>.Empty)
-                    return true;
-
-                return false;
-            }
-        }
+        public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
     }
     
     /// <summary>
