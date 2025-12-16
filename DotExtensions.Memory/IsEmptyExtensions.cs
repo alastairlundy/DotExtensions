@@ -39,11 +39,8 @@ public static class IsEmptyExtensions
         /// <returns>True if the span is empty, false otherwise.</returns>
         public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+    
+    /// <param name="source">The span to search.</param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
     {
@@ -54,10 +51,7 @@ public static class IsEmptyExtensions
         public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="memory"></param>
+    /// <param name="memory">The memory to search.</param>
     /// <typeparam name="T">The type of elements in the memory.</typeparam>
     extension<T>(Memory<T> memory)
     {
@@ -68,10 +62,7 @@ public static class IsEmptyExtensions
         public bool IsEmpty => memory.Equals(Memory<T>.Empty) || memory.Length == 0;
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="memory"></param>
+    /// <param name="memory">The memory to search.</param>
     /// <typeparam name="T">The type of elements in the read-only memory.</typeparam>
     extension<T>(ReadOnlyMemory<T> memory)
     {
@@ -83,50 +74,53 @@ public static class IsEmptyExtensions
     }
 
     #region Is Empty Or char WhiteSpace Extensions
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(Span<char>)
+
+    /// <param name="span">The span to search.</param>
+    extension(Span<char> span)
     {
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(Span<char> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(Span<char> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
-            for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// Determines if a span is empty or whitespace.
+        /// </summary>
+        /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[span.Length];
+            for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(source[i]);
+                isWhiteSpace[i] = char.IsWhiteSpace(span[i]);
             }
 
             return isWhiteSpace.All(x => x);
         }
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(ReadOnlySpan<char>)
+    /// <param name="span">The span to search.</param>
+    extension(ReadOnlySpan<char> span)
     {
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(ReadOnlySpan<char> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(ReadOnlySpan<char> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
-            for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// Determines if a span is empty or whitespace.
+        /// </summary>
+        /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[span.Length];
+            for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(source[i]);
+                isWhiteSpace[i] = char.IsWhiteSpace(span[i]);
             }
 
             return isWhiteSpace.All(x => x);
@@ -136,49 +130,54 @@ public static class IsEmptyExtensions
     /// <summary>
     /// Provides extension methods for working with spans of memory.
     /// </summary>
-    extension(Memory<char>)
+    /// <param name="memory">The memory of characters to evaluate.</param>
+    extension(Memory<char> memory)
     {
         /// <summary>
         /// Determines whether a span of memory containing characters is empty or consists only of whitespace.
         /// </summary>
         /// <param name="source">The memory of characters to evaluate.</param>
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
-        public static bool IsEmptyOrWhiteSpace(Memory<char> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(Memory<char> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
+        /// <summary>
+        /// Determines whether a span of memory containing characters is empty or consists only of whitespace.
+        /// </summary>
+        /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[memory.Length];
             
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(source.Span[i]);
+                isWhiteSpace[i] = char.IsWhiteSpace(memory.Span[i]);
             }
 
             return isWhiteSpace.All(x => x);
         }
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(ReadOnlyMemory<char>)
+    /// <param name="memory">The read-only memory to evaluate.</param>
+    extension(ReadOnlyMemory<char> memory)
     {
         /// <summary>
         /// Determines whether the provided read-only memory of characters is empty or consists solely of whitespace characters.
         /// </summary>
         /// <param name="source">The read-only memory to evaluate.</param>
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
-        public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<char> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<char> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
+        /// <summary>
+        /// Determines whether the provided read-only memory of characters is empty or consists solely of whitespace characters.
+        /// </summary>
+        /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[memory.Length];
             
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(source.Span[i]);
+                isWhiteSpace[i] = char.IsWhiteSpace(memory.Span[i]);
             }
 
             return isWhiteSpace.All(x => x);
@@ -187,104 +186,109 @@ public static class IsEmptyExtensions
     
     #endregion
     #region Is Empty or String WhiteSpace Extensions
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(Span<string>)
+
+    /// <param name="span">The span to search.</param>
+    extension(Span<string> span)
     {
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(Span<string> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(Span<string> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
-            for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// Determines if a span contains only whitespace characters.
+        /// </summary>
+        /// <returns>
+        /// True if the span contains only whitespace characters, false otherwise.
+        /// </returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[span.Length];
+            for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = source[i].IsWhiteSpace();
+                isWhiteSpace[i] = span[i].IsWhiteSpace();
             }
 
             return isWhiteSpace.All(x => x);
         }
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="???"></param>
-    extension(ReadOnlySpan<string>)
+    /// <param name="span">The span to search.</param>
+    extension(ReadOnlySpan<string> span)
     {
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(ReadOnlySpan<string> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(ReadOnlySpan<string> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
-            for (int i = 0; i < source.Length; i++)
+        /// <summary>
+        /// Determines if a span is empty or whitespace.
+        /// </summary>
+        /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[span.Length];
+            for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = source[i].IsWhiteSpace();
+                isWhiteSpace[i] = span[i].IsWhiteSpace();
             }
 
             return isWhiteSpace.All(x => x);
         }
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(Memory<string>)
+    /// <param name="memory">The input span to check for whitespace.</param>
+    extension(Memory<string> memory)
     {
         /// <summary>
         /// Determines whether a memory of strings is empty or consists entirely of whitespace elements.
         /// </summary>
         /// <param name="source">The memory of strings to evaluate.</param>
         /// <returns>True if the memory is empty or all its elements are whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(Memory<string> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(Memory<string> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
+        /// <summary>
+        /// Determines whether all elements in the provided span are whitespace.
+        /// </summary>
+        /// <returns>True if every element in the span is a whitespace character, false otherwise.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[memory.Length];
             
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = source.Span[i].IsWhiteSpace();
+                isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
             }
 
             return isWhiteSpace.All(x => x);
         }
     }
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-    extension(ReadOnlyMemory<string>)
+    
+    /// <param name="memory">The ReadOnlyMemory of strings to evaluate.</param>
+    extension(ReadOnlyMemory<string> memory)
     {
         /// <summary>
         /// Determines if a ReadOnlyMemory of strings is empty or contains only whitespace elements.
         /// </summary>
         /// <param name="source">The ReadOnlyMemory of strings to evaluate.</param>
         /// <returns>True if the memory is empty or all its elements are whitespace, false otherwise.</returns>
-        public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<string> source)
-        {
-            if (source.IsEmpty)
-                return true;
+        public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<string> source) => source.IsEmpty || source.IsWhiteSpace();
 
-            bool[] isWhiteSpace = new bool[source.Length];
+        /// <summary>
+        /// Determines if a ReadOnlyMemory of strings contains only whitespace elements.
+        /// </summary>
+        /// <returns>True if the memory contains only whitespace, false otherwise.</returns>
+        public bool IsWhiteSpace()
+        {
+            bool[] isWhiteSpace = new bool[memory.Length];
             
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = source.Span[i].IsWhiteSpace();
+                isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
             }
 
             return isWhiteSpace.All(x => x);
