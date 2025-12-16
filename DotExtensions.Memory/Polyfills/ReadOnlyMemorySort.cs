@@ -31,7 +31,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// This class contains utilities to perform sorting directly on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/> instances
 /// without converting them to other data structures.
 /// </summary>
-public static class ReadOnlyMemorySortExtensions
+public static class ReadOnlyMemorySort
 {
     /// <summary>
     /// 
