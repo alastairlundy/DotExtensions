@@ -34,6 +34,7 @@ DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code 
 | Package Name                             | Nuget Link                                                                                                            | .NET SDK CLI command                                            |
 |------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
 | AlastairLundy.DotExtensions              | [AlastairLundy.DotExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions)                           | ``dotnet add package AlastairLundy.DotExtensions``              |
+| AlastairLundy.DotExtensions.Memory       | [AlastairLundy.DotExtensions.Memory Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.Memory)             | ``dotnet add package AlastairLundy.DotExtensions.Memory``       |
 | AlastairLundy.DotExtensions.MsExtensions | [AlastairLundy.DotExtensions.MsExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions) | ``dotnet add package AlastairLundy.DotExtensions.MsExtensions`` |
 
 
@@ -72,5 +73,6 @@ Future updates should aim to focus on one or more of the following:
 
 ## License
 This project is licensed under the MIT license.
+
 
 
