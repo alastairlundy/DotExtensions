@@ -8,9 +8,6 @@ using BenchmarkDotNet.Jobs;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
-[SimpleJob(RuntimeMoniker.NativeAot80)]
-[SimpleJob(RuntimeMoniker.NativeAot90)]
-[SimpleJob(RuntimeMoniker.NativeAot10_0)]
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
