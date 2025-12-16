@@ -41,6 +41,7 @@ public static class SpanResizeExtensions
         public void Resize(int newSize)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(target);
+            ArgumentOutOfRangeException.ThrowIfNegative(newSize);
 
             if (newSize < target.Length)
             {

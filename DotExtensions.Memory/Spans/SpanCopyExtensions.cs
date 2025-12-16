@@ -112,9 +112,8 @@ public static class SpanCopyExtensions
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            
-            if (destination.Length < source.Length || destination.Length < startIndex + length)
-                throw new ArgumentException();
+            ArgumentOutOfRangeException.ThrowIfLessThan(destination.Length, source.Length);
+            ArgumentOutOfRangeException.ThrowIfLessThan(destination.Length, startIndex + length);
 
             for (int i = 0; i < length; i++)
             {
