@@ -36,6 +36,11 @@
   </PropertyGroup>
 
     <ItemGroup>
+        <InternalsVisibleTo Include="DotExtensions.Benchmarking"/>
+        <InternalsVisibleTo Include="DotExtensions.Tests"/>
+    </ItemGroup>
+    
+    <ItemGroup>
     <Compile Update="Internal\Localizations\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
