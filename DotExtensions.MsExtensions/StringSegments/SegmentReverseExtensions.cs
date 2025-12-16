@@ -41,7 +41,7 @@ public static class SegmentReverseExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(target);
             
-            StringBuilder stringBuilder = new();
+            StringBuilder stringBuilder = new(capacity: target.Length);
 
             for (int i = 0; i < target.Length; i++)
             {
