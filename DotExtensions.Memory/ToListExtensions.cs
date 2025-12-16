@@ -31,10 +31,7 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class ToListExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+    /// <param name="source">The span to convert.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
     extension<T>(Span<T> source)
     {
@@ -61,11 +58,8 @@ public static class ToListExtensions
         /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
         public Memory<T> ToMemory() => new(source.ToArray());
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
+    
+    /// <param name="source">The memory to convert.</param>
     /// <typeparam name="T">The type of elements in the Memory.</typeparam>
     extension<T>(Memory<T> source)
     {
