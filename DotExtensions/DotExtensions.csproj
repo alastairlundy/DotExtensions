@@ -11,10 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added DirectoryInfo SafelyEnumerateFiles C# 14 extension everything method with several overloads to help avoid UnauthorizedAccessException being thrown when enumerating files in case access isn't permitted - This works on all TFMs although .NET 8+ TFMs have what is likely to be a more efficient implementation than the .NET Standard 2 implementation.
-* Added the FileInfo[] returning equivalent method and overloads to SafelyEnumerateFiles called SafelyGetFiles.
-* Added DirectoryInfo SafelyEnumerateDirectories C# 14 extension everything method with several overloads to help avoid UnauthorizedAccessException being thrown when enumerating files in case access isn't permitted - This works on all TFMs although .NET 8+ TFMs have what is likely to be a more efficient implementation than the .NET Standard 2 implementation.
-* Added the FileInfo[] returning equivalent method and overloads to SafelyEnumerateDirectories called SafelyGetDirectories.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Fixed issues with .NET Standard 2.0 fallback for **Safe File Enumeration &amp; Getting** that would return empty sequences and arrays respectively - .NET 8+ method is unaffected.
+* Fixed issues with .NET Standard 2.0 fallback for **Safe Directory Enumeration_ &amp; Getting** that would return empty sequences and arrays respectively - .NET 8+ method is unaffected.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -23,7 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.2.0</Version>
+    <Version>9.2.1</Version>
     <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
     <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
     <PackageId>AlastairLundy.DotExtensions</PackageId>
