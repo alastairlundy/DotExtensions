@@ -63,7 +63,7 @@ public static class SegmentToCharsExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
 
-            List<char> list = [];
+            List<char> list = new(capacity:segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
             {
