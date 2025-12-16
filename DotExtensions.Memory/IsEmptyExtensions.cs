@@ -29,9 +29,6 @@ namespace AlastairLundy.DotExtensions.Memory;
 /// </summary>
 public static class IsEmptyExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(Span<T> source)
@@ -51,10 +48,7 @@ public static class IsEmptyExtensions
             }
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
@@ -75,9 +69,6 @@ public static class IsEmptyExtensions
         }
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="memory"></param>
     /// <typeparam name="T">The type of elements in the memory.</typeparam>
     extension<T>(Memory<T> memory)
@@ -89,9 +80,6 @@ public static class IsEmptyExtensions
         public bool IsEmpty => memory.Equals(Memory<T>.Empty) || memory.Length == 0;
     }
     
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="memory"></param>
     /// <typeparam name="T">The type of elements in the read-only memory.</typeparam>
     extension<T>(ReadOnlyMemory<T> memory)
@@ -128,9 +116,9 @@ public static class IsEmptyExtensions
             return isWhiteSpace.All(x => x);
         }
     }
-    
+
     /// <summary>
-    /// 
+    /// Provides extension methods for working with spans.
     /// </summary>
     extension(ReadOnlySpan<char>)
     {
@@ -155,7 +143,7 @@ public static class IsEmptyExtensions
     }
 
     /// <summary>
-    /// Provides extension methods for working with spans of memory.
+    /// 
     /// </summary>
     extension(Memory<char>)
     {
