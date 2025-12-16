@@ -24,6 +24,9 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security;
+
 // ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
@@ -114,35 +117,31 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
         }
-#else
-        private IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
+//#else
+#endif
+        internal IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
             SearchOption searchOption,
             bool ignoreCase)
         {
             if (!directoryInfo.Exists)
                 throw new DirectoryNotFoundException();
 
-            IEnumerable<FileSystemInfo>? fileSystemInfos;
+            IEnumerable<DirectoryInfo> fileSystemInfos = directoryInfo.EnumerateDirectories(searchPattern, searchOption)
+                .Where(f =>
+                {
+                    try
+                    {
+                        return f.Name != string.Empty;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                });
 
-            try
+            foreach (DirectoryInfo dirInfo in fileSystemInfos)
             {
-                fileSystemInfos = directoryInfo.EnumerateFileSystemInfos(searchPattern, searchOption);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                fileSystemInfos = null;
-            }
-            catch (SecurityException)
-            {
-                fileSystemInfos = null;
-            }
-
-            if (fileSystemInfos is null)
-                yield break;
-
-            foreach (FileSystemInfo fileSystemInfo in fileSystemInfos)
-            {
-                DirectoryInfo? directory = SafelyEnumerateDirectory(directoryInfo, fileSystemInfo, ignoreCase);
+                DirectoryInfo? directory = SafelyEnumerateDirectory(directoryInfo, dirInfo, ignoreCase);
                     
                 if(directory is null)
                     continue;
@@ -151,17 +150,14 @@ public static partial class SafeIOEnumerationExtensions
             }
         }
 
-        private DirectoryInfo? SafelyEnumerateDirectory(FileSystemInfo fileSystemInfo, bool ignoreCase)
+        private DirectoryInfo? SafelyEnumerateDirectory(DirectoryInfo dirInfo, bool ignoreCase)
         {
             try
             {
-                if (fileSystemInfo is not DirectoryInfo dirInfo) 
-                    return null;
-                
                 if (!dirInfo.Exists)
                     return null;
                     
-                string baseDirectory = Path.GetDirectoryName(directoryInfo.FullName) ?? directoryInfo.Name;
+                string baseDirectory = Path.GetDirectoryName(dirInfo.FullName) ?? dirInfo.Name;
 
                 StringComparison comparison = ignoreCase
                     ? StringComparison.InvariantCultureIgnoreCase
@@ -177,7 +173,7 @@ public static partial class SafeIOEnumerationExtensions
                 return null;
             }
         }
-#endif
+//#endif
         #endregion
 
         #region Safe Directory Getting

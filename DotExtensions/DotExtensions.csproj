@@ -43,6 +43,10 @@
     </Compile>
   </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="DotExtensions.Benchmarking"/>
+    </ItemGroup>
+    
   <ItemGroup>
     <EmbeddedResource Update="Internal\Localizations\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

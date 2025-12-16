@@ -5,13 +5,13 @@ using System.Linq;
 using AlastairLundy.DotExtensions.IO.Directories;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Mathematics;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
-
 [RPlotExporter]
 [MemoryDiagnoser]
 public class SafeFileEnumerationBenchmarks
@@ -39,27 +39,20 @@ public class SafeFileEnumerationBenchmarks
 
         return files.First();
     }
-
+    
     [Benchmark]
-    public FileInfo DotExtensions_SafeFileGetting()
+    public FileInfo DotExtensions_SafeFileEnumeration_NetStandard20_Fallback()
     {
-        FileInfo[] files = _directoryInfo.SafelyGetFiles();
-        
+        IEnumerable<FileInfo> files = _directoryInfo
+            .SafeFileEnumeration_NetStandard20("*", SearchOption.TopDirectoryOnly, true);
+
         return files.First();
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public FileInfo Normal_FileEnumeration()
     {
         IEnumerable<FileInfo> files = _directoryInfo.EnumerateFiles();
-        
-        return files.First();
-    }
-    
-    [Benchmark]
-    public FileInfo Normal_FileSaving()
-    {
-        FileInfo[] files = _directoryInfo.GetFiles();
         
         return files.First();
     }
