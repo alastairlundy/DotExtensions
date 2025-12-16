@@ -257,4 +257,112 @@ public static partial class SafeIOEnumerationExtensions
 
         #endregion
     }
+
+    extension(Directory)
+    {
+        #region Safe File Enumeration (Static Directory C# 14 extensions)
+
+        /// <summary>
+        /// Safely enumerates directories in the specified path, ignoring inaccessible directories and handling exceptions that may occur
+        /// during directory traversal. </summary>
+        /// <param name="path"> The path to enumerate directories from. </param>
+        /// <returns> A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified
+        /// path based on default search pattern "*".</returns>
+        public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path)
+            => SafelyEnumerateDirectories(path, "*");
+
+        /// <summary>
+        /// Safely enumerates directories in the specified path, ignoring inaccessible directories and handling exceptions that may occur during directory traversal.
+        /// </summary>
+        /// <param name="path">
+        /// The path to enumerate directories from.
+        /// </param>
+        /// <param name="searchPattern"></param> <returns>
+        /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based
+        /// on default search pattern "*".
+        /// </returns>
+        public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern)
+            => SafelyEnumerateDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// Safely enumerates directories in the specified path.
+        /// This method safely enumerates directories within a given path, ensuring that inaccessible directories are ignored and exceptions during enumeration are handled gracefully. It allows for specifying a search pattern to filter the enumerated directories and provides options to enumerate only the top-level directory or recursively through all subdirectories.
+        /// </summary>
+        /// <param name="path">
+        /// The path of the directory where the enumeration will be performed.
+        /// </param>
+        /// <param name="searchPattern"> An optional search pattern for enumerating specific directories based on their names.
+        /// If not provided, all directories are enumerated. </param>
+        /// <param name="directorySearchOption"> Specifies whether to enumerate only the top-level directory or recursively through all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.
+        /// </param>
+        /// <param name="ignoreCase">
+        /// A boolean indicating whether the search should be case-insensitive. Defaults to true, meaning it will ignore case during enumeration.
+        /// </param>
+        /// <returns>
+        /// An enumerable collection of <see cref="DirectoryInfo"/> objects representing the directories found in the specified path based on the provided parameters.
+        /// </returns>
+        public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
+            SearchOption directorySearchOption, bool ignoreCase = true)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
+        }
+
+        #endregion
+        #region Safe File Getting (Static Directory C# 14 extensions)
+
+        /// <summary>
+        /// Safely retrieves a list of directories from the specified path.
+        /// </summary>
+        /// <param name="path">The path to enumerate directories from.</param>
+        /// <returns>An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on default search pattern "*".</returns>
+        public static DirectoryInfo[] SafelyGetDirectories(string path)
+            => SafelyGetDirectories(path, "*");
+
+        /// <summary>
+        /// Safely retrieves directories from the specified path, ignoring inaccessible directories and handling exceptions that may occur during enumeration.
+        /// </summary>
+        /// <param name="path">
+        /// The path from which to retrieve directories. This can be a relative or absolute path.
+        /// </param>
+        /// <param name="searchPattern">
+        /// The search pattern to filter directories. Defaults to "*", which matches all directories.
+        /// </param>
+        /// <returns>
+        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on default search pattern "*".
+        /// If no directories are found, an empty array is returned.
+        /// </returns>
+        /// <exception cref="DirectoryNotFoundException">
+        /// Thrown if the specified path does not exist or cannot be accessed.
+        /// </exception>
+        public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern)
+            => SafelyGetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// Safely enumerates directories in the specified path based on the provided search pattern and directory search options.
+        /// This method safely retrieves a collection of <see cref="DirectoryInfo"/> objects representing directories found at the given path,
+        /// taking into account potential accessibility issues and exceptions during enumeration.
+        /// </summary>
+        /// <param name="path">The path to enumerate directories from.</param>
+        /// <param name="searchPattern">
+        /// The search pattern to filter directories. Defaults to "*", which matches all directories.
+        /// </param>
+        /// <param name="directorySearchOptions">
+        /// Specifies whether the enumeration includes only the current directory (TopDirectoryOnly) or also subdirectories.
+        /// Defaults to SearchOption.TopDirectoryOnly.
+        /// </param>
+        /// <param name="ignoreCase">Indicates if the search should be case-insensitive. Defaults to true.</param>
+        /// <returns>
+        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found in the specified path based on the provided parameters.
+        /// </returns>
+        public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern,
+            SearchOption directorySearchOptions, bool ignoreCase = true)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            return directoryInfo.SafelyGetDirectories(searchPattern, directorySearchOptions, ignoreCase);
+        }
+        #endregion
+    }
 }

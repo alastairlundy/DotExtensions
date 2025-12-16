@@ -224,4 +224,99 @@ public static partial class SafeIOEnumerationExtensions
     }
 
     #endregion
+
+    /// <summary>
+    /// Contains extension methods for performing safe file and directory enumerations
+    /// to avoid common exceptions caused by inaccessible or locked file system entries.
+    /// </summary>
+    extension(Directory)
+    {
+        #region Safe File Enumeration (Static Directory C# 14 extensions)
+
+        /// <summary>
+        /// Safely enumerates files in the specified directory.
+        /// </summary>
+        /// <param name="path">
+        /// The path to the directory from which to enumerate files. This can be a relative or absolute path.
+        /// </param>
+        /// <returns>
+        /// An enumerable collection of <see cref="FileInfo"/> objects representing the files in the directory.
+        /// If there is an issue accessing the directory, this method will return an empty enumerable.
+        /// </returns>
+        public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path)
+            => SafelyEnumerateFiles(path, "*");
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="searchPattern"></param>
+        /// <returns></returns>
+        public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern)
+            => SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// Safely enumerates files in the specified directory.
+        /// </summary>
+        /// <param name="path">
+        /// The path to the directory from which to enumerate files.
+        /// </param>
+        /// <param name="searchPattern">
+        /// The search pattern for the files. Defaults to "*".
+        /// </param>
+        /// <param name="directorySearchOption">
+        /// Specifies whether the enumeration includes only the current directory or all subdirectories as well.
+        /// Defaults to SearchOption.TopDirectoryOnly.
+        /// </param>
+        /// <param name="ignoreCase">
+        /// Indicates whether the search pattern should be case-sensitive. Defaults to false (case-insensitive).
+        /// </param>
+        /// <returns>
+        /// An array of FileInfo objects representing the files in the directory that match the specified criteria.
+        /// If no files are found or if an error occurs, null is returned instead.
+        /// </returns>
+        public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern,
+            SearchOption directorySearchOption, bool ignoreCase = true)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            return directoryInfo.SafelyGetFiles(searchPattern, directorySearchOption, ignoreCase);
+        }
+
+        #endregion
+        #region Safe File Getting (Static Directory C# 14 extensions)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static FileInfo[] SafelyGetFiles(string path)
+            => SafelyGetFiles(path,"*");
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="searchPattern"></param>
+        /// <returns></returns>
+        public static FileInfo[] SafelyGetFiles(string path,string searchPattern)
+            => SafelyGetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="searchPattern"></param>
+        /// <param name="directorySearchOptions"></param>
+        /// <param name="ignoreCase"></param>
+        /// <returns></returns>
+        public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions, bool ignoreCase = true)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            
+            return directoryInfo.SafelyGetFiles(searchPattern, directorySearchOptions, ignoreCase);
+        }
+        #endregion
+    }
 }
