@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 // ReSharper disable ConvertClosureToMethodGroup
 
 namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
@@ -47,7 +46,7 @@ public static class SegmentCaseExtensions
             
             for (int i = 0; i < segment.Length; i++)
             {
-                if (char.IsLower(segment[i]) || char.IsLetter(segment[i]) == false)
+                if (char.IsLower(segment[i]) || !char.IsLetter(segment[i]))
                     return false;
             }
 
@@ -63,7 +62,7 @@ public static class SegmentCaseExtensions
 
             for (int i = 0; i < segment.Length; i++)
             {
-                if (char.IsUpper(segment[i]) || char.IsLetter(segment[i]) == false)
+                if (char.IsUpper(segment[i]) || !char.IsLetter(segment[i]))
                     return false;
             }
 
