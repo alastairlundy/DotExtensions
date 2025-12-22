@@ -23,7 +23,7 @@
  */
 
 using System.IO;
-using AlastairLundy.DotPrimitives.IO.Permissions.Windows;
+using DotPrimitives.IO.Permissions.Windows;
 
 namespace AlastairLundy.DotExtensions.IO.Permissions;
 
