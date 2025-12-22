@@ -1,16 +1,14 @@
 ﻿# DotExtensions.MsExtensions
 An extension method library that enhances the experience of using Microsoft.Extensions.* packages with useful features.
 
-**NOTE**: Version 9.0 and onwards requires projects using DotExtension.MsExtensions to set C# language version to 14 or higher.
+**NOTE**: Version 9.0 and onwards requires projects using DotExtension.MsExtensions to set the C# language version to 14 or higher.
 
-
-[DotExtensions](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/) [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions/)
+[DotExtensions](https://www.nuget.org/packages/DotExtensions.MsExtensions/) [![NuGet](https://img.shields.io/nuget/v/DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/DotExtensions.MsExtensions/)  [![NuGet](https://img.shields.io/nuget/dt/DotExtensions.MsExtensions.svg)](https://www.nuget.org/packages/DotExtensions.MsExtensions/)
 
 ## Table of Contents
 * [Features](#features)
 * [Installing](#how-to-install-and-use-dotextensionsmsextensions)
     * [Compatibility](#compatibility)
-* [Contributing](#how-to-contribute)
 * [Roadmap](#roadmap)
 * [License](#license)
 
@@ -26,9 +24,9 @@ An extension method library that enhances the experience of using Microsoft.Exte
 ## How to install and use DotExtensions.MsExtensions
 DotExtensions.MsExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
-| Package Name                             | Nuget Link                                                                                               | .NET SDK CLI command                                            |
-|------------------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| AlastairLundy.DotExtensions.MsExtensions | [AlastairLundy.DotExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions) | ``dotnet add package AlastairLundy.DotExtensions.MsExtensions`` |
+| Package Name               | Nuget Link                                                                   | .NET SDK CLI command                              |
+|----------------------------|------------------------------------------------------------------------------|---------------------------------------------------|
+| DotExtensions.MsExtensions | [DotExtensions Nuget](https://nuget.org/packages/DotExtensions.MsExtensions) | ``dotnet add package DotExtensions.MsExtensions`` |
 
 
 ### Compatibility

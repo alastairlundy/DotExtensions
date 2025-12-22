@@ -3,11 +3,11 @@ An extension member library that enhances the experience of using .NET's types w
 
 Now updated to take advantage of C# 14 as of version 9.
 
-**NOTE**: Version 9.0 and onwards requires projects using DotExtension to set C# language version to 14 or higher.
+**NOTE**: Version 9.0 and onwards requires projects using DotExtension to set the C# language version to 14 or higher.
 
-[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
-[![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
-[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.DotExtensions.svg)](https://www.nuget.org/packages/AlastairLundy.DotExtensions/)
+[![NuGet](https://img.shields.io/nuget/v/DotExtensions.svg)](https://www.nuget.org/packages/DotExtensions/)
+[![Latest Pre-release NuGet](https://img.shields.io/nuget/vpre/DotExtensions.svg)](https://www.nuget.org/packages/DotExtensions/)
+[![NuGet](https://img.shields.io/nuget/dt/DotExtensions.svg)](https://www.nuget.org/packages/DotExtensions/)
 ![License](https://img.shields.io/github/license/alastairlundy/DotExtensions)
 
 
@@ -21,21 +21,21 @@ Now updated to take advantage of C# 14 as of version 9.
 
 ## Features
 * Empty directory detection via ``IsDirectoryEmpty`` extension method for the ``DirectoryInfo`` class.
-* Support for comparing versions via easy to understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
+* Support for comparing versions via easy-to-understand methods e.g. ``version.IsNewerThan(Version otherVersion)`` etc.
 * DateTime and DateOnly extensions e.g. DateOnly's ToDateTime extension
 * Support for Detecting and Removing Special Characters
 * Support for Detecting and Removing Escape Characters
 
-^1 - StringSegment extensions are part of the ``AlastairLundy.DotExtensions.MsExtensions`` package.
+^1 - StringSegment extensions are part of the ``DotExtensions.MsExtensions`` package.
 
 ## How to install and use DotExtensions
 DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
-| Package Name                             | Nuget Link                                                                                                            | .NET SDK CLI command                                            |
-|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| AlastairLundy.DotExtensions              | [AlastairLundy.DotExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions)                           | ``dotnet add package AlastairLundy.DotExtensions``              |
-| AlastairLundy.DotExtensions.Memory       | [AlastairLundy.DotExtensions.Memory Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.Memory)             | ``dotnet add package AlastairLundy.DotExtensions.Memory``       |
-| AlastairLundy.DotExtensions.MsExtensions | [AlastairLundy.DotExtensions.MsExtensions Nuget](https://nuget.org/packages/AlastairLundy.DotExtensions.MsExtensions) | ``dotnet add package AlastairLundy.DotExtensions.MsExtensions`` |
+| Package Name               | Nuget Link                                                                                | .NET SDK CLI command                              |
+|----------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
+| DotExtensions              | [DotExtensions Nuget](https://nuget.org/packages/DotExtensions)                           | ``dotnet add package DotExtensions``              |
+| DotExtensions.Memory       | [DotExtensions.Memory Nuget](https://nuget.org/packages/DotExtensions.Memory)             | ``dotnet add package DotExtensions.Memory``       |
+| DotExtensions.MsExtensions | [DotExtensions.MsExtensions Nuget](https://nuget.org/packages/DotExtensions.MsExtensions) | ``dotnet add package DotExtensions.MsExtensions`` |
 
 
 ### Compatibility
