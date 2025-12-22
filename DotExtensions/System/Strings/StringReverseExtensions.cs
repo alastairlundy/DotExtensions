@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides functionality for reversing the contents of a string.

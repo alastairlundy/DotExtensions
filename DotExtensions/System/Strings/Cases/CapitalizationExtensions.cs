@@ -24,7 +24,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for capitalizing characters within strings.

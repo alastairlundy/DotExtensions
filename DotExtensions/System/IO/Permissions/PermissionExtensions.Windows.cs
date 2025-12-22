@@ -24,7 +24,7 @@
 
 using DotPrimitives.IO.Permissions.Windows;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions;
+namespace DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions
 {

@@ -28,7 +28,7 @@ using System.Linq;
 
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.IO.Directories;
+namespace DotExtensions.IO.Directories;
 
 /// <summary>
 /// Contains extension methods for performing safe file and directory enumerations

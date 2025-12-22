@@ -25,7 +25,7 @@
 using System.IO;
 using DotPrimitives.IO.Permissions.Windows;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions.Windows;
+namespace DotExtensions.IO.Permissions.Windows;
 
 /// <summary>
 /// 

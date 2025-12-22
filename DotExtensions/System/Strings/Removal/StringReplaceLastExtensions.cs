@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for string manipulations focused on replacing the first or last occurrence of a substring.

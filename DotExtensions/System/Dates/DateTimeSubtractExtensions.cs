@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Dates;
+namespace DotExtensions.Dates;
 
 /// <summary>
 /// Provides extension methods for subtracting various time intervals or other DateTime values

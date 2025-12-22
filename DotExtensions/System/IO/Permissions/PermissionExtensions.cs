@@ -25,7 +25,7 @@
 using System.IO;
 using DotPrimitives.IO.Permissions.Windows;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions;
+namespace DotExtensions.IO.Permissions;
 
 /// <summary>
 /// Provides extension methods related to Windows and Unix file mode permission checks.

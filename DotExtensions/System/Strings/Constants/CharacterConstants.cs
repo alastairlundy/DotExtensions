@@ -23,7 +23,7 @@
    */
 
 // ReSharper disable ConvertToAutoProperty
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides predefined constants related to characters, specifically escape characters.

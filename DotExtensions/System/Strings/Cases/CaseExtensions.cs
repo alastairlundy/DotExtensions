@@ -26,7 +26,7 @@ using System.Linq;
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for string case-related operations.

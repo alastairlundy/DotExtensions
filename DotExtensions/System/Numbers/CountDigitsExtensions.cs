@@ -28,7 +28,7 @@ using System.Numerics;
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.Numbers;
+namespace DotExtensions.Numbers;
 
 /// <summary>
 /// Provides an extension method for counting the number of digits in numerical values that implement Generic Numerics' INumber{TSelf}.

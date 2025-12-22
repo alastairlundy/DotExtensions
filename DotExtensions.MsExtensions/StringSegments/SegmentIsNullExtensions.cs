@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// A class to hold StringSegment extension methods to check if a StringSegment is null, empty,

@@ -24,7 +24,7 @@
 
 using System.Security;
 
-namespace AlastairLundy.DotExtensions.Exceptions;
+namespace DotExtensions.Exceptions;
 
 /// <summary>
 /// Provides extension methods for working with <see cref="ArgumentException"/>

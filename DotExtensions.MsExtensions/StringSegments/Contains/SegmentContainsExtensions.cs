@@ -26,7 +26,7 @@
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// A class to hold extension methods for checking if a StringSegment Contains an item.

@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// Provides extension methods for converting <see cref="StringSegment"/> objects into various character collections.

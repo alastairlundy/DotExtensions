@@ -24,7 +24,7 @@
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.

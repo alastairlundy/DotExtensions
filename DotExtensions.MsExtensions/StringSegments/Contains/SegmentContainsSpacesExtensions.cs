@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
 /// Provides extension methods for performing operations related to spaces within <see cref="StringSegment"/> instances.

@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Memory;
+namespace DotExtensions.Memory;
 
 /// <summary>
 /// Provides extension methods for working with spans.

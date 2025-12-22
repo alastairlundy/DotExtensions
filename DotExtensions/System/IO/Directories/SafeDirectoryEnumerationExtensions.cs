@@ -25,7 +25,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security;
 
 // ReSharper disable InconsistentNaming
 
@@ -34,7 +33,7 @@ using System.Security;
 using System.Linq;
 #endif
 
-namespace AlastairLundy.DotExtensions.IO.Directories;
+namespace DotExtensions.IO.Directories;
 
 public static partial class SafeIOEnumerationExtensions
 {

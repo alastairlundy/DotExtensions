@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using AlastairLundy.DotExtensions.IO.Directories;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Mathematics;
+using DotExtensions.IO.Directories;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 

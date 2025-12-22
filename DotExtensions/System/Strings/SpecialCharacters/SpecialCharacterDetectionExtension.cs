@@ -24,7 +24,7 @@
 
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for handling special characters in strings and characters.

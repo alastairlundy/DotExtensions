@@ -25,7 +25,7 @@
 using System.IO;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.IO.Directories;
+namespace DotExtensions.IO.Directories;
 
 /// <summary>
 /// Provides extension methods for directory operations.

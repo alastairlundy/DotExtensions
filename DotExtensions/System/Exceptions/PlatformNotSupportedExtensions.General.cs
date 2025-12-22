@@ -26,7 +26,7 @@ using System.Linq;
 
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.DotExtensions.Exceptions;
+namespace DotExtensions.Exceptions;
 
 /// <summary>
 /// Contains extension methods for enhancing the handling of <see cref="PlatformNotSupportedException"/> exceptions.

@@ -25,7 +25,7 @@
 using System.IO;
 using System.Linq;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
+namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>
 /// 

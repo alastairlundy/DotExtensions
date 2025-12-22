@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Numbers;
+namespace DotExtensions.Numbers;
 
 /// <summary>
 /// Provides static extension methods for working with number ranges.

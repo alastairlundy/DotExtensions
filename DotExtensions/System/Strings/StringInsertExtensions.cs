@@ -24,7 +24,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for inserting characters or a range of characters into a string at a specified position.

@@ -23,9 +23,9 @@
    */
 
 using System.IO;
-using AlastairLundy.DotExtensions.Numbers;
+using DotExtensions.Numbers;
 
-namespace AlastairLundy.DotExtensions.IO;
+namespace DotExtensions.IO;
 
 /// <summary>
 /// Provides extension methods for working with file sizes in a more human-readable format.

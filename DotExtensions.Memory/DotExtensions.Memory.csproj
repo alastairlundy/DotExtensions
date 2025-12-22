@@ -4,10 +4,8 @@
     <LangVersion>14</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>AlastairLundy.DotExtensions.Memory</AssemblyName>
-    <RootNamespace>AlastairLundy.DotExtensions.Memory</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>AlastairLundy.DotExtensions.Memory</PackageId>
+    <PackageId>DotExtensions.Memory</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeSymbols>true</IncludeSymbols>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

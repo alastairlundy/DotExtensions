@@ -24,7 +24,7 @@
 
 #if NET8_0_OR_GREATER
 
-namespace AlastairLundy.DotExtensions.Dates;
+namespace DotExtensions.Dates;
 
 
 /// <summary>

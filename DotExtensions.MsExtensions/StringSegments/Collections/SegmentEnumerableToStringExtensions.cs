@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringSegments.Collections;
+namespace DotExtensions.MsExtensions.StringSegments.Collections;
 
 /// <summary>
 /// Provides string manipulation extensions for sequences of StringSegments.

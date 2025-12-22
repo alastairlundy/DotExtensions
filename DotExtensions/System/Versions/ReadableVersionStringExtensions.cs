@@ -23,7 +23,7 @@
    */
 
 
-namespace AlastairLundy.DotExtensions.Versions;
+namespace DotExtensions.Versions;
 
 /// <summary>
 /// Provides extension methods for working with

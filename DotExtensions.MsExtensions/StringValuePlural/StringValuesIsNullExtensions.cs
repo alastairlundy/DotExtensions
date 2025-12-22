@@ -25,7 +25,7 @@
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
+namespace DotExtensions.MsExtensions.StringValuePlural;
 
 /// <summary>
 /// Provides extension methods for working with <see cref="StringValues"/> to determine

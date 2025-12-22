@@ -25,7 +25,7 @@
 #if NET8_0_OR_GREATER
 using System.IO;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions.Unix;
+namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>
 /// Contains extension methods for handling Unix file permission operations.

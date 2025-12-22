@@ -25,9 +25,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Version>9.3.0-preview.1</Version>
-    <RootNamespace>AlastairLundy.DotExtensions</RootNamespace>
-    <AssemblyName>AlastairLundy.DotExtensions</AssemblyName>
-    <PackageId>AlastairLundy.DotExtensions</PackageId>
+    <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>

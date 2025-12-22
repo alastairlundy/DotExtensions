@@ -23,9 +23,9 @@
    */
 
 using System.IO;
-using AlastairLundy.DotExtensions.IO.Directories;
+using DotExtensions.IO.Directories;
 
-namespace AlastairLundy.DotExtensions.IO.Drives;
+namespace DotExtensions.IO.Drives;
 
 /// <summary>
 /// Provides extension methods for working with drive-related operations.

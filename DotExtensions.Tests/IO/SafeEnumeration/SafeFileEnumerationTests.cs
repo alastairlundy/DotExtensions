@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using AlastairLundy.DotExtensions.IO.Directories;
+using DotExtensions.IO.Directories;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
 

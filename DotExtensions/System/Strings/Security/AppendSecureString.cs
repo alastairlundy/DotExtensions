@@ -25,7 +25,7 @@
 using System.Collections.Generic;
 using System.Security;
 
-namespace AlastairLundy.DotExtensions.Strings.Security;
+namespace DotExtensions.Strings.Security;
 
 /// <summary>
 /// Provides extension methods for securely modifying instances of <see cref="SecureString"/>.

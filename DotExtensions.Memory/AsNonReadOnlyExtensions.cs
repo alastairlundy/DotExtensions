@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Memory;
+namespace DotExtensions.Memory;
 
 /// <summary>
 /// Provides extension methods for converting <see cref="ReadOnlyMemory{T}"/> or <see cref="ReadOnlySpan{T}"/> instances

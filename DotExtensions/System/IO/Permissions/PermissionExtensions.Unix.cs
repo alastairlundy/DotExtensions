@@ -24,7 +24,7 @@
 
 using System.IO;
 
-namespace AlastairLundy.DotExtensions.IO.Permissions;
+namespace DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions
 {

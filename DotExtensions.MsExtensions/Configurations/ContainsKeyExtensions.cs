@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.Configurations;
+namespace DotExtensions.MsExtensions.Configurations;
 
 /// <summary>
 /// Provides extension methods for working with configurations in Microsoft.Extensions.Configuration.

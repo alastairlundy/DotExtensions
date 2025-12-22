@@ -27,7 +27,7 @@ using System.Linq;
 
 // ReSharper disable ConvertClosureToMethodGroup
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for working with strings related to escape character detection and removal.

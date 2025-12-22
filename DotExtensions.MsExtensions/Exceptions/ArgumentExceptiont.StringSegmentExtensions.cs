@@ -22,7 +22,9 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.MsExtensions.Exceptions;
+using DotExtensions.MsExtensions.StringSegments;
+
+namespace DotExtensions.MsExtensions.Exceptions;
 
 /// <summary>
 /// Provides extension methods for working with <see cref="ArgumentException"/> in combination

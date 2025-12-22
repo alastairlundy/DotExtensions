@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace DotExtensions.Memory.Spans;
 
 /// <summary>
 /// Provides extension methods for performing copy operations on <see cref="Span{T}"/> instances.

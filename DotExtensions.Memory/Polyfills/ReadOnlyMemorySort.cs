@@ -24,7 +24,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.DotExtensions.Memory;
+namespace DotExtensions.Memory;
 
 /// <summary>
 /// Provides extension methods for sorting operations on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/>.

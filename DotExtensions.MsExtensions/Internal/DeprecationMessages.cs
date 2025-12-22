@@ -1,4 +1,4 @@
-namespace AlastairLundy.DotExtensions.MsExtensions.Internal;
+namespace DotExtensions.MsExtensions.Internal;
 
 internal static class DeprecationMessages
 {

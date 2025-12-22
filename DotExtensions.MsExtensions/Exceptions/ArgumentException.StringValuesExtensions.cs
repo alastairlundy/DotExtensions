@@ -22,8 +22,9 @@
        SOFTWARE.
    */
 
-using AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
+using DotExtensions.MsExtensions.StringValuePlural;
 
+namespace DotExtensions.MsExtensions.Exceptions;
 
 /// <summary>
 /// Provides extension methods for handling ArgumentException with string values.

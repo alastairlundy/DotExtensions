@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Memory.Spans;
+namespace DotExtensions.Memory.Spans;
 
 /// <summary>
 /// Provides extension methods for resizing spans in a safe and efficient manner.

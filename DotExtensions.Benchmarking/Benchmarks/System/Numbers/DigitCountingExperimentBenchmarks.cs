@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using AlastairLundy.DotExtensions.Numbers;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using DotExtensions.Numbers;
 
 namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 

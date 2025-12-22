@@ -23,11 +23,9 @@
    */
 
 using System.Collections.Generic;
-#if NET8_0_OR_GREATER
 using System.Numerics;
-#endif
 
-namespace AlastairLundy.DotExtensions.Numbers;
+namespace DotExtensions.Numbers;
 
 /// <summary>
 /// Provides methods for verifying if a sequence or list of numbers follows a specific incremental pattern.

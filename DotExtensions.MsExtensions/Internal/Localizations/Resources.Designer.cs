@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlastairLundy.DotExtensions.MsExtensions.Internal.Localizations {
+namespace DotExtensions.MsExtensions.Internal.Localizations {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

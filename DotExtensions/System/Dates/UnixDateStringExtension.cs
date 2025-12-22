@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Dates;
+namespace DotExtensions.Dates;
 
 /// <summary>
 /// Provides an extension method to format a DateTime object

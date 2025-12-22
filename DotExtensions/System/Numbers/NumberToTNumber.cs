@@ -26,7 +26,7 @@
 using System.Globalization;
 using System.Numerics;
 
-namespace AlastairLundy.DotExtensions.Numbers;
+namespace DotExtensions.Numbers;
 
 /// <summary>
 /// Provides extension methods for converting numbers between different number types.

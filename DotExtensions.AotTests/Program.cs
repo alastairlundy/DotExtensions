@@ -1,7 +1,9 @@
-using AlastairLundy.DotExtensions.Numbers;
 using AlastairLundy.DotExtensions.Strings;
-using AlastairLundy.DotExtensions.Memory.Spans;
 using DotExtensions.AotTests.Localizations;
+using DotExtensions.Memory.Spans;
+using DotExtensions.Numbers;
+using DotExtensions.Strings;
+
 // ReSharper disable LocalizableElement
 
 // This program intentionally exercises a small subset of the public APIs from the

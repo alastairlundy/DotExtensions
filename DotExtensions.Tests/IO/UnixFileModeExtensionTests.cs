@@ -1,5 +1,5 @@
 using System.IO;
-using AlastairLundy.DotExtensions.IO.Permissions;
+using DotExtensions.IO.Permissions;
 
 namespace DotExtensions.Tests.IO;
 

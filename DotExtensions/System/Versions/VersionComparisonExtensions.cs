@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Versions;
+namespace DotExtensions.Versions;
 
 /// <summary>
 /// Provides extension methods for comparing <see cref="Version"/> objects.

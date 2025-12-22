@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace AlastairLundy.DotExtensions.Memory;
+namespace DotExtensions.Memory;
 
 /// <summary>
 /// Provides a set of extension methods to facilitate the conversion of mutable memory structures to their read-only equivalents.
