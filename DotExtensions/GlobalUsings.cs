@@ -4,5 +4,5 @@ global using System;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Versioning;
 global using System.Text;
-global using AlastairLundy.DotExtensions.Exceptions;
-global using AlastairLundy.DotExtensions.Localizations;
+global using DotExtensions.Exceptions;
+global using DotExtensions.Localizations;

@@ -3,4 +3,5 @@
 global using System;
 global using System.Buffers;
 global using System.Linq;
-global using AlastairLundy.DotExtensions.Memory.Internal.Localizations;
+global using DotExtensions.Memory.Exceptions;
+global using DotExtensions.Memory.Internal.Localizations;

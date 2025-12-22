@@ -24,7 +24,6 @@
 
 using AlastairLundy.DotExtensions.MsExtensions.StringValuePlural;
 
-namespace AlastairLundy.DotExtensions.MsExtensions.Exceptions;
 
 /// <summary>
 /// Provides extension methods for handling ArgumentException with string values.
