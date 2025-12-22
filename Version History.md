@@ -3,6 +3,18 @@
 ## As DotExtensions
 
 ### Version 9.x
+### 9.3
+| Version | Release Date | Notes | 
+|-|-|-|
+| 9.3.0 | December 22nd 2025 | First release under shortened DotExtensions package Id |
+| 9.3.0 Preview 1 | December 16th 2025 |
+
+## As AlastairLundy.DotExtensions
+### 9.3
+| Version | Release Date | Notes | 
+|-|-|-|
+| 9.3.0 Preview 1 | December 16th 2025 |
+
 ### 9.2
 | Version | Release Date | Notes | 
 |-|-|-|
@@ -313,7 +325,7 @@
 | 3.0.1 | April 12th 2024 |
 | 3.0.0 | April 11th 2024| 
 
-## As a prior name.
+## Under Original Name
 
 ### Version 2.x
 
