@@ -7,13 +7,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.3.0-preview.1</Version>
+    <Version>9.3.0</Version>
     <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>* Shortened package namespaces and package IDs
+* Created ``ArgumentException`` static C#14 extension ``ThrowIfNullOrEmpty`` and ``ThrowIfNullOrWhiteSpace`` for ``StringValues``
+* ``ToList`` performance improvements</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>

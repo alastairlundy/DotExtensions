@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.3.0-preview.1</Version>
+    <Version>9.3.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
@@ -23,7 +23,9 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Potential performance improvements in some Span and Memory extensions
+    <PackageReleaseNotes>### Memory package
+* Shortened package namespaces and package IDs
+* Potentially improved performance in some Span and Memory extensions
 * Added ``AsSpan&lt;T&gt;`` and ``AsMemory&lt;T&gt;`` extensions for ``ReadOnlySpan&lt;T&gt;`` and ``ReadOnlyMemory&lt;T&gt;`` respectively
 * Added Memory Sort extensions for ``ReadOnlySpan&lt;T&gt;`` and ``ReadOnlyMemory&lt;T&gt;``
 * Added ``ToList`` extensions for ``ReadOnlySpan&lt;T&gt;`` and ``ReadOnlyMemory&lt;T&gt;``

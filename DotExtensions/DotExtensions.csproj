@@ -11,11 +11,14 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added ``Version`` methods ``Max`` and ``Min`` C#14 static extension methods.
+    <PackageReleaseNotes>### All packages
+* Shortened package namespaces and package IDs
+
+### Main package
+* Updated to DotPrimitives 4.1.0 from 4.0.0
+* Added ``Version`` methods ``Max`` and ``Min`` C#14 static extension methods.
 * Deprecated ``Version`` methods ``GetNewerVersion`` and ``GetOlderVersion`` for removal in v10 - Use the newly added ``Max`` and ``Min`` C#14 static extension methods instead.
-* Added ``Directory`` static C# extension methods for Safe File Enumeration and Safe Directory Enumeration
-* Fixed issues with .NET Standard 2.0 fallback for Safe File Enumeration &amp; Getting that would return empty sequences and arrays respectively - .NET 8+ method is unaffected. Backported to 9.2.x branch.
-* Fixed issues with .NET Standard 2.0 fallback for Safe Directory Enumeration_ &amp; Getting that would return empty sequences and arrays respectively - .NET 8+ method is unaffected. Backported to 9.2.x branch.</PackageReleaseNotes>
+* Added ``Directory`` static C# extension methods for Safe File Enumeration and Safe Directory Enumeration</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -24,7 +27,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.3.0-preview.1</Version>
+    <Version>9.3.0</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
