@@ -62,6 +62,32 @@ public static partial class PlatformNotSupportedExceptionExtensions
         }
 
         /// <summary>
+        /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform is one of the specified
+        /// <see cref="OSPlatform"/> values.
+        /// </summary>
+        /// <param name="exceptionMessage">
+        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        /// If not provided, a default message is used.
+        /// </param>
+        /// <param name="platforms">An array of <see cref="OSPlatform"/> values to check against the current platform.</param>
+        /// <exception cref="PlatformNotSupportedException">
+        /// Thrown when the current platform matches any of the specified <see cref="OSPlatform"/> values.
+        /// </exception>
+        public static void ThrowIfOSPlatform(string? exceptionMessage = null, params OSPlatform[] platforms)
+        {
+            foreach (OSPlatform platform in platforms)
+            {
+                if (RuntimeInformation.IsOSPlatform(platform))
+                {
+                    if (exceptionMessage is not null)
+                        throw new PlatformNotSupportedException(exceptionMessage);
+                    
+                    throw new PlatformNotSupportedException();
+                }
+            }
+        }
+
+        /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform does not match the
         /// specified <see cref="OSPlatform"/>.
         /// </summary>
@@ -80,6 +106,40 @@ public static partial class PlatformNotSupportedExceptionExtensions
                     throw new PlatformNotSupportedException(exceptionMessage);
                     
             throw new PlatformNotSupportedException();
+        }
+
+        /// <summary>
+        /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform does not match the
+        /// specified <see cref="OSPlatform"/>.
+        /// </summary>
+        /// <param name="platforms">The platforms to check against the current platform.</param>
+        /// <param name="exceptionMessage">
+        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        /// If not provided, a default message is used.
+        /// </param>
+        /// <exception cref="PlatformNotSupportedException">
+        /// Thrown when the current platform does not match the specified <see cref="OSPlatform"/>.
+        /// </exception>
+        public static void ThrowIfNotOSPlatform(string? exceptionMessage = null, params OSPlatform[] platforms)
+        {
+            bool foundOsPlatform = false;
+            
+            foreach (OSPlatform platform in platforms)
+            {
+                if (RuntimeInformation.IsOSPlatform(platform))
+                {
+                    foundOsPlatform = true;
+                    break;
+                }    
+            }
+
+            if (!foundOsPlatform)
+            {
+                if (exceptionMessage is not null)
+                    throw new PlatformNotSupportedException(exceptionMessage);
+                    
+                throw new PlatformNotSupportedException();
+            }
         }
 
         
