@@ -48,7 +48,7 @@ public static class ReadOnlyMemorySort
         /// </summary>
         /// <param name="values">The read-only span of values to be sorted in accordance with the order of the keys.</param>
         public void Sort(ref ReadOnlySpan<TValue> values)
-            => Sort(ref keys, ref values, Comparer<TKey>.Default);
+            => keys.Sort(ref values, Comparer<TKey>.Default);
         
         /// <summary>
         /// 
@@ -99,7 +99,7 @@ public static class ReadOnlyMemorySort
         /// Sorts the elements within the span using the default comparer.
         /// </summary>
         public void Sort()
-            => Sort(ref source, Comparer<T>.Default);
+            => source.Sort(Comparer<T>.Default);
 
         /// <summary>
         /// 

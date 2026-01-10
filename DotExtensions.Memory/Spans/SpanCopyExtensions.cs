@@ -42,7 +42,7 @@ public static class SpanCopyExtensions
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex
-        ) => OptimisticCopy(source, ref destination, startIndex, destination.Length);
+        ) => source.OptimisticCopy(ref destination, startIndex, destination.Length);
 
         /// <summary>
         /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
@@ -140,7 +140,7 @@ public static class SpanCopyExtensions
         try
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            OptimisticCopy(source, ref destination, startIndex);
+            source.OptimisticCopy(ref destination, startIndex);
 
             for (int i = startIndex; i < source.Length; i++)
             {
@@ -183,7 +183,7 @@ public static class SpanCopyExtensions
         try
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
-            OptimisticCopy(source, ref destination, startIndex, length);
+            source.OptimisticCopy(ref destination, startIndex, length);
 
             for (int i = startIndex; i < source.Length; i++)
             {
@@ -218,7 +218,8 @@ public static class SpanCopyExtensions
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex
-        ) => OptimisticCopy(source, ref destination, startIndex, destination.Length);
+        ) =>
+            source.OptimisticCopy(ref destination, startIndex, destination.Length);
 
         /// <summary>
         /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>

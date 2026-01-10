@@ -76,7 +76,7 @@ public static class ArgumentExceptionExtensions
                 throw new ArgumentNullException(name);
 
             SecureString whitespace = new();
-
+            
             for (int i = 0; i < secureString.Length; i++)
             {
                 whitespace.AppendChar(' ');
