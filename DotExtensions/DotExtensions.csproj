@@ -7,18 +7,16 @@
     <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;</TargetFrameworks>
     <Title>DotExtensions</Title>
     <Authors>Alastair Lundy</Authors>
-    <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
+    <Copyright>Copyright (c) Alastair Lundy 2024-2026</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>### All packages
-* Shortened package namespaces and package IDs
-
-### Main package
-* Updated to DotPrimitives 4.1.0 from 4.0.0
-* Added ``Version`` methods ``Max`` and ``Min`` C#14 static extension methods.
-* Deprecated ``Version`` methods ``GetNewerVersion`` and ``GetOlderVersion`` for removal in v10 - Use the newly added ``Max`` and ``Min`` C#14 static extension methods instead.
-* Added ``Directory`` static C# extension methods for Safe File Enumeration and Safe Directory Enumeration</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added ``OperatingSystem`` ``IsUnix`` extension
+* Re-add Process ``HasStarted`` extension member property
+* Added PlatformNotSupportedException throw method overloads with params arrays arguments
+* Add Process ``IsSupportedPlatform`` extension member
+* Added PlatformNotSupportException ``ThrowIfProcessClassNotSupported`` extension method
+* Updated internal Polyfill version from 9.6.0 to 9.7.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -27,7 +25,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.3.0</Version>
+    <Version>9.4.0-preview.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
