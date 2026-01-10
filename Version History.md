@@ -6,6 +6,7 @@
 ### 9.3
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.3.1 | January 10th 2026 | |
 | 9.3.0 | December 22nd 2025 | First release under shortened DotExtensions package Id |
 | 9.3.0 Preview 1 | December 16th 2025 |
 
