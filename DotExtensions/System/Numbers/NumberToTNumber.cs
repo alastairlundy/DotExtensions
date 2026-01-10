@@ -44,7 +44,7 @@ public static class NumberToTNumber
         /// <returns>The source number converted to the <see cref="INumber{TSelf}"/> type.</returns>
         public TNumber ToNumber<TNumber>()
             where TNumber : INumber<TNumber> 
-            => ToDestinationNumber<int, TNumber>(number);
+            => number.ToDestinationNumber<int, TNumber>();
     }
 
     /// <param name="number">The number to be converted.</param>
