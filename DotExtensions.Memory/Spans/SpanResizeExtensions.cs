@@ -50,13 +50,12 @@ public static class SpanResizeExtensions
 
             T[] newTargetArray = ArrayPool<T>.Shared.Rent(newSize);
             Span<T> destination = new(newTargetArray);
-            destination = destination.Slice(0, newSize);
 
             int endCopy = target.Length < newSize ? target.Length : newSize;
 
             target.OptimisticCopy(ref destination, 0, endCopy);
             
-            target = destination;
+            target = destination.Slice(0, newSize);
             ArrayPool<T>.Shared.Return(newTargetArray);
         }
     }

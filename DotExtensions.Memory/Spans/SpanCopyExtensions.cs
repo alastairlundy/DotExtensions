@@ -204,6 +204,7 @@ public static class SpanCopyExtensions
         }
     }
     #endregion
+    
     #region ReadOnlySpan version
     
     /// <param name="source">The source <see cref="ReadOnlySpan{T}"/>.</param>
@@ -257,15 +258,16 @@ public static class SpanCopyExtensions
 
             int actualLength = Math.Abs(end - startIndex);
             
-            T[] output = ArrayPool<T>.Shared.Rent(actualLength);
-           
+            T[] outputArray = ArrayPool<T>.Shared.Rent(actualLength);
+            Span<T> output = new Span<T>(outputArray);
+            
             for (int i = startIndex; i < end; i++)
             {
                 output[i] = source[i];
             }
 
-            destination = new Span<T>(output).Slice(0, actualLength);
-            ArrayPool<T>.Shared.Return(output);
+            destination = output.Slice(0, actualLength);
+            ArrayPool<T>.Shared.Return(outputArray);
         }
     }
 
