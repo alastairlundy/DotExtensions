@@ -38,6 +38,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the iOS platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfIOS(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsIOS())
@@ -55,6 +56,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception.
         /// If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the watchOS platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfWatchOS(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsWatchOS())
@@ -71,6 +73,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the tvOS platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfTvOS(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsTvOS())
@@ -87,6 +90,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on a browser platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfBrowser(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsBrowser())
@@ -103,6 +107,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Android platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfAndroid(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsAndroid())
@@ -123,6 +128,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown if the application is running on the macOS or Mac Catalyst platform.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfMacOs(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst())
@@ -139,6 +145,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Linux platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfLinux(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsLinux())
@@ -155,6 +162,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the FreeBSD platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfFreeBSD(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsFreeBSD())
@@ -171,6 +179,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="exceptionMessage">Optional exception message to include in the thrown exception. If null, a default message is used.</param>
         /// <exception cref="PlatformNotSupportedException">Thrown if the application is running on the Windows platform.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfWindows(string? exceptionMessage = null)
         {
             if (OperatingSystem.IsWindows())
