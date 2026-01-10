@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 // ReSharper disable ConvertClosureToMethodGroup
 
 namespace DotExtensions.MsExtensions.StringValuePlural;
