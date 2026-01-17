@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System.IO;
 using System.Linq;
 
 namespace DotExtensions.IO.Directories;
