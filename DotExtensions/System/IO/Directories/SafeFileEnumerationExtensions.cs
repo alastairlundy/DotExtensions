@@ -77,7 +77,8 @@ public static partial class SafeIOEnumerationExtensions
         }
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
-        private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption,
+ bool ignoreCase)
         {
             EnumerationOptions enumerationOptions = new()
             {
@@ -94,9 +95,10 @@ public static partial class SafeIOEnumerationExtensions
         /// <summary>
         /// This method is internal for Benchmarking and Unit Testing purposes only.
         /// </summary>
-        /// <remarks>DO NOT CALL this method from within DotExtensions. Use <see cref="SafeIOEnumerationExtensions.SafelyEnumerateFiles(System.IO.DirectoryInfo)"/> instead.</remarks>
-        internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
-            bool ignoreCase)
+        /// <remarks>DO NOT CALL this method from within DotExtensions. Use
+        /// <see cref="SafeIOEnumerationExtensions.SafelyEnumerateFiles(System.IO.DirectoryInfo)"/> instead.</remarks>
+        internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, 
+            SearchOption searchOption, bool ignoreCase)
         {
             if (!directoryInfo.Exists)
                 throw new DirectoryNotFoundException();
@@ -116,7 +118,8 @@ public static partial class SafeIOEnumerationExtensions
 
             foreach (FileInfo fileInfo in files)
             {
-                StringComparison stringComparison = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+                StringComparison stringComparison = ignoreCase ? StringComparison.OrdinalIgnoreCase : 
+                    StringComparison.Ordinal;
 
                 if (searchPattern != "*" && searchPattern != "?")
                 {
@@ -180,7 +183,8 @@ public static partial class SafeIOEnumerationExtensions
         }
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
-        private FileInfo[] SafeFileGetting_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        private FileInfo[] SafeFileGetting_Net8Plus(string searchPattern, SearchOption searchOption, 
+bool ignoreCase)
         {
             EnumerationOptions enumerationOptions = new()
             {
