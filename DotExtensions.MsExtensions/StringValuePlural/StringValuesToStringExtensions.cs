@@ -32,17 +32,27 @@ public static class StringValuesToStringExtensions
     extension(StringValues strValues)
     {
         /// <summary>
-        /// 
+        /// Converts the StringValues instance to its string representation
+        /// using a default separator (' ').
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// A string that concatenates the values in the StringValues instance,
+        /// separated by the default character (' ').
+        /// </returns>
         public string ToString()
             => strValues.ToString(' ');
-        
+
         /// <summary>
-        /// 
+        /// Converts the StringValues instance to its string representation
+        /// using the specified character as a separator.
         /// </summary>
-        /// <param name="separator"></param>
-        /// <returns></returns>
+        /// <param name="separator">
+        /// The character used to separate the values in the StringValues instance.
+        /// </param>
+        /// <returns>
+        /// A string that concatenates the values in the StringValues instance,
+        /// separated by the specified character.
+        /// </returns>
         public string ToString(char separator)
         {
             StringBuilder stringBuilder = new();
@@ -63,12 +73,18 @@ public static class StringValuesToStringExtensions
             
             return output;
         }
-        
+
         /// <summary>
-        /// 
+        /// Converts the StringValues instance to its string representation
+        /// using a default separator (' ').
         /// </summary>
-        /// <param name="separator"></param>
-        /// <returns></returns>
+        /// <param name="separator">
+        /// The string used to separate the values in the StringValues instance.
+        /// </param>
+        /// <returns>
+        /// A string that concatenates the values in the StringValues instance,
+        /// separated by the default character (' ').
+        /// </returns>
         public string ToString(string separator)
         {
             StringBuilder stringBuilder = new();
@@ -85,7 +101,8 @@ public static class StringValuesToStringExtensions
             string output = stringBuilder.ToString();
             
             if(output.EndsWith($"{separator}"))
-                output = output.Remove(output.Length - separator.Length, separator.Length);
+                output = output.Remove(output.Length - separator.Length,
+                    separator.Length);
             
             return output;
         }
