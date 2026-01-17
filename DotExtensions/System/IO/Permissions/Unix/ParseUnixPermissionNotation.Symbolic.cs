@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.IO;
-
 namespace DotExtensions.IO.Permissions.Unix;
 
 public static partial class UnixPermissionsExtensions

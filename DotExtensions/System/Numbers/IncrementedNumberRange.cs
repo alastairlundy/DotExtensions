@@ -42,8 +42,7 @@ public static class IncrementedNumberRange
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-        public bool IsIncrementedNumberRange(TNumber expectedIncrement
-        )
+        public bool IsIncrementedNumberRange(TNumber expectedIncrement)
         {
             ArgumentNullException.ThrowIfNull(source);
 
@@ -73,8 +72,7 @@ public static class IncrementedNumberRange
         /// </summary>
         /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
         /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-        public bool IsIncrementedNumberRange(TNumber expectedIncrement
-        )
+        public bool IsIncrementedNumberRange(TNumber expectedIncrement)
         {
             ArgumentNullException.ThrowIfNull(source);
 
