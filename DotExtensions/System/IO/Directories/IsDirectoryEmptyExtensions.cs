@@ -50,18 +50,10 @@ public static class IsDirectoryEmptyExtensions
 
                 if (!Directory.Exists(directory.FullName))
                     throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName)
-                    );
+                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
 
-                try
-                {
-                    return !directory.EnumerateFiles().Any()
-                           && !directory.EnumerateDirectories().Any();
-                }
-                catch(UnauthorizedAccessException)
-                {
-                    return false;
-                }
+                return !directory.SafelyEnumerateFiles().Any() &&
+                       !directory.SafelyEnumerateDirectories().Any();
             }
         }
     }
