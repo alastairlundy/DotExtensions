@@ -24,7 +24,10 @@
 
 using System.Collections.Generic;
 using System.IO;
+
+#if NETSTANDARD2_0
 using System.Linq;
+#endif
 
 // ReSharper disable InconsistentNaming
 
@@ -48,7 +51,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </summary>
         /// <returns>Returns an enumerable collection of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles()
-            => SafelyEnumerateFiles(directoryInfo, "*");
+            => directoryInfo.SafelyEnumerateFiles("*");
 
         /// <summary>
         /// Safely enumerates files in the specified directory, handling inaccessible or special directories
@@ -57,7 +60,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern">The search string to match against the names of files in the directory.</param>
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern)
-            => SafelyEnumerateFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+            => directoryInfo.SafelyEnumerateFiles(searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates files in the specified directory, handling inaccessible or special directories
@@ -78,7 +81,8 @@ public static partial class SafeIOEnumerationExtensions
         }
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
-        private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
+        private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption,
+            bool ignoreCase)
         {
             EnumerationOptions enumerationOptions = new()
             {
@@ -91,8 +95,8 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
-#endif
-        internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
+#else
+        private IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
             bool ignoreCase)
         {
             if (!directoryInfo.Exists)
@@ -113,7 +117,8 @@ public static partial class SafeIOEnumerationExtensions
 
             foreach (FileInfo fileInfo in files)
             {
-                StringComparison stringComparison = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+                StringComparison stringComparison =
+                    ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
                 if (searchPattern != "*" && searchPattern != "?")
                 {
@@ -128,8 +133,9 @@ public static partial class SafeIOEnumerationExtensions
                 }
             }
         }
-    }
 
+#endif
+    }
     #endregion
 
     #region Safely Get Files
@@ -146,7 +152,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </summary>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles()
-            => SafelyGetFiles(directoryInfo, "*");
+            => directoryInfo.SafelyGetFiles("*");
 
         /// <summary>
         /// Safely retrieves an array of files in the specified directory, optionally using a search pattern,
@@ -155,7 +161,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern">The search string used to match file names. The default is "*".</param>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles(string searchPattern)
-            => SafelyGetFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+            => directoryInfo.SafelyGetFiles(searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely retrieves an array of files from the specified directory, using the provided
@@ -214,7 +220,7 @@ public static partial class SafeIOEnumerationExtensions
         /// If there is an issue accessing the directory, this method will return an empty enumerable.
         /// </returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path)
-            => SafelyEnumerateFiles(path, "*");
+            => Directory.SafelyEnumerateFiles(path, "*");
         
         /// <summary>
         /// 
@@ -223,7 +229,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern"></param>
         /// <returns></returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern)
-            => SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+            => Directory.SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates files in the specified directory.
@@ -261,7 +267,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="path"></param>
         /// <returns></returns>
         public static FileInfo[] SafelyGetFiles(string path)
-            => SafelyGetFiles(path,"*");
+            => Directory.SafelyGetFiles(path,"*");
 
         /// <summary>
         /// 
@@ -270,7 +276,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern"></param>
         /// <returns></returns>
         public static FileInfo[] SafelyGetFiles(string path,string searchPattern)
-            => SafelyGetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+            => Directory.SafelyGetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// 
