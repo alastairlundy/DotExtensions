@@ -256,7 +256,7 @@ public static partial class SafeIOEnumerationExtensions
         /// during directory traversal. </summary>
         /// <param name="path"> The path to enumerate directories from. </param>
         /// <returns> A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified
-        /// path based on default search pattern "*".</returns>
+        /// path based on the default search pattern "*".</returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path)
             => SafelyEnumerateDirectories(path, "*");
 
@@ -268,7 +268,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </param>
         /// <param name="searchPattern"></param> <returns>
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based
-        /// on default search pattern "*".
+        /// on the default search pattern "*".
         /// </returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern)
             => SafelyEnumerateDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
@@ -285,7 +285,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="directorySearchOption"> Specifies whether to enumerate only the top-level directory or recursively through all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.
         /// </param>
         /// <param name="ignoreCase">
-        /// A boolean indicating whether the search should be case-insensitive. Defaults to true, meaning it will ignore case during enumeration.
+        /// A boolean indicating whether the search should be case-insensitive. Defaults to true, meaning it will ignore the case during enumeration.
         /// </param>
         /// <returns>
         /// An enumerable collection of <see cref="DirectoryInfo"/> objects representing the directories found in the specified path based on the provided parameters.
@@ -333,7 +333,7 @@ public static partial class SafeIOEnumerationExtensions
         /// This method safely retrieves a collection of <see cref="DirectoryInfo"/> objects representing directories found at the given path,
         /// taking into account potential accessibility issues and exceptions during enumeration.
         /// </summary>
-        /// <param name="path">The path to enumerate directories from.</param>
+        /// <param name="path">The path to retrieve directories from.</param>
         /// <param name="searchPattern">
         /// The search pattern to filter directories. Defaults to "*", which matches all directories.
         /// </param>
