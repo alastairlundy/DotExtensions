@@ -224,11 +224,11 @@ bool ignoreCase)
             => Directory.SafelyEnumerateFiles(path, "*");
 
         /// <summary>
-        /// 
+        /// Safely enumerates files in the specified directory, handling inaccessible or special directories gracefully.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="searchPattern"></param>
-        /// <returns></returns>
+        /// <param name="path">The path of the directory to search for files.</param>
+        /// <param name="searchPattern">The search string to match against file names in the directory.</param>
+        /// <returns>Returns an enumerable collection of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern)
             => Directory.SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
 
@@ -263,31 +263,40 @@ bool ignoreCase)
         #region Safe File Getting (Static Directory C# 14 extensions)
 
         /// <summary>
-        /// 
+        /// Safely retrieves an array of files in the specified directory, handling potential errors
+        /// such as inaccessible files or directories gracefully.
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">
+        /// The path to the directory from which to retrieve files. This can be a relative or absolute path.
+        /// </param>
+        /// <returns>
+        /// An array of <see cref="FileInfo"/> objects representing the files in the directory.
+        /// If there is an issue accessing the directory, this method will return an empty array.
+        /// </returns>
         public static FileInfo[] SafelyGetFiles(string path)
             => Directory.SafelyGetFiles(path, "*");
 
         /// <summary>
-        /// 
+        /// Retrieves an array of <see cref="FileInfo"/> objects that represent the files in the specified directory,
+        /// handling inaccessible or locked files gracefully.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="searchPattern"></param>
-        /// <returns></returns>
-        public static FileInfo[] SafelyGetFiles(string path,string searchPattern)
-            => SafelyGetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+        /// <param name="path">The directory path to search for files.</param>
+        /// <param name="searchPattern">The search string to match against file names. Wildcards can be used.</param>
+        /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the specified directory.</returns>
+        public static FileInfo[] SafelyGetFiles(string path, string searchPattern)
+            => Directory.SafelyGetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
-        /// 
+        /// Safely retrieves an array of <see cref="FileInfo"/> objects representing the files in the specified directory,
+        /// handling exceptions caused by locked or inaccessible files gracefully.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="searchPattern"></param>
-        /// <param name="directorySearchOptions"></param>
-        /// <param name="ignoreCase"></param>
-        /// <returns></returns>
-        public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions, bool ignoreCase = true)
+        /// <param name="path">The directory path to search for files.</param>
+        /// <param name="searchPattern">The search string to match against file names. Wildcards can be used.</param>
+        /// <param name="directorySearchOptions">Specifies whether to search all subdirectories or only the current directory.</param>
+        /// <param name="ignoreCase">Indicates whether the search should be case-insensitive. Defaults to false.</param>
+        /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files found in the directory.</returns>
+        public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions,
+            bool ignoreCase = true)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
 
