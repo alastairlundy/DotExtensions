@@ -37,21 +37,24 @@ public static class VersionComparisonExtensions
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than or equal to this version, returns false otherwise.</returns>
-        public bool IsAtLeast(Version versionToBeCompared) => versionToBeCompared >= version;
+        public bool IsAtLeast(Version versionToBeCompared) 
+            => versionToBeCompared >= version;
 
         /// <summary>
         /// Returns whether this version is older than the current Version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is older than this version, returns false otherwise.</returns>
-        public bool IsOlderThan(Version versionToBeCompared) => versionToBeCompared < version;
+        public bool IsOlderThan(Version versionToBeCompared) 
+            => versionToBeCompared < version;
 
         /// <summary>
         /// Returns whether this version is newer than the current version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than this version, returns false otherwise.</returns>
-        public bool IsNewerThan(Version versionToBeCompared) => version > versionToBeCompared;
+        public bool IsNewerThan(Version versionToBeCompared) 
+            => version > versionToBeCompared;
     }
 
     /// <summary>
@@ -65,7 +68,8 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The newer of the two specified versions.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10 + " . Use Version.Max() instead.")]
+        [Obsolete(DeprecationMessages.DeprecationV10 + 
+                  " . Use Version.Max() instead.")]
         public static Version GetNewerVersion(Version versionA, Version versionB)
             => Version.Max(versionA, versionB);
 
@@ -75,12 +79,8 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The newer of the two specified versions.</returns>
-        public static Version Max(Version versionA, Version versionB)
-        {
-            if (versionA > versionB)
-                return versionA;
-            return versionB;
-        }
+        public static Version Max(Version versionA, Version versionB) 
+            => versionA > versionB ? versionA : versionB;
 
         /// <summary>
         /// Compares two versions and returns the older version.
@@ -88,7 +88,8 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The older of the two specified versions.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10 + " . Use Version.Min() instead.")]
+        [Obsolete(DeprecationMessages.DeprecationV10 + 
+                  " . Use Version.Min() instead.")]
         public static Version GetOlderVersion(Version versionA, Version versionB)
             => Version.Min(versionA, versionB);
 
@@ -98,11 +99,7 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The older of the two specified versions.</returns>
-        public static Version Min(Version versionA, Version versionB)
-        {
-            if (versionA < versionB)
-                return versionA;
-            return versionB;
-        }
+        public static Version Min(Version versionA, Version versionB) 
+            => versionA < versionB ? versionA : versionB;
     }
 }

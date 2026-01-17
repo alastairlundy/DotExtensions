@@ -46,10 +46,8 @@ public static class StringReplaceLastExtensions
         /// Returns the original string if <paramref name="oldValue"/> is not found in the input string.
         /// </returns>
         public string ReplaceFirst(
-            string oldValue,
-            string newValue,
-            StringComparison stringComparison = StringComparison.CurrentCulture
-        )
+            string oldValue, string newValue,
+            StringComparison stringComparison = StringComparison.CurrentCulture)
         {
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
             ArgumentException.ThrowIfNullOrEmpty(newValue);
@@ -76,10 +74,8 @@ public static class StringReplaceLastExtensions
         /// Returns the original string if <paramref name="oldValue"/> is not found.
         /// </returns>
         public string ReplaceLast(
-            string oldValue,
-            string newValue,
-            StringComparison stringComparison = StringComparison.CurrentCulture
-        )
+            string oldValue, string newValue,
+            StringComparison stringComparison = StringComparison.CurrentCulture)
         {
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
             ArgumentException.ThrowIfNullOrEmpty(newValue);

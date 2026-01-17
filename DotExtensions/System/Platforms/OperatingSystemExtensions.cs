@@ -39,8 +39,8 @@ public static class OperatingSystemExtensions
         /// </returns>
         public static bool IsUnix()
         {
-            return OperatingSystem.IsAndroid() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsLinux() ||
-                   OperatingSystem.IsMacCatalyst() || OperatingSystem.IsMacOS();
+            return OperatingSystem.IsAndroid() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsLinux() 
+                   || OperatingSystem.IsMacCatalyst() || OperatingSystem.IsMacOS();
         }
     }
 }

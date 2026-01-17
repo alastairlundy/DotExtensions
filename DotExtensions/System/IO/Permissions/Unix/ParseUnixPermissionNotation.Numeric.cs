@@ -48,8 +48,8 @@ public static partial class UnixPermissionsExtensions
         if (notation.Length == 4 && notation[0] != '0')
             return result is >= 0 and <= 4777 && notation.ToCharArray()
                 .All(x => x != '8' && x != '9');
-        else
-            return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
+        
+        return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
     }
 
     /// <summary>
