@@ -44,10 +44,9 @@ public static partial class PermissionExtensions
         {
             get
             {
-                if (mode.HasFlag(UnixFileMode.UserExecute)
-                    || mode.HasFlag(UnixFileMode.GroupExecute)
-                    || mode.HasFlag(UnixFileMode.OtherExecute)) return true;
-                return false;
+                return mode.HasFlag(UnixFileMode.UserExecute)
+                       || mode.HasFlag(UnixFileMode.GroupExecute)
+                       || mode.HasFlag(UnixFileMode.OtherExecute);
             }
         }
 
@@ -63,10 +62,9 @@ public static partial class PermissionExtensions
         {
             get
             {
-                if (mode.HasFlag(UnixFileMode.UserRead)
-                    || mode.HasFlag(UnixFileMode.GroupRead)
-                    || mode.HasFlag(UnixFileMode.OtherRead)) return true;
-                return false;
+                return mode.HasFlag(UnixFileMode.UserRead)
+                       || mode.HasFlag(UnixFileMode.GroupRead)
+                       || mode.HasFlag(UnixFileMode.OtherRead);
             }
         }
 
@@ -82,10 +80,9 @@ public static partial class PermissionExtensions
         {
             get
             {
-                if (mode.HasFlag(UnixFileMode.UserWrite)
-                    || mode.HasFlag(UnixFileMode.GroupWrite)
-                    || mode.HasFlag(UnixFileMode.OtherWrite)) return true;
-                return false;
+                return mode.HasFlag(UnixFileMode.UserWrite)
+                       || mode.HasFlag(UnixFileMode.GroupWrite)
+                       || mode.HasFlag(UnixFileMode.OtherWrite);
             }
         }
     }

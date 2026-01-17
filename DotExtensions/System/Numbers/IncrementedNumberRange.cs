@@ -77,7 +77,7 @@ public static class IncrementedNumberRange
             ArgumentNullException.ThrowIfNull(source);
 
             if (source is IList<TNumber> list)
-                return IsIncrementedNumberRange(list, expectedIncrement);
+                return list.IsIncrementedNumberRange(expectedIncrement);
 
             bool foundFirstNumber = false;
 
@@ -141,7 +141,7 @@ public static class IncrementedNumberRange
         public bool IsIncrementedNumberRange(int expectedIncrement)
         {
             if (source is IList<int> list)
-                return IsIncrementedNumberRange(list, expectedIncrement);
+                return list.IsIncrementedNumberRange(expectedIncrement);
 
             bool foundFirstNumber = false;
 

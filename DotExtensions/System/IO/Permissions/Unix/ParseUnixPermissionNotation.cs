@@ -75,7 +75,7 @@ public static partial class UnixPermissionsExtensions
             {
                 ArgumentException.ThrowIfNullOrEmpty(input);
                 
-                result = Parse(input);
+                result = UnixFileMode.Parse(input);
                 return true;
             }
             catch
