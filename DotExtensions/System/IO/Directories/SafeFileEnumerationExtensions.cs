@@ -47,7 +47,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </summary>
         /// <returns>Returns an enumerable collection of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles()
-            => SafelyEnumerateFiles(directoryInfo, "*");
+            => directoryInfo.SafelyEnumerateFiles("*");
 
         /// <summary>
         /// Safely enumerates files in the specified directory, handling inaccessible or special directories
@@ -56,7 +56,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern">The search string to match against the names of files in the directory.</param>
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern)
-            => SafelyEnumerateFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+            => directoryInfo.SafelyEnumerateFiles(searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates files in the specified directory, handling inaccessible or special directories
@@ -149,7 +149,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </summary>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles()
-            => SafelyGetFiles(directoryInfo, "*");
+            => directoryInfo.SafelyGetFiles("*");
 
         /// <summary>
         /// Safely retrieves an array of files in the specified directory, optionally using a search pattern,
@@ -158,7 +158,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern">The search string used to match file names. The default is "*".</param>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles(string searchPattern)
-            => SafelyGetFiles(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
+            => directoryInfo.SafelyGetFiles(searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely retrieves an array of files from the specified directory, using the provided
@@ -217,8 +217,8 @@ public static partial class SafeIOEnumerationExtensions
         /// If there is an issue accessing the directory, this method will return an empty enumerable.
         /// </returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path)
-            => SafelyEnumerateFiles(path, "*");
-        
+            => Directory.SafelyEnumerateFiles(path, "*");
+
         /// <summary>
         /// 
         /// </summary>
@@ -226,7 +226,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="searchPattern"></param>
         /// <returns></returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern)
-            => SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+            => Directory.SafelyEnumerateFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates files in the specified directory.
@@ -264,7 +264,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="path"></param>
         /// <returns></returns>
         public static FileInfo[] SafelyGetFiles(string path)
-            => SafelyGetFiles(path,"*");
+            => Directory.SafelyGetFiles(path, "*");
 
         /// <summary>
         /// 
@@ -286,7 +286,7 @@ public static partial class SafeIOEnumerationExtensions
         public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions, bool ignoreCase = true)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
-            
+
             return directoryInfo.SafelyGetFiles(searchPattern, directorySearchOptions, ignoreCase);
         }
         #endregion
