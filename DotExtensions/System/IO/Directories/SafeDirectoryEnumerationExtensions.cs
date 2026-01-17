@@ -24,10 +24,12 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 // ReSharper disable InconsistentNaming
 
 #if NETSTANDARD2_0
+using System.Security;
 using System.Linq;
 #endif
 
@@ -54,7 +56,7 @@ public static partial class SafeIOEnumerationExtensions
         /// directories found in the current directory based on the default pattern "*".
         /// </returns>
         public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories()
-            => directoryInfo.SafelyEnumerateDirectories("*");
+            => SafelyEnumerateDirectories(directoryInfo, "*");
         
         /// <summary>
         /// Safely enumerates all directories in the specified directory, handling potential
@@ -69,7 +71,7 @@ public static partial class SafeIOEnumerationExtensions
         /// found in the specified directory.
         /// </returns>
         public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern)
-            => directoryInfo.SafelyEnumerateDirectories(searchPattern, SearchOption.TopDirectoryOnly);
+            => SafelyEnumerateDirectories(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates directories in the specified directory, ignoring inaccessible
@@ -114,8 +116,8 @@ public static partial class SafeIOEnumerationExtensions
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
         }
-#else
-        private IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
+#endif
+        internal IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
             SearchOption searchOption,
             bool ignoreCase)
         {
@@ -161,7 +163,6 @@ public static partial class SafeIOEnumerationExtensions
                 }
             }
         }
-#endif
         #endregion
 
         #region Safe Directory Getting
@@ -176,7 +177,7 @@ public static partial class SafeIOEnumerationExtensions
         /// directories found in the current directory based on the default pattern "*".
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories()
-            => directoryInfo.SafelyGetDirectories("*");
+            => SafelyGetDirectories(directoryInfo, "*");
 
 
         /// <summary>
@@ -188,7 +189,7 @@ public static partial class SafeIOEnumerationExtensions
         /// based on the default pattern "*".
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories(string searchPattern)
-            => directoryInfo.SafelyGetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
+            => SafelyGetDirectories(directoryInfo, searchPattern, SearchOption.TopDirectoryOnly);
 
 
         /// <summary>
@@ -251,9 +252,9 @@ public static partial class SafeIOEnumerationExtensions
         /// during directory traversal. </summary>
         /// <param name="path"> The path to enumerate directories from. </param>
         /// <returns> A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified
-        /// path based on the default search pattern "*".</returns>
+        /// path based on default search pattern "*".</returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path)
-            => Directory.SafelyEnumerateDirectories(path, "*");
+            => SafelyEnumerateDirectories(path, "*");
 
         /// <summary>
         /// Safely enumerates directories in the specified path, ignoring inaccessible directories and handling exceptions that may occur during directory traversal.
@@ -263,10 +264,10 @@ public static partial class SafeIOEnumerationExtensions
         /// </param>
         /// <param name="searchPattern"></param> <returns>
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based
-        /// on the default search pattern "*".
+        /// on default search pattern "*".
         /// </returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern)
-            => Directory.SafelyEnumerateDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
+            => SafelyEnumerateDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Safely enumerates directories in the specified path.
@@ -280,7 +281,7 @@ public static partial class SafeIOEnumerationExtensions
         /// <param name="directorySearchOption"> Specifies whether to enumerate only the top-level directory or recursively through all subdirectories. Defaults to <see cref="SearchOption.TopDirectoryOnly"/>.
         /// </param>
         /// <param name="ignoreCase">
-        /// A boolean indicating whether the search should be case-insensitive. Defaults to true, meaning it will ignore the case during enumeration.
+        /// A boolean indicating whether the search should be case-insensitive. Defaults to true, meaning it will ignore case during enumeration.
         /// </param>
         /// <returns>
         /// An enumerable collection of <see cref="DirectoryInfo"/> objects representing the directories found in the specified path based on the provided parameters.
@@ -299,10 +300,10 @@ public static partial class SafeIOEnumerationExtensions
         /// <summary>
         /// Safely retrieves a list of directories from the specified path.
         /// </summary>
-        /// <param name="path">The path to list directories from.</param>
-        /// <returns>An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on the default search pattern "*".</returns>
+        /// <param name="path">The path to enumerate directories from.</param>
+        /// <returns>An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on default search pattern "*".</returns>
         public static DirectoryInfo[] SafelyGetDirectories(string path)
-            => Directory.SafelyGetDirectories(path, "*");
+            => SafelyGetDirectories(path, "*");
 
         /// <summary>
         /// Safely retrieves directories from the specified path, ignoring inaccessible directories and handling exceptions that may occur during enumeration.
@@ -314,21 +315,21 @@ public static partial class SafeIOEnumerationExtensions
         /// The search pattern to filter directories. Defaults to "*", which matches all directories.
         /// </param>
         /// <returns>
-        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on the default search pattern "*".
+        /// An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on default search pattern "*".
         /// If no directories are found, an empty array is returned.
         /// </returns>
         /// <exception cref="DirectoryNotFoundException">
-        /// Thrown if the specified path does not exist or was not found.
+        /// Thrown if the specified path does not exist or cannot be accessed.
         /// </exception>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern)
-            => Directory.SafelyGetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
+            => SafelyGetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
 
         /// <summary>
-        /// Safely retrieves directories in the specified path based on the provided search pattern and directory search options.
+        /// Safely enumerates directories in the specified path based on the provided search pattern and directory search options.
         /// This method safely retrieves a collection of <see cref="DirectoryInfo"/> objects representing directories found at the given path,
         /// taking into account potential accessibility issues and exceptions during enumeration.
         /// </summary>
-        /// <param name="path">The path to list directories from.</param>
+        /// <param name="path">The path to enumerate directories from.</param>
         /// <param name="searchPattern">
         /// The search pattern to filter directories. Defaults to "*", which matches all directories.
         /// </param>
