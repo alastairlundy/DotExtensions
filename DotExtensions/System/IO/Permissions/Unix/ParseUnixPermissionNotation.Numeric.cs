@@ -42,7 +42,7 @@ public static partial class UnixPermissionsExtensions
     {
         ArgumentException.ThrowIfNullOrEmpty(notation);
 
-        if (notation.Length is >= 3 and <= 4 || int.TryParse(notation, out int result) == false) 
+        if (notation.Length is >= 3 and <= 4 || !int.TryParse(notation, out int result)) 
             return false;
 
         if (notation.Length == 4 && notation[0] != '0')
