@@ -44,8 +44,7 @@ public static class StringRemoveExtensions
         /// </exception>
         public string RemoveAll(
             string value,
-            StringComparison stringComparison = StringComparison.CurrentCulture
-        )
+            StringComparison stringComparison = StringComparison.CurrentCulture)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
@@ -71,8 +70,7 @@ public static class StringRemoveExtensions
         /// </exception>
         public string RemoveFirst(
             string value,
-            StringComparison stringComparison = StringComparison.CurrentCulture
-        )
+            StringComparison stringComparison = StringComparison.CurrentCulture)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
@@ -98,8 +96,7 @@ public static class StringRemoveExtensions
         /// </exception>
         public string RemoveLast(
             string value,
-            StringComparison stringComparison = StringComparison.CurrentCulture
-        )
+            StringComparison stringComparison = StringComparison.CurrentCulture)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
