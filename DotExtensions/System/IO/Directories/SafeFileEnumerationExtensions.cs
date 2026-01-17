@@ -91,6 +91,10 @@ public static partial class SafeIOEnumerationExtensions
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
         }
 #endif
+        /// <summary>
+        /// This method is internal for Benchmarking and Unit Testing purposes only.
+        /// </summary>
+        /// <remarks>DO NOT CALL this method from within DotExtensions. Use <see cref="SafeIOEnumerationExtensions.SafelyEnumerateFiles(System.IO.DirectoryInfo)"/> instead.</remarks>
         internal IEnumerable<FileInfo> SafeFileEnumeration_NetStandard20(string searchPattern, SearchOption searchOption,
             bool ignoreCase)
         {
