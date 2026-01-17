@@ -55,7 +55,7 @@ public static class StringInsertExtensions
             if (str[index] == c)
                 return str;
 
-            StringBuilder stringBuilder = new();
+            StringBuilder stringBuilder = new(capacity: str.Length + 1);
 
             int start = 0;
 
@@ -89,7 +89,7 @@ public static class StringInsertExtensions
             if (index >= str.Length)
                 throw new IndexOutOfRangeException();
 
-            StringBuilder stringBuilder = new();
+            StringBuilder stringBuilder = new(capacity: str.Length);
 
             int start = 0;
 
