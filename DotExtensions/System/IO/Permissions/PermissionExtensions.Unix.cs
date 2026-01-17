@@ -40,7 +40,7 @@ public static partial class PermissionExtensions
 #if NET8_0_OR_GREATER
         public
 #else
-            internal
+        internal
 #endif
             bool HasExecutePermission
         {
@@ -59,7 +59,7 @@ public static partial class PermissionExtensions
 #if NET8_0_OR_GREATER
         public
 #else
-            internal
+        internal
 #endif
             bool HasReadPermission
         {
@@ -78,7 +78,7 @@ public static partial class PermissionExtensions
 #if NET8_0_OR_GREATER
         public
 #else
-            internal
+        internal
 #endif
             bool HasWritePermission
         {
