@@ -22,7 +22,6 @@
     SOFTWARE.
  */
 
-using System.IO;
 using DotPrimitives.IO.Permissions.Windows;
 
 namespace DotExtensions.IO.Permissions;

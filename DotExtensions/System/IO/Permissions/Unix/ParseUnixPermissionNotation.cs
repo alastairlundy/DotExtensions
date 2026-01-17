@@ -23,8 +23,6 @@
    */
 
 #if NET8_0_OR_GREATER
-using System.IO;
-
 namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>

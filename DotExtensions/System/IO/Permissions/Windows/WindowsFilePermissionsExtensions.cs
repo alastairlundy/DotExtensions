@@ -22,13 +22,13 @@
     SOFTWARE.
  */
 
-using System.IO;
 using DotPrimitives.IO.Permissions.Windows;
 
 namespace DotExtensions.IO.Permissions.Windows;
 
 /// <summary>
-/// 
+/// Provides extension methods for managing and inspecting file permissions
+/// on Windows-based systems.
 /// </summary>
 public static class WindowsFilePermissionsExtensions
 {

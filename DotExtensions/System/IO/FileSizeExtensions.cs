@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System.IO;
 using DotExtensions.Numbers;
 
 namespace DotExtensions.IO;
