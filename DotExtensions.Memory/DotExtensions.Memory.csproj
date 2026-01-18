@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.4.0-preview.1</Version>
+    <Version>9.4.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -24,8 +24,7 @@
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>* Minor tweaks to Span ``Resize(int)`` logic
-* Minor tweaks to Span ``OptimisticCopy(ref Span&lt;T&gt;, int, int)`` logic
-* Updated internal Polyfill version from 9.6.0 to 9.7.0</PackageReleaseNotes>
+* Minor tweaks to Span ``OptimisticCopy(ref Span&lt;T&gt;, int, int)`` logic</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>

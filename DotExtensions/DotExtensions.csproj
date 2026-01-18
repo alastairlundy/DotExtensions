@@ -11,12 +11,15 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added ``OperatingSystem`` ``IsUnix`` extension
-* Re-add Process ``HasStarted`` extension member property
+    <PackageReleaseNotes>* Update DotPrimitives version from 4.1.0 to 4.2.0
+* Added ``OperatingSystem`` ``IsUnix`` extension
 * Added PlatformNotSupportedException throw method overloads with params arrays arguments
-* Add Process ``IsSupportedPlatform`` extension member
-* Added PlatformNotSupportException ``ThrowIfProcessClassNotSupported`` extension method
-* Updated internal Polyfill version from 9.6.0 to 9.7.0</PackageReleaseNotes>
+* Code formatting improvements
+* Potential performance improvements for some string insertion and replacement methods.
+* Simplified Directory ``IsEmpty`` static Property extension code
+* Clarified that two internal .NET Standard 2.0 fallback methods should only be called directly by Unit Testing and Benchmarking - DotExtensions and external callers should use the non-TFM specific method instead.
+* Added some missing xml doc comments
+* Fixed grammar issues in a few xml doc comments</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -25,7 +28,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.4.0-preview.1</Version>
+    <Version>9.4.0</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
