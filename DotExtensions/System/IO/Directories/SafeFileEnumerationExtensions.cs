@@ -78,7 +78,7 @@ public static partial class SafeIOEnumerationExtensions
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private IEnumerable<FileInfo> SafeFileEnumeration_Net8Plus(string searchPattern, SearchOption searchOption,
- bool ignoreCase)
+            bool ignoreCase)
         {
             EnumerationOptions enumerationOptions = new()
             {
@@ -184,7 +184,7 @@ public static partial class SafeIOEnumerationExtensions
 
 #if NETSTANDARD2_1 || NET8_0_OR_GREATER
         private FileInfo[] SafeFileGetting_Net8Plus(string searchPattern, SearchOption searchOption, 
-bool ignoreCase)
+            bool ignoreCase)
         {
             EnumerationOptions enumerationOptions = new()
             {
