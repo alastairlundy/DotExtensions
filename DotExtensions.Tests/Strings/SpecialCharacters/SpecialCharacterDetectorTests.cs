@@ -1,5 +1,4 @@
-﻿using AlastairLundy.DotExtensions.Strings;
-using DotExtensions.Strings;
+﻿using DotExtensions.Strings;
 using DotExtensions.Tests.TestData;
 
 namespace DotExtensions.Tests.Strings.SpecialCharacters;

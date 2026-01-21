@@ -22,9 +22,8 @@
        SOFTWARE.
    */
 
-// ReSharper disable CheckNamespace
 
-namespace AlastairLundy.DotExtensions.Strings;
+namespace DotExtensions.Strings;
 
 /// <summary>
 /// Provides extension methods for working with strings to evaluate the presence of

@@ -1,4 +1,3 @@
-using AlastairLundy.DotExtensions.Strings;
 using DotExtensions.AotTests.Localizations;
 using DotExtensions.Memory.Spans;
 using DotExtensions.Numbers;
