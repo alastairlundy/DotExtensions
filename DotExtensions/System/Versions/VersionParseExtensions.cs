@@ -37,7 +37,7 @@ public static class VersionParseExtensions
         /// Gracefully parses a version string into a <see cref="Version"/> object.
         /// </summary>
         /// <param name="versionString">The version string to parse into a <see cref="Version"/> object.</param>
-        /// <returns></returns>
+        /// <returns>Returns a gracefully parsed version.</returns>
         /// <exception cref="ArgumentException">Thrown if the provided <paramref name="versionString"/>
         /// string is null or empty or contains no digits.</exception>
         public static Version GracefulParse(string versionString)
