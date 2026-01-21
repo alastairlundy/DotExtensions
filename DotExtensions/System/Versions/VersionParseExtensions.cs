@@ -22,10 +22,12 @@
        SOFTWARE.
    */
 
+using System.Linq;
+
 namespace DotExtensions.Versions;
 
 /// <summary>
-/// 
+/// Provides extension methods for parsing and manipulating version strings.
 /// </summary>
 public static class VersionParseExtensions
 {
@@ -61,7 +63,8 @@ public static class VersionParseExtensions
             return new Version(result);
         }
 
-        private static int ParseComponents(string[] versionComponents, int componentsAdded, StringBuilder stringBuilder)
+        private static int ParseComponents(string[] versionComponents, int componentsAdded,
+            StringBuilder stringBuilder)
         {
             foreach (string component in versionComponents)
             {
@@ -115,11 +118,14 @@ public static class VersionParseExtensions
         }
 
         /// <summary>
-        /// 
+        /// Attempts to gracefully parse a version string into a <see cref="Version"/> object.
         /// </summary>
-        /// <param name="versionString"></param>
-        /// <param name="version"></param>
-        /// <returns></returns>
+        /// <param name="versionString">The version string to parse.</param>
+        /// <param name="version">
+        /// If the method returns <c>true</c>, contains the parsed <see cref="Version"/>
+        /// object. Otherwise, it contains null.
+        /// </param>
+        /// <returns><c>true</c> if the parsing was successful; otherwise, <c>false</c>.</returns>
         public static bool TryGracefulParse(string versionString, out Version? version)
         {
             try
