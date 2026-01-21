@@ -10,10 +10,10 @@
     <Version>9.4.0</Version>
     <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
-    <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+    <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>* Added StringValues ``ToString()``, ``ToString(char)``, and ``ToString(string)`` overloads</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.3 to 9.7.4</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>
