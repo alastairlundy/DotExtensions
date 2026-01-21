@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Mathematics;
 using DotExtensions.IO.Directories;
 
@@ -12,7 +9,6 @@ namespace DotExtensions.Benchmarking.Benchmarks.IO;
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
-[RPlotExporter]
 [MemoryDiagnoser]
 public class SafeFileEnumerationBenchmarks
 {
