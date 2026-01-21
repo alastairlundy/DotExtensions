@@ -72,7 +72,7 @@ public static class SpecialCharacterDetectionExtension
         public string RemoveSpecialCharacters()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
-
+            
             StringBuilder stringBuilder = new(str.Length);
 
             foreach (char c in str)
