@@ -68,8 +68,8 @@ public static class VersionParseExtensions
                 if (componentsAdded >= 4)
                     break;
 
-                int firstNumberIndex = component
-                    .IndexOfAny(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
+                int firstNumberIndex = component.IndexOf(component.
+                    FirstOrDefault(c => char.IsDigit(c)));
                 
                 if (firstNumberIndex == -1)
                 {
