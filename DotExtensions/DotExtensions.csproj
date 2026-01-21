@@ -11,8 +11,7 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.3 to 9.7.4
-* Fixed a bug where ``ContainsSpacesExtensions`` class used an outdated namespace prefix - This is a breaking change and may cause errors if these methods were used previously.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added Version static extension member method ``GracefulParse(string)`` and ``TryGracefulParse(string, out Version? version)``</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
