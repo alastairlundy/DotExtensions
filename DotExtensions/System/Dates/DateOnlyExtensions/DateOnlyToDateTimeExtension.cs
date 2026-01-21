@@ -46,5 +46,4 @@ public static class DateOnlyToDateTimeExtension
             DateTime.Parse(dateOnly.ToLongDateString());
     }
 }
-
 #endif
