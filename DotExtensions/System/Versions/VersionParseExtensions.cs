@@ -37,7 +37,7 @@ public static class VersionParseExtensions
         /// <param name="versionString">The version string to parse into a <see cref="Version"/> object.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">Thrown if the provided <paramref name="versionString"/>
-        /// string is null or empty or contains no digits..</exception>
+        /// string is null or empty or contains no digits.</exception>
         public static Version GracefulParse(string versionString)
         {
             ArgumentException.ThrowIfNullOrEmpty(versionString);
