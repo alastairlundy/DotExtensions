@@ -6,6 +6,7 @@
 ### 9.4
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.4.1 | January 21st 2026 | |
 | 9.4.0 | January 18th 2026 | |
 | 9.4.0 Preview 1 | January 10th 2026 | |
 
