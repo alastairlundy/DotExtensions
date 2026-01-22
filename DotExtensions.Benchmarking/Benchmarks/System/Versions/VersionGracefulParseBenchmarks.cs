@@ -5,6 +5,7 @@ using DotExtensions.Versions;
 namespace DotExtensions.Benchmarking.Benchmarks.System.Versions;
 
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
 [MemoryDiagnoser(true)]
 [CsvMeasurementsExporter]
