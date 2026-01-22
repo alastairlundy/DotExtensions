@@ -47,7 +47,7 @@ public static class IsDirectoryEmptyExtensions
             {
                 ArgumentNullException.ThrowIfNull(directory);
 
-                if (!Directory.Exists(directory.FullName))
+                if (!directory.Exists)
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
 
