@@ -43,6 +43,7 @@ public static class AppendSecureStringExtensions
         /// </summary>
         /// <param name="value">The string to append to this <see cref="SecureString"/>.</param>
         /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public void AppendString(string value)
         {
             ArgumentException.ThrowIfNullOrEmpty(secureString);

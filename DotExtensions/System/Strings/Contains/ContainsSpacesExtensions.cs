@@ -42,6 +42,7 @@ public static class ContainsSpacesExtensions
         ///
         /// <para>True if the string contains space separated strings within it; false otherwise. </para>
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool ContainsSpaceSeparatedSubStrings()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
