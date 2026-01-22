@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using DotExtensions.MsExtensions.Internal;
+
 namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
@@ -40,6 +42,7 @@ public static class SegmentContainsSpacesExtensions
         ///
         /// <para>True if the <see cref="StringSegment"/> contains space separated <see cref="StringSegment"/>s within it; false otherwise.</para>
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool ContainsSpaceSeparatedSubSegments()
         {
             if (segment.IsEmpty)

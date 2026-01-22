@@ -133,6 +133,7 @@ public static class AppendSecureStringExtensions
         /// <param name="value">The value to set to the <see cref="SecureString"/>.</param>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read-only and the new value is
         /// greater than the length of this <see cref="SecureString"/>.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public void SetString(string value)
         {
             ArgumentException.ThrowIfNullOrEmpty(secureString);
