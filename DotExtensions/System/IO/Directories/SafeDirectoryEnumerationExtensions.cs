@@ -23,7 +23,7 @@
    */
 
 using System.Collections.Generic;
-using System.Linq;
+using DotPrimitives.IO.Directories;
 
 // ReSharper disable InconsistentNaming
 
@@ -85,84 +85,8 @@ public static partial class SafeIOEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true)
-        {
-#if NETSTANDARD2_1 || NET8_0_OR_GREATER
-            return directoryInfo.SafeDirectoryEnumeration_Net8Plus(searchPattern, searchOption, ignoreCase);
-#else
-            return directoryInfo.SafeDirectoryEnumeration_NetStandard20(searchPattern, searchOption, ignoreCase);
-#endif
-        }
-        
-#if NET8_0_OR_GREATER || NETSTANDARD2_1
-        private IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_Net8Plus(string searchPattern,
-            SearchOption searchOption, bool ignoreCase)
-        {
-            EnumerationOptions enumerationOptions = new()
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
-                ReturnSpecialDirectories = true,
-                MatchType = MatchType.Simple,
-                MatchCasing = ignoreCase ? MatchCasing.CaseSensitive : MatchCasing.CaseInsensitive,
-                MaxRecursionDepth = searchOption == SearchOption.AllDirectories ? int.MaxValue : 0
-            };
-
-            return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
-        }
-#endif
-
-        /// <summary>
-        /// This method is internal for Benchmarking and Unit Testing purposes only.
-        /// </summary>
-        /// <remarks>DO NOT CALL this method from within DotExtensions. Use
-        /// <see cref="SafeIOEnumerationExtensions.SafelyEnumerateDirectories(System.IO.DirectoryInfo)"/> instead.</remarks>
-        internal IEnumerable<DirectoryInfo> SafeDirectoryEnumeration_NetStandard20(string searchPattern,
-            SearchOption searchOption,
-            bool ignoreCase)
-        {
-            if (!directoryInfo.Exists)
-                throw new DirectoryNotFoundException();
-
-            IEnumerable<DirectoryInfo> directories = directoryInfo.
-                EnumerateDirectories(searchPattern, searchOption)
-                .Where(f =>
-                {
-                    try
-                    {
-                        return f.Exists;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                });
-
-            foreach (DirectoryInfo directory in directories)
-            {
-                if (searchPattern != "*" && searchPattern != "?")
-                {
-                    if (!directory.Exists)
-                        continue;
-                        
-                    string baseDirectory = Path.GetDirectoryName(directoryInfo.FullName) ?? directoryInfo.Name;
-
-                    StringComparison comparison = ignoreCase
-                        ? StringComparison.InvariantCultureIgnoreCase
-                        : StringComparison.InvariantCulture;
-
-                    bool result = directory.FullName.StartsWith(baseDirectory, comparison) ||
-                                  directory.FullName.Contains(baseDirectory, comparison);
-
-                    if (result)
-                        yield return directory;
-                }
-                else if(searchPattern.Contains('*') || searchPattern.Contains('?'))
-                {
-                    yield return directory;
-                }
-            }
-        }
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true) 
+            => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(directoryInfo,  searchPattern, searchOption, ignoreCase);
         #endregion
 
         #region Safe Directory Getting
@@ -178,8 +102,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories()
             => directoryInfo.SafelyGetDirectories("*");
-
-
+        
         /// <summary>
         /// Safely retrieves an array of directories in the current directory using the specified search pattern,
         /// ensuring that inaccessible directories or exceptions during directory traversal are skipped gracefully.
@@ -190,7 +113,6 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories(string searchPattern)
             => directoryInfo.SafelyGetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
-
 
         /// <summary>
         /// Safely retrieves directories from the specified directory, handling exceptions
@@ -214,31 +136,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories(string searchPattern, SearchOption searchOption,
             bool ignoreCase = true)
-        {
-#if NETSTANDARD2_1 || NET8_0_OR_GREATER
-            return directoryInfo.SafeDirectoryGetting_Net8Plus(searchPattern, searchOption, ignoreCase);
-#else
-            return directoryInfo.SafelyEnumerateDirectories(searchPattern, searchOption, ignoreCase)
-                .ToArray();
-#endif
-        }
-
-#if NET8_0_OR_GREATER || NETSTANDARD2_1
-        private DirectoryInfo[] SafeDirectoryGetting_Net8Plus(string searchPattern, SearchOption searchOption, bool ignoreCase)
-        {
-            EnumerationOptions enumerationOptions = new()
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories =  searchOption == SearchOption.AllDirectories,
-                ReturnSpecialDirectories = true,
-                MatchCasing = ignoreCase ? MatchCasing.CaseSensitive : MatchCasing.CaseInsensitive,
-                MatchType = MatchType.Simple,
-                MaxRecursionDepth = searchOption == SearchOption.AllDirectories ? int.MaxValue : 0
-            };
-            
-            return directoryInfo.GetDirectories(searchPattern, enumerationOptions);
-        }
-#endif
+            => SafeDirectoryEnumeration.Shared.SafelyGetDirectories(directoryInfo,  searchPattern, searchOption, ignoreCase);
 
         #endregion
     }
@@ -288,11 +186,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(path);
-
-            return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
-        }
+            => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(new DirectoryInfo(path), searchPattern, directorySearchOption, ignoreCase);
 
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
@@ -335,7 +229,6 @@ public static partial class SafeIOEnumerationExtensions
         /// </param>
         /// <param name="directorySearchOptions">
         /// Specifies whether the enumeration includes only the current directory (TopDirectoryOnly) or also subdirectories.
-        /// Defaults to SearchOption.TopDirectoryOnly.
         /// </param>
         /// <param name="ignoreCase">Indicates if the search should be case-insensitive. Defaults to true.</param>
         /// <returns>
@@ -343,11 +236,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern,
             SearchOption directorySearchOptions, bool ignoreCase = true)
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(path);
-
-            return directoryInfo.SafelyGetDirectories(searchPattern, directorySearchOptions, ignoreCase);
-        }
+            => SafeDirectoryEnumeration.Shared.SafelyGetDirectories(new DirectoryInfo(path), searchPattern, directorySearchOptions, ignoreCase);
         #endregion
     }
 }
