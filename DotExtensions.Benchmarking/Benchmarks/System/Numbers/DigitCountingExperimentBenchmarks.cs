@@ -32,28 +32,7 @@ public class DigitCountingExperimentBenchmarks
         100_000_000
     )]
     public int N;
-
-    [Benchmark]
-    public int[] String_Linq()
-    {
-        int[] results = new int[N];
-
-        for (int index = 0; index < numbers.Length; index++)
-        {
-            int number = numbers[index];
-            int tempI = 0;
-
-            if (number < 0)
-            {
-                tempI = number * -1;
-            }
-
-            // String Implementation
-            results[index] = tempI.ToString().Count(char.IsDigit);
-        }
-
-        return results;
-    }
+    
 
     [Benchmark]
     public int[] String_Length()
@@ -70,7 +49,6 @@ public class DigitCountingExperimentBenchmarks
                 tempI = number * -1;
             }
 
-            // String Implementation
             results[index] = tempI.ToString().Length;
         }
 
