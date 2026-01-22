@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 namespace DotExtensions.Strings;
 
 /// <summary>
