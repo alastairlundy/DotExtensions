@@ -37,7 +37,7 @@ public static class IsEmptyExtensions
         /// Determines if a span is empty.
         /// </summary>
         /// <returns>True if the span is empty, false otherwise.</returns>
-        public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
+        public bool IsEmpty => source.Length == 0;
     }
     
     /// <param name="source">The span to search.</param>
@@ -48,7 +48,7 @@ public static class IsEmptyExtensions
         /// Determines if a span is empty.
         /// </summary>
         /// <returns>True if the span is empty, false otherwise.</returns>
-        public bool IsEmpty => source.Length == 0 || source == Span<T>.Empty;
+        public bool IsEmpty => source.Length == 0;
     }
     
     /// <param name="memory">The memory to search.</param>
@@ -59,7 +59,7 @@ public static class IsEmptyExtensions
         /// Indicates whether the memory is empty.
         /// </summary>
         /// <returns>True if the memory is empty or has a length of zero; otherwise, false.</returns>
-        public bool IsEmpty => memory.Equals(Memory<T>.Empty) || memory.Length == 0;
+        public bool IsEmpty => memory.Length == 0;
     }
     
     /// <param name="memory">The memory to search.</param>
@@ -70,7 +70,7 @@ public static class IsEmptyExtensions
         /// Indicates whether the specified read-only memory is empty.
         /// </summary>
         /// <returns>True if the read-only memory is empty or has a length of zero; otherwise, false.</returns>
-        public bool IsEmpty => memory.Equals(ReadOnlyMemory<T>.Empty) || memory.Length == 0;
+        public bool IsEmpty => memory.Length == 0;
     }
 
     #region Is Empty Or char WhiteSpace Extensions
