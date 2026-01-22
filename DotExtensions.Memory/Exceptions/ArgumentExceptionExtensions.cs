@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-// ReSharper disable once CheckNamespace
 namespace DotExtensions.Memory.Exceptions;
 
 /// <summary>
