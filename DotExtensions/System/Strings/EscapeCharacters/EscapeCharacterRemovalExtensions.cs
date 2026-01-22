@@ -60,21 +60,14 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
 
-            if (!str.ContainsEscapeCharacters()) 
-                return str;
+            StringBuilder strBuilder = new StringBuilder(str);
             
-            foreach (string escapeChar in CharacterConstants.EscapeCharacters)
+            foreach (string escapeCharacter in CharacterConstants.EscapeCharacters)
             {
-                if (str.Contains(escapeChar))
-                {
-                    str = str.Replace(escapeChar, string.Empty);
-
-                    if (str.EndsWith(" "))
-                        str = str.Remove(str.LastIndexOf(' '), 1);
-                }
+                strBuilder.Replace(escapeCharacter, string.Empty);
             }
-
-            return str;
+            
+            return strBuilder.ToString().Trim(' ').TrimEnd(' ');
         }   
     }
 }
