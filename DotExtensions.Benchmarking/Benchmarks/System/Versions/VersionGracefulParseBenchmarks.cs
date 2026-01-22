@@ -19,9 +19,11 @@ public class VersionGracefulParseBenchmarks
     {
         _faker = new Faker();
         _bogusVersionStrings = new List<string>();
+        N = 0;
     }
 
-    private const int N = 1_000_000;
+    [Params(10_000, 100_000, 1_000_000)]
+    public int N;
 
     [GlobalSetup]
     public void Setup()
