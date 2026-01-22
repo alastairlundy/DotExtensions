@@ -50,15 +50,16 @@ public static class VersionParseExtensions
             int componentsAdded = 0;
 
             componentsAdded = Version.ParseComponents(versionComponents, componentsAdded, stringBuilder);
+
+            if (componentsAdded == 1) 
+                stringBuilder.Append(".0");
             
-            string result = stringBuilder.ToString().TrimEnd('.');
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            string result = stringBuilder.ToString();
 
             if (string.IsNullOrEmpty(result))
                 throw new ArgumentException(Resources
                     .Exceptions_Versions_GracefulParse_NoDigits, nameof(versionString));
-
-            if (componentsAdded == 1) 
-                result += ".0";
             
             return new Version(result);
         }
