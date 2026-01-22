@@ -1,4 +1,3 @@
-using System.Linq;
 using DotExtensions.Numbers;
 
 namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
@@ -10,16 +9,21 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 [CsvMeasurementsExporter]
 public class DigitCountingExperimentBenchmarks
 {
-    private int[] numbers;
+    private int[] _numbers;
 
+    public DigitCountingExperimentBenchmarks()
+    {
+        _numbers = new int[N];
+    }
+    
     [GlobalSetup]
     public void Setup()
     {
-        numbers = new int[N];
+        _numbers = new int[N];
 
-        for (int i = 0; i < numbers.Length; i++)
+        for (int i = 0; i < _numbers.Length; i++)
         {
-            numbers[i] = Random.Shared.Next(int.MinValue, int.MaxValue);
+            _numbers[i] = Random.Shared.Next(int.MinValue, int.MaxValue);
         }
     }
 
@@ -56,9 +60,9 @@ public class DigitCountingExperimentBenchmarks
     {
         int[] results = new int[N];
 
-        for (int index = 0; index < numbers.Length; index++)
+        for (int index = 0; index < _numbers.Length; index++)
         {
-            int number = numbers[index];
+            int number = _numbers[index];
             int tempI = 0;
 
             if (number < 0)
@@ -78,9 +82,9 @@ public class DigitCountingExperimentBenchmarks
     {
         int[] results = new int[N];
 
-        for (int index = 0; index < numbers.Length; index++)
+        for (int index = 0; index < _numbers.Length; index++)
         {
-            results[index] = numbers[index].CountNumberOfDigits();
+            results[index] = _numbers[index].CountNumberOfDigits();
         }
 
         return results;

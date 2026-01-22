@@ -7,7 +7,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Versions;
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
-[MemoryDiagnoser(true)]
+[MemoryDiagnoser()]
 [CsvMeasurementsExporter]
 public class VersionGracefulParseBenchmarks
 {
@@ -18,6 +18,7 @@ public class VersionGracefulParseBenchmarks
     public VersionGracefulParseBenchmarks()
     {
         _faker = new Faker();
+        _bogusVersionStrings = new List<string>();
     }
 
     private const int N = 1_000_000;
@@ -25,7 +26,7 @@ public class VersionGracefulParseBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        _bogusVersionStrings = _faker.Make<string>(N, () =>
+        _bogusVersionStrings = _faker.Make(N, () =>
         {
             if (int.IsOddInteger(Random.Shared.Next()))
             {
