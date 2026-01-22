@@ -29,9 +29,6 @@ namespace DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentToCharsExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="segment"></param>
     extension(StringSegment segment)
     {

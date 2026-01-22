@@ -49,7 +49,7 @@ public static class ReadOnlyMemorySort
         /// <param name="values">The read-only span of values to be sorted in accordance with the order of the keys.</param>
         public void Sort(ref ReadOnlySpan<TValue> values)
             => keys.Sort(ref values, Comparer<TKey>.Default);
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -57,13 +57,13 @@ public static class ReadOnlyMemorySort
         /// <param name="comparer"></param>
         /// <typeparam name="TComparer"></typeparam>
         /// <exception cref="ArgumentException"></exception>
-        public void Sort<TComparer>(ref ReadOnlySpan<TValue> values, 
+        public void Sort<TComparer>(ref ReadOnlySpan<TValue> values,
             TComparer comparer)
             where TComparer : IComparer<TKey>
         {
             ArgumentNullException.ThrowIfNull(comparer);
 
-            if(keys.Length != values.Length)
+            if (keys.Length != values.Length)
                 throw new ArgumentException();
 
             TKey[] keysArray = ArrayPool<TKey>.Shared.Rent(keys.Length);
@@ -86,14 +86,14 @@ public static class ReadOnlyMemorySort
             }
         }
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
     /// <param name="source"></param>
     /// <typeparam name="T"></typeparam>
     extension<T>(ref ReadOnlySpan<T> source)
-        where T: IComparable<T>
+        where T : IComparable<T>
     {
         /// <summary>
         /// Sorts the elements within the span using the default comparer.
