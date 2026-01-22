@@ -35,15 +35,6 @@ public class SafeFileEnumerationBenchmarks
 
         return files.First();
     }
-    
-    [Benchmark]
-    public FileInfo DotExtensions_SafeFileEnumeration_NetStandard20_Fallback()
-    {
-        IEnumerable<FileInfo> files = _directoryInfo
-            .SafeFileEnumeration_NetStandard20("*", SearchOption.TopDirectoryOnly, true);
-
-        return files.First();
-    }
 
     [Benchmark(Baseline = true)]
     public FileInfo Normal_FileEnumeration()
