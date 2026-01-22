@@ -25,8 +25,6 @@
 
 using System.Linq;
 
-// ReSharper disable ConvertClosureToMethodGroup
-
 namespace DotExtensions.Strings;
 
 /// <summary>
