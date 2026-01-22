@@ -15,6 +15,15 @@ public class EscapeCharacterRemovalTests
     }
 
     [Theory]
+    [ClassData(typeof(EscapeCharacterTestData))]
+    public void ContainsEscapeCharacters_string_Test(string escapeCharacters)
+    {
+        bool actual = string.IsEscapeCharacter(escapeCharacters);
+
+        Assert.True(actual);
+    }
+
+    [Theory]
     [ClassData(typeof(LoremWordsTestData))]
     public void DoesntContainEscapeCharactersTest(string word)
     {

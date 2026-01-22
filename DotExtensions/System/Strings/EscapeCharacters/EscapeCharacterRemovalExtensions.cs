@@ -69,4 +69,19 @@ public static class EscapeCharacterRemovalExtensions
             return strBuilder.ToString().Trim(' ').TrimEnd(' ');
         }   
     }
+
+    extension(string)
+    {
+        /// <summary>
+        /// Determines whether the specified string contains an escape character.
+        /// </summary>
+        /// <param name="s">The string to check.</param>
+        /// <returns><c>true</c> if the string contains any escape characters; otherwise, <c>false</c>.</returns>
+        public static bool IsEscapeCharacter(string s)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(s);
+            
+            return CharacterConstants.EscapeCharacters.Any(x => x == s);
+        }
+    }
 }
