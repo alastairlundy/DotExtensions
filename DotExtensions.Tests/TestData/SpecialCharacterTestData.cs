@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿namespace DotExtensions.Tests.TestData;
 
-namespace DotExtensions.Tests.TestData;
-
-public class SpecialCharacterTestData : IEnumerable<object[]>
+public class SpecialCharacterTestData
 {
-    public IEnumerator<object[]> GetEnumerator()
+    public static IEnumerable<char> GetSpecialCharacters()
     {
         foreach (char c in CharacterConstants.SpecialCharacters)
         {
-            yield return new object[] { c };
+            yield return c;
         }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }

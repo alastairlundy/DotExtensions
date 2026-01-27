@@ -22,9 +22,11 @@
        SOFTWARE.
    */
 
+using System;
 using DotExtensions.Strings;
 using Bogus.DataSets;
 using DotExtensions.Tests.TestData;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace DotExtensions.Tests.Strings.Contains;
 
@@ -32,8 +34,11 @@ public class ContainsSpacesTests
 {
     private readonly Lorem _lorem = new();
 
+    public static IEnumerable<string> LoremWords()
+        => LoremWordsTestData.GetLoremWords();
+    
     [Test]
-    [MethodDataSource(nameof(LoremWordsTestData.GetEnumerator))]
+    [MethodDataSource(nameof(LoremWords))]
     public async Task UnSpacedWordDetection(string words)
     {
         string text = words.Replace(" ", string.Empty);
@@ -45,7 +50,7 @@ public class ContainsSpacesTests
     }
 
     [Test]
-    [MethodDataSource(nameof(LoremWordsTestData.GetEnumerator))]
+    [MethodDataSource(nameof(LoremWords))]
     public async Task SpacedWordsDetection(string words)
     {
         bool actual = words.ContainsSpaceSeparatedSubStrings();

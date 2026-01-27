@@ -5,8 +5,14 @@ namespace DotExtensions.Tests.Strings.EscapeCharacters;
 
 public class EscapeCharacterRemovalTests
 {
+    public static IEnumerable<string> GetStrings()
+        => EscapeCharacterTestData.GetStrings();
+    
+    public static IEnumerable<string> GetLoremWords()
+        => LoremWordsTestData.GetLoremWords();
+    
     [Test]
-    [MethodDataSource(nameof(EscapeCharacterTestData.GetEnumerator))]
+    [MethodDataSource(nameof(GetStrings))]
     public async Task ContainsEscapedCharactersTest(string escapeCharacters)
     {
         bool actual = escapeCharacters.ContainsEscapeCharacters();
@@ -15,7 +21,7 @@ public class EscapeCharacterRemovalTests
     }
 
     [Test]
-    [MethodDataSource(nameof(EscapeCharacterTestData.GetEnumerator))]
+    [MethodDataSource(nameof(GetStrings))]
     public async Task ContainsEscapeCharacters_string_Test(string escapeCharacters)
     {
         bool actual = string.IsEscapeCharacter(escapeCharacters);
@@ -24,7 +30,7 @@ public class EscapeCharacterRemovalTests
     }
 
     [Test]
-    [MethodDataSource(nameof(LoremWordsTestData.GetEnumerator))]
+    [MethodDataSource(nameof(GetLoremWords))]
     public async Task DoesntContainEscapeCharactersTest(string word)
     {
         bool actual = word.ContainsEscapeCharacters();
@@ -33,12 +39,12 @@ public class EscapeCharacterRemovalTests
     }
 
     [Test]
-    [MethodDataSource(nameof(EscapeCharacterTestData.GetEnumerator))]
+    [MethodDataSource(nameof(GetStrings))]
     public async Task SuccessfullyRemoveEscapeCharsTests(string escapeCharacter)
     {
         string text = $"Hello World {escapeCharacter}";
 
-        string expected = "Hello World";
+        const string expected = "Hello World";
 
         string actual = text.RemoveEscapeCharacters();
 

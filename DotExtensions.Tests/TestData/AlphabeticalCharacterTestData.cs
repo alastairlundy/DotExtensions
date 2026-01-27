@@ -1,26 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Bogus;
+﻿using Bogus;
 
 namespace DotExtensions.Tests.TestData;
 
-public class AlphabeticalCharacterTestData : IEnumerable<object[]>
+public class AlphabeticalCharacterTestData
 {
-    public IEnumerator<object[]> GetEnumerator()
+    public static IEnumerable<char> GetChars()
     {
         foreach (char c in Chars.UpperCase)
         {
-            yield return new object[] { c };
+            yield return c;
         }
 
         foreach (char c in Chars.LowerCase)
         {
-            yield return new object[] { c };
+            yield return c;
         }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }

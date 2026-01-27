@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿namespace DotExtensions.Tests.TestData;
 
-namespace DotExtensions.Tests.TestData;
-
-public class EscapeCharacterTestData : IEnumerable<object[]>
+public class EscapeCharacterTestData
 {
-    public IEnumerator<object[]> GetEnumerator()
+    public static IEnumerable<string> GetStrings()
     {
         foreach (string s in CharacterConstants.EscapeCharacters)
         {
-            yield return new object[] { s };
+            yield return s;
         }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }

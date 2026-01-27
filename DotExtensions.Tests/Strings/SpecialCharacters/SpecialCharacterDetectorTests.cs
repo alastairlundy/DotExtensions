@@ -5,8 +5,14 @@ namespace DotExtensions.Tests.Strings.SpecialCharacters;
 
 public class SpecialCharacterDetectorTests
 {
+    public static IEnumerable<char> AlphabetChars()
+        => AlphabeticalCharacterTestData.GetChars();
+
+    public static IEnumerable<char> GetSpecialChars()
+        => SpecialCharacterTestData.GetSpecialCharacters();
+    
     [Test]
-    [MethodDataSource(nameof(AlphabeticalCharacterTestData))]
+    [MethodDataSource(nameof(AlphabetChars))]
     public async Task NotASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
@@ -16,7 +22,7 @@ public class SpecialCharacterDetectorTests
     }
 
     [Test]
-    [MethodDataSource(nameof(SpecialCharacterTestData))]
+    [MethodDataSource(nameof(GetSpecialChars))]
     public async Task IsASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
