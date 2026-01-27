@@ -29,11 +29,9 @@ public class VersionParseTests
     [Arguments("version 1.2.3", 1, 2, 3)]
     [Arguments("version 10.20.30.40", 10, 20, 30, 40)]
     public async Task GracefulParse_WithPrefixes_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = -1, int revision = -1)
+        int build = 0, int revision = 0)
     {
-        Version expected = build == -1 ? new Version(major, minor) : 
-            revision == -1 ? new Version(major, minor, build) : 
-            new Version(major, minor, build, revision);
+        Version expected = new Version(major, minor, build, revision);
         
         Version actual = Version.GracefulParse(input);
         
@@ -45,11 +43,9 @@ public class VersionParseTests
     [Arguments(" 1.2.3 ", 1, 2, 3)]
     [Arguments("v 1 . 2 . 3", 1, 2, 3)]
     public async Task GracefulParse_WithSpaces_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = -1, int revision = -1)
+        int build = 0)
     {
-        Version expected = build == -1 ? new Version(major, minor) : 
-            revision == -1 ? new Version(major, minor, build) : 
-            new Version(major, minor, build, revision);
+        Version expected = new Version(major, minor, build);
         
         Version actual = Version.GracefulParse(input);
         
@@ -62,11 +58,9 @@ public class VersionParseTests
     [Arguments("1.2.3.4.5", 1, 2, 3, 4)]
     [Arguments("10.20.300-beta.3", 10, 20, 300)]
     public async Task GracefulParse_WithSuffixesOrExtraComponents_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = -1, int revision = -1)
+        int build = 0, int revision = 0)
     {
-        Version expected = build == -1 ? new Version(major, minor) : 
-            revision == -1 ? new Version(major, minor, build) : 
-            new Version(major, minor, build, revision);
+        Version expected = new Version(major, minor, build, revision);
         
         Version actual = Version.GracefulParse(input);
         
@@ -99,11 +93,9 @@ public class VersionParseTests
     [Test]
     [Arguments("v1", 1, 0)]
     [Arguments("1.0.0.0.0", 1, 0, 0, 0)]
-    public async Task GracefulParse_EdgeCases_ReturnsCorrectVersion(string input, int major, int minor, int build = -1, int revision = -1)
+    public async Task GracefulParse_EdgeCases_ReturnsCorrectVersion(string input, int major, int minor, int build = 0, int revision = 0)
     {
-        Version expected = build == -1 ? new Version(major, minor) : 
-            revision == -1 ? new Version(major, minor, build) : 
-            new Version(major, minor, build, revision);
+        Version expected = new Version(major, minor, build, revision);
         
         Version actual = Version.GracefulParse(input);
         
