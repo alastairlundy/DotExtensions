@@ -5,8 +5,8 @@ namespace DotExtensions.Tests.IO;
 
 public class UnixFileModeExtensionTests
 {
-    [Fact]
-    public void UnixFileMode_HasExecutePermissions_True()
+    [Test]
+    public async Task UnixFileMode_HasExecutePermissions_True()
     {
         UnixFileMode expectedUser =
             UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute;
@@ -15,8 +15,8 @@ public class UnixFileModeExtensionTests
         UnixFileMode expectedOthers =
             UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute;
 
-        Assert.True(expectedUser.HasExecutePermission);
-        Assert.True(expectedGroup.HasExecutePermission);
-        Assert.True(expectedOthers.HasExecutePermission);
+        await Assert.That(expectedUser.HasExecutePermission).IsTrue();
+        await Assert.That(expectedGroup.HasExecutePermission).IsTrue();
+        await Assert.That(expectedOthers.HasExecutePermission).IsTrue();
     }
 }

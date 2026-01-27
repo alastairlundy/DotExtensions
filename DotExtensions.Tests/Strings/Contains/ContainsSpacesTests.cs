@@ -32,33 +32,35 @@ public class ContainsSpacesTests
 {
     private readonly Lorem _lorem = new();
 
-    [Theory]
-    [ClassData(typeof(LoremWordsTestData))]
-    public void UnSpacedWordDetection(string words)
+    [Test]
+    [MethodDataSource(nameof(LoremWordsTestData.GetEnumerator))]
+    public async Task UnSpacedWordDetection(string words)
     {
         string text = words.Replace(" ", string.Empty);
 
         bool actual = text.ContainsSpaceSeparatedSubStrings();
 
-        Assert.False(actual);
+        await Assert.That(actual)
+            .IsFalse();
     }
 
-    [Theory]
-    [ClassData(typeof(LoremWordsTestData))]
-    public void SpacedWordsDetection(string words)
+    [Test]
+    [MethodDataSource(nameof(LoremWordsTestData.GetEnumerator))]
+    public async Task SpacedWordsDetection(string words)
     {
         bool actual = words.ContainsSpaceSeparatedSubStrings();
 
-        Assert.Equal(words.Contains(" "), actual);
+        await Assert.That(words.Contains(" "))
+            .IsEqualTo(actual);
     }
 
-    [Fact]
-    public void WordWithEmptyStringDetection()
+    [Test]
+    public async Task WordWithEmptyStringDetection()
     {
         string text = _lorem.Word() + " ";
 
         bool actual = text.ContainsSpaceSeparatedSubStrings();
 
-        Assert.True(actual);
+        await Assert.That(actual).IsTrue();
     }
 }

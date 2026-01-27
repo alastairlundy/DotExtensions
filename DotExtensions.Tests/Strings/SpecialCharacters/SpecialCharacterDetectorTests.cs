@@ -5,21 +5,22 @@ namespace DotExtensions.Tests.Strings.SpecialCharacters;
 
 public class SpecialCharacterDetectorTests
 {
-    [Theory]
-    [ClassData(typeof(AlphabeticalCharacterTestData))]
-    public void NotASpecialCharacter(char character)
+    [Test]
+    [MethodDataSource(nameof(AlphabeticalCharacterTestData))]
+    public async Task NotASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
 
-        Assert.False(actual);
+        await Assert.That(actual)
+            .IsFalse();
     }
 
-    [Theory]
-    [ClassData(typeof(SpecialCharacterTestData))]
-    public void IsASpecialCharacter(char character)
+    [Test]
+    [MethodDataSource(nameof(SpecialCharacterTestData))]
+    public async Task IsASpecialCharacter(char character)
     {
         bool actual = char.IsSpecialCharacter(character);
 
-        Assert.True(actual);
+        await Assert.That(actual).IsTrue();
     }
 }

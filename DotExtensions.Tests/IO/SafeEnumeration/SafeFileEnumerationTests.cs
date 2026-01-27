@@ -1,42 +1,45 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DotExtensions.IO.Directories;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
 
 public class SafeFileEnumerationTests
 {
-    [Fact]
-    public void SafeFileEnumeration_NoExceptions()
+    [Test]
+    public async Task SafeFileEnumeration_NoExceptions()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
         IEnumerable<FileInfo> files = directoryInfo.SafelyEnumerateFiles();
-        
-        Assert.NotNull(files);
-        Assert.NotEmpty(files);
+
+        await Assert.That(files.Any())
+            .IsTrue();
     }
 
-    [Fact]
-    public void SafeFileGetting_NoExceptions()
+    [Test]
+    public async Task SafeFileGetting_NoExceptions()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
         FileInfo[] files = directoryInfo.SafelyGetFiles();
         
         Assert.NotNull(files);
-        Assert.NotEmpty(files);
+        await Assert.That(files.Length)
+            .IsGreaterThan(0);
     }
     
-    [Fact]
-    public void SafeFileGetting_WithSearchOption_NoExceptions()
+    [Test]
+    public async Task SafeFileGetting_WithSearchOption_NoExceptions()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
         FileInfo[] files = directoryInfo.SafelyGetFiles("*",  SearchOption.AllDirectories);
         
         Assert.NotNull(files);
-        Assert.NotEmpty(files);
+        await Assert.That(files.Length)
+            .IsGreaterThan(0);
     }
 }
