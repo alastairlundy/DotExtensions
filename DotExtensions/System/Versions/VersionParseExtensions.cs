@@ -43,20 +43,52 @@ public static class VersionParseExtensions
         public static Version GracefulParse(string versionString)
         {
             ArgumentException.ThrowIfNullOrEmpty(versionString);
+
+            char separator = '.';
+
+            foreach (char currentChar in versionString)
+            {
+                if (char.IsSeparator(currentChar) || char.IsPunctuation(currentChar))
+                {
+                    separator = versionString.First(c => char.IsSeparator(c) || char.IsPunctuation(c));
+                    break;
+                }
+            }
             
-            string[] versionComponents = versionString.Split('.');
+            if (versionString.Contains(','))
+            {
+                versionString = versionString.Replace(",", ".");
+                separator = '.';
+            }
+            
+            string[] versionComponents = versionString.Split(separator);
 
             StringBuilder stringBuilder = new(capacity: versionString.Length);
             int componentsAdded = 0;
 
             componentsAdded = Version.ParseComponents(versionComponents, componentsAdded, stringBuilder);
 
-            if (componentsAdded == 1) 
-                stringBuilder.Append(".0");
+            if (componentsAdded == 0)
+            {
+                if (versionString.Any(c => char.IsDigit(c)))
+                {
+                    stringBuilder = stringBuilder.Clear();
+                    stringBuilder =  stringBuilder.Append(versionString.First(c => char.IsDigit(c)));
+                    componentsAdded = 1;
+                }
+            }
             
-            stringBuilder.Remove(stringBuilder.Length - 1, 1);
-            string result = stringBuilder.ToString();
+            if (componentsAdded == 1)
+                stringBuilder.Append(".0");
 
+            if (stringBuilder.Length > 0)
+            {
+                if(stringBuilder[^1] == '.')
+                    stringBuilder = stringBuilder.Remove(stringBuilder.Length - 1, 1);
+            }
+            
+            string result = stringBuilder.ToString();
+            
             if (string.IsNullOrEmpty(result))
                 throw new ArgumentException(Resources
                     .Exceptions_Versions_GracefulParse_NoDigits, nameof(versionString));
@@ -64,48 +96,56 @@ public static class VersionParseExtensions
             return new Version(result);
         }
 
+        /// <summary>
+        /// Parses version components and adds them to a StringBuilder.
+        /// </summary>
+        /// <param name="versionComponents">The string array containing version components.</param>
+        /// <param name="componentsAdded">The number of components already added to the StringBuilder.</param>
+        /// <param name="stringBuilder">The StringBuilder used to construct the final version string.</param>
+        /// <returns>The updated count of components added to the StringBuilder.</returns>
         private static int ParseComponents(string[] versionComponents, int componentsAdded,
             StringBuilder stringBuilder)
         {
+            int output = componentsAdded;
+
+            versionComponents = versionComponents.Where(v =>
+                {
+                    int firstNumberIndex = v.IndexOf(v.FirstOrDefault(c => char.IsDigit(c)));
+
+                    return firstNumberIndex != -1;
+                })
+                .Select(v =>
+                {
+                    int index = v.IndexOf(v.FirstOrDefault(c => char.IsDigit(c)));
+
+                    return v.Substring(index);
+                })
+                .ToArray();
+            
+            
             foreach (string component in versionComponents)
             {
-                if (componentsAdded >= 4)
+                if (output >= 4)
                     break;
-
-                int firstNumberIndex = component.IndexOf(component.
-                    FirstOrDefault(c => char.IsDigit(c)));
-                
-                if (firstNumberIndex == -1)
-                {
-                    if (componentsAdded > 0)
-                    {
-                        break;
-                    }
-                    continue;
-                }
-
-                string actualComponent = component.Substring(firstNumberIndex);
                 int digitsCount = 0;
 
-                foreach (char currentChar in actualComponent)
+                foreach (char currentChar in component)
                 {
                     if (char.IsDigit(currentChar))
                     {
                         stringBuilder.Append(currentChar);
                         digitsCount++;
                     }
-                    else
-                        break;
                 }
                 
                 if (digitsCount > 0)
                 {
                     stringBuilder.Append('.');
-                    componentsAdded++;
+                    output++;
 
                     // Check for suffixes that should stop parsing
-                    bool containsSuffix = actualComponent.Length > digitsCount &&
-                                          !string.IsNullOrWhiteSpace(actualComponent
+                    bool containsSuffix = component.Length > digitsCount &&
+                                          !string.IsNullOrWhiteSpace(component
                                               .Substring(digitsCount));
 
                     if (containsSuffix)
@@ -115,7 +155,7 @@ public static class VersionParseExtensions
                 }
             }
 
-            return componentsAdded;
+            return output;
         }
 
         /// <summary>
