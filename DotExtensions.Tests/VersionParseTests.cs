@@ -53,10 +53,10 @@ public class VersionParseTests
     }
 
     [Test]
-    [Arguments("1.2.3-beta.1", 1, 2, 3)]
+    [Arguments("1.2.3-beta.1", 1, 2, 3, 1)]
     [Arguments("1.2.3.4-alpha", 1, 2, 3, 4)]
     [Arguments("1.2.3.4.5", 1, 2, 3, 4)]
-    [Arguments("10.20.300-beta.3", 10, 20, 300)]
+    [Arguments("10.20.300-beta.3", 10, 20, 300, 3)]
     public async Task GracefulParse_WithSuffixesOrExtraComponents_ReturnsCorrectVersion(string input, int major, int minor, 
         int build = 0, int revision = 0)
     {
