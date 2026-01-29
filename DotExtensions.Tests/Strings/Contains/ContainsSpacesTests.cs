@@ -55,8 +55,8 @@ public class ContainsSpacesTests
     {
         bool actual = words.ContainsSpaceSeparatedSubStrings();
 
-        await Assert.That(words.Contains(" "))
-            .IsEqualTo(actual);
+        await Assert.That(actual)
+            .IsEqualTo(words.Contains(" "));
     }
 
     [Test]

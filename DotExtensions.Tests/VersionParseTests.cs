@@ -20,7 +20,7 @@ public class VersionParseTests
         
         Version actual = Version.GracefulParse(input);
         
-        await Assert.That(expected).IsEqualTo(actual);
+        await Assert.That(actual).IsEqualTo(expected);
     }
 
     [Test]
@@ -29,13 +29,13 @@ public class VersionParseTests
     [Arguments("version 1.2.3", 1, 2, 3)]
     [Arguments("version 10.20.30.40", 10, 20, 30, 40)]
     public async Task GracefulParse_WithPrefixes_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = 0, int revision = 0)
+        int build, int revision = -1)
     {
-        Version expected = new Version(major, minor, build, revision);
+        Version expected = revision == -1 ? new Version(major, minor, build) : new Version(major, minor, build, revision); 
         
         Version actual = Version.GracefulParse(input);
         
-        await Assert.That(expected).IsEqualTo(actual);
+        await Assert.That(actual).IsEqualTo(expected);
     }
 
     [Test]
@@ -43,13 +43,13 @@ public class VersionParseTests
     [Arguments(" 1.2.3 ", 1, 2, 3)]
     [Arguments("v 1 . 2 . 3", 1, 2, 3)]
     public async Task GracefulParse_WithSpaces_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = 0)
+        int build)
     {
         Version expected = new Version(major, minor, build);
         
         Version actual = Version.GracefulParse(input);
         
-        await Assert.That(expected).IsEqualTo(actual);
+        await Assert.That(actual).IsEqualTo(expected);
     }
 
     [Test]
@@ -58,13 +58,13 @@ public class VersionParseTests
     [Arguments("1.2.3.4.5", 1, 2, 3, 4)]
     [Arguments("10.20.300-beta.3", 10, 20, 300, 3)]
     public async Task GracefulParse_WithSuffixesOrExtraComponents_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build = 0, int revision = 0)
+        int build, int revision)
     {
         Version expected = new Version(major, minor, build, revision);
         
         Version actual = Version.GracefulParse(input);
         
-        await Assert.That(expected).IsEqualTo(actual);
+        await Assert.That(actual).IsEqualTo(expected);
     }
 
     [Test]
@@ -72,8 +72,8 @@ public class VersionParseTests
     {
         Version actual = Version.GracefulParse("1");
         
-        await Assert.That(new Version(1, 0))
-            .IsEqualTo(actual);
+        await Assert.That(actual)
+            .IsEqualTo(new Version(1, 0));
     }
 
     [Test]
@@ -93,13 +93,23 @@ public class VersionParseTests
     [Test]
     [Arguments("v1", 1, 0)]
     [Arguments("1.0.0.0.0", 1, 0, 0, 0)]
-    public async Task GracefulParse_EdgeCases_ReturnsCorrectVersion(string input, int major, int minor, int build = 0, int revision = 0)
+    public async Task GracefulParse_EdgeCases_ReturnsCorrectVersion(string input, int major, int minor, int build = -1, int revision = -1)
     {
-        Version expected = new Version(major, minor, build, revision);
+        Version expected;
+        
+        if (build != -1 && revision != -1)
+        {
+            expected = new Version(major, minor, build, revision);
+        }
+        else
+        {
+            expected = new Version(major, minor);
+        }
+        
         
         Version actual = Version.GracefulParse(input);
         
-        await Assert.That(expected).IsEqualTo(actual);
+        await Assert.That(actual).IsEqualTo(expected);
     }
 
     [Test]

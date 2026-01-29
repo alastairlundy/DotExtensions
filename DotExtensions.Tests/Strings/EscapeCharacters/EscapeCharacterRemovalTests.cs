@@ -48,7 +48,7 @@ public class EscapeCharacterRemovalTests
 
         string actual = text.RemoveEscapeCharacters();
 
-        await Assert.That(expected)
-            .IsEqualTo(actual);
+        await Assert.That(actual)
+            .IsEqualTo(expected);
     }
 }
