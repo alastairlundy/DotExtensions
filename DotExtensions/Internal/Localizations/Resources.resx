@@ -54,4 +54,7 @@
     <data name="Exceptions.Versions.GracefulParse.NoDigits" xml:space="preserve">
         <value>The provided string does not contain a valid version.</value>
     </data>
+    <data name="Exceptions.VersionParsing.InvalidVersionString" xml:space="preserve">
+        <value>Invalid version string: '{0}'</value>
+    </data>
 </root>

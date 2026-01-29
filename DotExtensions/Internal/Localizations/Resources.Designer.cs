@@ -159,6 +159,15 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid version string: &apos;{0}&apos;.
+        /// </summary>
+        internal static string Exceptions_VersionParsing_InvalidVersionString {
+            get {
+                return ResourceManager.GetString("Exceptions.VersionParsing.InvalidVersionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided string does not contain a valid version..
         /// </summary>
         internal static string Exceptions_Versions_GracefulParse_NoDigits {
