@@ -47,10 +47,10 @@ public static class DayInExtensions
     extension(DateTime)
     {
         /// <summary>
-        /// Calculates the total number of days in the year of the specified DateTime object.
+        /// Calculates the total number of days in the year of the specified <see cref="DateTime"/> object.
         /// </summary>
-        /// <param name="dateTime">The DateTime object representing the year to calculate the total number of days for.</param>
-        /// <returns>The total number of days in the year of the specified DateTime.</returns>
+        /// <param name="dateTime">The <see cref="DateTime"/> object representing the year to calculate the total number of days for.</param>
+        /// <returns>The total number of days in the year of the specified <see cref="DateTime"/>.</returns>
         public static int DaysInYear(DateTime dateTime)
             => DaysInYear(dateTime.Year);
     }
