@@ -48,5 +48,21 @@ public static class ContainsSpacesExtensions
             
             return s.Contains(' ') && s.Split(' ').Length > 1;
         }
+
+        /// <summary>
+        /// Determines if a string contains substrings separated by the specified delimiter.
+        /// </summary>
+        /// <param name="delimiter">The character used to separate substrings within the input string.</param>
+        /// <returns>
+        /// True if the string contains multiple substrings separated by the delimiter; false otherwise.
+        /// The method checks for both the presence of the delimiter and that at least two distinct parts
+        /// exist after splitting by it.
+        /// </returns>
+        public bool ContainsDelimitedSubstrings(char delimiter)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(s);
+            
+            return s.Contains(delimiter) && s.Split(delimiter).Length > 1;
+        }
     }
 }
