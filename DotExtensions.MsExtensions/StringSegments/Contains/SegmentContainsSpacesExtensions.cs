@@ -44,13 +44,30 @@ public static class SegmentContainsSpacesExtensions
         /// </summary>
         [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool ContainsSpaceSeparatedSubSegments()
+            => segment.ContainsDelimitedSubSegments(' ');
+
+        /// <summary>
+        /// Determines whether the specified string segment contains delimited subsegments.
+        /// </summary>
+        /// <param name="delimiter">The delimiter character to check for.</param>
+        /// <returns>True if the string segment contains delimited subsegments; false otherwise.</returns>
+        public bool ContainsDelimitedSubSegments(char delimiter)
         {
-            if (segment.IsEmpty)
+            if (segment.IsEmpty || StringSegment.IsWhiteSpace(segment))
                 return false;
+            
+            StringTokenizer tokenizer = segment.Split([delimiter]);
+            
+            int count = 0;
+            foreach (StringSegment unused in tokenizer)
+            {
+                count++;
 
-            StringTokenizer tokenizer = segment.Split([' ']);
-
-            return segment.Contains(' ') && tokenizer.Count() > 1;
+                if (count > 1)
+                    break;
+            }
+            
+            return segment.Contains(delimiter) && count > 1;
         }
     }
 }
