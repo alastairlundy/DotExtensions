@@ -29,7 +29,7 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class DayInExtensions
 {
-    internal static int DaysInYear(int year)
+    private static int DaysInYear(int year)
     {
         int days = 0;
             
