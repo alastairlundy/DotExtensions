@@ -25,7 +25,7 @@
 namespace DotExtensions.Dates;
 
 /// <summary>
-/// 
+/// Provides extension methods for calculating the number of Days in a period of time.
 /// </summary>
 public static class DayInExtensions
 {
