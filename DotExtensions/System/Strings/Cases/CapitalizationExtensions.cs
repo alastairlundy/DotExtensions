@@ -31,9 +31,6 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class CapitalizationExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="str">The string to be modified.</param>
     extension(string str)
     {

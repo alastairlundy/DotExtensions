@@ -32,9 +32,6 @@ namespace DotExtensions.Strings.Security;
 /// </summary>
 public static class AppendSecureStringExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="secureString">The <see cref="SecureString"/> to append a value to.</param>
     extension(SecureString secureString)
     {
@@ -77,10 +74,7 @@ public static class AppendSecureStringExtensions
             }
         }
     }
-
-    /// <summary>
-    ///
-    /// </summary>
+    
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     extension(SecureString secureString)
     {
