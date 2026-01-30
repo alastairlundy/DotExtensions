@@ -41,9 +41,22 @@ public static class DayInExtensions
         return days;
     }
 
+#if NET8_0_OR_GREATER
     /// <summary>
-    /// Provides extension methods for working with DateTime objects.
+    /// Extensions to calculate the number of days in a <see cref="DateOnly"/> object within a time interval.
     /// </summary>
+    /// <param name="dateOnly">The <see cref="DateOnly"/> object to calculate the total number of days in the year for.</param>
+    extension(DateOnly dateOnly)
+    {
+        /// <summary>
+        /// Calculates the total number of days in the year of the specified <see cref="DateOnly"/> object.
+        /// </summary>
+        /// <returns>The total number of days in the year of the specified <see cref="DateOnly"/>.</returns>
+        public int DaysInYear()
+            => DaysInYear(dateOnly.Year);
+    }
+#endif
+    
     extension(DateTime)
     {
         /// <summary>
