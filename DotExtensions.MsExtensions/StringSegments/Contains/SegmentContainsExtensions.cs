@@ -23,9 +23,6 @@
    */
 
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable RedundantBoolCompare
-
 namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
