@@ -51,6 +51,7 @@ public static class DayInExtensions
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/> object representing the year to calculate the total number of days for.</param>
         /// <returns>The total number of days in the year of the specified <see cref="DateTime"/>.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static int DaysInYear(DateTime dateTime)
             => DaysInYear(dateTime.Year);
     }
