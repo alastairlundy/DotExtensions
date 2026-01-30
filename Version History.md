@@ -6,6 +6,7 @@
 ### 9.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.5.0 | January 30th 2026 | |
 | 9.5.0 Preview 1 | January 21st 2026 | DotExtensions package only |
 
 ### 9.4
