@@ -26,8 +26,6 @@
 using System.Numerics;
 #endif
 
-// ReSharper disable ConvertClosureToMethodGroup
-
 namespace DotExtensions.Numbers;
 
 /// <summary>
