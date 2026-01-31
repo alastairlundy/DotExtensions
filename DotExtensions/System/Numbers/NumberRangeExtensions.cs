@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+#if NET8_0_OR_GREATER || NETSTANDARD2_1
+
 namespace DotExtensions.Numbers;
 
 /// <summary>
@@ -29,7 +31,6 @@ namespace DotExtensions.Numbers;
 /// </summary>
 public static class NumberRangeExtensions
 {
-#if NET8_0_OR_GREATER || NETSTANDARD2_1
     /// <param name="start">The starting index or integer value of the range.</param>
     extension(int start)
     {
@@ -53,5 +54,5 @@ public static class NumberRangeExtensions
         public Range AsRange(int count) =>
             new(start, new(start.Value + count));
     }
-#endif
 }
+#endif
