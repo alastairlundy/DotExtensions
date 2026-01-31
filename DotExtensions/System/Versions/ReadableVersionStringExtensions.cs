@@ -51,10 +51,8 @@ public static class ReadableVersionStringExtensions
                 {
                     if (showBuild)
                         return $"{version.Major}.{version.Minor}.{version.Build}";
-                    if (showMinor)
-                        return $"{version.Major}.{version.Minor}";
-                
-                    return version.Major.ToString();
+                    
+                    return showMinor ? $"{version.Major}.{version.Minor}" : version.Major.ToString();
                 }
             }
         }
