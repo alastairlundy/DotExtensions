@@ -203,8 +203,8 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
-            => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(new DirectoryInfo(path), searchPattern, directorySearchOption, ignoreCase);
-
+            => 
+        
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
 
@@ -253,7 +253,8 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern,
             SearchOption directorySearchOptions, bool ignoreCase = true)
-            => SafeDirectoryEnumeration.Shared.SafelyGetDirectories(new DirectoryInfo(path), searchPattern, directorySearchOptions, ignoreCase);
+            => Directory.SafelyEnumerateDirectories(path, searchPattern, directorySearchOptions, ignoreCase).ToArray();
+
         #endregion
     }
 }
