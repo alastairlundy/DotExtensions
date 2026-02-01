@@ -22,8 +22,6 @@
     SOFTWARE.
  */
 
-using DotPrimitives.IO.Permissions.Windows;
-
 namespace DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions

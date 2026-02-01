@@ -24,7 +24,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DotPrimitives.IO.Directories;
 
 // ReSharper disable InconsistentNaming
 
