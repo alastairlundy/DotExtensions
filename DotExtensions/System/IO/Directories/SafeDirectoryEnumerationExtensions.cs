@@ -23,6 +23,7 @@
    */
 
 using System.Collections.Generic;
+using System.Linq;
 using DotPrimitives.IO.Directories;
 
 // ReSharper disable InconsistentNaming
@@ -85,8 +86,24 @@ public static partial class SafeIOEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true) 
-            => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(directoryInfo,  searchPattern, searchOption, ignoreCase);
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption,
+            bool ignoreCase = true)
+        {
+#if NET8_0_OR_GREATER
+            EnumerationOptions enumerationOptions = new()
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
+                ReturnSpecialDirectories = true,
+                MatchType = MatchType.Simple,
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
+            };
+
+            return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
+#else
+            
+#endif
+        }
         #endregion
 
         #region Safe Directory Getting
@@ -136,7 +153,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories(string searchPattern, SearchOption searchOption,
             bool ignoreCase = true)
-            => SafeDirectoryEnumeration.Shared.SafelyGetDirectories(directoryInfo,  searchPattern, searchOption, ignoreCase);
+            => directoryInfo.SafelyEnumerateDirectories(searchPattern, searchOption, ignoreCase).ToArray();
 
         #endregion
     }
