@@ -22,7 +22,8 @@
     SOFTWARE.
  */
 
-using DotPrimitives.IO.Permissions.Windows;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace DotExtensions.IO.Permissions.Windows;
 
@@ -32,13 +33,13 @@ namespace DotExtensions.IO.Permissions.Windows;
 /// </summary>
 public static class WindowsFilePermissionsExtensions
 {
-    /// <param name="fileInfo">The FileInfo object for which to retrieve the permission.</param>
-    extension(FileInfo fileInfo)
+    /// <param name="file">The FileInfo object for which to retrieve the permission.</param>
+    extension(FileInfo file)
     {
         /// <summary>
         /// Retrieves the Windows file permission for a given FileInfo object.
         /// </summary>
-        /// <returns>A WindowsFilePermission indicating the permission of the specified file or directory.</returns>
+        /// <returns></returns>
         /// <exception cref="PlatformNotSupportedException">Thrown when the operation is performed on a platform that is not Windows-based.</exception>
         [SupportedOSPlatform("windows")]
         [UnsupportedOSPlatform("macos")]
@@ -47,21 +48,25 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public WindowsFilePermission GetWindowsFilePermission()
+        public AuthorizationRuleCollection GetWindowsFilePermission()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-        
-            return WindowsFilePermissionManager.GetFilePermission(fileInfo.FullName);
-        }
-    }
+           
+            if(!file.Exists)
+                throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName));
 
-    /// <param name="fileInfo">The FileInfo object for which to set the permission.</param>
-    extension(FileInfo fileInfo)
-    {
+            FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
+
+            AuthorizationRuleCollection results = fileSecurity.GetAccessRules(true, true, typeof(SecurityIdentifier));
+
+            return results;
+        }
+        
         /// <summary>
         /// Sets the Windows file permission for a given FileInfo object.
         /// </summary>
-        /// <param name="permission">A WindowsFilePermission indicating the new permission of the specified file or directory.</param>
+        /// <param name="identityReference"></param>
+        /// <param name="fileSystemRights"></param>
         /// <exception cref="PlatformNotSupportedException">Thrown when the operation is performed on a platform that is not Windows-based.</exception>
         [SupportedOSPlatform("windows")]
         [UnsupportedOSPlatform("macos")]
@@ -70,21 +75,29 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public void SetWindowsFilePermission(WindowsFilePermission permission)
+        public void SetWindowsFilePermission(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-
-            WindowsFilePermissionManager.SetFilePermission(fileInfo.FullName, permission);
+            
+            if(!file.Exists)
+                throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName));
+        
+            FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
+            
+            fileSecurity.AddAccessRule(new(identityReference, fileSystemRights, AccessControlType.Allow));
+        
+            file.SetAccessControl(fileSecurity);
         }
     }
-
-    /// <param name="directoryInfo">The DirectoryInfo object for which to set the permission.</param>
-    extension(DirectoryInfo directoryInfo)
+    
+    /// <param name="directory">The DirectoryInfo object for which to set the permission.</param>
+    extension(DirectoryInfo directory)
     {
         /// <summary>
         /// Sets the Windows file permission for a given DirectoryInfo object.
         /// </summary>
-        /// <param name="permission">The WindowsFilePermission to be assigned.</param>
+        /// <param name="identityReference"></param>
+        /// <param name="fileSystemRights"></param>
         /// <exception cref="PlatformNotSupportedException">Thrown when the operation is performed on a platform that is not Windows-based.</exception>
         [SupportedOSPlatform("windows")]
         [UnsupportedOSPlatform("macos")]
@@ -93,17 +106,20 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public void SetWindowsDirectoryPermission(WindowsFilePermission permission)
+        public void SetWindowsDirectoryPermission(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            
+            DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
 
-            WindowsFilePermissionManager.SetDirectoryPermission(directoryInfo.FullName, permission);
+            directorySecurity.AddAccessRule(new FileSystemAccessRule(identityReference, fileSystemRights, AccessControlType.Allow));
+            directory.SetAccessControl(directorySecurity);
         }
 
         /// <summary>
         /// Retrieves the Windows directory permission for a given DirectoryInfo object.
         /// </summary>
-        /// <returns>A WindowsFilePermission indicating the permission of the specified directory.</returns>
+        /// <returns> </returns>
         /// <exception cref="PlatformNotSupportedException">Thrown when the operation is performed on a platform that is not Windows-based.</exception>
         [SupportedOSPlatform("windows")]
         [UnsupportedOSPlatform("macos")]
@@ -112,11 +128,18 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public WindowsFilePermission GetWindowsDirectoryPermission()
+        public AuthorizationRuleCollection GetWindowsDirectoryPermission()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
-            return WindowsFilePermissionManager.GetDirectoryPermission(directoryInfo.FullName);
+            if(!directory.Exists)
+                throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
+                    directory.Name));
+        
+            DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
+            AuthorizationRuleCollection results = directorySecurity.GetAccessRules(true, true, typeof(SecurityIdentifier));
+
+            return results;
         }
     }
 }

@@ -57,4 +57,10 @@
     <data name="Exceptions.VersionParsing.InvalidVersionString" xml:space="preserve">
         <value>Invalid version string: '{0}'</value>
     </data>
+    <data name="Exceptions.FileNotFound" xml:space="preserve">
+        <value>File '{file}' could not be found or does not exist.</value>
+    </data>
+    <data name="Exceptions.DirectoryNotFound" xml:space="preserve">
+        <value>Directory '{directory}' could not be found or does not exist.</value>
+    </data>
 </root>

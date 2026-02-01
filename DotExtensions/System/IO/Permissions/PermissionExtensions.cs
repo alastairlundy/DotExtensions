@@ -22,7 +22,8 @@
     SOFTWARE.
  */
 
-using DotPrimitives.IO.Permissions.Windows;
+using System.Security.AccessControl;
+using DotExtensions.IO.Permissions.Windows;
 
 namespace DotExtensions.IO.Permissions;
 
@@ -60,8 +61,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasExecutePermission;
                 }
@@ -99,8 +99,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasReadPermission;
                 }
@@ -138,8 +137,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasWritePermission;
                 }
