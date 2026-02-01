@@ -11,16 +11,7 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>*Added Version ``GracefulParse(string)`` and ``TryGraceParse(string, out Version?)`` static extension member methods
-* Added ``FileInfo`` ``GetDirectory`` extension method - This method throws an exception if the file does not exist, and a not null directory value otherwise
-* Added String ``ContainsDelimitedSubStrings`` method
-* Added DateOnly ``DaysInYear`` extension 
-* Added string ``IsEscapeCharacter(string)`` static extension member method
-* Updated DotPrimitives version from 4.2.0 to 4.3.0
-* Improved string escape character removal method performance
-* Deprecated string ``ContainsSpaceSeparatedSubStrings`` method for removal in v10
-* Deprecated DateTime ``DaysInYear`` static extension member method for removal in v10 - This will be replaced by a non extension member C# 14 type extension method
-* Deprecated SecureString ``SetString`` and ``AppendString`` methods for removal in v10</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated DotPrimitives version from 4.3.0 to 4.3.1</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -29,7 +20,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.5.0</Version>
+    <Version>9.5.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
