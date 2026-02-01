@@ -34,6 +34,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool HasExecutePermission =>
             permission.HasFlag(WindowsFilePermission.GroupReadAndExecute) ||
             permission.HasFlag(WindowsFilePermission.SystemReadAndExecute) ||
@@ -45,6 +46,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool HasWritePermission =>
             permission.HasFlag(WindowsFilePermission.GroupWrite) ||
             permission.HasFlag(WindowsFilePermission.SystemWrite) ||
@@ -56,6 +58,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool HasReadPermission =>
             permission.HasFlag(WindowsFilePermission.GroupRead) ||
             permission.HasFlag(WindowsFilePermission.SystemRead) ||

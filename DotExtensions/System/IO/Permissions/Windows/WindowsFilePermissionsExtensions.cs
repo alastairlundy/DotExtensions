@@ -47,6 +47,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public WindowsFilePermission GetWindowsFilePermission()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
@@ -70,6 +71,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public void SetWindowsFilePermission(WindowsFilePermission permission)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
@@ -93,6 +95,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public void SetWindowsDirectoryPermission(WindowsFilePermission permission)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
@@ -112,6 +115,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public WindowsFilePermission GetWindowsDirectoryPermission()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
