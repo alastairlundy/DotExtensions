@@ -203,21 +203,9 @@ public static partial class SafeIOEnumerationExtensions
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
-#if NET8_0_OR_GREATER
-            EnumerationOptions enumerationOptions = new()
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories = directorySearchOption == SearchOption.AllDirectories,
-                ReturnSpecialDirectories = true,
-                MatchType = MatchType.Simple,
-                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
-            };
-
-            return Directory.EnumerateDirectories(path, searchPattern, enumerationOptions)
-                .Select(directoryInfo => new DirectoryInfo(directoryInfo));
-#else
+            DirectoryInfo directoryInfo =  new(path);
             
-#endif
+            return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
         }
         
         #endregion
