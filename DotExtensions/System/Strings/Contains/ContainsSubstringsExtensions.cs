@@ -28,7 +28,7 @@ namespace DotExtensions.Strings;
 /// Provides extension methods for working with strings to evaluate the presence of
 /// space-separated substrings within them.
 /// </summary>
-public static class ContainsSpacesExtensions
+public static class ContainsSubstringsExtensions
 {
     /// <summary>
     /// Provides a polyfill implementation of string-related utility methods for
@@ -36,19 +36,6 @@ public static class ContainsSpacesExtensions
     /// </summary>
     extension(string s)
     {
-        /// <summary>
-        /// Determines if a string contains space separated substrings within it.
-        ///
-        /// <para>True if the string contains space separated strings within it; false otherwise. </para>
-        /// </summary>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public bool ContainsSpaceSeparatedSubStrings()
-        {
-            ArgumentException.ThrowIfNullOrEmpty(s);
-            
-            return s.Contains(' ') && s.Split(' ').Length > 1;
-        }
-
         /// <summary>
         /// Determines if a string contains substrings separated by the specified delimiter.
         /// </summary>

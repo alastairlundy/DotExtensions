@@ -43,7 +43,7 @@ public class ContainsSpacesTests
     {
         string text = words.Replace(" ", string.Empty);
 
-        bool actual = text.ContainsSpaceSeparatedSubStrings();
+        bool actual = text.ContainsDelimitedSubstrings(' ');
 
         await Assert.That(actual)
             .IsFalse();
@@ -53,7 +53,7 @@ public class ContainsSpacesTests
     [MethodDataSource(nameof(LoremWords))]
     public async Task SpacedWordsDetection(string words)
     {
-        bool actual = words.ContainsSpaceSeparatedSubStrings();
+        bool actual = words.ContainsDelimitedSubstrings(' ');
 
         await Assert.That(actual)
             .IsEqualTo(words.Contains(" "));
@@ -64,7 +64,7 @@ public class ContainsSpacesTests
     {
         string text = _lorem.Word() + " ";
 
-        bool actual = text.ContainsSpaceSeparatedSubStrings();
+        bool actual = text.ContainsDelimitedSubstrings(' ');
 
         await Assert.That(actual).IsTrue();
     }
