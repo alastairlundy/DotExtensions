@@ -23,8 +23,8 @@
    */
 
 using System.Linq;
-using DotPrimitives.IO.Directories;
-using DotPrimitives.IO.Drives;
+using DotExtensions.IO.Directories;
+using DotExtensions.IO.Drives;
 
 namespace DotExtensions.IO.Files;
 
@@ -67,10 +67,10 @@ public static class GetDirectoryExtensions
             if (!fileInfo.Exists)
                 throw new ArgumentException("File to get the directory of does not exist.");
 
-            DirectoryInfo? directory = StorageDrives.Shared.EnumerateLogicalDrives()
+            DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)
-                .SelectMany(d => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(d))
-                .FirstOrDefault(d => SafeDirectoryEnumeration.Shared.SafelyEnumerateFiles(d).Any(f => f.Name.Equals(fileInfo.Name)));
+                .SelectMany(d => d.SafelyEnumerateDirectories())
+                .FirstOrDefault(d => d.SafelyEnumerateFiles().Any(f => f.Name.Equals(fileInfo.Name)));
            
             return directory ??
                    new DirectoryInfo(Directory.GetDirectoryRoot(fileInfo.FullName));
