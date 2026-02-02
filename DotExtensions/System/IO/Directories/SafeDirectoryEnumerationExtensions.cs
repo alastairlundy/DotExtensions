@@ -88,7 +88,6 @@ public static partial class SafeIOEnumerationExtensions
         public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption,
             bool ignoreCase = true)
         {
-#if NET8_0_OR_GREATER
             EnumerationOptions enumerationOptions = new()
             {
                 IgnoreInaccessible = true,
@@ -99,9 +98,6 @@ public static partial class SafeIOEnumerationExtensions
             };
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
-#else
-            
-#endif
         }
         #endregion
 

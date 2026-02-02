@@ -69,7 +69,6 @@ public static partial class SafeIOEnumerationExtensions
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern, SearchOption searchOption,
             bool ignoreCase = false)
         {
-#if NET8_0_OR_GREATER
             EnumerationOptions enumerationOptions = new()
             {
                 IgnoreInaccessible = true,
@@ -80,9 +79,6 @@ public static partial class SafeIOEnumerationExtensions
             };
 
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
-#else
-            
-#endif
         }
     }
 
