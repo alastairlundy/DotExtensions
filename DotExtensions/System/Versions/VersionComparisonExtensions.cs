@@ -69,7 +69,7 @@ public static class VersionComparisonExtensions
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The newer of the two specified versions.</returns>
         [Obsolete(DeprecationMessages.DeprecationV10 + 
-                  " . Use Version.Max() instead.")]
+                  ". Use Version.Max() instead.")]
         public static Version GetNewerVersion(Version versionA, Version versionB)
             => Version.Max(versionA, versionB);
 
@@ -89,7 +89,7 @@ public static class VersionComparisonExtensions
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The older of the two specified versions.</returns>
         [Obsolete(DeprecationMessages.DeprecationV10 + 
-                  " . Use Version.Min() instead.")]
+                  ". Use Version.Min() instead.")]
         public static Version GetOlderVersion(Version versionA, Version versionB)
             => Version.Min(versionA, versionB);
 
