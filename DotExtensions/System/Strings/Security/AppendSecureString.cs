@@ -36,26 +36,6 @@ public static class AppendSecureStringExtensions
     extension(SecureString secureString)
     {
         /// <summary>
-        /// Appends a string to this <see cref="SecureString"/>.
-        /// </summary>
-        /// <param name="value">The string to append to this <see cref="SecureString"/>.</param>
-        /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public void AppendString(string value)
-        {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
-            ArgumentException.ThrowIfNullOrEmpty(value);
-            
-            if (secureString.IsReadOnly())
-                throw new InvalidOperationException();
-
-            foreach (char c in value)
-            {
-                secureString.AppendChar(c);
-            }
-        }
-
-        /// <summary>
         /// Appends a sequence of characters to this <see cref="SecureString"/>.
         /// </summary>
         /// <param name="chars">The sequence of characters to append to this <see cref="SecureString"/>.</param>
@@ -118,43 +98,6 @@ public static class AppendSecureStringExtensions
             foreach (char c in chars)
             {
                 secureString.AppendChar(c);
-            }
-        }
-
-        /// <summary>
-        /// Sets this <see cref="SecureString"/> to the specified value.
-        /// </summary>
-        /// <param name="value">The value to set to the <see cref="SecureString"/>.</param>
-        /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read-only and the new value is
-        /// greater than the length of this <see cref="SecureString"/>.</exception>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public void SetString(string value)
-        {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
-            ArgumentException.ThrowIfNullOrEmpty(value);
-            
-            if (secureString.IsReadOnly() && value.Length > secureString.Length)
-                throw new InvalidOperationException();
-
-            if (secureString.IsReadOnly() && value.Length == secureString.Length)
-            {
-                for (int i = 0; i < value.Length; i++)
-                {
-                    secureString.SetAt(i, value[i]);
-                }
-            }
-            else if (secureString.IsReadOnly())
-            {
-                secureString.Clear();
-                secureString = new SecureString();
-                secureString.AppendString(value);
-                secureString.MakeReadOnly();
-            }
-            else
-            {
-                secureString.Clear();
-
-                secureString.AppendString(value);
             }
         }
     }
