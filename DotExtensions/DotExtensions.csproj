@@ -64,7 +64,9 @@
       <PackagePath>README.md</PackagePath>
     </Content>
   </ItemGroup>
-
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.2" />
+    </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Polyfill" Version="9.8.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -76,9 +78,5 @@
 
   <ItemGroup>
     <Folder Include="System\IO\Permissions\Windows\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.2" />
   </ItemGroup>
 </Project>
