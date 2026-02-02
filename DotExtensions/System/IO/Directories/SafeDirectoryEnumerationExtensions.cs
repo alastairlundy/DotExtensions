@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-
-
 // ReSharper disable InconsistentNaming
 
 namespace DotExtensions.IO.Directories;
