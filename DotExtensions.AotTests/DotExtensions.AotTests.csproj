@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
-    <ProjectReference Include="..\DotExtensions.MsExtensions\DotExtensions.MsExtensions.csproj" />
     <ProjectReference Include="..\DotExtensions.Memory\DotExtensions.Memory.csproj" />
   </ItemGroup>
 

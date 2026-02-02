@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using DotExtensions.MsExtensions.Internal;
-
 namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
@@ -37,15 +35,6 @@ public static class SegmentContainsSpacesExtensions
     /// <param name="segment"></param>
     extension(StringSegment segment)
     {
-        /// <summary>
-        /// Whether a <see cref="StringSegment"/> contains space separated subsegments within it.
-        ///
-        /// <para>True if the <see cref="StringSegment"/> contains space separated <see cref="StringSegment"/>s within it; false otherwise.</para>
-        /// </summary>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public bool ContainsSpaceSeparatedSubSegments()
-            => segment.ContainsDelimitedSubSegments(' ');
-
         /// <summary>
         /// Determines whether the specified string segment contains delimited subsegments.
         /// </summary>
