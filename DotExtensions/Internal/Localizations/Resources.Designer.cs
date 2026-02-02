@@ -69,6 +69,15 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory &apos;{directory}&apos; could not be found or does not exist..
+        /// </summary>
+        internal static string Exceptions_DirectoryNotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.DirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The enumeration of elements yielded zero items. The sequence was empty. .
         /// </summary>
         internal static string Exceptions_Enumerables_InvalidOperation_EmptySequence {
@@ -83,6 +92,15 @@ namespace DotExtensions.Localizations {
         internal static string Exceptions_EnumerablesSplit_Empty {
             get {
                 return ResourceManager.GetString("Exceptions.EnumerablesSplit.Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &apos;{file}&apos; could not be found or does not exist..
+        /// </summary>
+        internal static string Exceptions_FileNotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.FileNotFound", resourceCulture);
             }
         }
         

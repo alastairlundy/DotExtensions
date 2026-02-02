@@ -22,52 +22,60 @@
     SOFTWARE.
  */
 
-using DotPrimitives.IO.Permissions.Windows;
+using System.Linq;
+using System.Security.AccessControl;
 
 namespace DotExtensions.IO.Permissions;
 
 public static partial class PermissionExtensions
 {
-    /// <param name="permission">The Windows file permission to check.</param>
-    extension(WindowsFilePermission permission)
+    /// <param name="rules">The Windows file permission to check.</param>
+    extension(AuthorizationRuleCollection rules)
     {
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public bool HasExecutePermission =>
-            permission.HasFlag(WindowsFilePermission.GroupReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.SystemReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.UserReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.GroupFullControl) ||
-            permission.HasFlag(WindowsFilePermission.UserFullControl) ||
-            permission.HasFlag(WindowsFilePermission.SystemFullControl);
+        public bool HasExecutePermission
+        {
+            get
+            {
+                return rules.Cast<FileSystemAccessRule>().Any(rule =>
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ExecuteFile) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadAndExecute));
+            }
+        }
 
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public bool HasWritePermission =>
-            permission.HasFlag(WindowsFilePermission.GroupWrite) ||
-            permission.HasFlag(WindowsFilePermission.SystemWrite) ||
-            permission.HasFlag(WindowsFilePermission.UserWrite) ||
-            permission.HasFlag(WindowsFilePermission.GroupFullControl) ||
-            permission.HasFlag(WindowsFilePermission.UserFullControl) ||
-            permission.HasFlag(WindowsFilePermission.SystemFullControl);
+        public bool HasWritePermission
+        {
+            get
+            {
+                return rules.Cast<FileSystemAccessRule>().Any(rule =>
+                    rule.FileSystemRights.HasFlag(FileSystemRights.Write) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.WriteData) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.AppendData) || 
+                    rule.FileSystemRights.HasFlag(FileSystemRights.CreateFiles) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.CreateDirectories));
+            }   
+        }
 
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public bool HasReadPermission =>
-            permission.HasFlag(WindowsFilePermission.GroupRead) ||
-            permission.HasFlag(WindowsFilePermission.SystemRead) ||
-            permission.HasFlag(WindowsFilePermission.UserRead) ||
-            permission.HasFlag(WindowsFilePermission.GroupReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.SystemReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.UserReadAndExecute) ||
-            permission.HasFlag(WindowsFilePermission.GroupFullControl) ||
-            permission.HasFlag(WindowsFilePermission.UserFullControl) ||
-            permission.HasFlag(WindowsFilePermission.SystemFullControl);
+        public bool HasReadPermission
+        {
+            get
+            {
+                return rules.Cast<FileSystemAccessRule>().Any(rule =>
+                    rule.FileSystemRights.HasFlag(FileSystemRights.Read) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadAndExecute) ||
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadData));
+            }
+        }
     }
 }

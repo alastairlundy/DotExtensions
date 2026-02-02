@@ -24,7 +24,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DotPrimitives.IO.Directories;
 
 // ReSharper disable InconsistentNaming
 
@@ -69,8 +68,18 @@ public static partial class SafeIOEnumerationExtensions
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern, SearchOption searchOption,
             bool ignoreCase = false)
-            => SafeDirectoryEnumeration.Shared.SafelyEnumerateFiles(directoryInfo, searchPattern, searchOption,
-                ignoreCase);
+        {
+            EnumerationOptions enumerationOptions = new()
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
+                ReturnSpecialDirectories = true,
+                MatchType = MatchType.Simple,
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
+            };
+
+            return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
+        }
     }
 
     #endregion
@@ -170,7 +179,7 @@ public static partial class SafeIOEnumerationExtensions
             
             return directoryInfo.SafelyEnumerateFiles(searchPattern, directorySearchOption, ignoreCase);
         }
-
+        
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
 
@@ -209,8 +218,8 @@ public static partial class SafeIOEnumerationExtensions
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files found in the directory.</returns>
         public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions,
             bool ignoreCase = true)
-            => Directory.SafelyEnumerateFiles(path, searchPattern, directorySearchOptions, ignoreCase)
-                .ToArray();
+            => Directory.SafelyEnumerateFiles(path, searchPattern, directorySearchOptions, ignoreCase).ToArray();
+
         #endregion
     }
 }

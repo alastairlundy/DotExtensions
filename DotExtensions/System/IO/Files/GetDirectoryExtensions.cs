@@ -33,10 +33,6 @@ namespace DotExtensions.IO.Files;
 /// </summary>
 public static class GetDirectoryExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="fileInfo"></param>
     extension(FileInfo fileInfo)
     {
         /// <summary>
@@ -69,8 +65,9 @@ public static class GetDirectoryExtensions
 
             DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)
-                .SelectMany(d => d.SafelyEnumerateDirectories())
-                .FirstOrDefault(d => d.SafelyEnumerateFiles().Any(f => f.Name.Equals(fileInfo.Name)));
+                .SelectMany(d => d.SafelyEnumerateDirectories("*", SearchOption.AllDirectories))
+                .FirstOrDefault(d => d.SafelyEnumerateFiles("*", SearchOption.AllDirectories)
+                    .Any(f => f.Name.Equals(fileInfo.Name)));
            
             return directory ??
                    new DirectoryInfo(Directory.GetDirectoryRoot(fileInfo.FullName));
