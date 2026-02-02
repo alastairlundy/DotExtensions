@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System.Linq;
 using DotExtensions.IO.Directories;
 using DotExtensions.IO.Drives;
 

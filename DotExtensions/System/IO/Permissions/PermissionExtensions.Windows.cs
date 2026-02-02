@@ -22,7 +22,6 @@
     SOFTWARE.
  */
 
-using System.Linq;
 using System.Security.AccessControl;
 
 namespace DotExtensions.IO.Permissions;

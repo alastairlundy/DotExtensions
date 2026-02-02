@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Linq;
-
 namespace DotExtensions.Versions;
 
 /// <summary>
@@ -89,7 +87,7 @@ public static class VersionParseExtensions
         return output;
     }
     
-    private static (int major, int minor, int build, int revision) ParseComponents(string[] versionComponents)
+    private static (int major, int minor, int build, int revision) ParseComponents(StringSegment[] versionComponents)
     {
         int major = -1, minor = -1, build = -1, revision = -1;
 
@@ -105,22 +103,24 @@ public static class VersionParseExtensions
             {
                 int index = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
 
-                return v.Substring(index);
+                return v.Subsegment(index);
             })
             .ToArray();
 
 
         for (int index = 0; index < versionComponents.Length; index++)
         {
-            string component = versionComponents[index];
+            StringSegment component = versionComponents[index];
             
             if (componentsAdded >= 4)
                 break;
 
             StringBuilder stringBuilder = new(component.Length);
-            
-            foreach (char currentChar in component)
+
+            for (int i = 0; i < component.Length; i++)
             {
+                char currentChar = component[i];
+                
                 if (char.IsDigit(currentChar))
                 {
                     stringBuilder.Append(currentChar);
@@ -173,7 +173,9 @@ public static class VersionParseExtensions
             
             if (sanitizedInput.Contains('.') && separator != ' ')
             {
-                string[] versionComponents = sanitizedInput.Split(separator).Take(4).ToArray();
+                IEnumerable<StringSegment> segments = new StringTokenizer(sanitizedInput, [separator]);
+                
+                StringSegment[] versionComponents = segments.Take(4).ToArray();
                 components = ParseComponents(versionComponents);
             }
             else
