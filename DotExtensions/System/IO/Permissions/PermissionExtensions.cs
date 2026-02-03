@@ -55,8 +55,6 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasExecutePermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
@@ -93,8 +91,6 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasReadPermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
@@ -131,8 +127,6 @@ public static partial class PermissionExtensions
         [SupportedOSPlatform("android")]
         public bool HasWritePermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
