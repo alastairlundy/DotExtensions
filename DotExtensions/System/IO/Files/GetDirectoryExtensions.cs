@@ -42,7 +42,7 @@ public static class GetDirectoryExtensions
         /// <summary>
         /// Gets the parent directory of a file.
         /// </summary>
-        /// <returns>The parent directory of the <paramref name="fileInfo"/> if found.</returns>
+        /// <returns>The parent directory of the fileinfo. if found.</returns>
         /// <exception cref="ArgumentException">Thrown if the file does not exist.</exception>
         public DirectoryInfo GetDirectory()
         {
