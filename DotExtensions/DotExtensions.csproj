@@ -37,6 +37,7 @@
       <EnableAotAnalyzer>true</EnableAotAnalyzer>
       <IsAoTCompatible>true</IsAoTCompatible>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
+      <NoWarn>$(NoWarn);CS0618</NoWarn>
   </PropertyGroup>
 
     <ItemGroup>
