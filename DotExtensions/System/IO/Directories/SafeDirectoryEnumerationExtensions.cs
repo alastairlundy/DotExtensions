@@ -24,7 +24,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using DotPrimitives.IO.Directories;
 
 // ReSharper disable InconsistentNaming
 
@@ -86,8 +85,18 @@ public static partial class SafeIOEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true) 
-            => SafeDirectoryEnumeration.Shared.SafelyEnumerateDirectories(directoryInfo,  searchPattern, searchOption, ignoreCase);
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true)
+        {
+            EnumerationOptions enumerationOptions = new()
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive,
+                MatchType = MatchType.Simple
+            };
+
+            return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
+        }
         #endregion
 
         #region Safe Directory Getting
