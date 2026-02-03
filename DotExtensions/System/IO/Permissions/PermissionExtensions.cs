@@ -46,6 +46,9 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
+        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("tvOS")]
+        [UnsupportedOSPlatform("browser")]
         public bool HasExecutePermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
@@ -79,11 +82,9 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [SupportedOSPlatform("macos")]
-        [SupportedOSPlatform("maccatalyst")]
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        [SupportedOSPlatform("android")]
+        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("tvOS")]
+        [UnsupportedOSPlatform("browser")]
         public bool HasReadPermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
@@ -117,12 +118,9 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [SupportedOSPlatform("windows")]
-        [SupportedOSPlatform("macos")]
-        [SupportedOSPlatform("maccatalyst")]
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        [SupportedOSPlatform("android")]
+        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("tvOS")]
+        [UnsupportedOSPlatform("browser")]
         public bool HasWritePermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
