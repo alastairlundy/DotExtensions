@@ -46,12 +46,6 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [SupportedOSPlatform("windows")]
-        [SupportedOSPlatform("macos")]
-        [SupportedOSPlatform("maccatalyst")]
-        [SupportedOSPlatform("linux")]
-        [SupportedOSPlatform("freebsd")]
-        [SupportedOSPlatform("android")]
         public bool HasExecutePermission()
         {
             ArgumentNullException.ThrowIfNull(fileInfo);
@@ -85,7 +79,6 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [SupportedOSPlatform("windows")]
         [SupportedOSPlatform("macos")]
         [SupportedOSPlatform("maccatalyst")]
         [SupportedOSPlatform("linux")]
