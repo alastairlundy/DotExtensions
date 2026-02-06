@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using BenchmarkDotNet.Mathematics;
 using DotExtensions.IO.Directories;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;

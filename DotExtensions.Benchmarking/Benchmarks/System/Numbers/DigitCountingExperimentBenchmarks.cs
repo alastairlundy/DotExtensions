@@ -5,7 +5,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90)]
 [SimpleJob(RuntimeMoniker.Net10_0)]
-[MemoryDiagnoser(true)]
+[MemoryDiagnoser]
 [CsvMeasurementsExporter]
 public class DigitCountingExperimentBenchmarks
 {

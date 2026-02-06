@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using DotExtensions.Strings;
 using Bogus.DataSets;
 using DotExtensions.Tests.TestData;
