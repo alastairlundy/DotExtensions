@@ -55,5 +55,24 @@ public static class IsDirectoryEmptyExtensions
                        !directory.SafelyEnumerateDirectories().Any();
             }
         }
+
+        /// <summary>
+        /// Determines if the directory contains any files.
+        /// </summary>
+        /// <value><c>true</c> if the directory has at least one file; otherwise, <c>false</c>.</value>
+        /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
+        public bool HasFiles
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(directory);
+
+                if (!directory.Exists)
+                    throw new DirectoryNotFoundException(
+                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
+
+                return directory.SafelyEnumerateFiles().Any();
+            }
+        }
     }
 }
