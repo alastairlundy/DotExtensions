@@ -7,16 +7,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.5.0</Version>
+    <Version>9.6.0-preview.2</Version>
     <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>* Deprecated StringSegment ``ContainsSpaceSeparatedSubSegments`` method for removal in v10
-* Improved the performance of ``ContainsSpaceSeparatedSubSegments`` method
-* Added StringSegment ``ContainsDelimitedSubSegments`` method
-* Removed ArgumentNullException Throw no-ops</PackageReleaseNotes>
+    <PackageReleaseNotes>* Minor code formatting improvements</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>

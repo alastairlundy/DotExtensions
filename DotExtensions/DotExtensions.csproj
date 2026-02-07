@@ -11,9 +11,11 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Update internal Polyfill version from 9.7.7 to 9.8.1
-* Improved reliability of Safe IO Enumeration extension methods on .NET Standard 2.0
-* Added Safe Logical Drive Enumeration ``DriveInfo`` static extension member methods ``SafelyEnumerateLogicalDrives`` and ``SafelyGetLogicalDrives``</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added ``DriveInfo`` GetRandomDrive`` static extension method
+* Added ``DirectoryInfo`` ``GetRandomDirectory(bool)`` static extension method for getting a random directory (optional bool parameter determines whether the randomly selected directory must contain files)
+* Added ``FileInfo`` ``GetRandomFile(bool)`` - static extension method for getting a random file
+* Added ``Path`` ``GetRandomFilePath`` - static extension method which returns the ``FileInfo`` static extension method's ``FullName`` property
+* Added ``DirectoryInfo`` static extension property ``HasFiles`` - A better way to detect if a directory has any files within it than the previously introduced ``IsEmpty`` static extension property. ``IsEmpty`` checks for both files and sub directories whereas ``HasFiles`` just looks for files.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -22,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.6.0-preview.1</Version>
+    <Version>9.6.0-preview.2</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
