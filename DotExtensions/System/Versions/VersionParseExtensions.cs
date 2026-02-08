@@ -53,8 +53,7 @@ public static class VersionParseExtensions
         
         return (int.Parse(result), -1, -1, -1);
     }
-        
-        
+    
     private static string SanitizeInput(string versionString, char separator)
     {
         StringBuilder stringBuilder = new StringBuilder(versionString.Length);
