@@ -23,8 +23,6 @@
    */
 
 using System.Linq;
-using DotExtensions.IO.Directories;
-using DotExtensions.IO.Drives;
 
 namespace DotExtensions.IO.Files;
 
