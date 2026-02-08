@@ -22,6 +22,9 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+using System.Linq;
+
 // ReSharper disable InconsistentNaming
 
 namespace DotExtensions.IO.Directories;
@@ -82,16 +85,14 @@ public static partial class SafeIOEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption,
-            bool ignoreCase = true)
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true)
         {
             EnumerationOptions enumerationOptions = new()
             {
                 IgnoreInaccessible = true,
                 RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
-                ReturnSpecialDirectories = true,
-                MatchType = MatchType.Simple,
-                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive,
+                MatchType = MatchType.Simple
             };
 
             return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
@@ -196,11 +197,11 @@ public static partial class SafeIOEnumerationExtensions
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
-            DirectoryInfo directoryInfo =  new(path);
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
             
             return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
         }
-        
+
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
 
@@ -249,8 +250,7 @@ public static partial class SafeIOEnumerationExtensions
         /// </returns>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern,
             SearchOption directorySearchOptions, bool ignoreCase = true)
-            => Directory.SafelyEnumerateDirectories(path, searchPattern, directorySearchOptions, ignoreCase).ToArray();
-
+            => Directory.SafelyEnumerateDirectories(path,  searchPattern, directorySearchOptions, ignoreCase).ToArray();
         #endregion
     }
 }

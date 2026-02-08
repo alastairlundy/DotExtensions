@@ -3,9 +3,17 @@
 ## As DotExtensions
 
 ### Version 9.x
+### 9.6
+| Version | Release Date | Notes | 
+|-|-|-|
+| 9.6.0 | February 8th 2026 | |
+| 9.6.0 Preview 2 | February 7th 2026 | |
+| 9.6.0 Preview 1 | February 5th 2026 | DotExtensions package only |
+
 ### 9.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.5.1 | February 1st 2026 | |
 | 9.5.0 | January 30th 2026 | |
 | 9.5.0 Preview 1 | January 21st 2026 | DotExtensions package only |
 

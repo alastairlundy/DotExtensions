@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+
 #if NET8_0_OR_GREATER
 using System.Numerics;
 #endif

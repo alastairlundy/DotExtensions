@@ -11,16 +11,15 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>*Added Version ``GracefulParse(string)`` and ``TryGraceParse(string, out Version?)`` static extension member methods
-* Added ``FileInfo`` ``GetDirectory`` extension method - This method throws an exception if the file does not exist, and a not null directory value otherwise
-* Added String ``ContainsDelimitedSubStrings`` method
-* Added DateOnly ``DaysInYear`` extension 
-* Added string ``IsEscapeCharacter(string)`` static extension member method
-* Updated DotPrimitives version from 4.2.0 to 4.3.0
-* Improved string escape character removal method performance
-* Deprecated string ``ContainsSpaceSeparatedSubStrings`` method for removal in v10
-* Deprecated DateTime ``DaysInYear`` static extension member method for removal in v10 - This will be replaced by a non extension member C# 14 type extension method
-* Deprecated SecureString ``SetString`` and ``AppendString`` methods for removal in v10</PackageReleaseNotes>
+    <PackageReleaseNotes>* Deprecated Windows File Permission extensions
+* Updated internal Polyfill version from 9.7.7 to 9.8.1
+* Improved reliability of Safe IO Enumeration extension methods on .NET Standard 2.0
+* Added Safe Logical Drive Enumeration DriveInfo static extension member methods SafelyEnumerateLogicalDrives and SafelyGetLogicalDrives
+* Added ``DriveInfo`` GetRandomDrive`` static extension method
+* Added ``DirectoryInfo`` ``GetRandomDirectory(bool)`` static extension method for getting a random directory (optional bool parameter determines whether the randomly selected directory must contain files)
+* Added ``FileInfo`` ``GetRandomFile(bool)`` - static extension method for getting a random file
+* Added ``Path`` ``GetRandomFilePath`` - static extension method which returns the ``FileInfo`` static extension method's ``FullName`` property
+* Added ``DirectoryInfo`` static extension property ``HasFiles`` - A better way to detect if a directory has any files within it than the previously introduced ``IsEmpty`` static extension property. ``IsEmpty`` checks for both files and sub directories whereas ``HasFiles`` just looks for files.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -29,7 +28,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.5.0</Version>
+    <Version>9.6.0</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -37,6 +36,7 @@
       <EnableAotAnalyzer>true</EnableAotAnalyzer>
       <IsAoTCompatible>true</IsAoTCompatible>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
+      <NoWarn>$(NoWarn);CS0618</NoWarn>
   </PropertyGroup>
 
     <ItemGroup>

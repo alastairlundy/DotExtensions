@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.5.0</Version>
+    <Version>9.6.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -23,9 +23,8 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Code formatting improvements
-* Added ``ICollection&lt;T&gt;`` ``AsSpan`` extension method
-* Simplified ``IsEmpty`` extension property code</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.7 to 9.8.1
+* Minor code formatting improvements</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>

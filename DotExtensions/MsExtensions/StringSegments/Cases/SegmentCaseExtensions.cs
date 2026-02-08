@@ -30,9 +30,8 @@ namespace DotExtensions.MsExtensions.StringSegments;
 public static class SegmentCaseExtensions
 {
     /// <summary>
-    /// 
+    /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
     /// </summary>
-    /// <param name="segment"></param>
     extension(StringSegment segment)
     {
         /// <summary>

@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-
 namespace DotExtensions.Memory;
 
 /// <summary>
@@ -39,7 +37,6 @@ public static class AsSpanExtensions
         /// Converts the current collection into a <see cref="Span{T}"/> instance.
         /// This method creates a writable span representation of the collection, maintaining the order of the elements.
         /// </summary>
-        /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
         /// <returns>A <see cref="Span{T}"/> representing the elements of the collection.</returns>
         public Span<TSource> AsSpan()
         {
@@ -64,7 +61,6 @@ public static class AsSpanExtensions
         /// Converts the current collection into a <see cref="ReadOnlySpan{T}"/> instance.
         /// This method creates a read-only span representation of the collection, maintaining the order of the elements.
         /// </summary>
-        /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
         /// <returns>A <see cref="ReadOnlySpan{T}"/> representing the elements of the collection.</returns>
         public ReadOnlySpan<TSource> AsReadOnlySpan()
         {

@@ -3,20 +3,20 @@ using Bogus;
 
 namespace DotExtensions.Benchmarking.Infra.FakeData;
 
-public class FakeEnumerables
+public class FakeEnumerableHelper
 {
-    private Faker faker = new Faker();
+    private readonly Faker _faker = new();
 
     public IEnumerable<int> Indices(int count)
     {
-        IList<int> list = faker.Make<int>(count, () => faker.Random.Int(min: 0));
+        IList<int> list = _faker.Make(count, () => _faker.Random.Int(min: 0));
 
         return list;
     }
 
     public IEnumerable<string> Create(int count)
     {
-        IList<string> list = faker.Make<string>(count, faker.Address.FullAddress);
+        IList<string> list = _faker.Make<string>(count, _faker.Address.FullAddress);
 
         return list;
     }

@@ -22,6 +22,9 @@
        SOFTWARE.
    */
 
+using System.Collections.Generic;
+using System.Linq;
+
 // ReSharper disable InconsistentNaming
 
 namespace DotExtensions.IO.Directories;
@@ -70,9 +73,8 @@ public static partial class SafeIOEnumerationExtensions
             {
                 IgnoreInaccessible = true,
                 RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
-                ReturnSpecialDirectories = true,
-                MatchType = MatchType.Simple,
-                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive
+                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive,
+                MatchType = MatchType.Simple
             };
 
             return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
@@ -176,7 +178,7 @@ public static partial class SafeIOEnumerationExtensions
             
             return directoryInfo.SafelyEnumerateFiles(searchPattern, directorySearchOption, ignoreCase);
         }
-        
+
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
 
@@ -215,8 +217,8 @@ public static partial class SafeIOEnumerationExtensions
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files found in the directory.</returns>
         public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions,
             bool ignoreCase = true)
-            => Directory.SafelyEnumerateFiles(path, searchPattern, directorySearchOptions, ignoreCase).ToArray();
-
+            => Directory.SafelyEnumerateFiles(path, searchPattern, directorySearchOptions, ignoreCase)
+                .ToArray();
         #endregion
     }
 }

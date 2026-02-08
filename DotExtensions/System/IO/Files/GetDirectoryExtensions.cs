@@ -22,8 +22,7 @@
        SOFTWARE.
    */
 
-using DotExtensions.IO.Directories;
-using DotExtensions.IO.Drives;
+using System.Linq;
 
 namespace DotExtensions.IO.Files;
 
@@ -32,12 +31,16 @@ namespace DotExtensions.IO.Files;
 /// </summary>
 public static class GetDirectoryExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fileInfo"></param>
     extension(FileInfo fileInfo)
     {
         /// <summary>
         /// Gets the parent directory of a file.
         /// </summary>
-        /// <returns>The parent directory of the <paramref name="fileInfo"/> if found.</returns>
+        /// <returns>The parent directory of the fileinfo. if found.</returns>
         /// <exception cref="ArgumentException">Thrown if the file does not exist.</exception>
         public DirectoryInfo GetDirectory()
         {
@@ -64,9 +67,8 @@ public static class GetDirectoryExtensions
 
             DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)
-                .SelectMany(d => d.SafelyEnumerateDirectories("*", SearchOption.AllDirectories))
-                .FirstOrDefault(d => d.SafelyEnumerateFiles("*", SearchOption.AllDirectories)
-                    .Any(f => f.Name.Equals(fileInfo.Name)));
+                .SelectMany(d => d.SafelyEnumerateDirectories())
+                .FirstOrDefault(d => d.SafelyEnumerateFiles().Any(f => f.Name.Equals(fileInfo.Name)));
            
             return directory ??
                    new DirectoryInfo(Directory.GetDirectoryRoot(fileInfo.FullName));

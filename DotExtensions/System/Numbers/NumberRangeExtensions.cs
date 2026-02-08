@@ -23,7 +23,6 @@
    */
 
 #if NET8_0_OR_GREATER || NETSTANDARD2_1
-
 namespace DotExtensions.Numbers;
 
 /// <summary>

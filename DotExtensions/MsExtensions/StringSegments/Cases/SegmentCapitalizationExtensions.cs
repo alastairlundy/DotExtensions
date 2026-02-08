@@ -29,9 +29,6 @@ namespace DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentCapitalizationExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="segment">The StringSegment to be modified.</param>
     extension(StringSegment segment)
     {

@@ -61,10 +61,10 @@ public static class FileSizeExtensions
             return numberOfDigits switch
             {
                 >= 16 => "PB",
-                >= 13 and <= 15 => "TB",
-                >= 10 and <= 12 => "GB",
-                >= 7 and <= 9 => "MB",
-                >= 4 and <= 6 => "KB",
+                >= 13 => "TB",
+                >= 10 => "GB",
+                >= 7 => "MB",
+                >= 4 => "KB",
                 <= 3 => "B",
             };
         }
