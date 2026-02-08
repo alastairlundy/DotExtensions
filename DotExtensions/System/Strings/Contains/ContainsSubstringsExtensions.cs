@@ -22,46 +22,34 @@
        SOFTWARE.
    */
 
-// ReSharper disable ConvertClosureToMethodGroup
-
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.Strings;
 
 /// <summary>
-/// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
+/// Provides extension methods for working with strings to evaluate the presence of
+/// space-separated substrings within them.
 /// </summary>
-public static class SegmentCaseExtensions
+public static class ContainsSubstringsExtensions
 {
     /// <summary>
-    /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
+    /// Provides a polyfill implementation of string-related utility methods for
+    /// compatibility with newer .NET features in older frameworks.
     /// </summary>
-    extension(StringSegment segment)
+    extension(string s)
     {
         /// <summary>
-        /// Returns whether this <see cref="StringSegment"/> is upper case or not.
+        /// Determines if a string contains substrings separated by the specified delimiter.
         /// </summary>
-        public bool IsUpperCase()
+        /// <param name="delimiter">The character used to separate substrings within the input string.</param>
+        /// <returns>
+        /// True if the string contains multiple substrings separated by the delimiter; false otherwise.
+        /// The method checks for both the presence of the delimiter and that at least two distinct parts
+        /// exist after splitting by it.
+        /// </returns>
+        public bool ContainsDelimitedSubstrings(char delimiter)
         {
-            for (int i = 0; i < segment.Length; i++)
-            {
-                if (char.IsLower(segment[i]) || !char.IsLetter(segment[i]))
-                    return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Returns whether a <see cref="StringSegment"/> is lower case or not.
-        /// </summary>
-        public bool IsLowerCase()
-        {
-            for (int i = 0; i < segment.Length; i++)
-            {
-                if (char.IsUpper(segment[i]) || !char.IsLetter(segment[i]))
-                    return false;
-            }
-
-            return true;
+            ArgumentException.ThrowIfNullOrEmpty(s);
+            
+            return s.Contains(delimiter) && s.Split(delimiter).Length > 1;
         }
     }
 }

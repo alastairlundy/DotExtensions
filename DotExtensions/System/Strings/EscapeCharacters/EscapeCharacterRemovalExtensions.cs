@@ -23,8 +23,6 @@
    */
 
 
-using System.Linq;
-
 namespace DotExtensions.Strings;
 
 /// <summary>

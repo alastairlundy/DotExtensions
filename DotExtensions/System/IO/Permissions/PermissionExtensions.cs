@@ -22,7 +22,8 @@
     SOFTWARE.
  */
 
-using DotPrimitives.IO.Permissions.Windows;
+using System.Security.AccessControl;
+using DotExtensions.IO.Permissions.Windows;
 
 namespace DotExtensions.IO.Permissions;
 
@@ -46,19 +47,16 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
         public bool HasExecutePermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasExecutePermission;
                 }
@@ -82,19 +80,16 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
         public bool HasReadPermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasReadPermission;
                 }
@@ -118,19 +113,16 @@ public static partial class PermissionExtensions
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
         /// </exception>
-        [UnsupportedOSPlatform("IOS")]
+        [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
         public bool HasWritePermission()
         {
-            ArgumentNullException.ThrowIfNull(fileInfo);
-
             try
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    WindowsFilePermission filePermission = WindowsFilePermissionManager
-                        .GetFilePermission(fileInfo.FullName);
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
 
                     return filePermission.HasWritePermission;
                 }

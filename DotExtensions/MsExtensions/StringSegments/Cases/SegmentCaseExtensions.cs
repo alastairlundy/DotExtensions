@@ -1,4 +1,4 @@
-/*
+﻿/*
         MIT License
 
        Copyright (c) 2026 Alastair Lundy
@@ -22,26 +22,44 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.Configurations;
+namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
-/// Provides extension methods for working with configurations in Microsoft.Extensions.Configuration.
+/// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
 /// </summary>
-public static class ContainsKeyExtensions
+public static class SegmentCaseExtensions
 {
-    /// <param name="configuration">The configuration to search.</param>
-    extension(IConfiguration configuration)
+    /// <summary>
+    /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
+    /// </summary>
+    extension(StringSegment segment)
     {
         /// <summary>
-        /// Determines if a configuration contains a specified key.
+        /// Returns whether this <see cref="StringSegment"/> is upper case or not.
         /// </summary>
-        /// <param name="keyName">The key name to search for.</param>
-        /// <returns>True if the key is found within the configuration, false otherwise.</returns>
-        public bool ContainsKey(string keyName)
+        public bool IsUpperCase()
         {
-            IConfigurationSection config = configuration.GetSection(keyName);
+            for (int i = 0; i < segment.Length; i++)
+            {
+                if (char.IsLower(segment[i]) || !char.IsLetter(segment[i]))
+                    return false;
+            }
 
-            return config.Exists() && config.Value is not null;
+            return true;
+        }
+
+        /// <summary>
+        /// Returns whether a <see cref="StringSegment"/> is lower case or not.
+        /// </summary>
+        public bool IsLowerCase()
+        {
+            for (int i = 0; i < segment.Length; i++)
+            {
+                if (char.IsUpper(segment[i]) || !char.IsLetter(segment[i]))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

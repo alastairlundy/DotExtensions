@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Linq;
-
 namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>

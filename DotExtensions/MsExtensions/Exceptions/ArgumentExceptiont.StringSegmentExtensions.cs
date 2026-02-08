@@ -71,10 +71,13 @@ public static class ArgumentExceptionStringSegmentExtensions
         {
             if (paramName == "")
                 paramName = nameof(target);
-
-            ArgumentNullException.ThrowIfNull(target, paramName);
             
-            if(StringSegment.IsNullOrWhiteSpace(target))
+            if (!target.HasValue)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (StringSegment.IsNullOrWhiteSpace(target))
                 throw new ArgumentNullException(paramName);
         }
     }

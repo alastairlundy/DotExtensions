@@ -63,17 +63,6 @@ public static class VersionComparisonExtensions
     extension(Version)
     {
         /// <summary>
-        /// Compares two versions and returns the newer version.
-        /// </summary>
-        /// <param name="versionA">The first version to compare.</param>
-        /// <param name="versionB">The second version to compare.</param>
-        /// <returns>The newer of the two specified versions.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10 + 
-                  ". Use Version.Max() instead.")]
-        public static Version GetNewerVersion(Version versionA, Version versionB)
-            => Version.Max(versionA, versionB);
-
-        /// <summary>
         /// Compares two version objects and returns the higher version number.
         /// </summary>
         /// <param name="versionA">The first version to compare.</param>
@@ -81,17 +70,6 @@ public static class VersionComparisonExtensions
         /// <returns>The newer of the two specified versions.</returns>
         public static Version Max(Version versionA, Version versionB) 
             => versionA > versionB ? versionA : versionB;
-
-        /// <summary>
-        /// Compares two versions and returns the older version.
-        /// </summary>
-        /// <param name="versionA">The first version to compare.</param>
-        /// <param name="versionB">The second version to compare.</param>
-        /// <returns>The older of the two specified versions.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10 + 
-                  ". Use Version.Min() instead.")]
-        public static Version GetOlderVersion(Version versionA, Version versionB)
-            => Version.Min(versionA, versionB);
 
         /// <summary>
         /// Compares two versions and returns the older version.
