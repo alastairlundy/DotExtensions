@@ -29,7 +29,7 @@ namespace DotExtensions.Exceptions;
 /// <summary>
 /// Contains extension methods for enhancing the handling of <see cref="PlatformNotSupportedException"/> exceptions.
 /// </summary>
-public static partial class PlatformNotSupportedExceptionExtensions
+public static class PlatformNotSupportedExceptionExtensions
 {
     /// <summary>
     /// Provides extension methods for handling <see cref="PlatformNotSupportedException"/> based on platform-specific checks.
@@ -71,7 +71,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform matches any of the specified <see cref="OSPlatform"/> values.
         /// </exception>
-        public static void ThrowIfOSPlatform(string? exceptionMessage = null, params OSPlatform[] platforms)
+        public static void ThrowIfOSPlatform( OSPlatform[] platforms, string? exceptionMessage = null)
         {
             foreach (OSPlatform platform in platforms)
             {
@@ -114,13 +114,13 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// </summary>
         /// <param name="platforms">The platforms to check against the current platform.</param>
         /// <param name="exceptionMessage">
-        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
-        /// If not provided, a default message is used.
+        ///     An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        ///     If not provided, a default message is used.
         /// </param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match the specified <see cref="OSPlatform"/>.
         /// </exception>
-        public static void ThrowIfNotOSPlatform(string? exceptionMessage = null, params OSPlatform[] platforms)
+        public static void ThrowIfNotOSPlatform(OSPlatform[] platforms, string? exceptionMessage = null)
         {
             bool foundOsPlatform = false;
             
@@ -142,19 +142,19 @@ public static partial class PlatformNotSupportedExceptionExtensions
             }
         }
 
-        
+
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform matches
         /// any of the unsupported platforms specified in the <paramref name="unsupportedOsPlatforms"/> array.
         /// </summary>
         /// <remarks>This method is AoT compatible and does not rely on reflection.</remarks>
-        /// <param name="exceptionMessage">
-        /// An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
-        /// If not provided, a default message is used.
-        /// </param>
         /// <param name="unsupportedOsPlatforms">
-        /// An array of strings representing unsupported operating system platforms.
-        /// Each string should correspond to a platform identifier, such as "Windows" or "Linux".
+        ///     An array of strings representing unsupported operating system platforms.
+        ///     Each string should correspond to a platform identifier, such as "Windows" or "Linux".
+        /// </param>
+        /// <param name="exceptionMessage">
+        ///     An optional custom exception message to include in the thrown <see cref="PlatformNotSupportedException"/>.
+        ///     If not provided, a default message is used.
         /// </param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform matches any of the specified <paramref name="unsupportedOsPlatforms"/>.
@@ -165,8 +165,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <exception cref="ArgumentException">
         /// Thrown when any of the elements in <paramref name="unsupportedOsPlatforms"/> is null or empty.
         /// </exception>
-        public static void ThrowIfUnSupportedPlatform(string? exceptionMessage = null,
-            params string[] unsupportedOsPlatforms)
+        public static void ThrowIfUnSupportedPlatform(string[] unsupportedOsPlatforms, string? exceptionMessage = null)
         {
             ArgumentNullException.ThrowIfNull(unsupportedOsPlatforms);
 
@@ -183,19 +182,18 @@ public static partial class PlatformNotSupportedExceptionExtensions
                 }
             }
         }
-        
+
         /// <summary>
         /// Throws a <see cref="PlatformNotSupportedException"/> if the current platform does not match any of the
         /// specified supported OS platforms.
         /// </summary>
         /// <remarks>This method is AoT compatible and does not rely on reflection.</remarks>
-        /// <param name="exceptionMessage">An optional custom exception message to use when throwing the <see cref="PlatformNotSupportedException"/>.</param>
         /// <param name="supportedOsPlatforms">An array of strings representing the names of OS platforms that are supported.</param>
+        /// <param name="exceptionMessage">An optional custom exception message to use when throwing the <see cref="PlatformNotSupportedException"/>.</param>
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match any of the specified supported OS platforms.
         /// </exception>
-        public static void ThrowIfNotSupportedPlatform(string? exceptionMessage = null,
-            params string[] supportedOsPlatforms)
+        public static void ThrowIfNotSupportedPlatform(string[] supportedOsPlatforms, string? exceptionMessage = null)
         {
             ArgumentNullException.ThrowIfNull(supportedOsPlatforms);
 
