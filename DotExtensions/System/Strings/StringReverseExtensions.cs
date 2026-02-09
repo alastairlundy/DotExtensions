@@ -29,9 +29,6 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class StringReverseExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="str">The string to reverse.</param>
     extension(string str)
     {

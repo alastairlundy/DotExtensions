@@ -30,9 +30,6 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class EscapeCharacterRemovalExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="str">The string to be searched.</param>
     extension(string str)
     {

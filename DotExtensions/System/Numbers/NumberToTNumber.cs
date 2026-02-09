@@ -62,5 +62,4 @@ public static class NumberToTNumber
             => TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
     }
 }
-
 #endif

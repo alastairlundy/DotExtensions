@@ -50,7 +50,7 @@ public static partial class UnixPermissionsExtensions
         return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
     }
 
-    #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Parses a numeric notation string representing Unix file permissions into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>

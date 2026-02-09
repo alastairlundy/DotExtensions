@@ -29,9 +29,6 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class StringReplaceLastExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="str">The input string to replace a section of.</param>
     extension(string str)
     {

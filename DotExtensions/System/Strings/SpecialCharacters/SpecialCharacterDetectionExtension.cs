@@ -44,10 +44,7 @@ public static class SpecialCharacterDetectionExtension
             return !char.IsLetterOrDigit(c) && (char.IsPunctuation(c) || char.IsSymbol(c));
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="str">The string to search or modify.</param>
     extension(string str)
     {

@@ -32,10 +32,6 @@ namespace DotExtensions.IO.Permissions;
 /// </summary>
 public static partial class PermissionExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="fileInfo"></param>
     extension(FileInfo fileInfo)
     {
         /// <summary>
