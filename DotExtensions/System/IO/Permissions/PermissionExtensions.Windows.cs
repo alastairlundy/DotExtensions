@@ -34,6 +34,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [SupportedOSPlatform("windows")]
         public bool HasExecutePermission
         {
             get
@@ -48,6 +49,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [SupportedOSPlatform("windows")]
         public bool HasWritePermission
         {
             get
@@ -65,6 +67,7 @@ public static partial class PermissionExtensions
         /// <summary>
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
+        [SupportedOSPlatform("windows")]
         public bool HasReadPermission
         {
             get
