@@ -22,35 +22,42 @@
        SOFTWARE.
    */
 
-using DotExtensions.Strings;
-using DotExtensions.Tests.TestData;
+using System;
+using System.Runtime.InteropServices;
+using DotExtensions.Exceptions;
 
-namespace DotExtensions.Tests.Strings.SpecialCharacters;
+namespace DotExtensions.Tests.Exceptions;
 
-public class SpecialCharacterDetectorTests
+public class PlatformNotSupportExceptionExtensions
 {
-    public static IEnumerable<char> AlphabetChars()
-        => AlphabeticalCharacterTestData.GetChars();
-
-    public static IEnumerable<char> GetSpecialChars()
-        => SpecialCharacterTestData.GetSpecialCharacters();
-    
     [Test]
-    [MethodDataSource(nameof(AlphabetChars))]
-    public async Task NotASpecialCharacter(char character)
+    public async Task ThrowIfNotOSPlatform_ThrowsCorrectly()
     {
-        bool actual = char.IsSpecialCharacter(character);
+        await Assert.ThrowsAsync(() =>
+        {
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? OSPlatform.Windows
+                : OSPlatform.Linux);
 
-        await Assert.That(actual)
-            .IsFalse();
+            return Task.CompletedTask;
+        });
     }
 
     [Test]
-    [MethodDataSource(nameof(GetSpecialChars))]
-    public async Task IsASpecialCharacter(char character)
+    public async Task ThrowIfNotOSPlatform_DoNotThrowIfOnSupportedOs()
     {
-        bool actual = char.IsSpecialCharacter(character);
+        OSPlatform osPlatform = OSPlatform.Windows;
+        
+        if(OperatingSystem.IsWindows())
+            osPlatform = OSPlatform.Windows;
+        if(OperatingSystem.IsLinux())
+            osPlatform = OSPlatform.Linux;
+        if(OperatingSystem.IsMacOS())
+            osPlatform = OSPlatform.OSX;
+        if(OperatingSystem.IsFreeBSD())
+            osPlatform = OSPlatform.FreeBSD;
 
-        await Assert.That(actual).IsTrue();
+        await Assert.That(() => PlatformNotSupportedException.ThrowIfNotOSPlatform(osPlatform))
+            .ThrowsNothing();
     }
 }
