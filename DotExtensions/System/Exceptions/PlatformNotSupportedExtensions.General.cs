@@ -102,10 +102,12 @@ public static partial class PlatformNotSupportedExceptionExtensions
         public static void ThrowIfNotOSPlatform(OSPlatform osPlatform, string? exceptionMessage = null)
         {
             if (!RuntimeInformation.IsOSPlatform(osPlatform))
+            {
                 if (exceptionMessage is not null)
                     throw new PlatformNotSupportedException(exceptionMessage);
-                    
-            throw new PlatformNotSupportedException();
+                
+                throw new PlatformNotSupportedException();
+            }
         }
 
         /// <summary>
