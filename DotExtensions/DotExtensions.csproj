@@ -11,11 +11,10 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>
-    Merged DotExtensions.MsExtensions code into DotExtensions main package
-    Removed code deprecated for removal in v10
-    Removed dependency on DotPrimitives
-    Updated Windows File Permission detection code</PackageReleaseNotes>
+    <PackageReleaseNotes>* Merged DotExtensions.MsExtensions code into DotExtensions main package
+* Removed code deprecated for removal in v10
+* Removed dependency on DotPrimitives
+* Updated Windows File Permission detection code</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -24,7 +23,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.0.0-alpha.1</Version>
+    <Version>10.0.0-alpha.2</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
