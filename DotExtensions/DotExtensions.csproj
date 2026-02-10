@@ -11,10 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Merged DotExtensions.MsExtensions code into DotExtensions main package
-* Removed code deprecated for removal in v10
-* Removed dependency on DotPrimitives
-* Updated Windows File Permission detection code</PackageReleaseNotes>
+    <PackageReleaseNotes>* Fixed a regression that caused ``PlatformNotSupportedException`` ``ThrowIfNotOSPlatform`` static extension method to throw even if on a supported platform
+* Fixed issues with several tests preventing them from running properly</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
