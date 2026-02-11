@@ -75,7 +75,7 @@ public static class AsSpanExtensions
                 index++;
             }
            
-            ReadOnlySpan<TSource> output =  array.AsSpan().Slice(index, array.Length - index);
+            ReadOnlySpan<TSource> output = array.AsSpan().Slice(index, array.Length - index);
            
             ArrayPool<TSource>.Shared.Return(array);
             return output;

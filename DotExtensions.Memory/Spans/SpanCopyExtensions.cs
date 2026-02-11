@@ -53,8 +53,7 @@ public static class SpanCopyExtensions
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex,
-            int length
-        )
+            int length)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
@@ -231,8 +230,7 @@ public static class SpanCopyExtensions
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex,
-            int length
-        )
+            int length)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
