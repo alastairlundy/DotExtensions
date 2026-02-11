@@ -7,12 +7,14 @@
 #### 10.0
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.0.0 Alpha 2 | February 10th 2026 | |
 | 10.0.0 Alpha 1 | February 8th 2026 | |
 
 ### Version 9.x
 #### 9.6
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.6.1 | February 11th 2026 | |
 | 9.6.0 | February 8th 2026 | |
 | 9.6.0 Preview 2 | February 7th 2026 | |
 | 9.6.0 Preview 1 | February 5th 2026 | DotExtensions package only |
