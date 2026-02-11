@@ -37,6 +37,7 @@ public static class ContainsKeyExtensions
         /// </summary>
         /// <param name="keyName">The key name to search for.</param>
         /// <returns>True if the key is found within the configuration, false otherwise.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public bool ContainsKey(string keyName)
         {
             IConfigurationSection config = configuration.GetSection(keyName);
