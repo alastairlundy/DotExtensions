@@ -62,5 +62,8 @@
     </data>
     <data name="Exceptions.DirectoryNotFound" xml:space="preserve">
         <value>Directory '{directory}' could not be found or does not exist.</value>
+ </data>
+     <data name="Exceptions.Directory.FileArgumentNotFound" xml:space="preserve">
+        <value>Cannot get the directory of a file ({0}) that does not exist.</value>
     </data>
 </root>

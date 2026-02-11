@@ -38,7 +38,7 @@ public static class GetDirectoryExtensions
         /// <summary>
         /// Gets the parent directory of a file.
         /// </summary>
-        /// <returns>The parent directory of the <see cref="FileInfo"/> if found.</returns>
+        /// <returns>The parent directory of the <paramref name="fileInfo"/>, if found.</returns>
         /// <exception cref="ArgumentException">Thrown if the file does not exist.</exception>
         public DirectoryInfo GetDirectory()
         {
@@ -61,7 +61,7 @@ public static class GetDirectoryExtensions
             }
 
             if (!fileInfo.Exists)
-                throw new ArgumentException("File to get the directory of does not exist.");
+                throw new ArgumentException(Resources.Exceptions_Directory_FileArgumentNotFound.Replace("{0}", fileInfo.Name));
 
             DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)
