@@ -5,5 +5,6 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
 global using DotExtensions.MsExtensions.Exceptions;
+global using DotExtensions.MsExtensions.Internal;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.Primitives;

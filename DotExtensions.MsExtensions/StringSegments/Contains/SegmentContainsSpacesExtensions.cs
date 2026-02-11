@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using DotExtensions.MsExtensions.Internal;
-
 namespace DotExtensions.MsExtensions.StringSegments;
 
 /// <summary>
