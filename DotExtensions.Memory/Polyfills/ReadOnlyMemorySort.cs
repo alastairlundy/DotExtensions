@@ -31,9 +31,6 @@ namespace DotExtensions.Memory;
 /// </summary>
 public static class ReadOnlyMemorySort
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="keys">The read-only span containing the keys to sort by.</param>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
@@ -49,12 +46,14 @@ public static class ReadOnlyMemorySort
             => keys.Sort(ref values, Comparer<TKey>.Default);
 
         /// <summary>
-        /// 
+        /// Sorts the elements within a <see cref="ReadOnlySpan{T}"/> based on the associated keys using the specified comparer.
         /// </summary>
-        /// <param name="values"></param>
-        /// <param name="comparer"></param>
-        /// <typeparam name="TComparer"></typeparam>
-        /// <exception cref="ArgumentException"></exception>
+        /// <typeparam name="TKey">The type of the keys used for sorting.</typeparam>
+        /// <typeparam name="TValue">The type of the values to be sorted.</typeparam>
+        /// <typeparam name="TComparer">The type of the comparer used for comparing the keys.</typeparam>
+        /// <param name="values">The <see cref="ReadOnlySpan{T}"/> of values to be sorted in accordance with the order of the keys.</param>
+        /// <param name="comparer">The comparer to use for comparing the keys while sorting.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the specified <see cref="TComparer"/> is null.</exception>
         public void Sort<TComparer>(ref ReadOnlySpan<TValue> values,
             TComparer comparer)
             where TComparer : IComparer<TKey>
@@ -84,26 +83,23 @@ public static class ReadOnlyMemorySort
             }
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="source"></param>
-    /// <typeparam name="T"></typeparam>
+    
+    /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to sort.</param>
+    /// <typeparam name="T">The type of element in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<T>(ref ReadOnlySpan<T> source)
         where T : IComparable<T>
     {
         /// <summary>
-        /// Sorts the elements within the span using the default comparer.
+        /// Sorts the elements within a <see cref="ReadOnlySpan{T}"/> using the default comparer.
         /// </summary>
         public void Sort()
             => source.Sort(Comparer<T>.Default);
 
         /// <summary>
-        /// 
+        /// Sorts the elements within a <see cref="ReadOnlySpan{T}"/> using the specified comparer.
         /// </summary>
-        /// <param name="comparer"></param>
-        /// <typeparam name="TComparer"></typeparam>
+        /// <param name="comparer">The comparer to use to sort the <see cref="ReadOnlySpan{T}"/>.</param>
+        /// <typeparam name="TComparer">The type of comparer to use to sort the <see cref="ReadOnlySpan{T}"/>.</typeparam>
         public void Sort<TComparer>(TComparer comparer)
             where TComparer : IComparer<T>
         {
@@ -124,9 +120,9 @@ public static class ReadOnlyMemorySort
         }
 
         /// <summary>
-        /// 
+        /// Sorts the elements within a <see cref="ReadOnlySpan{T}"/> using the specified <see cref="Comparison{T}"/> delegate.
         /// </summary>
-        /// <param name="comparison"></param>
+        /// <param name="comparison">The <see cref="Comparison{T}"/> delegate to use to sort the <see cref="ReadOnlySpan{T}"/>.</param>
         public void Sort(Comparison<T> comparison)
         {
             ArgumentNullException.ThrowIfNull(comparison);
