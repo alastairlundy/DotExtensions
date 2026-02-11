@@ -29,10 +29,7 @@ namespace DotExtensions.IO.Files;
 /// </summary>
 public static class GetDirectoryExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="fileInfo"></param>
+    /// <param name="fileInfo">The file to get the directory of.</param>
     extension(FileInfo fileInfo)
     {
         /// <summary>
