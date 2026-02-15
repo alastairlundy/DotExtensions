@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 namespace DotExtensions.Threading.Tasks;
 
 /// <summary>
-/// Provides extensions for waiting for a task to wait for completion or be cancelled if the tiemout is reached.
+/// Provides extensions for waiting for a task to wait for completion or be cancelled if the timeout is reached.
 /// </summary>
 public static class TaskTimeoutExtensions
 {
