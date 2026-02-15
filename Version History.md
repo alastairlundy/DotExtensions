@@ -14,6 +14,7 @@
 #### 9.6
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.6.2 | February 15th 2026 | |
 | 9.6.1 | February 11th 2026 | |
 | 9.6.0 | February 8th 2026 | |
 | 9.6.0 Preview 2 | February 7th 2026 | |
