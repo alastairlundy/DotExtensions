@@ -24,6 +24,9 @@
 
 namespace DotExtensions.MsExtensions.StringValuePlural;
 
+/// <summary>
+/// Provides extension methods for converting StringValues to string representations with various separators.
+/// </summary>
 public static class StringValuesToStringExtensions
 {
     /// <summary>
