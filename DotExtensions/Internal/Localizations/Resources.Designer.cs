@@ -76,7 +76,8 @@ namespace DotExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.DirectoryNotFound", resourceCulture);
             }
         }
-        ///   Looks up a localized string similar to Cannot get the directory of a file ({0}) that does not exist..
+        /// <summary>
+        /// Looks up a localized string similar to Cannot get the directory of a file ({0}) that does not exist..
         /// </summary>
         internal static string Exceptions_Directory_FileArgumentNotFound {
             get {
