@@ -23,9 +23,7 @@
    */
 
 #if NET8_0_OR_GREATER
-
 namespace DotExtensions.Dates;
-
 
 /// <summary>
 /// Provides an extension method for the DateOnly struct to convert it to a DateTime object.
