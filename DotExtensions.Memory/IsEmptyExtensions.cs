@@ -91,13 +91,15 @@ public static class IsEmptyExtensions
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[span.Length];
             for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(span[i]);
+                bool isWhiteSpace = char.IsWhiteSpace(span[i]);
+
+                if (!isWhiteSpace)
+                    return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
@@ -117,13 +119,15 @@ public static class IsEmptyExtensions
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[span.Length];
             for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(span[i]);
+                bool isWhiteSpace = char.IsWhiteSpace(span[i]);
+
+                if (!isWhiteSpace)
+                    return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
 
@@ -146,14 +150,15 @@ public static class IsEmptyExtensions
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[memory.Length];
-            
             for (int i = 0; i < memory.Length; i++)
-            {
-                isWhiteSpace[i] = char.IsWhiteSpace(memory.Span[i]);
+            { 
+                bool isWhiteSpace = char.IsWhiteSpace(memory.Span[i]);
+
+                if (!isWhiteSpace)
+                    return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
@@ -173,14 +178,15 @@ public static class IsEmptyExtensions
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[memory.Length];
-            
             for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = char.IsWhiteSpace(memory.Span[i]);
+                bool isWhiteSpace = char.IsWhiteSpace(memory.Span[i]);
+
+                if (!isWhiteSpace)
+                    return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
@@ -205,13 +211,15 @@ public static class IsEmptyExtensions
         /// </returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[span.Length];
             for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = span[i].IsWhiteSpace();
+                bool isWhiteSpace = span[i].IsWhiteSpace();
+                
+                if(!isWhiteSpace)
+                    return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
