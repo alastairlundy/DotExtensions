@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.5" />
-    <PackageReference Include="TUnit" Version="1.13.56" />
+    <PackageReference Include="TUnit" Version="1.15.0" />
   </ItemGroup>
 
   <ItemGroup>
