@@ -29,7 +29,7 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class DayInExtensions
 {
-    private static int DaysInYear(int year)
+    private static int CalculateDaysInYear(int year)
     {
         int days = 0;
             
@@ -53,7 +53,7 @@ public static class DayInExtensions
         /// </summary>
         /// <returns>The total number of days in the year of the specified <see cref="DateOnly"/>.</returns>
         public int DaysInYear()
-            => DaysInYear(dateOnly.Year);
+            => CalculateDaysInYear(dateOnly.Year);
     }
 #endif
     
@@ -66,6 +66,6 @@ public static class DayInExtensions
         /// <returns>The total number of days in the year of the specified <see cref="DateTime"/>.</returns>
         [Obsolete(DeprecationMessages.DeprecationV10)]
         public static int DaysInYear(DateTime dateTime)
-            => DaysInYear(dateTime.Year);
+            => CalculateDaysInYear(dateTime.Year);
     }
 }
