@@ -54,6 +54,7 @@ public static class ToListExtensions
         /// Converts this <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
         /// </summary>
         /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public Memory<T> ToMemory() => new(source.ToArray());
     }
     
@@ -78,10 +79,7 @@ public static class ToListExtensions
             return list;
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the Memory.</typeparam>
     extension<T>(Memory<T> source)
@@ -103,10 +101,7 @@ public static class ToListExtensions
             return list;
         }
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
     extension<T>(ReadOnlyMemory<T> source)
