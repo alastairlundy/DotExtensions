@@ -34,7 +34,7 @@ public static class AsSpanExtensions
     extension<TSource>(ICollection<TSource> collection)
     {
         /// <summary>
-        /// Converts the current collection into a <see cref="Span{T}"/> instance.
+        /// Converts the current collection into a <see cref="Span{T}"/>.
         /// This method creates a writable span representation of the collection, maintaining the order of the elements.
         /// </summary>
         /// <returns>A <see cref="Span{T}"/> representing the elements of the collection.</returns>
@@ -51,14 +51,14 @@ public static class AsSpanExtensions
                 index++;
             }
            
-            Span<TSource> output =  array.AsSpan().Slice(index, array.Length - index);
+            Span<TSource> output =  array.AsSpan().Slice(0,index + 1);
            
             ArrayPool<TSource>.Shared.Return(array);
             return output;
         }
 
         /// <summary>
-        /// Converts the current collection into a <see cref="ReadOnlySpan{T}"/> instance.
+        /// Converts the current collection into a <see cref="ReadOnlySpan{T}"/>.
         /// This method creates a read-only span representation of the collection, maintaining the order of the elements.
         /// </summary>
         /// <returns>A <see cref="ReadOnlySpan{T}"/> representing the elements of the collection.</returns>
@@ -75,7 +75,7 @@ public static class AsSpanExtensions
                 index++;
             }
            
-            ReadOnlySpan<TSource> output = array.AsSpan().Slice(index, array.Length - index);
+            ReadOnlySpan<TSource> output = array.AsSpan().Slice(0, index + 1);
            
             ArrayPool<TSource>.Shared.Return(array);
             return output;
