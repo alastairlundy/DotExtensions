@@ -61,7 +61,7 @@
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Polyfill" Version="9.8.1" PrivateAssets="all">
+    <PackageReference Include="Polyfill" Version="9.9.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
       <PackageReference Include="System.IO.FileSystem.AccessControl" Condition="'$(TargetFramework)' == 'netstandard2.0'"
