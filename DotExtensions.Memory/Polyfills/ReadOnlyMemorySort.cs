@@ -32,8 +32,8 @@ namespace DotExtensions.Memory;
 public static class ReadOnlyMemorySort
 {
     /// <param name="keys">The read-only span containing the keys to sort by.</param>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TValue"></typeparam>
+    /// <typeparam name="TKey">The type of values to be sorted by in the <see cref="ReadOnlySpan{T}"/></typeparam>
+    /// <typeparam name="TValue">The type of values to be sorted in the <see cref="ReadOnlySpan{T}"/></typeparam>
     extension<TKey, TValue>(ref ReadOnlySpan<TKey> keys)
         where TKey : IComparable<TKey>
         where TValue : IComparable<TValue>
