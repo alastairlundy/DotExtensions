@@ -57,15 +57,14 @@ public static class DayInExtensions
     }
 #endif
     
-    extension(DateTime)
+    /// <param name="date">The <see cref="DateTime"/> object representing the year to calculate the total number of days for.</param>
+    extension(DateTime date)
     {
         /// <summary>
         /// Calculates the total number of days in the year of the specified <see cref="DateTime"/> object.
         /// </summary>
-        /// <param name="dateTime">The <see cref="DateTime"/> object representing the year to calculate the total number of days for.</param>
         /// <returns>The total number of days in the year of the specified <see cref="DateTime"/>.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public static int DaysInYear(DateTime dateTime)
-            => CalculateDaysInYear(dateTime.Year);
+        public int DaysInYear()
+            => CalculateDaysInYear(date.Year);
     }
 }
