@@ -29,9 +29,6 @@ namespace DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentContainsSpacesExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="segment"></param>
     extension(StringSegment segment)
     {
