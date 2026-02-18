@@ -63,24 +63,16 @@ public static class ReadOnlyMemorySort
             if (keys.Length != values.Length)
                 throw new ArgumentException();
 
-            TKey[] keysArray = ArrayPool<TKey>.Shared.Rent(keys.Length);
-            TValue[] valsArray = ArrayPool<TValue>.Shared.Rent(values.Length);
+            TKey[] keysArray = new TKey[keys.Length];
+            TValue[] valsArray = new TValue[values.Length];
+            
+            keys.CopyTo(keysArray);
+            values.CopyTo(valsArray);
 
-            try
-            {
-                keys.CopyTo(keysArray);
-                values.CopyTo(valsArray);
+            Array.Sort(keysArray, valsArray, comparer);
 
-                Array.Sort(keysArray, valsArray, comparer);
-
-                keys =  keysArray.AsSpan(0, keys.Length);
-                values = valsArray.AsSpan(0, values.Length);
-            }
-            finally
-            {
-                ArrayPool<TKey>.Shared.Return(keysArray);
-                ArrayPool<TValue>.Shared.Return(valsArray);
-            }
+            keys = keysArray.AsSpan();
+            values = valsArray.AsSpan();
         }
     }
     
@@ -104,19 +96,12 @@ public static class ReadOnlyMemorySort
             where TComparer : IComparer<T>
         {
             ArgumentNullException.ThrowIfNull(comparer);
-            T[] array = ArrayPool<T>.Shared.Rent(source.Length);
+            T[] array = new T[source.Length];
             
-            try
-            {
-                source.CopyTo(array);
-                Array.Sort(array, comparer);
-                
-                source = array.AsSpan(0, source.Length);
-            }
-            finally
-            {
-                ArrayPool<T>.Shared.Return(array);
-            }
+            source.CopyTo(array);
+            Array.Sort(array, comparer);
+
+            source = array.AsSpan();
         }
 
         /// <summary>
@@ -126,19 +111,12 @@ public static class ReadOnlyMemorySort
         public void Sort(Comparison<T> comparison)
         {
             ArgumentNullException.ThrowIfNull(comparison);
-            T[] array = ArrayPool<T>.Shared.Rent(source.Length);
+            T[] array = new T[source.Length];
             
-            try
-            {
-                source.CopyTo(array);
-                Array.Sort(array, comparison);
-                
-                source = array.AsSpan(0, source.Length);
-            }
-            finally
-            {
-                ArrayPool<T>.Shared.Return(array);
-            }
+            source.CopyTo(array);
+            Array.Sort(array, comparison);
+
+            source = array.AsSpan();
         }
     }
 }

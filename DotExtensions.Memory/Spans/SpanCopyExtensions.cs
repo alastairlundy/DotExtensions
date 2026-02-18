@@ -218,8 +218,7 @@ public static class SpanCopyExtensions
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex
-        ) =>
-            source.OptimisticCopy(ref destination, startIndex, destination.Length);
+        ) => source.OptimisticCopy(ref destination, startIndex, destination.Length);
 
         /// <summary>
         /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>
@@ -255,8 +254,8 @@ public static class SpanCopyExtensions
                 end = expectedEnd;
 
             int actualLength = Math.Abs(end - startIndex);
-            
-            T[] outputArray = ArrayPool<T>.Shared.Rent(actualLength);
+
+            T[] outputArray = new T[actualLength];
             Span<T> output = new Span<T>(outputArray);
             
             for (int i = startIndex; i < end; i++)
@@ -264,8 +263,7 @@ public static class SpanCopyExtensions
                 output[i] = source[i];
             }
 
-            destination = output.Slice(0, actualLength);
-            ArrayPool<T>.Shared.Return(outputArray);
+            destination = output;
         }
     }
 
