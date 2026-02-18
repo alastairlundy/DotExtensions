@@ -49,13 +49,6 @@ public static class ToListExtensions
 
             return list;
         }
-
-        /// <summary>
-        /// Converts this <see cref="Span{T}"/> to a <see cref="Memory{T}"/>
-        /// </summary>
-        /// <returns>A <see cref="Memory{T}"/> containing all the elements of the span.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV10)]
-        public Memory<T> ToMemory() => new(source.ToArray());
     }
     
     /// <param name="source"></param>
