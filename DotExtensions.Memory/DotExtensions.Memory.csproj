@@ -23,7 +23,9 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 9.7.7 to 9.9.0
+* Fixed several logic bugs with ArrayPools being used
+* Fixed several bugs with the AsSpan extension methods</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
