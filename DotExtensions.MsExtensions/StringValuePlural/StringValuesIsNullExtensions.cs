@@ -42,10 +42,7 @@ public static class StringValuesIsNullExtensions
         /// <returns>True if it is empty, false otherwise.</returns>
         public bool IsEmpty => strValues.Equals(StringValues.Empty);
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     extension(StringValues)
     {
         /// <summary>
