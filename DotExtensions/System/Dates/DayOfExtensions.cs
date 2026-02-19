@@ -31,9 +31,6 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class DayOfExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="date">The date </param>
     extension(DateTime date)
     {
