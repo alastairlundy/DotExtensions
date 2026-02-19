@@ -35,11 +35,45 @@ public static class TaskTimeoutExtensions
     extension(Task task)
     {
         /// <summary>
-        /// Waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
+        /// Synchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
+        /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
+        /// </summary>
+        /// <remarks>Developers should use the asynchronous <see cref="WaitAsync"/> method instead where possible.</remarks>
+        /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
+        /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
+        public void Wait(TimeSpan timeout, bool suppressTaskCancellationException)
+            => task.Wait(timeout, suppressTaskCancellationException, CancellationToken.None);
+        
+        /// <summary>
+        /// Synchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
+        /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
+        /// </summary>
+        /// <remarks>Developers should use the asynchronous <see cref="WaitAsync"/> method instead where possible.</remarks>
+        /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
+        /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
+        public void Wait(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
+        {
+            CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(timeout);
+            
+            try
+            {
+                task.Wait(cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                if (!suppressTaskCancellationException)
+                    throw;
+            }
+        }
+        
+        /// <summary>
+        /// Asynchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
         /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
         /// </summary>
         /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
-        /// <param name="suppressTaskCancellationException"></param>
+        /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
         /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
         public async Task WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
@@ -62,11 +96,11 @@ public static class TaskTimeoutExtensions
     extension<TResult>(Task<TResult> task)
     {
         /// <summary>
-        /// Waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
+        /// Asynchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
         /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
         /// </summary>
         /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
-        /// <param name="suppressTaskCancellationException"></param>
+        /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
         /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
         public async Task<TResult> WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
