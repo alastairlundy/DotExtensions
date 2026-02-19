@@ -38,6 +38,7 @@ public static class AsSpanExtensions
         /// This method creates a writable span representation of the collection, maintaining the order of the elements.
         /// </summary>
         /// <returns>A <see cref="Span{T}"/> representing the elements of the collection.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public Span<TSource> AsSpan()
         {
             ArgumentNullException.ThrowIfNull(collection);    
@@ -62,6 +63,7 @@ public static class AsSpanExtensions
         /// This method creates a read-only span representation of the collection, maintaining the order of the elements.
         /// </summary>
         /// <returns>A <see cref="ReadOnlySpan{T}"/> representing the elements of the collection.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public ReadOnlySpan<TSource> AsReadOnlySpan()
         {
             ArgumentNullException.ThrowIfNull(collection);    
