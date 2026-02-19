@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-
 namespace DotExtensions.Memory;
 
 /// <summary>
@@ -36,16 +34,16 @@ public static class AsSpanExtensions
     extension<TSource>(ICollection<TSource> collection)
     {
         /// <summary>
-        /// Converts the current collection into a <see cref="Span{T}"/> instance.
+        /// Converts the current collection into a <see cref="Span{T}"/>.
         /// This method creates a writable span representation of the collection, maintaining the order of the elements.
         /// </summary>
-        /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
         /// <returns>A <see cref="Span{T}"/> representing the elements of the collection.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public Span<TSource> AsSpan()
         {
             ArgumentNullException.ThrowIfNull(collection);    
             
-            TSource[] array = ArrayPool<TSource>.Shared.Rent(collection.Count);
+            TSource[] array =new  TSource[collection.Count];
 
             int index = 0;
             foreach (TSource item in collection)
@@ -53,24 +51,21 @@ public static class AsSpanExtensions
                 array[index] = item;
                 index++;
             }
-           
-            Span<TSource> output =  array.AsSpan().Slice(index, array.Length - index);
-           
-            ArrayPool<TSource>.Shared.Return(array);
-            return output;
+
+            return array.AsSpan();
         }
 
         /// <summary>
-        /// Converts the current collection into a <see cref="ReadOnlySpan{T}"/> instance.
+        /// Converts the current collection into a <see cref="ReadOnlySpan{T}"/>.
         /// This method creates a read-only span representation of the collection, maintaining the order of the elements.
         /// </summary>
-        /// <typeparam name="TSource">The type of elements in the collection.</typeparam>
         /// <returns>A <see cref="ReadOnlySpan{T}"/> representing the elements of the collection.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public ReadOnlySpan<TSource> AsReadOnlySpan()
         {
             ArgumentNullException.ThrowIfNull(collection);    
             
-            TSource[] array = ArrayPool<TSource>.Shared.Rent(collection.Count);
+            TSource[] array = new TSource[collection.Count];
 
             int index = 0;
             foreach (TSource item in collection)
@@ -78,11 +73,8 @@ public static class AsSpanExtensions
                 array[index] = item;
                 index++;
             }
-           
-            ReadOnlySpan<TSource> output =  array.AsSpan().Slice(index, array.Length - index);
-           
-            ArrayPool<TSource>.Shared.Return(array);
-            return output;
+
+            return array.AsSpan();
         }
     }
 }
