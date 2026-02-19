@@ -43,7 +43,7 @@ public static class AsSpanExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);    
             
-            TSource[] array = ArrayPool<TSource>.Shared.Rent(collection.Count);
+            TSource[] array =new  TSource[collection.Count];
 
             int index = 0;
             foreach (TSource item in collection)
@@ -51,11 +51,8 @@ public static class AsSpanExtensions
                 array[index] = item;
                 index++;
             }
-           
-            Span<TSource> output =  array.AsSpan().Slice(0,index + 1);
-           
-            ArrayPool<TSource>.Shared.Return(array);
-            return output;
+
+            return array.AsSpan();
         }
 
         /// <summary>
@@ -68,7 +65,7 @@ public static class AsSpanExtensions
         {
             ArgumentNullException.ThrowIfNull(collection);    
             
-            TSource[] array = ArrayPool<TSource>.Shared.Rent(collection.Count);
+            TSource[] array = new TSource[collection.Count];
 
             int index = 0;
             foreach (TSource item in collection)
@@ -76,11 +73,8 @@ public static class AsSpanExtensions
                 array[index] = item;
                 index++;
             }
-           
-            ReadOnlySpan<TSource> output = array.AsSpan().Slice(0, index + 1);
-           
-            ArrayPool<TSource>.Shared.Return(array);
-            return output;
+
+            return array.AsSpan();
         }
     }
 }
