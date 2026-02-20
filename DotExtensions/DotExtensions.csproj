@@ -11,8 +11,9 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Fixed a regression that caused ``PlatformNotSupportedException`` ``ThrowIfNotOSPlatform`` static extension method to throw even if on a supported platform
-* Fixed issues with several tests preventing them from running properly</PackageReleaseNotes>
+    <PackageReleaseNotes>* Ported new features from 9.7.0 Preview 1 &amp; 2
+* Replaced deprecated ``DateTime`` ``DaysInYear`` static extension method with non static extension method
+* Improved robustness of StringSegment ``Remove`` extension</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -21,7 +22,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.0.0-alpha.2</Version>
+    <Version>10.0.0-alpha.3</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
