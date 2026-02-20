@@ -46,10 +46,8 @@ public static class SegmentRemoveAndReplaceExtensions
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
-
-            int length = segment.Length - startIndex - 1;
-
-            return segment.Subsegment(startIndex, length);
+            
+            return segment.Subsegment(0, startIndex == 0 ? 0 : startIndex - 1);
         }
 
         /// <summary>
