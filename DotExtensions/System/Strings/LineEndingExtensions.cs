@@ -38,18 +38,18 @@ public static class LineEndingExtensions
         /// Detects the line ending used in the string.
         /// </summary>
         /// <returns>The line ending used in the string.</returns>
-        public char[] GetLineEnding()
+        public string GetLineEnding()
         {
-            char lastChar = s.Last();
+            char lastChar = s.First(c => c == Environment.NewLine.First());
 
             bool containsR = s.Contains('\r');
             bool containsN = s.Contains('\n');
             
             return lastChar switch
             {
-                '\n' => containsR ? ['\r', '\n'] : ['\n'],
-                '\r' => containsN ? ['\r','\n'] : ['\r'],
-                _ => []
+                '\n' => containsR ? "\r\n" : "\n",
+                '\r' => containsN ? "\r\n" : "\r",
+                _ => ""
             };
         }
     }
