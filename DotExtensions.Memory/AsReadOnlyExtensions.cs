@@ -30,19 +30,6 @@ namespace DotExtensions.Memory;
 public static class AsReadOnlyExtensions
 {
     /// <summary>
-    /// Provides extension methods for converting writable spans to read-only spans.
-    /// </summary>
-    extension<T>(ref Span<T> span)
-    {
-        /// <summary>
-        /// Converts the provided writable span to a read-only span representation.
-        /// </summary>
-        /// <returns>A read-only span representation of the original writable span.</returns>
-        public ReadOnlySpan<T> AsReadOnlySpan()
-            => span;
-    }
-
-    /// <summary>
     /// Provides extension methods for converting writable memory to read-only memory.
     /// </summary>
     extension<T>(ref Memory<T> memory)
