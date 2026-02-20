@@ -71,8 +71,8 @@ public static class ReadOnlyMemorySort
 
             Array.Sort(keysArray, valsArray, comparer);
 
-            keys = keysArray.AsSpan();
-            values = valsArray.AsSpan();
+            keys = new ReadOnlySpan<TKey>(keysArray);
+            values = new ReadOnlySpan<TValue>(valsArray);
         }
     }
     
@@ -101,7 +101,7 @@ public static class ReadOnlyMemorySort
             source.CopyTo(array);
             Array.Sort(array, comparer);
 
-            source = array.AsSpan();
+            source = new ReadOnlySpan<T>(array);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ public static class ReadOnlyMemorySort
             source.CopyTo(array);
             Array.Sort(array, comparison);
 
-            source = array.AsSpan();
+            source = new ReadOnlySpan<T>(array);
         }
     }
 }
