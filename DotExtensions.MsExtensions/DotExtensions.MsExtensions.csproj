@@ -7,13 +7,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.6.2</Version>
+    <Version>9.7.0-preview.2</Version>
     <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>* Updated internal Polyfill version from 9.8.1 to 9.9.0</PackageReleaseNotes>
+    <PackageReleaseNotes>* Improved robustness of StringSegment ``Remove`` extension</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>

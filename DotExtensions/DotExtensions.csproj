@@ -11,8 +11,9 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added ``Task`` and ``Task&lt;TResult&gt;`` ``WaitOrTimeoutAsync(TimeSpan, CancellationToken)`` extension methods that add support for waiting for task completion or timeout, whichever is sooner.
-* Added ``DateOnly`` ``DayOfWeekInt`` extension method for .NET 8+ TFMs</PackageReleaseNotes>
+    <PackageReleaseNotes>* Restructured ``WaitOrTimeoutAsync`` methods to be overloads of ``WaitAsync``
+* Added synchronous ``Wait`` methods - The async version of these methods should be used where possible.
+* Added ``string`` ``GetLineEnding`` extension method</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
