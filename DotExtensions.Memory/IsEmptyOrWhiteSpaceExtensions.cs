@@ -27,7 +27,7 @@ namespace DotExtensions.Memory;
 /// <summary>
 /// Provides extension methods for working with spans.
 /// </summary>
-public static class IsEmptyExtensions
+public static class IsEmptyOrWhiteSpaceExtensions
 {
     /// <param name="source">The span to search.</param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
