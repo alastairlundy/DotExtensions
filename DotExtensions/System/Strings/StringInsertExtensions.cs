@@ -31,9 +31,6 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class StringInsertExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
     /// <param name="str">The string to insert characters into.</param>
     extension(string str)
     {
