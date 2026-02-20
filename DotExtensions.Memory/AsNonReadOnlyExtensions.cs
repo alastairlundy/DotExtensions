@@ -41,15 +41,12 @@ public static class AsNonReadOnlyExtensions
         /// <returns>A <see cref="Span{T}"/> instance containing a copied version of the data from the source.</returns>
         public Span<T> AsSpan()
         {
-            T[] array = ArrayPool<T>.Shared.Rent(source.Length);
+            T[] array = new T[source.Length];
 
             Span<T> output = new Span<T>(array);
             
             source.CopyTo(output);
             
-            output = output.Slice(0, source.Length);
-            
-            ArrayPool<T>.Shared.Return(array);
             return output;
         }
     }
@@ -65,15 +62,12 @@ public static class AsNonReadOnlyExtensions
         /// <returns>A <see cref="Memory{T}"/> instance containing a copied version of the data from the source.</returns>
         public Memory<T> AsMemory()
         {
-            T[] array = ArrayPool<T>.Shared.Rent(source.Length);
+            T[] array = new  T[source.Length];
 
             Memory<T> output = new Memory<T>(array);
             
             source.CopyTo(output);
             
-            output = output.Slice(0, source.Length); 
-            
-            ArrayPool<T>.Shared.Return(array);
             return output;
         }
     }
