@@ -49,7 +49,7 @@ public static class SegmentRemoveAndReplaceExtensions
 
             int length = segment.Length - startIndex - 1;
 
-            return segment.Subsegment(0, length);
+            return segment.Subsegment(startIndex, length);
         }
 
         /// <summary>
