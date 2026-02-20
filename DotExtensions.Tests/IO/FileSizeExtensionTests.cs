@@ -21,7 +21,7 @@ public class FileSizeExtensionTests
         string fileSizeUnitString = _testFile.GetFileSizeUnitString();
         
         long actualFileSize = long.Parse(actualFileSizeString.Substring(0,
-            actualFileSizeString.Length - fileSizeUnitString.Length - 1));
+            actualFileSizeString.Length - fileSizeUnitString.Length));
         
         await Assert.That(actualFileSizeString)
             .IsNotEmpty();
