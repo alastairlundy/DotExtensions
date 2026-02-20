@@ -39,6 +39,7 @@ public static class AsNonReadOnlyExtensions
         /// The method creates a copy of the original data to ensure it is writable without modifying the source.
         /// </summary>
         /// <returns>A <see cref="Span{T}"/> instance containing a copied version of the data from the source.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public Span<T> AsSpan()
         {
             T[] array = new T[source.Length];
@@ -60,6 +61,7 @@ public static class AsNonReadOnlyExtensions
         /// The method creates a copy of the data to ensure writability without altering the original source.
         /// </summary>
         /// <returns>A <see cref="Memory{T}"/> instance containing a copied version of the data from the source.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public Memory<T> AsMemory()
         {
             T[] array = new  T[source.Length];

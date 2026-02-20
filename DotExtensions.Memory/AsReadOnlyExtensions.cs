@@ -38,6 +38,7 @@ public static class AsReadOnlyExtensions
         /// Converts the provided writable span to a read-only span representation.
         /// </summary>
         /// <returns>A read-only span representation of the original writable span.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public ReadOnlySpan<T> AsReadOnlySpan()
             => span;
     }
