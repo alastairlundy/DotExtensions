@@ -7,6 +7,7 @@
 #### 10.0
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.0.0 Alpha 3 | February 20th 2026 | |
 | 10.0.0 Alpha 2 | February 10th 2026 | |
 | 10.0.0 Alpha 1 | February 8th 2026 | |
 
@@ -14,6 +15,7 @@
 #### 9.7
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.7.0 Preview 2 | February 20th 2026 | |
 | 9.7.0 Preview 1 | February 18th 2026 | |
 
 #### 9.6
@@ -29,6 +31,7 @@
 #### 9.5
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.5.2 | February 19th 2026 | |
 | 9.5.1 | February 1st 2026 | |
 | 9.5.0 | January 30th 2026 | |
 | 9.5.0 Preview 1 | January 21st 2026 | DotExtensions package only |
