@@ -14,3 +14,28 @@ updates:
     directory: /
     schedule:
       interval: daily
+
+  - package-ecosystem: nuget
+    directory: /DotExtensions.AotTests
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /DotExtensions.Benchmarking
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /DotExtensions.Memory
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /DotExtensions.Tests
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /DotExtensions
+    schedule:
+      interval: daily
