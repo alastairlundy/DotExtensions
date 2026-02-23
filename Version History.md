@@ -15,12 +15,14 @@
 #### 9.7
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.7.0 | February 23rd 2026 | |
 | 9.7.0 Preview 2 | February 20th 2026 | |
 | 9.7.0 Preview 1 | February 18th 2026 | |
 
 #### 9.6
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.6.4 | February 23rd 2026 | |
 | 9.6.3 | February 19th 2026 | DotExtensions.Memory package only |
 | 9.6.2 | February 15th 2026 | |
 | 9.6.1 | February 11th 2026 | |
