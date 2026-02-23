@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Bogus;
 using DotExtensions.Strings;
 
@@ -27,7 +28,8 @@ public class LineEndingTests
     {
         string expected = OperatingSystem.IsWindows() ? "\r\n" : "\n";
 
-        string testString = string.Join(' ', _faker.Lorem.Words(Random.Shared.Next(1, 5)));
+        string testString = string.Join(' ', _faker.Lorem.Words(Random.Shared.Next(1, 10))
+            .Append(Environment.NewLine));
 
         string actual = testString.GetLineEnding();
         

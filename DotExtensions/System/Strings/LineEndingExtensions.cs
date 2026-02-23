@@ -36,14 +36,42 @@ public static class LineEndingExtensions
         /// Detects the line ending used in the string.
         /// </summary>
         /// <returns>The line ending used in the string.</returns>
+        /// <exception cref="ArgumentException">Thrown if the string is null or empty.</exception>
         public string GetLineEnding()
         {
-            char lastChar = s.First(c => c == Environment.NewLine.First());
-
+            ArgumentException.ThrowIfNullOrEmpty(s);
+            
             bool containsR = s.Contains('\r');
             bool containsN = s.Contains('\n');
-            
-            return lastChar switch
+
+            char newLineChar;
+
+            if (containsN || containsR || s.Contains(Environment.NewLine))
+            {
+                try
+                {
+                    newLineChar = s.First(c => c == Environment.NewLine.First());
+                }
+                catch
+                {
+                    switch (containsR)
+                    {
+                        case true:
+                            newLineChar = s.First(c => c == '\r');
+                            break;
+                        case false:
+                            newLineChar = containsN ? s.First(c => c == '\n') :
+                                Environment.NewLine.First();
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                newLineChar = Environment.NewLine.First();
+            }
+
+            return newLineChar switch
             {
                 '\n' => containsR ? "\r\n" : "\n",
                 '\r' => containsN ? "\r\n" : "\r",
