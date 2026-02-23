@@ -27,7 +27,7 @@ namespace DotExtensions.MsExtensions.StringSegments;
 /// <summary>
 /// Provides extension methods for performing operations related to spaces within <see cref="StringSegment"/> instances.
 /// </summary>
-public static class SegmentContainsSpacesExtensions
+public static class SegmentContainsSubsegmentsExtensions
 {
     /// <summary>
     /// 
