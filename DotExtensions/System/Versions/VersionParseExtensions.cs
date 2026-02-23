@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Linq;
-
 namespace DotExtensions.Versions;
 
 /// <summary>

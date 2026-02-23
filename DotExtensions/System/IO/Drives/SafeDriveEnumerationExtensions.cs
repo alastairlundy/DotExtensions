@@ -23,7 +23,6 @@
  */
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DotExtensions.IO.Drives;
 
