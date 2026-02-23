@@ -11,9 +11,10 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Restructured ``WaitOrTimeoutAsync`` methods to be overloads of ``WaitAsync``
-* Added synchronous ``Wait`` methods - The async version of these methods should be used where possible.
-* Added ``string`` ``GetLineEnding`` extension method</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added ``Task`` and ``Task&lt;TResult&gt;`` ``WaitAsync(TimeSpan, CancellationToken)`` extension methods that add support for waiting for task completion or timeout, whichever is sooner.
+* Added the synchronous Task  ``Wait(TimeSpan, CancellationToken)`` extension  method - The async versions of this method should be used where possible.
+* Added ``string`` ``GetLineEnding`` extension method
+* Added ``DateOnly`` ``DayOfWeekInt`` extension method for .NET 8+ TFMs</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -22,7 +23,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.7.0-preview.2</Version>
+    <Version>9.7.0</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>

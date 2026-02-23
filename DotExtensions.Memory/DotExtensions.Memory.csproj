@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>9.7.0-preview.2</Version>
+    <Version>9.7.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -23,9 +23,8 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Fixed several logic bugs with ArrayPools being used
-* Fixed several bugs with the ``AsSpan`` extension methods
-* Deprecated ``AsReadOnlySpan`` extension method for removal in v10</PackageReleaseNotes>
+    <PackageReleaseNotes>* Code optimisations and improvements
+* Deprecated several methods for removal in v10 (also backported to 9.6.2 and 9.6.3)</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
