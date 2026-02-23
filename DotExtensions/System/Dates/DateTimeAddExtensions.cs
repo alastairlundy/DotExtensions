@@ -43,16 +43,4 @@ public static class DateTimeAddExtensions
             return dateTimeOne.Add(timeSpan);
         }
     }
-
-    /// <param name="dateTime">The initial date and time to add days to.</param>
-    extension(DateTime dateTime)
-    {
-        /// <summary>
-        /// Adds a specified number of days to a given date and time.
-        /// </summary>
-        /// <param name="days">The number of days to add.</param>
-        /// <returns>The resulting date and time after adding the specified number of days.</returns>
-        public DateTime AddDays(int days) =>
-            dateTime.AddDays(Convert.ToDouble(days));
-    }
 }
