@@ -48,14 +48,12 @@ public static class ArgumentExceptionExtensions
         /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> has a length of zero.</exception>
         public static void ThrowIfNullOrEmpty(SecureString? secureString, string name = "")
         {
-            if (name.Length == 0)
-                name = nameof(secureString);
-
             if (secureString is null)
                 throw new ArgumentNullException(name);
 
             if (secureString.Length == 0)
-                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty, name);
+                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty,
+                    name.Length == 0 ? nameof(secureString) : name);
         }
 
         /// <summary>
@@ -69,9 +67,6 @@ public static class ArgumentExceptionExtensions
         /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> contains only whitespace characters.</exception>
         public static void ThrowIfNullOrWhiteSpace(SecureString? secureString, string name = "")
         {
-            if (name.Length == 0)
-                name = nameof(secureString);
-
             if (secureString is null)
                 throw new ArgumentNullException(name);
 
@@ -83,7 +78,8 @@ public static class ArgumentExceptionExtensions
             }
             
             if (secureString.Equals(whitespace))
-                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty, name);
+                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty, 
+                    name.Length == 0 ? nameof(secureString) : name);
         }
     }
 }
