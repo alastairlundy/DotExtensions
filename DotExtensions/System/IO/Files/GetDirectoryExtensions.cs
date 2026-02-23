@@ -44,8 +44,7 @@ public static class GetDirectoryExtensions
             
             int lastDirSeparatorIndex = fileInfo.FullName
                 .Substring(0, fileInfo.FullName.IndexOf(fileInfo.Name, StringComparison.Ordinal) - 1)
-                .LastIndexOfAny(
-                    [Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar]);
+                .LastIndexOfAny([Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar]);
             
             if (lastDirSeparatorIndex != -1)
             {

@@ -25,7 +25,7 @@
 namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>
-/// 
+/// Contains extension methods for handling Unix file permission operations.
 /// </summary>
 public static partial class UnixPermissionsExtensions
 {
