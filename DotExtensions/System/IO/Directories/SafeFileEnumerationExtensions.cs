@@ -22,9 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-using System.Linq;
-
 // ReSharper disable InconsistentNaming
 
 namespace DotExtensions.IO.Directories;
@@ -36,7 +33,6 @@ namespace DotExtensions.IO.Directories;
 public static partial class SafeIOEnumerationExtensions
 {
     #region Safe File Enumeration.
-
     /// <summary>
     /// Provides extension methods for safe enumeration of files in directories.
     /// </summary>
@@ -130,7 +126,6 @@ public static partial class SafeIOEnumerationExtensions
     extension(Directory)
     {
         #region Safe File Enumeration (Static Directory C# 14 extensions)
-
         /// <summary>
         /// Safely enumerates files in the specified directory.
         /// </summary>
@@ -181,7 +176,6 @@ public static partial class SafeIOEnumerationExtensions
 
         #endregion
         #region Safe File Getting (Static Directory C# 14 extensions)
-
         /// <summary>
         /// Safely retrieves an array of files in the specified directory, handling potential errors
         /// such as inaccessible files or directories gracefully.
