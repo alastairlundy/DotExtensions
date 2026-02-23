@@ -26,8 +26,6 @@ namespace DotExtensions.Memory;
 
 /// <summary>
 /// Provides extension methods for sorting operations on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/>.
-/// This class contains utilities to perform sorting directly on <see cref="ReadOnlyMemory{T}"/> and <see cref="ReadOnlySpan{T}"/> instances
-/// without converting them to other data structures.
 /// </summary>
 public static class ReadOnlyMemorySort
 {
