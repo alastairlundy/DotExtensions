@@ -165,6 +165,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <exception cref="ArgumentException">
         /// Thrown when any of the elements in <paramref name="unsupportedOsPlatforms"/> is null or empty.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfUnSupportedPlatform(string? exceptionMessage = null,
             params string[] unsupportedOsPlatforms)
         {
@@ -194,6 +195,7 @@ public static partial class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match any of the specified supported OS platforms.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public static void ThrowIfNotSupportedPlatform(string? exceptionMessage = null,
             params string[] supportedOsPlatforms)
         {

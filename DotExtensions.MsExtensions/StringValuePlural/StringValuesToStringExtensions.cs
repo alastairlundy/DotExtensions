@@ -42,6 +42,7 @@ public static class StringValuesToStringExtensions
         /// A string that concatenates the values in the StringValues instance,
         /// separated by the default character (' ').
         /// </returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public string ToString()
             => strValues.ToString(' ');
 

@@ -52,6 +52,7 @@ public static class DateTimeAddExtensions
         /// </summary>
         /// <param name="days">The number of days to add.</param>
         /// <returns>The resulting date and time after adding the specified number of days.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV10)]
         public DateTime AddDays(int days) =>
             dateTime.AddDays(Convert.ToDouble(days));
     }

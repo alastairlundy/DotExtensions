@@ -30,9 +30,6 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class DateOnlyToDateTimeExtension
 {
-    /// <summary>
-    /// 
-    /// </summary>
     extension(DateOnly)
     {
         /// <summary>
