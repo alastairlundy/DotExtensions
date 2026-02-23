@@ -40,21 +40,14 @@ public static class ReverseExtensions
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
             
-            T[] array = ArrayPool<T>.Shared.Rent(span.Length);
-
-            try
+            T[] array = new  T[span.Length];
+            
+            for (int index = span.Length - 1; index > 0; index--)
             {
-                for (int index = span.Length - 1; index > 0; index--)
-                {
-                    array[(span.Length - 1) - index] = span[index];
-                }
+                array[(span.Length - 1) - index] = span[index];
+            }
 
-                span = new ReadOnlySpan<T>(array);
-            }
-            finally
-            {
-                ArrayPool<T>.Shared.Return(array);
-            }
+            span = new ReadOnlySpan<T>(array);
         }
     }
 
@@ -103,21 +96,15 @@ public static class ReverseExtensions
         public void Reverse()
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
-            T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
-
-            try
+            
+            T[] array = new  T[memory.Length];
+            
+            for (int index = memory.Length - 1; index > 0; index--)
             {
-                for (int index = memory.Length - 1; index > 0; index--)
-                {
-                    array[(memory.Length - 1) - index] = memory.Span[index];
-                }
+                array[(memory.Length - 1) - index] = memory.Span[index];
+            }
 
-                memory = new ReadOnlyMemory<T>(array);
-            }
-            finally
-            {
-                ArrayPool<T>.Shared.Return(array);
-            }
+            memory = new ReadOnlyMemory<T>(array);
         }
     }
 }
