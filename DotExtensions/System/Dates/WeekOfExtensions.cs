@@ -85,7 +85,7 @@ public static class WeekOfExtensions
     extension(DateTime date)
     {
         /// <summary>
-        /// Calculates the week of the month.
+        /// Calculates the week of the month of a given <see cref="DateTime"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
         public int WeekOfMonth()
@@ -94,7 +94,7 @@ public static class WeekOfExtensions
         }
 
         /// <summary>
-        /// Calculates the week in the year of a given DateTime.
+        /// Calculates the week in the year of a given <see cref="DateTime"/>.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
@@ -105,10 +105,11 @@ public static class WeekOfExtensions
     }
 
 #if NET8_0_OR_GREATER
+    /// <param name="date"></param>
     extension(DateOnly date)
     {
         /// <summary>
-        /// Calculates the week of the month.
+        /// Calculates the week of the month of a given <see cref="DateOnly"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
         public int WeekOfMonth()
@@ -117,7 +118,7 @@ public static class WeekOfExtensions
         }
 
         /// <summary>
-        /// Calculates the week in the year of a given DateTime.
+        /// Calculates the week in the year of a given <see cref="DateOnly"/>.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
