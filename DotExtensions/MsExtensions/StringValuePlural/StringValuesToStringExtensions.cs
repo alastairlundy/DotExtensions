@@ -36,17 +36,6 @@ public static class StringValuesToStringExtensions
     {
         /// <summary>
         /// Converts the StringValues instance to its string representation
-        /// using a default separator (' ').
-        /// </summary>
-        /// <returns>
-        /// A string that concatenates the values in the StringValues instance,
-        /// separated by the default character (' ').
-        /// </returns>
-        public string ToString()
-            => strValues.ToString(' ');
-
-        /// <summary>
-        /// Converts the StringValues instance to its string representation
         /// using the specified character as a separator.
         /// </summary>
         /// <param name="separator">
