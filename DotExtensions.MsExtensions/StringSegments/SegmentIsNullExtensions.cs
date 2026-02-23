@@ -30,11 +30,7 @@ namespace DotExtensions.MsExtensions.StringSegments;
 /// </summary>
 public static class SegmentIsNullExtensions
 {
-    /// <summary>
-    /// A static class that provides extension methods for working with StringSegment objects to determine
-    /// whether they are null, empty, or consist only of whitespace characters.
-    /// </summary>
-    /// <paramref name="segment"></paramref>
+    /// <paramref name="segment">The string segment to check the length of.</paramref>
     extension(StringSegment segment)
     {
         /// <summary>
@@ -42,7 +38,10 @@ public static class SegmentIsNullExtensions
         /// </summary>
         /// <returns>True if the string segment is empty; otherwise, false.</returns>
         public bool IsEmpty => segment.Length == 0;
-        
+    }
+
+    extension(StringSegment)
+    {
         /// <summary>
         /// Checks whether the specified string segment is null or whitespace.
         /// </summary>
