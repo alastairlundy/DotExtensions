@@ -67,6 +67,9 @@ public static class CapitalizationExtensions
 
             foreach (int index in indices)
             {
+                ArgumentOutOfRangeException.ThrowIfNegative(index);
+                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index,  str.Length);
+                
                 if (!char.IsUpper(str[index]))
                     stringBuilder[index] = char.ToUpper(str[index]);
             }
