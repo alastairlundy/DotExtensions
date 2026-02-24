@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-
 namespace DotExtensions.Strings;
 
 /// <summary>
@@ -42,6 +40,8 @@ public static class CapitalizationExtensions
         public string CapitalizeChar(int index)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index,  str.Length);
             
             char c = str[index];
 
