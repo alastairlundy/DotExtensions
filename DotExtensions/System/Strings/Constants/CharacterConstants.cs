@@ -30,7 +30,12 @@ namespace DotExtensions.Strings;
 /// </summary>
 public static class CharacterConstants
 {
-    private static readonly string[] EscapeChars =
+    /// <summary>
+    /// Represents an array of predefined escape characters commonly used in strings.
+    /// Provides a set of constants that can be referenced for operations involving
+    /// the detection or removal of escape characters from strings.
+    /// </summary>
+    public static string[] EscapeCharacters =>
     [
         "\r",
         "\n",
@@ -45,11 +50,4 @@ public static class CharacterConstants
         @"\xHH",
         "\\",
     ];
-
-    /// <summary>
-    /// Represents an array of predefined escape characters commonly used in strings.
-    /// Provides a set of constants that can be referenced for operations involving
-    /// the detection or removal of escape characters from strings.
-    /// </summary>
-    public static string[] EscapeCharacters => EscapeChars;
 }
