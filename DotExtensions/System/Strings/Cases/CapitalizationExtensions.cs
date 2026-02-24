@@ -62,6 +62,7 @@ public static class CapitalizationExtensions
         public string CapitalizeChars(IEnumerable<int> indices)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
+            ArgumentNullException.ThrowIfNull(indices);
             
             StringBuilder stringBuilder = new(str);
 
