@@ -34,12 +34,13 @@ public static class OperatingSystemExtensions
         /// <summary>
         /// Determines whether the current operating system is a Unix-based system.
         /// </summary>
+        /// <remarks>Does not return true on IOS, tvOS, or watchOS.</remarks>
         /// <returns>
         /// true if the current operating system is Unix-based (e.g. Linux, macOS, FreeBSD, or Android); otherwise, false.
         /// </returns>
         public static bool IsUnix()
         {
-            return OperatingSystem.IsAndroid() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsLinux() 
+            return OperatingSystem.IsAndroid() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsLinux()
                    || OperatingSystem.IsMacCatalyst() || OperatingSystem.IsMacOS();
         }
     }
