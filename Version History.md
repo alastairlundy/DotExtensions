@@ -15,6 +15,7 @@
 #### 9.7
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.7.1 | February 28th 2026 | |
 | 9.7.0 | February 23rd 2026 | |
 | 9.7.0 Preview 2 | February 20th 2026 | |
 | 9.7.0 Preview 1 | February 18th 2026 | |
