@@ -135,8 +135,7 @@ public static class DateTimeSubtractExtensions
                 for (int monthCount = 1; monthCount <= 12; monthCount++)
                 {
                     daysToRemove += DateTime.DaysInMonth(
-                        dateTime.Year - Convert.ToInt32(index),
-                        monthCount
+                        dateTime.Year - Convert.ToInt32(index), monthCount
                     );
                 }
             }
