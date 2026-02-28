@@ -89,7 +89,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             for (int i = 0; i < span.Length; i++)
             {
@@ -117,7 +117,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             for (int i = 0; i < span.Length; i++)
             {
@@ -148,7 +148,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines whether a span of memory containing characters is empty or consists only of whitespace.
         /// </summary>
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             for (int i = 0; i < memory.Length; i++)
             { 
@@ -176,7 +176,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines whether the provided read-only memory of characters is empty or consists solely of whitespace characters.
         /// </summary>
         /// <returns>True if the memory is empty or contains only whitespace characters; otherwise, false.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             for (int i = 0; i < memory.Length; i++)
             {
@@ -209,7 +209,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>
         /// True if the span contains only whitespace characters, false otherwise.
         /// </returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             for (int i = 0; i < span.Length; i++)
             {
@@ -237,7 +237,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines if a span is empty or whitespace.
         /// </summary>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             bool[] isWhiteSpace = new bool[span.Length];
             for (int i = 0; i < span.Length; i++)
@@ -290,7 +290,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// Determines if a ReadOnlyMemory of strings contains only whitespace elements.
         /// </summary>
         /// <returns>True if the memory contains only whitespace, false otherwise.</returns>
-        public bool IsWhiteSpace()
+        private bool IsWhiteSpace()
         {
             bool[] isWhiteSpace = new bool[memory.Length];
             
