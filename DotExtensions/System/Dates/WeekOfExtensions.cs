@@ -88,7 +88,7 @@ public static class WeekOfExtensions
         /// Calculates the week of the month of a given <see cref="DateTime"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth() => 
+        public int WeekOfMonth => 
             InternalWeekOfMonthCount(date, date.Year, date.Month);
 
         /// <summary>
@@ -108,7 +108,7 @@ public static class WeekOfExtensions
         /// Calculates the week of the month of a given <see cref="DateOnly"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth() => 
+        public int WeekOfMonth => 
             InternalWeekOfMonthCount(DateOnly.ToDateTime(date), date.Year, date.Month);
 
         /// <summary>

@@ -34,9 +34,9 @@ public static class DayOfExtensions
     private static int CalculateDayOfWeekInt(DayOfWeek dayOfWeek)
     {
         DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-
+        
         int output;
-            
+        
         switch (firstDayOfWeek)
         {
             case DayOfWeek.Sunday:
@@ -73,7 +73,7 @@ public static class DayOfExtensions
         /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
         /// </summary>
         /// <returns>The day of the week as a 32-Bit integer.</returns>
-        public int DayOfWeekInt() 
+        public int CalculateDayOfWeekAsInteger()
             => CalculateDayOfWeekInt(date.DayOfWeek);
     }
 #endif
@@ -88,7 +88,7 @@ public static class DayOfExtensions
         /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
         /// </summary>
         /// <returns>The day of the week as a 32-Bit integer.</returns>
-        public int DayOfWeekInt()
+        public int CalculateDayOfWeekAsInteger()
             => CalculateDayOfWeekInt(date.DayOfWeek);
     }
 }

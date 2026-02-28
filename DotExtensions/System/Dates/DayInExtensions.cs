@@ -52,7 +52,7 @@ public static class DayInExtensions
         /// Calculates the total number of days in the year of the specified <see cref="DateOnly"/> object.
         /// </summary>
         /// <returns>The total number of days in the year of the specified <see cref="DateOnly"/>.</returns>
-        public int DaysInYear()
+        public int CalculateNumberOfDaysInYear()
             => CalculateDaysInYear(dateOnly.Year);
     }
 #endif
@@ -64,7 +64,7 @@ public static class DayInExtensions
         /// Calculates the total number of days in the year of the specified <see cref="DateTime"/> object.
         /// </summary>
         /// <returns>The total number of days in the year of the specified <see cref="DateTime"/>.</returns>
-        public int DaysInYear()
+        public int CalculateNumberOfDaysInYear()
             => CalculateDaysInYear(date.Year);
     }
 }
