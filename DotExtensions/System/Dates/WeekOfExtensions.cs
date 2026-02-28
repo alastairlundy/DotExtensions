@@ -88,20 +88,16 @@ public static class WeekOfExtensions
         /// Calculates the week of the month of a given <see cref="DateTime"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth()
-        {
-            return InternalWeekOfMonthCount(date, date.Year, date.Month);
-        }
+        public int WeekOfMonth() => 
+            InternalWeekOfMonthCount(date, date.Year, date.Month);
 
         /// <summary>
         /// Calculates the week in the year of a given <see cref="DateTime"/>.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
-        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek)
-        {
-            return InternalWeekOfYearCount(date, calendarWeekRule, date.Year, date.Month);
-        }
+        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) => 
+            InternalWeekOfYearCount(date, calendarWeekRule, date.Year, date.Month);
     }
 
 #if NET8_0_OR_GREATER
@@ -112,21 +108,16 @@ public static class WeekOfExtensions
         /// Calculates the week of the month of a given <see cref="DateOnly"/>.
         /// </summary>
         /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth()
-        {
-            return InternalWeekOfMonthCount(DateOnly.ToDateTime(date), date.Year, date.Month);
-        }
+        public int WeekOfMonth() => 
+            InternalWeekOfMonthCount(DateOnly.ToDateTime(date), date.Year, date.Month);
 
         /// <summary>
         /// Calculates the week in the year of a given <see cref="DateOnly"/>.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
-        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek)
-        {
-            return InternalWeekOfYearCount(DateOnly.ToDateTime(date),
-                calendarWeekRule, date.Year, date.Month);
-        }
+        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
+            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year, date.Month);
     }
 #endif
 }
