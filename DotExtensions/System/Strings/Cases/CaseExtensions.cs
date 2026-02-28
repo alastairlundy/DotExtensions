@@ -34,9 +34,8 @@ public static class CaseExtensions
     {
         /// <summary>
         /// Returns whether this string is in the upper case or not.
-        ///
-        /// <para>True if the string is upper case; false otherwise.</para>
         /// </summary>
+        /// <returns>True if the string is upper case; false otherwise.</returns>
         public bool IsUpperCase()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
@@ -46,9 +45,8 @@ public static class CaseExtensions
 
         /// <summary>
         /// Returns whether a string is lower case or not.
-        ///
-        /// <para>True if a string is lower case; false otherwise.</para>
         /// </summary>
+        /// <returns>True if a string is lower case; false otherwise.</returns>
         public bool IsLowerCase()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
