@@ -11,10 +11,12 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added ``Task`` and ``Task&lt;TResult&gt;`` ``WaitAsync(TimeSpan, CancellationToken)`` extension methods that add support for waiting for task completion or timeout, whichever is sooner.
-* Added the synchronous Task  ``Wait(TimeSpan, CancellationToken)`` extension  method - The async versions of this method should be used where possible.
-* Added ``string`` ``GetLineEnding`` extension method
-* Added ``DateOnly`` ``DayOfWeekInt`` extension method for .NET 8+ TFMs</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated global usings
+* Deprecated some static extension methods for ``PlatformNotSupportedException`` that passed Platform IDs as strings for removal in v10 - Using strings for checking for valid OSes is fragile and should be replaced by concrete ``OSPlatform`` typing where possible
+* Addressed some build warnings
+* Improved robustness of line ending detection in ``GetLineEnding`` extension method
+* Improved robustness of argument checks in ``CapitalizeChar(int)`` and ``CapitalizeChars(IEnumerable&lt;int&gt;)`` extension methods
+* Updated internal Polyfill version from 9.10.0 to 9.12.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -23,7 +25,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.7.0</Version>
+    <Version>9.7.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -61,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Polyfill" Version="9.10.0" PrivateAssets="all">
+    <PackageReference Include="Polyfill" Version="9.12.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
