@@ -71,6 +71,7 @@ public static class GetRandomIOExtensions
                 if (!(drives.Length > 1) && !driveHasFiles && driveMustContainFiles)
                     throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
             }
+            while (!driveHasFiles && driveMustContainFiles);
 
             return drive;
         }
