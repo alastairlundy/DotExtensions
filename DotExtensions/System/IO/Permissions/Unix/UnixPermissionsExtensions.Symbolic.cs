@@ -48,8 +48,11 @@ public static partial class UnixPermissionsExtensions
                 "-r-xr-xr-x" or
                 "-rw-rw-rw-" or
                 "-rwx------" or
+                // ReSharper disable once StringLiteralTypo
                 "-rwxr-----" or
+                // ReSharper disable once StringLiteralTypo
                 "-rwxrwx---" or
+                // ReSharper disable once StringLiteralTypo
                 "-rwxrwxrwx" => true,
             _ => false
         };
@@ -67,7 +70,7 @@ public static partial class UnixPermissionsExtensions
         ArgumentException.ThrowIfNullOrEmpty(notation);
 
         if (!IsValidRwxSymbolNotation(notation))
-            throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation);
+            throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation));
 
         notation = notation.Remove(0, 1);
         string userPermissionStr = notation.Substring(0, 3);
@@ -84,7 +87,7 @@ public static partial class UnixPermissionsExtensions
             "rw-" => UnixFileMode.UserRead | UnixFileMode.UserWrite,
             "rwx" => UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute,
             "r-x" => UnixFileMode.UserRead | UnixFileMode.UserExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation))
         };
 
         UnixFileMode groupPermissions = groupPermissionStr switch
@@ -97,7 +100,7 @@ public static partial class UnixPermissionsExtensions
             "rw-" => UnixFileMode.GroupRead | UnixFileMode.GroupWrite,
             "rwx" => UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute,
             "r-x" => UnixFileMode.GroupRead | UnixFileMode.GroupExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation))
         };
 
         UnixFileMode othersPermissions = otherPermissionStr switch

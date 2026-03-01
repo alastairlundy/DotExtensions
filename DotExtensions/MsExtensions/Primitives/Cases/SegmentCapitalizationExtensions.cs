@@ -74,8 +74,17 @@ public static class SegmentCapitalizationExtensions
 
             foreach (int index in indices)
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
+                if (index == -1)
+                    throw new ArgumentException(
+                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N")
+#if NET8_0_OR_GREATER
+                            , StringComparison.Ordinal
+#endif
+                        ), nameof(indices));
+                    
+                if(index >= segment.Length)
+                    throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
+
                 
                 stringBuilder[index] = char.ToUpper(stringBuilder[index], CultureInfo.CurrentCulture);
             }

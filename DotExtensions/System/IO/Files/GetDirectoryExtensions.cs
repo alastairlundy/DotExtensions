@@ -57,7 +57,8 @@ public static class GetDirectoryExtensions
             }
 
             if (!fileInfo.Exists)
-                throw new ArgumentException(Resources.Exceptions_Directory_FileArgumentNotFound.Replace("{0}", fileInfo.Name));
+                throw new ArgumentException(
+                    Resources.Exceptions_Directory_FileArgumentNotFound.Replace("{0}", fileInfo.Name), nameof(fileInfo));
 
             DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)

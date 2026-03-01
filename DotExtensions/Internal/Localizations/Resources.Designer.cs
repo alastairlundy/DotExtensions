@@ -114,6 +114,24 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sequence of indices contained a negative index of {0}.
+        /// </summary>
+        internal static string Exceptions_Indices_IndexOutOfRange {
+            get {
+                return ResourceManager.GetString("Exceptions.Indices.IndexOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequence of indices contains index {0} which is larger than the length of an object..
+        /// </summary>
+        internal static string Exceptions_Indices_LargerIndexThanExpected {
+            get {
+                return ResourceManager.GetString("Exceptions.Indices.LargerIndexThanExpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to find directory with file path of {x}..
         /// </summary>
         internal static string Exceptions_IO_DirectoryNotFound {

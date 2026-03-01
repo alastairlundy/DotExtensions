@@ -93,7 +93,9 @@ public static class StringInsertExtensions
                 stringBuilder.Append(ch);
             }
 
-            stringBuilder.Append(str.Substring(start + 1, str.Length - (start + 1)));
+            int length = str.Length - (start + 1);
+            
+            stringBuilder.Append(str.Substring(start + 1, length));
 
             return stringBuilder.ToString();
         }

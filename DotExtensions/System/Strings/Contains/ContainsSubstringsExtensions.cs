@@ -49,7 +49,7 @@ public static class ContainsSubstringsExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-            return s.Contains(delimiter) && s.Split(delimiter).Length > 1;
+            return s.Contains(delimiter, StringComparison.Ordinal) && s.Split(delimiter).Length > 1;
         }
     }
 }

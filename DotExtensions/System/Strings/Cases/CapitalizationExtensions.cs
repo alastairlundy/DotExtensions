@@ -72,8 +72,16 @@ public static class CapitalizationExtensions
 
             foreach (int index in indices)
             {
-                ArgumentOutOfRangeException.ThrowIfNegative(index);
-                ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index,  str.Length);
+                if (index == -1)
+                    throw new ArgumentException(
+                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N")
+#if NET8_0_OR_GREATER
+                            , StringComparison.Ordinal
+#endif
+                        ), nameof(indices));
+                    
+                if(index >= str.Length)
+                    throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
                 
                 if (!char.IsUpper(str[index]))
                     stringBuilder[index] = char.ToUpper(str[index], CultureInfo.CurrentCulture);

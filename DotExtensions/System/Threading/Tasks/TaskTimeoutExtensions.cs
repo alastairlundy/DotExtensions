@@ -49,7 +49,7 @@ public static class TaskTimeoutExtensions
             
             try
             {
-                await task.WaitAsync(cts.Token);
+                await task.WaitAsync(cts.Token).ConfigureAwait(true);
             }
             catch (OperationCanceledException)
             {
@@ -76,7 +76,7 @@ public static class TaskTimeoutExtensions
             
             try
             {
-                return await task.WaitAsync(cts.Token);
+                return await task.WaitAsync(cts.Token).ConfigureAwait(true);
             }
             catch (OperationCanceledException)
             {

@@ -66,9 +66,6 @@ public static class SegmentRemoveAndReplaceExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, segment.Length);
-            
-            if (startIndex + count > segment.Length)
-                throw new ArgumentOutOfRangeException();
 
             if (startIndex + count == segment.Length - 1)
                 return segment.Remove(startIndex);

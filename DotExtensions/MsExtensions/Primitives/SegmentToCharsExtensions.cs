@@ -56,7 +56,9 @@ public static class SegmentToCharsExtensions
         /// </summary>
         /// <returns>A list of characters from the StringSegment if any characters are in the StringSegment.</returns>
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
+#pragma warning disable MA0016
         public List<char> ToList()
+#pragma warning restore MA0016
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
 

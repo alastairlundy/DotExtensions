@@ -75,4 +75,10 @@
     <data name="Exceptions.Strings.ValueNotInString" xml:space="preserve">
         <value>Could not find specified value in string.</value>
     </data>
+    <data name="Exceptions.Indices.IndexOutOfRange" xml:space="preserve">
+        <value>Sequence of indices contained a negative index of {0}</value>
+    </data>
+    <data name="Exceptions.Indices.LargerIndexThanExpected" xml:space="preserve">
+        <value>Sequence of indices contains index {0} which is larger than the length of an object.</value>
+    </data>
 </root>

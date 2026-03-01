@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-// ReSharper disable ConvertToAutoProperty
 namespace DotExtensions.Strings;
 
 /// <summary>

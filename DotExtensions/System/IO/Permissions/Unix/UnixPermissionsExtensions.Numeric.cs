@@ -101,7 +101,7 @@ public static partial class UnixPermissionsExtensions
             5 => UnixFileMode.GroupRead | UnixFileMode.GroupExecute,
             6 => UnixFileMode.GroupRead | UnixFileMode.GroupWrite,
             7 => UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
         
         UnixFileMode othersPermissions = others switch
@@ -113,7 +113,7 @@ public static partial class UnixPermissionsExtensions
             4 => UnixFileMode.OtherRead,
             5 => UnixFileMode.OtherRead | UnixFileMode.OtherExecute, 6 => UnixFileMode.OtherRead | UnixFileMode.OtherWrite,
             7 => UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
         
         return othersPermissions | groupPermissions |  userPermissions;

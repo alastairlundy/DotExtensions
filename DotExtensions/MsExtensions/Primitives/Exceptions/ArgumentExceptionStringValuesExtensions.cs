@@ -90,8 +90,7 @@ public static class ArgumentExceptionStringValuesExtensions
                 throw new ArgumentNullException(paramName);
                 
             throw new ArgumentException(string.Format(Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
-                    nameof(values)),
-                nameof(values));
+                nameof(values)), nameof(values));
         }
     }
 }

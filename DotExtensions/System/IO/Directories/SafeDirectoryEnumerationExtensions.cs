@@ -22,11 +22,12 @@
        SOFTWARE.
    */
 
-// ReSharper disable InconsistentNaming
-
 namespace DotExtensions.IO.Directories;
 
-public static partial class SafeIOEnumerationExtensions
+/// <summary>
+/// 
+/// </summary>
+public static class SafeDirectoryEnumerationExtensions
 {
     /// <summary>
     /// Provides extension methods for safely enumerating directories. This ensures that
