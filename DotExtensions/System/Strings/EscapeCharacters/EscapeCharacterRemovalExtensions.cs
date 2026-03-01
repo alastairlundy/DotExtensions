@@ -76,7 +76,7 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-            return CharacterConstants.EscapeCharacters.Any(x => x == s);
+            return CharacterConstants.EscapeCharacters.Any(x => string.Equals(x, s, StringComparison.Ordinal));
         }
     }
 }

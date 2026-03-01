@@ -41,8 +41,8 @@ public static class LineEndingExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-            bool containsR = s.Contains('\r');
-            bool containsN = s.Contains('\n');
+            bool containsR = s.Contains('\r', StringComparison.InvariantCulture);
+            bool containsN = s.Contains('\n', StringComparison.InvariantCulture);
 
             char newLineChar;
 

@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using System.Globalization;
+
 namespace DotExtensions.Strings;
 
 /// <summary>
@@ -50,7 +52,7 @@ public static class CapitalizationExtensions
             
             StringBuilder sb = new(str)
             {
-                [index] = char.ToUpper(c)
+                [index] = char.ToUpper(c, CultureInfo.CurrentCulture)
             };
 
             return sb.ToString();
@@ -74,7 +76,7 @@ public static class CapitalizationExtensions
                 ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index,  str.Length);
                 
                 if (!char.IsUpper(str[index]))
-                    stringBuilder[index] = char.ToUpper(str[index]);
+                    stringBuilder[index] = char.ToUpper(str[index], CultureInfo.CurrentCulture);
             }
 
             return stringBuilder.ToString();

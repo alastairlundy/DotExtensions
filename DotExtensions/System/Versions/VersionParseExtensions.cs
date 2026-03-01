@@ -71,7 +71,7 @@ public static class VersionParseExtensions
     {
         char output = ' ';
 
-        if (versionString.Contains('.'))
+        if (versionString.Contains('.', StringComparison.OrdinalIgnoreCase))
             return '.';
             
         foreach (char currentChar in versionString)
@@ -170,7 +170,7 @@ public static class VersionParseExtensions
             
             (int major, int minor, int build, int revision) components;
             
-            if (sanitizedInput.Contains('.') && separator != ' ')
+            if (sanitizedInput.Contains('.', StringComparison.OrdinalIgnoreCase) && separator != ' ')
             {
                 IEnumerable<StringSegment> segments = new StringTokenizer(sanitizedInput, [separator]);
                 

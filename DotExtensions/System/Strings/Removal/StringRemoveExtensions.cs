@@ -74,11 +74,14 @@ public static class StringRemoveExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(value.Length, str.Length);
+            
+            if(value.Length > str.Length)
+                throw new ArgumentException(Resources.Exceptions_Strings_Removals_ValueLengthGreaterThanOriginalString,nameof(value));
 
             int index = str.IndexOf(value, stringComparison);
 
-            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            if(index == -1)
+                throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value));
             
             return str.Remove(index, value.Length);
         }
@@ -100,12 +103,15 @@ public static class StringRemoveExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(value.Length, str.Length);
 
+            if(value.Length > str.Length)
+                throw new ArgumentException(Resources.Exceptions_Strings_Removals_ValueLengthGreaterThanOriginalString,nameof(value));
+            
             int index = str.LastIndexOf(value, stringComparison);
 
-            ArgumentOutOfRangeException.ThrowIfNegative(index);
-            
+            if(index == -1)
+                throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value));
+
             return str.Remove(index, value.Length);
         }
     }
