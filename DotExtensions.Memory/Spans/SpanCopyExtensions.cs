@@ -104,8 +104,7 @@ public static class SpanCopyExtensions
         /// <remarks>Copying from a larger source <see cref="Span{T}"/> to a smaller destination <see cref="Span{T}"/> is not supported.</remarks>
         public void CopyTo(ref Span<T> destination,
             int startIndex,
-            int length
-        )
+            int length)
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);

@@ -49,7 +49,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
             if (Span<char>.IsEmptyOrWhiteSpace(span))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, nameof(span));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
             if (Span<string>.IsEmptyOrWhiteSpace(span))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, nameof(span));
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
             if (ReadOnlySpan<char>.IsEmptyOrWhiteSpace(span))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, nameof(span));
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfSpanIsEmpty(span);
 
             if (ReadOnlySpan<string>.IsEmptyOrWhiteSpace(span))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, nameof(span));
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
 
             if (Memory<char>.IsEmptyOrWhiteSpace(memory))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, nameof(memory));
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
 
             if (Memory<string>.IsEmptyOrWhiteSpace(memory))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, nameof(memory));
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
 
             if (ReadOnlyMemory<char>.IsEmptyOrWhiteSpace(memory))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, nameof(memory));
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ public static class ArgumentExceptionExtensions
             InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
 
             if (ReadOnlyMemory<string>.IsEmptyOrWhiteSpace(memory))
-                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory);
+                throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, nameof(memory));
         }
     }
 }

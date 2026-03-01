@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-
 namespace DotExtensions.Memory.Exceptions;
 
 /// <summary>
@@ -32,9 +31,6 @@ namespace DotExtensions.Memory.Exceptions;
 /// </summary>
 public static class InvalidOperationThrowIfEmptyExtensions
 {
-   /// <summary>
-   /// 
-   /// </summary>
    /// <typeparam name="T">The type of elements in the Span or memory.</typeparam>
    extension<T>(InvalidOperationException)
    {
