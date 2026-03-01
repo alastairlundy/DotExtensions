@@ -37,7 +37,9 @@ public static class ToListExtensions
         /// Converts this <see cref="Span{T}"/> to a <see cref="List{T}"/>.
         /// </summary>
         /// <returns>A list containing the elements of the span.</returns>
+#pragma warning disable MA0016
         public List<T> ToList()
+#pragma warning restore MA0016
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             List<T> list = new(capacity: source.Length);
@@ -59,7 +61,9 @@ public static class ToListExtensions
         /// Converts this <see cref="ReadOnlySpan{T}"/> to a <see cref="List{T}"/>.
         /// </summary>
         /// <returns>A list containing the elements of the span.</returns>
+#pragma warning disable MA0016
         public List<T> ToList()
+#pragma warning restore MA0016
         {
             InvalidOperationException.ThrowIfSpanIsEmpty(source);
             List<T> list = new(capacity: source.Length);
@@ -81,7 +85,9 @@ public static class ToListExtensions
         /// Converts this <see cref="Memory{T}"/> to a <see cref="List{T}"/>
         /// </summary>
         /// <returns>A list containing the elements of the Memory.</returns>
+#pragma warning disable MA0016
         public List<T> ToList()
+#pragma warning restore MA0016
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             List<T> list = new(capacity: source.Length);
@@ -103,7 +109,9 @@ public static class ToListExtensions
         /// Converts the provided <see cref="ReadOnlyMemory{T}"/> of type T to a List of type T.
         /// </summary>
         /// <returns>A new List containing all elements from the <see cref="ReadOnlyMemory{T}"/>.</returns>
+#pragma warning disable MA0016
         public List<T> ToList()
+#pragma warning restore MA0016
         {
             InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             List<T> list = new(capacity: source.Length);
