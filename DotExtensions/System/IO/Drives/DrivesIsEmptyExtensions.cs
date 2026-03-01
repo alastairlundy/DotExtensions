@@ -48,5 +48,19 @@ public static class DrivesIsEmptyExtensions
                        && driveInfo.RootDirectory.IsEmpty;
             }
         }
+        
+        /// <summary>
+        /// Determines if the <see cref="DriveInfo"/> contains any files.
+        /// </summary>
+        /// <value><c>true</c> if the <see cref="DriveInfo"/> has at least one file; otherwise, <c>false</c>.</value>
+        public bool HasFiles
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(driveInfo);
+                
+                return driveInfo.RootDirectory.SafelyEnumerateFiles("*", SearchOption.AllDirectories).Any();
+            }
+        }
     }
 }

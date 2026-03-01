@@ -38,28 +38,38 @@ public static class GetRandomIOExtensions
         /// </summary>
         /// <returns>A <see cref="DriveInfo"/> object representing the randomly selected drive.</returns>
         /// <exception cref="InvalidOperationException">Thrown when no logical drives are available.</exception>
-        public static DriveInfo GetRandomDrive()
+        public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false)
         {
             DriveInfo[] drives = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Where(d => d.IsReady && !d.RootDirectory.IsEmpty)
                 .ToArray();
 
             DriveInfo drive;
-            
-            switch (drives.Length)
-            {
-                case 0:
-                    throw new InvalidOperationException("No logical drives available.");
-                case > 1:
-                {
-                    int randomDriveNumber = Random.Shared.Next(0, drives.Length - 1);
 
-                    drive = drives[randomDriveNumber];
-                    break;
+            bool driveHasFiles;
+
+            do
+            {
+                switch (drives.Length)
+                {
+                    case 0:
+                        throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
+                    case > 1:
+                    {
+                        int randomDriveNumber = Random.Shared.Next(0, drives.Length - 1);
+
+                        drive = drives[randomDriveNumber];
+                        break;
+                    }
+                    default:
+                        drive = drives[0];
+                        break;
                 }
-                default:
-                    drive = drives[0];
-                    break;
+
+                driveHasFiles = drive.HasFiles;
+
+                if (!(drives.Length > 1) && !driveHasFiles && driveMustContainFiles)
+                    throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
             }
 
             return drive;
