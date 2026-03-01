@@ -25,20 +25,16 @@
 namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
-/// 
+/// Extension methods for working with the length of <see cref="StringValues"/> objects.
 /// </summary>
 public static class StringValuesLengthExtensions
 {
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="stringValues"></param>
+    /// <param name="stringValues">The <see cref="StringValues"/> object to search.</param>
     extension(StringValues stringValues)
     {
         /// <summary>
-        /// 
+        /// The total length of all strings in a <see cref="StringValues"/> object combined.
         /// </summary>
-        /// <returns></returns>
         public int TotalLength
         {
             get
