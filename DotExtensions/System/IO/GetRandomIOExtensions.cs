@@ -87,7 +87,7 @@ public static class GetRandomIOExtensions
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
-            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive().RootDirectory
+            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(true).RootDirectory
                 .SafelyEnumerateDirectories("*", SearchOption.AllDirectories)
                 .Where(d => d.Exists);
 
@@ -120,16 +120,18 @@ public static class GetRandomIOExtensions
         /// <returns>A <see cref="FileInfo"/> object representing the randomly selected file.</returns>
         public static FileInfo GetRandomFile()
         {
-            DirectoryInfo startDir = DriveInfo.GetRandomDrive().RootDirectory;
+            DirectoryInfo startDir = DriveInfo.GetRandomDrive(true).RootDirectory;
             
             DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories("*", SearchOption.TopDirectoryOnly)
+                .Where(d => d.HasFiles)
                 .ToArray();
             
             while(true)
             {
                 DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length - 1)];
 
-                DirectoryInfo[] subDirectories = dir.SafelyGetDirectories();
+                DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories("*", SearchOption.TopDirectoryOnly)
+                    .Where(d => d.HasFiles).ToArray();
 
                 if (subDirectories.Length == 0)
                     continue;
