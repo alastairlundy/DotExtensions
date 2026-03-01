@@ -47,7 +47,7 @@ public static class StringValuesToStringExtensions
         /// </returns>
         public string ToString(char separator)
         {
-            StringBuilder stringBuilder = new();
+            StringBuilder stringBuilder = new(strValues.TotalLength);
 
             foreach (string? str in strValues)
             {
@@ -79,7 +79,7 @@ public static class StringValuesToStringExtensions
         /// </returns>
         public string ToString(string separator)
         {
-            StringBuilder stringBuilder = new();
+            StringBuilder stringBuilder = new(strValues.TotalLength);
 
             foreach (string? str in strValues)
             {
