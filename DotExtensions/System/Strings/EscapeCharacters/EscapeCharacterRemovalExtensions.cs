@@ -54,7 +54,7 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
 
-            StringBuilder strBuilder = new StringBuilder(str);
+            StringBuilder strBuilder = new(str);
             
             foreach (string escapeCharacter in CharacterConstants.EscapeCharacters)
             {

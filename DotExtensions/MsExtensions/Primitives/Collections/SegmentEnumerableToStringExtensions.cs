@@ -45,7 +45,7 @@ public static class SegmentEnumerableToStringExtensions
             ArgumentNullException.ThrowIfNull(segments);
             ArgumentException.ThrowIfNullOrEmpty(separator);
             
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             foreach (StringSegment segment in segments)
             {
@@ -77,7 +77,7 @@ public static class SegmentEnumerableToStringExtensions
         {
             ArgumentNullException.ThrowIfNull(segments);
 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             foreach (StringSegment segment in segments)
             {

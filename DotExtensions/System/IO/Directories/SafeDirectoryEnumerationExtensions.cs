@@ -192,7 +192,7 @@ public static class SafeDirectoryEnumerationExtensions
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            DirectoryInfo directoryInfo = new(path);
             
             return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
         }

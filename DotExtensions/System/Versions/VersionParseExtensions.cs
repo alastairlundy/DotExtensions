@@ -56,7 +56,7 @@ public static class VersionParseExtensions
     
     private static string SanitizeInput(string versionString, char separator)
     {
-        StringBuilder stringBuilder = new StringBuilder(versionString.Length);
+        StringBuilder stringBuilder = new(versionString.Length);
 
         foreach (char currentChar in versionString)
         {

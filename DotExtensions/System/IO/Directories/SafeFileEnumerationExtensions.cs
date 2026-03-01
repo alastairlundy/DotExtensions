@@ -167,7 +167,7 @@ public static class SafeFileEnumerationExtensions
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            DirectoryInfo directoryInfo = new(path);
             
             return directoryInfo.SafelyEnumerateFiles(searchPattern, directorySearchOption, ignoreCase);
         }
