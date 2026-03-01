@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// A class to hold extension methods for checking if a StringSegment Contains an item.
@@ -58,7 +58,7 @@ public static class SegmentContainsExtensions
                 return false;
             
             if (source.Length == segment.Length)
-                return source.Equals(segment);
+                return source.Equals(segment, StringComparison.CurrentCulture);
 
             if (segment.Length > source.Length || segment.IsEmpty)
                 return false;
@@ -75,7 +75,7 @@ public static class SegmentContainsExtensions
                 {
                     StringSegment comparison = source.Subsegment(index, segment.Length);
 
-                    if (segment.Equals(comparison))
+                    if (segment.Equals(comparison, StringComparison.CurrentCulture))
                         return true;
                 }
             }

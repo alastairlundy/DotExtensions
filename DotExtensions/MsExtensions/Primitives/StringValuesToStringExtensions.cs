@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringValuePlural;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// Provides extension methods for converting StringValues to string representations with various separators.
@@ -60,7 +60,7 @@ public static class StringValuesToStringExtensions
 
             string output = stringBuilder.ToString();
             
-            if(output.EndsWith($"{separator}"))
+            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - 1, 1);
             
             return output;
@@ -92,7 +92,7 @@ public static class StringValuesToStringExtensions
 
             string output = stringBuilder.ToString();
             
-            if(output.EndsWith($"{separator}"))
+            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - separator.Length,
                     separator.Length);
             

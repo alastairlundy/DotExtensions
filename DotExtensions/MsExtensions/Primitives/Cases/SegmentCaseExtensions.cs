@@ -1,4 +1,4 @@
-/*
+﻿/*
         MIT License
 
        Copyright (c) 2026 Alastair Lundy
@@ -22,41 +22,44 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
-/// Provides extension methods for performing operations related to spaces within <see cref="StringSegment"/> instances.
+/// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
 /// </summary>
-public static class SegmentContainsSubsegmentsExtensions
+public static class SegmentCaseExtensions
 {
     /// <summary>
-    /// 
+    /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
     /// </summary>
-    /// <param name="segment"></param>
     extension(StringSegment segment)
     {
         /// <summary>
-        /// Determines whether the specified string segment contains delimited subsegments.
+        /// Returns whether this <see cref="StringSegment"/> is upper case or not.
         /// </summary>
-        /// <param name="delimiter">The delimiter character to check for.</param>
-        /// <returns>True if the string segment contains delimited subsegments; false otherwise.</returns>
-        public bool ContainsDelimitedSubSegments(char delimiter)
+        public bool IsUpperCase()
         {
-            if (segment.IsEmpty || StringSegment.IsWhiteSpace(segment))
-                return false;
-            
-            StringTokenizer tokenizer = segment.Split([delimiter]);
-            
-            int count = 0;
-            foreach (StringSegment unused in tokenizer)
+            for (int i = 0; i < segment.Length; i++)
             {
-                count++;
-
-                if (count > 1)
-                    break;
+                if (char.IsLower(segment[i]) || !char.IsLetter(segment[i]))
+                    return false;
             }
-            
-            return segment.Contains(delimiter) && count > 1;
+
+            return true;
+        }
+
+        /// <summary>
+        /// Returns whether a <see cref="StringSegment"/> is lower case or not.
+        /// </summary>
+        public bool IsLowerCase()
+        {
+            for (int i = 0; i < segment.Length; i++)
+            {
+                if (char.IsUpper(segment[i]) || !char.IsLetter(segment[i]))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

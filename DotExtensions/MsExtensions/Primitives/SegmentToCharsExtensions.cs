@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// Provides extension methods for converting <see cref="StringSegment"/> objects into various character collections.

@@ -69,9 +69,9 @@ public static partial class UnixPermissionsExtensions
         ArgumentException.ThrowIfNullOrEmpty(notation);
         
         if (!IsValidNumericNotation(notation))
-            throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation);
+            throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation));
 
-        if(!notation.StartsWith("0"))
+        if(!notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
             notation =  notation.Remove(0, 1);
         
         int user = int.Parse(notation.First().ToString());
@@ -88,7 +88,7 @@ public static partial class UnixPermissionsExtensions
             5 => UnixFileMode.UserRead | UnixFileMode.UserExecute,
             6 => UnixFileMode.UserRead | UnixFileMode.UserWrite,
             7 => UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, notation)
         };
         
         UnixFileMode groupPermissions =  group switch

@@ -22,34 +22,41 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
-/// Provides extension methods for reversing the content of StringSegment objects.
+/// Provides extension methods for performing operations related to spaces within <see cref="StringSegment"/> instances.
 /// </summary>
-public static class SegmentReverseExtensions
+public static class SegmentContainsSubsegmentsExtensions
 {
-    /// <param name="target">The StringSegment to reverse.</param>
-    extension(StringSegment target)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="segment"></param>
+    extension(StringSegment segment)
     {
         /// <summary>
-        /// Reverses the contents of the StringSegment.
+        /// Determines whether the specified string segment contains delimited subsegments.
         /// </summary>
-        /// <returns>The reversed StringSegment.</returns>
-        /// <exception cref="ArgumentException">Thrown if the target is null or empty.</exception>
-        public StringSegment Reverse()
+        /// <param name="delimiter">The delimiter character to check for.</param>
+        /// <returns>True if the string segment contains delimited subsegments; false otherwise.</returns>
+        public bool ContainsDelimitedSubSegments(char delimiter)
         {
-            ArgumentException.ThrowIfNullOrEmpty(target);
+            if (segment.IsEmpty || StringSegment.IsWhiteSpace(segment))
+                return false;
             
-            StringBuilder stringBuilder = new(capacity: target.Length);
-
-            for (int i = 0; i < target.Length; i++)
+            StringTokenizer tokenizer = segment.Split([delimiter]);
+            
+            int count = 0;
+            foreach (StringSegment unused in tokenizer)
             {
-                if (target.Length - 1 - i >= 0)
-                    stringBuilder.Append(target[target.Length - 1 - i]);
-            }
+                count++;
 
-            return new StringSegment(stringBuilder.ToString());
+                if (count > 1)
+                    break;
+            }
+            
+            return segment.Contains(delimiter) && count > 1;
         }
     }
 }

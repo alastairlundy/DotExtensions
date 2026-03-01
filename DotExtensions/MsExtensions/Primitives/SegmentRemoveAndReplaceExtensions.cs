@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// Provides extension methods for performing removal and replacement operations on <see cref="StringSegment"/> objects.

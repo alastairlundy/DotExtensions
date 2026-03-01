@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-using DotExtensions.MsExtensions.StringSegments;
+using DotExtensions.MsExtensions.Primitives;
 
 namespace DotExtensions.MsExtensions.Exceptions;
 

@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringValuePlural;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// Provides extension methods for working with <see cref="StringValues"/> to determine
@@ -30,9 +30,6 @@ namespace DotExtensions.MsExtensions.StringValuePlural;
 /// </summary>
 public static class StringValuesIsNullExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="strValues"></param>
     extension(StringValues strValues)
     {
@@ -42,10 +39,7 @@ public static class StringValuesIsNullExtensions
         /// <returns>True if it is empty, false otherwise.</returns>
         public bool IsEmpty => strValues.Equals(StringValues.Empty);
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
+    
     extension(StringValues)
     {
         /// <summary>
@@ -76,8 +70,6 @@ public static class StringValuesIsNullExtensions
             for (int index = 0; index < other.Count; index++)
             {
                 string? val = other[index];
-
-                ArgumentNullException.ThrowIfNull(val);
                 
                 vals[index] = string.IsNullOrWhiteSpace(val);
             }

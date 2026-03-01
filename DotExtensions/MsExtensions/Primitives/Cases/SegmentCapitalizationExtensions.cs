@@ -22,7 +22,9 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+using System.Globalization;
+
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
 /// Provides extension methods for modifying the capitalization of characters in <see cref="StringSegment"/> instances.
@@ -49,7 +51,7 @@ public static class SegmentCapitalizationExtensions
                 return segment;
 
             return new StringSegment(
-                $"{segment.Substring(0, index)}{char.ToUpper(c)}{segment.Substring(index + 1)}"
+                $"{segment.Substring(0, index)}{char.ToUpper(c, CultureInfo.CurrentCulture)}{segment.Substring(index + 1)}"
             );
         }
 
@@ -75,7 +77,7 @@ public static class SegmentCapitalizationExtensions
                 ArgumentOutOfRangeException.ThrowIfNegative(index);
                 ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
                 
-                stringBuilder[index] = char.ToUpper(stringBuilder[index]);
+                stringBuilder[index] = char.ToUpper(stringBuilder[index], CultureInfo.CurrentCulture);
             }
 
             return new StringSegment(stringBuilder.ToString());

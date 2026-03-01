@@ -22,44 +22,37 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.MsExtensions.StringSegments;
+namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
-/// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
+/// 
 /// </summary>
-public static class SegmentCaseExtensions
+public static class StringValuesLengthExtensions
 {
     /// <summary>
-    /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
+    ///
     /// </summary>
-    extension(StringSegment segment)
+    /// <param name="stringValues"></param>
+    extension(StringValues stringValues)
     {
         /// <summary>
-        /// Returns whether this <see cref="StringSegment"/> is upper case or not.
+        /// 
         /// </summary>
-        public bool IsUpperCase()
+        /// <returns></returns>
+        public int TotalLength
         {
-            for (int i = 0; i < segment.Length; i++)
+            get
             {
-                if (char.IsLower(segment[i]) || !char.IsLetter(segment[i]))
-                    return false;
-            }
+                int length = 0;
 
-            return true;
-        }
+                foreach (string? value in stringValues)
+                {
+                    if(value is not null)
+                        length += value.Length;
+                }
 
-        /// <summary>
-        /// Returns whether a <see cref="StringSegment"/> is lower case or not.
-        /// </summary>
-        public bool IsLowerCase()
-        {
-            for (int i = 0; i < segment.Length; i++)
-            {
-                if (char.IsUpper(segment[i]) || !char.IsLetter(segment[i]))
-                    return false;
-            }
-
-            return true;
+                return length;
+            }  
         }
     }
 }
