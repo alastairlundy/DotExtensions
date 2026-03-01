@@ -69,19 +69,20 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get the directory of a file ({0}) that does not exist..
+        /// </summary>
+        internal static string Exceptions_Directory_FileArgumentNotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.Directory.FileArgumentNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory &apos;{directory}&apos; could not be found or does not exist..
         /// </summary>
         internal static string Exceptions_DirectoryNotFound {
             get {
                 return ResourceManager.GetString("Exceptions.DirectoryNotFound", resourceCulture);
-            }
-        }
-        /// <summary>
-        /// Looks up a localized string similar to Cannot get the directory of a file ({0}) that does not exist..
-        /// </summary>
-        internal static string Exceptions_Directory_FileArgumentNotFound {
-            get {
-                return ResourceManager.GetString("Exceptions.Directory.FileArgumentNotFound", resourceCulture);
             }
         }
         
@@ -131,6 +132,15 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} cannot be null or whitespace..
+        /// </summary>
+        internal static string Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace {
+            get {
+                return ResourceManager.GetString("Exceptions.NullOrWhiteSpace.CannotBeNullOrWhiteSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An Invalid Unix Numeric file permission notation of {x} was provided..
         /// </summary>
         internal static string Exceptions_Permissions_Unix_InvalidNumericNotation {
@@ -163,6 +173,24 @@ namespace DotExtensions.Localizations {
         internal static string Exceptions_Span_SkipCountTooLarge {
             get {
                 return ResourceManager.GetString("Exceptions.Span.SkipCountTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value to remove has a greater length than the string to search..
+        /// </summary>
+        internal static string Exceptions_Strings_Removals_ValueLengthGreaterThanOriginalString {
+            get {
+                return ResourceManager.GetString("Exceptions.Strings.Removals.ValueLengthGreaterThanOriginalString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find specified value in string..
+        /// </summary>
+        internal static string Exceptions_Strings_ValueNotInString {
+            get {
+                return ResourceManager.GetString("Exceptions.Strings.ValueNotInString", resourceCulture);
             }
         }
         

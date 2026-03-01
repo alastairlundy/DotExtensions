@@ -66,4 +66,13 @@
      <data name="Exceptions.Directory.FileArgumentNotFound" xml:space="preserve">
         <value>Cannot get the directory of a file ({0}) that does not exist.</value>
     </data>
+    <data name="Exceptions.NullOrWhiteSpace.CannotBeNullOrWhiteSpace" xml:space="preserve">
+        <value>{0} cannot be null or whitespace.</value>
+    </data>
+    <data name="Exceptions.Strings.Removals.ValueLengthGreaterThanOriginalString" xml:space="preserve">
+        <value>Value to remove has a greater length than the string to search.</value>
+    </data>
+    <data name="Exceptions.Strings.ValueNotInString" xml:space="preserve">
+        <value>Could not find specified value in string.</value>
+    </data>
 </root>
