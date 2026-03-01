@@ -87,6 +87,24 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No logical drives containing any files could be found..
+        /// </summary>
+        internal static string Exceptions_Drives_NoneContainFiles {
+            get {
+                return ResourceManager.GetString("Exceptions.Drives.NoneContainFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No logical drives were found..
+        /// </summary>
+        internal static string Exceptions_Drives_NotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.Drives.NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The enumeration of elements yielded zero items. The sequence was empty. .
         /// </summary>
         internal static string Exceptions_Enumerables_InvalidOperation_EmptySequence {

@@ -81,4 +81,10 @@
     <data name="Exceptions.Indices.LargerIndexThanExpected" xml:space="preserve">
         <value>Sequence of indices contains index {0} which is larger than the length of an object.</value>
     </data>
+    <data name="Exceptions.Drives.NotFound" xml:space="preserve">
+        <value>No logical drives were found.</value>
+    </data>
+    <data name="Exceptions.Drives.NoneContainFiles" xml:space="preserve">
+        <value>No logical drives containing any files could be found.</value>
+    </data>
 </root>
