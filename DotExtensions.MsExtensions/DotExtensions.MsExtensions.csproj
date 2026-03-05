@@ -7,15 +7,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>9.7.1</Version>
+    <Version>9.7.2</Version>
     <Title>DotExtensions.MsExtensions</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>* Deprecated ``StringValues``'s ``ToString()`` extension method overload for removal in v10
-* Updated internal Polyfill version from 9.10.0 to 9.12.0*
- **NOTE**: This package is deprecated and its contents will be merged into the main DotExtensions package for v10</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 9.12.0 to 9.17.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Microsoft.Extensions.* packages.</Description>
     <PackageTags>primitives-extensions, StringSegment, extensions, extension-members, microsoft-extensions</PackageTags>
