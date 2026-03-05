@@ -45,7 +45,7 @@
   </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="DotExtensions.Benchmarking"/>
+        <InternalsVisibleTo Include="DotExtensions.Benchmarking" />
     </ItemGroup>
     
   <ItemGroup>
@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Polyfill" Version="9.12.0" PrivateAssets="all">
+    <PackageReference Include="Polyfill" Version="9.17.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
