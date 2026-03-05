@@ -35,7 +35,7 @@ public class PlatformNotSupportExceptionExtensions
     {
         await Assert.ThrowsAsync(() =>
         {
-            PlatformNotSupportedException.ThrowIfNotOSPlatform(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            PlatformNotSupportedException.ThrowIfNotOSPlatform(!OperatingSystem.IsWindows()
                 ? OSPlatform.Windows
                 : OSPlatform.Linux);
 

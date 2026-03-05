@@ -38,17 +38,14 @@
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer"/>
+  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="Polyfill" Version="9.17.0" PrivateAssets="all"/>
+    <PackageReference Include="Polyfill" PrivateAssets="all"/>
+    <PackageReference Include="System.Memory"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Meziantou.Analyzer" Version="3.0.19">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
   <ItemGroup>
     <Content Include="README.md">
       <PackagePath>README.md</PackagePath>
