@@ -63,12 +63,10 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Polyfill" Version="9.17.0" PrivateAssets="all">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Polyfill"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotPrimitives" Version="[4.3.2, 5.0.0)" />
+    <PackageReference Include="DotPrimitives" />
   </ItemGroup>
 </Project>
