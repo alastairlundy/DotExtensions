@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Polyfill" Version="9.17.0" PrivateAssets="all" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.3" />
+    <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0"/>
+    <PackageVersion Include="System.Memory" Version="4.6.3"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Bogus" Version="35.6.5" />
+    <PackageVersion Include="TUnit" Version="1.18.21" />
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
+  </ItemGroup>
+</Project>
