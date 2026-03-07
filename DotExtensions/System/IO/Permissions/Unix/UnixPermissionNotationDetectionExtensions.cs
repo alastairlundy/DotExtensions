@@ -27,58 +27,61 @@ namespace DotExtensions.IO.Permissions.Unix;
 /// <summary>
 /// 
 /// </summary>
-public static partial class UnixPermissionNotationDetectionExtensions
+public static class UnixPermissionNotationDetectionExtensions
 {
-    /// <summary>
-    /// Validates whether a given string represents a valid Unix file permission symbolic notation (rwx format).
-    /// </summary>
-    /// <param name="notation">The symbolic notation string to validate. The expected format is a 10-character string.</param>
-    /// <returns>A boolean value indicating whether the input notation is valid.</returns>
-    public static bool IsValidRwxSymbolNotation(string notation)
+    /// <param name="notation">The symbolic notation string to validate.</param>
+    extension(string notation)
     {
-        ArgumentException.ThrowIfNullOrEmpty(notation);
-
-        if (notation.Length != 10) 
-            return false;
-        
-        return notation switch
+        /// <summary>
+        /// Validates whether a given string represents a valid Unix file permission symbolic notation (rwx format).
+        /// </summary>
+        /// <returns>A boolean value indicating whether the input notation is valid.</returns>
+        public bool IsValidRwxSymbolNotation()
         {
-            "----------" or
-                "---x--x--x" or
-                "--w--w--w-" or
-                "--wx-wx-wx" or
-                "-r--r--r--" or
-                "-r-xr-xr-x" or
-                "-rw-rw-rw-" or
-                "-rwx------" or
-                // ReSharper disable once StringLiteralTypo
-                "-rwxr-----" or
-                // ReSharper disable once StringLiteralTypo
-                "-rwxrwx---" or
-                // ReSharper disable once StringLiteralTypo
-                "-rwxrwxrwx" => true,
-            _ => false
-        };
-    }
-    
-    /// <summary>
-    /// Validates if the provided numeric notation string represents a valid Unix permission in numeric format.
-    /// </summary>
-    /// <param name="notation">The numeric notation string to validate. It can be in three-digit (e.g. "777") or four-digit (e.g. "0777") formats.</param>
-    /// <returns>
-    /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
-    /// </returns>
-    public static bool IsValidNumericNotation(string notation)
-    {
-        ArgumentException.ThrowIfNullOrEmpty(notation);
+            ArgumentException.ThrowIfNullOrEmpty(notation);
 
-        if (notation.Length is >= 3 and <= 4 || !int.TryParse(notation, out int result)) 
-            return false;
-
-        if (notation.Length == 4 && notation[0] != '0')
-            return result is >= 0 and <= 4777 && notation.ToCharArray()
-                .All(x => x != '8' && x != '9');
+            if (notation.Length != 10) 
+                return false;
         
-        return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
+            return notation switch
+            {
+                "----------" or
+                    "---x--x--x" or
+                    "--w--w--w-" or
+                    "--wx-wx-wx" or
+                    "-r--r--r--" or
+                    "-r-xr-xr-x" or
+                    "-rw-rw-rw-" or
+                    "-rwx------" or
+                    // ReSharper disable once StringLiteralTypo
+                    "-rwxr-----" or
+                    // ReSharper disable once StringLiteralTypo
+                    "-rwxrwx---" or
+                    // ReSharper disable once StringLiteralTypo
+                    "-rwxrwxrwx" => true,
+                _ => false
+            };
+        }
+        
+        /// <summary>
+        /// Validates if the provided numeric notation string represents a valid Unix permission in numeric format.
+        /// </summary>
+        /// <remarks> The numeric notation can be in a three-digit (e.g. "777") or a four-digit (e.g. "0777") format.</remarks>
+        /// <returns>
+        /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
+        /// </returns>
+        public bool IsValidNumericNotation()
+        {
+            ArgumentException.ThrowIfNullOrEmpty(notation);
+
+            if (notation.Length is >= 3 and <= 4 || !int.TryParse(notation, out int result)) 
+                return false;
+
+            if (notation.Length == 4 && notation[0] != '0')
+                return result is >= 0 and <= 4777 && notation.AsEnumerable()
+                    .All(x => x != '8' && x != '9');
+        
+            return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
+        }
     }
 }

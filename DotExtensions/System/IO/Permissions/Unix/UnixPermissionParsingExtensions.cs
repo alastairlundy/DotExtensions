@@ -28,7 +28,7 @@ namespace DotExtensions.IO.Permissions.Unix;
 /// <summary>
 /// Contains extension methods for handling Unix file permission operations.
 /// </summary>
-public static partial class UnixPermissionNotationDetectionExtensions
+public static class UnixPermissionParsingExtensions
 {
     /// <summary>
     /// Provides extension methods for working with Unix file permissions represented as <see cref="UnixFileMode"/>.
@@ -49,10 +49,10 @@ public static partial class UnixPermissionNotationDetectionExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(input);
             
-            if(IsValidNumericNotation(input))
+            if(input.IsValidNumericNotation())
                 return ParseNumericNotation(input);
             
-            if(IsValidRwxSymbolNotation(input))
+            if(input.IsValidRwxSymbolNotation())
                 return ParseRwxSymbolNotation(input);
 
             throw new ArgumentException(Resources.
@@ -84,6 +84,8 @@ public static partial class UnixPermissionNotationDetectionExtensions
         }
     }
     
+    #region Parsing Logic
+        
     /// <summary>
     /// Parses a Unix file permission symbolic notation string (rwx format) into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
@@ -94,7 +96,7 @@ public static partial class UnixPermissionNotationDetectionExtensions
     {
         ArgumentException.ThrowIfNullOrEmpty(notation);
 
-        if (!IsValidRwxSymbolNotation(notation))
+        if (!notation.IsValidRwxSymbolNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation));
 
         notation = notation.Remove(0, 1);
@@ -161,7 +163,7 @@ public static partial class UnixPermissionNotationDetectionExtensions
     {
         ArgumentException.ThrowIfNullOrEmpty(notation);
         
-        if (!IsValidNumericNotation(notation))
+        if (!notation.IsValidNumericNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation));
 
         if(!notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
@@ -211,5 +213,6 @@ public static partial class UnixPermissionNotationDetectionExtensions
         
         return othersPermissions | groupPermissions |  userPermissions;
     }
+    #endregion
 }
 #endif
