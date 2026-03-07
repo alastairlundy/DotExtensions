@@ -22,6 +22,8 @@
        SOFTWARE.
    */
 
+using DotExtensions.IO.Files;
+
 namespace DotExtensions.IO.Drives;
 
 /// <summary>
