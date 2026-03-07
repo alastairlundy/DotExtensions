@@ -24,6 +24,8 @@
 
 // ReSharper disable InconsistentNaming
 
+using DotExtensions.IO.Files;
+
 namespace DotExtensions.IO;
 
 /// <summary>

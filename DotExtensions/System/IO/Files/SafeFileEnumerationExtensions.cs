@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.IO.Directories;
+namespace DotExtensions.IO.Files;
 
 /// <summary>
 /// Contains extension methods for performing safe file and directory enumerations

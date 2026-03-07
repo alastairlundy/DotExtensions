@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DotExtensions.IO.Directories;
+using DotExtensions.IO.Files;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
