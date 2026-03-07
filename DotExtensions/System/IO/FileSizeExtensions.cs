@@ -60,12 +60,12 @@ public static class FileSizeExtensions
 
             return numberOfDigits switch
             {
-                >= 16 => "PB",
-                >= 13 => "TB",
-                >= 10 => "GB",
-                >= 7 => "MB",
-                >= 4 => "KB",
-                <= 3 => "B",
+                >= 16 => Resources.Labels_Size_Petabyte,
+                >= 13 => Resources.Labels_Size_Terabyte,
+                >= 10 => Resources.Labels_Size_Gigabyte,
+                >= 7 => Resources.Labels_Size_Megabyte,
+                >= 4 => Resources.Labels_Size_Kilobyte,
+                <= 3 => Resources.Labels_Size_Byte,
             };
         }
     }

@@ -265,5 +265,59 @@ namespace DotExtensions.Localizations {
                 return ResourceManager.GetString("Exceptions.Versions.GracefulParse.NoDigits", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string Labels_Size_Byte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Byte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GB.
+        /// </summary>
+        internal static string Labels_Size_Gigabyte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Gigabyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KB.
+        /// </summary>
+        internal static string Labels_Size_Kilobyte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Kilobyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MB.
+        /// </summary>
+        internal static string Labels_Size_Megabyte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Megabyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PB.
+        /// </summary>
+        internal static string Labels_Size_Petabyte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Petabyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TB.
+        /// </summary>
+        internal static string Labels_Size_Terabyte {
+            get {
+                return ResourceManager.GetString("Labels.Size.Terabyte", resourceCulture);
+            }
+        }
     }
 }

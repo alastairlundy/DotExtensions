@@ -87,4 +87,22 @@
     <data name="Exceptions.Drives.NoneContainFiles" xml:space="preserve">
         <value>No logical drives containing any files could be found.</value>
     </data>
+    <data name="Labels.Size.Gigabyte" xml:space="preserve">
+        <value>GB</value>
+    </data>
+    <data name="Labels.Size.Megabyte" xml:space="preserve">
+        <value>MB</value>
+    </data>
+    <data name="Labels.Size.Petabyte" xml:space="preserve">
+        <value>PB</value>
+    </data>
+    <data name="Labels.Size.Terabyte" xml:space="preserve">
+        <value>TB</value>
+    </data>
+    <data name="Labels.Size.Kilobyte" xml:space="preserve">
+        <value>KB</value>
+    </data>
+    <data name="Labels.Size.Byte" xml:space="preserve">
+        <value>B</value>
+    </data>
 </root>
