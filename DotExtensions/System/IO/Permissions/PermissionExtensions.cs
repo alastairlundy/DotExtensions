@@ -53,7 +53,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFileAccessRules();
 
                     return filePermission.HasExecutePermission;
                 }
@@ -86,7 +86,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFileAccessRules();
 
                     return filePermission.HasReadPermission;
                 }
@@ -119,7 +119,7 @@ public static partial class PermissionExtensions
             {
                 if (OperatingSystem.IsWindows())
                 {
-                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFilePermission();
+                    AuthorizationRuleCollection filePermission = fileInfo.GetWindowsFileAccessRules();
 
                     return filePermission.HasWritePermission;
                 }

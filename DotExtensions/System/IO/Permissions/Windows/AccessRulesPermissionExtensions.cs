@@ -24,9 +24,12 @@
 
 using System.Security.AccessControl;
 
-namespace DotExtensions.IO.Permissions;
+namespace DotExtensions.IO.Permissions.Windows;
 
-public static partial class PermissionExtensions
+/// <summary>
+/// 
+/// </summary>
+public static class AccessRulesPermissionExtensions
 {
     /// <param name="rules">The Windows file permission to check.</param>
     extension(AuthorizationRuleCollection rules)

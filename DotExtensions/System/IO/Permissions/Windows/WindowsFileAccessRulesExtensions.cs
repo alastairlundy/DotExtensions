@@ -31,7 +31,7 @@ namespace DotExtensions.IO.Permissions.Windows;
 /// Provides extension methods for managing and inspecting file permissions
 /// on Windows-based systems.
 /// </summary>
-public static class WindowsFilePermissionsExtensions
+public static class WindowsFileAccessRulesExtensions
 {
     /// <param name="file">The FileInfo object for which to retrieve the permission.</param>
     extension(FileInfo file)
@@ -48,7 +48,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public AuthorizationRuleCollection GetWindowsFilePermission()
+        public AuthorizationRuleCollection GetWindowsFileAccessRules()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
            
@@ -58,7 +58,7 @@ public static class WindowsFilePermissionsExtensions
             FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
 
             AuthorizationRuleCollection results = fileSecurity.GetAccessRules(true, true, typeof(SecurityIdentifier));
-
+            
             return results;
         }
         
@@ -75,7 +75,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public void SetWindowsFilePermission(IdentityReference identityReference, FileSystemRights fileSystemRights)
+        public void SetWindowsFileAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
@@ -106,7 +106,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public void SetWindowsDirectoryPermission(IdentityReference identityReference, FileSystemRights fileSystemRights)
+        public void SetWindowsDirectoryAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
@@ -128,7 +128,7 @@ public static class WindowsFilePermissionsExtensions
         [UnsupportedOSPlatform("browser")]
         [UnsupportedOSPlatform("android")]
         [UnsupportedOSPlatform("ios")]
-        public AuthorizationRuleCollection GetWindowsDirectoryPermission()
+        public AuthorizationRuleCollection GetWindowsDirectoryAccessRules()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
