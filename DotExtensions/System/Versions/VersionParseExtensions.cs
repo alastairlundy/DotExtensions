@@ -30,7 +30,7 @@ namespace DotExtensions.Versions;
 public static class VersionParseExtensions
 {
     #region Version Parsing Helpers
-    private static (int major, int minor, int build, int revision) ParseChars(ReadOnlySpan<char> chars)
+    private static (int major, int minor, int build, int revision) ParseChars(char[] chars)
     {
         StringBuilder stringBuilder = new();
         
@@ -176,7 +176,7 @@ public static class VersionParseExtensions
             }
             else
             {
-                components = ParseChars(sanitizedInput.AsSpan());
+                components = ParseChars(sanitizedInput.ToCharArray());
             }
 
             if (components is { major: -1, minor: -1, build: -1, revision: -1 })
