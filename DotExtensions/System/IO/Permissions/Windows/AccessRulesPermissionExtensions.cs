@@ -27,7 +27,7 @@ using System.Security.AccessControl;
 namespace DotExtensions.IO.Permissions.Windows;
 
 /// <summary>
-/// 
+/// Provides extension methods for detection permissions from Windows Access Rules.
 /// </summary>
 public static class AccessRulesPermissionExtensions
 {
