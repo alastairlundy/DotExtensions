@@ -24,6 +24,9 @@
 
 namespace DotExtensions.IO.Permissions.Unix;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class UnixPermissionNotationDetectionExtensions
 {
     /// <summary>
