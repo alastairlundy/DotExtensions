@@ -111,8 +111,12 @@ public static class SpanCopyExtensions
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
             
-            if (destination.Length < source.Length || destination.Length < startIndex + length)
-                throw new ArgumentException();
+            if (destination.Length < source.Length)
+                throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationShorterThanSource,
+                    nameof(destination));
+            
+            if(destination.Length < startIndex + length)
+                throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationSmallerThanIndex, nameof(destination));
 
             for (int i = 0; i < length; i++)
             {

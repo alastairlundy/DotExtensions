@@ -57,7 +57,7 @@ public static class ReadOnlyMemorySort
             ArgumentNullException.ThrowIfNull(comparer);
 
             if (keys.Length != values.Length)
-                throw new ArgumentException();
+                throw new ArgumentException(Resources.Exceptions_Spans_Sorts_LengthMismatch, nameof(values));
 
             TKey[] keysArray = new TKey[keys.Length];
             TValue[] valsArray = new TValue[values.Length];
