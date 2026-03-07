@@ -25,7 +25,7 @@
 namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>
-/// 
+/// Provides extension methods for detecting and validating Unix file permission notations.
 /// </summary>
 public static class UnixPermissionNotationDetectionExtensions
 {

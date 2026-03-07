@@ -210,10 +210,10 @@ public static class VersionParseExtensions
         /// </summary>
         /// <param name="versionString">The version string to parse.</param>
         /// <param name="version">
-        /// If the method returns <c>true</c>, contains the parsed <see cref="Version"/>
+        /// If the method returns <see langword="true"/>, contains the parsed <see cref="Version"/>
         /// object. Otherwise, it contains null.
         /// </param>
-        /// <returns><c>true</c> if the parsing was successful; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if the parsing was successful; otherwise, <see langword="false"/>.</returns>
         public static bool TryGracefulParse(string versionString, out Version? version)
         {
             try

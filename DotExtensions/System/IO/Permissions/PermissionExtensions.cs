@@ -39,7 +39,7 @@ public static partial class PermissionExtensions
         /// Determines whether the specified file has execute permission.
         /// </summary>
         /// <returns>
-        /// <c>true</c> if the file has execute permission; otherwise, <c>false</c>.
+        /// <see langword="true"/> if the file has execute permission; otherwise, <see langword="false"/>.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
@@ -72,7 +72,7 @@ public static partial class PermissionExtensions
         /// Determines whether the specified file has read permission.
         /// </summary>
         /// <returns>
-        /// <c>true</c> if the file has read permission; otherwise, <c>false</c>.
+        /// <see langword="true"/> if the file has read permission; otherwise, <see langword="false"/>.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.
@@ -105,7 +105,7 @@ public static partial class PermissionExtensions
         /// Determines whether the specified file has write permission.
         /// </summary>
         /// <returns>
-        /// <c>true</c> if the file has write permission; otherwise, <c>false</c>.
+        /// <see langword="true"/> if the file has write permission; otherwise, <see langword="false"/>.
         /// </returns>
         /// <exception cref="ArgumentNullException">
         /// Thrown if the <see cref="FileInfo"/> object is null.

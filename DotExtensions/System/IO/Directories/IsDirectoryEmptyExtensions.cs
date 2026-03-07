@@ -57,7 +57,7 @@ public static class IsDirectoryEmptyExtensions
         /// <summary>
         /// Determines if the directory contains any files.
         /// </summary>
-        /// <value><c>true</c> if the directory has at least one file; otherwise, <c>false</c>.</value>
+        /// <value><see langword="true"/> if the directory has at least one file; otherwise, <see langword="false"/>.</value>
         /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
         public bool HasFiles
         {

@@ -37,7 +37,7 @@ public static class EscapeCharacterRemovalExtensions
         ///
         /// <para>True if the string contains an Escape Character; returns false otherwise.</para>
         /// </summary>
-        /// <returns><c>true</c> if the string contains any escape characters, <c>false</c> otherwise.</returns>
+        /// <returns><see langword="true"/> if the string contains any escape characters, <see langword="false"/> otherwise.</returns>
         public bool ContainsEscapeCharacters()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
@@ -70,7 +70,7 @@ public static class EscapeCharacterRemovalExtensions
         /// Determines whether the specified string contains an escape character.
         /// </summary>
         /// <param name="s">The string to check.</param>
-        /// <returns><c>true</c> if the string contains any escape characters; otherwise, <c>false</c>.</returns>
+        /// <returns><see langword="true"/> if the string contains any escape characters; otherwise, <see langword="false"/>.</returns>
         public static bool IsEscapeCharacter(string s)
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
