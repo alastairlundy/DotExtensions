@@ -22,8 +22,7 @@ public class SafeFileEnumerationBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        string directoryPath = (Path.GetPathRoot(Directory.GetCurrentDirectory()) ?? Path.GetPathRoot(Path.GetRandomFileName())) 
-                               ?? throw new ArgumentException($"{nameof(directoryPath)} must be a valid path. Path was null or invalid.");
+        string directoryPath = Path.GetNonNullPathRoot(Directory.GetCurrentDirectory());
       
         _directoryInfo = new  DirectoryInfo(directoryPath);
     }
