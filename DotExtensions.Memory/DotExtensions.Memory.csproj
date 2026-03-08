@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.0.0-alpha.4</Version>
+    <Version>10.0.0-alpha.5</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -23,15 +23,7 @@
     <EnableAotAnalyzer>true</EnableAotAnalyzer>
     <IsAoTCompatible>true</IsAoTCompatible>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>### Breaking Changes
-* Removed .NET 8 and .NET 9 TFMs ahead of .NET 8 &amp; 9 EOL - .NET 8 and .NET 9 remain supported via .NET Standard 2.0 TFM with limited support - Update to .NET 10 or newer for full support
-* Made ``IsWhiteSpace`` extension methods private
-* Removed additional deprecated code
-
-### Non-Breaking Changes
-* Improved helpfulness of some thrown exceptions
-* Optimisations and improvements
-* Updated internal Polyfill version to 9.13.0</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added exception messages to some exceptions that were missing them.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
