@@ -34,6 +34,20 @@ public static class PathRootExtensions
         /// <summary>
         /// Gets the root directory of a given path as a non-nullable string.
         /// </summary>
+        /// <remarks>This overload allows a nullable string to be provided as the path.</remarks>
+        /// <param name="path">The path to check.</param>
+        /// <returns>The full path of the root directory if the path was not null, otherwise the full path of the root directory of <see cref="Environment.CurrentDirectory"/>.</returns>
+        public static string GetNonNulLPathRoot(string? path)
+        {
+            if (path is not null)
+                return Path.GetNonNullPathRoot(path);
+            
+           return Path.GetNonNullPathRoot(Environment.CurrentDirectory);
+        }
+        
+        /// <summary>
+        /// Gets the root directory of a given path as a non-nullable string.
+        /// </summary>
         /// <param name="path">The path to check.</param>
         /// <returns>The full path of the root directory.</returns>
         /// <exception cref="ArgumentException">Thrown if the <paramref name="path"/> is null or empty./></exception>
