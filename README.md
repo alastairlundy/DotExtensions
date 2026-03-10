@@ -69,10 +69,11 @@ Future updates should aim to focus on one or more of the following:
 * Adding extension methods that improve ease of use
 * Enhancing existing extension methods
 
-**Note**: This library is not a primitive library and also does not seek to add new interfaces or implementations of interfaces. It is purely a library for extension methods.
+**Note**: This library is not a primitives library and does not seek to add new interfaces or implementations of interfaces. It is purely a library for extension methods.
 
 ## License
 This project is licensed under the MIT license.
+
 
 
 
