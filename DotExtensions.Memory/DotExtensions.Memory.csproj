@@ -29,10 +29,9 @@
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Meziantou.Analyzer"/>
-  </ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all"/>
     <PackageReference Include="Polyfill" PrivateAssets="all"/>
     <PackageReference Include="System.Memory" Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
   </ItemGroup>
