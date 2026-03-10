@@ -49,7 +49,7 @@ public static class ReadOnlyMemorySort
         /// <typeparam name="TComparer">The type of the comparer used for comparing the keys.</typeparam>
         /// <param name="values">The <see cref="ReadOnlySpan{T}"/> of values to be sorted in accordance with the order of the keys.</param>
         /// <param name="comparer">The comparer to use for comparing the keys while sorting.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the specified <see cref="TComparer"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the specified comparer is null.</exception>
         public void Sort<TComparer>(ref ReadOnlySpan<TValue> values,
             TComparer comparer)
             where TComparer : IComparer<TKey>
