@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.0.0-alpha.5</Version>
+    <Version>10.0.0-alpha.6</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,7 +21,12 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Added exception messages to some exceptions that were missing them.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Optimized internal usage of Polyfill
+* Re-added .NET 8 and .NET 9 TFMs - These may be removed in a future version post .NET 8 &amp; 9 EOL
+* Re-added .NET Standard 2.1 support
+* Addressed warnings
+* Improve xml doc comments
+* Fix punctuation issue in xml doc comment</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>

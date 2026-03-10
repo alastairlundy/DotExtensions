@@ -11,13 +11,11 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Renamed Windows based file permission extension methods for extra clarity
-* Reorganized Unix file permissions code into consolidated classes
-* Improved performance of Unix Permission Notation detection
-* Updated xml doc comments to use ``&lt;see langword=true&gt;`` and ``&lt;see langword=false&gt;`` instead of ``&lt;c&gt;true&lt;/c&gt;`` or ``&lt;c&gt;false&lt;/c&gt;``
-* Moved file size labels to Resources resx file
-* Moved Safe File Enumeration code and namespace
-* Added ``GetNonNullPathRoot(string)`` and ``GetNonNullPathRoot(string?)`` static extension methods to ``Path`` - These method guarantees they will not return a null value.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Optimized internal usage of Polyfill
+* Re-added .NET 8 and .NET 9 TFMs - These may be removed in a future version post .NET 8 &amp; 9 EOL
+* Re-added .NET Standard 2.1 support
+* Addressed warnings
+* Updated ``Microsoft.Extensions.Primitives`` version from 10.0.3 to 10.0.4</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -26,7 +24,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.0.0-alpha.5</Version>
+    <Version>10.0.0-alpha.6</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
