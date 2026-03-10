@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
 using System.Security;
 
 namespace DotExtensions.Strings.Security;

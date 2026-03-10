@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Collections.Generic;
-
 namespace DotExtensions.Strings;
 
 /// <summary>
