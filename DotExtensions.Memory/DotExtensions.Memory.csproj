@@ -33,9 +33,8 @@
   <ItemGroup>
     <PackageReference Include="Meziantou.Analyzer"/>
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Polyfill" PrivateAssets="all"/>
-    <PackageReference Include="System.Memory"/>
+    <PackageReference Include="System.Memory" Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
   </ItemGroup>
 
   <ItemGroup>
