@@ -23,7 +23,6 @@
    */
 
 #if NET8_0_OR_GREATER
-using System.Globalization;
 using System.Numerics;
 
 namespace DotExtensions.Numbers;

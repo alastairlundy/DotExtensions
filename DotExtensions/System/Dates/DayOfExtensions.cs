@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Globalization;
-
 namespace DotExtensions.Dates;
 
 /// <summary>

@@ -169,9 +169,9 @@ public static class UnixPermissionParsingExtensions
         if(!notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
             notation =  notation.Remove(0, 1);
         
-        int user = int.Parse(notation.First().ToString());
-        int group = int.Parse(notation[^2].ToString());
-        int others = int.Parse(notation.Last().ToString());
+        int user = int.Parse(notation.First().ToString(), CultureInfo.InvariantCulture);
+        int group = int.Parse(notation[^2].ToString(), CultureInfo.InvariantCulture);
+        int others = int.Parse(notation.Last().ToString(), CultureInfo.InvariantCulture);
         
         UnixFileMode userPermissions = user switch
         {

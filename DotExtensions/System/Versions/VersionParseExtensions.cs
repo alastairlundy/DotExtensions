@@ -51,7 +51,7 @@ public static class VersionParseExtensions
         if (result.Equals(string.Empty))
             result = "-1";
         
-        return (int.Parse(result), -1, -1, -1);
+        return (int.Parse(result, CultureInfo.InvariantCulture), -1, -1, -1);
     }
     
     private static string SanitizeInput(string versionString, char separator)
@@ -131,16 +131,16 @@ public static class VersionParseExtensions
             switch (index)
             {
                 case 0:
-                    major = int.Parse(componentString);
+                    major = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
                     break;
                 case 1:
-                    minor = int.Parse(componentString);
+                    minor = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
                     break;
                 case 2:
-                    build = int.Parse(componentString);
+                    build = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
                     break;
                 case 3:
-                    revision = int.Parse(componentString);
+                    revision = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
                     break;
             }
             componentsAdded++;

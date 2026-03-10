@@ -89,7 +89,8 @@ public static class ArgumentExceptionStringValuesExtensions
             if(paramName != string.Empty)
                 throw new ArgumentNullException(paramName);
                 
-            throw new ArgumentException(string.Format(Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
+            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, 
+                Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
                 nameof(values)), nameof(values));
         }
     }

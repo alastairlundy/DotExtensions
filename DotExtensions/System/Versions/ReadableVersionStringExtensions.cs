@@ -52,7 +52,7 @@ public static class ReadableVersionStringExtensions
                     if (showBuild)
                         return $"{version.Major}.{version.Minor}.{version.Build}";
                     
-                    return showMinor ? $"{version.Major}.{version.Minor}" : version.Major.ToString();
+                    return showMinor ? $"{version.Major}.{version.Minor}" : version.Major.ToString(CultureInfo.CurrentCulture);
                 }
             }
         }

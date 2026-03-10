@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using System.Globalization;
-
 namespace DotExtensions.MsExtensions.Primitives;
 
 /// <summary>
@@ -76,7 +74,7 @@ public static class SegmentCapitalizationExtensions
             {
                 if (index == -1)
                     throw new ArgumentException(
-                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N")
+                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N", CultureInfo.CurrentCulture)
 #if NET8_0_OR_GREATER
                             , StringComparison.Ordinal
 #endif
