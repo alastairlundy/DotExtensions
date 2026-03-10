@@ -32,14 +32,11 @@ namespace DotExtensions.MsExtensions.Exceptions;
 /// </summary>
 public static class ArgumentExceptionStringValuesExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     extension(ArgumentException)
     {
         /// <summary>
         /// Checks whether a given collection of string values contains any null or whitespace strings.
-        /// This method throws an ArgumentException if the provided StringValues collection is null,
+        /// This method throws an ArgumentException if the provided StringValues collection is null
         /// or if it is empty. It ensures robust handling of input validation by explicitly checking for these edge cases.
         /// </summary>
         /// <param name="values">The collection of strings to be validated.</param>
@@ -62,7 +59,7 @@ public static class ArgumentExceptionStringValuesExtensions
 
         /// <summary>
         /// Checks whether a given collection of string values contains any null or whitespace strings.
-        /// This method throws an ArgumentException if the provided StringValues collection is null,
+        /// This method throws an ArgumentException if the provided StringValues collection is null
         /// or if it contains any string that is either null or consists solely of whitespace characters.
         /// It ensures robust handling of input validation by explicitly checking for these edge cases.
         /// </summary>
