@@ -25,7 +25,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using DotExtensions.IO.Directories;
 using DotExtensions.IO.Files;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
