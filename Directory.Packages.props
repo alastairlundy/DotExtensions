@@ -8,13 +8,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.4" />
-    <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0"/>
-    <PackageVersion Include="System.Memory" Version="4.6.3"/>
-    <PackageVersion Include="DotPrimitives" Version="[4.3.2, 5.0.0)" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.4" />
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.5" />
+    <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
+    <PackageVersion Include="DotPrimitives" Version="4.3.3" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.5" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
     <PackageVersion Include="TUnit" Version="1.19.0" />
