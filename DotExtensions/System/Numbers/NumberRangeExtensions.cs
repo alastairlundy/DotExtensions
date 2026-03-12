@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER || NETSTANDARD2_1
 namespace DotExtensions.Numbers;
 
 /// <summary>
@@ -54,4 +53,3 @@ public static class NumberRangeExtensions
             new(start, new(start.Value + count));
     }
 }
-#endif
