@@ -38,7 +38,7 @@ DotExtensions.Memory supports:
 
 However, it is important to note that not all features may be supported by all TFMs.
 
-**Note**: This library is not a primitive library and does not seek to add new interfaces or implementations of interfaces. It is just a library for extension members.
+**Note**: This library is not a primitives library and does not seek to add new interfaces or implementations of interfaces. It is just a library for extension members.
 
 ## License
 This project is licensed under the MIT license.
