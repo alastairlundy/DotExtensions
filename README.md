@@ -35,7 +35,6 @@ DotExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code 
 |----------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
 | DotExtensions              | [DotExtensions Nuget](https://nuget.org/packages/DotExtensions)                           | ``dotnet add package DotExtensions``              |
 | DotExtensions.Memory       | [DotExtensions.Memory Nuget](https://nuget.org/packages/DotExtensions.Memory)             | ``dotnet add package DotExtensions.Memory``       |
-| DotExtensions.MsExtensions | [DotExtensions.MsExtensions Nuget](https://nuget.org/packages/DotExtensions.MsExtensions) | ``dotnet add package DotExtensions.MsExtensions`` |
 
 
 ### Compatibility
