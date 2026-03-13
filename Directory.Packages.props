@@ -5,15 +5,14 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.Bcl.Memory" Version="10.0.5" />
     <PackageVersion Include="Polyfill" Version="9.18.0" PrivateAssets="all" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.22">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.23">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.5" />
-    <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0"/>
-    <PackageVersion Include="System.Memory" Version="4.6.3"/>
+    <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
     <PackageVersion Include="TUnit" Version="1.19.0" />
