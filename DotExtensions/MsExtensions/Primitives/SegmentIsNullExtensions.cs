@@ -74,7 +74,7 @@ public static class SegmentIsNullExtensions
         /// <param name="other">The string segment to evaluate.</param>
         /// <returns>True if the string segment consists only of whitespace characters; otherwise, false.</returns>
         /// <exception cref="ArgumentNullException">Thrown if the provided <see cref="StringSegment"/> is null.</exception>
-        public static bool IsWhiteSpace(StringSegment other)
+        private static bool IsWhiteSpace(StringSegment other)
         {
             if (other.IsEmpty)
                 return false;

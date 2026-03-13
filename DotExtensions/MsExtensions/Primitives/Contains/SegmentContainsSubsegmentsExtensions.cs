@@ -42,7 +42,7 @@ public static class SegmentContainsSubsegmentsExtensions
         /// <returns>True if the string segment contains delimited subsegments; false otherwise.</returns>
         public bool ContainsDelimitedSubSegments(char delimiter)
         {
-            if (segment.IsEmpty || StringSegment.IsWhiteSpace(segment))
+            if (segment.IsEmpty || StringSegment.IsNullOrWhiteSpace(segment))
                 return false;
             
             StringTokenizer tokenizer = segment.Split([delimiter]);
