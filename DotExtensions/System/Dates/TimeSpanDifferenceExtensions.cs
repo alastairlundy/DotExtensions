@@ -70,7 +70,8 @@ public static class TimeSpanDifferenceExtensions
         /// </summary>
         /// <param name="dateOnlyTwo">The second date to be subtracted.</param>
         /// <returns>The absolute difference as a <see cref="TimeSpan"/>.</returns>
-        public TimeSpan Difference(DateOnly dateOnlyTwo) => DateOnly.ToDateTime(dateOnlyOne).Date.Difference(DateOnly.ToDateTime(dateOnlyTwo).Date);
+        public TimeSpan Difference(DateOnly dateOnlyTwo) => DateOnly.ToDateTime(dateOnlyOne).Date
+            .Difference(DateOnly.ToDateTime(dateOnlyTwo).Date);
     }
 #endif
 }
