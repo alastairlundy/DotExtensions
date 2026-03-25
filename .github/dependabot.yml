@@ -9,6 +9,13 @@ updates:
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      default-days: 2
+      exclude: 
+        - "*"
+      include: 
+        - "TUnit"
+        - "Meziantou.Analyzer"
 
   - package-ecosystem: nuget
     directory: /
