@@ -42,7 +42,7 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
 
-            return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x));
+            return CharacterConstants.EscapeCharacters.Any(x => str.Contains(x, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
             
-            return CharacterConstants.EscapeCharacters.Any(x => string.Equals(x, s, StringComparison.Ordinal));
+            return CharacterConstants.EscapeCharacters.Any(x => string.Equals(x, s, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
