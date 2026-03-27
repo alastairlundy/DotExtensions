@@ -42,9 +42,7 @@ public static class GetRandomIOExtensions
         /// <exception cref="InvalidOperationException">Thrown when no logical drives are available.</exception>
         public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false)
         {
-            DriveInfo[] drives = DriveInfo.SafelyEnumerateLogicalDrives()
-                .Where(d => d.IsReady && !d.RootDirectory.IsEmpty)
-                .ToArray();
+            DriveInfo[] drives = DriveInfo.SafelyGetLogicalDrives();
 
             DriveInfo drive;
 
