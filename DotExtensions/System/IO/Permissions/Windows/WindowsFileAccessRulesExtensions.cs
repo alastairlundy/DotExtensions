@@ -57,7 +57,8 @@ public static class WindowsFileAccessRulesExtensions
 
             FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
 
-            AuthorizationRuleCollection results = fileSecurity.GetAccessRules(true, true, typeof(SecurityIdentifier));
+            AuthorizationRuleCollection results = fileSecurity.GetAccessRules(includeExplicit: true,
+                includeInherited: true, typeof(SecurityIdentifier));
             
             return results;
         }
@@ -146,7 +147,8 @@ public static class WindowsFileAccessRulesExtensions
 #endif
         
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
-            AuthorizationRuleCollection results = directorySecurity.GetAccessRules(true, true, typeof(SecurityIdentifier));
+            AuthorizationRuleCollection results = directorySecurity.GetAccessRules(includeExplicit: true,
+                includeInherited: true, typeof(SecurityIdentifier));
 
             return results;
         }
