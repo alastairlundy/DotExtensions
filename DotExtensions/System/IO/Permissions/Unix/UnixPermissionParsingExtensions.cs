@@ -100,7 +100,7 @@ public static class UnixPermissionParsingExtensions
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation));
 
         notation = notation.Remove(0, 1);
-        string userPermissionStr = notation.Substring(0, 3);
+        string userPermissionStr = notation[..3];
         string groupPermissionStr = notation.Substring(3, 3);
         string otherPermissionStr = notation.Substring(6, 3);
 
