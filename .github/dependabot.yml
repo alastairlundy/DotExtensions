@@ -10,14 +10,16 @@ updates:
     schedule:
       interval: daily
     cooldown:
-      default-days: 2
-      exclude: 
-        - "*"
-      include: 
-        - "TUnit"
-        - "Meziantou.Analyzer"
+      default-days: 3
+      include:
+      - "*"
 
   - package-ecosystem: nuget
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      default-days: 3
+      include: 
+        - "TUnit"
+        - "Meziantou.Analyzer"
