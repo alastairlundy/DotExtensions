@@ -80,10 +80,9 @@ public static class StringRemoveExtensions
 
             int index = str.IndexOf(value, stringComparison);
 
-            if(index == -1)
-                throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value));
-            
-            return str.Remove(index, value.Length);
+            return index == -1
+                ? throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value))
+                : str.Remove(index, value.Length);
         }
 
         /// <summary>
@@ -109,10 +108,9 @@ public static class StringRemoveExtensions
             
             int index = str.LastIndexOf(value, stringComparison);
 
-            if(index == -1)
-                throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value));
-
-            return str.Remove(index, value.Length);
+            return index == -1
+                ? throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(value))
+                : str.Remove(index, value.Length);
         }
     }
 }

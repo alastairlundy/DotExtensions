@@ -42,7 +42,7 @@ public static class PathRootExtensions
             if (path is not null)
                 return Path.GetNonNullPathRoot(path);
             
-           return Path.GetNonNullPathRoot(Environment.CurrentDirectory);
+            return Path.GetNonNullPathRoot(Environment.CurrentDirectory);
         }
         
         /// <summary>
