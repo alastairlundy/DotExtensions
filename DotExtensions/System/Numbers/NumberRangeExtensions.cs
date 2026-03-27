@@ -38,7 +38,7 @@ public static class NumberRangeExtensions
         /// <param name="count">The number of elements in the range.</param>
         /// <returns>A new Range instance representing the specified sequence of values.</returns>
         public Range AsRange(int count) =>
-            new(new(start), new(start + count));
+            new(new Index(start), new Index(start + count));
     }
 
     /// <param name="start">The starting Index value.</param>
@@ -50,6 +50,6 @@ public static class NumberRangeExtensions
         /// <param name="count">The number of elements in the range.</param>
         /// <returns>A new Range instance representing the specified sequence of values.</returns>
         public Range AsRange(int count) =>
-            new(start, new(start.Value + count));
+            new(start, new Index(start.Value + count));
     }
 }
