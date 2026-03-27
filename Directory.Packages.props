@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.Bcl.Memory" Version="10.0.5" />
     <PackageVersion Include="Polyfill" Version="9.23.0" PrivateAssets="all" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.27">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.28">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
