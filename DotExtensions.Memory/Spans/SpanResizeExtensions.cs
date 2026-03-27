@@ -44,7 +44,7 @@ public static class SpanResizeExtensions
 
             if (newSize < target.Length)
             {
-                target = target.Slice(0, newSize);
+                target = target[..newSize];
                 return;
             }
 
@@ -55,7 +55,7 @@ public static class SpanResizeExtensions
 
             target.OptimisticCopy(ref destination, 0, endCopy);
             
-            target = destination.Slice(0, newSize);
+            target = destination[..newSize];
         }
     }
 }
