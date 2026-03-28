@@ -56,7 +56,7 @@ public static class ArgumentExceptionStringValuesExtensions
                 if(paramName != string.Empty)
                     throw new ArgumentNullException(paramName);
                 
-                throw new ArgumentNullException($"{nameof(values)} cannot be null or empty.");
+                throw new ArgumentException( $"{nameof(values)} cannot be null or empty.", nameof(paramName));
             }
         }
 
@@ -89,7 +89,7 @@ public static class ArgumentExceptionStringValuesExtensions
             if(paramName != string.Empty)
                 throw new ArgumentNullException(paramName);
                 
-            throw new ArgumentException($"{nameof(values)} cannot be null or whitespace.");
+            throw new ArgumentException($"{nameof(values)} cannot be null or whitespace.", nameof(paramName));
         }
     }
 }
