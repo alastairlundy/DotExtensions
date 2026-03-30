@@ -47,6 +47,7 @@ public static partial class PermissionExtensions
         [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasExecutePermission()
         {
             try
@@ -80,6 +81,7 @@ public static partial class PermissionExtensions
         [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasReadPermission()
         {
             try
@@ -113,6 +115,7 @@ public static partial class PermissionExtensions
         [UnsupportedOSPlatform("ios")]
         [UnsupportedOSPlatform("tvOS")]
         [UnsupportedOSPlatform("browser")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasWritePermission()
         {
             try
