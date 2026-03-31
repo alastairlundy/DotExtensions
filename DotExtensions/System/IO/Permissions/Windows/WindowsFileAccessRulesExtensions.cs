@@ -142,7 +142,7 @@ public static class WindowsFileAccessRulesExtensions
                 throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
                     directory.Name, StringComparison.OrdinalIgnoreCase));
 #else
-             throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
+                throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
                     directory.Name));
 #endif
         
