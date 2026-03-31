@@ -40,7 +40,7 @@ public static class DateTimeSubtractExtensions
         /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
         public DateTime Subtract(DateTime dateTimeTwo)
         {
-            TimeSpan timeSpan = dateTimeTwo.Subtract(dateTimeOne);
+            TimeSpan timeSpan = TimeSpan.FromTicks(dateTimeTwo.Ticks - dateTimeOne.Ticks);
             return dateTimeOne.Subtract(timeSpan);
         }
     }
@@ -53,6 +53,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="milliseconds">The number of milliseconds to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractMilliseconds(double milliseconds) =>
             dateTime.Subtract(TimeSpan.FromMilliseconds(milliseconds));
 
@@ -61,6 +62,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="seconds">The number of seconds to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractSeconds(double seconds) =>
             dateTime.Subtract(TimeSpan.FromSeconds(seconds));
 
@@ -69,6 +71,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="minutes">The number of minutes to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractMinutes(double minutes) =>
             dateTime.Subtract(TimeSpan.FromMinutes(minutes));
 
@@ -77,6 +80,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="hours">The number of hours to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractHours(double hours) =>
             dateTime.Subtract(TimeSpan.FromHours(hours));
 
@@ -85,6 +89,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="days">The number of days to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractDays(double days) =>
             dateTime.Subtract(TimeSpan.FromDays(days));
 
@@ -149,6 +154,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="microseconds">The number of microseconds to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractMicroseconds(double microseconds) =>
             dateTime.Subtract(TimeSpan.FromMicroseconds(microseconds));
 #endif
