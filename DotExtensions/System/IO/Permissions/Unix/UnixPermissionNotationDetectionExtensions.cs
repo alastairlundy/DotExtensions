@@ -36,6 +36,7 @@ public static class UnixPermissionNotationDetectionExtensions
         /// Validates whether a given string represents a valid Unix file permission symbolic notation (rwx format).
         /// </summary>
         /// <returns>A boolean value indicating whether the input notation is valid.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool IsValidRwxSymbolNotation()
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
@@ -70,6 +71,7 @@ public static class UnixPermissionNotationDetectionExtensions
         /// <returns>
         /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
         /// </returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool IsValidNumericNotation()
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
