@@ -38,6 +38,7 @@ public static class AccessRulesPermissionExtensions
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
         [SupportedOSPlatform("windows")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasExecutePermission
         {
             get
@@ -53,6 +54,7 @@ public static class AccessRulesPermissionExtensions
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
         [SupportedOSPlatform("windows")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasWritePermission
         {
             get
@@ -71,6 +73,7 @@ public static class AccessRulesPermissionExtensions
         /// Whether the specified Windows file permission has execute permission.
         /// </summary>
         [SupportedOSPlatform("windows")]
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool HasReadPermission
         {
             get
