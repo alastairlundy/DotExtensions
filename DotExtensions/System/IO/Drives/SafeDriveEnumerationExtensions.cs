@@ -51,12 +51,11 @@ public static class SafeDriveEnumerationExtensions
         public static IEnumerable<DriveInfo> SafelyEnumerateLogicalDrives()
         {
             return DriveInfo.GetDrives()
-                .Where(d => d.IsReady)
                 .Where(d =>
                 {
                     try
                     {
-                        return d.TotalSize > 0;
+                        return d.IsReady && d.TotalSize > 0;
                     }
                     catch
                     {
