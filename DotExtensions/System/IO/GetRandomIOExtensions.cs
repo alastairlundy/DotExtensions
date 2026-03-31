@@ -87,7 +87,7 @@ public static class GetRandomIOExtensions
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
-            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(true).RootDirectory
+            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles).RootDirectory
                 .SafelyEnumerateDirectories("*", SearchOption.AllDirectories)
                 .Where(d => d.Exists);
 
@@ -102,10 +102,17 @@ public static class GetRandomIOExtensions
             
             if (output is null)
             {
-                string winDir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+                string sysDir = OperatingSystem.IsWindows()
+                    ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
+                    : Environment.SystemDirectory;
                 
-                output = new DirectoryInfo(winDir)
-                    .Parent ?? throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", winDir));
+                output = new DirectoryInfo(sysDir)
+                             .Parent ?? 
+#if NET8_0_OR_GREATER
+                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir, StringComparison.OrdinalIgnoreCase));
+#else
+                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir));
+#endif
             }
             
             return output;
@@ -120,9 +127,9 @@ public static class GetRandomIOExtensions
         /// <returns>A <see cref="FileInfo"/> object representing the randomly selected file.</returns>
         public static FileInfo GetRandomFile()
         {
-            DirectoryInfo startDir = DriveInfo.GetRandomDrive(true).RootDirectory;
+            DirectoryInfo startDir = DriveInfo.GetRandomDrive(driveMustContainFiles: true).RootDirectory;
             
-            DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories("*", SearchOption.TopDirectoryOnly)
+            DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories()
                 .Where(d => d.HasFiles)
                 .ToArray();
             
@@ -130,7 +137,7 @@ public static class GetRandomIOExtensions
             {
                 DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length - 1)];
 
-                DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories("*", SearchOption.TopDirectoryOnly)
+                DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories()
                     .Where(d => d.HasFiles).ToArray();
 
                 if (subDirectories.Length == 0)
@@ -145,8 +152,7 @@ public static class GetRandomIOExtensions
             }
 
             return Random.Shared.GetItems(dirs, 1)
-                .First()
-                .SafelyEnumerateFiles()
+                [0].SafelyEnumerateFiles()
                 .First();
         }
     }
