@@ -82,7 +82,7 @@ public static class GetRandomIOExtensions
         /// <summary>
         /// Retrieves a random directory from the system.
         /// </summary>
-        /// <param name="mustContainFiles">Indicates whether to filter directories containing files.</param>
+        /// <param name="mustContainFiles">Whether to filter directories containing files.</param>
         /// <returns>A <see cref="DirectoryInfo"/> object representing the randomly selected directory.</returns>
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
