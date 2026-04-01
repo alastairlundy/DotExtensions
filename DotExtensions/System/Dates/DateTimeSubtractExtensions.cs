@@ -100,7 +100,7 @@ public static class DateTimeSubtractExtensions
 
             if (months > 12)
             {
-                double years = Math.Round(12 % months);
+                double years = Math.Round(months % 12);
                 result = dateTime.SubtractYears(years);
 
                 double remainder = years - Math.Round(12 % months);

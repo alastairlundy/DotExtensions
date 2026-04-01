@@ -36,7 +36,7 @@ public static class WeekOfExtensions
 
         int weekCount = 0;
 
-        for (int day = 1; day < daysInMonth; day++)
+        for (int day = 1; day <= daysInMonth; day++)
         {
             DateTime currentDate = new(year, month, day);
 
