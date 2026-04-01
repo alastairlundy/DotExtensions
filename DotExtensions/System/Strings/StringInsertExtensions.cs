@@ -44,24 +44,10 @@ public static class StringInsertExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
 
-            if (str[index] == c)
-                return str;
+            StringBuilder stringBuilder = new(str);
 
-            StringBuilder stringBuilder = new(str.Length + 1);
-
-            int start = 0;
-
-            if (index > 1)
-            {
-                stringBuilder.Append(str[..(index - 1)]);
-                start = index;
-            }
-
-            for (int i = start; i < str.Length; i++)
-            {
-                stringBuilder.Append(i == index ? c : str[i]);
-            }
-
+            stringBuilder.Insert(index, c);
+            
             return stringBuilder.ToString();
         }
 
@@ -78,25 +64,10 @@ public static class StringInsertExtensions
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
 
-            StringBuilder stringBuilder = new(capacity: str.Length);
+            StringBuilder stringBuilder = new(str);
 
-            int start = 0;
-
-            if (index > 1)
-            {
-                stringBuilder.Append(str[..(index - 1)]);
-                start = index;
-            }
-
-            foreach (char ch in chars)
-            {
-                stringBuilder.Append(ch);
-            }
-
-            int length = str.Length - (start + 1);
+            stringBuilder.Insert(index, chars);
             
-            stringBuilder.Append(str.Substring(start + 1, length));
-
             return stringBuilder.ToString();
         }
     }

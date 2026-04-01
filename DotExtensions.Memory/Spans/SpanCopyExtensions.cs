@@ -78,7 +78,7 @@ public static class SpanCopyExtensions
 
             for (int i = startIndex; i < end; i++)
             {
-                destination[i] = source[i];
+                destination[i - startIndex] = source[i];
             }
         }
 
@@ -264,7 +264,7 @@ public static class SpanCopyExtensions
             
             for (int i = startIndex; i < end; i++)
             {
-                output[i] = source[i];
+                output[i - startIndex] = source[i];
             }
 
             destination = output;

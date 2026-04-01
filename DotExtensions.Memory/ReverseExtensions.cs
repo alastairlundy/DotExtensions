@@ -42,7 +42,7 @@ public static class ReverseExtensions
             
             T[] array = new  T[span.Length];
             
-            for (int index = span.Length - 1; index > 0; index--)
+            for (int index = span.Length - 1; index >= 0; index--)
             {
                 array[(span.Length - 1) - index] = span[index];
             }
@@ -68,7 +68,7 @@ public static class ReverseExtensions
 
             try
             {
-                for (int index = memory.Length - 1; index > 0; index--)
+                for (int index = memory.Length - 1; index >= 0; index--)
                 {
                     array[(memory.Length - 1) - index] = memory.Span[index];
                 }
@@ -99,7 +99,7 @@ public static class ReverseExtensions
             
             T[] array = new  T[memory.Length];
             
-            for (int index = memory.Length - 1; index > 0; index--)
+            for (int index = memory.Length - 1; index >= 0; index--)
             {
                 array[(memory.Length - 1) - index] = memory.Span[index];
             }

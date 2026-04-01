@@ -71,7 +71,7 @@ public static class AppendSecureStringExtensions
             if (secureString.IsReadOnly() && chars.Count > secureString.Length)
                 throw new InvalidOperationException();
 
-            if (secureString.IsReadOnly() && chars.Count == secureString.Length)
+            if (secureString.IsReadOnly() && chars.Count <= secureString.Length)
             {
                 int i = 0;
                 foreach (char c in chars)
@@ -80,23 +80,11 @@ public static class AppendSecureStringExtensions
                     i++;
                 }
             }
-            else if (secureString.IsReadOnly())
-            {
-                secureString.Clear();
-                secureString = new();
-                secureString.AppendChars(chars);
-                secureString.MakeReadOnly();
-            }
             else
             {
                 secureString.Clear();
 
                 secureString.AppendChars(chars);
-            }
-
-            foreach (char c in chars)
-            {
-                secureString.AppendChar(c);
             }
         }
     }

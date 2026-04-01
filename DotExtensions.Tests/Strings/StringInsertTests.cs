@@ -22,40 +22,32 @@
        SOFTWARE.
    */
 
-using System;
-using DotExtensions.Versions;
 
-namespace DotExtensions.Tests;
+using Bogus;
+using DotExtensions.Strings;
 
-public class VersionComparisonTests
+namespace DotExtensions.Tests.Strings;
+
+public class StringInsertTests
 {
-    [Test]
-    [Arguments("1.2.3.4", "1.2.3.5")]
-    [Arguments("1.0.0", "2.0.0")]
-    [Arguments("1.0.0", "1.0.0.1")]
-    [Arguments("0.1.0", "0.10.0")]
-    public async Task OldVersion_IsOlderThanNewVersion_ShouldBeTrue(string oldVersionInput, string newVersionInput)
-    {
-        Version oldVersion = Version.Parse(oldVersionInput);
-        Version newVersion = Version.Parse(newVersionInput);
-
-        bool expected = oldVersion.IsOlderThan(newVersion);
-       
-        await Assert.That(expected).IsTrue();
-    }
+    private readonly Faker _faker = new();
     
     [Test]
-    [Arguments("1.2.3.4", "1.2.3.0")]
-    [Arguments("1.0.0", "0.99.0")]
-    [Arguments("1.0.1", "1.0.0")]
-    [Arguments("0.10.0", "0.10.0")]
-    public async Task NewVersion_IsAtLeast_OldVersion_ShouldBeTrue(string newVersionInput, string oldVersionInput)
+    [Arguments("Hello")]
+    [Arguments("World")]
+    [Arguments("Avocado")]
+    [Arguments("Banana")]
+    public async Task StringInsert_Char_Works(string origin)
     {
-        Version oldVersion = Version.Parse(oldVersionInput);
-        Version newVersion = Version.Parse(newVersionInput);
+        char c = _faker.Random.Char();
         
-        bool actual = newVersion.IsAtLeast(oldVersion);
+        int index = _faker.Random.Int(0, origin.Length - 1);
         
-        await Assert.That(actual).IsTrue();
+        string expected = $"{origin.Insert(index, c.ToString())}";
+        
+        string actual = origin.Insert(index, c);
+        
+        await Assert.That(actual)
+            .IsEqualTo(expected);
     }
 }
