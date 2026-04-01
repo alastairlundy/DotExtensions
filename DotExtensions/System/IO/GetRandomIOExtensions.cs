@@ -56,7 +56,7 @@ public static class GetRandomIOExtensions
                         throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
                     case > 1:
                     {
-                        int randomDriveNumber = Random.Shared.Next(0, drives.Length - 1);
+                        int randomDriveNumber = Random.Shared.Next(0, drives.Length);
 
                         drive = drives[randomDriveNumber];
                         break;
@@ -135,7 +135,7 @@ public static class GetRandomIOExtensions
             
             while(true)
             {
-                DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length - 1)];
+                DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length)];
 
                 DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories()
                     .Where(d => d.HasFiles).ToArray();
@@ -145,10 +145,10 @@ public static class GetRandomIOExtensions
 
                 FileInfo[] files = dir.SafelyGetFiles("*", SearchOption.AllDirectories);
 
-                if (!files.Any())
+                if (files.Length == 0)
                     break;
 
-                return files[Random.Shared.Next(0, files.Length - 1)];
+                return files[Random.Shared.Next(0, files.Length)];
             }
 
             return Random.Shared.GetItems(dirs, 1)

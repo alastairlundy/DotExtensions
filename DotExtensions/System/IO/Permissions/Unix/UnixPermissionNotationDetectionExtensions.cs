@@ -76,7 +76,7 @@ public static class UnixPermissionNotationDetectionExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
-            if (notation.Length is >= 3 and <= 4 || !int.TryParse(notation, NumberStyles.Integer,
+            if (notation.Length is < 3 or > 4 || !int.TryParse(notation, NumberStyles.Integer,
                     CultureInfo.InvariantCulture, out int result)) 
                 return false;
 
