@@ -50,21 +50,24 @@ public static class WeekOfExtensions
         return weekCount;
     }
     
-    private static int InternalWeekOfYearCount(DateTime date, CalendarWeekRule calendarWeekRule, int year, int month)
+    private static int InternalWeekOfYearCount(DateTime date, CalendarWeekRule calendarWeekRule, int year)
     {
         DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
         int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(year) ? 366 : 365;
         int weekCount = 0;
 
-        for (int day = 1; day < daysInYear; day++)
-        {
-            DateTime currentDate = new(year, month, day);
+        int currentMonth = 1;
+        int currentDay = 1;
 
-            if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
+        for (int dayIndex = 1; dayIndex <= daysInYear; dayIndex++)
+        {
+            DateTime currentDate = new(year, currentMonth, currentDay);
+
+            if (dayIndex == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
                 weekCount = 1;
-            else if (day == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
+            else if (dayIndex == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
                 weekCount = 1;
-            else if (day == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
+            else if (dayIndex == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
                 weekCount = 1;
             else
             {
@@ -72,8 +75,15 @@ public static class WeekOfExtensions
                     weekCount++;
             }
 
-            if (currentDate.Day == date.Day)
+            if (currentDate.Month == date.Month && currentDate.Day == date.Day)
                 break;
+
+            currentDay++;
+            if (currentDay > DateTime.DaysInMonth(year, currentMonth))
+            {
+                currentDay = 1;
+                currentMonth++;
+            }
         }
 
         return weekCount;
@@ -95,7 +105,7 @@ public static class WeekOfExtensions
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
         public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) => 
-            InternalWeekOfYearCount(date, calendarWeekRule, date.Year, date.Month);
+            InternalWeekOfYearCount(date, calendarWeekRule, date.Year);
     }
 
 #if NET8_0_OR_GREATER
@@ -115,7 +125,7 @@ public static class WeekOfExtensions
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
         public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
-            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year, date.Month);
+            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year);
     }
 #endif
 }
