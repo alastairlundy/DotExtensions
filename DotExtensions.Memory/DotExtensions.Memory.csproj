@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.1.0</Version>
+    <Version>10.1.1</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,14 +21,15 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Updated internal Polyfill version from 9.18.0 to 9.23.0
-* Replaced a use of ``Slice`` method with a range indexer</PackageReleaseNotes>
+    <PackageReleaseNotes>* Fixed a bug where Reverse method would skip the first element of the ReadOnlySpan&lt;T&gt;, Memory&lt;T&gt;, or ReadOnlyMemory&lt;T&gt; to be revesed.
+* Fixed a logic bug in SecureString AppendRange SetChars method
+* Fixed a bug in Span Optimistic Copy methods</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
-    <AssemblyVersion>10.1.0</AssemblyVersion>
-    <FileVersion>10.1.0</FileVersion>
+    <AssemblyVersion>10.1.1</AssemblyVersion>
+    <FileVersion>10.1.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">

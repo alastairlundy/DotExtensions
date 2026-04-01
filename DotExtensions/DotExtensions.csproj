@@ -11,11 +11,17 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>### DotExtensions
-* Updated internal Polyfill version from 9.18.0 to 9.23.0
-* Replaced some uses of ``Substring`` methods with range indexer
-* Optimized ``GetRandomDrive`` method
-* Formatting and code readability improvements</PackageReleaseNotes>
+    <PackageReleaseNotes>* Optimisations and improvements to ``GetRandomIOExtensions`` class
+* Deprecated ``UnixFileMode`` permission extensions for removal in DotExtensions v11
+* Deprecated AccessRulePermission etensions for removal in DotExtensions v11
+* Deprecated some Date related extensions for removal in DotExtensions v11
+* Fixed a bug in the Version Comparison extension class ``IsOlderThan`` method that would lead to incorrect results being returned
+* Fixed a bug in the Version comparison extension class ``IsAtLeast`` method that would lead to incorrect results being returned
+* Fixed string insertion off by one errors
+* Fixed a bug where the week of month and year calculation methods would undercount the number of days in specified months
+* Fixed a bug that prevented valid Unix numeric file notation from being detected
+* Fixed a logic bug in Unix file notation parsing
+* Fixed off by one errors in ``GetRandomIOExtensions`` class</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -24,15 +30,15 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.1.0</Version>
+    <Version>10.1.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <AssemblyVersion>10.1.0</AssemblyVersion>
-      <FileVersion>10.1.0</FileVersion>
+      <AssemblyVersion>10.1.1</AssemblyVersion>
+      <FileVersion>10.1.1</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
