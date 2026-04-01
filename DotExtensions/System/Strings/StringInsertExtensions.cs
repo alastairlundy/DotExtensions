@@ -53,7 +53,7 @@ public static class StringInsertExtensions
 
             if (index > 1)
             {
-                stringBuilder.Append(str[..(index - 1)]);
+                stringBuilder.Append(str.Substring(0, index));
                 start = index;
             }
 
