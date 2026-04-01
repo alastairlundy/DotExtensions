@@ -48,11 +48,11 @@ public static class GetRandomIOExtensions
             
             switch (drives.Length)
             {
-                    case 0:
-                        throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
-                    case > 1:
-                    {
-                        int randomDriveNumber = Random.Shared.Next(0, drives.Length);
+                case 0:
+                    throw new InvalidOperationException();
+                case > 1:
+                {
+                    int randomDriveNumber = Random.Shared.Next(0, drives.Length);
 
                     drive = drives[randomDriveNumber];
                     break;
@@ -71,7 +71,7 @@ public static class GetRandomIOExtensions
         /// <summary>
         /// Retrieves a random directory from the system.
         /// </summary>
-        /// <param name="mustContainFiles">Indicates whether to filter directories containing files.</param>
+        /// <param name="mustContainFiles">Whether to filter directories containing files.</param>
         /// <returns>A <see cref="DirectoryInfo"/> object representing the randomly selected directory.</returns>
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
