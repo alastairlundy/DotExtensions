@@ -31,6 +31,66 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class WeekOfExtensions
 {
+    private static int InternalWeekOfMonthCount(DateTime date, int year, int month)
+    {
+        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+        int daysInMonth = DateTime.DaysInMonth(year, month);
+
+        int weekCount = 0;
+
+        for (int day = 1; day <= daysInMonth; day++)
+        {
+            DateTime currentDate = new(year, month, day);
+
+            if (currentDate.DayOfWeek == firstDayOfWeek)
+                weekCount++;
+
+            if (currentDate.Day == date.Day)
+                break;
+        }
+
+        return weekCount;
+    }
+    
+    private static int InternalWeekOfYearCount(DateTime date, CalendarWeekRule calendarWeekRule, int year)
+    {
+        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+        int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(year) ? 366 : 365;
+        int weekCount = 0;
+
+        int currentMonth = 1;
+        int currentDay = 1;
+
+        for (int dayIndex = 1; dayIndex <= daysInYear; dayIndex++)
+        {
+            DateTime currentDate = new(year, currentMonth, currentDay);
+
+            if (dayIndex == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
+                weekCount = 1;
+            else if (dayIndex == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
+                weekCount = 1;
+            else if (dayIndex == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
+                weekCount = 1;
+            else
+            {
+                if (currentDate.DayOfWeek == firstDayOfWeek)
+                    weekCount++;
+            }
+
+            if (currentDate.Month == date.Month && currentDate.Day == date.Day)
+                break;
+
+            currentDay++;
+            if (currentDay > DateTime.DaysInMonth(year, currentMonth))
+            {
+                currentDay = 1;
+                currentMonth++;
+            }
+        }
+
+        return weekCount;
+    }
+    
     /// <param name="date">The date to be used.</param>
     extension(DateTime date)
     {
@@ -70,9 +130,12 @@ public static class WeekOfExtensions
             int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(date.Year) ? 366 : 365;
             int weekCount = 0;
 
+            int currentDay = 1;
+            int currentMonth = 1;
+            
             for (int day = 1; day < daysInYear; day++)
             {
-                DateTime currentDate = new(date.Year, date.Month, day);
+                DateTime currentDate = new(date.Year, currentMonth, currentDay);
 
                 if (day == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
                     weekCount = 1;
@@ -88,6 +151,17 @@ public static class WeekOfExtensions
 
                 if (currentDate.Day == date.Day)
                     break;
+
+                if(currentDay >= DateTime.DaysInMonth(date.Year, currentMonth))
+                {
+                    currentDay = 1;
+                    currentMonth += 1;
+                }
+                else
+                {
+                    currentDay += 1;
+                }
+
             }
 
             return weekCount;
