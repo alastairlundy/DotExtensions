@@ -50,20 +50,9 @@ public static class StringInsertExtensions
             if (str[index] == c)
                 return str;
 
-            StringBuilder stringBuilder = new(capacity: str.Length + 1);
+            StringBuilder stringBuilder = new(str);
 
-            int start = 0;
-
-            if (index > 1)
-            {
-                stringBuilder.Append(str.Substring(0, index - 1));
-                start = index;
-            }
-
-            for (int i = start; i < str.Length; i++)
-            {
-                stringBuilder.Append(i == index ? c : str[i]);
-            }
+            stringBuilder.Insert(index, c);
 
             return stringBuilder.ToString();
         }
@@ -84,22 +73,9 @@ public static class StringInsertExtensions
             if (index >= str.Length)
                 throw new IndexOutOfRangeException();
 
-            StringBuilder stringBuilder = new(capacity: str.Length);
+            StringBuilder stringBuilder = new(str);
 
-            int start = 0;
-
-            if (index > 1)
-            {
-                stringBuilder.Append(str.Substring(0, index - 1));
-                start = index;
-            }
-
-            foreach (char ch in chars)
-            {
-                stringBuilder.Append(ch);
-            }
-
-            stringBuilder.Append(str.Substring(start + 1, str.Length - (start + 1)));
+            stringBuilder.Insert(index, chars);
 
             return stringBuilder.ToString();
         }
