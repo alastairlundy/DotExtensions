@@ -166,7 +166,7 @@ public static class UnixPermissionParsingExtensions
         if (!notation.IsValidNumericNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation));
 
-        if(!notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
+        if(notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
             notation =  notation.Remove(0, 1);
         
         int user = int.Parse(notation.First().ToString(), CultureInfo.InvariantCulture);
