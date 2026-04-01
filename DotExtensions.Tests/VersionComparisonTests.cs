@@ -54,8 +54,8 @@ public class VersionComparisonTests
         Version oldVersion = Version.Parse(oldVersionInput);
         Version newVersion = Version.Parse(newVersionInput);
         
-        bool expected = newVersion.IsAtLeast(oldVersion);
+        bool actual = newVersion.IsAtLeast(oldVersion);
         
-        await Assert.That(expected).IsTrue();
+        await Assert.That(actual).IsTrue();
     }
 }
