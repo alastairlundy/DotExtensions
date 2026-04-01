@@ -13,6 +13,7 @@
 #### 10.0
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.0.1 | April 1st 2026 | |
 | 10.0.0 | March 13th 2026 | |
 | 10.0.0 Beta 1 | March 12th 2026 | |
 | 10.0.0 Alpha 6 | March 10th 2026 | |
@@ -26,6 +27,7 @@
 #### 9.7
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.7.5 | April 1st 2026 | | 
 | 9.7.4 | March 12th 2026 | |
 | 9.7.3 | March 10th 2026 | |
 | 9.7.2 | March 5th 2026 | |
