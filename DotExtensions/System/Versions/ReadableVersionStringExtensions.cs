@@ -39,9 +39,9 @@ public static class ReadableVersionStringExtensions
         /// <returns>A string representing the version in a friendly format, e.g. "1.2.3", "1.2.3.4", etc.</returns>
         public string ToReadableString()
         {
-            bool showMinor = version.Minor != 0;
-            bool showBuild = version.Build != 0;
-            bool showRevision = version.Revision != 0;
+            bool showMinor = version.Minor != -1;
+            bool showBuild = version.Build != -1;
+            bool showRevision = version.Revision != -1;
 
             switch (showRevision)
             {
