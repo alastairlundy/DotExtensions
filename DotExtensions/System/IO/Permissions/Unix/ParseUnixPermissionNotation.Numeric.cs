@@ -40,7 +40,7 @@ public static partial class UnixPermissionsExtensions
     {
         ArgumentException.ThrowIfNullOrEmpty(notation);
 
-        if (notation.Length is >= 3 and <= 4 || !int.TryParse(notation, out int result)) 
+        if (notation.Length is < 3 or > 4 || !int.TryParse(notation, out int result)) 
             return false;
 
         if (notation.Length == 4 && notation[0] != '0')
@@ -50,7 +50,7 @@ public static partial class UnixPermissionsExtensions
         return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
     }
 
-    #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Parses a numeric notation string representing Unix file permissions into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
@@ -71,7 +71,7 @@ public static partial class UnixPermissionsExtensions
         if (!IsValidNumericNotation(notation))
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation);
 
-        if(!notation.StartsWith("0"))
+        if(notation.StartsWith("0"))
             notation =  notation.Remove(0, 1);
         
         int user = int.Parse(notation.First().ToString());

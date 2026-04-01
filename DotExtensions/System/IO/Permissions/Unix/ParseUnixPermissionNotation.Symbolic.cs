@@ -55,7 +55,7 @@ public static partial class UnixPermissionsExtensions
         };
     }
 
-    #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
     /// <summary>
     /// Parses a Unix file permission symbolic notation string (rwx format) into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
