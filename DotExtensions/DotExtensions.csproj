@@ -11,28 +11,13 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Moved ``DotExtensions.MsExtensions.StringSegments`` namespace to ``DotExtensions.MsExtensions.Primitives``
-* Moved ``DotExtensions.MsExtensions.StringValuePlural`` namespace to ``DotExtensions.MsExtensions.Primitives``
-* Merged DotExtensions.MsExtensions code into DotExtensions main package
-* Removed code deprecated for removal in v10
-* Removed dependency on DotPrimitives
-* Replaced deprecated DateTime ``DaysInYear`` static extension method with non static extension method
-* Renamed ``DayOfWeekInt`` extension method to ``CalculateDayOfWeekAsInteger``
-* Changed ``WeekOfMonth`` extension method to be an extension property
-* Renamed ``DaysInYear`` extension method to ``CalculateNumberOfDaysInYear``
-* Optimisations and performance improvements
-* Moved more exception messages to Resources resx file
-* Reworked GetRandomDrive static extension method to add optional parameter
-* Improves robustness of string and StringSegment Capitalization extensions
-* Added some missing xml doc comments
-* Improved helpfulness of some thrown exceptions
-* Renamed Windows based file permission extension methods for extra clarity
-* Reorganized Unix file permissions code into consolidated classes
-* Improved performance of Unix Permission Notation detection
-* Updated xml doc comments to use &lt;see langword=true&gt; and &lt;see langword=false&gt; instead of &lt;c&gt;true&lt;/c&gt; or &lt;c&gt;false&lt;/c&gt;
-* Moved file size labels to Resources resx file
-* Moved Safe File Enumeration code and namespace
-* Added ``GetNonNullPathRoot(string)`` and ``GetNonNullPathRoot(string?)`` static extension methods to Path - These method guarantees they will not return a null value.</PackageReleaseNotes>
+    <PackageReleaseNotes>* Fixed a bug in the Version Comparison extension class ``IsOlderThan`` method that would lead to incorrect results being returned
+* Fixed a bug in the Version comparison extension class ``IsAtLeast`` method that would lead to incorrect results being returned
+* Fixed string insertion off by one errors
+* Fixed a bug where the week of month and year calculation methods would undercount the number of days in specified months
+* Fixed a bug that prevented valid Unix numeric file notation from being detected
+* Fixed a logic bug in Unix file notation parsing
+* Fixed off by one errors in ``GetRandomIOExtensions`` class</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -41,13 +26,15 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.0.0</Version>
+    <Version>10.0.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
+      <AssemblyVersion>10.0.1</AssemblyVersion>
+      <FileVersion>10.0.1</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
