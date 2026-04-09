@@ -38,6 +38,7 @@ public static class OperatingSystemExtensions
         /// <returns>
         /// true if the current operating system is Unix-based (e.g. Linux, macOS, FreeBSD, or Android); otherwise, false.
         /// </returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static bool IsUnix()
         {
             return OperatingSystem.IsAndroid() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsLinux()
