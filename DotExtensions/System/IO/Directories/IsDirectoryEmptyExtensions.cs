@@ -50,7 +50,8 @@ public static class IsDirectoryEmptyExtensions
                 if (!directory.Exists)
 #if NET8_0_OR_GREATER
                     throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName, StringComparison.OrdinalIgnoreCase));
+                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
+                            StringComparison.OrdinalIgnoreCase));
 #else
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
@@ -75,7 +76,8 @@ public static class IsDirectoryEmptyExtensions
                 if (!directory.Exists)
 #if NET8_0_OR_GREATER
                     throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName, StringComparison.OrdinalIgnoreCase));
+                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
+                            StringComparison.OrdinalIgnoreCase));
 #else
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
