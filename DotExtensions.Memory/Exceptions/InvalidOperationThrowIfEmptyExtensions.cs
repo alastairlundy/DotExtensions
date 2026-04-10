@@ -26,9 +26,9 @@ namespace DotExtensions.Memory.Exceptions;
 
 /// <summary>
 /// Provides extension methods for validating and throwing an <see cref="InvalidOperationException"/>
-/// if a collection or enumerable is empty. These extensions simplify
-/// defensive programming by reducing boilerplate code for common validation operations.
+/// if a collection or enumerable is empty.
 /// </summary>
+/// <remarks> These extensions simplify defensive programming by reducing boilerplate code for common validation operations.</remarks>
 public static class InvalidOperationThrowIfEmptyExtensions
 {
    /// <typeparam name="T">The type of elements in the Span or memory.</typeparam>
