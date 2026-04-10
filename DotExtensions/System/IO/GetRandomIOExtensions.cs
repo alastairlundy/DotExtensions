@@ -127,33 +127,24 @@ public static class GetRandomIOExtensions
         /// <returns>A <see cref="FileInfo"/> object representing the randomly selected file.</returns>
         public static FileInfo GetRandomFile()
         {
-            DirectoryInfo startDir = DriveInfo.GetRandomDrive(driveMustContainFiles: true).RootDirectory;
+            DirectoryInfo directory = DirectoryInfo.GetRandomDirectory(mustContainFiles: true);
             
-            DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories()
-                .Where(d => d.HasFiles)
-                .ToArray();
-            
-            while(true)
+            FileInfo[] files = directory.GetFiles("*", new EnumerationOptions
             {
-                DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length)];
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = false,
+                MatchCasing = MatchCasing.CaseInsensitive
+            });
 
-                DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories()
-                    .Where(d => d.HasFiles).ToArray();
-
-                if (subDirectories.Length == 0)
-                    continue;
-
-                FileInfo[] files = dir.SafelyGetFiles("*", SearchOption.AllDirectories);
-
-                if (files.Length == 0)
-                    break;
-
-                return files[Random.Shared.Next(0, files.Length)];
-            }
-
-            return Random.Shared.GetItems(dirs, 1)
-                [0].SafelyEnumerateFiles()
-                .First();
+            if(files.Length == 0)
+                files = directory.GetFiles("*", new EnumerationOptions
+                {
+                    IgnoreInaccessible = true,
+                    RecurseSubdirectories = true,
+                    MatchCasing = MatchCasing.CaseInsensitive
+                });
+            
+            return files[Random.Shared.Next(0, files.Length)];
         }
     }
     
