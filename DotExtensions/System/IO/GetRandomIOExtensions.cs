@@ -24,8 +24,6 @@
 
 // ReSharper disable InconsistentNaming
 
-using DotExtensions.IO.Files;
-
 namespace DotExtensions.IO;
 
 /// <summary>
@@ -87,8 +85,14 @@ public static class GetRandomIOExtensions
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
-            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles).RootDirectory
-                .SafelyEnumerateDirectories("*", SearchOption.AllDirectories)
+            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles)
+                .RootDirectory
+                .EnumerateDirectories("*", new EnumerationOptions
+                {
+                    IgnoreInaccessible = true,
+                    RecurseSubdirectories = true,
+                    MatchCasing = MatchCasing.CaseInsensitive
+                })
                 .Where(d => d.Exists);
 
             if (mustContainFiles)
@@ -109,7 +113,8 @@ public static class GetRandomIOExtensions
                 output = new DirectoryInfo(sysDir)
                              .Parent ?? 
 #if NET8_0_OR_GREATER
-                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir, StringComparison.OrdinalIgnoreCase));
+                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
+                             sysDir, StringComparison.OrdinalIgnoreCase));
 #else
                          throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir));
 #endif
