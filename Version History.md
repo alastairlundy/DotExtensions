@@ -4,6 +4,11 @@
 
 ### Version 10.x
 
+#### 10.2
+| Version | Release Date | Notes | 
+|-|-|-|
+| 10.2.0 | April 10th 2026 | |
+
 #### 10.1
 | Version | Release Date | Notes | 
 |-|-|-|
