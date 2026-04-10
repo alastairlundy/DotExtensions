@@ -24,6 +24,8 @@
 
 // ReSharper disable InconsistentNaming
 
+using DotExtensions.IO.Files;
+
 namespace DotExtensions.IO;
 
 /// <summary>
@@ -87,12 +89,7 @@ public static class GetRandomIOExtensions
         {
             IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles)
                 .RootDirectory
-                .EnumerateDirectories("*", new EnumerationOptions
-                {
-                    IgnoreInaccessible = true,
-                    RecurseSubdirectories = true,
-                    MatchCasing = MatchCasing.CaseInsensitive
-                })
+                .SafelyEnumerateDirectories("*", SearchOption.AllDirectories)
                 .Where(d => d.Exists);
 
             if (mustContainFiles)
@@ -134,20 +131,10 @@ public static class GetRandomIOExtensions
         {
             DirectoryInfo directory = DirectoryInfo.GetRandomDirectory(mustContainFiles: true);
             
-            FileInfo[] files = directory.GetFiles("*", new EnumerationOptions
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories = false,
-                MatchCasing = MatchCasing.CaseInsensitive
-            });
+            FileInfo[] files = directory.SafelyGetFiles("*", SearchOption.TopDirectoryOnly);
 
             if(files.Length == 0)
-                files = directory.GetFiles("*", new EnumerationOptions
-                {
-                    IgnoreInaccessible = true,
-                    RecurseSubdirectories = true,
-                    MatchCasing = MatchCasing.CaseInsensitive
-                });
+                files = directory.SafelyGetFiles("*",  SearchOption.AllDirectories);
             
             return files[Random.Shared.Next(0, files.Length)];
         }
