@@ -38,8 +38,6 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(span);
-            
             T[] array = new  T[span.Length];
             
             for (int index = span.Length - 1; index >= 0; index--)
@@ -62,8 +60,6 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
-            
             T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
 
             try
@@ -95,8 +91,6 @@ public static class ReverseExtensions
         /// </summary>
         public void Reverse()
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(memory);
-            
             T[] array = new  T[memory.Length];
             
             for (int index = memory.Length - 1; index >= 0; index--)

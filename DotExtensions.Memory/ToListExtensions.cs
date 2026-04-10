@@ -41,7 +41,6 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             List<T> list = new(capacity: source.Length);
 
             foreach (T item in source)
@@ -65,7 +64,6 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             List<T> list = new(capacity: source.Length);
 
             foreach (T item in source)
@@ -89,7 +87,6 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             List<T> list = new(capacity: source.Length);
 
             foreach (T item in source.Span)
@@ -113,7 +110,6 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            InvalidOperationException.ThrowIfMemoryIsEmpty(source);
             List<T> list = new(capacity: source.Length);
 
             foreach (T item in source.Span)

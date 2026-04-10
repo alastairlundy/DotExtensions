@@ -55,7 +55,6 @@ public static class SpanCopyExtensions
             int startIndex,
             int length)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
@@ -106,7 +105,6 @@ public static class SpanCopyExtensions
             int startIndex,
             int length)
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
@@ -141,7 +139,6 @@ public static class SpanCopyExtensions
 
         try
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             source.OptimisticCopy(ref destination, startIndex);
 
             for (int i = startIndex; i < source.Length; i++)
@@ -184,7 +181,6 @@ public static class SpanCopyExtensions
 
         try
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             source.OptimisticCopy(ref destination, startIndex, length);
 
             for (int i = startIndex; i < source.Length; i++)
@@ -235,7 +231,6 @@ public static class SpanCopyExtensions
             int length
         )
         {
-            InvalidOperationException.ThrowIfSpanIsEmpty(source);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
