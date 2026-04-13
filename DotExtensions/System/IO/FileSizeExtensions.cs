@@ -47,7 +47,7 @@ public static class FileSizeExtensions
                 quantity /= 1000;
             }
 
-            return $"{quantity}{file.GetFileSizeUnitString()}";
+            return string.Format(CultureInfo.CurrentCulture, "{0}{1}", quantity, file.GetFileSizeUnitString());
         }
 
         /// <summary>
