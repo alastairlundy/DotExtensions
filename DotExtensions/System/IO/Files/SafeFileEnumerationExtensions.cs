@@ -61,18 +61,8 @@ public static class SafeFileEnumerationExtensions
         /// <param name="ignoreCase">Specifies whether the search pattern should be case-insensitive.</param>
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern, SearchOption searchOption,
-            bool ignoreCase = false)
-        {
-            EnumerationOptions enumerationOptions = new()
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
-                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive,
-                MatchType = MatchType.Simple
-            };
-
-            return directoryInfo.EnumerateFiles(searchPattern, enumerationOptions);
-        }
+            bool ignoreCase = false) =>
+            directoryInfo.EnumerateFiles(searchPattern, searchOption.ToEnumerationOptions(!ignoreCase));
     }
 
     #endregion

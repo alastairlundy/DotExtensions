@@ -82,18 +82,9 @@ public static class SafeDirectoryEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true)
-        {
-            EnumerationOptions enumerationOptions = new()
-            {
-                IgnoreInaccessible = true,
-                RecurseSubdirectories = searchOption == SearchOption.AllDirectories,
-                MatchCasing = ignoreCase ? MatchCasing.CaseInsensitive : MatchCasing.CaseSensitive,
-                MatchType = MatchType.Simple
-            };
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true) 
+            => directoryInfo.EnumerateDirectories(searchPattern, searchOption.ToEnumerationOptions(!ignoreCase));
 
-            return directoryInfo.EnumerateDirectories(searchPattern, enumerationOptions);
-        }
         #endregion
 
         #region Safe Directory Getting
