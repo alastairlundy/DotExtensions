@@ -80,5 +80,33 @@ public static class SegmentRemoveAndReplaceExtensions
 
             return new StringSegment($"{firstSegment}{secondSegment}");
         }
+        
+        /// <summary>
+        /// Removes a subsegment from the <see cref="StringSegment"/>, defined by the specified start and end indices.
+        /// </summary>
+        /// <param name="startIndex">The zero-based start index of the subsegment to remove.</param>
+        /// <param name="endIndex">The zero-based end index of the subsegment to remove. This index is inclusive.</param>
+        /// <returns>A new <see cref="StringSegment"/> with the specified range removed.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if the startIndex or endIndex is negative, greater than or equal to the <see cref="StringSegment"/> length, or if the <paramref name="startIndex"/> is greater than the <paramref name="endIndex"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown if the calculated length of the subsegment to remove is negative.</exception>
+        public StringSegment Remove(Index startIndex, Index endIndex)
+            => segment.Remove(startIndex.Value, endIndex.Value);
+
+        /// <summary>
+        /// Removes a subsegment from the string, defined by the specified start and end indices.
+        /// </summary>
+        /// <param name="range">The <see cref="Range"/> of indices of the subsegment to remove.</param>
+        /// <returns>A new <see cref="StringSegment"/> with the specified range removed.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if the <see cref="Range"/>'s Start <see cref="Index"/> or End <see cref="Index"/> is negative, greater than or equal to the <see cref="StringSegment"/> length,
+        /// or if the Start <see cref="Index"/> is greater than or equal to the End <see cref="Index"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown if the calculated length of the subsegment to remove is negative.
+        /// </exception>
+        public StringSegment Remove(Range range)
+            => segment.Remove(range.Start, range.End);
     }
 }
