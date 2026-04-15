@@ -24,6 +24,7 @@
 
 using System.IO;
 using DotExtensions.IO.Permissions;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace DotExtensions.Tests.IO;
 
