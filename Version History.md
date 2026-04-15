@@ -7,6 +7,7 @@
 #### 10.2
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.2.1 | April 15th 2026 | |
 | 10.2.0 | April 10th 2026 | |
 
 #### 10.1
