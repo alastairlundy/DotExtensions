@@ -33,6 +33,7 @@
 #### 9.7
 | Version | Release Date | Notes | 
 |-|-|-|
+| 9.7.6 | April 15th 2026 | |
 | 9.7.5 | April 1st 2026 | | 
 | 9.7.4 | March 12th 2026 | |
 | 9.7.3 | March 10th 2026 | |
