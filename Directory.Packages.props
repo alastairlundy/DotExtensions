@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Polyfill" Version="9.23.0" PrivateAssets="all" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.28">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.45">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -16,7 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="TUnit" Version="1.19.0" />
+    <PackageVersion Include="TUnit" Version="1.29.0" />
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
   </ItemGroup>
 </Project>
