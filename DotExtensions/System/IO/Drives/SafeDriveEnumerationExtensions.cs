@@ -63,5 +63,72 @@ public static class SafeDriveEnumerationExtensions
                     }
                 });
         }
+
+        /// <summary>
+        /// Enumerates all physical internal drives available on the system.
+        /// </summary>
+        /// <remarks>Does not enumerate external drives or network drives.</remarks>
+        /// <returns>
+        /// An enumerable collection of <see cref="System.IO.DriveInfo"/> objects representing the physical drives
+        /// available on the system. Throws a <see cref="PlatformNotSupportedException"/> if the platform is not supported.
+        /// </returns>
+        [SupportedOSPlatform("windows")]
+        [SupportedOSPlatform("macos")]
+        [SupportedOSPlatform("linux")]
+        [SupportedOSPlatform("freebsd")]
+        [SupportedOSPlatform("android")]
+        [UnsupportedOSPlatform("ios")]
+        [UnsupportedOSPlatform("tvos")]
+        public static IEnumerable<DriveInfo> SafelyEnumeratePhysicalDrives()
+        {
+            if (OperatingSystem.IsWindows())
+                return EnumeratePhysicalDrivesWindows();
+        
+            if (OperatingSystem.IsMacCatalyst() || OperatingSystem.IsMacOS())
+                return EnumeratePhysicalDrivesMac();
+
+            if (OperatingSystem.IsLinux() || OperatingSystem.IsFreeBSD() || OperatingSystem.IsAndroid())
+                return EnumeratePhysicalDrivesUnix();
+
+            throw new PlatformNotSupportedException();
+        }
+
+        /// <summary>
+        /// Retrieves an array of all physical drives available on the system.
+        /// </summary>
+        /// <returns>
+        /// An array of <see cref="System.IO.DriveInfo"/> objects representing the physical drives
+        /// available and ready for access on the system. Returns an empty array if no drives are found.
+        /// </returns>
+        [SupportedOSPlatform("windows")]
+        [SupportedOSPlatform("macos")]
+        [SupportedOSPlatform("linux")]
+        [SupportedOSPlatform("freebsd")]
+        [SupportedOSPlatform("android")]
+        [UnsupportedOSPlatform("ios")]
+        [UnsupportedOSPlatform("tvos")]
+        public static DriveInfo[] SafelyGetPhysicalDrives()
+            => DriveInfo.SafelyEnumeratePhysicalDrives().ToArray();
+
+        #region Platform Specific Physical Drive Enumeration
+        
+        //TODO: Implement method
+        private static IEnumerable<DriveInfo> EnumeratePhysicalDrivesUnix()
+        {
+            throw new NotImplementedException();
+        }
+        
+        //TODO: Implement method
+        private static IEnumerable<DriveInfo> EnumeratePhysicalDrivesMac()
+        {
+            throw new NotImplementedException();
+        }
+
+        //TODO: Implement method
+        private static IEnumerable<DriveInfo> EnumeratePhysicalDrivesWindows()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
