@@ -228,8 +228,7 @@ public static class SpanCopyExtensions
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
             int startIndex,
-            int length
-        )
+            int length)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
