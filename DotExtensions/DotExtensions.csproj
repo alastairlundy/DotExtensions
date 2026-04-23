@@ -11,9 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Updated internal Polyfill version from 10.1.1 to 10.3.0
-* Updated Microsoft.Extensions.Primitives version from 10.0.5 to 10.0.6
-* Updated Microsoft.Bcl.Memory version from 10.0.5 to 10.0.6</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated Microsoft.Extensions.Primitives version from 10.0.6 to 10.0.7
+* Updated Microsoft.Bcl.Memory version from 10.0.6 to 10.0.7</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -22,7 +21,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.2.1</Version>
+    <Version>10.2.2</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
