@@ -36,6 +36,7 @@ public static class ReverseExtensions
         /// Reverses the contents of the specified read-only span,
         /// returning a new <see cref="ReadOnlySpan{T}"/> with the elements in reverse order.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
             T[] array = new  T[span.Length];
@@ -58,6 +59,7 @@ public static class ReverseExtensions
         /// Reverses the contents of the specified memory,
         /// returning a new <see cref="Memory{T}"/> with the elements in reverse order.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
             T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
@@ -89,6 +91,7 @@ public static class ReverseExtensions
         /// Reverses the contents of the specified read-only memory,
         /// returning a new <see cref="ReadOnlyMemory{T}"/> with the elements in reverse order.
         /// </summary>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
             T[] array = new  T[memory.Length];
