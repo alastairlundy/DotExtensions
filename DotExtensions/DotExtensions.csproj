@@ -11,7 +11,8 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Added ``PathEnvironmentVariable`` static class</PackageReleaseNotes>
+    <PackageReleaseNotes>* Added String ``RemoveRange`` extensions
+* Added StringSegment ``RemoveRange`` extensions</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -20,15 +21,15 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.2.0</Version>
+    <Version>10.3.0</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <AssemblyVersion>10.2.0</AssemblyVersion>
-      <FileVersion>10.2.0</FileVersion>
+      <AssemblyVersion>10.3.0</AssemblyVersion>
+      <FileVersion>10.3.0</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">

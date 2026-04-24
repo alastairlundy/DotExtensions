@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.2.0</Version>
+    <Version>10.3.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,13 +21,13 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Removed some instances where ``InvalidOperationException`` was thrown due to Span or Memory being empty</PackageReleaseNotes>
+    <PackageReleaseNotes>* Deprecate ``Reverse`` extension methods for removal in v11 - These will be replaced with methods that return new ``Memory&lt;T&gt;``, ``ReadOnlyMemory&lt;T&gt;``, and ``ReadOnlySpan&lt;T&gt;`` instances</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
-    <AssemblyVersion>10.2.0</AssemblyVersion>
-    <FileVersion>10.2.0</FileVersion>
+    <AssemblyVersion>10.3.0</AssemblyVersion>
+    <FileVersion>10.3.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
