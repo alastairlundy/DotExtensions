@@ -40,10 +40,21 @@ public static class GetRandomIOExtensions
         /// </summary>
         /// <returns>A <see cref="DriveInfo"/> object representing the randomly selected drive.</returns>
         /// <exception cref="InvalidOperationException">Thrown when no logical drives are available.</exception>
-        public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false)
+        public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false, bool driveMustContainDirectories = true)
         {
-            DriveInfo[] drives = DriveInfo.SafelyGetLogicalDrives();
+            DriveInfo[] drives;
 
+            if (driveMustContainDirectories)
+            {
+                drives = DriveInfo.SafelyEnumerateLogicalDrives()
+                    .Where(d => d.HasDirectories)
+                    .ToArray();
+            }
+            else
+            {
+                drives = DriveInfo.SafelyGetLogicalDrives();
+            }
+            
             DriveInfo drive;
 
             bool driveHasFiles;
@@ -129,7 +140,8 @@ public static class GetRandomIOExtensions
         /// <returns>A <see cref="FileInfo"/> object representing the randomly selected file.</returns>
         public static FileInfo GetRandomFile()
         {
-            DirectoryInfo startDir = DriveInfo.GetRandomDrive(driveMustContainFiles: true).RootDirectory;
+            DirectoryInfo startDir = DriveInfo.GetRandomDrive(driveMustContainFiles: true, driveMustContainDirectories: true)
+                .RootDirectory;
             
             DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories()
                 .Where(d => d.HasFiles)
