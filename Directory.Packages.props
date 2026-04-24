@@ -3,10 +3,10 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Bcl.Memory" Version="10.0.6" />
-    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.6" />
+    <PackageVersion Include="Microsoft.Bcl.Memory" Version="10.0.7" />
+    <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.7" />
     <PackageVersion Include="Polyfill" Version="10.3.0" PrivateAssets="all" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.48">
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.51">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
@@ -15,7 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="TUnit" Version="1.34.5" />
+    <PackageVersion Include="TUnit" Version="1.37.36" />
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
   </ItemGroup>
 </Project>
