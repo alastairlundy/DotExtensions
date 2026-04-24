@@ -173,8 +173,7 @@ public static class SpanCopyExtensions
         this Span<T> source,
         ref Span<T> destination,
         int startIndex,
-        int length
-    )
+        int length)
     {
         if (startIndex < 0 || startIndex > source.Length)
             return false;
