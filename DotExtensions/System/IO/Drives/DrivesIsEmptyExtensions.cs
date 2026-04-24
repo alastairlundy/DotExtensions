@@ -69,7 +69,7 @@ public static class DrivesIsEmptyExtensions
         /// Whether the drive contains any directories (recursively).
         /// </summary>
         /// <value><see langword="true"/> if the <see cref="DriveInfo"/> has at least one directory; otherwise, <see langword="false"/>.</value>
-        public bool HasDirectories
+        internal bool HasDirectories
         {
             get
             {
