@@ -64,5 +64,19 @@ public static class DrivesIsEmptyExtensions
                 return driveInfo.RootDirectory.SafelyEnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
         }
+
+        /// <summary>
+        /// Whether the drive contains any directories (recursively).
+        /// </summary>
+        /// <value><see langword="true"/> if the <see cref="DriveInfo"/> has at least one directory; otherwise, <see langword="false"/>.</value>
+        public bool HasDirectories
+        {
+            get
+            {
+                ArgumentNullException.ThrowIfNull(driveInfo);
+                
+                return driveInfo.RootDirectory.SafelyEnumerateDirectories("*", SearchOption.AllDirectories).Any();
+            }
+        }
     }
 }
