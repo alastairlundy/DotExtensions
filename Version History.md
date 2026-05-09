@@ -7,6 +7,7 @@
 #### 10.3
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.3.1 | May 9th 2026 | |
 | 10.3.0 | April 24th 2026 | |
 
 #### 10.2
