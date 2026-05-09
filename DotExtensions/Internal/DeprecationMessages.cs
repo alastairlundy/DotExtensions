@@ -1,4 +1,4 @@
-namespace DotExtensions;
+namespace DotExtensions.Internal;
 
 internal static class DeprecationMessages
 {
