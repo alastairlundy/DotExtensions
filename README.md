@@ -1,8 +1,6 @@
 # DotExtensions
 An extension member library that enhances the experience of using .NET's types with useful features.
 
-Now updated to take advantage of C# 14 as of version 9.
-
 **NOTE**: Version 9.0 and onwards requires projects using DotExtension to set the C# language version to 14 or higher.
 
 [![NuGet](https://img.shields.io/nuget/v/DotExtensions.svg)](https://www.nuget.org/packages/DotExtensions/)
