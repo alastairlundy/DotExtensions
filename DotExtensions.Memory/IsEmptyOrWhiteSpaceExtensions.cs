@@ -243,6 +243,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
             for (int i = 0; i < span.Length; i++)
             {
                 isWhiteSpace[i] = span[i].IsWhiteSpace();
+                
+                if (!isWhiteSpace[i])
+                    return false;
             }
 
             return isWhiteSpace.All(x => x);
@@ -270,6 +273,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
             for (int i = 0; i < memory.Length; i++)
             {
                 isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
+
+                if (!isWhiteSpace[i])
+                    return false;
             }
 
             return isWhiteSpace.All(x => x);
@@ -297,6 +303,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
             for (int i = 0; i < memory.Length; i++)
             {
                 isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
+
+                if (!isWhiteSpace[i])
+                    return false;
             }
 
             return isWhiteSpace.All(x => x);
