@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.3.1</Version>
+    <Version>10.3.2</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,7 +21,11 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Update internal Polyfill version from 10.3.0 to 10.5.1</PackageReleaseNotes>
+    <PackageReleaseNotes>* Fixed a bug where a valid start index of 0 in a Span ``CopyTo`` method would cause an exception to be thrown by @Copilot
+* Improved performance in Span&lt;string&gt; and Memory&lt;string&gt; WhiteSpace checking extensions
+* Reduced memory allocation in ``ToList`` extension by @Copilot
+* Fixed Span Copy bugs and improved performance by @Copilot
+* Improved Span ``Resize`` and ``Reverse`` extensions by @Copilot</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
