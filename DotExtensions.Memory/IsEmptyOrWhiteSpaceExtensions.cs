@@ -239,16 +239,15 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         private bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[span.Length];
             for (int i = 0; i < span.Length; i++)
             {
-                isWhiteSpace[i] = span[i].IsWhiteSpace();
+                bool isWhiteSpace = span[i].IsWhiteSpace();
                 
-                if (!isWhiteSpace[i])
+                if (!isWhiteSpace)
                     return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
@@ -268,17 +267,15 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if every element in the span is a whitespace character, false otherwise.</returns>
         public bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[memory.Length];
-            
             for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
+                bool isWhiteSpace = memory.Span[i].IsWhiteSpace();
 
-                if (!isWhiteSpace[i])
+                if (!isWhiteSpace)
                     return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     
@@ -298,17 +295,15 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if the memory contains only whitespace, false otherwise.</returns>
         private bool IsWhiteSpace()
         {
-            bool[] isWhiteSpace = new bool[memory.Length];
-            
             for (int i = 0; i < memory.Length; i++)
             {
-                isWhiteSpace[i] = memory.Span[i].IsWhiteSpace();
+                bool isWhiteSpace = memory.Span[i].IsWhiteSpace();
 
-                if (!isWhiteSpace[i])
+                if (!isWhiteSpace)
                     return false;
             }
 
-            return isWhiteSpace.All(x => x);
+            return true;
         }
     }
     #endregion
