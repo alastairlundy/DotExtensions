@@ -1,4 +1,4 @@
-﻿/*
+/*
         MIT License
        
        Copyright (c) 2026 Alastair Lundy
@@ -41,14 +41,9 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            List<T> list = new(capacity: source.Length);
-
-            foreach (T item in source)
-            {
-                list.Add(item);
-            }
-
-            return list;
+            T[] array = new T[source.Length];
+            source.CopyTo(array);
+            return new List<T>(array);
         }
     }
     
@@ -64,14 +59,9 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            List<T> list = new(capacity: source.Length);
-
-            foreach (T item in source)
-            {
-                list.Add(item);
-            }
-
-            return list;
+            T[] array = new T[source.Length];
+            source.CopyTo(array);
+            return new List<T>(array);
         }
     }
     
@@ -87,14 +77,9 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            List<T> list = new(capacity: source.Length);
-
-            foreach (T item in source.Span)
-            {
-                list.Add(item);
-            }
-
-            return list;
+            T[] array = new T[source.Length];
+            source.Span.CopyTo(array);
+            return new List<T>(array);
         }
     }
     
@@ -110,14 +95,10 @@ public static class ToListExtensions
         public List<T> ToList()
 #pragma warning restore MA0016
         {
-            List<T> list = new(capacity: source.Length);
-
-            foreach (T item in source.Span)
-            {
-                list.Add(item);
-            }
-
-            return list;
+            T[] array = new T[source.Length];
+            source.Span.CopyTo(array);
+            return new List<T>(array);
         }
     }
 }
+
