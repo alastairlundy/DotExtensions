@@ -1,8 +1,8 @@
-# Copilot agent onboarding for alastairlundy/DotExtensions
+# Agent onboarding for alastairlundy/DotExtensions
 
 Repository summary
 - Purpose: A small C# class-library of extension methods and utilities for common CLR types (strings, collections, tasks, etc.). Intended to be consumed as a library (NuGet or project reference).
-- Language / stack: 100% C# (class libraries). Typical layout is one or more .csproj projects (library) and likely an accompanying test project. Builds with the .NET SDK (dotnet CLI).
+- Language / stack: 100% C# (class libraries). Typical layout is one or more .csproj projects (library) and an accompanying test project. Builds with the .NET SDK (dotnet CLI).
 
 High-level repo information (what an agent needs to know upfront)
 - Typical important files to check first:
