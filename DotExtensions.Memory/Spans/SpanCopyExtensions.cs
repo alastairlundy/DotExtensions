@@ -57,28 +57,19 @@ public static class SpanCopyExtensions
         {
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
-            
-            if (destination.Length < startIndex + length)
+            ArgumentOutOfRangeException.ThrowIfNegative(length);
+
+            if (startIndex + length > source.Length)
+                throw new ArgumentOutOfRangeException(nameof(length));
+
+            // If destination is too small, point it at a slice of the source to avoid per-element copies.
+            if (destination.Length < length)
             {
                 destination = source.Slice(startIndex, length);
                 return;
             }
 
-            int expectedEnd = startIndex + length;
-            int actualEnd = destination.Length;
-
-            int end = actualEnd;
-
-            if (actualEnd <= expectedEnd)
-                end = actualEnd;
-            if (expectedEnd <= actualEnd)
-                end = expectedEnd;
-
-            for (int i = startIndex; i < end; i++)
-            {
-                destination[i - startIndex] = source[i];
-            }
+            source.Slice(startIndex, length).CopyTo(destination);
         }
 
         /// <summary>
@@ -90,7 +81,7 @@ public static class SpanCopyExtensions
         /// <exception cref="ArgumentOutOfRangeException">Thrown if the start or end indices are out of range for the span.</exception>
         /// <exception cref="ArgumentException">Thrown if the source <see cref="Span{T}"/> is larger than the destination <see cref="Span{T}"/>.</exception>
         public void CopyTo(ref Span<T> destination, int startIndex) =>
-            source.CopyTo(ref destination, startIndex, Math.Abs(source.Length - startIndex));
+            source.CopyTo(ref destination, startIndex, source.Length - startIndex);
 
         /// <summary>
         /// Copies a specified range of elements from the source span to the destination span.
@@ -105,22 +96,16 @@ public static class SpanCopyExtensions
             int startIndex,
             int length)
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(startIndex);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
+            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+            ArgumentOutOfRangeException.ThrowIfNegative(length);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            
-            if (destination.Length < source.Length)
-                throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationShorterThanSource,
-                    nameof(destination));
-            
-            if(destination.Length < startIndex + length)
-                throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationSmallerThanIndex, nameof(destination));
+            if (startIndex + length > source.Length)
+                throw new ArgumentOutOfRangeException(nameof(length));
 
-            for (int i = 0; i < length; i++)
-            {
-                destination[startIndex] = source[i];
-                startIndex++;
-            }
+            if (destination.Length < length)
+                throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationShorterThanSource, nameof(destination));
+
+            source.Slice(startIndex, length).CopyTo(destination);
         }
     }
 
@@ -137,22 +122,19 @@ public static class SpanCopyExtensions
         if (startIndex < 0 || startIndex > source.Length)
             return false;
 
+        int length = source.Length - startIndex;
+
         try
         {
-            source.OptimisticCopy(ref destination, startIndex);
-
-            for (int i = startIndex; i < source.Length; i++)
+            if (destination.Length >= length)
             {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                if (destination[i] is not null && !destination[i]
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-                        .Equals(source[i]))
-                {
-                    return false;
-                }
+                source.Slice(startIndex, length).CopyTo(destination);
+                return true;
             }
 
-            return true;
+            // Attempt to set destination to a slice of the source to avoid allocation/copies.
+            source.OptimisticCopy(ref destination, startIndex, length);
+            return destination.Length >= length;
         }
         catch
         {
@@ -177,23 +159,19 @@ public static class SpanCopyExtensions
     {
         if (startIndex < 0 || startIndex > source.Length)
             return false;
+        if (length < 0 || startIndex + length > source.Length)
+            return false;
 
         try
         {
-            source.OptimisticCopy(ref destination, startIndex, length);
-
-            for (int i = startIndex; i < source.Length; i++)
+            if (destination.Length >= length)
             {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                if (destination[i] is not null && !destination[i]
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-                        .Equals(source[i]))
-                {
-                    return false;
-                }
+                source.Slice(startIndex, length).CopyTo(destination);
+                return true;
             }
 
-            return true;
+            source.OptimisticCopy(ref destination, startIndex, length);
+            return destination.Length >= length;
         }
         catch
         {
@@ -232,36 +210,19 @@ public static class SpanCopyExtensions
         {
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
-            
-            if (destination.Length < startIndex + length)
+            ArgumentOutOfRangeException.ThrowIfNegative(length);
+            if (startIndex + length > source.Length)
+                throw new ArgumentOutOfRangeException(nameof(length));
+
+            if (destination.Length >= length)
             {
-                ReadOnlySpan<T> spanRes = source.Slice(startIndex, length);
-                spanRes.CopyTo(destination);   
+                source.Slice(startIndex, length).CopyTo(destination);
                 return;
             }
 
-            int expectedEnd = startIndex + length;
-            int actualEnd = destination.Length;
-
-            int end = actualEnd;
-
-            if (actualEnd <= expectedEnd)
-                end = actualEnd;
-            if (expectedEnd <= actualEnd)
-                end = expectedEnd;
-
-            int actualLength = Math.Abs(end - startIndex);
-
-            T[] outputArray = new T[actualLength];
-            Span<T> output = new Span<T>(outputArray);
-            
-            for (int i = startIndex; i < end; i++)
-            {
-                output[i - startIndex] = source[i];
-            }
-
-            destination = output;
+            T[] outputArray = new T[length];
+            source.Slice(startIndex, length).CopyTo(outputArray);
+            destination = outputArray.AsSpan();
         }
     }
 
