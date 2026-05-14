@@ -39,14 +39,10 @@ public static class ReverseExtensions
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
-            T[] array = new  T[span.Length];
-            
-            for (int index = span.Length - 1; index >= 0; index--)
-            {
-                array[(span.Length - 1) - index] = span[index];
-            }
-
-            span = new ReadOnlySpan<T>(array);
+            T[] array = new T[span.Length];
+            span.CopyTo(array);
+            Array.Reverse(array);
+            span = array.AsSpan();
         }
     }
 
@@ -62,19 +58,15 @@ public static class ReverseExtensions
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
-            T[] array = ArrayPool<T>.Shared.Rent(memory.Length);
+            int len = memory.Length;
+            T[] array = ArrayPool<T>.Shared.Rent(len);
 
             try
             {
-                for (int index = memory.Length - 1; index >= 0; index--)
-                {
-                    array[(memory.Length - 1) - index] = memory.Span[index];
-                }
-
-                for (int i = 0; i < memory.Length; i++)
-                {
-                    memory.Span[i] = array[i];
-                }
+                Span<T> rentedSpan = new Span<T>(array, 0, len);
+                memory.Span.CopyTo(rentedSpan);
+                Array.Reverse(array, 0, len);
+                rentedSpan.CopyTo(memory.Span);
             }
             finally
             {
@@ -94,14 +86,10 @@ public static class ReverseExtensions
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public void Reverse()
         {
-            T[] array = new  T[memory.Length];
-            
-            for (int index = memory.Length - 1; index >= 0; index--)
-            {
-                array[(memory.Length - 1) - index] = memory.Span[index];
-            }
-
-            memory = new ReadOnlyMemory<T>(array);
+            T[] array = new T[memory.Length];
+            memory.Span.CopyTo(array);
+            Array.Reverse(array);
+            memory = array.AsMemory();
         }
     }
 }
