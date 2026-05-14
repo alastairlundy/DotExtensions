@@ -46,13 +46,15 @@ public static class SpanResizeExtensions
                 return;
             }
 
-            T[] newTargetArray = new  T[newSize];
+            T[] newTargetArray = new T[newSize];
             Span<T> destination = new(newTargetArray);
 
-            int endCopy = target.Length < newSize ? target.Length : newSize;
+            int copyLen = Math.Min(target.Length, newSize);
+            if (copyLen > 0)
+            {
+                target.Slice(0, copyLen).CopyTo(destination);
+            }
 
-            target.OptimisticCopy(ref destination, 0, endCopy);
-            
             target = destination[..newSize];
         }
     }
