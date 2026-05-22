@@ -44,4 +44,19 @@ public static class AsStringSegmentsExtensions
            
             return segments.ToArray();
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public StringSegment[] AsStringSegments(string separator)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(source);
+            ArgumentException.ThrowIfNullOrEmpty(separator);
+            
+            return source.AsStringSegments(new StringSegment(separator));
+        }
+    }
 }
