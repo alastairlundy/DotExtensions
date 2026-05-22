@@ -44,6 +44,28 @@ public static class AsStringSegmentsExtensions
            
             return segments.ToArray();
         }
+
+        public StringSegment[] AsStringSegments(StringSegment separator)
+        {
+            ArgumentException.ThrowIfNullOrEmpty(source);
+
+            if (separator.Length == 0)
+                return new StringTokenizer(source, []).ToArray();
+            
+            if(separator.Length == 1)
+                return source.AsStringSegments(separator[0]);
+            
+            List<StringSegment> list = [];
+
+            for (int index = 0; index < separator.Length; index++)
+            {
+                
+                
+            }
+            
+            
+            return list.ToArray();
+        }
         
         /// <summary>
         /// 
