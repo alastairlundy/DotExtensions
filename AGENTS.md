@@ -109,3 +109,17 @@ Final guidance to the agent
 - When in doubt about SDK or CI behavior, inspect `.github/workflows/*.yml` and `global.json` — those two files determine build/runtime invariants for the repo.
 
 (If you need more precise, file-level guidance, inspect these locations in the repository in this order: global.json, *.sln, .github/workflows/*.yml, .editorconfig, src/*/*.csproj, tests/*/*.csproj.)
+
+## Agent skills
+
+### Issue tracker
+
+[GitHub Issues](https://github.com/alastairlundy/DotExtensions/issues) - see docs/agents/issue-tracker.md.
+
+### Triage labels
+
+[Default triage labels](docs/agents/triage-labels.md) - see docs/agents/triage-labels.md.
+
+### Domain docs
+
+[Single-context layout](docs/agents/domain.md) - see docs/agents/domain.md.
