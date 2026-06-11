@@ -41,7 +41,8 @@ public static class AsStringSegmentsExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(source);
             IEnumerable<StringSegment> segments = new StringTokenizer(source, [separator]);
-           
+
             return segments.ToArray();
         }
+    }
 }
