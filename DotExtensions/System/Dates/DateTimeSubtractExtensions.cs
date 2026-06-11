@@ -98,55 +98,16 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="months">The number of months to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
-        public DateTime SubtractMonths(double months)
-        {
-            DateTime result = dateTime;
-            int daysToRemove = 0;
-
-            if (months > 12)
-            {
-                double years = Math.Round(months % 12);
-                result = dateTime.SubtractYears(years);
-
-                double remainder = years - Math.Round(12 % months);
-                daysToRemove += Convert.ToInt32(
-                    remainder * Convert.ToDouble(DateTime.DaysInMonth(result.Year, result.Month))
-                );
-            }
-
-            if (months <= 12)
-            {
-                for (double index = 1.0; index <= months; index += 1.0)
-                {
-                    int currentMonth = dateTime.Month - Convert.ToInt32(index);
-                    daysToRemove += DateTime.DaysInMonth(dateTime.Year, currentMonth);
-                }
-            }
-
-            return result.Subtract(TimeSpan.FromDays(Convert.ToDouble(daysToRemove)));
-        }
+        public DateTime SubtractMonths(double months) =>
+            dateTime.AddMonths(-(int)months);
 
         /// <summary>
         /// Subtract a specified number of years from a DateTime.
         /// </summary>
         /// <param name="years">The number of years to subtract from the specified DateTime.</param>
         /// <returns>The modified DateTime object.</returns>
-        public DateTime SubtractYears(double years)
-        {
-            int daysToRemove = 0;
-
-            for (double index = 0.0; index < years; index += 1.0)
-            {
-                for (int monthCount = 1; monthCount <= 12; monthCount++)
-                {
-                    daysToRemove += DateTime.DaysInMonth(
-                        dateTime.Year - Convert.ToInt32(index), monthCount
-                    );
-                }
-            }
-
-            return dateTime.Subtract(TimeSpan.FromDays(daysToRemove));
-        }
+        public DateTime SubtractYears(double years) =>
+            dateTime.AddYears(-(int)years);
 
 #if NET8_0_OR_GREATER
         /// <summary>

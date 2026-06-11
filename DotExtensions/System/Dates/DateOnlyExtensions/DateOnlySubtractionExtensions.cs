@@ -51,7 +51,7 @@ public static class DateOnlySubtractionExtensions
         /// <returns>the modified DateOnly object.</returns>
         public DateOnly SubtractMonths(int months)
         {
-            DateTime result = DateOnly.ToDateTime(dateOnly).SubtractMonths(Convert.ToDouble(months));
+            DateTime result = DateOnly.ToDateTime(dateOnly).AddMonths(-months);
             return DateOnly.FromDateTime(result);
         }
 
@@ -62,7 +62,7 @@ public static class DateOnlySubtractionExtensions
         /// <returns>the modified DateOnly object.</returns>
         public DateOnly SubtractYears(int years)
         {
-            DateTime result = DateOnly.ToDateTime(dateOnly).SubtractYears(Convert.ToDouble(years));
+            DateTime result = DateOnly.ToDateTime(dateOnly).AddYears(-years);
             return DateOnly.FromDateTime(result);
         }
     }
