@@ -26,19 +26,19 @@ using System.IO;
 using DotExtensions.IO.Permissions;
 #pragma warning disable CS0618 // Type or member is obsolete
 
-namespace DotExtensions.Tests.IO;
+namespace DotExtensions.Tests.IO.UnixFileMode;
 
 public class UnixFileModeExtensionTests
 {
     [Test]
     public async Task UnixFileMode_HasExecutePermissions_True()
     {
-        UnixFileMode expectedUser =
-            UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute;
-        UnixFileMode expectedGroup =
-            UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute;
-        UnixFileMode expectedOthers =
-            UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute;
+        global::System.IO.UnixFileMode expectedUser =
+            global::System.IO.UnixFileMode.UserRead | global::System.IO.UnixFileMode.UserWrite | global::System.IO.UnixFileMode.UserExecute;
+        global::System.IO.UnixFileMode expectedGroup =
+            global::System.IO.UnixFileMode.GroupRead | global::System.IO.UnixFileMode.GroupWrite | global::System.IO.UnixFileMode.GroupExecute;
+        global::System.IO.UnixFileMode expectedOthers =
+            global::System.IO.UnixFileMode.OtherRead | global::System.IO.UnixFileMode.OtherWrite | global::System.IO.UnixFileMode.OtherExecute;
 
         await Assert.That(expectedUser.HasExecutePermission).IsTrue();
         await Assert.That(expectedGroup.HasExecutePermission).IsTrue();

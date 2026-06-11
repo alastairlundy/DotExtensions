@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.IO;
 using DotExtensions.IO;
 
-namespace DotExtensions.Tests.IO;
+namespace DotExtensions.Tests.IO.FileSize;
 
 public class FileSizeExtensionTests
 {
