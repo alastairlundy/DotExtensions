@@ -5,14 +5,14 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.9" />
     <PackageVersion Include="Microsoft.Bcl.Memory" Version="10.0.9" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.102" />
     <PackageVersion Include="Polyfill" Version="10.8.1" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.123" />
     <PackageVersion Include="System.IO.FileSystem.AccessControl" Version="5.0.0" />
     <PackageVersion Include="System.Memory" Version="4.6.3" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="TUnit" Version="1.53.0" />
+    <PackageVersion Include="TUnit" Version="1.60.0" />
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
   </ItemGroup>
 </Project>
