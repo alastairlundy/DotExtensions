@@ -29,6 +29,15 @@ namespace DotExtensions.Memory.Spans;
 /// </summary>
 public static class SpanCopyExtensions
 {
+    private static void ValidateCopyRange(int sourceLength, int startIndex, int length)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+        ArgumentOutOfRangeException.ThrowIfNegative(length);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, sourceLength);
+        if (startIndex + length > sourceLength)
+            throw new ArgumentOutOfRangeException(nameof(length));
+    }
+
     #region Span version
     /// <param name="source">The source span.</param>
     /// <typeparam name="T">The type of elements in the span.</typeparam>
@@ -55,12 +64,7 @@ public static class SpanCopyExtensions
             int startIndex,
             int length)
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegative(length);
-
-            if (startIndex + length > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(length));
+            ValidateCopyRange(source.Length, startIndex, length);
 
             // If destination is too small, point it at a slice of the source to avoid per-element copies.
             if (destination.Length < length)
@@ -96,11 +100,7 @@ public static class SpanCopyExtensions
             int startIndex,
             int length)
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfNegative(length);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            if (startIndex + length > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(length));
+            ValidateCopyRange(source.Length, startIndex, length);
 
             if (destination.Length < length)
                 throw new ArgumentException(Resources.Exceptions_Spans_Copy_DestinationShorterThanSource, nameof(destination));
@@ -208,11 +208,7 @@ public static class SpanCopyExtensions
             int length
         )
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, source.Length);
-            ArgumentOutOfRangeException.ThrowIfNegative(length);
-            if (startIndex + length > source.Length)
-                throw new ArgumentOutOfRangeException(nameof(length));
+            ValidateCopyRange(source.Length, startIndex, length);
 
             if (destination.Length >= length)
             {
@@ -220,7 +216,7 @@ public static class SpanCopyExtensions
                 return;
             }
 
-            T[] outputArray = new T[length];
+            T[] outputArray = GC.AllocateUninitializedArray<T>(length);
             source.Slice(startIndex, length).CopyTo(outputArray);
             destination = outputArray.AsSpan();
         }
