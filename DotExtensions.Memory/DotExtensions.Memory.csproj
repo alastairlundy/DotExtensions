@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.3.3</Version>
+    <Version>10.3.4</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,13 +21,24 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>- Updated `Polyfill` from 10.5.1 to 10.8.1</PackageReleaseNotes>
+    <PackageReleaseNotes># Changes since 10.3.3
+## All Projects
+
+### ⚙️ Modifications
+#### Runtime Dependencies
+- Updated Microsoft.Bcl.Memory from 10.0.9 to 10.0.10
+- Updated Polyfill from 10.8.1 to 10.11.2
+
+#### Test Dependencies
+- Updated Meziantou.Analyzer from 3.0.102 to 3.0.123
+Testing Dependencies
+- Updated TUnit from 1.53.0 to 1.60.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
-    <AssemblyVersion>10.3.3</AssemblyVersion>
-    <FileVersion>10.3.3</FileVersion>
+    <AssemblyVersion>10.3.4</AssemblyVersion>
+    <FileVersion>10.3.4</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
