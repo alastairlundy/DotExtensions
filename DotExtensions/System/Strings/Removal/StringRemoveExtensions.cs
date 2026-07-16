@@ -49,12 +49,35 @@ public static class StringRemoveExtensions
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentException.ThrowIfNullOrEmpty(value);
 
-            while (str.Contains(value, stringComparison))
+            int valueLength = value.Length;
+            int strLength = str.Length;
+
+            if (valueLength > strLength)
+                return str;
+
+            StringBuilder sb = new(strLength);
+            int searchStart = 0;
+
+            while (searchStart <= strLength - valueLength)
             {
-                str = str.RemoveFirst(value);
+                int index = str.IndexOf(value, searchStart, stringComparison);
+
+                if (index == -1)
+                {
+                    sb.Append(str, searchStart, strLength - searchStart);
+                    return sb.ToString();
+                }
+
+                if (index > searchStart)
+                    sb.Append(str, searchStart, index - searchStart);
+
+                searchStart = index + valueLength;
             }
 
-            return str;
+            if (searchStart < strLength)
+                sb.Append(str, searchStart, strLength - searchStart);
+
+            return sb.ToString();
         }
 
         /// <summary>
