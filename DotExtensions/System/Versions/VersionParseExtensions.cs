@@ -51,7 +51,10 @@ public static class VersionParseExtensions
         if (result.Equals(string.Empty))
             result = "-1";
         
-        return (int.Parse(result, CultureInfo.InvariantCulture), -1, -1, -1);
+        if (!int.TryParse(result, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsed))
+            parsed = int.MaxValue;
+        
+        return (parsed, -1, -1, -1);
     }
     
     private static string SanitizeInput(string versionString, char separator)
@@ -89,59 +92,44 @@ public static class VersionParseExtensions
     private static (int major, int minor, int build, int revision) ParseComponents(StringSegment[] versionComponents)
     {
         int major = -1, minor = -1, build = -1, revision = -1;
-
         int componentsAdded = 0;
         
         versionComponents = versionComponents.Where(v =>
             {
                 int firstNumberIndex = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
-
                 return firstNumberIndex != -1;
             })
             .Select(v =>
             {
                 int index = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
-
                 return v.Subsegment(index);
             })
             .ToArray();
 
-
         for (int index = 0; index < versionComponents.Length; index++)
         {
             StringSegment component = versionComponents[index];
-            
             if (componentsAdded >= 4)
                 break;
 
             StringBuilder stringBuilder = new(component.Length);
-
             for (int i = 0; i < component.Length; i++)
             {
                 char currentChar = component[i];
-                
                 if (char.IsDigit(currentChar))
-                {
                     stringBuilder.Append(currentChar);
-                }
             }
 
             string componentString = stringBuilder.ToString().TrimEnd('.');
-            
+            if (!int.TryParse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsedComponent))
+                parsedComponent = int.MaxValue;
+
             switch (index)
             {
-                case 0:
-                    major = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                    break;
-                case 1:
-                    minor = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                    break;
-                case 2:
-                    build = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                    break;
-                case 3:
-                    revision = int.Parse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture);
-                    break;
+                case 0: major = parsedComponent; break;
+                case 1: minor = parsedComponent; break;
+                case 2: build = parsedComponent; break;
+                case 3: revision = parsedComponent; break;
             }
             componentsAdded++;
         }

@@ -50,8 +50,8 @@ public class VersionGracefulParseBenchmarks
                 versionString = random switch
                 {
                     3 => versionString,
-                    2 => $"{versionString}.{_faker.Random.Int(min: 0)}",
-                    1 => $"{versionString}{_faker.Random.Int(min:0)}",
+                    2 => $"{versionString}.{_faker.Random.Int(min: 0, max: 9999)}",
+                    1 => $"{versionString}{_faker.Random.Int(min: 0, max: 9999)}",
                     _ => versionString
                 };
                 
