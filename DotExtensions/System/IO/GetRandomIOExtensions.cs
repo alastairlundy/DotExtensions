@@ -42,49 +42,82 @@ public static class GetRandomIOExtensions
         /// <exception cref="InvalidOperationException">Thrown when no logical drives are available.</exception>
         public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false, bool driveMustContainDirectories = true)
         {
-            DriveInfo[] drives;
+            DriveInfo[] drives = DriveInfo.SafelyGetLogicalDrives();
 
-            if (driveMustContainDirectories)
+            if (drives.Length == 0)
+                throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
+
+            if (drives.Length == 1)
             {
-                drives = DriveInfo.SafelyEnumerateLogicalDrives()
-                    .Where(d => d.HasDirectories)
-                    .ToArray();
+                DriveInfo single = drives[0];
+
+                if (driveMustContainDirectories && !DriveHasDirectoriesCheap(single))
+                    throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
+
+                if (driveMustContainFiles && !DriveHasFilesCheap(single))
+                    throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
+
+                return single;
             }
-            else
-            {
-                drives = DriveInfo.SafelyGetLogicalDrives();
-            }
-            
-            DriveInfo drive;
 
-            bool driveHasFiles;
-
-            do
+            if (driveMustContainDirectories || driveMustContainFiles)
             {
-                switch (drives.Length)
+                DriveInfo[] filtered = drives.Where(d =>
+                    (!driveMustContainDirectories || DriveHasDirectoriesCheap(d)) &&
+                    (!driveMustContainFiles || DriveHasFilesCheap(d))
+                ).ToArray();
+
+                if (filtered.Length == 0)
                 {
-                    case 0:
-                        throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
-                    case > 1:
-                    {
-                        int randomDriveNumber = Random.Shared.Next(0, drives.Length);
-
-                        drive = drives[randomDriveNumber];
-                        break;
-                    }
-                    default:
-                        drive = drives[0];
-                        break;
+                    throw driveMustContainFiles
+                        ? new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles)
+                        : new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
                 }
 
-                driveHasFiles = drive.HasFiles;
-
-                if (!(drives.Length > 1) && !driveHasFiles && driveMustContainFiles)
-                    throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
+                return filtered[Random.Shared.Next(0, filtered.Length)];
             }
-            while (!driveHasFiles && driveMustContainFiles);
 
-            return drive;
+            return drives[Random.Shared.Next(0, drives.Length)];
+        }
+
+        /// <summary>
+        /// Cheaply checks whether a drive has any top-level directories without recursive enumeration.
+        /// </summary>
+        private static bool DriveHasDirectoriesCheap(DriveInfo drive)
+        {
+            try
+            {
+                return drive.IsReady && drive.RootDirectory.SafelyEnumerateDirectories().Any();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Cheaply checks whether a drive has any files by checking the root directory
+        /// and its immediate subdirectories, avoiding a full recursive enumeration.
+        /// </summary>
+        private static bool DriveHasFilesCheap(DriveInfo drive)
+        {
+            try
+            {
+                if (!drive.IsReady)
+                    return false;
+
+                DirectoryInfo root = drive.RootDirectory;
+
+                if (root.SafelyEnumerateFiles().Any())
+                    return true;
+
+                return root.SafelyEnumerateDirectories()
+                    .Any(d => d.SafelyEnumerateFiles().Any());
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 
@@ -98,37 +131,59 @@ public static class GetRandomIOExtensions
         /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
-            IEnumerable<DirectoryInfo> dirs = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles)
-                .RootDirectory
-                .SafelyEnumerateDirectories("*", SearchOption.AllDirectories)
-                .Where(d => d.Exists);
-
-            if (mustContainFiles)
-            {
-                dirs = dirs.Where(d => d.HasFiles);
-            }
+            DriveInfo drive = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles);
             
-            DirectoryInfo[] array = dirs.ToArray();
+            DirectoryInfo? result = FindRandomDirectoryByWalk(drive.RootDirectory, mustContainFiles);
             
-            DirectoryInfo? output = Random.Shared.GetItems(array, 1).FirstOrDefault();
+            if (result is not null)
+                return result;
             
-            if (output is null)
-            {
-                string sysDir = OperatingSystem.IsWindows()
-                    ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
-                    : Environment.SystemDirectory;
-                
-                output = new DirectoryInfo(sysDir)
-                             .Parent ?? 
+            string sysDir = OperatingSystem.IsWindows()
+                ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
+                : Environment.SystemDirectory;
+            
+            return new DirectoryInfo(sysDir).Parent ?? 
 #if NET8_0_OR_GREATER
-                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
-                             sysDir, StringComparison.OrdinalIgnoreCase));
+                   throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
+                       sysDir, StringComparison.OrdinalIgnoreCase));
 #else
-                         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir));
+                   throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir));
 #endif
-            }
+        }
+
+        /// <summary>
+        /// Walks the directory tree randomly to find a directory, optionally one that contains files.
+        /// </summary>
+        private static DirectoryInfo? FindRandomDirectoryByWalk(DirectoryInfo dir, bool mustContainFiles)
+        {
+            const int maxAttempts = 64;
             
-            return output;
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                DirectoryInfo current = dir;
+
+                while (true)
+                {
+                    DirectoryInfo[] subDirs = current.SafelyGetDirectories();
+
+                    if (subDirs.Length == 0)
+                    {
+                        if (!mustContainFiles || current.HasFiles)
+                            return current;
+
+                        break;
+                    }
+
+                    DirectoryInfo next = subDirs[Random.Shared.Next(0, subDirs.Length)];
+
+                    if (mustContainFiles && next.HasFiles)
+                        return next;
+
+                    current = next;
+                }
+            }
+
+            return null;
         }
     }
 
@@ -140,34 +195,45 @@ public static class GetRandomIOExtensions
         /// <returns>A <see cref="FileInfo"/> object representing the randomly selected file.</returns>
         public static FileInfo GetRandomFile()
         {
-            DirectoryInfo startDir = DriveInfo.GetRandomDrive(driveMustContainFiles: true, driveMustContainDirectories: true)
-                .RootDirectory;
+            DriveInfo drive = DriveInfo.GetRandomDrive(driveMustContainFiles: true, driveMustContainDirectories: true);
             
-            DirectoryInfo[] dirs = startDir.SafelyEnumerateDirectories()
-                .Where(d => d.HasFiles)
-                .ToArray();
+            FileInfo? result = FindRandomFileByWalk(drive.RootDirectory);
             
-            while(true)
+            if (result is not null)
+                return result;
+
+            throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
+        }
+
+        /// <summary>
+        /// Walks the directory tree randomly, descending into a random subdirectory at each level,
+        /// and returns a random file from the first directory that contains files.
+        /// </summary>
+        private static FileInfo? FindRandomFileByWalk(DirectoryInfo dir)
+        {
+            const int maxAttempts = 64;
+            
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
-                DirectoryInfo dir = dirs[Random.Shared.Next(0, dirs.Length)];
+                DirectoryInfo current = dir;
 
-                DirectoryInfo[] subDirectories = dir.SafelyEnumerateDirectories()
-                    .Where(d => d.HasFiles).ToArray();
+                while (true)
+                {
+                    FileInfo[] files = current.SafelyGetFiles();
 
-                if (subDirectories.Length == 0)
-                    continue;
+                    if (files.Length > 0)
+                        return files[Random.Shared.Next(0, files.Length)];
 
-                FileInfo[] files = dir.SafelyGetFiles("*", SearchOption.AllDirectories);
+                    DirectoryInfo[] subDirs = current.SafelyGetDirectories();
 
-                if (files.Length == 0)
-                    break;
+                    if (subDirs.Length == 0)
+                        break;
 
-                return files[Random.Shared.Next(0, files.Length)];
+                    current = subDirs[Random.Shared.Next(0, subDirs.Length)];
+                }
             }
 
-            return Random.Shared.GetItems(dirs, 1)
-                [0].SafelyEnumerateFiles()
-                .First();
+            return null;
         }
     }
     
