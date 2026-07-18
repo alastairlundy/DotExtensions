@@ -33,6 +33,8 @@ namespace DotExtensions.IO;
 /// </summary>
 public static class GetRandomIOExtensions
 {
+    private const int MaxWalkDepth = 64;
+
     extension(DriveInfo)
     {
         /// <summary>
@@ -157,14 +159,21 @@ public static class GetRandomIOExtensions
         private static DirectoryInfo? FindRandomDirectoryByWalk(DirectoryInfo dir, bool mustContainFiles)
         {
             const int maxAttempts = 64;
-            
+
             for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
                 DirectoryInfo current = dir;
+                HashSet<string> visited = new(StringComparer.Ordinal);
+                int depth = 0;
 
-                while (true)
+                while (depth < MaxWalkDepth)
                 {
-                    DirectoryInfo[] subDirs = current.SafelyGetDirectories();
+                    if (!visited.Add(current.FullName))
+                        break;
+
+                    DirectoryInfo[] subDirs = current.SafelyGetDirectories()
+                        .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                        .ToArray();
 
                     if (subDirs.Length == 0)
                     {
@@ -180,6 +189,7 @@ public static class GetRandomIOExtensions
                         return next;
 
                     current = next;
+                    depth++;
                 }
             }
 
@@ -212,24 +222,32 @@ public static class GetRandomIOExtensions
         private static FileInfo? FindRandomFileByWalk(DirectoryInfo dir)
         {
             const int maxAttempts = 64;
-            
+
             for (int attempt = 0; attempt < maxAttempts; attempt++)
             {
                 DirectoryInfo current = dir;
+                HashSet<string> visited = new(StringComparer.Ordinal);
+                int depth = 0;
 
-                while (true)
+                while (depth < MaxWalkDepth)
                 {
+                    if (!visited.Add(current.FullName))
+                        break;
+
                     FileInfo[] files = current.SafelyGetFiles();
 
                     if (files.Length > 0)
                         return files[Random.Shared.Next(0, files.Length)];
 
-                    DirectoryInfo[] subDirs = current.SafelyGetDirectories();
+                    DirectoryInfo[] subDirs = current.SafelyGetDirectories()
+                        .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                        .ToArray();
 
                     if (subDirs.Length == 0)
                         break;
 
                     current = subDirs[Random.Shared.Next(0, subDirs.Length)];
+                    depth++;
                 }
             }
 
