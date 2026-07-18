@@ -42,7 +42,7 @@ public static class CountDigitsExtensions
         /// <summary>
         /// Counts the number of digits in the numerical value.
         /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
+        /// <returns>The number of digits in the numerical value, returned as an integer; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
         public int CountNumberOfDigits()
         {
             // Dispatch common numeric types to specialized implementations
@@ -169,10 +169,9 @@ public static class CountDigitsExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsDouble(double number)
     {
-        // NaN comparisons all return false, so handle it explicitly to avoid an infinite loop.
         if (double.IsNaN(number))
         {
-            return 3; // "NaN"
+            return -1;
         }
 
         if (number < 0.0 || (number == 0.0 && 1.0 / number < 0.0))
@@ -182,7 +181,7 @@ public static class CountDigitsExtensions
 
         if (double.IsPositiveInfinity(number))
         {
-            return 3;
+            return -1;
         }
 
         int digits = 1;
@@ -204,7 +203,7 @@ public static class CountDigitsExtensions
     {
         if (float.IsNaN(number))
         {
-            return 3;
+            return -1;
         }
 
         if (number < 0.0f || (number == 0.0f && 1.0f / number < 0.0f))
@@ -214,7 +213,7 @@ public static class CountDigitsExtensions
 
         if (float.IsPositiveInfinity(number))
         {
-            return 3;
+            return -1;
         }
 
         int digits = 1;
@@ -265,7 +264,7 @@ public static class CountDigitsExtensions
 
         if (TNumber.IsNaN(number))
         {
-            return 3;
+            return -1;
         }
 
         if (number < zero)
@@ -354,12 +353,12 @@ public static class CountDigitsExtensions
         /// <summary>
         /// Counts the number of digits in the numerical value.
         /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as a double precision floating point number.</returns>
+        /// <returns>The number of digits in the numerical value, returned as a double precision floating point number; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
         public int CountNumberOfDigits()
         {
             if (double.IsNaN(number))
             {
-                return 3;
+                return -1;
             }
 
             if (number < 0.0 || (number == 0.0 && 1.0 / number < 0.0))
@@ -369,7 +368,7 @@ public static class CountDigitsExtensions
 
             if (double.IsPositiveInfinity(number))
             {
-                return 3;
+                return -1;
             }
 
             int digits = 1;
