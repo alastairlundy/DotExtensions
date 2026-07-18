@@ -33,4 +33,11 @@ span[5] = 6;
 span[6] = 7;
 Console.WriteLine($"Span last two => {span[5]}, {span[6]}");
 
+// Memory/Spans: char removal
+char[] chars = "hello world, world!".ToCharArray();
+Span<char> charSpan = chars;
+int newLength = charSpan.RemoveAll("world");
+Console.WriteLine($"charSpan new length => {newLength}");
+Console.WriteLine($"charSpan contents => {charSpan[..newLength].ToString()}");
+
 Console.WriteLine(Resources.DotExtensions_AoT_Messages_Outro);
