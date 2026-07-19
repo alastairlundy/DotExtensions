@@ -24,6 +24,8 @@
 
 using System;
 using System.Linq;
+using BenchmarkDotNet.Configs;
+using DotExtensions.Benchmarking;
 using DotExtensions.Strings;
 
 namespace DotExtensions.Benchmarking.Benchmarks.Strings;
@@ -38,9 +40,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.Strings;
 /// source string is used for every method at a given <see cref="N"/> so that the
 /// only thing varying between the three methods is the algorithm itself.
 /// </remarks>
-[ShortRunJob(RuntimeMoniker.Net80)]
-[ShortRunJob(RuntimeMoniker.Net90)]
-[ShortRunJob(RuntimeMoniker.Net10_0)]
+[Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
 [CsvMeasurementsExporter]
 public class StringRemoveExtensionsBenchmarks
