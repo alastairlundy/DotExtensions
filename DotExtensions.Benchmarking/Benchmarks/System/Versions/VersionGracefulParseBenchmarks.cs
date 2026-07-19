@@ -11,10 +11,18 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Versions;
 [CsvMeasurementsExporter]
 public class VersionGracefulParseBenchmarks
 {
+    // Bogus-generated appended integers are clamped to this maximum so
+    // int.Parse / Version's int-typed constructor never receives an
+    // OverflowException. Realistic version components are well within
+    // this range; the constant is named explicitly to make the intent
+    // (clamping, not unrestricted random) obvious to readers and to
+    // future contributors tweaking the bound.
+    private const int MaxVersionComponent = 9_999;
+
     private readonly Faker _faker;
-    
+
     private IList<string> _bogusVersionStrings;
-    
+
     public VersionGracefulParseBenchmarks()
     {
         _faker = new Faker();
@@ -43,18 +51,18 @@ public class VersionGracefulParseBenchmarks
                     4 => "-final",
                     _ => ""
                 };
-                
+
                 string versionString = $"{_faker.System.Version()}{suffix}";
 
                 int random =  Random.Shared.Next(0, 3);
                 versionString = random switch
                 {
                     3 => versionString,
-                    2 => $"{versionString}.{_faker.Random.Int(min: 0, max: 9999)}",
-                    1 => $"{versionString}{_faker.Random.Int(min: 0, max: 9999)}",
+                    2 => $"{versionString}.{_faker.Random.Int(min: 0, max: MaxVersionComponent)}",
+                    1 => $"{versionString}{_faker.Random.Int(min: 0, max: MaxVersionComponent)}",
                     _ => versionString
                 };
-                
+
                 return versionString;
             }
 
@@ -66,14 +74,14 @@ public class VersionGracefulParseBenchmarks
     public IList<Version> GracefulParse_Impl()
     {
         List<Version> output = new(capacity:_bogusVersionStrings.Count);
-        
+
         foreach (string version in _bogusVersionStrings)
         {
             Version result = Version.GracefulParse(version);
-            
+
             output.Add(result);
         }
-        
+
         return output;
     }
 }

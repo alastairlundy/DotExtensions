@@ -10,16 +10,24 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 public class DigitCountingExperimentBenchmarks
 {
     private int[] _numbers;
+    private int[] _results;
 
     public DigitCountingExperimentBenchmarks()
     {
-        _numbers = new int[N];
+        _numbers = Array.Empty<int>();
+        _results = Array.Empty<int>();
     }
-    
+
     [GlobalSetup]
     public void Setup()
     {
         _numbers = new int[N];
+        // Pre-allocate the results array once per [Params] value so the
+        // per-iteration allocation cost is removed from the measured body.
+        // A consumer of CountNumberOfDigits() would not typically keep a
+        // 100M-element result array around, so this allocation is test
+        // scaffolding rather than a realistic workload cost.
+        _results = new int[N];
 
         for (int i = 0; i < _numbers.Length; i++)
         {
@@ -32,13 +40,12 @@ public class DigitCountingExperimentBenchmarks
         100_000_000
     )]
     public int N;
-    
+
 
     [Benchmark]
+    [BenchmarkCategory("Slow", "StringBased")]
     public int[] String_Length()
     {
-        int[] results = new int[N];
-
         for (int index = 0; index < _numbers.Length; index++)
         {
             int number = _numbers[index];
@@ -49,22 +56,21 @@ public class DigitCountingExperimentBenchmarks
                 tempI = number * -1;
             }
 
-            results[index] = tempI.ToString().Length;
+            _results[index] = tempI.ToString().Length;
         }
 
-        return results;
+        return _results;
     }
 
     [Benchmark]
+    [BenchmarkCategory("Quick")]
     public int[] DigitCounting()
     {
-        int[] results = new int[N];
-
         for (int index = 0; index < _numbers.Length; index++)
         {
-            results[index] = _numbers[index].CountNumberOfDigits();
+            _results[index] = _numbers[index].CountNumberOfDigits();
         }
 
-        return results;
+        return _results;
     }
 }
