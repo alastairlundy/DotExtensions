@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
+using BenchmarkDotNet.Configs;
 using Bogus;
+using DotExtensions.Benchmarking;
 using DotExtensions.Versions;
 
 namespace DotExtensions.Benchmarking.Benchmarks.System.Versions;
 
-[SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.Net90)]
-[SimpleJob(RuntimeMoniker.Net10_0)]
+[Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser()]
 [CsvMeasurementsExporter]
 public class VersionGracefulParseBenchmarks
@@ -30,7 +30,7 @@ public class VersionGracefulParseBenchmarks
         N = 0;
     }
 
-    [Params(10_000, 100_000, 1_000_000)]
+    [Params(100, 1_000, 10_000)]
     public int N;
 
     [GlobalSetup]

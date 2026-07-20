@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using BenchmarkDotNet.Configs;
+using DotExtensions.Benchmarking;
 using DotExtensions.IO;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
-/*[SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.Net90)]*/
-[SimpleJob(RuntimeMoniker.Net10_0)]
+[Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
 public class RandomFileRetrievalBenchmark
 {
-    [Params(
-        1
-        //,10
-    )]
+    [Params(10, 100)]
     public int N;
     
     [Benchmark]

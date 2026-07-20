@@ -1,10 +1,10 @@
+using BenchmarkDotNet.Configs;
+using DotExtensions.Benchmarking;
 using DotExtensions.Numbers;
 
 namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 
-[SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.Net90)]
-[SimpleJob(RuntimeMoniker.Net10_0)]
+[Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
 [CsvMeasurementsExporter]
 public class DigitCountingExperimentBenchmarks
@@ -35,10 +35,7 @@ public class DigitCountingExperimentBenchmarks
         }
     }
 
-    [Params(
-        //    10_000_000,
-        100_000_000
-    )]
+    [Params(10_000, 1_000_000)]
     public int N;
 
 
