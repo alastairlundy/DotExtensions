@@ -43,6 +43,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.Strings;
 [Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
 [CsvMeasurementsExporter]
+[BenchmarkCategory("Short")]
 public class StringRemoveExtensionsBenchmarks
 {
     private const string Needle = "ab";

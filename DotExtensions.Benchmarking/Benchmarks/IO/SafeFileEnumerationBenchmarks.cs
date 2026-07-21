@@ -12,6 +12,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
 [Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
+[BenchmarkCategory("Short")]
 public class SafeFileEnumerationBenchmarks
 {
     // The seeded %TEMP% subtree replaces the previous disk-root enumeration,
@@ -33,7 +34,7 @@ public class SafeFileEnumerationBenchmarks
 
     public SafeFileEnumerationBenchmarks()
     {
-        string subtreePath = Path.Combine(Path.GetTempPath(), SubtreeRootName);
+        string subtreePath = Path.Combine(Path.GetTempPath(), SeededRootName);
         _directoryInfo = new DirectoryInfo(subtreePath);
     }
 
@@ -160,10 +161,11 @@ public class SafeFileEnumerationBenchmarks
             root.Create();
         }
 
-        for (int i = 0; i < SubdirectoryCount; i++)
+        for (int i = 0; i < SeededSubdirectoryCount; i++)
         {
             DirectoryInfo sub = root.CreateSubdirectory($"sub_{i:D3}");
-            for (int j = 0; j < FilesPerSubdirectory; j++)
+            int filesPerSubdirectory = SeededFileCount / SeededSubdirectoryCount;
+            for (int j = 0; j < filesPerSubdirectory; j++)
             {
                 string filePath = Path.Combine(sub.FullName, $"file_{i:D3}_{j:D3}.txt");
                 if (!File.Exists(filePath))
