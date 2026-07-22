@@ -110,6 +110,50 @@ Final guidance to the agent
 
 (If you need more precise, file-level guidance, inspect these locations in the repository in this order: global.json, *.sln, .github/workflows/*.yml, .editorconfig, src/*/*.csproj, tests/*/*.csproj.)
 
+## Benchmarking
+
+The `DotExtensions.Benchmarking` project provides a benchmark suite using BenchmarkDotNet.
+
+### When to use `--quick` vs full runs
+
+- **`--quick`**: Use during development or when verifying a change hasn't caused a major regression. Runs only `"Short"`-classified benchmarks (StringRemove, VersionParse, RandomFileRetrieval, SafeFileEnumeration). Completes in under 30 seconds.
+- **Full run** (no `--quick`): Use before merging to catch regressions across all categories, including `"Medium"` benchmarks (DigitCounting at 1M params).
+
+### Filtering by class or method
+
+Use BDN glob syntax with `--filter`:
+
+```sh
+dotnet run -c Release --filter *ClassName*
+dotnet run -c Release --filter *ClassName*MethodName*
+```
+
+Multiple glob patterns can follow `--filter`. The filter is applied on top of `--quick` if both are specified.
+
+### Multi-TFM benchmarks
+
+The project multi-targets `net8.0;net9.0;net10.0`. Default runs use the TFM of the executing SDK. To validate all three:
+
+```sh
+dotnet run -c Release --tfm all
+```
+
+This re-spawns the process for each TFM. To run a single TFM explicitly:
+
+```sh
+dotnet run -c Release -f net8.0
+```
+
+### Default TFM and overriding it
+
+The default TFM is determined by the SDK (`dotnet run` picks the latest compatible). Override with `-f <tfm>`:
+
+```sh
+dotnet run -c Release -f net9.0
+```
+
+For a complete reference, see `DotExtensions.Benchmarking/README.md`.
+
 ## Agent skills
 
 ### Issue tracker

@@ -7,6 +7,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Numbers;
 [Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
 [CsvMeasurementsExporter]
+[BenchmarkCategory("Medium")]
 public class DigitCountingExperimentBenchmarks
 {
     private int[] _numbers;
@@ -40,7 +41,6 @@ public class DigitCountingExperimentBenchmarks
 
 
     [Benchmark]
-    [BenchmarkCategory("Slow", "StringBased")]
     public int[] String_Length()
     {
         for (int index = 0; index < _numbers.Length; index++)
@@ -60,7 +60,6 @@ public class DigitCountingExperimentBenchmarks
     }
 
     [Benchmark]
-    [BenchmarkCategory("Quick")]
     public int[] DigitCounting()
     {
         for (int index = 0; index < _numbers.Length; index++)

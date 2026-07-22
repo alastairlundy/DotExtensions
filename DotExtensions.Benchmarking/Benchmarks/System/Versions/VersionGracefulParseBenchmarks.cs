@@ -9,6 +9,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.System.Versions;
 [Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser()]
 [CsvMeasurementsExporter]
+[BenchmarkCategory("Short")]
 public class VersionGracefulParseBenchmarks
 {
     // Bogus-generated appended integers are clamped to this maximum so

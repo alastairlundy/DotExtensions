@@ -8,6 +8,7 @@ namespace DotExtensions.Benchmarking.Benchmarks.IO;
 
 [Config(typeof(FastBenchConfig))]
 [MemoryDiagnoser]
+[BenchmarkCategory("Short")]
 public class RandomFileRetrievalBenchmark
 {
     [Params(10, 100)]
