@@ -6,12 +6,10 @@ These are the currently supported versions of DotExtensions:
 
 These are the currently supported versions of DotExtensions
 
-| Version | Supported with Bug Fixes | Supported with Security Updates |
+| Version | Versions Supported with Bug Fixes | Supported with Security Updates |
 | ------- | ------------------ | ------------------ |
-| 10.3 | Until DotExtensions 10.5 | Until DotExtensions 10.6 |
-| 10.2 | Until DotExtensions 10.4 | Until DotExtensions 10.5 |
-| 10.1 | :x: | Until DotExtensions 10.4 |
-| < 10.1 | :x: | :x: |
+| 10.x | 10.4, 10.5 | 10.3, 10.4, 10.5 |
+| < 10.x | :x: | :x: |
 
 
 ### Security Vulnerabilities
