@@ -12,6 +12,7 @@
 #### 10.4
 | Version | Release Date | Notes | 
 |-|-|-|
+| 10.4.1 | Jul 28th 2026 | |
 | 10.4.0 | July 16th 2026 | |
 
 #### 10.3
