@@ -40,4 +40,20 @@ int newLength = charSpan.RemoveAll("world");
 Console.WriteLine($"charSpan new length => {newLength}");
 Console.WriteLine($"charSpan contents => {charSpan[..newLength].ToString()}");
 
+// Value not found (short-circuit path)
+{
+    char[] a = "hi".ToCharArray();
+    Span<char> s = a.AsSpan();
+    int n = s.RemoveAll("xyz");
+    Console.WriteLine($"RemoveAll short-circuit => {n}");
+}
+
+// OrdinalIgnoreCase comparison path
+{
+    char[] a = "ABCabc".ToCharArray();
+    Span<char> s = a.AsSpan();
+    int n = s.RemoveAll("abc", StringComparison.OrdinalIgnoreCase);
+    Console.WriteLine($"RemoveAll OrdinalIgnoreCase => {a[..n].ToString()}");
+}
+
 Console.WriteLine(Resources.DotExtensions_AoT_Messages_Outro);
