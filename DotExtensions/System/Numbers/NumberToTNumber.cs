@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 using System.Numerics;
 
 namespace DotExtensions.Numbers;
@@ -61,4 +60,3 @@ public static class NumberToTNumber
             => TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
     }
 }
-#endif

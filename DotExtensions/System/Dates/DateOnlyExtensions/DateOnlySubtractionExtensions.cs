@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 namespace DotExtensions.Dates;
 
 /// <summary>
@@ -67,4 +66,3 @@ public static class DateOnlySubtractionExtensions
         }
     }
 }
-#endif

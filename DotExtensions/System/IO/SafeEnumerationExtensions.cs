@@ -37,11 +37,7 @@ public static class SafeEnumerationExtensions
         /// </summary>
         /// <param name="matchCasing">Specifies whether file and directory names should be matched case-sensitively.</param>
         /// <returns>Returns an <see cref="EnumerationOptions"/> object configured for safe and conditional file enumeration.</returns>
-#if NET8_0_OR_GREATER
         public
-#else
-        internal
-#endif
             EnumerationOptions ToEnumerationOptions(bool matchCasing = false)
         {
             return new EnumerationOptions

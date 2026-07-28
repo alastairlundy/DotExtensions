@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 namespace DotExtensions.IO.Permissions.Unix;
 
 /// <summary>
@@ -215,4 +214,3 @@ public static class UnixPermissionParsingExtensions
     }
     #endregion
 }
-#endif

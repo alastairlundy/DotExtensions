@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 using System;
 using DotExtensions.Dates;
 
@@ -194,4 +193,3 @@ public class DateOnlySubtractionExtensionsTests
         await Assert.That(result).IsEqualTo(new DateOnly(2024, 2, 28));
     }
 }
-#endif

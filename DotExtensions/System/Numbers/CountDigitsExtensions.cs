@@ -22,10 +22,8 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 using System.Numerics;
 using System.Runtime.CompilerServices;
-#endif
 
 namespace DotExtensions.Numbers;
 
@@ -34,7 +32,6 @@ namespace DotExtensions.Numbers;
 /// </summary>
 public static class CountDigitsExtensions
 {
-#if NET8_0_OR_GREATER
     /// <param name="number">The numerical value to count the digits of.</param>
     /// <typeparam name="TNumber">The type inheriting from <see cref="INumber{TSelf}"/></typeparam>
     extension<TNumber>(TNumber number) where TNumber : INumber<TNumber>
@@ -284,102 +281,4 @@ public static class CountDigitsExtensions
 
         return digits;
     }
-#else
-    /// <param name="number">The numerical value to count the digits of.</param>
-    extension(int number)
-    {
-        /// <summary>
-        /// Counts the number of digits in the integer value.
-        /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-        public int CountNumberOfDigits()
-        {
-            // int.MinValue cannot be safely negated (would overflow); it has 10 digits.
-            if (number == int.MinValue)
-            {
-                return 10;
-            }
-
-            if (number < 0)
-            {
-                number = -number;
-            }
-
-            int digits = 1;
-
-            while ((number /= 10) != 0)
-            {
-                ++digits;
-            }
-
-            return digits;
-        }
-    }
-
-    /// <param name="number">The numerical value to count the digits of.</param>
-    extension(long number)
-    {
-        /// <summary>
-        /// Counts the number of digits in the numerical value.
-        /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as an integer.</returns>
-        public int CountNumberOfDigits()
-        {
-            // long.MinValue cannot be safely negated (would overflow); it has 19 digits.
-            if (number == long.MinValue)
-            {
-                return 19;
-            }
-
-            if (number < 0)
-            {
-                number = -number;
-            }
-
-            int digits = 1;
-
-            while ((number /= 10) != 0)
-            {
-                ++digits;
-            }
-
-            return digits;
-        }
-    }
-
-    /// <param name="number">The numerical value to count the digits of.</param>
-    extension(double number)
-    {
-        /// <summary>
-        /// Counts the number of digits in the numerical value.
-        /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as a double precision floating point number; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
-        public int CountNumberOfDigits()
-        {
-            if (double.IsNaN(number))
-            {
-                return -1;
-            }
-
-            if (number < 0.0 || (number == 0.0 && 1.0 / number < 0.0))
-            {
-                number = -number;
-            }
-
-            if (double.IsPositiveInfinity(number))
-            {
-                return -1;
-            }
-
-            int digits = 1;
-
-            while ((number /= 10.0) != 0.0)
-            {
-                ++digits;
-            }
-
-            return digits;
-        }
-    }
-#endif
 }

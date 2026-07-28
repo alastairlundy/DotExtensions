@@ -22,7 +22,7 @@ string[] filterPatterns = ParseArgs(args, out bool quick, out bool tfmAll);
 
 if (tfmAll)
 {
-    string[] tfms = ["net8.0", "net9.0", "net10.0"];
+    string[] tfms = ["net10.0"];
 
     // Forward all args except --tfm all so child processes don't loop.
     string[] childArgs = args

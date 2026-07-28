@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 using System;
 using DotExtensions.Dates;
 
@@ -72,4 +71,3 @@ public class DateOnlyToDateTimeExtensionsTests
         await Assert.That(result.Day).IsEqualTo(31);
     }
 }
-#endif

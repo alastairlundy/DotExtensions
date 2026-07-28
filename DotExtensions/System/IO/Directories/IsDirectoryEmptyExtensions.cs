@@ -48,14 +48,9 @@ public static class IsDirectoryEmptyExtensions
                 ArgumentNullException.ThrowIfNull(directory);
 
                 if (!directory.Exists)
-#if NET8_0_OR_GREATER
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
                             StringComparison.OrdinalIgnoreCase));
-#else
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-#endif
 
                 return !directory.SafelyEnumerateFiles().Any() &&
                        !directory.SafelyEnumerateDirectories().Any();
@@ -74,14 +69,9 @@ public static class IsDirectoryEmptyExtensions
                 ArgumentNullException.ThrowIfNull(directory);
 
                 if (!directory.Exists)
-#if NET8_0_OR_GREATER
                     throw new DirectoryNotFoundException(
                         Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
                             StringComparison.OrdinalIgnoreCase));
-#else
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-#endif
 
                 return directory.SafelyEnumerateFiles().Any();
             }

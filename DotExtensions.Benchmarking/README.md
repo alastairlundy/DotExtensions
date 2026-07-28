@@ -49,12 +49,12 @@ dotnet run -c Release --quick --filter *DigitCounting*
 dotnet run -c Release --tfm all
 ```
 
-Runs the suite for `net8.0`, `net9.0`, and `net10.0` sequentially by re-spawning the process for each TFM. Individual TFM runs still accept `--quick` and `--filter`.
+Runs the suite for `net10.0` sequentially by re-spawning the process for each TFM. Individual TFM runs still accept `--quick` and `--filter`.
 
 To target a single TFM without `--tfm all`:
 
 ```sh
-dotnet run -c Release -f net8.0
+dotnet run -c Release -f net10.0
 ```
 
 ## Benchmark classes and input sizes

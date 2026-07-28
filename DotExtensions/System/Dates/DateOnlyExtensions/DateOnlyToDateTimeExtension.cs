@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 namespace DotExtensions.Dates;
 
 /// <summary>
@@ -44,4 +43,3 @@ public static class DateOnlyToDateTimeExtension
             DateTime.Parse(dateOnly.ToLongDateString(), CultureInfo.CurrentCulture, DateTimeStyles.None);
     }
 }
-#endif

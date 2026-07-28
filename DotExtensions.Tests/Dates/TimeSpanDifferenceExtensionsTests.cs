@@ -85,7 +85,6 @@ public class TimeSpanDifferenceExtensionsTests
         await Assert.That(result).IsEqualTo(expected);
     }
 
-#if NET8_0_OR_GREATER
     [Test]
     [Arguments(10, 30, 0, 8, 15, 0)]
     [Arguments(23, 59, 59, 0, 0, 0)]
@@ -166,5 +165,4 @@ public class TimeSpanDifferenceExtensionsTests
 
         await Assert.That(result).IsEqualTo(TimeSpan.Zero);
     }
-#endif
 }
