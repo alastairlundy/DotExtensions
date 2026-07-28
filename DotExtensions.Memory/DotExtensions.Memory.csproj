@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.4.0</Version>
+    <Version>10.5.0</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,18 +21,14 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>#### ⚙️ Modifications
-- Optimized SpanCopyExtensions by consolidating validation into a shared helper and replacing array allocation with GC.AllocateUninitializedArray in OptimisticCopy
-- Refactored StringRemoveExtensions.RemoveAll to use a single-pass StringBuilder scan
-
-##### Runtime Dependencies
-- Updated Polyfill from 10.11.2 to 11.0.1</PackageReleaseNotes>
+    <PackageReleaseNotes>#### 🆕 Additions
+- Added `Span&lt;char&gt;.RemoveAll` extension method (allocation-free Ordinal path, mirrors string-based RemoveAll contract)</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
-    <AssemblyVersion>10.4.0</AssemblyVersion>
-    <FileVersion>10.4.0</FileVersion>
+    <AssemblyVersion>10.5.0</AssemblyVersion>
+    <FileVersion>10.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
