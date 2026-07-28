@@ -48,8 +48,7 @@ public class SpanCharRemoveExtensionsTests
     [Arguments("hello world", "world", "hello ")]
     [Arguments("hello world", "hello", " world")]
     [Arguments("abcXYZdef", "XYZ", "abcdef")]
-    [Arguments("aaa", "a", "")]
-    [Arguments("abcabc", "abc", "")]
+    [Arguments("abcdef", "bcd", "aef")]
     public async Task RemoveAll_SingleOccurrence_RemovesCorrectly(string input, string value, string expected)
     {
         char[] chars = input.ToCharArray();
@@ -65,6 +64,8 @@ public class SpanCharRemoveExtensionsTests
     [Arguments("ababab", "ab", "")]
     [Arguments("aXbXcXd", "X", "abcd")]
     [Arguments("fooXXbarXXbaz", "XX", "foobarbaz")]
+    [Arguments("aaa", "a", "")]
+    [Arguments("abcabc", "abc", "")]
     public async Task RemoveAll_MultipleOccurrences_RemovesAll(string input, string value, string expected)
     {
         char[] chars = input.ToCharArray();
@@ -89,6 +90,20 @@ public class SpanCharRemoveExtensionsTests
         string result = source[..newLength].ToString();
 
         await Assert.That(result).IsEqualTo(expected);
+    }
+
+    [Test]
+    [Arguments("", "abc")]
+    public async Task RemoveAll_EmptySource_ReturnsZero(string input, string value)
+    {
+        char[] chars = input.ToCharArray();
+        Span<char> source = chars.AsSpan();
+
+        int newLength = source.RemoveAll(value.AsSpan(), StringComparison.Ordinal);
+        string result = source[..newLength].ToString();
+
+        await Assert.That(newLength).IsEqualTo(0);
+        await Assert.That(result).IsEqualTo("");
     }
 
     [Test]
