@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotExtensions\DotExtensions.csproj" />
+    <ProjectReference Include="..\DotExtensions.Memory\DotExtensions.Memory.csproj" />
   </ItemGroup>
 </Project>
