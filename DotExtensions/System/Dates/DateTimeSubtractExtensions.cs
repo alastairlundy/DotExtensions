@@ -109,7 +109,6 @@ public static class DateTimeSubtractExtensions
         public DateTime SubtractYears(double years) =>
             dateTime.AddYears(-(int)years);
 
-#if NET8_0_OR_GREATER
         /// <summary>
         /// Subtract a specified number of microseconds from a DateTime.
         /// </summary>
@@ -118,6 +117,5 @@ public static class DateTimeSubtractExtensions
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime SubtractMicroseconds(double microseconds) =>
             dateTime.Subtract(TimeSpan.FromMicroseconds(microseconds));
-#endif
     }
 }

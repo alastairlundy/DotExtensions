@@ -31,9 +31,6 @@ DotExtensions.Memory can be installed via the .NET SDK CLI, Nuget via your IDE o
 
 ### Compatibility
 DotExtensions.Memory supports:
-* .NET Standard 2.0
-* .NET 8
-* .NET 9
 * .NET 10
 
 However, it is important to note that not all features may be supported by all TFMs.

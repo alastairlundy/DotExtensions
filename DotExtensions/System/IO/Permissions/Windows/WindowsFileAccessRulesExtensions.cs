@@ -81,11 +81,7 @@ public static class WindowsFileAccessRulesExtensions
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
             if(!file.Exists)
-#if NET8_0_OR_GREATER
                 throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName, StringComparison.OrdinalIgnoreCase));
-#else
-                throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName));
-#endif
             
             FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
             
@@ -138,13 +134,8 @@ public static class WindowsFileAccessRulesExtensions
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
             
             if(!directory.Exists)
-#if NET8_0_OR_GREATER
                 throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
                     directory.Name, StringComparison.OrdinalIgnoreCase));
-#else
-                throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
-                    directory.Name));
-#endif
         
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
             AuthorizationRuleCollection results = directorySecurity.GetAccessRules(includeExplicit: true,

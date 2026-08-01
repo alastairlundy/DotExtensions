@@ -145,12 +145,8 @@ public static class GetRandomIOExtensions
                 : Environment.SystemDirectory;
             
             return new DirectoryInfo(sysDir).Parent ?? 
-#if NET8_0_OR_GREATER
                    throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
                        sysDir, StringComparison.OrdinalIgnoreCase));
-#else
-                   throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", sysDir));
-#endif
         }
 
         /// <summary>

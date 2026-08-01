@@ -45,7 +45,6 @@ public static class TimeSpanDifferenceExtensions
         }
     }
 
-#if NET8_0_OR_GREATER
     /// <param name="timeOnlyOne">The first time to be subtracted.</param>
     extension(TimeOnly timeOnlyOne)
     {
@@ -73,5 +72,4 @@ public static class TimeSpanDifferenceExtensions
         public TimeSpan Difference(DateOnly dateOnlyTwo) => DateOnly.ToDateTime(dateOnlyOne).Date
             .Difference(DateOnly.ToDateTime(dateOnlyTwo).Date);
     }
-#endif
 }

@@ -108,7 +108,6 @@ public static class WeekOfExtensions
             InternalWeekOfYearCount(date, calendarWeekRule, date.Year);
     }
 
-#if NET8_0_OR_GREATER
     /// <param name="date"></param>
     extension(DateOnly date)
     {
@@ -127,5 +126,4 @@ public static class WeekOfExtensions
         public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
             InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year);
     }
-#endif
 }

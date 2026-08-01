@@ -130,18 +130,18 @@ dotnet run -c Release --filter *ClassName*MethodName*
 
 Multiple glob patterns can follow `--filter`. The filter is applied on top of `--quick` if both are specified.
 
-### Multi-TFM benchmarks
+### TFM
 
-The project multi-targets `net8.0;net9.0;net10.0`. Default runs use the TFM of the executing SDK. To validate all three:
+The project targets `net10.0`. Default runs use the TFM of the executing SDK. To run with a specific TFM:
 
 ```sh
 dotnet run -c Release --tfm all
 ```
 
-This re-spawns the process for each TFM. To run a single TFM explicitly:
+This re-spawns the process for each configured TFM. To run a single TFM explicitly:
 
 ```sh
-dotnet run -c Release -f net8.0
+dotnet run -c Release -f net10.0
 ```
 
 ### Default TFM and overriding it
@@ -149,7 +149,7 @@ dotnet run -c Release -f net8.0
 The default TFM is determined by the SDK (`dotnet run` picks the latest compatible). Override with `-f <tfm>`:
 
 ```sh
-dotnet run -c Release -f net9.0
+dotnet run -c Release -f net10.0
 ```
 
 For a complete reference, see `DotExtensions.Benchmarking/README.md`.

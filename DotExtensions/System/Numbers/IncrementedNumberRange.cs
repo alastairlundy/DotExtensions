@@ -22,9 +22,7 @@
        SOFTWARE.
    */
 
-#if NET8_0_OR_GREATER
 using System.Numerics;
-#endif
 
 namespace DotExtensions.Numbers;
 
@@ -33,7 +31,6 @@ namespace DotExtensions.Numbers;
 /// </summary>
 public static class IncrementedNumberRange
 {
-#if NET8_0_OR_GREATER
     /// <param name="source">The list of numbers to check.</param>
     /// <typeparam name="TNumber">The type that represents the numeric class or struct used for manipulating numbers.</typeparam>
     extension<TNumber>(IList<TNumber> source) where TNumber : INumber<TNumber>
@@ -103,69 +100,4 @@ public static class IncrementedNumberRange
             return true;
         }
     }
-#else
-    /// <param name="source">The list of numbers to check.</param>
-    extension(IList<int> source)
-    {
-        /// <summary>
-        /// Determines if an expected amount starting from the first number in the list increments a list of numbers.
-        /// </summary>
-        /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
-        /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-        public bool IsIncrementedNumberRange(int expectedIncrement)
-        {
-            int expectedNumber = source[0];
-
-            for (int index = 0; index < source.Count; index++)
-            {
-                int actual = source[index];
-
-                if (index > 0)
-                    expectedNumber += expectedIncrement;
-
-                if (expectedNumber != actual)
-                    return false;
-            }
-
-            return true;
-        }
-    }
-
-    /// <param name="source">The sequence of numbers to check.</param>
-    extension(IEnumerable<int> source)
-    {
-        /// <summary>
-        /// Determines if an expected amount starting from the first number in the sequence increments a sequence of numbers.
-        /// </summary>
-        /// <param name="expectedIncrement">The amount each number is expected to be incremented by.</param>
-        /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
-        public bool IsIncrementedNumberRange(int expectedIncrement)
-        {
-            if (source is IList<int> list)
-                return list.IsIncrementedNumberRange(expectedIncrement);
-
-            bool foundFirstNumber = false;
-
-            int expectedNumber = 0;
-
-            foreach (int actual in source)
-            {
-                if (foundFirstNumber == false)
-                {
-                    expectedNumber = actual;
-                    foundFirstNumber = true;
-                }
-                else
-                {
-                    expectedNumber += expectedIncrement;
-                }
-
-                if (expectedNumber != actual)
-                    return false;
-            }
-
-            return true;
-        }
-    }
-#endif
 }

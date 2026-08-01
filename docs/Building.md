@@ -6,9 +6,6 @@ DotExtensions requires the latest .NET release SDK to be installed to target all
 Currently, the required .NET SDK is .NET 10.
 
 The current build targets include:
-* .NET Standard 2.0
-* .NET 8
-* .NET 9
 * .NET 10
 
 Any version of the .NET 10 SDK can be used, but using the latest version is preferred.

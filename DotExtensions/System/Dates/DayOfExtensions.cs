@@ -64,7 +64,6 @@ public static class DayOfExtensions
         return output;
     }
     
-#if NET8_0_OR_GREATER
     extension(DateOnly date)
     {
         /// <summary>
@@ -74,7 +73,6 @@ public static class DayOfExtensions
         public int CalculateDayOfWeekAsInteger()
             => CalculateDayOfWeekInt(date.DayOfWeek);
     }
-#endif
     
     /// <summary>
     ///

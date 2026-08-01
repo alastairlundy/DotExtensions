@@ -31,6 +31,16 @@ namespace DotExtensions.IO.Directories;
 /// </summary>
 public static class IsDirectoryEmptyExtensions
 {
+    private static void ThrowIfDirectoryNotFound(DirectoryInfo directory)
+    {
+        ArgumentNullException.ThrowIfNull(directory);
+
+        if (!directory.Exists)
+            throw new DirectoryNotFoundException(
+                Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
+                    StringComparison.OrdinalIgnoreCase));
+    }
+
     /// <summary>
     /// Provides extension methods for checking if a directory is empty.
     /// </summary>
@@ -45,17 +55,7 @@ public static class IsDirectoryEmptyExtensions
         {
             get
             {
-                ArgumentNullException.ThrowIfNull(directory);
-
-                if (!directory.Exists)
-#if NET8_0_OR_GREATER
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
-                            StringComparison.OrdinalIgnoreCase));
-#else
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-#endif
+                ThrowIfDirectoryNotFound(directory);
 
                 return !directory.SafelyEnumerateFiles().Any() &&
                        !directory.SafelyEnumerateDirectories().Any();
@@ -71,17 +71,7 @@ public static class IsDirectoryEmptyExtensions
         {
             get
             {
-                ArgumentNullException.ThrowIfNull(directory);
-
-                if (!directory.Exists)
-#if NET8_0_OR_GREATER
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName,
-                            StringComparison.OrdinalIgnoreCase));
-#else
-                    throw new DirectoryNotFoundException(
-                        Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-#endif
+                ThrowIfDirectoryNotFound(directory);
 
                 return directory.SafelyEnumerateFiles().Any();
             }

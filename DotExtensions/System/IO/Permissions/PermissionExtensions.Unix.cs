@@ -37,11 +37,7 @@ public static partial class PermissionExtensions
         /// Whether the specified Unix file mode has execute permission.
         /// </summary>
         [Obsolete(DeprecationMessages.DeprecationV11)]
-#if NET8_0_OR_GREATER
         public
-#else
-        internal
-#endif
             bool HasExecutePermission
         {
             get
@@ -56,11 +52,7 @@ public static partial class PermissionExtensions
         /// Whether the specified Unix file mode has read permission.
         /// </summary>
         [Obsolete(DeprecationMessages.DeprecationV11)]
-#if NET8_0_OR_GREATER
         public
-#else
-        internal
-#endif
             bool HasReadPermission
         {
             get
@@ -75,11 +67,7 @@ public static partial class PermissionExtensions
         /// Whether the specified Unix file mode has write permission.
         /// </summary>
         [Obsolete(DeprecationMessages.DeprecationV11)]
-#if NET8_0_OR_GREATER
         public
-#else
-        internal
-#endif
             bool HasWritePermission
         {
             get
