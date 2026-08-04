@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.10" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.125" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.137" />
     <PackageVersion Include="Polyfill" Version="11.0.1" />
   </ItemGroup>
   <ItemGroup>
