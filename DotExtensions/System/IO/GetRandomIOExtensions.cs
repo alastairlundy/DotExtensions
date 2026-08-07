@@ -167,7 +167,8 @@ public static class GetRandomIOExtensions
                     if (!visited.Add(current.FullName))
                         break;
 
-                    DirectoryInfo[] subDirs = SafeEnumerator.GetDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
+                    DirectoryInfo[] subDirs = SafeEnumerator
+                        .EnumerateDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
                         .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
                         .ToArray();
 
@@ -235,7 +236,8 @@ public static class GetRandomIOExtensions
                     if (files.Length > 0)
                         return files[Random.Shared.Next(0, files.Length)];
 
-                    DirectoryInfo[] subDirs = SafeEnumerator.GetDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
+                    DirectoryInfo[] subDirs = SafeEnumerator
+                        .EnumerateDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
                         .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
                         .ToArray();
 

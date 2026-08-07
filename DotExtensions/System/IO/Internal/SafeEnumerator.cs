@@ -26,12 +26,20 @@ namespace DotExtensions.IO.Internal;
 
 /// <summary>
 /// Internal helper that wraps <see cref="DirectoryInfo"/> enumeration APIs
-/// with exception-safe iteration, skipping inaccessible paths.
+/// with exception-safe iteration.
 /// </summary>
+/// <remarks>
+/// Inaccessible entries are skipped by the underlying enumerator via
+/// <see cref="EnumerationOptions.IgnoreInaccessible"/>. If the enumerator itself faults with an
+/// <see cref="UnauthorizedAccessException"/> or <see cref="IOException"/>, enumeration stops.
+/// The enumerator is not resumed after a fault, because a faulted
+/// <see cref="System.IO.Enumeration.FileSystemEnumerator{TResult}"/> does not advance its internal
+/// state and would throw the same exception indefinitely.
+/// </remarks>
 internal static class SafeEnumerator
 {
     /// <summary>
-    /// Safely enumerates files, skipping inaccessible paths.
+    /// Safely enumerates files, skipping inaccessible paths and stopping if enumeration faults.
     /// </summary>
     public static IEnumerable<FileInfo> EnumerateFiles(DirectoryInfo directoryInfo, string searchPattern,
         SearchOption searchOption, bool ignoreCase)
@@ -49,11 +57,11 @@ internal static class SafeEnumerator
             }
             catch (UnauthorizedAccessException)
             {
-                continue;
+                break;
             }
             catch (IOException)
             {
-                continue;
+                break;
             }
 
             yield return enumerator.Current;
@@ -68,7 +76,7 @@ internal static class SafeEnumerator
         => EnumerateFiles(directoryInfo, searchPattern, searchOption, ignoreCase).ToArray();
 
     /// <summary>
-    /// Safely enumerates directories, skipping inaccessible paths.
+    /// Safely enumerates directories, skipping inaccessible paths and stopping if enumeration faults.
     /// </summary>
     public static IEnumerable<DirectoryInfo> EnumerateDirectories(DirectoryInfo directoryInfo, string searchPattern,
         SearchOption searchOption, bool ignoreCase)
@@ -87,11 +95,11 @@ internal static class SafeEnumerator
             }
             catch (UnauthorizedAccessException)
             {
-                continue;
+                break;
             }
             catch (IOException)
             {
-                continue;
+                break;
             }
 
             yield return enumerator.Current;

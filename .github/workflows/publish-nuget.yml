@@ -39,8 +39,10 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
-    - name: Create packages
-      run: dotnet build -c Release
+    - name: Create the MAIN package
+      run: dotnet build DotExtensions/DotExtensions.csproj -c Release -p:ExposeInternalsToFirstPartyProjects=false
+    - name: Create the Memory package
+      run: dotnet build DotExtensions.Memory/DotExtensions.Memory.csproj -c Release
     - name: Publish the MAIN package to nuget.org
       run: dotnet nuget push DotExtensions/bin/Release/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}}  -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Publish the Memory package to nuget.org

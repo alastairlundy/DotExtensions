@@ -38,7 +38,6 @@ public class DriveEnumeratorTests
 
         if (drives.Length == 0)
         {
-            await Assert.That(drives.Length).IsEqualTo(0);
             return;
         }
 
@@ -60,8 +59,6 @@ public class DriveEnumeratorTests
         {
             return;
         }
-
-        await Assert.That(drives.Length).IsGreaterThan(0);
 
         foreach (DriveInfo drive in drives)
         {
