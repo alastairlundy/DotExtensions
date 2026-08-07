@@ -59,6 +59,7 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="DotExtensions.Benchmarking"/>
+        <InternalsVisibleTo Include="DotExtensions.Tests"/>
     </ItemGroup>
     
   <ItemGroup>
