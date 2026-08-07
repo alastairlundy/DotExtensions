@@ -24,7 +24,7 @@
 
 // ReSharper disable InconsistentNaming
 
-using DotExtensions.IO.Files;
+using DotExtensions.IO.Internal;
 
 namespace DotExtensions.IO;
 
@@ -44,7 +44,7 @@ public static class GetRandomIOExtensions
         /// <exception cref="InvalidOperationException">Thrown when no logical drives are available.</exception>
         public static DriveInfo GetRandomDrive(bool driveMustContainFiles = false, bool driveMustContainDirectories = true)
         {
-            DriveInfo[] drives = DriveInfo.SafelyGetLogicalDrives();
+            DriveInfo[] drives = DriveEnumerator.GetLogicalDrives();
 
             if (drives.Length == 0)
                 throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
@@ -89,7 +89,7 @@ public static class GetRandomIOExtensions
         {
             try
             {
-                return drive.IsReady && drive.RootDirectory.SafelyEnumerateDirectories().Any();
+                return drive.IsReady && SafeEnumerator.EnumerateDirectories(drive.RootDirectory, "*", SearchOption.TopDirectoryOnly, true).Any();
             }
             catch
             {
@@ -110,11 +110,11 @@ public static class GetRandomIOExtensions
 
                 DirectoryInfo root = drive.RootDirectory;
 
-                if (root.SafelyEnumerateFiles().Any())
+                if (SafeEnumerator.EnumerateFiles(root, "*", SearchOption.TopDirectoryOnly, false).Any())
                     return true;
 
-                return root.SafelyEnumerateDirectories()
-                    .Any(d => d.SafelyEnumerateFiles().Any());
+                return SafeEnumerator.EnumerateDirectories(root, "*", SearchOption.TopDirectoryOnly, true)
+                    .Any(d => SafeEnumerator.EnumerateFiles(d, "*", SearchOption.TopDirectoryOnly, false).Any());
             }
             catch
             {
@@ -167,7 +167,7 @@ public static class GetRandomIOExtensions
                     if (!visited.Add(current.FullName))
                         break;
 
-                    DirectoryInfo[] subDirs = current.SafelyGetDirectories()
+                    DirectoryInfo[] subDirs = SafeEnumerator.GetDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
                         .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
                         .ToArray();
 
@@ -230,12 +230,12 @@ public static class GetRandomIOExtensions
                     if (!visited.Add(current.FullName))
                         break;
 
-                    FileInfo[] files = current.SafelyGetFiles();
+                    FileInfo[] files = SafeEnumerator.GetFiles(current, "*", SearchOption.TopDirectoryOnly, false);
 
                     if (files.Length > 0)
                         return files[Random.Shared.Next(0, files.Length)];
 
-                    DirectoryInfo[] subDirs = current.SafelyGetDirectories()
+                    DirectoryInfo[] subDirs = SafeEnumerator.GetDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
                         .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
                         .ToArray();
 
