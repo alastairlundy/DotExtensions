@@ -5,8 +5,7 @@ using System.Linq;
 using BenchmarkDotNet.Configs;
 using DotExtensions.Benchmarking;
 using System.Threading;
-using DotExtensions.IO.Directories;
-using DotExtensions.IO.Files;
+using DotExtensions.IO;
 
 namespace DotExtensions.Benchmarking.Benchmarks.IO;
 

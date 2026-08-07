@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using DotExtensions.IO.Directories;
+using DotExtensions.IO;
 
 namespace DotExtensions.Tests.IO.Directories;
 
