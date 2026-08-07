@@ -22,7 +22,7 @@
        SOFTWARE.
    */
 
-namespace DotExtensions.IO.Directories;
+namespace DotExtensions.IO;
 
 /// <summary>
 /// Provides extension methods for working with directory extensions.
