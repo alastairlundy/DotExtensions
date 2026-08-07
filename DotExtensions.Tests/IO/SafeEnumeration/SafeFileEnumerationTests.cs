@@ -25,7 +25,7 @@
 using System;
 using System.IO;
 using System.Linq;
-using DotExtensions.IO.Files;
+using DotExtensions.IO;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
 

@@ -22,8 +22,6 @@
        SOFTWARE.
    */
 
-using DotExtensions.IO.Files;
-
 namespace DotExtensions.IO.Directories;
 
 /// <summary>
