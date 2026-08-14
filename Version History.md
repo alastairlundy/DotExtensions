@@ -7,12 +7,13 @@
 #### 10.5
 | Version | Release Date | Notes | 
 |-|-|-|
-| 10.5.0 | Jul 28th 2026 | |
+| 10.5.1 | August 14th 2026 | | 
+| 10.5.0 | July 28th 2026 | |
 
 #### 10.4
 | Version | Release Date | Notes | 
 |-|-|-|
-| 10.4.1 | Jul 28th 2026 | |
+| 10.4.1 | July 28th 2026 | |
 | 10.4.0 | July 16th 2026 | |
 
 #### 10.3
