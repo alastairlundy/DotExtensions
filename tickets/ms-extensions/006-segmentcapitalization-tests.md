@@ -11,29 +11,33 @@ Add unit tests for `SegmentCapitalizationExtensions` to verify character-level c
 
 ## What to build
 
-Create `DotExtensions.Tests/MsExtensions/Primitives/Cases/SegmentCapitalizationTests.cs` testing `CapitalizeChar(this StringSegment, int index)` and `CapitalizeChars(this StringSegment, int startIndex, int length)`.
+Create `DotExtensions.Tests/MsExtensions/Primitives/Cases/SegmentCapitalizationTests.cs` testing `CapitalizeChar(this StringSegment, int index)` and `CapitalizeChars(this StringSegment, IEnumerable<int> indices)`.
 
 Test scenarios:
 - CapitalizeChar: capitalize first character, middle character, last character
-- CapitalizeChar: null segment throws `ArgumentNullException`
-- CapitalizeChar: out-of-range index (negative, beyond length)
-- CapitalizeChars: capitalize a range in the middle
-- CapitalizeChars: null segment throws `ArgumentNullException`
-- CapitalizeChars: invalid startIndex or length (negative, beyond bounds)
-- CapitalizeChars: empty StringSegment
+- CapitalizeChar: null or empty segment throws `ArgumentException`
+- CapitalizeChar: out-of-range index (negative, beyond length) throws `ArgumentOutOfRangeException`
+- CapitalizeChar: character already uppercase returns segment unchanged
+- CapitalizeChars: capitalize multiple characters via index collection
+- CapitalizeChars: null or empty segment throws `ArgumentException`
+- CapitalizeChars: null indices throws `ArgumentNullException`
+- CapitalizeChars: index of -1 throws `ArgumentException`
+- CapitalizeChars: index >= segment length throws `ArgumentException`
 - CapitalizeChars: range covering the entire segment
-- Edge cases: indices at boundaries (0, length-1, length)
+- Edge cases: indices at boundaries (0, length-1)
 
 Follow existing patterns: `[Test]`, `async Task`, `await Assert.That(...)`, `[MethodDataSource]` for parameterized data covering index/length boundaries.
 
 ## Acceptance criteria
 
 - [ ] `CapitalizeChar` correctly capitalizes the character at the given index
-- [ ] `CapitalizeChar` throws `ArgumentNullException` for null segment
-- [ ] `CapitalizeChar` throws appropriate exception for out-of-range index
-- [ ] `CapitalizeChars` correctly capitalizes the specified range
-- [ ] `CapitalizeChars` throws `ArgumentNullException` for null segment
-- [ ] `CapitalizeChars` throws appropriate exception for invalid bounds
+- [ ] `CapitalizeChar` throws `ArgumentException` for null or empty segment
+- [ ] `CapitalizeChar` throws `ArgumentOutOfRangeException` for out-of-range index
+- [ ] `CapitalizeChar` returns segment unchanged when character is already uppercase
+- [ ] `CapitalizeChars` correctly capitalizes all characters at the given indices
+- [ ] `CapitalizeChars` throws `ArgumentException` for null or empty segment
+- [ ] `CapitalizeChars` throws `ArgumentNullException` for null indices
+- [ ] `CapitalizeChars` throws `ArgumentException` for index of -1 or index >= segment length
 - [ ] All tests pass on all target frameworks (net8.0, net9.0, net10.0)
 
 ## Context pointers

@@ -1,5 +1,5 @@
 ---
-title: SegmentRemoveAndReplace Tests
+title: SegmentRemove Tests
 classification: Independent
 blocked_by: []
 parent: TESTS_PRD.md
@@ -14,26 +14,27 @@ Add unit tests for `SegmentRemoveAndReplaceExtensions` to verify all Remove over
 Create `DotExtensions.Tests/MsExtensions/Primitives/Removal/SegmentRemoveAndReplaceTests.cs` testing the Remove overloads on StringSegment.
 
 Test scenarios:
-- Remove at specific index with length
-- Remove all instances of a character
-- Remove all instances of a substring
-- Remove from start index to end
-- Null segment throws `ArgumentNullException`
-- Out-of-range indices (negative, beyond length)
-- Zero-length removal (no-op)
-- Removal at boundaries (index 0, index at length-1)
-- Replace character/substring with another
-- No-op cases (character/substring not found)
-- Empty segment
+- `Remove(int startIndex)` — removes characters from a specified index to the end
+- `Remove(int startIndex, int count)` — removes a specific range of characters
+- `Remove(Index startIndex, Index endIndex)` — removes between two indices
+- `Remove(Range range)` — removes a range
+- Null or empty segment throws `ArgumentException`
+- Negative startIndex throws `ArgumentOutOfRangeException`
+- startIndex >= segment length throws `ArgumentOutOfRangeException`
+- Negative or zero count throws `ArgumentOutOfRangeException`
+- count >= segment length throws `ArgumentOutOfRangeException`
+- Zero-length removal (startIndex == 0 for single-param overload)
 
 Follow existing patterns: `[Test]`, `async Task`, `await Assert.That(...)`, `[MethodDataSource]` for parameterized data.
 
 ## Acceptance criteria
 
 - [ ] All Remove overloads produce correct results for valid inputs
-- [ ] All Remove overloads throw `ArgumentNullException` for null segment
-- [ ] Out-of-range indices produce appropriate exceptions
-- [ ] Empty segment cases are handled correctly
+- [ ] All Remove overloads throw `ArgumentException` for null or empty segment
+- [ ] Negative startIndex throws `ArgumentOutOfRangeException`
+- [ ] startIndex >= segment length throws `ArgumentOutOfRangeException`
+- [ ] Negative or zero count throws `ArgumentOutOfRangeException`
+- [ ] count >= segment length throws `ArgumentOutOfRangeException`
 - [ ] All tests pass on all target frameworks (net8.0, net9.0, net10.0)
 
 ## Context pointers

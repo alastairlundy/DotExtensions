@@ -17,16 +17,16 @@ Create test files in `DotExtensions.Tests/MsExtensions/Primitives/Contains/`:
    - Char present / not present in segment
    - Substring present / not present
    - Case sensitivity behavior
-   - Empty segment
-   - Null segment (throws `ArgumentNullException`)
-   - Null search value
+   - Empty segment returns false
+   - Empty search value returns false
 
-2. **`SegmentContainsSubsegmentsTests.cs`** — Test `ContainsDelimitedSubSegments(this StringSegment, char delimiter, StringSegment subSegment)`. Cover:
-   - Subsegment found / not found in delimited segment
+2. **`SegmentContainsSubsegmentsTests.cs`** — Test `ContainsDelimitedSubSegments(this StringSegment, char delimiter)`. Cover:
+   - Segment with multiple delimited parts returns true
+   - Segment with a single part (no delimiter) returns false
    - Different delimiters (comma, pipe, space, etc.)
-   - Subsegment at start, middle, end of delimited list
-   - Empty segment or empty delimiter
-   - Null segment (throws `ArgumentNullException`)
+   - Empty segment returns false
+   - Whitespace-only segment returns false
+   - Segment containing the delimiter but only one part returns false
 
 Follow existing patterns: `[Test]`, `async Task`, `await Assert.That(...)`, `[MethodDataSource]` for parameterized data.
 
@@ -34,10 +34,10 @@ Follow existing patterns: `[Test]`, `async Task`, `await Assert.That(...)`, `[Me
 
 - [ ] `Contains(char)` returns true/false correctly for present/absent characters
 - [ ] `Contains(StringSegment)` returns true/false correctly for present/absent substrings
-- [ ] `Contains` throws `ArgumentNullException` for null segment
-- [ ] `ContainsDelimitedSubSegments` correctly finds subsegments in delimited strings
-- [ ] `ContainsDelimitedSubSegments` handles subsegment at any position in the delimited list
-- [ ] `ContainsDelimitedSubSegments` throws `ArgumentNullException` for null segment
+- [ ] `Contains` returns false for empty segment
+- [ ] `ContainsDelimitedSubSegments` returns true when segment contains multiple delimited parts
+- [ ] `ContainsDelimitedSubSegments` returns false for single-part segments or segments without the delimiter
+- [ ] `ContainsDelimitedSubSegments` handles different delimiter characters
 - [ ] All tests pass on all target frameworks (net8.0, net9.0, net10.0)
 
 ## Context pointers
