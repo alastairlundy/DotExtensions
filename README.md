@@ -67,7 +67,3 @@ Future updates should aim to focus on one or more of the following:
 
 ## License
 This project is licensed under the MIT license.
-
-
-
-
