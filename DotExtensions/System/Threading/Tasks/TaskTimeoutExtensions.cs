@@ -42,6 +42,7 @@ public static class TaskTimeoutExtensions
         /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
         /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public async Task WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
         {
             CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
@@ -69,6 +70,7 @@ public static class TaskTimeoutExtensions
         /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
         /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public async Task<TResult> WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
         {
             CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);

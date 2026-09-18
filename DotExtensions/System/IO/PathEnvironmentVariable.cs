@@ -28,6 +28,7 @@ namespace DotExtensions.IO;
 /// Provides utility methods for interacting with the system's PATH environment variable
 /// and related path operations.
 /// </summary>
+[Obsolete(DeprecationMessages.DeprecationV11)]
 public static class PathEnvironmentVariable
 {
     /// <summary>
