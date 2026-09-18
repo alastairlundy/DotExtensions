@@ -12,11 +12,12 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
     <PackageReleaseNotes>### All packages
-* Updated internal Polyfill version from 11.0.1 to 11.2.0
+* Updated internal Polyfill version from 11.2.0 to 11.3.0
 
 ### DotExtensions
-* Updated Microsoft.Extensions.Primitives from 10.0.10 to 10.0.11
-* Updated Microsoft.Bcl.Memory from 10.0.10 to 10.0.11</PackageReleaseNotes>
+* Deprecated some classes and methods for removal in v11
+* Updated Microsoft.Extensions.Primitives from 10.0.11 to 10.0.12
+* Updated Microsoft.Bcl.Memory from 10.0.11 to 10.0.12</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -25,15 +26,15 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.5.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <AssemblyVersion>10.5.1</AssemblyVersion>
-      <FileVersion>10.5.1</FileVersion>
+      <Version>10.5.2</Version>
+      <AssemblyVersion>10.5.2</AssemblyVersion>
+      <FileVersion>10.5.2</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
