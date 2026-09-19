@@ -60,6 +60,24 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Memory must not contain chars or strings with whitespace..
+        /// </summary>
+        internal static string Exceptions_Argument_WhiteSpace_Memory {
+            get {
+                return ResourceManager.GetString("Exceptions.Argument.WhiteSpace.Memory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Span must not contain chars or strings with whitespace..
+        /// </summary>
+        internal static string Exceptions_Argument_WhiteSpace_Span {
+            get {
+                return ResourceManager.GetString("Exceptions.Argument.WhiteSpace.Span", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Count cannot be 0 or less. Provided count was {x}..
         /// </summary>
         internal static string Exceptions_Count_LessThanZero {
@@ -150,6 +168,24 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Memory must not be empty for this operation to be performed successfully..
+        /// </summary>
+        internal static string Exceptions_InvalidOperation_EmptyMemory {
+            get {
+                return ResourceManager.GetString("Exceptions.InvalidOperation.EmptyMemory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Span must not be empty for this operation to be performed successfully..
+        /// </summary>
+        internal static string Exceptions_InvalidOperation_EmptySpan {
+            get {
+                return ResourceManager.GetString("Exceptions.InvalidOperation.EmptySpan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to find directory with file path of {x}..
         /// </summary>
         internal static string Exceptions_IO_DirectoryNotFound {
@@ -209,6 +245,33 @@ namespace DotExtensions.Localizations {
         internal static string Exceptions_Span_SkipCountTooLarge {
             get {
                 return ResourceManager.GetString("Exceptions.Span.SkipCountTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination span length is shorter than the source span..
+        /// </summary>
+        internal static string Exceptions_Spans_Copy_DestinationShorterThanSource {
+            get {
+                return ResourceManager.GetString("Exceptions.Spans.Copy.DestinationShorterThanSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination span length is smaller than start index + length..
+        /// </summary>
+        internal static string Exceptions_Spans_Copy_DestinationSmallerThanIndex {
+            get {
+                return ResourceManager.GetString("Exceptions.Spans.Copy.DestinationSmallerThanIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length of the keys span and values span do not match..
+        /// </summary>
+        internal static string Exceptions_Spans_Sorts_LengthMismatch {
+            get {
+                return ResourceManager.GetString("Exceptions.Spans.Sorts.LengthMismatch", resourceCulture);
             }
         }
         

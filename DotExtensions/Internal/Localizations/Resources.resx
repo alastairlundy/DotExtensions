@@ -105,4 +105,25 @@
     <data name="Labels.Size.Byte" xml:space="preserve">
         <value>B</value>
     </data>
+    <data name="Exceptions.Argument.WhiteSpace.Memory" xml:space="preserve">
+        <value>Memory must not contain chars or strings with whitespace.</value>
+    </data>
+    <data name="Exceptions.Argument.WhiteSpace.Span" xml:space="preserve">
+        <value>Span must not contain chars or strings with whitespace.</value>
+    </data>
+    <data name="Exceptions.InvalidOperation.EmptyMemory" xml:space="preserve">
+        <value>Memory must not be empty for this operation to be performed successfully.</value>
+    </data>
+    <data name="Exceptions.InvalidOperation.EmptySpan" xml:space="preserve">
+        <value>Span must not be empty for this operation to be performed successfully.</value>
+    </data>
+    <data name="Exceptions.Spans.Sorts.LengthMismatch" xml:space="preserve">
+        <value>The length of the keys span and values span do not match.</value>
+    </data>
+    <data name="Exceptions.Spans.Copy.DestinationShorterThanSource" xml:space="preserve">
+        <value>Destination span length is shorter than the source span.</value>
+    </data>
+    <data name="Exceptions.Spans.Copy.DestinationSmallerThanIndex" xml:space="preserve">
+        <value>Destination span length is smaller than start index + length.</value>
+    </data>
 </root>

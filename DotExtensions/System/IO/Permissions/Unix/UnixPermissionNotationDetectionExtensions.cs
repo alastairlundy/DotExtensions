@@ -27,7 +27,7 @@ namespace DotExtensions.IO.Permissions.Unix;
 /// <summary>
 /// Provides extension methods for detecting and validating Unix file permission notations.
 /// </summary>
-public static class UnixPermissionNotationDetectionExtensions
+internal static class UnixPermissionNotationDetectionExtensions
 {
     /// <param name="notation">The symbolic notation string to validate.</param>
     extension(string notation)
@@ -36,8 +36,7 @@ public static class UnixPermissionNotationDetectionExtensions
         /// Validates whether a given string represents a valid Unix file permission symbolic notation (rwx format).
         /// </summary>
         /// <returns>A boolean value indicating whether the input notation is valid.</returns>
-        [Obsolete(DeprecationMessages.DeprecationV11)]
-        public bool IsValidRwxSymbolNotation()
+        internal bool IsValidRwxSymbolNotation()
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
@@ -71,8 +70,7 @@ public static class UnixPermissionNotationDetectionExtensions
         /// <returns>
         /// True if the numeric notation string represents a valid Unix permission; otherwise, false.
         /// </returns>
-        [Obsolete(DeprecationMessages.DeprecationV11)]
-        public bool IsValidNumericNotation()
+        internal bool IsValidNumericNotation()
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 

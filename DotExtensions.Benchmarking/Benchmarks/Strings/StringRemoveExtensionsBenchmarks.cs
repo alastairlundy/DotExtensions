@@ -22,7 +22,6 @@
        SOFTWARE.
    */
 
-using System;
 using System.Linq;
 using BenchmarkDotNet.Configs;
 using DotExtensions.Benchmarking;

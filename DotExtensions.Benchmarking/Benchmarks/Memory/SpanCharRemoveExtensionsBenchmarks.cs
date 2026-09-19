@@ -22,7 +22,6 @@
        SOFTWARE.
     */
 
-using System;
 using System.Linq;
 using DotExtensions.Benchmarking;
 using DotExtensions.Memory.Spans;

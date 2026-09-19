@@ -11,14 +11,39 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>#### ⚙️ Modifications
-- Improved random file path method performance
-- Optimized CountNumberOfDigits for common numeric types (25–30× speedup on 100M random int calls)
-- Return -1 for NaN and Infinity inputs in CountNumberOfDigits
+    <PackageReleaseNotes>## Changes since 10.5.x
 
-#### 🐛 Bug Fixes
-- Fixed GracefulParse overflow when version components exceeded Int32.MaxValue after sanitization
-- Fixed random walker infinite loop on reparse-point cycles</PackageReleaseNotes>
+### All Packages
+
+#### Added
+- Added internal `SafeEnumerator` and `DriveEnumerator` adapters backing safe IO enumeration, exposed to first-party projects via `InternalsVisibleTo`.
+- Added consolidated `Microsoft.Extensions.Primitives` extension surfaces (`ArgumentExceptionExtensions`, `StringSegmentExtensions`).
+- Added adapter unit tests, public-surface safe-enumeration integration tests, and `Span&lt;char&gt;.RemoveAll` tests (including AOT coverage) plus BenchmarkDotNet benchmarks.
+
+#### Changed
+- Retargeted all projects to `net10.0` only; removed `NET8_0_OR_GREATER` guards and dead fallback code across source, tests, and benchmarking.
+- Collapsed safe IO enumeration onto the new adapters: `SafeEnumerationExtensions` and `SafeDriveEnumerationExtensions` are now thin wrappers, and `GetRandomIOExtensions` calls the adapters directly.
+- Consolidated IO namespaces into `DotExtensions.IO` (merging `IsEmpty` extensions into root `IsEmptyExtensions`); consolidated `StringValues`/`StringSegment`/`ArgumentException` extensions into single files.
+- Extracted a shared directory-existence guard in `IsDirectoryEmptyExtensions`; reclassified multi-occurrence test args and added empty-source edge cases.
+- Updated README, building, benchmarking, and `DotExtensions.Memory` docs for single-TFM targeting; added a pull request template with AI-usage disclosure; removed redundant planning docs.
+- **Runtime Dependencies**: bumped `Microsoft.Extensions.Primitives` to 10.0.12 and `Polyfill` to 11.3.0.
+- **Testing Dependencies**: bumped `TUnit` to 1.68.4.
+- **CI Dependencies**: bumped `Meziantou.Analyzer` to 3.0.260, `github/codeql-action/upload-sarif` to 4.38.0, and `step-security/harden-runner` to 2.21.1.
+
+#### Deprecated
+- Deprecated `PathEnvironmentVariable` (`[Obsolete]`; removal planned for v11).
+- Deprecated `TaskTimeoutExtensions.WaitAsync` overloads (`[Obsolete]`; removal planned for v11).
+
+#### Removed
+- Removed support for `netstandard2.0`, `net8.0`, and `net9.0`; libraries now ship `net10.0` only.
+- Removed netstandard-only package references (`Microsoft.Bcl.Memory`, `System.IO.FileSystem.AccessControl`, `System.Memory`).
+- Removed IO sub-namespaces (`Directories`, `Drives`, `Files`) and empty folders — **breaking**: update `using` directives to `DotExtensions.IO`.
+
+#### Fixed
+- Addressed code-review findings on the IO enumeration refactor.
+- Corrected migration ticket definitions.
+
+[11.0.0-alpha.1]: https://github.com/alastairlundy/DotExtensions/compare/10.5.2...11.0.0-alpha.1</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -27,15 +52,15 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>10.5.0</Version>
+    <Version>11.0.0-alpha.1</Version>
     <PackageId>DotExtensions</PackageId>
       <IsTrimmable>true</IsTrimmable>
     <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <AssemblyVersion>10.5.0</AssemblyVersion>
-      <FileVersion>10.5.0</FileVersion>
+      <AssemblyVersion></AssemblyVersion>
+      <FileVersion></FileVersion>
   </PropertyGroup>
 
     <PropertyGroup>

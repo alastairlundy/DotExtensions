@@ -6,4 +6,3 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using DotExtensions.Memory.Exceptions;
 global using DotExtensions.Memory.Internal;
-global using DotExtensions.Memory.Internal.Localizations;
