@@ -40,10 +40,10 @@ public class VersionComparisonTests
         Version newVersion = Version.Parse(newVersionInput);
 
         bool expected = oldVersion.IsOlderThan(newVersion);
-       
+
         await Assert.That(expected).IsTrue();
     }
-    
+
     [Test]
     [Arguments("1.2.3.4", "1.2.3.0")]
     [Arguments("1.0.0", "0.99.0")]
@@ -53,9 +53,9 @@ public class VersionComparisonTests
     {
         Version oldVersion = Version.Parse(oldVersionInput);
         Version newVersion = Version.Parse(newVersionInput);
-        
+
         bool actual = newVersion.IsAtLeast(oldVersion);
-        
+
         await Assert.That(actual).IsTrue();
     }
 }

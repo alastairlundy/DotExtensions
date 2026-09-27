@@ -61,7 +61,7 @@ public static class ReadOnlyMemorySort
 
             TKey[] keysArray = new TKey[keys.Length];
             TValue[] valsArray = new TValue[values.Length];
-            
+
             keys.CopyTo(keysArray);
             values.CopyTo(valsArray);
 
@@ -71,7 +71,7 @@ public static class ReadOnlyMemorySort
             values = valsArray.AsSpan();
         }
     }
-    
+
     /// <param name="source">The <see cref="ReadOnlySpan{T}"/> to sort.</param>
     /// <typeparam name="T">The type of element in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<T>(ref ReadOnlySpan<T> source)
@@ -93,7 +93,7 @@ public static class ReadOnlyMemorySort
         {
             ArgumentNullException.ThrowIfNull(comparer);
             T[] array = new T[source.Length];
-            
+
             source.CopyTo(array);
             Array.Sort(array, comparer);
 
@@ -108,7 +108,7 @@ public static class ReadOnlyMemorySort
         {
             ArgumentNullException.ThrowIfNull(comparison);
             T[] array = new T[source.Length];
-            
+
             source.CopyTo(array);
             Array.Sort(array, comparison);
 

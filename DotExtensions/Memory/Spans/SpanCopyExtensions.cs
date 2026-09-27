@@ -179,9 +179,9 @@ public static class SpanCopyExtensions
         }
     }
     #endregion
-    
+
     #region ReadOnlySpan version
-    
+
     /// <param name="source">The source <see cref="ReadOnlySpan{T}"/>.</param>
     /// <typeparam name="T">The type of elements in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<T>(ReadOnlySpan<T> source)

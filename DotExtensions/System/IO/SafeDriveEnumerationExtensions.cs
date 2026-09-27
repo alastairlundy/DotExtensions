@@ -42,7 +42,7 @@ public static class SafeDriveEnumerationExtensions
         /// </returns>
         public static DriveInfo[] SafelyGetLogicalDrives()
             => DriveEnumerator.GetLogicalDrives();
-        
+
         /// <summary>
         /// Enumerates all logical drives available on the current platform.
         /// </summary>

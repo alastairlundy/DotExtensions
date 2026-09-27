@@ -39,14 +39,14 @@ public static class GetDirectoryExtensions
         /// <exception cref="ArgumentException">Thrown if the file does not exist.</exception>
         public DirectoryInfo GetDirectory()
         {
-            if(fileInfo.Directory is not null)
+            if (fileInfo.Directory is not null)
                 return fileInfo.Directory;
 
             int length = fileInfo.FullName.IndexOf(fileInfo.Name, StringComparison.Ordinal) - 1;
-            
+
             int lastDirSeparatorIndex = fileInfo.FullName[..length]
                 .LastIndexOfAny([Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar]);
-            
+
             if (lastDirSeparatorIndex != -1)
             {
                 string newPath = fileInfo.FullName.Substring(0, lastDirSeparatorIndex);
@@ -59,14 +59,14 @@ public static class GetDirectoryExtensions
 
             if (!fileInfo.Exists)
                 throw new ArgumentException(
-                    Resources.Exceptions_Directory_FileArgumentNotFound.Replace("{0}", fileInfo.Name, 
+                    Resources.Exceptions_Directory_FileArgumentNotFound.Replace("{0}", fileInfo.Name,
                         StringComparison.OrdinalIgnoreCase), nameof(fileInfo));
 
             DirectoryInfo? directory = DriveInfo.SafelyEnumerateLogicalDrives()
                 .Select(d => d.RootDirectory)
                 .SelectMany(d => d.SafelyEnumerateDirectories())
                 .FirstOrDefault(d => d.SafelyEnumerateFiles().Any(f => f.Name.Equals(fileInfo.Name, StringComparison.Ordinal)));
-           
+
             return directory ?? new DirectoryInfo(Directory.GetDirectoryRoot(fileInfo.FullName));
         }
     }

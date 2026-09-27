@@ -38,16 +38,16 @@ public static class CapitalizationExtensions
         /// <param name="index">The index of the char to be made upper case.</param>
         /// <returns>A string with the specified char made upper case.</returns>
         public string CapitalizeChar(int index)
-        {            
+        {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index,  str.Length);
-            
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
+
             char c = str[index];
 
             if (char.IsUpper(c))
                 return str;
-            
+
             StringBuilder sb = new(str)
             {
                 [index] = char.ToUpper(c, CultureInfo.CurrentCulture)
@@ -65,7 +65,7 @@ public static class CapitalizationExtensions
         {
             ArgumentNullException.ThrowIfNull(indices);
             ArgumentException.ThrowIfNullOrEmpty(str);
-            
+
             StringBuilder stringBuilder = new(str);
 
             foreach (int index in indices)
@@ -75,10 +75,10 @@ public static class CapitalizationExtensions
                         Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N", CultureInfo.CurrentCulture)
                             , StringComparison.Ordinal
                         ), nameof(indices));
-                    
-                if(index >= str.Length)
+
+                if (index >= str.Length)
                     throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
-                
+
                 if (!char.IsUpper(str[index]))
                     stringBuilder[index] = char.ToUpper(str[index], CultureInfo.CurrentCulture);
             }

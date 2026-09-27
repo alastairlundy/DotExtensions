@@ -13,7 +13,7 @@ public class RandomFileRetrievalBenchmark
 {
     [Params(10, 100)]
     public int N;
-    
+
     [Benchmark]
     public IList<string> Path_GetRandomFileName()
     {
@@ -22,10 +22,10 @@ public class RandomFileRetrievalBenchmark
         {
             output.Add(Path.GetRandomFileName());
         }
-        
+
         return output;
     }
-    
+
     [Benchmark]
     public IList<FileInfo> DotExtensions_GetRandomFile()
     {

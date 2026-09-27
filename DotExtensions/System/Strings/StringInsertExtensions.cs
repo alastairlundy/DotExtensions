@@ -47,7 +47,7 @@ public static class StringInsertExtensions
             StringBuilder stringBuilder = new(str);
 
             stringBuilder.Insert(index, c);
-            
+
             return stringBuilder.ToString();
         }
 
@@ -67,7 +67,7 @@ public static class StringInsertExtensions
             StringBuilder stringBuilder = new(str);
 
             stringBuilder.Insert(index, chars);
-            
+
             return stringBuilder.ToString();
         }
     }

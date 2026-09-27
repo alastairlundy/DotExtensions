@@ -46,21 +46,21 @@ public static class StringRemoveRangeExtensions
         {
             if (startIndex.Value == endIndex.Value)
                 return str.Remove(startIndex.Value, 1);
-            
+
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex.Value, nameof(startIndex));
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(endIndex.Value, nameof(endIndex));
 
             ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex.Value, endIndex.Value, nameof(startIndex));
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex.Value, str.Length, nameof(startIndex));
             ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(endIndex.Value, str.Length, nameof(endIndex));
-            
+
             StringBuilder stringBuilder = new StringBuilder(str);
 
             int length = endIndex.Value - startIndex.Value;
-            
-            if(length < 0 || length > str.Length)
+
+            if (length < 0 || length > str.Length)
                 throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(startIndex));
-            
+
             stringBuilder.Remove(startIndex.Value, length);
             return stringBuilder.ToString();
         }
@@ -106,13 +106,13 @@ public static class StringRemoveRangeExtensions
                 ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(range.End.Value, str.Length, nameof(ranges));
 
                 int length = range.End.Value - range.Start.Value;
-            
-                if(length < 0 || length > str.Length || length > stringBuilder.Length)
+
+                if (length < 0 || length > str.Length || length > stringBuilder.Length)
                     throw new ArgumentException(Resources.Exceptions_Strings_ValueNotInString, nameof(ranges));
-            
+
                 stringBuilder = stringBuilder.Remove(range.Start.Value, length);
             }
-            
+
             return stringBuilder.ToString();
         }
     }

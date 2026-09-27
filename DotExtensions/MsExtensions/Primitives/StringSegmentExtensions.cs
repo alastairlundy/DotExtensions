@@ -56,7 +56,7 @@ public static class StringSegmentExtensions
 
             return other.Value.IsEmpty;
         }
-        
+
         /// <summary>
         /// Checks whether the specified string segment is null or whitespace.
         /// </summary>
@@ -80,7 +80,7 @@ public static class StringSegmentExtensions
         {
             if (other.IsEmpty)
                 return false;
-            
+
             for (int index = 0; index < other.Length; index++)
             {
                 char c = other[index];
@@ -92,7 +92,7 @@ public static class StringSegmentExtensions
             return true;
         }
     }
-    
+
     #region CharConversion
 
     /// <param name="segment"></param>
@@ -104,9 +104,9 @@ public static class StringSegmentExtensions
         /// <returns>The string segment as a char array.</returns>
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
         public char[] ToCharArray()
-        { 
+        {
             ArgumentException.ThrowIfNullOrEmpty(segment);
-            
+
             char[] charArray = new char[segment.Length];
 
             for (int i = 0; i < segment.Length; i++)
@@ -128,7 +128,7 @@ public static class StringSegmentExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
 
-            List<char> list = new(capacity:segment.Length);
+            List<char> list = new(capacity: segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
             {
@@ -138,9 +138,9 @@ public static class StringSegmentExtensions
             return list;
         }
     }
-    
+
     #endregion
-    
+
     #region Reverse
 
     /// <param name="target">The StringSegment to reverse.</param>
@@ -154,7 +154,7 @@ public static class StringSegmentExtensions
         public StringSegment Reverse()
         {
             ArgumentException.ThrowIfNullOrEmpty(target);
-            
+
             StringBuilder stringBuilder = new(capacity: target.Length);
 
             for (int i = 0; i < target.Length; i++)
@@ -166,9 +166,9 @@ public static class StringSegmentExtensions
             return new StringSegment(stringBuilder.ToString());
         }
     }
-    
+
     #endregion
-    
+
     #region CaseManipulation
 
     /// <param name="segment">The StringSegment to be modified.</param>
@@ -184,7 +184,7 @@ public static class StringSegmentExtensions
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
-            
+
             char c = segment[index];
 
             if (char.IsUpper(c))
@@ -204,7 +204,7 @@ public static class StringSegmentExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentNullException.ThrowIfNull(indices);
-            
+
             StringBuilder stringBuilder = new(capacity: segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
@@ -219,18 +219,18 @@ public static class StringSegmentExtensions
                         Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N", CultureInfo.CurrentCulture)
                             , StringComparison.Ordinal
                         ), nameof(indices));
-                
-                if(index >= segment.Length)
+
+                if (index >= segment.Length)
                     throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
 
-                
+
                 stringBuilder[index] = char.ToUpper(stringBuilder[index], CultureInfo.CurrentCulture);
             }
 
             return new StringSegment(stringBuilder.ToString());
         }
     }
-    
+
     /// <summary>
     /// Provides extension methods for determining the case of <see cref="StringSegment"/> instances.
     /// </summary>
@@ -264,9 +264,9 @@ public static class StringSegmentExtensions
             return true;
         }
     }
-    
+
     #endregion
-    
+
     #region CollectionOperations
 
     /// <summary>
@@ -283,7 +283,7 @@ public static class StringSegmentExtensions
         {
             ArgumentNullException.ThrowIfNull(segments);
             ArgumentException.ThrowIfNullOrEmpty(separator);
-            
+
             StringBuilder stringBuilder = new();
 
             foreach (StringSegment segment in segments)
@@ -332,9 +332,9 @@ public static class StringSegmentExtensions
             return stringBuilder.ToString();
         }
     }
-    
+
     #endregion
-    
+
     #region Containment
 
     /// <summary>
@@ -357,7 +357,7 @@ public static class StringSegmentExtensions
 
             return false;
         }
-        
+
         /// <summary>
         /// Returns whether the String Segment contains another String Segment.
         /// </summary>
@@ -366,7 +366,7 @@ public static class StringSegmentExtensions
         {
             if ((source.IsEmpty && !segment.IsEmpty) || (segment.IsEmpty && !source.IsEmpty))
                 return false;
-            
+
             if (source.Length == segment.Length)
                 return source.Equals(segment, StringComparison.CurrentCulture);
 
@@ -393,7 +393,7 @@ public static class StringSegmentExtensions
             return false;
         }
     }
-    
+
     /// <summary>
     /// Provides extension methods for performing operations related to spaces within <see cref="StringSegment"/> instances.
     /// </summary>
@@ -408,9 +408,9 @@ public static class StringSegmentExtensions
         {
             if (segment.IsEmpty || StringSegment.IsNullOrWhiteSpace(segment))
                 return false;
-            
+
             StringTokenizer tokenizer = segment.Split([delimiter]);
-            
+
             int count = 0;
             foreach (StringSegment unused in tokenizer)
             {
@@ -419,11 +419,11 @@ public static class StringSegmentExtensions
                 if (count > 1)
                     break;
             }
-            
+
             return segment.Contains(delimiter) && count > 1;
         }
     }
-    
+
     /// <param name="source"></param>
     extension(string source)
     {
@@ -441,9 +441,9 @@ public static class StringSegmentExtensions
             return segments.ToArray();
         }
     }
-    
+
     #endregion
-    
+
     #region Removal
 
     /// <param name="segment">The segment to remove characters from.</param>
@@ -463,7 +463,7 @@ public static class StringSegmentExtensions
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
-            
+
             return segment.Subsegment(0, startIndex == 0 ? 0 : startIndex - 1);
         }
 
@@ -497,7 +497,7 @@ public static class StringSegmentExtensions
 
             return new StringSegment($"{firstSegment}{secondSegment}");
         }
-        
+
         /// <summary>
         /// Removes a subsegment from the <see cref="StringSegment"/>, defined by the specified start and end indices.
         /// </summary>
@@ -526,6 +526,6 @@ public static class StringSegmentExtensions
         public StringSegment Remove(Range range)
             => segment.Remove(range.Start, range.End);
     }
-    
+
     #endregion
 }

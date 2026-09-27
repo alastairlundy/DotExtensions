@@ -41,7 +41,7 @@ public static class StringValuesExtensions
         /// <returns>True if it is empty, false otherwise.</returns>
         public bool IsEmpty => strValues.Equals(StringValues.Empty);
     }
-    
+
     extension(StringValues)
     {
         /// <summary>
@@ -53,7 +53,7 @@ public static class StringValuesExtensions
         {
             if (other is null)
                 return true;
-            
+
             return StringValues.IsWhiteSpace((StringValues)other);
         }
 
@@ -66,20 +66,20 @@ public static class StringValuesExtensions
         {
             if (other.Count == 0)
                 return false;
-            
+
             bool[] vals = new bool[other.Count];
 
             for (int index = 0; index < other.Count; index++)
             {
                 string? val = other[index];
-                
+
                 vals[index] = string.IsNullOrWhiteSpace(val);
             }
 
             return vals.Any(x => x);
         }
     }
-    
+
     #region Length
 
     /// <param name="stringValues">The <see cref="StringValues"/> object to search.</param>
@@ -96,17 +96,17 @@ public static class StringValuesExtensions
 
                 foreach (string? value in stringValues)
                 {
-                    if(value is not null)
+                    if (value is not null)
                         length += value.Length;
                 }
 
                 return length;
-            }  
+            }
         }
     }
-    
+
     #endregion
-    
+
     #region ToString
 
     /// <summary>
@@ -139,10 +139,10 @@ public static class StringValuesExtensions
             }
 
             string output = stringBuilder.ToString();
-            
-            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
+
+            if (output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - 1, 1);
-            
+
             return output;
         }
 
@@ -171,14 +171,14 @@ public static class StringValuesExtensions
             }
 
             string output = stringBuilder.ToString();
-            
-            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
+
+            if (output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - separator.Length,
                     separator.Length);
-            
+
             return output;
         }
     }
-    
+
     #endregion
 }

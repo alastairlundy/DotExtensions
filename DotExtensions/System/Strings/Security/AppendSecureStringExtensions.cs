@@ -53,7 +53,7 @@ public static class AppendSecureStringExtensions
             }
         }
     }
-    
+
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     extension(SecureString secureString)
     {

@@ -47,15 +47,15 @@ public static class UnixPermissionParsingExtensions
         public static UnixFileMode Parse(string input)
         {
             ArgumentException.ThrowIfNullOrEmpty(input);
-            
-            if(input.IsValidNumericNotation())
+
+            if (input.IsValidNumericNotation())
                 return ParseNumericNotation(input);
-            
-            if(input.IsValidRwxSymbolNotation())
+
+            if (input.IsValidRwxSymbolNotation())
                 return ParseRwxSymbolNotation(input);
 
             throw new ArgumentException(Resources.
-                Exceptions_Permissions_Unix_InvalidSymbolicNotation.Replace("{x}",  input), nameof(input));
+                Exceptions_Permissions_Unix_InvalidSymbolicNotation.Replace("{x}", input), nameof(input));
         }
 
         /// <summary>
@@ -82,9 +82,9 @@ public static class UnixPermissionParsingExtensions
             }
         }
     }
-    
+
     #region Parsing Logic
-        
+
     /// <summary>
     /// Parses a Unix file permission symbolic notation string (rwx format) into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
@@ -144,7 +144,7 @@ public static class UnixPermissionParsingExtensions
 
         return userPermissions | groupPermissions | othersPermissions;
     }
-    
+
     /// <summary>
     /// Parses a numeric notation string representing Unix file permissions into a corresponding <see cref="UnixFileMode"/> value.
     /// </summary>
@@ -161,17 +161,17 @@ public static class UnixPermissionParsingExtensions
     private static UnixFileMode ParseNumericNotation(string notation)
     {
         ArgumentException.ThrowIfNullOrEmpty(notation);
-        
+
         if (!notation.IsValidNumericNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation));
 
-        if(notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
-            notation =  notation.Remove(0, 1);
-        
+        if (notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
+            notation = notation.Remove(0, 1);
+
         int user = int.Parse(notation.First().ToString(), CultureInfo.InvariantCulture);
         int group = int.Parse(notation[^2].ToString(), CultureInfo.InvariantCulture);
         int others = int.Parse(notation.Last().ToString(), CultureInfo.InvariantCulture);
-        
+
         UnixFileMode userPermissions = user switch
         {
             0 => UnixFileMode.None,
@@ -184,8 +184,8 @@ public static class UnixPermissionParsingExtensions
             7 => UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute,
             _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, notation)
         };
-        
-        UnixFileMode groupPermissions =  group switch
+
+        UnixFileMode groupPermissions = group switch
         {
             0 => UnixFileMode.None,
             1 => UnixFileMode.GroupExecute,
@@ -197,7 +197,7 @@ public static class UnixPermissionParsingExtensions
             7 => UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute,
             _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
-        
+
         UnixFileMode othersPermissions = others switch
         {
             0 => UnixFileMode.None,
@@ -205,12 +205,13 @@ public static class UnixPermissionParsingExtensions
             2 => UnixFileMode.OtherWrite,
             3 => UnixFileMode.OtherWrite | UnixFileMode.OtherExecute,
             4 => UnixFileMode.OtherRead,
-            5 => UnixFileMode.OtherRead | UnixFileMode.OtherExecute, 6 => UnixFileMode.OtherRead | UnixFileMode.OtherWrite,
+            5 => UnixFileMode.OtherRead | UnixFileMode.OtherExecute,
+            6 => UnixFileMode.OtherRead | UnixFileMode.OtherWrite,
             7 => UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute,
             _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
-        
-        return othersPermissions | groupPermissions |  userPermissions;
+
+        return othersPermissions | groupPermissions | userPermissions;
     }
     #endregion
 }

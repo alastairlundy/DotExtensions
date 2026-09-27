@@ -134,17 +134,17 @@ public static class GetRandomIOExtensions
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
             DriveInfo drive = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles);
-            
+
             DirectoryInfo? result = FindRandomDirectoryByWalk(drive.RootDirectory, mustContainFiles);
-            
+
             if (result is not null)
                 return result;
-            
+
             string sysDir = OperatingSystem.IsWindows()
                 ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
                 : Environment.SystemDirectory;
-            
-            return new DirectoryInfo(sysDir).Parent ?? 
+
+            return new DirectoryInfo(sysDir).Parent ??
                    throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
                        sysDir, StringComparison.OrdinalIgnoreCase));
         }
@@ -203,9 +203,9 @@ public static class GetRandomIOExtensions
         public static FileInfo GetRandomFile()
         {
             DriveInfo drive = DriveInfo.GetRandomDrive(driveMustContainFiles: true, driveMustContainDirectories: true);
-            
+
             FileInfo? result = FindRandomFileByWalk(drive.RootDirectory);
-            
+
             if (result is not null)
                 return result;
 
@@ -252,7 +252,7 @@ public static class GetRandomIOExtensions
             return null;
         }
     }
-    
+
     extension(Path)
     {
         /// <summary>

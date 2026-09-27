@@ -51,18 +51,18 @@ public static class WindowsFileAccessRulesExtensions
         public AuthorizationRuleCollection GetWindowsFileAccessRules()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-           
-            if(!file.Exists)
+
+            if (!file.Exists)
                 throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName));
 
             FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
 
             AuthorizationRuleCollection results = fileSecurity.GetAccessRules(includeExplicit: true,
                 includeInherited: true, typeof(SecurityIdentifier));
-            
+
             return results;
         }
-        
+
         /// <summary>
         /// Sets the Windows file permission for a given FileInfo object.
         /// </summary>
@@ -79,18 +79,18 @@ public static class WindowsFileAccessRulesExtensions
         public void SetWindowsFileAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-            
-            if(!file.Exists)
+
+            if (!file.Exists)
                 throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName, StringComparison.OrdinalIgnoreCase));
-            
+
             FileSecurity fileSecurity = file.GetAccessControl(AccessControlSections.Access);
-            
+
             fileSecurity.AddAccessRule(new(identityReference, fileSystemRights, AccessControlType.Allow));
-        
+
             file.SetAccessControl(fileSecurity);
         }
     }
-    
+
     /// <param name="directory">The DirectoryInfo object for which to set the permission.</param>
     extension(DirectoryInfo directory)
     {
@@ -110,7 +110,7 @@ public static class WindowsFileAccessRulesExtensions
         public void SetWindowsDirectoryAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-            
+
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
 
             directorySecurity.AddAccessRule(new FileSystemAccessRule(identityReference, fileSystemRights, AccessControlType.Allow));
@@ -132,11 +132,11 @@ public static class WindowsFileAccessRulesExtensions
         public AuthorizationRuleCollection GetWindowsDirectoryAccessRules()
         {
             PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
-            
-            if(!directory.Exists)
+
+            if (!directory.Exists)
                 throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",
                     directory.Name, StringComparison.OrdinalIgnoreCase));
-        
+
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
             AuthorizationRuleCollection results = directorySecurity.GetAccessRules(includeExplicit: true,
                 includeInherited: true, typeof(SecurityIdentifier));

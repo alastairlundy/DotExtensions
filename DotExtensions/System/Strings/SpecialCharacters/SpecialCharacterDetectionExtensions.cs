@@ -44,7 +44,7 @@ public static class SpecialCharacterDetectionExtensions
             return !char.IsLetterOrDigit(c) && (char.IsPunctuation(c) || char.IsSymbol(c));
         }
     }
-    
+
     /// <param name="str">The string to search or modify.</param>
     extension(string str)
     {
@@ -67,7 +67,7 @@ public static class SpecialCharacterDetectionExtensions
         public string RemoveSpecialCharacters()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
-            
+
             StringBuilder stringBuilder = new(str.Length);
 
             foreach (char c in str)

@@ -48,19 +48,19 @@ public class SafeFileEnumerationTests
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
         FileInfo[] files = directoryInfo.SafelyGetFiles();
-        
+
         Assert.NotNull(files);
         await Assert.That(files.Length)
             .IsGreaterThan(0);
     }
-    
+
     [Test]
     public async Task SafeFileGetting_WithSearchOption_NoExceptions()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
-        FileInfo[] files = directoryInfo.SafelyGetFiles("*",  SearchOption.AllDirectories);
-        
+        FileInfo[] files = directoryInfo.SafelyGetFiles("*", SearchOption.AllDirectories);
+
         Assert.NotNull(files);
         await Assert.That(files.Length)
             .IsGreaterThan(0);

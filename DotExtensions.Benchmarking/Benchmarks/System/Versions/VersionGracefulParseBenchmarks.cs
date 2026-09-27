@@ -55,7 +55,7 @@ public class VersionGracefulParseBenchmarks
 
                 string versionString = $"{_faker.System.Version()}{suffix}";
 
-                int random =  Random.Shared.Next(0, 3);
+                int random = Random.Shared.Next(0, 3);
                 versionString = random switch
                 {
                     3 => versionString,
@@ -74,7 +74,7 @@ public class VersionGracefulParseBenchmarks
     [Benchmark]
     public IList<Version> GracefulParse_Impl()
     {
-        List<Version> output = new(capacity:_bogusVersionStrings.Count);
+        List<Version> output = new(capacity: _bogusVersionStrings.Count);
 
         foreach (string version in _bogusVersionStrings)
         {

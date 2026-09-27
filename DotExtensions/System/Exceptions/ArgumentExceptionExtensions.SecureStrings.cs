@@ -71,14 +71,14 @@ public static class ArgumentExceptionExtensions
                 throw new ArgumentNullException(name);
 
             SecureString whitespace = new();
-            
+
             for (int i = 0; i < secureString.Length; i++)
             {
                 whitespace.AppendChar(' ');
             }
-            
+
             if (secureString.Equals(whitespace))
-                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty, 
+                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty,
                     name.Length == 0 ? nameof(secureString) : name);
         }
     }

@@ -48,7 +48,7 @@ public static class ContainsSubstringsExtensions
         public bool ContainsDelimitedSubstrings(char delimiter)
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
-            
+
             return s.Contains(delimiter, StringComparison.Ordinal) && s.Split(delimiter).Length > 1;
         }
     }

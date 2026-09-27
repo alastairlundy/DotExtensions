@@ -40,9 +40,9 @@ internal static class UnixPermissionNotationDetectionExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
-            if (notation.Length != 10) 
+            if (notation.Length != 10)
                 return false;
-        
+
             return notation switch
             {
                 "----------" or
@@ -62,7 +62,7 @@ internal static class UnixPermissionNotationDetectionExtensions
                 _ => false
             };
         }
-        
+
         /// <summary>
         /// Validates if the provided numeric notation string represents a valid Unix permission in numeric format.
         /// </summary>
@@ -75,13 +75,13 @@ internal static class UnixPermissionNotationDetectionExtensions
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
             if (notation.Length is < 3 or > 4 || !int.TryParse(notation, NumberStyles.Integer,
-                    CultureInfo.InvariantCulture, out int result)) 
+                    CultureInfo.InvariantCulture, out int result))
                 return false;
 
             if (notation.Length == 4 && notation[0] != '0')
                 return result is >= 0 and <= 4777 && notation.AsEnumerable()
                     .All(x => x != '8' && x != '9');
-        
+
             return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
         }
     }

@@ -36,112 +36,112 @@ public static class ArgumentExceptionExtensions
 {
     extension(ArgumentException)
     {
-    #region StringSegment
+        #region StringSegment
 
-    /// <summary>
-    /// Throws an <see cref="ArgumentNullException"/> if the specified <see cref="StringSegment"/> is null
-    /// or has a length of zero.
-    /// </summary>
-    /// <param name="target">The <see cref="StringSegment"/> to validate.</param>
-    /// <param name="paramName">The name of the parameter being validated. Defaults to the name of the target parameter.</param>
-    /// <exception cref="ArgumentNullException">
-    /// Thrown when the <paramref name="target"/> is null or has a length of zero.
-    /// </exception>
-    public static void ThrowIfNullOrEmpty(StringSegment? target, string paramName = "")
-    {
-        if (paramName == "")
-            paramName = nameof(target);
-
-        ArgumentNullException.ThrowIfNull(target, paramName);
-
-        if(StringSegment.IsNullOrEmpty(target))
-            throw new ArgumentNullException(paramName);
-    }
-
-    /// <summary>
-    /// Throws an <see cref="ArgumentNullException"/> if the specified <see cref="StringSegment"/> is null
-    /// or consists solely of whitespace characters.
-    /// </summary>
-    /// <param name="target">The <see cref="StringSegment"/> to validate.</param>
-    /// <param name="paramName">The name of the parameter being validated. Defaults to the name of the target parameter.</param>
-    /// <exception cref="ArgumentNullException">
-    /// Thrown when the <paramref name="target"/> is null or contains only whitespace characters.
-    /// </exception>
-    public static void ThrowIfNullOrWhitespace(StringSegment? target, string paramName = "")
-    {
-        if (paramName == "")
-            paramName = nameof(target);
-        
-        if (!target.HasValue)
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException"/> if the specified <see cref="StringSegment"/> is null
+        /// or has a length of zero.
+        /// </summary>
+        /// <param name="target">The <see cref="StringSegment"/> to validate.</param>
+        /// <param name="paramName">The name of the parameter being validated. Defaults to the name of the target parameter.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when the <paramref name="target"/> is null or has a length of zero.
+        /// </exception>
+        public static void ThrowIfNullOrEmpty(StringSegment? target, string paramName = "")
         {
-            throw new ArgumentNullException(nameof(target));
-        }
+            if (paramName == "")
+                paramName = nameof(target);
 
-        if (StringSegment.IsNullOrWhiteSpace(target))
-            throw new ArgumentNullException(paramName);
-    }
+            ArgumentNullException.ThrowIfNull(target, paramName);
 
-    #endregion
-
-    #region StringValues
-
-    /// <summary>
-    /// Checks whether a given collection of string values contains any null or whitespace strings.
-    /// This method throws an ArgumentException if the provided StringValues collection is null
-    /// or if it is empty. It ensures robust handling of input validation by explicitly checking for these edge cases.
-    /// </summary>
-    /// <param name="values">The collection of strings to be validated.</param>
-    /// <param name="paramName">
-    /// The parameter name used in the exception message when an argument is null or whitespace.
-    /// This can help identify which specific input caused the error during debugging.
-    /// </param>
-    /// <exception cref="ArgumentNullException">Thrown if the values are null and paramName is not empty.</exception>
-    /// <exception cref="ArgumentException">Thrown if any of the strings in the collection are null or whitespace.</exception>
-    public static void ThrowIfNullOrEmpty(StringValues? values, string paramName = "")
-    {
-        if (values is null || StringValues.IsNullOrEmpty((StringValues)values))
-        {
-            if(paramName != string.Empty)
+            if (StringSegment.IsNullOrEmpty(target))
                 throw new ArgumentNullException(paramName);
-            
-            throw new ArgumentNullException(nameof(values));
         }
-    }
 
-    /// <summary>
-    /// Checks whether a given collection of string values contains any null or whitespace strings.
-    /// This method throws an ArgumentException if the provided StringValues collection is null
-    /// or if it contains any string that is either null or consists solely of whitespace characters.
-    /// It ensures robust handling of input validation by explicitly checking for these edge cases.
-    /// </summary>
-    /// <param name="values">The collection of strings to be validated.</param>
-    /// <param name="paramName">
-    /// The parameter name used in the exception message when an argument is null or whitespace.
-    /// This can help identify which specific input caused the error during debugging.
-    /// </param>
-    /// <exception cref="ArgumentNullException">Thrown if the values are null and paramName is not empty.</exception>
-    /// <exception cref="ArgumentException">Thrown if any of the strings in the collection are null or whitespace.</exception>
-    public static void ThrowIfNullOrWhiteSpace(StringValues? values, string paramName = "")
-    {
-        if (values is null)
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException"/> if the specified <see cref="StringSegment"/> is null
+        /// or consists solely of whitespace characters.
+        /// </summary>
+        /// <param name="target">The <see cref="StringSegment"/> to validate.</param>
+        /// <param name="paramName">The name of the parameter being validated. Defaults to the name of the target parameter.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when the <paramref name="target"/> is null or contains only whitespace characters.
+        /// </exception>
+        public static void ThrowIfNullOrWhitespace(StringSegment? target, string paramName = "")
         {
+            if (paramName == "")
+                paramName = nameof(target);
+
+            if (!target.HasValue)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (StringSegment.IsNullOrWhiteSpace(target))
+                throw new ArgumentNullException(paramName);
+        }
+
+        #endregion
+
+        #region StringValues
+
+        /// <summary>
+        /// Checks whether a given collection of string values contains any null or whitespace strings.
+        /// This method throws an ArgumentException if the provided StringValues collection is null
+        /// or if it is empty. It ensures robust handling of input validation by explicitly checking for these edge cases.
+        /// </summary>
+        /// <param name="values">The collection of strings to be validated.</param>
+        /// <param name="paramName">
+        /// The parameter name used in the exception message when an argument is null or whitespace.
+        /// This can help identify which specific input caused the error during debugging.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Thrown if the values are null and paramName is not empty.</exception>
+        /// <exception cref="ArgumentException">Thrown if any of the strings in the collection are null or whitespace.</exception>
+        public static void ThrowIfNullOrEmpty(StringValues? values, string paramName = "")
+        {
+            if (values is null || StringValues.IsNullOrEmpty((StringValues)values))
+            {
+                if (paramName != string.Empty)
+                    throw new ArgumentNullException(paramName);
+
+                throw new ArgumentNullException(nameof(values));
+            }
+        }
+
+        /// <summary>
+        /// Checks whether a given collection of string values contains any null or whitespace strings.
+        /// This method throws an ArgumentException if the provided StringValues collection is null
+        /// or if it contains any string that is either null or consists solely of whitespace characters.
+        /// It ensures robust handling of input validation by explicitly checking for these edge cases.
+        /// </summary>
+        /// <param name="values">The collection of strings to be validated.</param>
+        /// <param name="paramName">
+        /// The parameter name used in the exception message when an argument is null or whitespace.
+        /// This can help identify which specific input caused the error during debugging.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Thrown if the values are null and paramName is not empty.</exception>
+        /// <exception cref="ArgumentException">Thrown if any of the strings in the collection are null or whitespace.</exception>
+        public static void ThrowIfNullOrWhiteSpace(StringValues? values, string paramName = "")
+        {
+            if (values is null)
+            {
+                if (paramName != string.Empty)
+                    throw new ArgumentNullException(paramName);
+
+                throw new ArgumentNullException(nameof(values));
+            }
+
+            if (!StringValues.IsNullOrWhiteSpace(values))
+                return;
+
             if (paramName != string.Empty)
                 throw new ArgumentNullException(paramName);
-            
-            throw new ArgumentNullException(nameof(values));
+
+            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
+                Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
+                nameof(values)), nameof(values));
         }
 
-        if (!StringValues.IsNullOrWhiteSpace(values)) 
-            return;
-        
-        if(paramName != string.Empty)
-            throw new ArgumentNullException(paramName);
-        
-        throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, 
-            Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
-            nameof(values)), nameof(values));
-    }
-
-    #endregion
+        #endregion
     }
 }

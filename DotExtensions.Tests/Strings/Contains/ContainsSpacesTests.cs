@@ -35,7 +35,7 @@ public class ContainsSpacesTests
 
     public static IEnumerable<string> LoremWords()
         => LoremWordsTestData.GetLoremWords();
-    
+
     [Test]
     [MethodDataSource(nameof(LoremWords))]
     public async Task UnSpacedWordDetection(string words)

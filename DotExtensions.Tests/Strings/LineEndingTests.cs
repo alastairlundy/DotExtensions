@@ -8,7 +8,7 @@ namespace DotExtensions.Tests.Strings;
 public class LineEndingTests
 {
     private readonly Faker _faker = new Faker();
-    
+
     [Test]
     public async Task LineEnding_Detected()
     {
@@ -17,12 +17,12 @@ public class LineEndingTests
         string testString = Environment.NewLine;
 
         string actual = testString.GetLineEnding();
-        
+
         await Assert.That(expected)
             .IsEqualTo(actual);
     }
-    
-        
+
+
     [Test]
     public async Task LineEnding_Detected_FromString()
     {
@@ -32,7 +32,7 @@ public class LineEndingTests
             .Append(Environment.NewLine));
 
         string actual = testString.GetLineEnding();
-        
+
         await Assert.That(expected)
             .IsEqualTo(actual);
     }
@@ -45,7 +45,7 @@ public class LineEndingTests
         string testString = $"{_faker.Lorem.Sentence()}{Environment.NewLine}{_faker.Lorem.Sentence()}";
 
         string actual = testString.GetLineEnding();
-        
+
         await Assert.That(expected)
             .IsEqualTo(actual);
     }

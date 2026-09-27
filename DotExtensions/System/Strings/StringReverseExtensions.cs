@@ -41,7 +41,7 @@ public static class StringReverseExtensions
         public string Reverse()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
-            
+
             StringBuilder stringBuilder = new(capacity: str.Length);
 
             for (int i = str.Length - 1; i >= 0; i--)

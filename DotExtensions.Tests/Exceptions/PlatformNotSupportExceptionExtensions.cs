@@ -47,14 +47,14 @@ public class PlatformNotSupportExceptionExtensions
     public async Task ThrowIfNotOSPlatform_DoNotThrowIfOnSupportedOs()
     {
         OSPlatform osPlatform = OSPlatform.Windows;
-        
-        if(OperatingSystem.IsWindows())
+
+        if (OperatingSystem.IsWindows())
             osPlatform = OSPlatform.Windows;
-        if(OperatingSystem.IsLinux())
+        if (OperatingSystem.IsLinux())
             osPlatform = OSPlatform.Linux;
-        if(OperatingSystem.IsMacOS())
+        if (OperatingSystem.IsMacOS())
             osPlatform = OSPlatform.OSX;
-        if(OperatingSystem.IsFreeBSD())
+        if (OperatingSystem.IsFreeBSD())
             osPlatform = OSPlatform.FreeBSD;
 
         await Assert.That(() => PlatformNotSupportedException.ThrowIfNotOSPlatform(osPlatform))

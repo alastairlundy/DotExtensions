@@ -33,7 +33,7 @@ public static class VersionParseExtensions
     private static (int major, int minor, int build, int revision) ParseChars(ReadOnlySpan<char> chars)
     {
         StringBuilder stringBuilder = new();
-        
+
         foreach (char currentChar in chars)
         {
             if (char.IsDigit(currentChar))
@@ -50,23 +50,23 @@ public static class VersionParseExtensions
 
         if (result.Equals(string.Empty))
             result = "-1";
-        
+
         if (!int.TryParse(result, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsed))
             parsed = int.MaxValue;
-        
+
         return (parsed, -1, -1, -1);
     }
-    
+
     private static string SanitizeInput(string versionString, char separator)
     {
         StringBuilder stringBuilder = new(versionString.Length);
 
         foreach (char currentChar in versionString)
         {
-            if(char.IsDigit(currentChar) || currentChar == separator)
+            if (char.IsDigit(currentChar) || currentChar == separator)
                 stringBuilder.Append(currentChar);
         }
-            
+
         return stringBuilder.ToString();
     }
 
@@ -76,7 +76,7 @@ public static class VersionParseExtensions
 
         if (versionString.Contains('.', StringComparison.OrdinalIgnoreCase))
             return '.';
-            
+
         foreach (char currentChar in versionString)
         {
             if (char.IsSeparator(currentChar) || char.IsPunctuation(currentChar))
@@ -85,23 +85,23 @@ public static class VersionParseExtensions
                 break;
             }
         }
-        
+
         return output;
     }
-    
+
     private static (int major, int minor, int build, int revision) ParseComponents(StringSegment[] versionComponents)
     {
         int major = -1, minor = -1, build = -1, revision = -1;
         int componentsAdded = 0;
-        
+
         versionComponents = versionComponents.Where(v =>
             {
-                int firstNumberIndex = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
+                int firstNumberIndex = v.IndexOfAny(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
                 return firstNumberIndex != -1;
             })
             .Select(v =>
             {
-                int index = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
+                int index = v.IndexOfAny(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
                 return v.Subsegment(index);
             })
             .ToArray();
@@ -137,7 +137,7 @@ public static class VersionParseExtensions
         return (major, minor, build, revision);
     }
     #endregion
-    
+
     extension(Version)
     {
         /// <summary>
@@ -153,15 +153,15 @@ public static class VersionParseExtensions
             ArgumentException.ThrowIfNullOrWhiteSpace(versionString);
 
             char separator = FindSeparator(versionString);
-            
+
             string sanitizedInput = SanitizeInput(versionString, separator);
-            
+
             (int major, int minor, int build, int revision) components;
-            
+
             if (sanitizedInput.Contains('.', StringComparison.OrdinalIgnoreCase) && separator != ' ')
             {
                 IEnumerable<StringSegment> segments = new StringTokenizer(sanitizedInput, [separator]);
-                
+
                 StringSegment[] versionComponents = segments.Take(4).ToArray();
                 components = ParseComponents(versionComponents);
             }
@@ -181,7 +181,7 @@ public static class VersionParseExtensions
                     throw new ArgumentException(string.Format(Resources.Exceptions_VersionParsing_InvalidVersionString, versionString), nameof(versionString));
                 }
             }
-            
+
             if (components.build != -1)
             {
                 return components.revision != -1

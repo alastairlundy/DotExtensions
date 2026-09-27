@@ -46,7 +46,7 @@ public static class ToListExtensions
             return new List<T>(array);
         }
     }
-    
+
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the <see cref="ReadOnlySpan{T}"/>.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
@@ -64,7 +64,7 @@ public static class ToListExtensions
             return new List<T>(array);
         }
     }
-    
+
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the Memory.</typeparam>
     extension<T>(Memory<T> source)
@@ -82,7 +82,7 @@ public static class ToListExtensions
             return new List<T>(array);
         }
     }
-    
+
     /// <param name="source"></param>
     /// <typeparam name="T">The type of elements in the <see cref="ReadOnlyMemory{T}"/>.</typeparam>
     extension<T>(ReadOnlyMemory<T> source)

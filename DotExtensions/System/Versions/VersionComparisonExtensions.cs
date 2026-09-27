@@ -37,7 +37,7 @@ public static class VersionComparisonExtensions
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than or equal to this version, returns false otherwise.</returns>
-        public bool IsAtLeast(Version versionToBeCompared) 
+        public bool IsAtLeast(Version versionToBeCompared)
             => version >= versionToBeCompared;
 
         /// <summary>
@@ -45,7 +45,7 @@ public static class VersionComparisonExtensions
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is older than this version, returns false otherwise.</returns>
-        public bool IsOlderThan(Version versionToBeCompared) 
+        public bool IsOlderThan(Version versionToBeCompared)
             => version < versionToBeCompared;
 
         /// <summary>
@@ -53,7 +53,7 @@ public static class VersionComparisonExtensions
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
         /// <returns>True, if the specified compared version is newer than this version, returns false otherwise.</returns>
-        public bool IsNewerThan(Version versionToBeCompared) 
+        public bool IsNewerThan(Version versionToBeCompared)
             => version > versionToBeCompared;
     }
 
@@ -68,7 +68,7 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The newer of the two specified versions.</returns>
-        public static Version Max(Version versionA, Version versionB) 
+        public static Version Max(Version versionA, Version versionB)
             => versionA > versionB ? versionA : versionB;
 
         /// <summary>
@@ -77,7 +77,7 @@ public static class VersionComparisonExtensions
         /// <param name="versionA">The first version to compare.</param>
         /// <param name="versionB">The second version to compare.</param>
         /// <returns>The older of the two specified versions.</returns>
-        public static Version Min(Version versionA, Version versionB) 
+        public static Version Min(Version versionA, Version versionB)
             => versionA < versionB ? versionA : versionB;
     }
 }

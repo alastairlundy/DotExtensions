@@ -34,7 +34,7 @@ public class SpecialCharacterDetectorTests
 
     public static IEnumerable<char> GetSpecialChars()
         => SpecialCharacterTestData.GetSpecialCharacters();
-    
+
     [Test]
     [MethodDataSource(nameof(AlphabetChars))]
     public async Task NotASpecialCharacter(char character)
