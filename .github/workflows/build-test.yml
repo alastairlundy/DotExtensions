@@ -1,0 +1,39 @@
+# Restore, build, and test the solution on every push and pull request.
+# Formatting intentionally stays a local, pre-merge concern (AGENTS.md checklist)
+# and is not verified here - this workflow only restores, builds, and tests.
+
+name: Build and Test
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Test
+        run: dotnet test -c Release --no-build
