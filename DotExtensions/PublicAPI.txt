@@ -1,0 +1,357 @@
+# DotExtensions public interface baseline (v11 surface reduction, ticket 004)
+#
+# WHAT THIS IS
+#   A checked-in record of the public interface of the DotExtensions library after the
+#   v11 surface-reduction changes, plus explicit records of deliberately deleted
+#   members' absence (ledger T005: "baseline file records the full public interface
+#   including intentionally internalized members' absence").
+#
+# SCOPE
+#   Snapshot of the tree after tickets 001 (Dates deletions) and 002 (WeekOfExtensions
+#   reshape). Ticket 005 (guard module merge) has NOT landed yet; its source moves are
+#   listed under "PENDING (ticket 005)" at the bottom and must be re-recorded there
+#   when it does (005's PR updates this file).
+#
+# FORMAT CONVENTION
+#   T <full type name>                     public (exported) type
+#     <signature>                          public member of the type above; members
+#                                          declared inside C# 14 extension blocks are
+#                                          shown in lowered static form - instance-style
+#                                          members carry the receiver as the first
+#                                          parameter, static members inside extension
+#                                          blocks do not - with fully-qualified types,
+#                                          parameter names and default values included;
+#                                          extension properties are rendered as
+#                                          Name(receiver) { get; }
+#   ! <entry>                              ABSENT: a member/type deleted by the v11
+#                                          reduction. It must never reappear; if a change
+#                                          re-adds one of these, the baseline (and the
+#                                          change) must be revisited deliberately.
+#   PRESENT entries were produced by reflecting over the Release build of DotExtensions.dll
+#   (net10.0) and cross-checked against the source tree's public type count (42 unique
+#   public type names, matching exactly). ABSENT entries were reconstructed from git
+#   history (commits dc0c6e3d, 04a24a94, 6bffda2d) since the members no longer exist
+#   in the binary.
+#   To regenerate PRESENT: build Release, enumerate the assembly's exported types and
+#   their public/protected members, and replace the PRESENT section below.
+#   Note: signatures are metadata-level; reference-type nullability annotations (e.g.
+#   String? parameters) are not recorded. Value-type nullability appears as Nullable<T>.
+#
+# ENFORCEMENT DECISION (ticket 004 open decision)
+#   No enforcement mechanism is wired into the build or test gate; this file is a
+#   reviewed record only. Trade-off vs. the ledger's candidates:
+#     - PublicApiAnalyzers + PublicAPI.txt: the canonical build-time gate (RS0016/
+#       RS0017), but adds a NuGet package against T030's "no new packages" pin, and
+#       expresses removals only as analyzer suppressions rather than first-class
+#       absence records like the "!" entries below (T005's constraint).
+#     - ApiCompat golden-binary diff: needs a checked-in reference binary and cannot
+#       express "this member must never return".
+#     - TUnit reflection lock: no new packages, but couples the test suite to assembly
+#       metadata and fails only at test time.
+#   A record-only baseline satisfies T005's "record the full public interface including
+#   removed members' absence" while leaving T030 untouched; wiring a gate remains open
+#   for a follow-up once ticket 005 has landed its surface moves.
+
+## PRESENT - public interface of DotExtensions.dll (net10.0)
+T DotExtensions.Dates.WeekOfExtensions
+  System.Int32 WeekOfMonth(System.DateOnly date, System.Globalization.CultureInfo culture)
+  System.Int32 WeekOfYear(System.DateOnly date, System.Globalization.CultureInfo culture)
+T DotExtensions.Exceptions.ArgumentExceptionExtensions
+  System.Void ThrowIfNullOrEmpty(System.Security.SecureString secureString, System.String name = "")
+  System.Void ThrowIfNullOrWhiteSpace(System.Security.SecureString secureString, System.String name = "")
+T DotExtensions.Exceptions.PlatformNotSupportedExceptionExtensions
+  System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
+  System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
+  System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
+  System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
+T DotExtensions.IO.FileSizeExtensions
+  System.String GetFileSizeString(System.IO.FileInfo file)
+  System.String GetFileSizeUnitString(System.IO.FileInfo file)
+T DotExtensions.IO.GetDirectoryExtensions
+  System.IO.DirectoryInfo GetDirectory(System.IO.FileInfo fileInfo)
+T DotExtensions.IO.GetRandomIOExtensions
+  System.IO.DirectoryInfo GetRandomDirectory(System.Boolean mustContainFiles = false)
+  System.IO.DriveInfo GetRandomDrive(System.Boolean driveMustContainFiles = false, System.Boolean driveMustContainDirectories = true)
+  System.IO.FileInfo GetRandomFile()
+  System.String GetRandomFilePath()
+T DotExtensions.IO.IsEmptyExtensions
+  System.Boolean HasDirectories(System.IO.DriveInfo driveInfo) { get; }
+  System.Boolean HasFiles(System.IO.DirectoryInfo directory) { get; }
+  System.Boolean HasFiles(System.IO.DriveInfo driveInfo) { get; }
+  System.Boolean IsEmpty(System.IO.DirectoryInfo directory) { get; }
+  System.Boolean IsEmpty(System.IO.DriveInfo driveInfo) { get; }
+T DotExtensions.IO.PathRootExtensions
+  System.String GetNonNulLPathRoot(System.String path)
+  System.String GetNonNullPathRoot(System.String path)
+T DotExtensions.IO.Permissions.Unix.UnixPermissionParsingExtensions
+  System.Boolean TryParse(System.String input, out System.Nullable<System.IO.UnixFileMode> result)
+  System.IO.UnixFileMode Parse(System.String input)
+T DotExtensions.IO.Permissions.Windows.WindowsFileAccessRulesExtensions
+  System.Security.AccessControl.AuthorizationRuleCollection GetWindowsDirectoryAccessRules(System.IO.DirectoryInfo directory)
+  System.Security.AccessControl.AuthorizationRuleCollection GetWindowsFileAccessRules(System.IO.FileInfo file)
+  System.Void SetWindowsDirectoryAccessRules(System.IO.DirectoryInfo directory, System.Security.Principal.IdentityReference identityReference, System.Security.AccessControl.FileSystemRights fileSystemRights)
+  System.Void SetWindowsFileAccessRules(System.IO.FileInfo file, System.Security.Principal.IdentityReference identityReference, System.Security.AccessControl.FileSystemRights fileSystemRights)
+T DotExtensions.IO.SafeDriveEnumerationExtensions
+  System.Collections.Generic.IEnumerable<System.IO.DriveInfo> SafelyEnumerateLogicalDrives()
+  System.IO.DriveInfo[] SafelyGetLogicalDrives()
+T DotExtensions.IO.SafeEnumerationExtensions
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.IO.DirectoryInfo directoryInfo)
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.IO.DirectoryInfo directoryInfo, System.String searchPattern)
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.IO.DirectoryInfo directoryInfo, System.String searchPattern, System.IO.SearchOption searchOption, System.Boolean ignoreCase = true)
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.String path)
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.String path, System.String searchPattern)
+  System.Collections.Generic.IEnumerable<System.IO.DirectoryInfo> SafelyEnumerateDirectories(System.String path, System.String searchPattern, System.IO.SearchOption directorySearchOption, System.Boolean ignoreCase = true)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.IO.DirectoryInfo directoryInfo)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.IO.DirectoryInfo directoryInfo, System.String searchPattern)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.IO.DirectoryInfo directoryInfo, System.String searchPattern, System.IO.SearchOption searchOption, System.Boolean ignoreCase = false)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.String path)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.String path, System.String searchPattern)
+  System.Collections.Generic.IEnumerable<System.IO.FileInfo> SafelyEnumerateFiles(System.String path, System.String searchPattern, System.IO.SearchOption directorySearchOption, System.Boolean ignoreCase = true)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.IO.DirectoryInfo directoryInfo)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.IO.DirectoryInfo directoryInfo, System.String searchPattern)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.IO.DirectoryInfo directoryInfo, System.String searchPattern, System.IO.SearchOption searchOption, System.Boolean ignoreCase = true)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.String path)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.String path, System.String searchPattern)
+  System.IO.DirectoryInfo[] SafelyGetDirectories(System.String path, System.String searchPattern, System.IO.SearchOption directorySearchOptions, System.Boolean ignoreCase = true)
+  System.IO.EnumerationOptions ToEnumerationOptions(System.IO.SearchOption directorySearchOption, System.Boolean matchCasing = false)
+  System.IO.FileInfo[] SafelyGetFiles(System.IO.DirectoryInfo directoryInfo)
+  System.IO.FileInfo[] SafelyGetFiles(System.IO.DirectoryInfo directoryInfo, System.String searchPattern)
+  System.IO.FileInfo[] SafelyGetFiles(System.IO.DirectoryInfo directoryInfo, System.String searchPattern, System.IO.SearchOption searchOption, System.Boolean ignoreCase = false)
+  System.IO.FileInfo[] SafelyGetFiles(System.String path)
+  System.IO.FileInfo[] SafelyGetFiles(System.String path, System.String searchPattern)
+  System.IO.FileInfo[] SafelyGetFiles(System.String path, System.String searchPattern, System.IO.SearchOption directorySearchOptions, System.Boolean ignoreCase = true)
+T DotExtensions.Memory.AsReadOnlyExtensions
+  System.ReadOnlyMemory<T> AsReadOnlyMemory<T>(ref System.Memory<T> memory)
+T DotExtensions.Memory.Exceptions.ArgumentExceptionExtensions
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.Char> memory)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.String> memory)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.Char> memory)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.String> memory)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.Char> span)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.String> span)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.Char> span)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.String> span)
+T DotExtensions.Memory.Exceptions.InvalidOperationThrowIfEmptyExtensions
+  System.Void ThrowIfMemoryIsEmpty<T>(System.Memory<T> memory)
+  System.Void ThrowIfMemoryIsEmpty<T>(System.ReadOnlyMemory<T> memory)
+  System.Void ThrowIfSpanIsEmpty<T>(System.ReadOnlySpan<T> span)
+  System.Void ThrowIfSpanIsEmpty<T>(System.Span<T> span)
+T DotExtensions.Memory.IsEmptyOrWhiteSpaceExtensions
+  System.Boolean IsEmpty<T>(System.Memory<T> memory) { get; }
+  System.Boolean IsEmpty<T>(System.ReadOnlyMemory<T> memory) { get; }
+  System.Boolean IsEmpty<T>(System.ReadOnlySpan<T> source) { get; }
+  System.Boolean IsEmpty<T>(System.Span<T> source) { get; }
+  System.Boolean IsEmptyOrWhiteSpace(System.Memory<System.Char> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.Memory<System.String> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.ReadOnlyMemory<System.Char> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.ReadOnlyMemory<System.String> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.ReadOnlySpan<System.Char> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.ReadOnlySpan<System.String> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.Span<System.Char> source)
+  System.Boolean IsEmptyOrWhiteSpace(System.Span<System.String> source)
+  System.Boolean IsWhiteSpace(System.Memory<System.String> memory)
+T DotExtensions.Memory.ReadOnlyMemorySort
+  System.Void Sort<T, TComparer>(ref System.ReadOnlySpan<T> source, TComparer comparer)
+  System.Void Sort<T>(ref System.ReadOnlySpan<T> source)
+  System.Void Sort<T>(ref System.ReadOnlySpan<T> source, System.Comparison<T> comparison)
+  System.Void Sort<TKey, TValue, TComparer>(ref System.ReadOnlySpan<TKey> keys, ref System.ReadOnlySpan<TValue> values, TComparer comparer)
+  System.Void Sort<TKey, TValue>(ref System.ReadOnlySpan<TKey> keys, ref System.ReadOnlySpan<TValue> values)
+T DotExtensions.Memory.Spans.SpanCharRemoveExtensions
+  System.Int32 RemoveAll(ref System.Span<System.Char> source, System.ReadOnlySpan<System.Char> value, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+T DotExtensions.Memory.Spans.SpanCopyExtensions
+  System.Boolean TryCopyTo<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex)
+  System.Boolean TryCopyTo<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex, System.Int32 length)
+  System.Void CopyTo<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex)
+  System.Void CopyTo<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex, System.Int32 length)
+  System.Void OptimisticCopy<T>(System.ReadOnlySpan<T> source, ref System.Span<T> destination, System.Int32 startIndex)
+  System.Void OptimisticCopy<T>(System.ReadOnlySpan<T> source, ref System.Span<T> destination, System.Int32 startIndex, System.Int32 length)
+  System.Void OptimisticCopy<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex)
+  System.Void OptimisticCopy<T>(System.Span<T> source, ref System.Span<T> destination, System.Int32 startIndex, System.Int32 length)
+T DotExtensions.Memory.Spans.SpanResizeExtensions
+  System.Void Resize<T>(ref System.Span<T> target, System.Int32 newSize)
+T DotExtensions.Memory.ToListExtensions
+  System.Collections.Generic.List<T> ToList<T>(System.Memory<T> source)
+  System.Collections.Generic.List<T> ToList<T>(System.ReadOnlyMemory<T> source)
+  System.Collections.Generic.List<T> ToList<T>(System.ReadOnlySpan<T> source)
+  System.Collections.Generic.List<T> ToList<T>(System.Span<T> source)
+T DotExtensions.MsExtensions.Primitives.ArgumentExceptionExtensions
+  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")
+  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
+  System.Void ThrowIfNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
+  System.Void ThrowIfNullOrWhitespace(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")
+T DotExtensions.MsExtensions.Primitives.StringSegmentExtensions
+  Microsoft.Extensions.Primitives.StringSegment CapitalizeChar(Microsoft.Extensions.Primitives.StringSegment segment, System.Int32 index)
+  Microsoft.Extensions.Primitives.StringSegment CapitalizeChars(Microsoft.Extensions.Primitives.StringSegment segment, System.Collections.Generic.IEnumerable<System.Int32> indices)
+  Microsoft.Extensions.Primitives.StringSegment Remove(Microsoft.Extensions.Primitives.StringSegment segment, System.Index startIndex, System.Index endIndex)
+  Microsoft.Extensions.Primitives.StringSegment Remove(Microsoft.Extensions.Primitives.StringSegment segment, System.Int32 startIndex)
+  Microsoft.Extensions.Primitives.StringSegment Remove(Microsoft.Extensions.Primitives.StringSegment segment, System.Int32 startIndex, System.Int32 count)
+  Microsoft.Extensions.Primitives.StringSegment Remove(Microsoft.Extensions.Primitives.StringSegment segment, System.Range range)
+  Microsoft.Extensions.Primitives.StringSegment Reverse(Microsoft.Extensions.Primitives.StringSegment target)
+  Microsoft.Extensions.Primitives.StringSegment[] AsStringSegments(System.String source, System.Char separator)
+  System.Boolean Contains(Microsoft.Extensions.Primitives.StringSegment source, Microsoft.Extensions.Primitives.StringSegment segment)
+  System.Boolean Contains(Microsoft.Extensions.Primitives.StringSegment source, System.Char character)
+  System.Boolean ContainsDelimitedSubSegments(Microsoft.Extensions.Primitives.StringSegment segment, System.Char delimiter)
+  System.Boolean IsEmpty(Microsoft.Extensions.Primitives.StringSegment segment) { get; }
+  System.Boolean IsLowerCase(Microsoft.Extensions.Primitives.StringSegment segment)
+  System.Boolean IsNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> other)
+  System.Boolean IsNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> other)
+  System.Boolean IsUpperCase(Microsoft.Extensions.Primitives.StringSegment segment)
+  System.Char[] ToCharArray(Microsoft.Extensions.Primitives.StringSegment segment)
+  System.Collections.Generic.List<System.Char> ToList(Microsoft.Extensions.Primitives.StringSegment segment)
+  System.String ToString(System.Collections.Generic.IEnumerable<Microsoft.Extensions.Primitives.StringSegment> segments, Microsoft.Extensions.Primitives.StringSegment separator)
+  System.String ToString(System.Collections.Generic.IEnumerable<Microsoft.Extensions.Primitives.StringSegment> segments, System.Char separator)
+T DotExtensions.MsExtensions.Primitives.StringValuesExtensions
+  System.Boolean IsEmpty(Microsoft.Extensions.Primitives.StringValues strValues) { get; }
+  System.Boolean IsNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringValues> other)
+  System.Int32 TotalLength(Microsoft.Extensions.Primitives.StringValues stringValues) { get; }
+  System.String ToString(Microsoft.Extensions.Primitives.StringValues strValues, System.Char separator)
+  System.String ToString(Microsoft.Extensions.Primitives.StringValues strValues, System.String separator)
+T DotExtensions.Numbers.CountDigitsExtensions
+  System.Int32 CountNumberOfDigits<TNumber>(TNumber number)
+T DotExtensions.Numbers.IncrementedNumberRange
+  System.Boolean IsIncrementedNumberRange<TNumber>(System.Collections.Generic.IEnumerable<TNumber> source, TNumber expectedIncrement)
+  System.Boolean IsIncrementedNumberRange<TNumber>(System.Collections.Generic.IList<TNumber> source, TNumber expectedIncrement)
+T DotExtensions.Numbers.NumberRangeExtensions
+  System.Range AsRange(System.Index start, System.Int32 count)
+  System.Range AsRange(System.Int32 start, System.Int32 count)
+T DotExtensions.Numbers.NumberToTNumber
+  TDestinationNumber ToDestinationNumber<TSourceNumber, TDestinationNumber>(TSourceNumber number)
+  TNumber ToNumber<TNumber>(System.Int32 number)
+T DotExtensions.Strings.CapitalizationExtensions
+  System.String CapitalizeChar(System.String str, System.Int32 index)
+  System.String CapitalizeChars(System.String str, System.Collections.Generic.IEnumerable<System.Int32> indices)
+T DotExtensions.Strings.CaseExtensions
+  System.Boolean IsLowerCase(System.String s)
+  System.Boolean IsUpperCase(System.String s)
+T DotExtensions.Strings.CharacterConstants
+  System.String[] EscapeCharacters { get; }
+T DotExtensions.Strings.ContainsSubstringsExtensions
+  System.Boolean ContainsDelimitedSubstrings(System.String s, System.Char delimiter)
+T DotExtensions.Strings.EscapeCharacterRemovalExtensions
+  System.Boolean ContainsEscapeCharacters(System.String str)
+  System.Boolean IsEscapeCharacter(System.String s)
+  System.String RemoveEscapeCharacters(System.String str)
+T DotExtensions.Strings.LineEndingExtensions
+  System.String GetLineEnding(System.String s)
+T DotExtensions.Strings.Security.AppendSecureStringExtensions
+  System.Void AppendChars(System.Security.SecureString secureString, System.Collections.Generic.IEnumerable<System.Char> chars)
+  System.Void SetChars(System.Security.SecureString secureString, System.Collections.Generic.ICollection<System.Char> chars)
+T DotExtensions.Strings.SpecialCharacterDetectionExtensions
+  System.Boolean ContainsSpecialCharacter(System.String str)
+  System.Boolean IsSpecialCharacter(System.Char c)
+  System.String RemoveSpecialCharacters(System.String str)
+T DotExtensions.Strings.StringInsertExtensions
+  System.String Insert(System.String str, System.Int32 index, System.Char c)
+  System.String InsertRange(System.String str, System.Int32 index, System.Collections.Generic.IEnumerable<System.Char> chars)
+T DotExtensions.Strings.StringRemoveExtensions
+  System.String RemoveAll(System.String str, System.String value, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+  System.String RemoveFirst(System.String str, System.String value, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+  System.String RemoveLast(System.String str, System.String value, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+T DotExtensions.Strings.StringRemoveRangeExtensions
+  System.String Remove(System.String str, System.Index startIndex, System.Index endIndex)
+  System.String Remove(System.String str, System.Range range)
+  System.String RemoveRange(System.String str, System.Collections.Generic.IEnumerable<System.Range> ranges)
+T DotExtensions.Strings.StringReplaceLastExtensions
+  System.String ReplaceFirst(System.String str, System.String oldValue, System.String newValue, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+  System.String ReplaceLast(System.String str, System.String oldValue, System.String newValue, System.StringComparison stringComparison = System.StringComparison.CurrentCulture)
+T DotExtensions.Strings.StringReverseExtensions
+  System.String Reverse(System.String str)
+T DotExtensions.Versions.ReadableVersionStringExtensions
+  System.String ToReadableString(System.Version version)
+T DotExtensions.Versions.VersionComparisonExtensions
+  System.Boolean IsAtLeast(System.Version version, System.Version versionToBeCompared)
+  System.Boolean IsNewerThan(System.Version version, System.Version versionToBeCompared)
+  System.Boolean IsOlderThan(System.Version version, System.Version versionToBeCompared)
+  System.Version Max(System.Version versionA, System.Version versionB)
+  System.Version Min(System.Version versionA, System.Version versionB)
+T DotExtensions.Versions.VersionParseExtensions
+  System.Boolean TryGracefulParse(System.String versionString, out System.Version version)
+  System.Version GracefulParse(System.String versionString)
+
+## ABSENT - deliberately deleted interface, must not reappear
+
+# --- Ticket 001: Dates surface deletions (namespace DotExtensions.Dates) ---
+! T DotExtensions.Dates.DateTimeAddExtensions
+!   System.DateTime Add(System.DateTime dateTimeOne, System.DateTime dateTimeTwo)
+! T DotExtensions.Dates.DateTimeSubtractExtensions
+!   System.DateTime Subtract(System.DateTime dateTimeOne, System.DateTime dateTimeTwo)
+!   System.DateTime SubtractMonths(System.DateTime dateTime, System.Double months)
+!   System.DateTime SubtractYears(System.DateTime dateTime, System.Double years)
+! T DotExtensions.Dates.TimeSpanDifferenceExtensions
+!   System.TimeSpan Difference(System.DateTime dateTimeOne, System.DateTime dateTimeTwo)
+!   System.TimeSpan Difference(System.TimeOnly timeOnlyOne, System.TimeOnly timeOnlyTwo)
+!   System.TimeSpan Difference(System.DateOnly dateOnlyOne, System.DateOnly dateOnlyTwo)
+! T DotExtensions.Dates.DateOnlySubtractionExtensions
+!   System.DateOnly SubtractDays(System.DateOnly dateOnly, System.Int32 days)
+!   System.DateOnly SubtractMonths(System.DateOnly dateOnly, System.Int32 months)
+!   System.DateOnly SubtractYears(System.DateOnly dateOnly, System.Int32 years)
+! T DotExtensions.Dates.DateOnlyToDateTimeExtension
+!   System.DateTime ToDateTime(System.DateOnly dateOnly)
+! T DotExtensions.Dates.DayOfExtensions
+!   System.Int32 CalculateDayOfWeekAsInteger(System.DateOnly date)
+!   System.Int32 CalculateDayOfWeekAsInteger(System.DateTime date)
+! T DotExtensions.Dates.DayInExtensions
+!   System.Int32 CalculateNumberOfDaysInYear(System.DateOnly dateOnly)
+!   System.Int32 CalculateNumberOfDaysInYear(System.DateTime date)
+
+# --- Ticket 002: superseded WeekOfExtensions shapes (type survives, these members do not) ---
+!   System.Int32 WeekOfMonth(System.DateTime date) { get; }
+!   System.Int32 WeekOfMonth(System.DateOnly date) { get; }
+!   System.Int32 WeekOfYear(System.DateTime date, System.Globalization.CalendarWeekRule calendarWeekRule = System.Globalization.CalendarWeekRule.FirstFullWeek)
+!   System.Int32 WeekOfYear(System.DateOnly date, System.Globalization.CalendarWeekRule calendarWeekRule = System.Globalization.CalendarWeekRule.FirstFullWeek)
+
+# --- Memory project members removed when DotExtensions.Memory was folded into DotExtensions (commit dc0c6e3d) ---
+! T DotExtensions.Memory.ReverseExtensions
+!   System.Void Reverse<T>(ref System.ReadOnlySpan<T> span)
+!   System.Void Reverse<T>(ref System.Memory<T> memory)
+!   System.Void Reverse<T>(ref System.ReadOnlyMemory<T> memory)
+
+# --- Deprecated public surface removed alongside the Memory merge (commit dc0c6e3d) ---
+! T DotExtensions.Dates.DateTimeSubtractExtensions
+!   System.DateTime SubtractMilliseconds(System.DateTime dateTime, System.Double milliseconds)
+!   System.DateTime SubtractSeconds(System.DateTime dateTime, System.Double seconds)
+!   System.DateTime SubtractMinutes(System.DateTime dateTime, System.Double minutes)
+!   System.DateTime SubtractHours(System.DateTime dateTime, System.Double hours)
+!   System.DateTime SubtractDays(System.DateTime dateTime, System.Double days)
+!   System.DateTime SubtractMicroseconds(System.DateTime dateTime, System.Double microseconds)
+! T DotExtensions.IO.PathEnvironmentVariable
+!   System.Char PathContentsSeparatorChar { get; }
+!   System.Collections.Generic.IEnumerable<System.String> EnumerateDirectories()
+!   System.String[] GetDirectories()
+!   System.Collections.Generic.IEnumerable<System.String> EnumerateFileExtensions()
+!   System.String[] GetPathFileExtensions()
+! T DotExtensions.Threading.Tasks.TaskTimeoutExtensions
+!   System.Threading.Tasks.Task WaitAsync(System.Threading.Tasks.Task task, System.TimeSpan timeout, System.Boolean suppressTaskCancellationException, System.Threading.CancellationToken cancellationToken)
+!   System.Threading.Tasks.Task<TResult> WaitAsync<TResult>(System.Threading.Tasks.Task<TResult> task, System.TimeSpan timeout, System.Boolean suppressTaskCancellationException, System.Threading.CancellationToken cancellationToken)
+! T DotExtensions.Platforms.OperatingSystemExtensions
+!   System.Boolean IsUnix()
+! T DotExtensions.IO.Permissions.PermissionExtensions
+!   System.Boolean HasExecutePermission(System.IO.FileInfo fileInfo)
+!   System.Boolean HasReadPermission(System.IO.FileInfo fileInfo)
+!   System.Boolean HasWritePermission(System.IO.FileInfo fileInfo)
+!   System.Boolean HasExecutePermission(System.IO.UnixFileMode mode) { get; }
+!   System.Boolean HasReadPermission(System.IO.UnixFileMode mode) { get; }
+!   System.Boolean HasWritePermission(System.IO.UnixFileMode mode) { get; }
+! T DotExtensions.IO.Permissions.Windows.AccessRulesPermissionExtensions
+!   System.Boolean HasExecutePermission(System.Security.AccessControl.AuthorizationRuleCollection rules) { get; }
+!   System.Boolean HasWritePermission(System.Security.AccessControl.AuthorizationRuleCollection rules) { get; }
+!   System.Boolean HasReadPermission(System.Security.AccessControl.AuthorizationRuleCollection rules) { get; }
+
+# --- Intentionally internalized (public -> internal, commit dc0c6e3d; T005 requires their
+#     absence to be recorded): DotExtensions.IO.Permissions.Unix.UnixPermissionNotationDetectionExtensions
+!   System.Boolean IsValidRwxSymbolNotation(System.String notation)
+!   System.Boolean IsValidNumericNotation(System.String notation)
+
+## PENDING (ticket 005, guard module merge - not yet landed)
+# The following are PRESENT today and are scheduled for removal/internalization by ticket
+# 005. When 005 lands, move them to ABSENT above (and record the eight merged guard members
+# of DotExtensions.Exceptions that replace them):
+#   - DotExtensions.Exceptions.PlatformNotSupportedExceptionExtensions: all four
+#     ThrowIfOSPlatform/ThrowIfNotOSPlatform members (deleted, T028)
+#   - DotExtensions.Exceptions.ArgumentExceptionExtensions: both SecureString guard
+#     members (deleted, T033/T024)
+#   - DotExtensions.Memory.Exceptions.InvalidOperationThrowIfEmptyExtensions: all four
+#     ThrowIfSpanIsEmpty/ThrowIfMemoryIsEmpty members (internalized, T014)
+#   - DotExtensions.MsExtensions.Primitives.ArgumentExceptionExtensions and
+#     DotExtensions.Memory.Exceptions.ArgumentExceptionExtensions as separate public
+#     types (merged into DotExtensions.Exceptions, T029)
