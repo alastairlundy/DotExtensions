@@ -1,169 +1,69 @@
-# Agent onboarding for alastairlundy/DotExtensions
+# Repository overview
 
-Repository summary
-- Purpose: A small C# class-library of extension methods and utilities for common CLR types (strings, collections, tasks, etc.). Intended to be consumed as a library (NuGet or project reference).
-- Language / stack: 100% C# (class libraries). Typical layout is one or more .csproj projects (library) and an accompanying test project. Builds with the .NET SDK (dotnet CLI).
+Single C# extension-method library (NuGet: `DotExtensions`). Pure extension-methods library - do not add new interfaces or implementations (stated in README.md Roadmap).
 
-High-level repo information (what an agent needs to know upfront)
-- Typical important files to check first:
-  - global.json — pins SDK version (if present). Always respect it.
-  - *.sln — solution file(s).
-  - src/  — library project(s), e.g. src/DotExtensions/*.csproj
-  - tests/ or test/ — unit test project(s), e.g. tests/DotExtensions.Tests/*.csproj
-  - .editorconfig — code-style and formatting rules.
-  - .github/workflows/*.yml — CI steps and validators used by the repo.
-  - README.md, LICENSE, CHANGELOG.md — human-facing docs.
-- Expected toolchain: dotnet CLI (SDK). The repository will usually build with a modern .NET SDK (9.x or 10.x as of 2024-2026). Always check global.json first to determine exact SDK version to use.
-- Size and complexity: small to medium (library-only). Builds and tests are expected to be quick (seconds to a few minutes)
-- Tests use TUnit (not xUnit/NUnit). Test assertions use await ``Assert.That(...)`` syntax.
+Project layout is **flat at repo root**, not `src/`/`tests/` (those exist only as virtual solution folders in `DotExtensions.sln`):
 
-How to build and validate changes (always follow this checklist)
-1. Confirm SDK and environment
-   - Run: `dotnet --info`
-   - If `global.json` exists at repo root, use the SDK version it specifies. If that SDK is not installed in the environment, install it or select a runner that has it.
-   - Always use the dotnet CLI in PATH. Do not assume Visual Studio-only features.
+- `DotExtensions/` - the one and only library project (formerly multiple packages; `DotExtensions.Memory` content now lives in its `DotExtensions/Memory/` namespace)
+- `DotExtensions.Tests/` - unit tests
+- `DotExtensions.Benchmarking/` - BenchmarkDotNet suite (see `DotExtensions.Benchmarking/README.md`)
+- `DotExtensions.AotTests/` - NativeAOT consumption console (see its README)
+- `tickets/` - numbered implementation tickets currently driving the v11 surface-reduction work
 
-2. Bootstrap / restore (always run before build)
-   - Command: `dotnet restore`
-   - Purpose: restore NuGet packages and SDK workload references.
-   - If restore fails: inspect `nuget.config` or private feeds; set `NUGET_PACKAGES` or add credentials if private feeds are required.
+## Toolchain (verified, differs from generic C# defaults)
 
-3. Build
-   - Command: `dotnet build --configuration Release`
-   - Alternate (to be explicit): `dotnet build <sln-or-csproj> -c Release`
-   - If you see compiler errors referencing analyzers or code style, run a full restore then rebuild. If Directory.Build.* pins SDK behavior, respect those settings.
+- **Single TFM: `net10.0` only** across all projects. Do not add multi-TFM guards or `netstandard` fallbacks; they were removed deliberately (see PackageReleaseNotes in `DotExtensions/DotExtensions.csproj`).
+- `LangVersion 14` required already by the library - do not lower it (README: consumers from v9.0 on also need C# 14).
+- `ImplicitUsings` disabled; `Nullable` enabled.
+- `global.json` does **not** pin an SDK version (`rollForward: latestPatch`, prerelease allowed). It sets `test.runner` to Microsoft.Testing.Platform (MTP).
+- Package versions are centralized in `Directory.Packages.props` (CPM) - bump versions there, not in csproj files.
+- `.editorconfig` lives at `DotExtensions/.editorconfig`, not repo root, and is minimal.
 
-4. Tests
-   - Command: `dotnet test --no-build --verbosity normal`
-   - If you modify build settings, run `dotnet test` (which will build as needed).
-   - If test discovery hangs or tests time out, re-run with increased verbosity:
-     `dotnet test --no-build --logger "trx;LogFileName=test_results.trx" --verbosity detailed`
-   - If tests use xunit or NUnit and require an adapter, make sure the test project has the right package references (these are usually in the csproj).
+## Build / test commands (exactly what CI runs: `.github/workflows/build-test.yml`)
 
-5. Formatting and lint
-   - Check for `.editorconfig`. If present, run:
-     - `dotnet format --verify-no-changes` to assert code is formatted (requires dotnet-format tool; if not available, install with `dotnet tool install -g dotnet-format` or use the version specified in CI).
-   - If the repository uses analyzers (StyleCop, Roslyn analyzers), they will run during `dotnet build`. Fix analyzer errors or warnings as required by CI.
+```sh
+dotnet restore
+dotnet build -c Release --no-restore
+dotnet test -c Release --no-build
+```
 
-6. Local CI / Workflow replication
-   - Inspect `.github/workflows/*.yml` to learn the exact commands the CI runs (SDK version, matrix OS, extra steps like `dotnet pack`, `dotnet format`, `tools/install.sh`, etc.).
-   - Replicate those commands locally in the same order. For actions that run on Linux runners, run locally on the matching OS or use a compatible container.
+- Tests use **TUnit** through Microsoft.Testing.Platform - not xUnit/NUnit/VSTest. Assertions: `await Assert.That(...)`. For filter/trait syntax to run a single test, use the `run-tests` skill rather than guessing MTP flags.
+- **Formatting is not enforced in CI** (`build-test.yml` says so explicitly). Run `dotnet format --verify-no-changes` locally as a pre-merge gate.
+- There is no CodeQL/format workflow step to copy locally; the main CI only restores, builds, and tests.
 
-Common pitfalls and recommended mitigations
-- Always check `global.json` — failing to match SDK may produce different compiler diagnostics or test behavior.
-- Always run `dotnet restore` before `dotnet build` or `dotnet test`. Some CI jobs rely on `dotnet restore --use-lock-file` or custom sources.
-- If CI fails with analyzers or formatting errors, run `dotnet format` and `dotnet build` locally to reproduce and fix.
-- If you add new NuGet dependencies, ensure there are no private feed requirements and that package versions are compatible with the targeted framework(s) in the csproj(s).
-- If a solution contains multiple target frameworks (netstandard, net6.0, net7.0, net8.0), run builds for each target when replicating CI.
+## Packaging / release gotchas
 
-Project layout and places to change code with minimal searching
-- Root-level: look for solution files (*.sln), global.json, Directory.Build.props, .editorconfig, README.md, .github/
-- src/ or similar: library projects (.csproj). These contain the implementation files (extension methods).
-- tests/ or similar: unit test projects (.csproj). Tests validate behavior for changes — always run these after edits.
-- .github/workflows/*.yml: CI validations to mirror locally.
+- `DotExtensions.csproj` has `GeneratePackageOnBuild=true` - every Release build of the library emits a `.nupkg` in `bin/`.
+- The `<Version>` and `<PackageReleaseNotes>` live **inside `DotExtensions.csproj`** and must both be updated on release, along with `CHANGELOG.md` (see `docs/Building.md` "Building for Release").
+- `ExposeInternalsToFirstPartyProjects` defaults to **true** so `DotExtensions.Tests` / `DotExtensions.Benchmarking` get `InternalsVisibleTo`. Release/publish builds set `-p:ExposeInternalsToFirstPartyProjects=false` (see `publish-nuget.yml`) so those attributes don't ship in the unsigned public assembly.
+- Publish (`publish-nuget.yml`) is manual-trigger only, OIDC NuGet login, builds just `DotExtensions/DotExtensions.csproj` Release.
+- Versioning rules (pre-release suffix format like `11.0.0-alpha.2`, when to bump Build/Minor/Major) are in `docs/Building.md`.
 
-Checks run in CI (what to replicate)
-- Typical sequence in GitHub Actions for a C# library:
-  1. Checkout
-  2. Setup .NET SDK (uses global.json or specified SDK)
-  3. `dotnet restore`
-  4. `dotnet build -c Release` (with warnings-as-errors possibly enabled)
-  5. `dotnet test -c Release`
-  6. `dotnet format --verify-no-changes` (optional)
-  7. Pack/publish steps (optional)
-- Before proposing a PR, reproduce the same steps locally and ensure they succeed.
+## Coding constraints
 
-Explicit validation steps your PR must satisfy
-- All unit tests pass: `dotnet test`
-- No formatting or analyzer violations (run `dotnet format` and `dotnet build` to confirm)
-- Build succeeds for all targeted frameworks in the csproj(s)
-- If CI enforces warning-as-errors, ensure the build shows zero warnings
+- The library enables **AOT and trim analyzers** (`IsAotCompatible`, `EnableAotAnalyzer`, `IsTrimmable`, `EnableTrimAnalyzer`). Avoid reflection/dynamic patterns that raise IL warnings; `DotExtensions.AotTests` exists to validate NativeAOT compatibility:
+  ```sh
+  dotnet publish DotExtensions.AotTests -c Release -r win-x64 -p:PublishAot=true --self-contained true
+  ```
+- Localization strings come from resx-generated resources in `DotExtensions/Internal/Localizations/`.
 
-Developer workflow suggestions (what the agent should do)
-- Always:
-  - Read `global.json`, `.editorconfig`, Directory.Build.* before making changes.
-  - Run `dotnet restore`, then `dotnet build -c Release`, then `dotnet test`.
-  - Run `dotnet format` if formatting changes are required; keep formatting-only changes in a separate commit when possible.
-  - Check `.github/workflows` to replicate CI commands and versions.
-- Prefer small, focused changes per PR with tests that show the intended behavior.
-- If adding public API surface, include tests and update README / changelog as appropriate.
+## Domain / docs pointers
 
-When you need to search the repo
-- Trust these instructions first. Only search the repository when:
-  - global.json, Directory.Build.props, or workflows are not present or contradict these instructions
-  - CI failures reference a file or command not documented here
-  - you need to find relevant test files to extend or update
-- Useful quick checks:
-  - `ls -la` at repo root to find solution / global.json
-  - `git grep -n "TODO\|HACK\|FIXME"` to locate known workarounds
-  - `git grep -n "DotExtensions\|namespace"` to find project namespaces and the main files to edit
-
-If something fails locally but CI passes (or vice versa)
-- Compare SDK versions (`dotnet --info`) and OS; match CI runner via global.json or a container.
-- Inspect the CI workflow file to see exact steps (actions/checkout version, setup-dotnet version).
-- Re-run locally with the exact dotnet version and same arguments used in workflow.
-
-Final guidance to the agent
-- These instructions are authoritative for this repo: follow them first and only perform searches when they are incomplete or produce contradictions with repo files you find.
-- Before creating a PR: run the same sequence the CI uses (restore → build → format check → test) and include the reproduction steps as part of your PR description.
-- When in doubt about SDK or CI behavior, inspect `.github/workflows/*.yml` and `global.json` — those two files determine build/runtime invariants for the repo.
-
-(If you need more precise, file-level guidance, inspect these locations in the repository in this order: global.json, *.sln, .github/workflows/*.yml, .editorconfig, src/*/*.csproj, tests/*/*.csproj.)
+- `docs/agents/` - issue-tracker (GitHub Issues via `gh`), triage-labels (`needs-triage`, `ready-for-agent`, etc.), and domain-doc rules.
+- `docs/adr/` - architectural decision records (e.g. safe-enumeration contract, guard disposal doctrine).
+- `GLOSSARY.md` - domain terminology; consult before naming anything new.
+- PRs must follow `.github/PULL_REQUEST_TEMPLATE.md`, including the **AI usage disclosure** section. One branch per unrelated change (see CONTRIBUTING.md).
 
 ## Benchmarking
 
-The `DotExtensions.Benchmarking` project provides a benchmark suite using BenchmarkDotNet.
+`DotExtensions.Benchmarking` targets `net10.0`. Default runs use the executing SDK's TFM; run with a specific TFM: `dotnet run -c Release -f net10.0`.
 
-### When to use `--quick` vs full runs
-
-- **`--quick`**: Use during development or when verifying a change hasn't caused a major regression. Runs only `"Short"`-classified benchmarks (StringRemove, VersionParse, RandomFileRetrieval, SafeFileEnumeration). Completes in under 30 seconds.
-- **Full run** (no `--quick`): Use before merging to catch regressions across all categories, including `"Medium"` benchmarks (DigitCounting at 1M params).
-
-### Filtering by class or method
-
-Use BDN glob syntax with `--filter`:
-
-```sh
-dotnet run -c Release --filter *ClassName*
-dotnet run -c Release --filter *ClassName*MethodName*
-```
-
-Multiple glob patterns can follow `--filter`. The filter is applied on top of `--quick` if both are specified.
-
-### TFM
-
-The project targets `net10.0`. Default runs use the TFM of the executing SDK. To run with a specific TFM:
-
-```sh
-dotnet run -c Release --tfm all
-```
-
-This re-spawns the process for each configured TFM. To run a single TFM explicitly:
-
-```sh
-dotnet run -c Release -f net10.0
-```
-
-### Default TFM and overriding it
-
-The default TFM is determined by the SDK (`dotnet run` picks the latest compatible). Override with `-f <tfm>`:
-
-```sh
-dotnet run -c Release -f net10.0
-```
-
-For a complete reference, see `DotExtensions.Benchmarking/README.md`.
-
-## Agent skills
-
-### Issue tracker
-
-[GitHub Issues](https://github.com/alastairlundy/DotExtensions/issues) - see docs/agents/issue-tracker.md.
-
-### Triage labels
-
-[Default triage labels](docs/agents/triage-labels.md) - see docs/agents/triage-labels.md.
-
-### Domain docs
-
-[Single-context layout](docs/agents/domain.md) - see docs/agents/domain.md.
+- **`--quick`**: development / verify-no-regression runs. Only `"Short"`-classified benchmarks (StringRemove, VersionParse, RandomFileRetrieval, SafeFileEnumeration); completes in under 30 seconds.
+- **Full run** (no `--quick`): before merging, includes `"Medium"` benchmarks (DigitCounting at 1M params).
+- Filter by class/method with BDN glob syntax, composable with `--quick`:
+  ```sh
+  dotnet run -c Release --filter *ClassName*
+  dotnet run -c Release --filter *ClassName*MethodName*
+  dotnet run -c Release --quick --filter *DigitCounting*
+  ```
+- Running all configured TFMs: `dotnet run -c Release --tfm all`.
