@@ -294,15 +294,6 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Argument cannot be empty.
-        /// </summary>
-        internal static string Exceptions_ThrowIfNullOrEmpty_Empty {
-            get {
-                return ResourceManager.GetString("Exceptions.ThrowIfNullOrEmpty.Empty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Value {x} Not Found within Key Value Pair.
         /// </summary>
         internal static string Exceptions_ValueNotFound {

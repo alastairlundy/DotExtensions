@@ -50,7 +50,8 @@ public static class WindowsFileAccessRulesExtensions
         [UnsupportedOSPlatform("ios")]
         public AuthorizationRuleCollection GetWindowsFileAccessRules()
         {
-            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            if (!OperatingSystem.IsWindows())
+                throw new PlatformNotSupportedException();
 
             if (!file.Exists)
                 throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName));
@@ -78,7 +79,8 @@ public static class WindowsFileAccessRulesExtensions
         [UnsupportedOSPlatform("ios")]
         public void SetWindowsFileAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
-            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            if (!OperatingSystem.IsWindows())
+                throw new PlatformNotSupportedException();
 
             if (!file.Exists)
                 throw new FileNotFoundException(Resources.Exceptions_FileNotFound.Replace("{file}", file.FullName, StringComparison.OrdinalIgnoreCase));
@@ -109,7 +111,8 @@ public static class WindowsFileAccessRulesExtensions
         [UnsupportedOSPlatform("ios")]
         public void SetWindowsDirectoryAccessRules(IdentityReference identityReference, FileSystemRights fileSystemRights)
         {
-            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            if (!OperatingSystem.IsWindows())
+                throw new PlatformNotSupportedException();
 
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
 
@@ -131,7 +134,8 @@ public static class WindowsFileAccessRulesExtensions
         [UnsupportedOSPlatform("ios")]
         public AuthorizationRuleCollection GetWindowsDirectoryAccessRules()
         {
-            PlatformNotSupportedException.ThrowIfNotOSPlatform(OSPlatform.Windows);
+            if (!OperatingSystem.IsWindows())
+                throw new PlatformNotSupportedException();
 
             if (!directory.Exists)
                 throw new DirectoryNotFoundException(Resources.Exceptions_DirectoryNotFound.Replace("{directory}",

@@ -7,10 +7,9 @@
 #   including intentionally internalized members' absence").
 #
 # SCOPE
-#   Snapshot of the tree after tickets 001 (Dates deletions) and 002 (WeekOfExtensions
-#   reshape). Ticket 005 (guard module merge) has NOT landed yet; its source moves are
-#   listed under "PENDING (ticket 005)" at the bottom and must be re-recorded there
-#   when it does (005's PR updates this file).
+#   Snapshot of the tree after tickets 001 (Dates deletions), 002 (WeekOfExtensions
+#   reshape), and 005 (guard module merge). Ticket 005's deletions and internalizations
+#   are recorded in the ABSENT section below (Ticket 005 block).
 #
 # FORMAT CONVENTION
 #   T <full type name>                     public (exported) type
@@ -28,10 +27,11 @@
 #                                          re-adds one of these, the baseline (and the
 #                                          change) must be revisited deliberately.
 #   PRESENT entries were produced by reflecting over the Release build of DotExtensions.dll
-#   (net10.0) and cross-checked against the source tree's public type count (42 unique
-#   public type names, matching exactly). ABSENT entries were reconstructed from git
-#   history (commits dc0c6e3d, 04a24a94, 6bffda2d) since the members no longer exist
-#   in the binary.
+#   (net10.0) and cross-checked against the source tree's public type count (40 exported
+#   public types / 40 unique simple names after ticket 005, matching exactly; 44/42 before
+#   ticket 005 landed). ABSENT entries were reconstructed from git history (commits
+#   dc0c6e3d, 04a24a94, 6bffda2d) and from ticket 005's pre-deletion source files, since
+#   the members no longer exist in the binary.
 #   To regenerate PRESENT: build Release, enumerate the assembly's exported types and
 #   their public/protected members, and replace the PRESENT section below.
 #   Note: signatures are metadata-level; reference-type nullability annotations (e.g.
@@ -50,20 +50,21 @@
 #       metadata and fails only at test time.
 #   A record-only baseline satisfies T005's "record the full public interface including
 #   removed members' absence" while leaving T030 untouched; wiring a gate remains open
-#   for a follow-up once ticket 005 has landed its surface moves.
+#   as a follow-up (ticket 005's surface moves have since landed and are recorded above).
 
 ## PRESENT - public interface of DotExtensions.dll (net10.0)
 T DotExtensions.Dates.WeekOfExtensions
   System.Int32 WeekOfMonth(System.DateOnly date, System.Globalization.CultureInfo culture)
   System.Int32 WeekOfYear(System.DateOnly date, System.Globalization.CultureInfo culture)
 T DotExtensions.Exceptions.ArgumentExceptionExtensions
-  System.Void ThrowIfNullOrEmpty(System.Security.SecureString secureString, System.String name = "")
-  System.Void ThrowIfNullOrWhiteSpace(System.Security.SecureString secureString, System.String name = "")
-T DotExtensions.Exceptions.PlatformNotSupportedExceptionExtensions
-  System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
-  System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
-  System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
-  System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.Char> target, System.String paramName = null)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.Char> target, System.String paramName = null)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.Char> target, System.String paramName = null)
+  System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.Char> target, System.String paramName = null)
+  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = null)
+  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringValues> target, System.String paramName = null)
+  System.Void ThrowIfNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = null)
+  System.Void ThrowIfNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringValues> target, System.String paramName = null)
 T DotExtensions.IO.FileSizeExtensions
   System.String GetFileSizeString(System.IO.FileInfo file)
   System.String GetFileSizeUnitString(System.IO.FileInfo file)
@@ -122,20 +123,6 @@ T DotExtensions.IO.SafeEnumerationExtensions
   System.IO.FileInfo[] SafelyGetFiles(System.String path, System.String searchPattern, System.IO.SearchOption directorySearchOptions, System.Boolean ignoreCase = true)
 T DotExtensions.Memory.AsReadOnlyExtensions
   System.ReadOnlyMemory<T> AsReadOnlyMemory<T>(ref System.Memory<T> memory)
-T DotExtensions.Memory.Exceptions.ArgumentExceptionExtensions
-  System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.Char> memory)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.String> memory)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.Char> memory)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.String> memory)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.Char> span)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.String> span)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.Char> span)
-  System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.String> span)
-T DotExtensions.Memory.Exceptions.InvalidOperationThrowIfEmptyExtensions
-  System.Void ThrowIfMemoryIsEmpty<T>(System.Memory<T> memory)
-  System.Void ThrowIfMemoryIsEmpty<T>(System.ReadOnlyMemory<T> memory)
-  System.Void ThrowIfSpanIsEmpty<T>(System.ReadOnlySpan<T> span)
-  System.Void ThrowIfSpanIsEmpty<T>(System.Span<T> span)
 T DotExtensions.Memory.IsEmptyOrWhiteSpaceExtensions
   System.Boolean IsEmpty<T>(System.Memory<T> memory) { get; }
   System.Boolean IsEmpty<T>(System.ReadOnlyMemory<T> memory) { get; }
@@ -174,11 +161,6 @@ T DotExtensions.Memory.ToListExtensions
   System.Collections.Generic.List<T> ToList<T>(System.ReadOnlyMemory<T> source)
   System.Collections.Generic.List<T> ToList<T>(System.ReadOnlySpan<T> source)
   System.Collections.Generic.List<T> ToList<T>(System.Span<T> source)
-T DotExtensions.MsExtensions.Primitives.ArgumentExceptionExtensions
-  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")
-  System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
-  System.Void ThrowIfNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
-  System.Void ThrowIfNullOrWhitespace(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")
 T DotExtensions.MsExtensions.Primitives.StringSegmentExtensions
   Microsoft.Extensions.Primitives.StringSegment CapitalizeChar(Microsoft.Extensions.Primitives.StringSegment segment, System.Int32 index)
   Microsoft.Extensions.Primitives.StringSegment CapitalizeChars(Microsoft.Extensions.Primitives.StringSegment segment, System.Collections.Generic.IEnumerable<System.Int32> indices)
@@ -342,16 +324,40 @@ T DotExtensions.Versions.VersionParseExtensions
 !   System.Boolean IsValidRwxSymbolNotation(System.String notation)
 !   System.Boolean IsValidNumericNotation(System.String notation)
 
-## PENDING (ticket 005, guard module merge - not yet landed)
-# The following are PRESENT today and are scheduled for removal/internalization by ticket
-# 005. When 005 lands, move them to ABSENT above (and record the eight merged guard members
-# of DotExtensions.Exceptions that replace them):
-#   - DotExtensions.Exceptions.PlatformNotSupportedExceptionExtensions: all four
-#     ThrowIfOSPlatform/ThrowIfNotOSPlatform members (deleted, T028)
-#   - DotExtensions.Exceptions.ArgumentExceptionExtensions: both SecureString guard
-#     members (deleted, T033/T024)
-#   - DotExtensions.Memory.Exceptions.InvalidOperationThrowIfEmptyExtensions: all four
-#     ThrowIfSpanIsEmpty/ThrowIfMemoryIsEmpty members (internalized, T014)
-#   - DotExtensions.MsExtensions.Primitives.ArgumentExceptionExtensions and
-#     DotExtensions.Memory.Exceptions.ArgumentExceptionExtensions as separate public
-#     types (merged into DotExtensions.Exceptions, T029)
+# --- Ticket 005: guard module merge (T029 one-type collapse; T028 platform guards deleted;
+#     T033 SecureString guards deleted; T014 InvalidOperationException guards internalized;
+#     T034 Primitives survivors relocated to DotExtensions.Exceptions) ---
+! T DotExtensions.Exceptions.PlatformNotSupportedExceptionExtensions
+!   System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
+!   System.Void ThrowIfNotOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
+!   System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform osPlatform, System.String exceptionMessage = null)
+!   System.Void ThrowIfOSPlatform(System.Runtime.InteropServices.OSPlatform[] platforms, System.String exceptionMessage = null)
+!   System.Void ThrowIfNullOrEmpty(System.Security.SecureString secureString, System.String name = "")
+!   System.Void ThrowIfNullOrWhiteSpace(System.Security.SecureString secureString, System.String name = "")
+# The char-family survivors below never again appear on this type: they now live on
+# DotExtensions.Exceptions.ArgumentExceptionExtensions. The four string-receiver members are
+# deleted outright (T012/T014) and must never reappear anywhere.
+! T DotExtensions.Memory.Exceptions.ArgumentExceptionExtensions
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.Char> memory)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.Memory<System.String> memory)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.Char> memory)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlyMemory<System.String> memory)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.Char> span)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.ReadOnlySpan<System.String> span)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.Char> span)
+!   System.Void ThrowIfEmptyOrWhiteSpace(System.Span<System.String> span)
+# Internalized (T014): these four survive only as internal members inside the merged type's
+# file; they must never again be public.
+! T DotExtensions.Memory.Exceptions.InvalidOperationThrowIfEmptyExtensions
+!   System.Void ThrowIfMemoryIsEmpty<T>(System.Memory<T> memory)
+!   System.Void ThrowIfMemoryIsEmpty<T>(System.ReadOnlyMemory<T> memory)
+!   System.Void ThrowIfSpanIsEmpty<T>(System.ReadOnlySpan<T> span)
+!   System.Void ThrowIfSpanIsEmpty<T>(System.Span<T> span)
+# The four Primitives survivors moved to DotExtensions.Exceptions with CallerArgumentExpression
+# paramName (default null); they never again appear on this type, and the ThrowIfNullOrWhitespace
+# spelling is retired in favour of ThrowIfNullOrWhiteSpace (T034).
+! T DotExtensions.MsExtensions.Primitives.ArgumentExceptionExtensions
+!   System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")
+!   System.Void ThrowIfNullOrEmpty(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
+!   System.Void ThrowIfNullOrWhiteSpace(System.Nullable<Microsoft.Extensions.Primitives.StringValues> values, System.String paramName = "")
+!   System.Void ThrowIfNullOrWhitespace(System.Nullable<Microsoft.Extensions.Primitives.StringSegment> target, System.String paramName = "")

@@ -41,7 +41,11 @@ public static class AppendSecureStringExtensions
         /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
         public void AppendChars(params IEnumerable<char> chars)
         {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
+            ArgumentNullException.ThrowIfNull(secureString);
+
+            if (secureString.Length == 0)
+                throw new ArgumentNullException(nameof(secureString));
+
             ArgumentNullException.ThrowIfNull(chars);
 
             if (secureString.IsReadOnly())
@@ -65,7 +69,11 @@ public static class AppendSecureStringExtensions
         /// to set is greater than the length of this <see cref="SecureString"/>.</exception>
         public void SetChars(params ICollection<char> chars)
         {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
+            ArgumentNullException.ThrowIfNull(secureString);
+
+            if (secureString.Length == 0)
+                throw new ArgumentNullException(nameof(secureString));
+
             ArgumentNullException.ThrowIfNull(chars);
 
             if (secureString.IsReadOnly() && chars.Count > secureString.Length)
