@@ -116,7 +116,7 @@ public static class WeekOfExtensions
         /// </summary>
         /// <returns>The week number in a given month.</returns>
         public int WeekOfMonth => 
-            InternalWeekOfMonthCount(DateOnly.ToDateTime(date), date.Year, date.Month);
+            InternalWeekOfMonthCount(new DateTime(date.Year, date.Month, date.Day), date.Year, date.Month);
 
         /// <summary>
         /// Calculates the week in the year of a given <see cref="DateOnly"/>.
@@ -124,6 +124,6 @@ public static class WeekOfExtensions
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
         public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
-            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year);
+            InternalWeekOfYearCount(new DateTime(date.Year, date.Month, date.Day), calendarWeekRule, date.Year);
     }
 }
