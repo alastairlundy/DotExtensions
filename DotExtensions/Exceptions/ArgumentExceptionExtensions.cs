@@ -179,12 +179,15 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="target"/> is empty or contains only whitespace characters.
-        /// The predicate is the BCL whitespace contract (<c>MemoryExtensions.IsWhiteSpace</c>),
-        /// which holds for empty content; the message is localized.
+        /// Emptiness is thrown by the module's internal emptiness worker and whitespace-only
+        /// content by this member's BCL-cited predicate (<c>MemoryExtensions.IsWhiteSpace</c>);
+        /// both messages are localized.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(Span<char> target,
             [CallerArgumentExpression(nameof(target))] string? paramName = null)
         {
+            ArgumentException.ThrowIfSpanIsEmpty(target, paramName);
+
             if (target.IsWhiteSpace())
                 throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, paramName);
         }
@@ -201,12 +204,15 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="target"/> is empty or contains only whitespace characters.
-        /// The predicate is the BCL whitespace contract (<c>MemoryExtensions.IsWhiteSpace</c>),
-        /// which holds for empty content; the message is localized.
+        /// Emptiness is thrown by the module's internal emptiness worker and whitespace-only
+        /// content by this member's BCL-cited predicate (<c>MemoryExtensions.IsWhiteSpace</c>);
+        /// both messages are localized.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(ReadOnlySpan<char> target,
             [CallerArgumentExpression(nameof(target))] string? paramName = null)
         {
+            ArgumentException.ThrowIfSpanIsEmpty(target, paramName);
+
             if (target.IsWhiteSpace())
                 throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Span, paramName);
         }
@@ -222,12 +228,15 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="target"/> is empty or contains only whitespace characters.
-        /// The predicate is the BCL whitespace contract (<c>MemoryExtensions.IsWhiteSpace</c>),
-        /// which holds for empty content; the message is localized.
+        /// Emptiness is thrown by the module's internal emptiness worker and whitespace-only
+        /// content by this member's BCL-cited predicate (<c>MemoryExtensions.IsWhiteSpace</c>);
+        /// both messages are localized.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(Memory<char> target,
             [CallerArgumentExpression(nameof(target))] string? paramName = null)
         {
+            ArgumentException.ThrowIfMemoryIsEmpty(target, paramName);
+
             if (target.Span.IsWhiteSpace())
                 throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, paramName);
         }
@@ -244,12 +253,15 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="target"/> is empty or contains only whitespace characters.
-        /// The predicate is the BCL whitespace contract (<c>MemoryExtensions.IsWhiteSpace</c>),
-        /// which holds for empty content; the message is localized.
+        /// Emptiness is thrown by the module's internal emptiness worker and whitespace-only
+        /// content by this member's BCL-cited predicate (<c>MemoryExtensions.IsWhiteSpace</c>);
+        /// both messages are localized.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(ReadOnlyMemory<char> target,
             [CallerArgumentExpression(nameof(target))] string? paramName = null)
         {
+            ArgumentException.ThrowIfMemoryIsEmpty(target, paramName);
+
             if (target.Span.IsWhiteSpace())
                 throw new ArgumentException(Resources.Exceptions_Argument_WhiteSpace_Memory, paramName);
         }
@@ -261,67 +273,79 @@ public static class ArgumentExceptionExtensions
 
     /// <summary>
     /// Internalized span/memory emptiness workers (ledger T014): the four former public
-    /// <see cref="InvalidOperationException"/> guards leave the v11 public surface and survive here
-    /// as internal members. The public char-family guards state emptiness through the BCL
-    /// whitespace contract (<c>MemoryExtensions.IsWhiteSpace</c>), which holds for empty content —
-    /// the emptiness these workers encode.
+    /// emptiness guards leave the v11 public surface and survive here as internal members,
+    /// reworked from their original <see cref="InvalidOperationException"/> to the module's
+    /// <see cref="ArgumentException"/> tier (T013's rule preserved into T014, T026). The public
+    /// char-family guards call them first to handle the emptiness half of their predicate; the
+    /// whitespace half is stated through the BCL <c>MemoryExtensions.IsWhiteSpace</c> contract.
     /// </summary>
-    extension<T>(InvalidOperationException)
+    extension<T>(ArgumentException)
     {
         /// <summary>
-        /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Span{T}"/> is
-        /// empty.
+        /// Throws an <see cref="ArgumentException"/> if the provided <see cref="Span{T}"/> is empty.
         /// </summary>
         /// <param name="span">The span to check for emptiness.</param>
-        /// <exception cref="InvalidOperationException">
-        /// Thrown when the provided span is empty.
-        /// </exception>
-        internal static void ThrowIfSpanIsEmpty(Span<T> span)
+        /// <param name="paramName">
+        /// The name of the parameter being validated. Captured automatically from the caller's
+        /// argument expression when not supplied.
+        /// </param>
+        /// <exception cref="ArgumentException">Thrown when the provided span is empty.</exception>
+        internal static void ThrowIfSpanIsEmpty(Span<T> span,
+            [CallerArgumentExpression(nameof(span))] string? paramName = null)
         {
             if (span.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan, paramName);
         }
 
         /// <summary>
-        /// Throws an <see cref="InvalidOperationException"/> if the provided
+        /// Throws an <see cref="ArgumentException"/> if the provided
         /// <see cref="ReadOnlySpan{T}"/> is empty.
         /// </summary>
         /// <param name="span">The read-only span to check for emptiness.</param>
-        /// <exception cref="InvalidOperationException">
-        /// Thrown when the provided span is empty.
-        /// </exception>
-        internal static void ThrowIfSpanIsEmpty(ReadOnlySpan<T> span)
+        /// <param name="paramName">
+        /// The name of the parameter being validated. Captured automatically from the caller's
+        /// argument expression when not supplied.
+        /// </param>
+        /// <exception cref="ArgumentException">Thrown when the provided span is empty.</exception>
+        internal static void ThrowIfSpanIsEmpty(ReadOnlySpan<T> span,
+            [CallerArgumentExpression(nameof(span))] string? paramName = null)
         {
             if (span.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptySpan);
+                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptySpan, paramName);
         }
 
         /// <summary>
-        /// Throws an <see cref="InvalidOperationException"/> if the provided <see cref="Memory{T}"/> is
+        /// Throws an <see cref="ArgumentException"/> if the provided <see cref="Memory{T}"/> is
         /// empty.
         /// </summary>
         /// <param name="memory">The memory to check for emptiness.</param>
-        /// <exception cref="InvalidOperationException">
-        /// Thrown when the provided memory is empty.
-        /// </exception>
-        internal static void ThrowIfMemoryIsEmpty(Memory<T> memory)
+        /// <param name="paramName">
+        /// The name of the parameter being validated. Captured automatically from the caller's
+        /// argument expression when not supplied.
+        /// </param>
+        /// <exception cref="ArgumentException">Thrown when the provided memory is empty.</exception>
+        internal static void ThrowIfMemoryIsEmpty(Memory<T> memory,
+            [CallerArgumentExpression(nameof(memory))] string? paramName = null)
         {
             if (memory.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
+                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, paramName);
         }
 
         /// <summary>
-        /// Throws an <see cref="InvalidOperationException"/> if the provided
+        /// Throws an <see cref="ArgumentException"/> if the provided
         /// <see cref="ReadOnlyMemory{T}"/> is empty.
         /// </summary>
         /// <param name="memory">The read-only memory to check for emptiness.</param>
-        /// <exception cref="InvalidOperationException">
-        /// Thrown when the provided memory is empty.
-        /// </exception>
-        internal static void ThrowIfMemoryIsEmpty(ReadOnlyMemory<T> memory)
+        /// <param name="paramName">
+        /// The name of the parameter being validated. Captured automatically from the caller's
+        /// argument expression when not supplied.
+        /// </param>
+        /// <exception cref="ArgumentException">Thrown when the provided memory is empty.</exception>
+        internal static void ThrowIfMemoryIsEmpty(ReadOnlyMemory<T> memory,
+            [CallerArgumentExpression(nameof(memory))] string? paramName = null)
         {
             if (memory.IsEmpty)
-                throw new InvalidOperationException(Resources.Exceptions_InvalidOperation_EmptyMemory);
+                throw new ArgumentException(Resources.Exceptions_InvalidOperation_EmptyMemory, paramName);
         }
     }
 
