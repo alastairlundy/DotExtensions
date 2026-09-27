@@ -4,13 +4,38 @@ using DotExtensions.IO;
 
 namespace DotExtensions.Tests.IO.FileSize;
 
-public class FileSizeExtensionTests
+public class FileSizeExtensionTests : IDisposable
 {
+    private const int TestFileBufferSize = 2048;
+
     private readonly FileInfo _testFile;
 
     public FileSizeExtensionTests()
     {
-        _testFile = FileInfo.GetRandomFile();
+        string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+
+        Directory.CreateDirectory(tempPath);
+
+        _testFile = new FileInfo(Path.Combine(tempPath, "file-size-test.dat"));
+
+        using (FileStream stream = _testFile.Create())
+        {
+            stream.Write(new byte[TestFileBufferSize]);
+        }
+
+        _testFile.Refresh();
+    }
+
+    public void Dispose()
+    {
+        try
+        {
+            _testFile.Directory?.Delete(recursive: true);
+        }
+        catch (Exception)
+        {
+            // Ignore cleanup failures so test teardown doesn't mask test results.
+        }
     }
 
     [Test]
