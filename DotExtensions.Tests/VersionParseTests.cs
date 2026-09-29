@@ -77,17 +77,50 @@ public class VersionParseTests
     }
 
     [Test]
-    [Arguments("1.2.3-beta.1", 1, 2, 3, 1)]
+    [Arguments("1.2.3-beta.1", 1, 2, 3)]
     [Arguments("1.2.3.4-alpha", 1, 2, 3, 4)]
     [Arguments("1.2.3.4.5", 1, 2, 3, 4)]
-    [Arguments("10.20.300-beta.3", 10, 20, 300, 3)]
+    [Arguments("10.20.300-beta.3", 10, 20, 300)]
     public async Task GracefulParse_WithSuffixesOrExtraComponents_ReturnsCorrectVersion(string input, int major, int minor, 
-        int build, int revision)
+        int build, int revision = -1)
     {
-        Version expected = new Version(major, minor, build, revision);
+        Version expected = revision == -1 ? new Version(major, minor, build) : new Version(major, minor, build, revision);
         
         Version actual = Version.GracefulParse(input);
         
+        await Assert.That(actual).IsEqualTo(expected);
+    }
+
+    [Test]
+    [Arguments("5.2.15", 5, 2, 15)]
+    [Arguments("10.0.100-preview.1", 10, 0, 100)]
+    [Arguments("3.10.11 (x64)", 3, 10, 11)]
+    [Arguments("GNU bash, version 5.2.15(1)-release", 5, 2, 15)]
+    [Arguments("zsh 5.9 (x86_64-ubuntu-linux-gnu)", 5, 9)]
+    [Arguments("fish, version 3.6.0", 3, 6, 0)]
+    [Arguments("x64 1.2.3", 1, 2, 3)]
+    [Arguments("1.2.3 5", 1, 2, 3)]
+    [Arguments("-5", 5, 0)]
+    public async Task GracefulParse_SuffixesAndRealWorldStrings_ParsesVersionWithoutSuffix(string input, int major,
+        int minor, int build = -1, int revision = -1)
+    {
+        Version expected;
+
+        if (build != -1 && revision != -1)
+        {
+            expected = new Version(major, minor, build, revision);
+        }
+        else if (build != -1)
+        {
+            expected = new Version(major, minor, build);
+        }
+        else
+        {
+            expected = new Version(major, minor);
+        }
+
+        Version actual = Version.GracefulParse(input);
+
         await Assert.That(actual).IsEqualTo(expected);
     }
 

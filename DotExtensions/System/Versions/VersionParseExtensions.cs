@@ -30,119 +30,85 @@ namespace DotExtensions.Versions;
 public static class VersionParseExtensions
 {
     #region Version Parsing Helpers
-    private static (int major, int minor, int build, int revision) ParseChars(ReadOnlySpan<char> chars)
+    private static bool IsSeparator(char currentChar)
     {
-        StringBuilder stringBuilder = new();
-        
-        foreach (char currentChar in chars)
-        {
-            if (char.IsDigit(currentChar))
-            {
-                stringBuilder.Append(currentChar);
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        string result = stringBuilder.ToString();
-
-        if (result.Equals(string.Empty))
-            result = "-1";
-        
-        if (!int.TryParse(result, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsed))
-            parsed = int.MaxValue;
-        
-        return (parsed, -1, -1, -1);
-    }
-    
-    private static string SanitizeInput(string versionString, char separator)
-    {
-        StringBuilder stringBuilder = new(versionString.Length);
-
-        foreach (char currentChar in versionString)
-        {
-            if(char.IsDigit(currentChar) || currentChar == separator)
-                stringBuilder.Append(currentChar);
-        }
-            
-        return stringBuilder.ToString();
+        return currentChar == '.' || char.IsWhiteSpace(currentChar);
     }
 
-    private static char FindSeparator(string versionString)
+    private static void ReadSeparatorRun(string versionString, int start, out bool containsDot, out int end)
     {
-        char output = ' ';
+        containsDot = false;
+        int index = start;
 
-        if (versionString.Contains('.', StringComparison.OrdinalIgnoreCase))
-            return '.';
-            
-        foreach (char currentChar in versionString)
+        while (index < versionString.Length && IsSeparator(versionString[index]))
         {
-            if (char.IsSeparator(currentChar) || char.IsPunctuation(currentChar))
-            {
-                output = versionString.First(c => char.IsSeparator(c) || char.IsPunctuation(c));
-                break;
-            }
+            if (versionString[index] == '.')
+                containsDot = true;
+
+            index++;
         }
-        
-        return output;
+
+        end = index;
     }
-    
-    private static (int major, int minor, int build, int revision) ParseComponents(StringSegment[] versionComponents)
+
+    private static int FindVersionStart(string versionString)
     {
-        int major = -1, minor = -1, build = -1, revision = -1;
-        int componentsAdded = 0;
-        
-        versionComponents = versionComponents.Where(v =>
-            {
-                int firstNumberIndex = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
-                return firstNumberIndex != -1;
-            })
-            .Select(v =>
-            {
-                int index = v.IndexOfAny(['0', '1', '2',  '3', '4', '5', '6', '7', '8', '9']);
-                return v.Subsegment(index);
-            })
-            .ToArray();
+        int index = 0;
+        int firstDigitRun = -1;
 
-        for (int index = 0; index < versionComponents.Length; index++)
+        while (index < versionString.Length)
         {
-            StringSegment component = versionComponents[index];
-            if (componentsAdded >= 4)
-                break;
-
-            StringBuilder stringBuilder = new(component.Length);
-            for (int i = 0; i < component.Length; i++)
+            if (!char.IsDigit(versionString[index]))
             {
-                char currentChar = component[i];
-                if (char.IsDigit(currentChar))
-                    stringBuilder.Append(currentChar);
+                index++;
+                continue;
             }
 
-            string componentString = stringBuilder.ToString().TrimEnd('.');
-            if (!int.TryParse(componentString, NumberStyles.Integer, CultureInfo.InvariantCulture, out int parsedComponent))
-                parsedComponent = int.MaxValue;
+            int digitRunEnd = index;
 
-            switch (index)
-            {
-                case 0: major = parsedComponent; break;
-                case 1: minor = parsedComponent; break;
-                case 2: build = parsedComponent; break;
-                case 3: revision = parsedComponent; break;
-            }
-            componentsAdded++;
+            while (digitRunEnd < versionString.Length && char.IsDigit(versionString[digitRunEnd]))
+                digitRunEnd++;
+
+            if (firstDigitRun == -1)
+                firstDigitRun = index;
+
+            ReadSeparatorRun(versionString, digitRunEnd, out bool containsDot, out int runEnd);
+
+            if (containsDot && runEnd < versionString.Length && char.IsDigit(versionString[runEnd]))
+                return index;
+
+            index = digitRunEnd;
         }
 
-        return (major, minor, build, revision);
+        return firstDigitRun;
+    }
+
+    private static int ParseComponent(string versionString, ref int index)
+    {
+        int start = index;
+
+        while (index < versionString.Length && char.IsDigit(versionString[index]))
+            index++;
+
+        if (!int.TryParse(versionString.Substring(start, index - start), NumberStyles.Integer, CultureInfo.InvariantCulture, out int component))
+            component = int.MaxValue;
+
+        return component;
     }
     #endregion
-    
+
     extension(Version)
     {
         /// <summary>
         /// Gracefully parses a version string into a <see cref="Version"/> object.
         /// </summary>
+        /// <remarks>
+        /// Parsing scans left-to-right from the first usable digit run and collects at most four
+        /// components separated by runs of dots and whitespace. Once the version ends, everything
+        /// else is treated as a suffix and discarded: prerelease tags (<c>1.2.3-beta.1</c>),
+        /// release groups (<c>5.2.15(1)-release</c>), and architecture tags (<c>3.10.11 (x64)</c>)
+        /// all terminate parsing, including any digits they contain.
+        /// </remarks>
         /// <param name="versionString">The version string to parse into a <see cref="Version"/> object.</param>
         /// <returns>Returns a gracefully parsed version.</returns>
         /// <exception cref="ArgumentException">Thrown if the provided <paramref name="versionString"/>
@@ -152,45 +118,36 @@ public static class VersionParseExtensions
             ArgumentException.ThrowIfNullOrEmpty(versionString);
             ArgumentException.ThrowIfNullOrWhiteSpace(versionString);
 
-            char separator = FindSeparator(versionString);
-            
-            string sanitizedInput = SanitizeInput(versionString, separator);
-            
-            (int major, int minor, int build, int revision) components;
-            
-            if (sanitizedInput.Contains('.', StringComparison.OrdinalIgnoreCase) && separator != ' ')
+            int index = FindVersionStart(versionString);
+
+            if (index == -1)
             {
-                IEnumerable<StringSegment> segments = new StringTokenizer(sanitizedInput, [separator]);
-                
-                StringSegment[] versionComponents = segments.Take(4).ToArray();
-                components = ParseComponents(versionComponents);
-            }
-            else
-            {
-                components = ParseChars(sanitizedInput.AsSpan());
+                throw new ArgumentException(string.Format(Resources.Exceptions_VersionParsing_InvalidVersionString, versionString), nameof(versionString));
             }
 
-            if (components is { major: -1, minor: -1, build: -1, revision: -1 })
+            int[] components = new int[4];
+            int componentCount = 0;
+
+            while (componentCount < 4)
             {
-                try
-                {
-                    components = (sanitizedInput.First(c => char.IsDigit(c)), 0, 0, 0);
-                }
-                catch
-                {
-                    throw new ArgumentException(string.Format(Resources.Exceptions_VersionParsing_InvalidVersionString, versionString), nameof(versionString));
-                }
-            }
-            
-            if (components.build != -1)
-            {
-                return components.revision != -1
-                    ? new Version(components.major, components.minor, components.build, components.revision)
-                    : new Version(components.major, components.minor, components.build);
+                components[componentCount] = ParseComponent(versionString, ref index);
+                componentCount++;
+
+                ReadSeparatorRun(versionString, index, out bool containsDot, out int runEnd);
+
+                if (!containsDot || runEnd >= versionString.Length || !char.IsDigit(versionString[runEnd]))
+                    break;
+
+                index = runEnd;
             }
 
-            return components.minor == -1 ? new Version(components.major, 0) :
-                new Version(components.major, components.minor);
+            return componentCount switch
+            {
+                1 => new Version(components[0], 0),
+                2 => new Version(components[0], components[1]),
+                3 => new Version(components[0], components[1], components[2]),
+                _ => new Version(components[0], components[1], components[2], components[3])
+            };
         }
 
         /// <summary>
