@@ -11,13 +11,7 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>### All packages
-* Updated internal Polyfill version from 11.2.0 to 11.3.0
-
-### DotExtensions
-* Deprecated some classes and methods for removal in v11
-* Updated Microsoft.Extensions.Primitives from 10.0.11 to 10.0.12
-* Updated Microsoft.Bcl.Memory from 10.0.11 to 10.0.12</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 11.3.0 to 11.4.3</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -32,9 +26,9 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <Version>10.5.2</Version>
-      <AssemblyVersion>10.5.2</AssemblyVersion>
-      <FileVersion>10.5.2</FileVersion>
+      <Version>10.5.3</Version>
+      <AssemblyVersion>10.5.3</AssemblyVersion>
+      <FileVersion>10.5.3</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
