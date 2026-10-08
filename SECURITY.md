@@ -8,7 +8,7 @@ These are the currently supported versions of DotExtensions
 
 | Version | Versions Supported with Bug Fixes | Supported with Security Updates |
 | ------- | ------------------ | ------------------ |
-| 10.x | 10.4, 10.5 | 10.3, 10.4, 10.5 |
+| 10.x | 10.5, 10.6 | 10.5, 10.6 |
 | < 10.x | :x: | :x: |
 
 
