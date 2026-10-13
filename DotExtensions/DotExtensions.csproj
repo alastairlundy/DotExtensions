@@ -11,10 +11,7 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>#### 🐛 Fixed
-* Version.GracefulParse now stops parsing at the end of the version: prerelease tags, release groups and architecture tags (e.g. 10.0.100-preview.1, 5.2.15(1)-release, 3.10.11 (x64)) are ignored instead of having their digits appended to version components
-* Version.GracefulParse no longer falls back to the UTF-16 code point of the first character, so inputs like -5 parse as 5.0 instead of 53.0.0.0
-* Version.GracefulParse now skips non-version prefixes such as x64 before the first version component</PackageReleaseNotes>
+    <PackageReleaseNotes>* Updated internal Polyfill version from 11.4.3 to 11.4.5</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -29,9 +26,9 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <Version>10.6.0</Version>
-      <AssemblyVersion>10.6.0</AssemblyVersion>
-      <FileVersion>10.6.0</FileVersion>
+      <Version>10.6.1</Version>
+      <AssemblyVersion>10.6.1</AssemblyVersion>
+      <FileVersion>10.6.1</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
