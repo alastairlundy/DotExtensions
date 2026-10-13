@@ -36,6 +36,7 @@ public static class CaseExtensions
         /// Returns whether this string is in the upper case or not.
         /// </summary>
         /// <returns>True if the string is upper case; false otherwise.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool IsUpperCase()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
@@ -47,6 +48,7 @@ public static class CaseExtensions
         /// Returns whether a string is lower case or not.
         /// </summary>
         /// <returns>True if a string is lower case; false otherwise.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool IsLowerCase()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);

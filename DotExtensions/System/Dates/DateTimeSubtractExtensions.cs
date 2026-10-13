@@ -38,6 +38,7 @@ public static class DateTimeSubtractExtensions
         /// </summary>
         /// <param name="dateTimeTwo">The date and time to subtract from.</param>
         /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime Subtract(DateTime dateTimeTwo)
         {
             TimeSpan timeSpan = TimeSpan.FromTicks(dateTimeTwo.Ticks - dateTimeOne.Ticks);

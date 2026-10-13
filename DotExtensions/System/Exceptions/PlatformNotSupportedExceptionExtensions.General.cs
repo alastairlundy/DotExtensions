@@ -29,6 +29,7 @@ namespace DotExtensions.Exceptions;
 /// <summary>
 /// Contains extension methods for enhancing the handling of <see cref="PlatformNotSupportedException"/> exceptions.
 /// </summary>
+[Obsolete(DeprecationMessages.DeprecationV11)]
 public static class PlatformNotSupportedExceptionExtensions
 {
     /// <summary>
@@ -48,6 +49,7 @@ public static class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform matches the specified <see cref="OSPlatform"/>.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfOSPlatform(OSPlatform osPlatform, string? exceptionMessage = null)
         {
             if (RuntimeInformation.IsOSPlatform(osPlatform))
@@ -71,6 +73,7 @@ public static class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform matches any of the specified <see cref="OSPlatform"/> values.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfOSPlatform(OSPlatform[] platforms, string? exceptionMessage = null)
         {
             foreach (OSPlatform platform in platforms)
@@ -97,6 +100,7 @@ public static class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match the specified <see cref="OSPlatform"/>.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfNotOSPlatform(OSPlatform osPlatform, string? exceptionMessage = null)
         {
             if (!RuntimeInformation.IsOSPlatform(osPlatform))
@@ -120,6 +124,7 @@ public static class PlatformNotSupportedExceptionExtensions
         /// <exception cref="PlatformNotSupportedException">
         /// Thrown when the current platform does not match the specified <see cref="OSPlatform"/>.
         /// </exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfNotOSPlatform(OSPlatform[] platforms, string? exceptionMessage = null)
         {
             bool foundOsPlatform = false;

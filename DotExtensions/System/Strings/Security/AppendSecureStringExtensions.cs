@@ -39,6 +39,7 @@ public static class AppendSecureStringExtensions
         /// </summary>
         /// <param name="chars">The sequence of characters to append to this <see cref="SecureString"/>.</param>
         /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public void AppendChars(params IEnumerable<char> chars)
         {
             ArgumentException.ThrowIfNullOrEmpty(secureString);
@@ -63,6 +64,7 @@ public static class AppendSecureStringExtensions
         /// <param name="chars">The characters to set to this <see cref="SecureString"/>.</param>
         /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read-only and the number of characters
         /// to set is greater than the length of this <see cref="SecureString"/>.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public void SetChars(params ICollection<char> chars)
         {
             ArgumentException.ThrowIfNullOrEmpty(secureString);

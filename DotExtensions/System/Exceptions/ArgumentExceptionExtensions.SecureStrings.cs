@@ -46,6 +46,7 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="secureString"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> has a length of zero.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfNullOrEmpty(SecureString? secureString, string name = "")
         {
             if (secureString is null)
@@ -65,6 +66,7 @@ public static class ArgumentExceptionExtensions
         /// </param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="secureString"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> contains only whitespace characters.</exception>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public static void ThrowIfNullOrWhiteSpace(SecureString? secureString, string name = "")
         {
             if (secureString is null)

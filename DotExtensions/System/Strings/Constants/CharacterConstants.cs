@@ -34,6 +34,7 @@ public static class CharacterConstants
     /// Provides a set of constants that can be referenced for operations involving
     /// the detection or removal of escape characters from strings.
     /// </summary>
+    [Obsolete(DeprecationMessages.DeprecationV11)]
     public static string[] EscapeCharacters =>
     [
         "\r",

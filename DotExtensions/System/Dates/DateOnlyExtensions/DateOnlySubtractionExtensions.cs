@@ -38,6 +38,7 @@ public static class DateOnlySubtractionExtensions
         /// </summary>
         /// <param name="days">The number of days to subtract from the specified DateOnly object.</param>
         /// <returns>the modified DateOnly object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateOnly SubtractDays(int days)
         {
             DateTime result = DateOnly.ToDateTime(dateOnly).Subtract(TimeSpan.FromDays(days));
@@ -49,6 +50,7 @@ public static class DateOnlySubtractionExtensions
         /// </summary>
         /// <param name="months">The number of months to subtract from the specified DateOnly.</param>
         /// <returns>the modified DateOnly object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateOnly SubtractMonths(int months)
         {
             DateTime result = DateOnly.ToDateTime(dateOnly).AddMonths(-months);
@@ -60,6 +62,7 @@ public static class DateOnlySubtractionExtensions
         /// </summary>
         /// <param name="years">The number of years to subtract from the specified DateOnly object.</param>
         /// <returns>the modified DateOnly object.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateOnly SubtractYears(int years)
         {
             DateTime result = DateOnly.ToDateTime(dateOnly).AddYears(-years);

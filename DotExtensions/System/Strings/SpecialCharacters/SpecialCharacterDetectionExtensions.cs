@@ -52,6 +52,7 @@ public static class SpecialCharacterDetectionExtensions
         /// Returns whether a string contains a special character or not.
         /// </summary>
         /// <returns>True if the string contains a special character; false otherwise.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public bool ContainsSpecialCharacter()
         {
             ArgumentException.ThrowIfNullOrEmpty(str);

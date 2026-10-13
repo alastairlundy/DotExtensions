@@ -37,6 +37,7 @@ public static class DateTimeAddExtensions
         /// </summary>
         /// <param name="dateTimeTwo">The date and time to add.</param>
         /// <returns>The sum of the two input dates and times.</returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime Add(DateTime dateTimeTwo)
         {
             TimeSpan timeSpan = dateTimeTwo.Difference(dateTimeOne);
