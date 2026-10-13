@@ -50,7 +50,7 @@ public static class CapitalizationExtensions
             
             StringBuilder sb = new(str)
             {
-                [index] = char.ToUpper(c, CultureInfo.CurrentCulture)
+                [index] = char.ToUpper(c, CultureInfo.CurrentCulture),
             };
 
             return sb.ToString();
