@@ -40,9 +40,9 @@ public static class CountDigitsExtensions
     extension<TNumber>(TNumber number) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Counts the number of digits in the numerical value.
+        /// Counts the number of integer digits in the absolute value of the numerical value. Fractional digits are not counted.
         /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as an integer; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
+        /// <returns>The number of integer digits in the absolute value of the numerical value, returned as an integer; returns -1 if the value is <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/>, or <see cref="double.NegativeInfinity"/>.</returns>
         public int CountNumberOfDigits()
         {
             // Dispatch common numeric types to specialized implementations
@@ -164,31 +164,31 @@ public static class CountDigitsExtensions
     }
 
     /// <summary>
-    /// Counts the number of digits in a double-precision floating-point value using a division loop.
+    /// Counts the number of integer digits in the absolute value of a double-precision floating-point value using a division loop.
+    /// Fractional digits are not counted. Returns -1 if the value is <see cref="double.NaN"/> or infinity.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsDouble(double number)
     {
-        if (double.IsNaN(number))
+        // Guard infinity before dividing; otherwise infinity / 10 never shrinks and the loop would never exit.
+        if (double.IsNaN(number) || double.IsInfinity(number))
         {
             return -1;
         }
 
-        if (number < 0.0 || (number == 0.0 && 1.0 / number < 0.0))
+        if (number < 0.0)
         {
             number = -number;
-        }
-
-        if (double.IsPositiveInfinity(number))
-        {
-            return -1;
         }
 
         int digits = 1;
         double ten = 10.0;
 
-        while ((number /= ten) != 0.0)
+        // Stop once the integer digits have been consumed (magnitude below 10), rather than
+        // dividing all the way down to an underflowed zero.
+        while (number >= ten)
         {
+            number /= ten;
             ++digits;
         }
 
@@ -196,31 +196,31 @@ public static class CountDigitsExtensions
     }
 
     /// <summary>
-    /// Counts the number of digits in a single-precision floating-point value using a division loop.
+    /// Counts the number of integer digits in the absolute value of a single-precision floating-point value using a division loop.
+    /// Fractional digits are not counted. Returns -1 if the value is <see cref="float.NaN"/> or infinity.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsSingle(float number)
     {
-        if (float.IsNaN(number))
+        // Guard infinity before dividing; otherwise infinity / 10 never shrinks and the loop would never exit.
+        if (float.IsNaN(number) || float.IsInfinity(number))
         {
             return -1;
         }
 
-        if (number < 0.0f || (number == 0.0f && 1.0f / number < 0.0f))
+        if (number < 0.0f)
         {
             number = -number;
-        }
-
-        if (float.IsPositiveInfinity(number))
-        {
-            return -1;
         }
 
         int digits = 1;
         float ten = 10.0f;
 
-        while ((number /= ten) != 0.0f)
+        // Stop once the integer digits have been consumed (magnitude below 10), rather than
+        // dividing all the way down to an underflowed zero.
+        while (number >= ten)
         {
+            number /= ten;
             ++digits;
         }
 
@@ -228,23 +228,27 @@ public static class CountDigitsExtensions
     }
 
     /// <summary>
-    /// Counts the number of digits in a decimal value using a division loop.
+    /// Counts the number of integer digits in the absolute value of a decimal value using a division loop.
+    /// Fractional digits are not counted.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsDecimal(decimal number)
     {
         decimal ten = 10m;
-        decimal zero = decimal.Zero;
 
-        if (number < zero)
+        if (number < decimal.Zero)
         {
             number = -number;
         }
 
+        // Discard the fractional part so only integer digits are counted.
+        number = decimal.Truncate(number);
+
         int digits = 1;
 
-        while ((number /= ten) != zero)
+        while (number >= ten)
         {
+            number /= ten;
             ++digits;
         }
 
@@ -253,6 +257,8 @@ public static class CountDigitsExtensions
 
     /// <summary>
     /// Generic fallback for INumber{T} types without a specialized fast path.
+    /// Counts the number of integer digits in the absolute value; fractional digits are not counted.
+    /// Returns -1 if the value is NaN or infinity.
     /// </summary>
     private static int CountDigitsGeneric<TNumber>(TNumber number) where TNumber : INumber<TNumber>
     {
@@ -262,7 +268,10 @@ public static class CountDigitsExtensions
         TNumber ten = TNumber.CreateChecked(10);
         TNumber zero = TNumber.Zero;
 
-        if (TNumber.IsNaN(number))
+        // NaN is documented to return -1. Infinity must be guarded before the
+        // division loop: for floating types such as Half, infinity / 10 is still
+        // infinity, so a "divide until zero" loop would never exit.
+        if (TNumber.IsNaN(number) || TNumber.IsInfinity(number))
         {
             return -1;
         }
@@ -277,8 +286,12 @@ public static class CountDigitsExtensions
 
         int digits = 1;
 
-        while ((number /= ten) != zero)
+        // Stop once the integer digits have been consumed (magnitude below 10).
+        // Dividing until exactly zero would both underflow past the integer
+        // digits for fractional types (e.g. Half) and never terminate for infinity.
+        while (number >= ten)
         {
+            number /= ten;
             ++digits;
         }
 
@@ -351,30 +364,29 @@ public static class CountDigitsExtensions
     extension(double number)
     {
         /// <summary>
-        /// Counts the number of digits in the numerical value.
+        /// Counts the number of integer digits in the absolute value of the numerical value. Fractional digits are not counted.
         /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as a double precision floating point number; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
+        /// <returns>The number of integer digits in the absolute value of the numerical value, returned as an integer; returns -1 if the value is <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/>, or <see cref="double.NegativeInfinity"/>.</returns>
         public int CountNumberOfDigits()
         {
-            if (double.IsNaN(number))
+            // Guard infinity before dividing; otherwise infinity / 10 never shrinks and the loop would never exit.
+            if (double.IsNaN(number) || double.IsInfinity(number))
             {
                 return -1;
             }
 
-            if (number < 0.0 || (number == 0.0 && 1.0 / number < 0.0))
+            if (number < 0.0)
             {
                 number = -number;
             }
 
-            if (double.IsPositiveInfinity(number))
-            {
-                return -1;
-            }
-
             int digits = 1;
 
-            while ((number /= 10.0) != 0.0)
+            // Stop once the integer digits have been consumed (magnitude below 10), rather than
+            // dividing all the way down to an underflowed zero.
+            while (number >= 10.0)
             {
+                number /= 10.0;
                 ++digits;
             }
 
