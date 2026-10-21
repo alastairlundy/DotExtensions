@@ -25,6 +25,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using DotExtensions.IO;
 using DotExtensions.IO.Files;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
@@ -48,21 +49,48 @@ public class SafeFileEnumerationTests
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
         FileInfo[] files = directoryInfo.SafelyGetFiles();
-        
+
         Assert.NotNull(files);
         await Assert.That(files.Length)
             .IsGreaterThan(0);
     }
-    
+
     [Test]
     public async Task SafeFileGetting_WithSearchOption_NoExceptions()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(Environment.CurrentDirectory);
 
-        FileInfo[] files = directoryInfo.SafelyGetFiles("*",  SearchOption.AllDirectories);
-        
+        FileInfo[] files = directoryInfo.SafelyGetFiles("*", SearchOption.AllDirectories);
+
         Assert.NotNull(files);
         await Assert.That(files.Length)
             .IsGreaterThan(0);
+    }
+
+    [Test]
+    public async Task ToEnumerationOptions_DoesNotSkipHiddenOrSystemEntries()
+    {
+        EnumerationOptions options = SearchOption.TopDirectoryOnly.ToEnumerationOptions();
+
+        await Assert.That(options.AttributesToSkip)
+            .IsEqualTo(FileAttributes.None);
+    }
+
+    [Test]
+    public async Task ToEnumerationOptions_RecursionDepthIsCappedWhenRecursing()
+    {
+        EnumerationOptions allDirectoriesOptions = SearchOption.AllDirectories.ToEnumerationOptions();
+
+        await Assert.That(allDirectoriesOptions.RecurseSubdirectories)
+            .IsTrue();
+        await Assert.That(allDirectoriesOptions.MaxRecursionDepth)
+            .IsEqualTo(64);
+
+        EnumerationOptions topDirectoryOnlyOptions = SearchOption.TopDirectoryOnly.ToEnumerationOptions();
+
+        await Assert.That(topDirectoryOnlyOptions.RecurseSubdirectories)
+            .IsFalse();
+        await Assert.That(topDirectoryOnlyOptions.MaxRecursionDepth)
+            .IsEqualTo(0);
     }
 }

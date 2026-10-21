@@ -29,6 +29,8 @@ namespace DotExtensions.IO;
 /// </summary>
 public static class SafeEnumerationExtensions
 {
+    private const int MaxSafeRecursionDepth = 64;
+
     extension(SearchOption directorySearchOption)
     {
         /// <summary>
@@ -37,6 +39,20 @@ public static class SafeEnumerationExtensions
         /// </summary>
         /// <param name="matchCasing">Specifies whether file and directory names should be matched case-sensitively.</param>
         /// <returns>Returns an <see cref="EnumerationOptions"/> object configured for safe and conditional file enumeration.</returns>
+        /// <remarks>
+        /// <para>
+        /// <see cref="EnumerationOptions.AttributesToSkip"/> is set to <c>FileAttributes.None</c>, so hidden,
+        /// system, and Unix dot-prefixed entries are included in results instead of being filtered out as the BCL
+        /// default (<c>FileAttributes.Hidden | FileAttributes.System</c>) would do. Only inaccessible items are
+        /// skipped, via <see cref="EnumerationOptions.IgnoreInaccessible"/>.
+        /// </para>
+        /// <para>
+        /// When recursing (<see cref="SearchOption.AllDirectories"/>),
+        /// <see cref="EnumerationOptions.MaxRecursionDepth"/> is capped at <c>64</c>
+        /// (<c>MaxSafeRecursionDepth</c>) rather than <c>int.MaxValue</c>, so cyclic symbolic links, junctions,
+        /// and other reparse points within the enumerated tree terminate instead of enumerating forever.
+        /// </para>
+        /// </remarks>
 #if NET8_0_OR_GREATER
         public
 #else
@@ -44,15 +60,25 @@ public static class SafeEnumerationExtensions
 #endif
             EnumerationOptions ToEnumerationOptions(bool matchCasing = false)
         {
-            return new EnumerationOptions
+            EnumerationOptions options = new EnumerationOptions
             {
                 IgnoreInaccessible = true,
                 RecurseSubdirectories = directorySearchOption == SearchOption.AllDirectories,
                 MatchCasing = matchCasing ? MatchCasing.CaseSensitive : MatchCasing.CaseInsensitive,
                 MatchType = MatchType.Simple,
                 ReturnSpecialDirectories = false,
-                MaxRecursionDepth = directorySearchOption == SearchOption.AllDirectories ? int.MaxValue : 0
+                MaxRecursionDepth = directorySearchOption == SearchOption.AllDirectories ? MaxSafeRecursionDepth : 0
             };
+
+#if NET5_0_OR_GREATER
+            options.AttributesToSkip = FileAttributes.None;
+#else
+#pragma warning disable MA0099 // FileAttributes.None does not exist on netstandard2.0; 0 means "skip nothing".
+            options.AttributesToSkip = 0;
+#pragma warning restore MA0099
+#endif
+
+            return options;
         }
     }
 }
