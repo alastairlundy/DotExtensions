@@ -36,12 +36,14 @@ public static class AppendSecureStringExtensions
     {
         /// <summary>
         /// Appends a sequence of characters to this <see cref="SecureString"/>.
+        /// An empty (zero-length) <see cref="SecureString"/> is a valid target and may be appended to.
         /// </summary>
         /// <param name="chars">The sequence of characters to append to this <see cref="SecureString"/>.</param>
+        /// <exception cref="ArgumentNullException">Thrown if this <see cref="SecureString"/> or <paramref name="chars"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.</exception>
         public void AppendChars(params IEnumerable<char> chars)
         {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
+            ArgumentNullException.ThrowIfNull(secureString);
             ArgumentNullException.ThrowIfNull(chars);
 
             if (secureString.IsReadOnly())
@@ -53,38 +55,34 @@ public static class AppendSecureStringExtensions
             }
         }
     }
-    
+
     /// <param name="secureString">The <see cref="SecureString"/> to set a value to.</param>
     extension(SecureString secureString)
     {
         /// <summary>
-        /// Sets this <see cref="SecureString"/> to the specified characters.
+        /// Sets this <see cref="SecureString"/> to the specified characters by clearing its existing content and appending the new characters.
+        /// An empty (zero-length) <see cref="SecureString"/> is a valid target. If this method throws, the original content is left intact.
         /// </summary>
         /// <param name="chars">The characters to set to this <see cref="SecureString"/>.</param>
-        /// <exception cref="InvalidOperationException">Thrown if the <see cref="SecureString"/> is read-only and the number of characters
-        /// to set is greater than the length of this <see cref="SecureString"/>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if this <see cref="SecureString"/> or <paramref name="chars"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if this <see cref="SecureString"/> is read-only.
+        /// Characters cannot be set in-place on a read-only instance, regardless of its length, and its content is not modified when this is thrown.</exception>
         public void SetChars(params ICollection<char> chars)
         {
-            ArgumentException.ThrowIfNullOrEmpty(secureString);
+            ArgumentNullException.ThrowIfNull(secureString);
             ArgumentNullException.ThrowIfNull(chars);
 
-            if (secureString.IsReadOnly() && chars.Count > secureString.Length)
-                throw new InvalidOperationException();
+            if (secureString.IsReadOnly())
+                throw new InvalidOperationException("Cannot set the characters of a read-only SecureString. Characters cannot be set in-place on a read-only instance.");
 
-            if (secureString.IsReadOnly() && chars.Count <= secureString.Length)
-            {
-                int i = 0;
-                foreach (char c in chars)
-                {
-                    secureString.SetAt(i, c);
-                    i++;
-                }
-            }
-            else
-            {
-                secureString.Clear();
+            char[] newChars = new char[chars.Count];
+            chars.CopyTo(newChars, 0);
 
-                secureString.AppendChars(chars);
+            secureString.Clear();
+
+            foreach (char c in newChars)
+            {
+                secureString.AppendChar(c);
             }
         }
     }

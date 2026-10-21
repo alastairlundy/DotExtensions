@@ -49,7 +49,7 @@ public static class ArgumentExceptionExtensions
         public static void ThrowIfNullOrEmpty(SecureString? secureString, string name = "")
         {
             if (secureString is null)
-                throw new ArgumentNullException(name);
+                throw new ArgumentNullException(name.Length == 0 ? nameof(secureString) : name);
 
             if (secureString.Length == 0)
                 throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty,
@@ -57,29 +57,47 @@ public static class ArgumentExceptionExtensions
         }
 
         /// <summary>
-        /// Throws an exception if a <see cref="SecureString"/> is null or contains only whitespace characters.
+        /// Throws an exception if a <see cref="SecureString"/> is null, has a length of zero, or contains only whitespace characters.
         /// </summary>
         /// <param name="secureString">The <see cref="SecureString"/> to validate.</param>
         /// <param name="name">
         /// The name of the parameter being validated. If not provided, defaults to the name of the <see cref="SecureString"/> parameter.
         /// </param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="secureString"/> is null.</exception>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> contains only whitespace characters.</exception>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="secureString"/> has a length of zero or contains only whitespace characters.</exception>
         public static void ThrowIfNullOrWhiteSpace(SecureString? secureString, string name = "")
         {
-            if (secureString is null)
-                throw new ArgumentNullException(name);
+            string paramName = name.Length == 0 ? nameof(secureString) : name;
 
-            SecureString whitespace = new();
-            
-            for (int i = 0; i < secureString.Length; i++)
+            if (secureString is null)
+                throw new ArgumentNullException(paramName);
+
+            bool isNullOrWhiteSpace = true;
+
+            IntPtr ptr = Marshal.SecureStringToGlobalAllocUnicode(secureString);
+
+            try
             {
-                whitespace.AppendChar(' ');
+                for (int i = 0; i < secureString.Length; i++)
+                {
+                    char c = (char)Marshal.ReadInt16(ptr, i * 2);
+
+                    if (!char.IsWhiteSpace(c))
+                    {
+                        isNullOrWhiteSpace = false;
+                        break;
+                    }
+                }
             }
-            
-            if (secureString.Equals(whitespace))
-                throw new ArgumentException(Resources.Exceptions_ThrowIfNullOrEmpty_Empty, 
-                    name.Length == 0 ? nameof(secureString) : name);
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(ptr);
+            }
+
+            if (isNullOrWhiteSpace)
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
+                    Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
+                    paramName), paramName);
         }
     }
 }

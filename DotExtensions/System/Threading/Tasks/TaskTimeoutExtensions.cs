@@ -28,26 +28,28 @@ using System.Threading.Tasks;
 namespace DotExtensions.Threading.Tasks;
 
 /// <summary>
-/// Provides extensions for waiting for a task to wait for completion or be cancelled if the timeout is reached.
+/// Provides extensions for waiting for a task to complete or for a timeout to elapse first.
 /// </summary>
 public static class TaskTimeoutExtensions
 {
     extension(Task task)
     {
         /// <summary>
-        /// Asynchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
-        /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
+        /// Asynchronously waits for the Task to end or for the timeout <see cref="TimeSpan"/> to elapse first.
+        /// Reaching the timeout does NOT cancel the task itself; it only stops waiting for it (the task keeps running in the background).
+        /// Allows for suppressing the <see cref="OperationCanceledException"/> thrown when the wait is cancelled or times out.
         /// </summary>
         /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
         /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
-        /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to cancel the wait for the task (it does not cancel the task itself).</param>
+        /// <remarks>The linked cancellation token cancels only the wait, never the underlying task.</remarks>
+        /// <exception cref="OperationCanceledException">Thrown if the wait is cancelled or times out AND exception suppression is not enabled.</exception>
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public async Task WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
         {
-            CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             cts.CancelAfter(timeout);
-            
+
             try
             {
                 await task.WaitAsync(cts.Token).ConfigureAwait(true);
@@ -59,23 +61,26 @@ public static class TaskTimeoutExtensions
             }
         }
     }
-    
+
     extension<TResult>(Task<TResult> task)
     {
         /// <summary>
-        /// Asynchronously waits for the Task to end or for the Timeout, cancels the task if it has not ended by the timeout <see cref="TimeSpan"/>,
-        /// and allows for suppressing the <exception cref="OperationCanceledException"/> if cancelled.
+        /// Asynchronously waits for the Task to end or for the timeout <see cref="TimeSpan"/> to elapse first.
+        /// Reaching the timeout does NOT cancel the task itself; it only stops waiting for it (the task keeps running in the background).
+        /// Allows for suppressing the <see cref="OperationCanceledException"/> thrown when the wait is cancelled or times out.
+        /// When suppressed, returns <c>default(TResult)</c> because the task's result is not available (the task may still be running).
         /// </summary>
         /// <param name="timeout">The <see cref="TimeSpan"/> to wait for timeout.</param>
         /// <param name="suppressTaskCancellationException">Whether to suppress the exception thrown upon cancellation or not.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> to use to cancel the task.</param>
-        /// <exception cref="OperationCanceledException">Thrown if the task cancellation exception is not suppressed AND if the task is cancelled.</exception>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to cancel the wait for the task (it does not cancel the task itself).</param>
+        /// <remarks>The linked cancellation token cancels only the wait, never the underlying task. The task's result is never read synchronously.</remarks>
+        /// <exception cref="OperationCanceledException">Thrown if the wait is cancelled or times out AND exception suppression is not enabled.</exception>
         [Obsolete(DeprecationMessages.DeprecationV11)]
         public async Task<TResult> WaitAsync(TimeSpan timeout, bool suppressTaskCancellationException, CancellationToken cancellationToken)
         {
-            CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             cts.CancelAfter(timeout);
-            
+
             try
             {
                 return await task.WaitAsync(cts.Token).ConfigureAwait(true);
@@ -85,7 +90,7 @@ public static class TaskTimeoutExtensions
                 if (!suppressTaskCancellationException)
                     throw;
 
-                return task.Result;
+                return default(TResult)!;
             }
         }
     }
