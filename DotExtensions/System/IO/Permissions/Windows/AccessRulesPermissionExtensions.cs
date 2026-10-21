@@ -35,7 +35,7 @@ public static class AccessRulesPermissionExtensions
     extension(AuthorizationRuleCollection rules)
     {
         /// <summary>
-        /// Whether the specified Windows file permission has execute permission.
+        /// Whether the specified Windows access rules contain an Allow rule that grants execute permission. Deny rules are ignored.
         /// </summary>
         [SupportedOSPlatform("windows")]
         [Obsolete(DeprecationMessages.DeprecationV11)]
@@ -44,14 +44,15 @@ public static class AccessRulesPermissionExtensions
             get
             {
                 return rules.Cast<FileSystemAccessRule>().Any(rule =>
-                    rule.FileSystemRights.HasFlag(FileSystemRights.ExecuteFile) ||
+                    rule.AccessControlType == AccessControlType.Allow &&
+                    (rule.FileSystemRights.HasFlag(FileSystemRights.ExecuteFile) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
-                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadAndExecute));
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadAndExecute)));
             }
         }
 
         /// <summary>
-        /// Whether the specified Windows file permission has execute permission.
+        /// Whether the specified Windows access rules contain an Allow rule that grants write permission. Deny rules are ignored.
         /// </summary>
         [SupportedOSPlatform("windows")]
         [Obsolete(DeprecationMessages.DeprecationV11)]
@@ -60,17 +61,18 @@ public static class AccessRulesPermissionExtensions
             get
             {
                 return rules.Cast<FileSystemAccessRule>().Any(rule =>
-                    rule.FileSystemRights.HasFlag(FileSystemRights.Write) ||
+                    rule.AccessControlType == AccessControlType.Allow &&
+                    (rule.FileSystemRights.HasFlag(FileSystemRights.Write) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.WriteData) ||
-                    rule.FileSystemRights.HasFlag(FileSystemRights.AppendData) || 
+                    rule.FileSystemRights.HasFlag(FileSystemRights.AppendData) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.CreateFiles) ||
-                    rule.FileSystemRights.HasFlag(FileSystemRights.CreateDirectories));
-            }   
+                    rule.FileSystemRights.HasFlag(FileSystemRights.CreateDirectories)));
+            }
         }
 
         /// <summary>
-        /// Whether the specified Windows file permission has execute permission.
+        /// Whether the specified Windows access rules contain an Allow rule that grants read permission. Deny rules are ignored.
         /// </summary>
         [SupportedOSPlatform("windows")]
         [Obsolete(DeprecationMessages.DeprecationV11)]
@@ -79,10 +81,11 @@ public static class AccessRulesPermissionExtensions
             get
             {
                 return rules.Cast<FileSystemAccessRule>().Any(rule =>
-                    rule.FileSystemRights.HasFlag(FileSystemRights.Read) ||
+                    rule.AccessControlType == AccessControlType.Allow &&
+                    (rule.FileSystemRights.HasFlag(FileSystemRights.Read) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.FullControl) ||
                     rule.FileSystemRights.HasFlag(FileSystemRights.ReadAndExecute) ||
-                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadData));
+                    rule.FileSystemRights.HasFlag(FileSystemRights.ReadData)));
             }
         }
     }
