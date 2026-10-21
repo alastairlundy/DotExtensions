@@ -29,83 +29,52 @@ namespace DotExtensions.Dates;
 /// </summary>
 public static class WeekOfExtensions
 {
-    private static int InternalWeekOfMonthCount(DateTime date, int year, int month)
+    private static int InternalWeekOfMonthCount(DateTime date)
     {
         DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        int daysInMonth = DateTime.DaysInMonth(year, month);
+        DayOfWeek firstDayOfMonth = new DateTime(date.Year, date.Month, 1).DayOfWeek;
 
-        int weekCount = 0;
+        //0-based offset of the month's first day within a week that starts on firstDayOfWeek.
+        int daysFromWeekStart = ((int)firstDayOfMonth - (int)firstDayOfWeek + 7) % 7;
 
-        for (int day = 1; day <= daysInMonth; day++)
-        {
-            DateTime currentDate = new(year, month, day);
-
-            if (currentDate.DayOfWeek == firstDayOfWeek)
-                weekCount++;
-
-            if (currentDate.Day == date.Day)
-                break;
-        }
-
-        return weekCount;
+        //The week containing the 1st of the month is week 1, so the result is always 1 or greater.
+        return (daysFromWeekStart + date.Day - 1) / 7 + 1;
     }
-    
-    private static int InternalWeekOfYearCount(DateTime date, CalendarWeekRule calendarWeekRule, int year)
+
+    private static int InternalWeekOfYearCount(DateTime date, CalendarWeekRule calendarWeekRule)
     {
-        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        int daysInYear = CultureInfo.CurrentCulture.Calendar.IsLeapYear(year) ? 366 : 365;
-        int weekCount = 0;
+        Calendar calendar = CultureInfo.CurrentCulture.Calendar;
 
-        int currentMonth = 1;
-        int currentDay = 1;
-
-        for (int dayIndex = 1; dayIndex <= daysInYear; dayIndex++)
+        //Fall back to the Gregorian calendar for dates outside the culture calendar's supported DateTime
+        //range (for example DateOnly.MinValue under ar-SA, whose UmAlQuraCalendar supports 1900-2077 CE)
+        //so this never throws for any culture.
+        if (date < calendar.MinSupportedDateTime || date > calendar.MaxSupportedDateTime)
         {
-            DateTime currentDate = new(year, currentMonth, currentDay);
-
-            if (dayIndex == 1 && calendarWeekRule == CalendarWeekRule.FirstDay)
-                weekCount = 1;
-            else if (dayIndex == 4 && calendarWeekRule == CalendarWeekRule.FirstFourDayWeek)
-                weekCount = 1;
-            else if (dayIndex == 7 && calendarWeekRule == CalendarWeekRule.FirstFullWeek)
-                weekCount = 1;
-            else
-            {
-                if (currentDate.DayOfWeek == firstDayOfWeek)
-                    weekCount++;
-            }
-
-            if (currentDate.Month == date.Month && currentDate.Day == date.Day)
-                break;
-
-            currentDay++;
-            if (currentDay > DateTime.DaysInMonth(year, currentMonth))
-            {
-                currentDay = 1;
-                currentMonth++;
-            }
+            calendar = new GregorianCalendar();
         }
 
-        return weekCount;
+        return calendar.GetWeekOfYear(date, calendarWeekRule, CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
     }
-    
+
     /// <param name="date">The date to be used.</param>
     extension(DateTime date)
     {
         /// <summary>
-        /// Calculates the week of the month of a given <see cref="DateTime"/>.
+        /// Calculates the week of the month of a given <see cref="DateTime"/>, using the current culture to determine the first day of the week.
+        /// The week containing the 1st day of the month is week 1, so the result is always 1 or greater.
         /// </summary>
-        /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth => 
-            InternalWeekOfMonthCount(date, date.Year, date.Month);
+        /// <returns>The 1-based week number in a given month.</returns>
+        public int WeekOfMonth =>
+            InternalWeekOfMonthCount(date);
 
         /// <summary>
-        /// Calculates the week in the year of a given <see cref="DateTime"/>.
+        /// Calculates the week in the year of a given <see cref="DateTime"/>, using the current culture's calendar and first day of the week.
+        /// The result matches <see cref="Calendar.GetWeekOfYear(DateTime, CalendarWeekRule, DayOfWeek)"/> for the current culture.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
-        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) => 
-            InternalWeekOfYearCount(date, calendarWeekRule, date.Year);
+        public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
+            InternalWeekOfYearCount(date, calendarWeekRule);
     }
 
 #if NET8_0_OR_GREATER
@@ -113,19 +82,21 @@ public static class WeekOfExtensions
     extension(DateOnly date)
     {
         /// <summary>
-        /// Calculates the week of the month of a given <see cref="DateOnly"/>.
+        /// Calculates the week of the month of a given <see cref="DateOnly"/>, using the current culture to determine the first day of the week.
+        /// The week containing the 1st day of the month is week 1, so the result is always 1 or greater.
         /// </summary>
-        /// <returns>The week number in a given month.</returns>
-        public int WeekOfMonth => 
-            InternalWeekOfMonthCount(DateOnly.ToDateTime(date), date.Year, date.Month);
+        /// <returns>The 1-based week number in a given month.</returns>
+        public int WeekOfMonth =>
+            InternalWeekOfMonthCount(DateOnly.ToDateTime(date));
 
         /// <summary>
-        /// Calculates the week in the year of a given <see cref="DateOnly"/>.
+        /// Calculates the week in the year of a given <see cref="DateOnly"/>, using the current culture's calendar and first day of the week.
+        /// The result matches <see cref="Calendar.GetWeekOfYear(DateTime, CalendarWeekRule, DayOfWeek)"/> for the current culture.
         /// </summary>
         /// <param name="calendarWeekRule">The rule to use to determine what counts as the 1st week of the year.</param>
         /// <returns>The week number in a given year.</returns>
         public int WeekOfYear(CalendarWeekRule calendarWeekRule = CalendarWeekRule.FirstFullWeek) =>
-            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule, date.Year);
+            InternalWeekOfYearCount(DateOnly.ToDateTime(date), calendarWeekRule);
     }
 #endif
 }

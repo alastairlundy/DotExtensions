@@ -24,12 +24,28 @@
 
 #if NET8_0_OR_GREATER
 using System;
+using System.Globalization;
 using DotExtensions.Dates;
 
 namespace DotExtensions.Tests.Dates;
 
+[NotInParallel]
 public class DateOnlyToDateTimeExtensionsTests
 {
+    private static bool TryGetCulture(string name, out CultureInfo culture)
+    {
+        try
+        {
+            culture = CultureInfo.GetCultureInfo(name);
+            return true;
+        }
+        catch (CultureNotFoundException)
+        {
+            culture = CultureInfo.InvariantCulture;
+            return false;
+        }
+    }
+
     [Test]
     [Arguments(2024, 6, 15)]
     [Arguments(2023, 1, 1)]
@@ -70,6 +86,89 @@ public class DateOnlyToDateTimeExtensionsTests
         await Assert.That(result.Year).IsEqualTo(9999);
         await Assert.That(result.Month).IsEqualTo(12);
         await Assert.That(result.Day).IsEqualTo(31);
+    }
+
+    [Test]
+    public async Task ToDateTime_PinnedDate_MatchesEquivalentDateTime()
+    {
+        DateOnly date = new(2024, 3, 20);
+        DateTime result = DateOnly.ToDateTime(date);
+        await Assert.That(result).IsEqualTo(new DateTime(2024, 3, 20));
+    }
+
+    [Test]
+    public async Task ToDateTime_ArabicSaudiCulture_ReturnsEquivalentDateTime()
+    {
+        CultureInfo original = CultureInfo.CurrentCulture;
+
+        try
+        {
+            if (!TryGetCulture("ar-SA", out CultureInfo culture))
+            {
+                return;
+            }
+
+            CultureInfo.CurrentCulture = culture;
+
+            DateOnly date = new(2024, 3, 20);
+            DateTime result = DateOnly.ToDateTime(date);
+
+            await Assert.That(result).IsEqualTo(new DateTime(2024, 3, 20));
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = original;
+        }
+    }
+
+    [Test]
+    public async Task ToDateTime_JapaneseCulture_ReturnsEquivalentDateTime()
+    {
+        CultureInfo original = CultureInfo.CurrentCulture;
+
+        try
+        {
+            if (!TryGetCulture("ja-JP", out CultureInfo culture))
+            {
+                return;
+            }
+
+            CultureInfo.CurrentCulture = culture;
+
+            DateOnly date = new(2024, 3, 20);
+            DateTime result = DateOnly.ToDateTime(date);
+
+            await Assert.That(result).IsEqualTo(new DateTime(2024, 3, 20));
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = original;
+        }
+    }
+
+    [Test]
+    public async Task ToDateTime_ArabicSaudiCulture_MinValue_ReturnsCorrectDateTime()
+    {
+        CultureInfo original = CultureInfo.CurrentCulture;
+
+        try
+        {
+            if (!TryGetCulture("ar-SA", out CultureInfo culture))
+            {
+                return;
+            }
+
+            CultureInfo.CurrentCulture = culture;
+
+            DateOnly date = DateOnly.MinValue;
+            DateTime result = DateOnly.ToDateTime(date);
+
+            await Assert.That(result).IsEqualTo(new DateTime(1, 1, 1));
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = original;
+        }
     }
 }
 #endif

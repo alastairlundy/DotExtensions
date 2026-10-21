@@ -32,50 +32,24 @@ public static class DayOfExtensions
     private static int CalculateDayOfWeekInt(DayOfWeek dayOfWeek)
     {
         DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        
-        int output;
-        
-        switch (firstDayOfWeek)
-        {
-            case DayOfWeek.Sunday:
-                output = (int)dayOfWeek + 1;
-                break;
-            case DayOfWeek.Monday:
-                switch (dayOfWeek)
-                {
-                    case DayOfWeek.Sunday:
-                        output = 7;
-                        break;
-                    default:
-                        output = (int)dayOfWeek;
-                        break;
-                }
-                break;
-            case DayOfWeek.Tuesday:
-            case DayOfWeek.Wednesday:
-            case DayOfWeek.Thursday:
-            case DayOfWeek.Friday:
-            case DayOfWeek.Saturday:
-            default:
-                output = (int)dayOfWeek + 1;
-                break;
-        }
-            
-        return output;
+
+        //1 = the first day of the week in the current culture, wrapping around to 7.
+        return ((int)dayOfWeek - (int)firstDayOfWeek + 7) % 7 + 1;
     }
-    
+
 #if NET8_0_OR_GREATER
     extension(DateOnly date)
     {
         /// <summary>
         /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
+        /// 1 is the culture's first day of the week and 7 is the day before it.
         /// </summary>
         /// <returns>The day of the week as a 32-Bit integer.</returns>
         public int CalculateDayOfWeekAsInteger()
             => CalculateDayOfWeekInt(date.DayOfWeek);
     }
 #endif
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -84,6 +58,7 @@ public static class DayOfExtensions
     {
         /// <summary>
         /// Returns the day of the week as a number from 1 to 7 using the current culture to determine what day is considered the first day of the week.
+        /// 1 is the culture's first day of the week and 7 is the day before it.
         /// </summary>
         /// <returns>The day of the week as a 32-Bit integer.</returns>
         public int CalculateDayOfWeekAsInteger()

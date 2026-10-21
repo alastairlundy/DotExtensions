@@ -37,11 +37,13 @@ public static class DateOnlyToDateTimeExtension
     {
         /// <summary>
         /// Creates a new DateTime object with the Date from a DateOnly object.
+        /// The conversion is culture-independent and deterministic: the resulting DateTime uses the same
+        /// year, month and day components with a time of midnight.
         /// </summary>
         /// <param name="dateOnly">The date to be converted to a DateTime object.</param>
         /// <returns>the newly created DateTime object.</returns>
         public static DateTime ToDateTime(DateOnly dateOnly) =>
-            DateTime.Parse(dateOnly.ToLongDateString(), CultureInfo.CurrentCulture, DateTimeStyles.None);
+            new(dateOnly.Year, dateOnly.Month, dateOnly.Day);
     }
 }
 #endif
