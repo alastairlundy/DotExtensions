@@ -54,7 +54,7 @@ public static class SegmentIsNullExtensions
 
             return other.Value.IsEmpty;
         }
-        
+
         /// <summary>
         /// Checks whether the specified string segment is null or whitespace.
         /// </summary>
@@ -78,7 +78,7 @@ public static class SegmentIsNullExtensions
         {
             if (other.IsEmpty)
                 return false;
-            
+
             for (int index = 0; index < other.Length; index++)
             {
                 char c = other[index];

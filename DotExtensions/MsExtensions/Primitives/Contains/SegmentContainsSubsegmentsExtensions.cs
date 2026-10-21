@@ -44,9 +44,9 @@ public static class SegmentContainsSubsegmentsExtensions
         {
             if (segment.IsEmpty || StringSegment.IsNullOrWhiteSpace(segment))
                 return false;
-            
+
             StringTokenizer tokenizer = segment.Split([delimiter]);
-            
+
             int count = 0;
             foreach (StringSegment unused in tokenizer)
             {
@@ -55,7 +55,7 @@ public static class SegmentContainsSubsegmentsExtensions
                 if (count > 1)
                     break;
             }
-            
+
             return segment.Contains(delimiter) && count > 1;
         }
     }

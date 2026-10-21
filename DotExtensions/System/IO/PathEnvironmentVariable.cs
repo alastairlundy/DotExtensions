@@ -35,7 +35,7 @@ public static class PathEnvironmentVariable
     /// Represents the character used to separate individual entries in the PATH environment variable.
     /// The value is ';' on Windows and ':' on non-Windows operating systems.
     /// </summary>
-    public static char PathContentsSeparatorChar 
+    public static char PathContentsSeparatorChar
         => OperatingSystem.IsWindows() ? ';' : ':';
 
     /// <summary>
@@ -74,11 +74,11 @@ public static class PathEnvironmentVariable
                     return
                         $"{x.Substring(0, homeTokenIndex)}{userProfile}{x[(homeTokenIndex + homeToken.Length)..]}";
                 }
-                
+
                 return x.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             });
     }
-    
+
     /// <summary>
     /// Retrieves the directories listed in the system's PATH environment variable.
     /// </summary>
@@ -100,7 +100,7 @@ public static class PathEnvironmentVariable
     public static IEnumerable<string> EnumerateFileExtensions()
     {
         if (!OperatingSystem.IsWindows()) return [""];
-        
+
         return Environment
                    .GetEnvironmentVariable("PATHEXT")
                    ?.Split(PathContentsSeparatorChar, StringSplitOptions.RemoveEmptyEntries)
@@ -109,7 +109,7 @@ public static class PathEnvironmentVariable
                    {
                        x = x.Trim();
                        x = x.Trim('"');
-                       
+
                        if (!x.StartsWith('.', StringComparison.OrdinalIgnoreCase))
                            x = x.Insert(0, ".");
 
@@ -118,7 +118,7 @@ public static class PathEnvironmentVariable
                    .Distinct(StringComparer.OrdinalIgnoreCase)
                ?? [".COM", ".EXE", ".BAT", ".CMD"];
     }
-    
+
     /// <summary>
     /// Retrieves the file extensions listed in the system's PATHEXT environment variable specific to Windows systems.
     /// </summary>
@@ -126,6 +126,6 @@ public static class PathEnvironmentVariable
     /// An array of strings representing the distinct file extensions in the PATHEXT environment variable,
     /// or a fallback to commonly used extensions if the variable is unset. Returns one file extension of "" on non-Windows systems.
     /// </returns>
-    public static string[] GetPathFileExtensions() 
+    public static string[] GetPathFileExtensions()
         => EnumerateFileExtensions().ToArray();
 }

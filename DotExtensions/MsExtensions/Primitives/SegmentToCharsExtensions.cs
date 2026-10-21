@@ -38,9 +38,9 @@ public static class SegmentToCharsExtensions
         /// <returns>The string segment as a char array.</returns>
         /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
         public char[] ToCharArray()
-        { 
+        {
             ArgumentException.ThrowIfNullOrEmpty(segment);
-            
+
             char[] charArray = new char[segment.Length];
 
             for (int i = 0; i < segment.Length; i++)
@@ -62,7 +62,7 @@ public static class SegmentToCharsExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
 
-            List<char> list = new(capacity:segment.Length);
+            List<char> list = new(capacity: segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
             {

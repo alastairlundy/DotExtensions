@@ -54,7 +54,7 @@ public static class PlatformNotSupportedExceptionExtensions
             {
                 if (exceptionMessage is not null)
                     throw new PlatformNotSupportedException(exceptionMessage);
-                    
+
                 throw new PlatformNotSupportedException();
             }
         }
@@ -79,7 +79,7 @@ public static class PlatformNotSupportedExceptionExtensions
                 {
                     if (exceptionMessage is not null)
                         throw new PlatformNotSupportedException(exceptionMessage);
-                    
+
                     throw new PlatformNotSupportedException();
                 }
             }
@@ -103,7 +103,7 @@ public static class PlatformNotSupportedExceptionExtensions
             {
                 if (exceptionMessage is not null)
                     throw new PlatformNotSupportedException(exceptionMessage);
-                
+
                 throw new PlatformNotSupportedException();
             }
         }
@@ -123,21 +123,21 @@ public static class PlatformNotSupportedExceptionExtensions
         public static void ThrowIfNotOSPlatform(OSPlatform[] platforms, string? exceptionMessage = null)
         {
             bool foundOsPlatform = false;
-            
+
             foreach (OSPlatform platform in platforms)
             {
                 if (RuntimeInformation.IsOSPlatform(platform))
                 {
                     foundOsPlatform = true;
                     break;
-                }    
+                }
             }
 
             if (!foundOsPlatform)
             {
                 if (exceptionMessage is not null)
                     throw new PlatformNotSupportedException(exceptionMessage);
-                    
+
                 throw new PlatformNotSupportedException();
             }
         }

@@ -44,7 +44,7 @@ public static class SegmentEnumerableToStringExtensions
         {
             ArgumentNullException.ThrowIfNull(segments);
             ArgumentException.ThrowIfNullOrEmpty(separator);
-            
+
             StringBuilder stringBuilder = new();
 
             foreach (StringSegment segment in segments)

@@ -54,14 +54,14 @@ public static class EscapeCharacterRemovalExtensions
             ArgumentException.ThrowIfNullOrEmpty(str);
 
             StringBuilder strBuilder = new(str);
-            
+
             foreach (string escapeCharacter in CharacterConstants.EscapeCharacters)
             {
                 strBuilder.Replace(escapeCharacter, string.Empty);
             }
-            
+
             return strBuilder.ToString().Trim(' ').TrimEnd(' ');
-        }   
+        }
     }
 
     extension(string)
@@ -74,7 +74,7 @@ public static class EscapeCharacterRemovalExtensions
         public static bool IsEscapeCharacter(string s)
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
-            
+
             return CharacterConstants.EscapeCharacters.Any(x => string.Equals(x, s, StringComparison.OrdinalIgnoreCase));
         }
     }

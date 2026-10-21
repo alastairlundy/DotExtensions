@@ -32,12 +32,12 @@ public static class DayInExtensions
     private static int CalculateDaysInYear(int year)
     {
         int days = 0;
-            
+
         for (int month = 1; month <= 12; month++)
         {
             days += DateTime.DaysInMonth(year, month);
         }
-            
+
         return days;
     }
 
@@ -56,7 +56,7 @@ public static class DayInExtensions
             => CalculateDaysInYear(dateOnly.Year);
     }
 #endif
-    
+
     /// <param name="date">The <see cref="DateTime"/> object representing the year to calculate the total number of days for.</param>
     extension(DateTime date)
     {

@@ -16,7 +16,7 @@ public class CapitalizationTests
         string fakeName = _faker.Name.FirstName().ToLower();
 
         int index = Random.Shared.Next(0, fakeName.Length - 1);
-        
+
         string expected = fakeName.Insert(index, fakeName[index].ToString().ToUpper());
         expected = expected.Remove(index + 1, 1);
 
@@ -44,9 +44,9 @@ public class CapitalizationTests
         }
 
         string expected = sb.ToString();
-        
+
         string actual = fakeWord.CapitalizeChars(charsToCapitalize);
-        
+
         await Assert.That(expected)
             .IsEqualTo(actual);
     }

@@ -48,12 +48,12 @@ public static class ReadableVersionStringExtensions
                 case true:
                     return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
                 case false:
-                {
-                    if (showBuild)
-                        return $"{version.Major}.{version.Minor}.{version.Build}";
-                    
-                    return showMinor ? $"{version.Major}.{version.Minor}" : version.Major.ToString(CultureInfo.CurrentCulture);
-                }
+                    {
+                        if (showBuild)
+                            return $"{version.Major}.{version.Minor}.{version.Build}";
+
+                        return showMinor ? $"{version.Major}.{version.Minor}" : version.Major.ToString(CultureInfo.CurrentCulture);
+                    }
             }
         }
     }

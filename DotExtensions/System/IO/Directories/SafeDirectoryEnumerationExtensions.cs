@@ -48,7 +48,7 @@ public static class SafeDirectoryEnumerationExtensions
         /// </returns>
         public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories()
             => directoryInfo.SafelyEnumerateDirectories("*");
-        
+
         /// <summary>
         /// Safely enumerates all directories in the specified directory, handling potential
         /// exceptions and ignoring inaccessible directories.
@@ -82,7 +82,7 @@ public static class SafeDirectoryEnumerationExtensions
         /// A sequence of <see cref="DirectoryInfo"/> objects representing the directories
         /// found in the specified directory that match the search pattern and search option.
         /// </returns>
-        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true) 
+        public IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string searchPattern, SearchOption searchOption, bool ignoreCase = true)
             => directoryInfo.EnumerateDirectories(searchPattern, searchOption.ToEnumerationOptions(!ignoreCase));
 
         #endregion
@@ -99,7 +99,7 @@ public static class SafeDirectoryEnumerationExtensions
         /// </returns>
         public DirectoryInfo[] SafelyGetDirectories()
             => directoryInfo.SafelyGetDirectories("*");
-        
+
         /// <summary>
         /// Safely retrieves an array of directories in the current directory using the specified search pattern,
         /// ensuring that inaccessible directories or exceptions during directory traversal are skipped gracefully.
@@ -184,7 +184,7 @@ public static class SafeDirectoryEnumerationExtensions
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
             DirectoryInfo directoryInfo = new(path);
-            
+
             return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
         }
 
@@ -236,7 +236,7 @@ public static class SafeDirectoryEnumerationExtensions
         /// </returns>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern,
             SearchOption directorySearchOptions, bool ignoreCase = true)
-            => Directory.SafelyEnumerateDirectories(path,  searchPattern, directorySearchOptions, ignoreCase).ToArray();
+            => Directory.SafelyEnumerateDirectories(path, searchPattern, directorySearchOptions, ignoreCase).ToArray();
         #endregion
     }
 }

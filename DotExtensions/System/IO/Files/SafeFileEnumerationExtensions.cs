@@ -158,7 +158,7 @@ public static class SafeFileEnumerationExtensions
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
             DirectoryInfo directoryInfo = new(path);
-            
+
             return directoryInfo.SafelyEnumerateFiles(searchPattern, directorySearchOption, ignoreCase);
         }
 

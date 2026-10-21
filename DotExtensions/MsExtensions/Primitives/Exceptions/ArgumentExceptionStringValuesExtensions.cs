@@ -50,9 +50,9 @@ public static class ArgumentExceptionStringValuesExtensions
         {
             if (values is null || StringValues.IsNullOrEmpty((StringValues)values))
             {
-                if(paramName != string.Empty)
+                if (paramName != string.Empty)
                     throw new ArgumentNullException(paramName);
-                
+
                 throw new ArgumentNullException(nameof(values));
             }
         }
@@ -76,17 +76,17 @@ public static class ArgumentExceptionStringValuesExtensions
             {
                 if (paramName != string.Empty)
                     throw new ArgumentNullException(paramName);
-                
+
                 throw new ArgumentNullException(nameof(values));
             }
 
-            if (!StringValues.IsNullOrWhiteSpace(values)) 
+            if (!StringValues.IsNullOrWhiteSpace(values))
                 return;
-            
-            if(paramName != string.Empty)
+
+            if (paramName != string.Empty)
                 throw new ArgumentNullException(paramName);
-                
-            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, 
+
+            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
                 Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace,
                 nameof(values)), nameof(values));
         }

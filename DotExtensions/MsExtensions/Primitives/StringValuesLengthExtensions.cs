@@ -43,12 +43,12 @@ public static class StringValuesLengthExtensions
 
                 foreach (string? value in stringValues)
                 {
-                    if(value is not null)
+                    if (value is not null)
                         length += value.Length;
                 }
 
                 return length;
-            }  
+            }
         }
     }
 }

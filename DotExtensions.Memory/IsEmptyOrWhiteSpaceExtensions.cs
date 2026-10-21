@@ -39,7 +39,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if the span is empty, false otherwise.</returns>
         public bool IsEmpty => source.Length == 0;
     }
-    
+
     /// <param name="source">The span to search.</param>
     /// <typeparam name="T">The type of elements in the Span.</typeparam>
     extension<T>(ReadOnlySpan<T> source)
@@ -50,7 +50,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if the span is empty, false otherwise.</returns>
         public bool IsEmpty => source.Length == 0;
     }
-    
+
     /// <param name="memory">The memory to search.</param>
     /// <typeparam name="T">The type of elements in the memory.</typeparam>
     extension<T>(Memory<T> memory)
@@ -61,7 +61,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <returns>True if the memory is empty or has a length of zero; otherwise, false.</returns>
         public bool IsEmpty => memory.Length == 0;
     }
-    
+
     /// <param name="memory">The memory to search.</param>
     /// <typeparam name="T">The type of elements in the read-only memory.</typeparam>
     extension<T>(ReadOnlyMemory<T> memory)
@@ -102,7 +102,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             return true;
         }
     }
-    
+
     /// <param name="span">The span to search.</param>
     extension(ReadOnlySpan<char> span)
     {
@@ -151,7 +151,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         private bool IsWhiteSpace()
         {
             for (int i = 0; i < memory.Length; i++)
-            { 
+            {
                 bool isWhiteSpace = char.IsWhiteSpace(memory.Span[i]);
 
                 if (!isWhiteSpace)
@@ -161,7 +161,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             return true;
         }
     }
-    
+
     /// <param name="memory">The read-only memory to evaluate.</param>
     extension(ReadOnlyMemory<char> memory)
     {
@@ -189,7 +189,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             return true;
         }
     }
-    
+
     #endregion
     #region Is Empty or String WhiteSpace Extensions
 
@@ -214,15 +214,15 @@ public static class IsEmptyOrWhiteSpaceExtensions
             for (int i = 0; i < span.Length; i++)
             {
                 bool isWhiteSpace = span[i].IsWhiteSpace();
-                
-                if(!isWhiteSpace)
+
+                if (!isWhiteSpace)
                     return false;
             }
 
             return true;
         }
     }
-    
+
     /// <param name="span">The span to search.</param>
     extension(ReadOnlySpan<string> span)
     {
@@ -242,7 +242,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             for (int i = 0; i < span.Length; i++)
             {
                 bool isWhiteSpace = span[i].IsWhiteSpace();
-                
+
                 if (!isWhiteSpace)
                     return false;
             }
@@ -250,7 +250,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             return true;
         }
     }
-    
+
     /// <param name="memory">The input span to check for whitespace.</param>
     extension(Memory<string> memory)
     {
@@ -278,7 +278,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
             return true;
         }
     }
-    
+
     /// <param name="memory">The ReadOnlyMemory of strings to evaluate.</param>
     extension(ReadOnlyMemory<string> memory)
     {

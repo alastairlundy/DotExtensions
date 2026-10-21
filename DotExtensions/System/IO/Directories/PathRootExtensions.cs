@@ -41,10 +41,10 @@ public static class PathRootExtensions
         {
             if (path is not null)
                 return Path.GetNonNullPathRoot(path);
-            
+
             return Path.GetNonNullPathRoot(Environment.CurrentDirectory);
         }
-        
+
         /// <summary>
         /// Gets the root directory of a given path as a non-nullable string.
         /// </summary>
@@ -61,7 +61,7 @@ public static class PathRootExtensions
 
                 return fileInfo.GetDirectory().Root.FullName;
             }
-            
+
             DirectoryInfo directoryInfo = new(path);
 
             return Directory.GetDirectoryRoot(directoryInfo.FullName);

@@ -40,7 +40,7 @@ public static class SegmentReverseExtensions
         public StringSegment Reverse()
         {
             ArgumentException.ThrowIfNullOrEmpty(target);
-            
+
             StringBuilder stringBuilder = new(capacity: target.Length);
 
             for (int i = 0; i < target.Length; i++)

@@ -39,7 +39,7 @@ public static class StringValuesIsNullExtensions
         /// <returns>True if it is empty, false otherwise.</returns>
         public bool IsEmpty => strValues.Equals(StringValues.Empty);
     }
-    
+
     extension(StringValues)
     {
         /// <summary>
@@ -51,7 +51,7 @@ public static class StringValuesIsNullExtensions
         {
             if (other is null)
                 return true;
-            
+
             return StringValues.IsWhiteSpace((StringValues)other);
         }
 
@@ -64,13 +64,13 @@ public static class StringValuesIsNullExtensions
         {
             if (other.Count == 0)
                 return false;
-            
+
             bool[] vals = new bool[other.Count];
 
             for (int index = 0; index < other.Count; index++)
             {
                 string? val = other[index];
-                
+
                 vals[index] = string.IsNullOrWhiteSpace(val);
             }
 

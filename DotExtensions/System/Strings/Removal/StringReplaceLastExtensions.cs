@@ -76,7 +76,7 @@ public static class StringReplaceLastExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
             ArgumentException.ThrowIfNullOrEmpty(newValue);
-            
+
             int lastIndex = str.LastIndexOf(oldValue, stringComparison);
 
             if (lastIndex == -1)

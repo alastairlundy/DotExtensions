@@ -58,7 +58,7 @@ public static partial class PermissionExtensions
 
                     return filePermission.HasExecutePermission;
                 }
-                
+
                 UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
                 return unixFileMode.HasExecutePermission;
@@ -92,7 +92,7 @@ public static partial class PermissionExtensions
 
                     return filePermission.HasReadPermission;
                 }
-                
+
                 UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
                 return unixFileMode.HasReadPermission;
@@ -126,7 +126,7 @@ public static partial class PermissionExtensions
 
                     return filePermission.HasWritePermission;
                 }
-                
+
                 UnixFileMode unixFileMode = File.GetUnixFileMode(fileInfo.FullName);
 
                 return unixFileMode.HasWritePermission;

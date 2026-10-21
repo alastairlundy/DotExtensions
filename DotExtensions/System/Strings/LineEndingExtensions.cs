@@ -40,7 +40,7 @@ public static class LineEndingExtensions
         public string GetLineEnding()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
-            
+
             bool containsR = s.Contains('\r', StringComparison.InvariantCulture);
             bool containsN = s.Contains('\n', StringComparison.InvariantCulture);
 

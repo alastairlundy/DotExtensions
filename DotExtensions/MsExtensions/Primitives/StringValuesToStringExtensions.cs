@@ -59,10 +59,10 @@ public static class StringValuesToStringExtensions
             }
 
             string output = stringBuilder.ToString();
-            
-            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
+
+            if (output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - 1, 1);
-            
+
             return output;
         }
 
@@ -91,11 +91,11 @@ public static class StringValuesToStringExtensions
             }
 
             string output = stringBuilder.ToString();
-            
-            if(output.EndsWith($"{separator}", StringComparison.Ordinal))
+
+            if (output.EndsWith($"{separator}", StringComparison.Ordinal))
                 output = output.Remove(output.Length - separator.Length,
                     separator.Length);
-            
+
             return output;
         }
     }

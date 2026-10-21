@@ -42,7 +42,7 @@ public static class SegmentCapitalizationExtensions
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, segment.Length);
-            
+
             char c = segment[index];
 
             if (char.IsUpper(c))
@@ -62,7 +62,7 @@ public static class SegmentCapitalizationExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentNullException.ThrowIfNull(indices);
-            
+
             StringBuilder stringBuilder = new(capacity: segment.Length);
 
             for (int i = 0; i < segment.Length; i++)
@@ -79,11 +79,11 @@ public static class SegmentCapitalizationExtensions
                             , StringComparison.Ordinal
 #endif
                         ), nameof(indices));
-                    
-                if(index >= segment.Length)
+
+                if (index >= segment.Length)
                     throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
 
-                
+
                 stringBuilder[index] = char.ToUpper(stringBuilder[index], CultureInfo.CurrentCulture);
             }
 

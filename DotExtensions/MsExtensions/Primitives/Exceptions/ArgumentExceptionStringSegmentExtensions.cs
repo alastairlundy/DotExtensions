@@ -54,7 +54,7 @@ public static class ArgumentExceptionStringSegmentExtensions
 
             ArgumentNullException.ThrowIfNull(target, paramName);
 
-            if(StringSegment.IsNullOrEmpty(target))
+            if (StringSegment.IsNullOrEmpty(target))
                 throw new ArgumentNullException(paramName);
         }
 
@@ -71,7 +71,7 @@ public static class ArgumentExceptionStringSegmentExtensions
         {
             if (paramName == "")
                 paramName = nameof(target);
-            
+
             if (!target.HasValue)
             {
                 throw new ArgumentNullException(nameof(target));

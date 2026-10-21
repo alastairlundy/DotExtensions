@@ -31,10 +31,10 @@ public class EscapeCharacterRemovalTests
 {
     public static IEnumerable<string> GetStrings()
         => EscapeCharacterTestData.GetStrings();
-    
+
     public static IEnumerable<string> GetLoremWords()
         => LoremWordsTestData.GetLoremWords();
-    
+
     [Test]
     [MethodDataSource(nameof(GetStrings))]
     public async Task ContainsEscapedCharactersTest(string escapeCharacters)
