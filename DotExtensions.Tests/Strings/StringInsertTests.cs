@@ -23,6 +23,8 @@
    */
 
 
+using System;
+using System.Collections.Generic;
 using Bogus;
 using DotExtensions.Strings;
 
@@ -31,7 +33,7 @@ namespace DotExtensions.Tests.Strings;
 public class StringInsertTests
 {
     private readonly Faker _faker = new();
-    
+
     [Test]
     [Arguments("Hello")]
     [Arguments("World")]
@@ -40,14 +42,41 @@ public class StringInsertTests
     public async Task StringInsert_Char_Works(string origin)
     {
         char c = _faker.Random.Char();
-        
+
         int index = _faker.Random.Int(0, origin.Length - 1);
-        
+
         string expected = $"{origin.Insert(index, c.ToString())}";
-        
+
         string actual = origin.Insert(index, c);
-        
+
         await Assert.That(actual)
             .IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task InsertRange_WithListOfChars_InsertsEachCharacterInOrder()
+    {
+        string actual = "ab".InsertRange(1, new List<char> { 'X', 'Y' });
+
+        await Assert.That(actual)
+            .IsEqualTo("aXYb");
+    }
+
+    [Test]
+    public async Task InsertRange_WithCharArray_InsertsEachCharacterInOrder()
+    {
+        string actual = "ab".InsertRange(1, new[] { 'X', 'Y' });
+
+        await Assert.That(actual)
+            .IsEqualTo("aXYb");
+    }
+
+    [Test]
+    public async Task InsertRange_WithEmptyEnumerable_ReturnsOriginalString()
+    {
+        string actual = "ab".InsertRange(1, Array.Empty<char>());
+
+        await Assert.That(actual)
+            .IsEqualTo("ab");
     }
 }
