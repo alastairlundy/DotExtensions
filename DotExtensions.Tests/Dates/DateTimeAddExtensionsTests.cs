@@ -24,6 +24,7 @@
 
 using System;
 using DotExtensions.Dates;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace DotExtensions.Tests.Dates;
 
@@ -71,4 +72,28 @@ public class DateTimeAddExtensionsTests
 
         await Assert.That(result).IsEqualTo(expected);
     }
+
+    [Test]
+    public async Task Add_EarlierDateIntoLaterDate_ReturnsLaterDate()
+    {
+        DateTime earlier = new(2024, 1, 1);
+        DateTime later = new(2024, 6, 15);
+
+        DateTime result = earlier.Add(later);
+
+        await Assert.That(result).IsEqualTo(later);
+    }
+
+    [Test]
+    public async Task Add_LaterDateIntoEarlierDate_ReflectsEarlierDateAcrossLaterDate()
+    {
+        DateTime later = new(2024, 1, 5);
+        DateTime earlier = new(2024, 1, 1);
+
+        DateTime result = later.Add(earlier);
+
+        // 2024-01-01 is 4 days before 2024-01-05, so its reflection across 2024-01-05 lands on 2024-01-09.
+        await Assert.That(result).IsEqualTo(new DateTime(2024, 1, 9));
+    }
 }
+#pragma warning restore CS0618 // Type or member is obsolete

@@ -34,10 +34,18 @@ public static class DateTimeSubtractExtensions
     extension(DateTime dateTimeOne)
     {
         /// <summary>
-        /// Subtracts two dates from each other and returns the resulting date and time.
+        /// Returns twice the first DateTime minus the second DateTime; that is, dateTimeTwo reflected across dateTimeOne.
         /// </summary>
-        /// <param name="dateTimeTwo">The date and time to subtract from.</param>
-        /// <returns>The first DateTime subtracted from the 2nd DateTime.</returns>
+        /// <param name="dateTimeTwo">The date and time reflected across <paramref name="dateTimeOne"/>.</param>
+        /// <returns>2 * dateTimeOne - dateTimeTwo; equivalently dateTimeOne shifted by the signed difference dateTimeTwo - dateTimeOne.</returns>
+        /// <remarks>
+        /// The BCL's instance method <c>DateTime.Subtract(DateTime)</c> returns a <see cref="TimeSpan"/> and is defined on
+        /// every target this library supports, including netstandard2.0 and .NET 8+, so instance-style calls such as
+        /// <c>a.Subtract(b)</c> bind to that BCL overload and yield a TimeSpan rather than the DateTime documented here.
+        /// This extension is therefore only reachable through static invocation, for example
+        /// <c>DateTimeSubtractExtensions.Subtract(a, b)</c>.
+        /// </remarks>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime Subtract(DateTime dateTimeTwo)
         {
             TimeSpan timeSpan = TimeSpan.FromTicks(dateTimeTwo.Ticks - dateTimeOne.Ticks);

@@ -24,6 +24,7 @@
 
 using System;
 using DotExtensions.Dates;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace DotExtensions.Tests.Dates;
 
@@ -55,6 +56,18 @@ public class DateTimeSubtractExtensionsTests
         DateTime expected = new(expectedTicks);
 
         await Assert.That(result).IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task Subtract_ReturnsTwiceFirstDateMinusSecondDate()
+    {
+        DateTime first = new(2024, 1, 1);
+        DateTime second = new(2020, 1, 1);
+
+        DateTime result = DateTimeSubtractExtensions.Subtract(first, second);
+
+        // 2 * 2024-01-01 - 2020-01-01 = 2028-01-01.
+        await Assert.That(result).IsEqualTo(new DateTime(2028, 1, 1));
     }
 
     [Test]
@@ -150,3 +163,4 @@ public class DateTimeSubtractExtensionsTests
         await Assert.That(result).IsEqualTo(new DateTime(1, 1, 1));
     }
 }
+#pragma warning restore CS0618 // Type or member is obsolete

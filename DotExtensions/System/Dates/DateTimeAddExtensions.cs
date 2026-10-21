@@ -33,10 +33,15 @@ public static class DateTimeAddExtensions
     extension(DateTime dateTimeOne)
     {
         /// <summary>
-        /// Adds two dates together and returns the resulting DateTime.
+        /// Adds the absolute difference between the two dates to the first date.
         /// </summary>
-        /// <param name="dateTimeTwo">The date and time to add.</param>
-        /// <returns>The sum of the two input dates and times.</returns>
+        /// <param name="dateTimeTwo">The date and time whose absolute difference from <paramref name="dateTimeOne"/> is added to <paramref name="dateTimeOne"/>.</param>
+        /// <returns>
+        /// <paramref name="dateTimeOne"/> plus the absolute difference |dateTimeTwo - dateTimeOne|; that is, dateTimeTwo itself
+        /// when dateTimeTwo is later than dateTimeOne, otherwise the reflection of dateTimeTwo across dateTimeOne
+        /// (2 * dateTimeOne - dateTimeTwo).
+        /// </returns>
+        [Obsolete(DeprecationMessages.DeprecationV11)]
         public DateTime Add(DateTime dateTimeTwo)
         {
             TimeSpan timeSpan = dateTimeTwo.Difference(dateTimeOne);
