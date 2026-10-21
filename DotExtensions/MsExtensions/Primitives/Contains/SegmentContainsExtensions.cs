@@ -47,37 +47,38 @@ public static class SegmentContainsExtensions
 
             return false;
         }
-        
+
         /// <summary>
         /// Returns whether the String Segment contains another String Segment.
         /// </summary>
-        /// <returns>True if the string segment contains the specified string segment; false otherwise.</returns>
+        /// <param name="segment">The String Segment to search for. An empty segment is always considered contained.</param>
+        /// <returns>True if the string segment contains the specified string segment; false otherwise.
+        /// An empty <paramref name="segment"/> always returns true, matching <c>string.Contains(string)</c> behaviour.</returns>
         public bool Contains(StringSegment segment)
         {
-            if ((source.IsEmpty && !segment.IsEmpty) || (segment.IsEmpty && !source.IsEmpty))
+            if (segment.IsEmpty)
+                return true;
+
+            if (segment.Length > source.Length)
                 return false;
-            
+
             if (source.Length == segment.Length)
                 return source.Equals(segment, StringComparison.CurrentCulture);
 
-            if (segment.Length > source.Length || segment.IsEmpty)
-                return false;
+            int lastStart = source.Length - segment.Length;
+            int index = source.IndexOf(segment[0]);
 
-            int start = -1;
-            int index = 0;
-
-            while (index != -1)
+            while (index != -1 && index <= lastStart)
             {
-                index = source.IndexOf(segment[0], start + 1);
-                start = index;
+                StringSegment comparison = source.Subsegment(index, segment.Length);
 
-                if (index != -1)
-                {
-                    StringSegment comparison = source.Subsegment(index, segment.Length);
+                if (segment.Equals(comparison, StringComparison.CurrentCulture))
+                    return true;
 
-                    if (segment.Equals(comparison, StringComparison.CurrentCulture))
-                        return true;
-                }
+                if (index == lastStart)
+                    break;
+
+                index = source.IndexOf(segment[0], index + 1);
             }
 
             return false;
