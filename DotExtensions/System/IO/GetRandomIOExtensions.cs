@@ -56,7 +56,7 @@ public static class GetRandomIOExtensions
                 if (driveMustContainDirectories && !DriveHasDirectoriesCheap(single))
                     throw new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
 
-                if (driveMustContainFiles && !DriveHasFilesCheap(single))
+                if (driveMustContainFiles && !DriveHasFilesCheap(single) && !DriveHasFilesDeep(single))
                     throw new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles);
 
                 return single;
@@ -71,6 +71,21 @@ public static class GetRandomIOExtensions
 
                 if (filtered.Length == 0)
                 {
+                    if (driveMustContainFiles)
+                    {
+                        //The cheap check only inspects the root and its immediate subdirectories, so files
+                        //that live two or more levels deep would be missed. Fall back to a bounded recursive
+                        //walk on the candidate drives before declaring that none contain files.
+                        DriveInfo[] candidates = driveMustContainDirectories
+                            ? drives.Where(DriveHasDirectoriesCheap).ToArray()
+                            : drives;
+
+                        DriveInfo[] deepMatches = candidates.Where(DriveHasFilesDeep).ToArray();
+
+                        if (deepMatches.Length > 0)
+                            return deepMatches[Random.Shared.Next(0, deepMatches.Length)];
+                    }
+
                     throw driveMustContainFiles
                         ? new InvalidOperationException(Resources.Exceptions_Drives_NoneContainFiles)
                         : new InvalidOperationException(Resources.Exceptions_Drives_NotFound);
@@ -120,6 +135,59 @@ public static class GetRandomIOExtensions
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Checks whether a drive contains any files by performing a bounded random walk of its directory
+        /// tree, catching files that exist only below the immediate subdirectories inspected by the cheap
+        /// DriveHasFilesCheap check.
+        /// </summary>
+        private static bool DriveHasFilesDeep(DriveInfo drive)
+        {
+            try
+            {
+                return drive.IsReady && FindAnyFileByWalk(drive.RootDirectory);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Randomly walks the directory tree from the given root and returns true if any file is encountered.
+        /// </summary>
+        private static bool FindAnyFileByWalk(DirectoryInfo root)
+        {
+            const int maxAttempts = 32;
+
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                DirectoryInfo current = root;
+                HashSet<string> visited = new(StringComparer.Ordinal);
+                int depth = 0;
+
+                while (depth < MaxWalkDepth)
+                {
+                    if (!visited.Add(current.FullName))
+                        break;
+
+                    if (current.SafelyGetFiles().Length > 0)
+                        return true;
+
+                    DirectoryInfo[] subDirs = current.SafelyGetDirectories()
+                        .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                        .ToArray();
+
+                    if (subDirs.Length == 0)
+                        break;
+
+                    current = subDirs[Random.Shared.Next(0, subDirs.Length)];
+                    depth++;
+                }
+            }
+
+            return false;
         }
     }
 
