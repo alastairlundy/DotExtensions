@@ -72,7 +72,9 @@ public static class VersionParseExtensions
 
     private static char FindSeparator(string versionString)
     {
-        char output = ' ';
+        // '\0' means "no separator detected": it keeps the single-component (ParseChars) path
+        // distinguishable from a genuine space separator, which FindSeparator can detect below.
+        char output = '\0';
 
         if (versionString.Contains('.', StringComparison.OrdinalIgnoreCase))
             return '.';
@@ -94,6 +96,9 @@ public static class VersionParseExtensions
         int major = -1, minor = -1, build = -1, revision = -1;
         int componentsAdded = 0;
 
+        // Drop tokens with no digits BEFORE capping the component count: tokenizing can yield
+        // leading empty tokens (e.g. "....1"), and truncating first would discard the digit-bearing
+        // tokens that follow them. The cap itself stays at four components.
         versionComponents = versionComponents.Where(v =>
             {
                 int firstNumberIndex = v.IndexOfAny(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
@@ -104,6 +109,7 @@ public static class VersionParseExtensions
                 int index = v.IndexOfAny(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
                 return v.Subsegment(index);
             })
+            .Take(4)
             .ToArray();
 
         for (int index = 0; index < versionComponents.Length; index++)
@@ -145,6 +151,13 @@ public static class VersionParseExtensions
         /// </summary>
         /// <param name="versionString">The version string to parse into a <see cref="Version"/> object.</param>
         /// <returns>Returns a gracefully parsed version.</returns>
+        /// <remarks>
+        /// At most four components are produced (<c>Partial(4)</c>): extra components are ignored,
+        /// digit runs that do not fit an <see cref="int"/> saturate to <see cref="int.MaxValue"/>,
+        /// and wildcard suffixes such as <c>1.2.*</c> are treated as their numeric prefix
+        /// (<c>1.2</c>). Components are tokenized on the separator detected by the library
+        /// (<c>.</c>, <c>,</c>, <c>-</c>, or whitespace), not only on <c>.</c>.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown if the provided <paramref name="versionString"/>
         /// string is null or empty or contains no digits.</exception>
         public static Version GracefulParse(string versionString)
@@ -158,11 +171,13 @@ public static class VersionParseExtensions
 
             (int major, int minor, int build, int revision) components;
 
-            if (sanitizedInput.Contains('.', StringComparison.OrdinalIgnoreCase) && separator != ' ')
+            if (separator != '\0' && sanitizedInput.Contains(separator))
             {
                 IEnumerable<StringSegment> segments = new StringTokenizer(sanitizedInput, [separator]);
 
-                StringSegment[] versionComponents = segments.Take(4).ToArray();
+                // ParseComponents filters out digit-less tokens before applying the four-component
+                // cap, so no digit-bearing token is ever dropped by truncation.
+                StringSegment[] versionComponents = segments.ToArray();
                 components = ParseComponents(versionComponents);
             }
             else
@@ -174,11 +189,15 @@ public static class VersionParseExtensions
             {
                 try
                 {
-                    components = (sanitizedInput.First(c => char.IsDigit(c)), 0, 0, 0);
+                    // Convert the first digit CHARACTER to its numeric value (GetNumericValue
+                    // handles every Unicode decimal digit); mapping the raw char code would turn
+                    // '. . . .1' into Version 49.0.
+                    int firstDigit = (int)char.GetNumericValue(sanitizedInput.First(c => char.IsDigit(c)));
+                    components = (firstDigit, 0, 0, 0);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    throw new ArgumentException(string.Format(Resources.Exceptions_VersionParsing_InvalidVersionString, versionString), nameof(versionString));
+                    throw new ArgumentException(string.Format(Resources.Exceptions_VersionParsing_InvalidVersionString, versionString), nameof(versionString), ex);
                 }
             }
 

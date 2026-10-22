@@ -94,14 +94,17 @@ public class GuardModuleTests
             .ThrowsExactly<ArgumentException>();
     }
 
-    // Genuine behaviour: the whitespace predicate reports false for empty content, so empty input
-    // passes this member - the empty-only member above is what rejects it.
+    // Empty input is rejected per this member's XML doc and the BCL ThrowIfNullOrWhiteSpace
+    // doctrine: an empty string counts as whitespace-only content (the underlying
+    // StringSegment.IsNullOrWhiteSpace predicate alone reports false for empty, so the member
+    // checks emptiness explicitly).
     [Test]
-    public async Task ThrowIfNullOrWhiteSpace_StringSegment_Empty_ThrowsNothing()
+    public async Task ThrowIfNullOrWhiteSpace_StringSegment_Empty_ThrowsExactlyArgumentException()
     {
         StringSegment? target = new StringSegment(string.Empty);
 
-        await Assert.That(() => ArgumentException.ThrowIfNullOrWhiteSpace(target)).ThrowsNothing();
+        await Assert.That(() => ArgumentException.ThrowIfNullOrWhiteSpace(target))
+            .ThrowsExactly<ArgumentException>();
     }
 
     [Test]

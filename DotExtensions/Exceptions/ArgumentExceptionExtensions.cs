@@ -96,7 +96,10 @@ public static class ArgumentExceptionExtensions
         {
             ArgumentNullException.ThrowIfNull(target, paramName);
 
-            if (StringSegment.IsNullOrWhiteSpace(target))
+            // IsNullOrWhiteSpace alone reports false for an empty (but non-null) segment, which
+            // would contradict both this member's contract and the BCL ThrowIfNullOrWhiteSpace
+            // doctrine where empty counts as whitespace-only content: check emptiness explicitly.
+            if (StringSegment.IsNullOrEmpty(target) || StringSegment.IsNullOrWhiteSpace(target))
                 throw new ArgumentException(
                     string.Format(CultureInfo.CurrentCulture,
                         Resources.Exceptions_NullOrWhiteSpace_CannotBeNullOrWhiteSpace, paramName),

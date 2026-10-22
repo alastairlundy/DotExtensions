@@ -50,6 +50,11 @@ public static class NumberRangeExtensions
         /// <param name="count">The number of elements in the range.</param>
         /// <returns>A new Range instance representing the specified sequence of values.</returns>
         public Range AsRange(int count) =>
-            new(start, new Index(start.Value + count));
+            start.IsFromEnd
+                // A from-end start counts backwards from the end: for `^n`, the end of a `count`-long
+                // range lands `count` elements later, i.e. `^(n - count)` - e.g. on a 10-element
+                // sequence, ^3.AsRange(2) spans offsets 7..8, expressed as Range(^3, ^1).
+                ? new(start, Index.FromEnd(start.Value - count))
+                : new(start, new Index(start.Value + count));
     }
 }

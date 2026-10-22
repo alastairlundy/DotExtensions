@@ -45,10 +45,11 @@ public static class StringValuesExtensions
     extension(StringValues)
     {
         /// <summary>
-        /// Determines whether a <see cref="StringValues"/> contains any strings that are null or whitespace./>
+        /// Determines whether a <see cref="StringValues"/> contains any string that is null or consists entirely of whitespace characters.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns>True if any of the strings is WhiteSpace or null.</returns>
+        /// <param name="other">The <see cref="StringValues"/> to check.</param>
+        /// <returns>True if any value in the <see cref="StringValues"/> is null or consists entirely of whitespace characters;
+        /// false otherwise. A <see cref="StringValues"/> holding no values contains no offending value and returns false.</returns>
         public static bool IsNullOrWhiteSpace(StringValues? other)
         {
             if (other is null)
@@ -58,25 +59,26 @@ public static class StringValuesExtensions
         }
 
         /// <summary>
-        /// Determines whether a <see cref="StringValues"/> contains only strings that consist entirely of whitespace characters.
+        /// Determines whether a <see cref="StringValues"/> contains any string that is null or consists entirely of whitespace characters.
         /// </summary>
         /// <param name="other">The <see cref="StringValues"/> to check for whitespace characters.</param>
-        /// <returns>True if all strings in the <see cref="StringValues"/> consist entirely of whitespace characters; otherwise, false.</returns>
+        /// <returns>True if ANY value in the <see cref="StringValues"/> is null or consists entirely of whitespace characters;
+        /// otherwise, false (including when the <see cref="StringValues"/> holds no values).</returns>
         private static bool IsWhiteSpace(StringValues other)
         {
             if (other.Count == 0)
                 return false;
 
-            bool[] vals = new bool[other.Count];
-
             for (int index = 0; index < other.Count; index++)
             {
                 string? val = other[index];
 
-                vals[index] = string.IsNullOrWhiteSpace(val);
+                // Any offending value satisfies the predicate - return on the first hit.
+                if (string.IsNullOrWhiteSpace(val))
+                    return true;
             }
 
-            return vals.Any(x => x);
+            return false;
         }
     }
 

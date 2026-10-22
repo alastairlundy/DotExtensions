@@ -45,9 +45,9 @@ public static class StringSegmentExtensions
     extension(StringSegment)
     {
         /// <summary>
-        /// Checks whether the specified string segment is null or whitespace.
+        /// Checks whether the specified string segment is null or empty.
         /// </summary>
-        /// <paramref name="other"></paramref>
+        /// <param name="other">The string segment to evaluate.</param>
         /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
         public static bool IsNullOrEmpty(StringSegment? other)
         {
@@ -58,10 +58,11 @@ public static class StringSegmentExtensions
         }
 
         /// <summary>
-        /// Checks whether the specified string segment is null or whitespace.
+        /// Checks whether the specified string segment is null or consists entirely of whitespace characters.
         /// </summary>
-        /// <paramref name="other"></paramref>
-        /// <returns>True if the string segment is null or empty; otherwise, false.</returns>
+        /// <param name="other">The string segment to evaluate.</param>
+        /// <returns>True if the string segment is null or consists only of whitespace characters; otherwise, false.
+        /// An empty (but non-null) string segment returns false - use <c>IsNullOrEmpty</c> to reject emptiness.</returns>
         public static bool IsNullOrWhiteSpace(StringSegment? other)
         {
             if (other is null)
@@ -102,7 +103,7 @@ public static class StringSegmentExtensions
         /// Returns the <see cref="StringSegment"/> as a Char Array.
         /// </summary>
         /// <returns>The string segment as a char array.</returns>
-        /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the StringSegment is null or empty.</exception>
         public char[] ToCharArray()
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
@@ -121,7 +122,7 @@ public static class StringSegmentExtensions
         /// Returns the <see cref="StringSegment"/> as a List of type <see cref="char"/>.
         /// </summary>
         /// <returns>A list of characters from the StringSegment if any characters are in the StringSegment.</returns>
-        /// <exception cref="ArgumentException">Thrown if the StringSegment is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the StringSegment is null or empty.</exception>
 #pragma warning disable MA0016
         public List<char> ToList()
 #pragma warning restore MA0016
@@ -150,7 +151,7 @@ public static class StringSegmentExtensions
         /// Reverses the contents of the StringSegment.
         /// </summary>
         /// <returns>The reversed StringSegment.</returns>
-        /// <exception cref="ArgumentException">Thrown if the target is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the target is null or empty.</exception>
         public StringSegment Reverse()
         {
             ArgumentException.ThrowIfNullOrEmpty(target);
@@ -214,14 +215,17 @@ public static class StringSegmentExtensions
 
             foreach (int index in indices)
             {
-                if (index == -1)
+                // -1 (the classic "not found" sentinel) and every other negative index are
+                // rejected as a negative index; only a well-formed index may reach the builder.
+                if (index < 0)
                     throw new ArgumentException(
-                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N", CultureInfo.CurrentCulture)
-                            , StringComparison.Ordinal
-                        ), nameof(indices));
+                        string.Format(CultureInfo.CurrentCulture, Resources.Exceptions_Indices_IndexOutOfRange, index),
+                        nameof(indices));
 
                 if (index >= segment.Length)
-                    throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
+                    throw new ArgumentException(
+                        string.Format(CultureInfo.CurrentCulture, Resources.Exceptions_Indices_LargerIndexThanExpected, index),
+                        nameof(indices));
 
 
                 stringBuilder[index] = char.ToUpper(stringBuilder[index], CultureInfo.CurrentCulture);
@@ -277,8 +281,8 @@ public static class StringSegmentExtensions
         /// <summary>
         /// Converts this sequence of StringSegments into a single string.
         /// </summary>
-        /// <param name="separator">Optional separator string between segments (default: space).</param>
-        /// <returns>The concatenated string representation of the input segments.</returns>
+        /// <param name="separator">The separator string inserted between segments; the trailing separator is not emitted.</param>
+        /// <returns>The concatenated string representation of the input segments; an empty sequence yields an empty string.</returns>
         public string ToString(StringSegment separator)
         {
             ArgumentNullException.ThrowIfNull(segments);
@@ -299,6 +303,11 @@ public static class StringSegmentExtensions
                 }
             }
 
+            // Nothing was appended (empty sequence): there is no trailing separator to trim, and
+            // removing one would index before the start of the builder.
+            if (stringBuilder.Length == 0)
+                return string.Empty;
+
             stringBuilder.Remove(
                 stringBuilder.Length - separator.Length,
                 length: separator.Length
@@ -310,8 +319,8 @@ public static class StringSegmentExtensions
         /// <summary>
         /// Converts a sequence of StringSegments into a single string.
         /// </summary>
-        /// <param name="separator">Optional separator character between segments (default: space).</param>
-        /// <returns>The concatenated string representation of the input segments.</returns>
+        /// <param name="separator">The separator character inserted between segments; the trailing separator is not emitted.</param>
+        /// <returns>The concatenated string representation of the input segments; an empty sequence yields an empty string.</returns>
         public string ToString(char separator)
         {
             ArgumentNullException.ThrowIfNull(segments);
@@ -327,6 +336,11 @@ public static class StringSegmentExtensions
 
                 stringBuilder.Append(separator);
             }
+
+            // Nothing was appended (empty sequence): there is no trailing separator to trim, and
+            // removing one would index before the start of the builder.
+            if (stringBuilder.Length == 0)
+                return string.Empty;
 
             stringBuilder.Remove(stringBuilder.Length - 1, length: 1);
             return stringBuilder.ToString();
@@ -453,18 +467,17 @@ public static class StringSegmentExtensions
         /// Removes characters from a <see cref="StringSegment"/> starting at a specified index.
         /// </summary>
         /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
-        /// <returns>A <see cref="StringSegment"/> where all the characters occurring after the specified index
-        /// have been removed.</returns>
-        /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if the segment is empty.</exception>
-        /// <exception cref="ArgumentException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        /// <returns>A <see cref="StringSegment"/> where all the characters occurring at or after the specified index
+        /// have been removed (i.e. the segment keeps the characters before <paramref name="startIndex"/>).</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the segment is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
         public StringSegment Remove(int startIndex)
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
             ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
 
-            return segment.Subsegment(0, startIndex == 0 ? 0 : startIndex - 1);
+            return segment.Subsegment(0, startIndex);
         }
 
         /// <summary>
@@ -472,10 +485,10 @@ public static class StringSegmentExtensions
         /// </summary>
         /// <param name="startIndex">The index to start removing characters at in the <see cref="StringSegment"/>.</param>
         /// <param name="count">The number of characters to remove from the StringSegment from the start index.</param>
-        /// <returns>A <see cref="StringSegment"/> where the characters occurring within the <paramref name="count"/> number of characters after the specified index are removed.</returns>
-        /// <exception cref="NullReferenceException">Thrown if the segment is null or whitespace.</exception>
-        /// <exception cref="ArgumentException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
+        /// <returns>A <see cref="StringSegment"/> where the <paramref name="count"/> characters starting at the specified index are removed.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the segment is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the index is less than 0 or greater than or equal to the length of the <see cref="StringSegment"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the count is less than 0 or greater than the length of the <see cref="StringSegment"/>.</exception>
         public StringSegment Remove(int startIndex, int count)
         {
             ArgumentException.ThrowIfNullOrEmpty(segment);
@@ -484,12 +497,11 @@ public static class StringSegmentExtensions
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(startIndex, segment.Length);
             ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(count, segment.Length);
 
-            if (startIndex + count == segment.Length - 1)
-                return segment.Remove(startIndex);
+            // Keep everything before startIndex and everything from startIndex + count onwards:
+            // the removed window is the half-open range [startIndex, startIndex + count).
+            int firstSegmentEnd = startIndex;
 
-            int firstSegmentEnd = startIndex - 1;
-
-            int secondSegmentStart = startIndex + count + 1;
+            int secondSegmentStart = startIndex + count;
             int secondSegmentEnd = segment.Length - secondSegmentStart;
 
             StringSegment firstSegment = segment.Subsegment(0, firstSegmentEnd);
@@ -502,26 +514,41 @@ public static class StringSegmentExtensions
         /// Removes a subsegment from the <see cref="StringSegment"/>, defined by the specified start and end indices.
         /// </summary>
         /// <param name="startIndex">The zero-based start index of the subsegment to remove.</param>
-        /// <param name="endIndex">The zero-based end index of the subsegment to remove. This index is inclusive.</param>
+        /// <param name="endIndex">The zero-based end index of the subsegment to remove. This index is inclusive.
+        /// From-end (<c>^n</c>) values are resolved against the segment length first.</param>
         /// <returns>A new <see cref="StringSegment"/> with the specified range removed.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if the startIndex or endIndex is negative, greater than or equal to the <see cref="StringSegment"/> length, or if the <paramref name="startIndex"/> is greater than the <paramref name="endIndex"/>.
+        /// Thrown if the startIndex or endIndex is negative once resolved, greater than or equal to the <see cref="StringSegment"/> length, or if the <paramref name="startIndex"/> is greater than the <paramref name="endIndex"/>.
         /// </exception>
-        /// <exception cref="ArgumentException">Thrown if the calculated length of the subsegment to remove is negative.</exception>
         public StringSegment Remove(Index startIndex, Index endIndex)
-            => segment.Remove(startIndex.Value, endIndex.Value);
+        {
+            int start = startIndex.GetOffset(segment.Length);
+            int end = endIndex.GetOffset(segment.Length);
+
+            ArgumentOutOfRangeException.ThrowIfNegative(start, nameof(startIndex));
+            ArgumentOutOfRangeException.ThrowIfNegative(end, nameof(endIndex));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(start, segment.Length, nameof(startIndex));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(end, segment.Length, nameof(endIndex));
+            ArgumentOutOfRangeException.ThrowIfLessThan(end, start, nameof(endIndex));
+
+            // endIndex is inclusive: the removed window covers end - start + 1 characters,
+            // so Remove(1, 3) on "abcdef" removes indices 1..3 and yields "aef".
+            StringSegment prefix = segment.Subsegment(0, start);
+            StringSegment suffix = segment.Subsegment(end + 1, segment.Length - (end + 1));
+
+            return new StringSegment($"{prefix}{suffix}");
+        }
 
         /// <summary>
         /// Removes a subsegment from the string, defined by the specified start and end indices.
         /// </summary>
-        /// <param name="range">The <see cref="Range"/> of indices of the subsegment to remove.</param>
+        /// <param name="range">The <see cref="Range"/> of indices of the subsegment to remove. The Range's
+        /// End <see cref="Index"/> is treated as inclusive, matching <c>Remove(Index, Index)</c>;
+        /// from-end (<c>^n</c>) values are resolved against the segment length first.</param>
         /// <returns>A new <see cref="StringSegment"/> with the specified range removed.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if the <see cref="Range"/>'s Start <see cref="Index"/> or End <see cref="Index"/> is negative, greater than or equal to the <see cref="StringSegment"/> length,
-        /// or if the Start <see cref="Index"/> is greater than or equal to the End <see cref="Index"/>.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown if the calculated length of the subsegment to remove is negative.
+        /// Thrown if the <see cref="Range"/>'s Start <see cref="Index"/> or End <see cref="Index"/> is negative once resolved, greater than or equal to the <see cref="StringSegment"/> length,
+        /// or if the Start <see cref="Index"/> is greater than the End <see cref="Index"/> once both are resolved.
         /// </exception>
         public StringSegment Remove(Range range)
             => segment.Remove(range.Start, range.End);
