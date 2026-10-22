@@ -35,7 +35,8 @@ public static class StringReverseExtensions
         /// <summary>
         /// Reverses the contents of a string.
         /// </summary>
-        /// <remarks>This method builds a reversed string using a <see cref="StringBuilder"/> for improved performance.</remarks>
+        /// <remarks>This method builds a reversed string using a <see cref="StringBuilder"/> for improved performance.
+        /// The string is reversed one Unicode scalar value (rune) at a time so surrogate pairs are not split.</remarks>
         /// <returns>A new string with the reversed contents of the source string.</returns>
         /// <exception cref="ArgumentException">Thrown if the source string is null or empty.</exception>
         public string Reverse()
@@ -44,9 +45,16 @@ public static class StringReverseExtensions
 
             StringBuilder stringBuilder = new(capacity: str.Length);
 
-            for (int i = str.Length - 1; i >= 0; i--)
+            ReadOnlySpan<char> remaining = str.AsSpan();
+
+            while (!remaining.IsEmpty)
             {
-                stringBuilder.Append(str[i]);
+                // DecodeLastFromUtf16 always consumes at least one char; invalid data yields the replacement rune.
+                Rune.DecodeLastFromUtf16(remaining, out Rune rune, out int charsConsumed);
+
+                stringBuilder.Append(rune);
+
+                remaining = remaining[..^charsConsumed];
             }
 
             return stringBuilder.ToString();

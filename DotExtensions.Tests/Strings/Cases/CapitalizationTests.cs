@@ -50,4 +50,43 @@ public class CapitalizationTests
         await Assert.That(expected)
             .IsEqualTo(actual);
     }
+
+    [Test]
+    public async Task CapitalizeChars_NegativeIndex_ThrowsArgumentOutOfRangeException()
+    {
+        string word = "hello";
+
+        await Assert.That(() => word.CapitalizeChars([-5]))
+            .Throws<ArgumentOutOfRangeException>();
+    }
+
+    [Test]
+    public async Task CapitalizeChars_NegativeOneIndex_ThrowsArgumentOutOfRangeException()
+    {
+        string word = "hello";
+
+        await Assert.That(() => word.CapitalizeChars([-1]))
+            .Throws<ArgumentOutOfRangeException>();
+    }
+
+    [Test]
+    public async Task CapitalizeChars_IndexLargerThanLength_ThrowsArgumentExceptionWithFormattedMessage()
+    {
+        string word = "hello";
+
+        ArgumentException? exception = null;
+
+        try
+        {
+            word.CapitalizeChars([999]);
+        }
+        catch (ArgumentException ex)
+        {
+            exception = ex;
+        }
+
+        await Assert.That(exception).IsNotNull();
+        await Assert.That(exception!.Message).Contains("999");
+        await Assert.That(exception.Message.Contains("{0}", StringComparison.Ordinal)).IsFalse();
+    }
 }

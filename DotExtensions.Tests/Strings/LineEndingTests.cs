@@ -49,4 +49,46 @@ public class LineEndingTests
         await Assert.That(expected)
             .IsEqualTo(actual);
     }
+
+    [Test]
+    public async Task LineEnding_AdjacentCrLf_Detected()
+    {
+        string actual = "a\r\nb".GetLineEnding();
+
+        await Assert.That(actual).IsEqualTo("\r\n");
+    }
+
+    [Test]
+    public async Task LineEnding_BareLfOnly_Detected()
+    {
+        string actual = "a\nb".GetLineEnding();
+
+        await Assert.That(actual).IsEqualTo("\n");
+    }
+
+    [Test]
+    public async Task LineEnding_BareCrOnly_Detected()
+    {
+        string actual = "a\rb".GetLineEnding();
+
+        await Assert.That(actual).IsEqualTo("\r");
+    }
+
+    [Test]
+    public async Task LineEnding_BareLfAndCrWithoutPair_NotClassifiedAsCrLf()
+    {
+        string actual = "a\nb\rc".GetLineEnding();
+
+        await Assert.That(actual).IsEqualTo("\n");
+    }
+
+    [Test]
+    public async Task LineEnding_NoLineEndings_FallsBackToPlatformDefault()
+    {
+        string expected = OperatingSystem.IsWindows() ? "\r" : "\n";
+
+        string actual = "Hello World".GetLineEnding();
+
+        await Assert.That(actual).IsEqualTo(expected);
+    }
 }

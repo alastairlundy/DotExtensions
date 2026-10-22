@@ -46,7 +46,9 @@ public static class SpanCopyExtensions
         /// <summary>
         /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
         /// </summary>
-        /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.</remarks>
+        /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.
+        /// If the destination is too small to hold the copied elements, <paramref name="destination"/> is reassigned to a newly
+        /// allocated <see cref="Span{T}"/> containing a copy of the elements, so it never aliases the source.</remarks>
         /// <param name="destination">The destination span.</param>
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         public void OptimisticCopy(ref Span<T> destination,
@@ -56,7 +58,9 @@ public static class SpanCopyExtensions
         /// <summary>
         /// Optimistically copies elements from a source <see cref="Span{T}"/> to a destination <see cref="Span{T}"/>
         /// </summary>
-        /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.</remarks>
+        /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.
+        /// If the destination is too small to hold the copied elements, <paramref name="destination"/> is reassigned to a newly
+        /// allocated <see cref="Span{T}"/> containing a copy of the elements, so it never aliases the source.</remarks>
         /// <param name="destination">The destination span.</param>
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
@@ -66,14 +70,16 @@ public static class SpanCopyExtensions
         {
             ValidateCopyRange(source.Length, startIndex, length);
 
-            // If destination is too small, point it at a slice of the source to avoid per-element copies.
-            if (destination.Length < length)
+            if (destination.Length >= length)
             {
-                destination = source.Slice(startIndex, length);
+                source.Slice(startIndex, length).CopyTo(destination);
                 return;
             }
 
-            source.Slice(startIndex, length).CopyTo(destination);
+            // If the destination is too small, reassign it to a fresh array holding the copied elements.
+            T[] outputArray = GC.AllocateUninitializedArray<T>(length);
+            source.Slice(startIndex, length).CopyTo(outputArray);
+            destination = outputArray.AsSpan();
         }
 
         /// <summary>
@@ -124,22 +130,14 @@ public static class SpanCopyExtensions
 
         int length = source.Length - startIndex;
 
-        try
+        if (destination.Length >= length)
         {
-            if (destination.Length >= length)
-            {
-                source.Slice(startIndex, length).CopyTo(destination);
-                return true;
-            }
+            source.Slice(startIndex, length).CopyTo(destination);
+            return true;
+        }
 
-            // Attempt to set destination to a slice of the source to avoid allocation/copies.
-            source.OptimisticCopy(ref destination, startIndex, length);
-            return destination.Length >= length;
-        }
-        catch
-        {
-            return false;
-        }
+        source.OptimisticCopy(ref destination, startIndex, length);
+        return destination.Length >= length;
     }
 
     /// <summary>
@@ -162,21 +160,14 @@ public static class SpanCopyExtensions
         if (length < 0 || startIndex + length > source.Length)
             return false;
 
-        try
+        if (destination.Length >= length)
         {
-            if (destination.Length >= length)
-            {
-                source.Slice(startIndex, length).CopyTo(destination);
-                return true;
-            }
+            source.Slice(startIndex, length).CopyTo(destination);
+            return true;
+        }
 
-            source.OptimisticCopy(ref destination, startIndex, length);
-            return destination.Length >= length;
-        }
-        catch
-        {
-            return false;
-        }
+        source.OptimisticCopy(ref destination, startIndex, length);
+        return destination.Length >= length;
     }
     #endregion
 
@@ -199,7 +190,9 @@ public static class SpanCopyExtensions
         /// <summary>
         /// Optimistically copies elements from a source <see cref="ReadOnlySpan{T}"/> to a destination <see cref="ReadOnlySpan{T}"/>
         /// </summary>
-        /// <remarks>The source and destination <see cref="ReadOnlySpan{T}"/> do not have to be the same size.</remarks>
+        /// <remarks>The source and destination <see cref="Span{T}"/> do not have to be the same size.
+        /// If the destination is too small to hold the copied elements, <paramref name="destination"/> is reassigned to a newly
+        /// allocated <see cref="Span{T}"/> containing a copy of the elements, so it never aliases the source.</remarks>
         /// <param name="destination">The destination <see cref="ReadOnlySpan{T}"/>.</param>
         /// <param name="startIndex">The zero-based starting index of the range (inclusive).</param>
         /// <param name="length">The number of elements to copy from the start index to the end index (exclusive).</param>
