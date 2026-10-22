@@ -53,14 +53,27 @@ public static class EscapeCharacterRemovalExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
 
-            StringBuilder strBuilder = new(str);
+            StringBuilder strBuilder = new(str.Length);
 
-            foreach (string escapeCharacter in CharacterConstants.EscapeCharacters)
+            for (int i = 0; i < str.Length; i++)
             {
-                strBuilder.Replace(escapeCharacter, string.Empty);
+                char c = str[i];
+
+                if (c == '\\' && i + 1 < str.Length && str[i + 1] is 'c' or 'e')
+                {
+                    i++;
+                    continue;
+                }
+
+                if (c is '\r' or '\n' or '\t' or '\v' or '\f' or '\a' or '\b')
+                {
+                    continue;
+                }
+
+                strBuilder.Append(c);
             }
 
-            return strBuilder.ToString().Trim(' ').TrimEnd(' ');
+            return strBuilder.ToString();
         }
     }
 

@@ -28,7 +28,11 @@ public class EscapeCharacterTestData
 {
     public static IEnumerable<string> GetStrings()
     {
-        foreach (string s in CharacterConstants.EscapeCharacters)
+        //Fully qualify the product's constants: the test project has its own internal
+        //TestData.CharacterConstants type with the same simple name, which would otherwise
+        //shadow DotExtensions.Strings.CharacterConstants inside this namespace and silently
+        //desync the test data from the shipped escape-character list.
+        foreach (string s in DotExtensions.Strings.CharacterConstants.EscapeCharacters)
         {
             yield return s;
         }

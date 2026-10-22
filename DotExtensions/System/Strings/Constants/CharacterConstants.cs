@@ -45,8 +45,5 @@ public static class CharacterConstants
         "\f",
         "\a",
         "\b",
-        @"\NNN",
-        @"\xHH",
-        "\\",
     ];
 }

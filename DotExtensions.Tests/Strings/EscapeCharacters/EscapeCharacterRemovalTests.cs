@@ -66,7 +66,7 @@ public class EscapeCharacterRemovalTests
     [MethodDataSource(nameof(GetStrings))]
     public async Task SuccessfullyRemoveEscapeCharsTests(string escapeCharacter)
     {
-        string text = $"Hello World {escapeCharacter}";
+        string text = $"Hello World{escapeCharacter}";
 
         const string expected = "Hello World";
 
@@ -74,5 +74,43 @@ public class EscapeCharacterRemovalTests
 
         await Assert.That(actual)
             .IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_NoEscapes_KeepsEdgeSpaces()
+    {
+        const string text = "  indented  ";
+
+        string actual = text.RemoveEscapeCharacters();
+
+        await Assert.That(actual)
+            .IsEqualTo("  indented  ");
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_Tab_Removed()
+    {
+        string actual = "a\tb".RemoveEscapeCharacters();
+
+        await Assert.That(actual)
+            .IsEqualTo("ab");
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_EscapedBackslashes_Preserved()
+    {
+        string actual = "a\\\\b".RemoveEscapeCharacters();
+
+        await Assert.That(actual)
+            .IsEqualTo("a\\\\b");
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_BackslashC_Removed()
+    {
+        string actual = @"a\cb".RemoveEscapeCharacters();
+
+        await Assert.That(actual)
+            .IsEqualTo("ab");
     }
 }
