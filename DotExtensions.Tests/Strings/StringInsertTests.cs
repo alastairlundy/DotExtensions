@@ -43,7 +43,7 @@ public class StringInsertTests
     {
         char c = _faker.Random.Char();
 
-        int index = _faker.Random.Int(0, origin.Length - 1);
+        int index = _faker.Random.Int(0, origin.Length);
 
         string expected = $"{origin.Insert(index, c.ToString())}";
 
@@ -51,6 +51,24 @@ public class StringInsertTests
 
         await Assert.That(actual)
             .IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task StringInsert_AtZero_InsertsAtStart()
+    {
+        string actual = "ab".Insert(0, 'X');
+
+        await Assert.That(actual)
+            .IsEqualTo("Xab");
+    }
+
+    [Test]
+    public async Task StringInsert_AtLength_Appends()
+    {
+        string actual = "ab".Insert(2, 'c');
+
+        await Assert.That(actual)
+            .IsEqualTo("abc");
     }
 
     [Test]

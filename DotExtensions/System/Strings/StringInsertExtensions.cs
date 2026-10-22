@@ -42,7 +42,7 @@ public static class StringInsertExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, str.Length);
 
             StringBuilder stringBuilder = new(str);
 
@@ -59,13 +59,13 @@ public static class StringInsertExtensions
         /// <returns>The updated string with the inserted characters starting at the specified index.</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="chars"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if <paramref name="index"/> is negative or greater than or equal to the length of the string.
+        /// Thrown if <paramref name="index"/> is negative or greater than the length of the string.
         /// </exception>
         public string InsertRange(int index, IEnumerable<char> chars)
         {
             ArgumentException.ThrowIfNullOrEmpty(str);
             ArgumentOutOfRangeException.ThrowIfNegative(index);
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(index, str.Length);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(index, str.Length);
             ArgumentNullException.ThrowIfNull(chars);
 
             StringBuilder stringBuilder = new(str);
