@@ -42,7 +42,7 @@ public static class FileSizeExtensions
         {
             long quantity = file.Length;
 
-            while (quantity > 1000)
+            while (quantity >= 1000)
             {
                 quantity /= 1000;
             }
