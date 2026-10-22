@@ -212,6 +212,11 @@ public static class GetRandomIOExtensions
                 ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
                 : Environment.SystemDirectory;
 
+            // On Unix (e.g. Linux) Environment.SystemDirectory is the empty string, which would make
+            // new DirectoryInfo("") throw ArgumentException. Fall back to the filesystem root.
+            if (string.IsNullOrEmpty(sysDir))
+                sysDir = Path.DirectorySeparatorChar.ToString();
+
             return new DirectoryInfo(sysDir).Parent ??
 #if NET8_0_OR_GREATER
                    throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",

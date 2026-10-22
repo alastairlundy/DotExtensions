@@ -46,8 +46,10 @@ public static class DrivesIsEmptyExtensions
                 if (!driveInfo.IsReady)
                     return false;
 
-                return driveInfo.TotalFreeSpace == driveInfo.TotalSize
-                       && driveInfo.RootDirectory.IsEmpty;
+                // Do not require TotalFreeSpace == TotalSize: on Linux (ext4 and others) a portion of
+                // the blocks is reserved for the superuser, so the two are never equal even on an
+                // otherwise empty volume. RootDirectory.IsEmpty is the authoritative check.
+                return driveInfo.RootDirectory.IsEmpty;
             }
         }
 
