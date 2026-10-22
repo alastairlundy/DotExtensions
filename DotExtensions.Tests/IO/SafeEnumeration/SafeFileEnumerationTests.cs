@@ -26,6 +26,7 @@ using System;
 using System.IO;
 using System.Linq;
 using DotExtensions.IO;
+using DotExtensions.IO.Directories;
 using DotExtensions.IO.Files;
 
 namespace DotExtensions.Tests.IO.SafeEnumeration;
@@ -92,5 +93,59 @@ public class SafeFileEnumerationTests
             .IsFalse();
         await Assert.That(topDirectoryOnlyOptions.MaxRecursionDepth)
             .IsEqualTo(0);
+    }
+
+    [Test]
+    public async Task SafelyGetFiles_DefaultsToCaseInsensitiveMatching()
+    {
+        string tempDir = Path.Combine(Path.GetTempPath(),
+            $"DotExtensions_SafeFileEnumeration_{Guid.NewGuid():N}");
+        DirectoryInfo directoryInfo = Directory.CreateDirectory(tempDir);
+
+        try
+        {
+            File.WriteAllText(Path.Combine(tempDir, "file.txt"), "test");
+
+            //ignoreCase defaults to true, so an uppercase pattern must still match "file.txt"
+            //on every platform, including case-sensitive Linux filesystems.
+            FileInfo[] files = directoryInfo.SafelyGetFiles("*.TXT");
+
+            await Assert.That(files.Length)
+                .IsEqualTo(1);
+            await Assert.That(files[0].Name)
+                .IsEqualTo("file.txt");
+        }
+        finally
+        {
+            directoryInfo.Delete(recursive: true);
+        }
+    }
+
+    [Test]
+    public async Task SafelyEnumerateFiles_MissingDirectory_ReturnsEmptySequence()
+    {
+        string missingPath = Path.Combine(Path.GetTempPath(),
+            $"DotExtensions_MissingDirectory_{Guid.NewGuid():N}");
+
+        //Must not throw DirectoryNotFoundException; the "Safely" contract yields an empty sequence.
+        IEnumerable<FileInfo> files = Directory.SafelyEnumerateFiles(missingPath, "*",
+            SearchOption.TopDirectoryOnly);
+
+        await Assert.That(files.Any())
+            .IsFalse();
+    }
+
+    [Test]
+    public async Task SafelyEnumerateDirectories_MissingDirectory_ReturnsEmptySequence()
+    {
+        string missingPath = Path.Combine(Path.GetTempPath(),
+            $"DotExtensions_MissingDirectory_{Guid.NewGuid():N}");
+
+        //Must not throw DirectoryNotFoundException; the "Safely" contract yields an empty sequence.
+        IEnumerable<DirectoryInfo> directories = Directory.SafelyEnumerateDirectories(missingPath, "*",
+            SearchOption.TopDirectoryOnly);
+
+        await Assert.That(directories.Any())
+            .IsFalse();
     }
 }

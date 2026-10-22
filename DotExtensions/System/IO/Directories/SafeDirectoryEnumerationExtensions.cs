@@ -179,10 +179,14 @@ public static class SafeDirectoryEnumerationExtensions
         /// </param>
         /// <returns>
         /// An enumerable collection of <see cref="DirectoryInfo"/> objects representing the directories found in the specified path based on the provided parameters.
+        /// If the path does not exist or cannot be accessed, an empty sequence is returned instead.
         /// </returns>
         public static IEnumerable<DirectoryInfo> SafelyEnumerateDirectories(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
+            if (!Directory.Exists(path))
+                return Array.Empty<DirectoryInfo>();
+
             DirectoryInfo directoryInfo = new(path);
 
             return directoryInfo.SafelyEnumerateDirectories(searchPattern, directorySearchOption, ignoreCase);
@@ -211,11 +215,8 @@ public static class SafeDirectoryEnumerationExtensions
         /// </param>
         /// <returns>
         /// An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on the default search pattern "*".
-        /// If no directories are found, an empty array is returned.
+        /// If no directories are found, or if the path does not exist or cannot be accessed, an empty array is returned.
         /// </returns>
-        /// <exception cref="DirectoryNotFoundException">
-        /// Thrown if the specified path does not exist or cannot be accessed.
-        /// </exception>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern)
             => Directory.SafelyGetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
 

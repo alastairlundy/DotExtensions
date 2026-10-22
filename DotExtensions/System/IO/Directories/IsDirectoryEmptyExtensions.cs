@@ -29,6 +29,9 @@ namespace DotExtensions.IO.Directories;
 /// <summary>
 /// Provides extension methods for directory operations.
 /// </summary>
+/// <remarks>
+/// Directories that exist but cannot be enumerated (for example, access denied) are treated as empty.
+/// </remarks>
 public static class IsDirectoryEmptyExtensions
 {
     /// <summary>

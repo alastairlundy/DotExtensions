@@ -58,10 +58,10 @@ public static class SafeFileEnumerationExtensions
         /// </summary>
         /// <param name="searchPattern">The search string to match against the names of files in the directory.</param>
         /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories.</param>
-        /// <param name="ignoreCase">Specifies whether the search pattern should be case-insensitive.</param>
+        /// <param name="ignoreCase">Specifies whether the search pattern should be case-insensitive. Defaults to <see langword="true"/>.</param>
         /// <returns>Returns a sequence of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public IEnumerable<FileInfo> SafelyEnumerateFiles(string searchPattern, SearchOption searchOption,
-            bool ignoreCase = false) =>
+            bool ignoreCase = true) =>
             directoryInfo.EnumerateFiles(searchPattern, searchOption.ToEnumerationOptions(!ignoreCase));
     }
 
@@ -98,10 +98,10 @@ public static class SafeFileEnumerationExtensions
         /// </summary>
         /// <param name="searchPattern">The search pattern to match against the file names in the directory.</param>
         /// <param name="searchOption">Specifies whether to search only the current directory or all subdirectories.</param>
-        /// <param name="ignoreCase">Indicates whether the search pattern will be treated as case-insensitive.</param>
+        /// <param name="ignoreCase">Indicates whether the search pattern will be treated as case-insensitive. Defaults to <see langword="true"/>.</param>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files in the directory.</returns>
         public FileInfo[] SafelyGetFiles(string searchPattern, SearchOption searchOption,
-            bool ignoreCase = false)
+            bool ignoreCase = true)
             => directoryInfo.SafelyEnumerateFiles(searchPattern, searchOption, ignoreCase).ToArray();
     }
 
@@ -149,14 +149,17 @@ public static class SafeFileEnumerationExtensions
         /// Specifies whether the enumeration includes only the current directory or all subdirectories as well.
         /// </param>
         /// <param name="ignoreCase">
-        /// Indicates whether the search pattern should be case-sensitive. Defaults to false (case-insensitive).
+        /// Indicates whether the search pattern matching should ignore case. Defaults to <see langword="true"/> (case-insensitive).
         /// </param>
-        /// <returns>An array of FileInfo objects representing the files in the directory that match the specified criteria.
-        /// If no files are found or if an error occurs, null is returned instead.
+        /// <returns>An enumerable collection of FileInfo objects representing the files in the directory that match the specified criteria.
+        /// If no files are found or if an error occurs, an empty sequence is returned instead.
         /// </returns>
         public static IEnumerable<FileInfo> SafelyEnumerateFiles(string path, string searchPattern,
             SearchOption directorySearchOption, bool ignoreCase = true)
         {
+            if (!Directory.Exists(path))
+                return Array.Empty<FileInfo>();
+
             DirectoryInfo directoryInfo = new(path);
 
             return directoryInfo.SafelyEnumerateFiles(searchPattern, directorySearchOption, ignoreCase);
@@ -195,7 +198,7 @@ public static class SafeFileEnumerationExtensions
         /// <param name="path">The directory path to search for files.</param>
         /// <param name="searchPattern">The search string to match against file names. Wildcards can be used.</param>
         /// <param name="directorySearchOptions">Specifies whether to search all subdirectories or only the current directory.</param>
-        /// <param name="ignoreCase">Indicates whether the search should be case-insensitive. Defaults to false.</param>
+        /// <param name="ignoreCase">Indicates whether the search should be case-insensitive. Defaults to true.</param>
         /// <returns>Returns an array of <see cref="FileInfo"/> objects representing the files found in the directory.</returns>
         public static FileInfo[] SafelyGetFiles(string path, string searchPattern, SearchOption directorySearchOptions,
             bool ignoreCase = true)
