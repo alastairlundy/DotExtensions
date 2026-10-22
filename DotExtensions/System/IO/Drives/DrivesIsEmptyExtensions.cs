@@ -61,6 +61,9 @@ public static class DrivesIsEmptyExtensions
             {
                 ArgumentNullException.ThrowIfNull(driveInfo);
 
+                if (!driveInfo.IsReady)
+                    return false;
+
                 return driveInfo.RootDirectory.SafelyEnumerateFiles("*", SearchOption.AllDirectories).Any();
             }
         }
@@ -74,6 +77,9 @@ public static class DrivesIsEmptyExtensions
             get
             {
                 ArgumentNullException.ThrowIfNull(driveInfo);
+
+                if (!driveInfo.IsReady)
+                    return false;
 
                 return driveInfo.RootDirectory.SafelyEnumerateDirectories("*", SearchOption.AllDirectories).Any();
             }
