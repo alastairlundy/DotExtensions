@@ -59,15 +59,17 @@ public static class PathEnvironmentVariable
                 string userProfile = Environment.GetFolderPath(
                     Environment.SpecialFolder.UserProfile);
 
-                int homeTokenIndex = x.IndexOf(
-                    homeToken,
-                    StringComparison.CurrentCultureIgnoreCase
-                );
-
                 if (x.StartsWith('~', StringComparison.OrdinalIgnoreCase))
                 {
                     x = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}{x[1..]}";
                 }
+
+                // Compute the $HOME token position AFTER the '~' expansion above, so an entry
+                // containing both (e.g. "~/$HOME/bin") is spliced at the correct offset.
+                int homeTokenIndex = x.IndexOf(
+                    homeToken,
+                    StringComparison.CurrentCultureIgnoreCase
+                );
 
                 if (homeTokenIndex != -1)
                 {
