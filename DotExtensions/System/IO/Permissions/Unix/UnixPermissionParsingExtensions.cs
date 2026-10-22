@@ -98,7 +98,9 @@ public static class UnixPermissionParsingExtensions
         if (!notation.IsValidRwxSymbolNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidSymbolicNotation, nameof(notation));
 
-        notation = notation.Remove(0, 1);
+        if (notation.Length == 10)
+            notation = notation.Remove(0, 1);
+
         string userPermissionStr = notation[..3];
         string groupPermissionStr = notation.Substring(3, 3);
         string otherPermissionStr = notation.Substring(6, 3);
@@ -150,6 +152,9 @@ public static class UnixPermissionParsingExtensions
     /// </summary>
     /// <param name="notation">
     /// The numeric notation string to parse. It can be in three-digit (e.g. "777") or four-digit (e.g. "0777") formats.
+    /// For four-digit notations the first digit is the set-user-ID/set-group-ID/sticky bit
+    /// (1 = set-user-ID, 2 = set-group-ID, 4 = sticky bit, or a sum of those), and the last three digits
+    /// are the user, group, and other permission triples respectively.
     /// The notation must be valid, according to Unix file permission rules.
     /// </param>
     /// <returns>
@@ -165,12 +170,28 @@ public static class UnixPermissionParsingExtensions
         if (!notation.IsValidNumericNotation())
             throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation));
 
-        if (notation.StartsWith("0", StringComparison.OrdinalIgnoreCase))
-            notation = notation.Remove(0, 1);
+        // Normalize to exactly four digits: an optional leading setuid/setgid/sticky digit
+        // followed by the user, group and other permission digits. Never unpad - a three-digit
+        // input such as "077" must keep its leading zero as part of the user digit.
+        string padded = notation.PadLeft(4, '0');
 
-        int user = int.Parse(notation.First().ToString(), CultureInfo.InvariantCulture);
-        int group = int.Parse(notation[^2].ToString(), CultureInfo.InvariantCulture);
-        int others = int.Parse(notation.Last().ToString(), CultureInfo.InvariantCulture);
+        int special = padded[0] - '0';
+        int user = padded[1] - '0';
+        int group = padded[2] - '0';
+        int others = padded[3] - '0';
+
+        UnixFileMode specialPermissions = special switch
+        {
+            0 => UnixFileMode.None,
+            1 => UnixFileMode.SetUser,
+            2 => UnixFileMode.SetGroup,
+            3 => UnixFileMode.SetUser | UnixFileMode.SetGroup,
+            4 => UnixFileMode.StickyBit,
+            5 => UnixFileMode.SetUser | UnixFileMode.StickyBit,
+            6 => UnixFileMode.SetGroup | UnixFileMode.StickyBit,
+            7 => UnixFileMode.SetUser | UnixFileMode.SetGroup | UnixFileMode.StickyBit,
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
+        };
 
         UnixFileMode userPermissions = user switch
         {
@@ -182,7 +203,7 @@ public static class UnixPermissionParsingExtensions
             5 => UnixFileMode.UserRead | UnixFileMode.UserExecute,
             6 => UnixFileMode.UserRead | UnixFileMode.UserWrite,
             7 => UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute,
-            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, notation)
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
 
         UnixFileMode groupPermissions = group switch
@@ -211,7 +232,7 @@ public static class UnixPermissionParsingExtensions
             _ => throw new ArgumentException(Resources.Exceptions_Permissions_Unix_InvalidNumericNotation, nameof(notation))
         };
 
-        return othersPermissions | groupPermissions | userPermissions;
+        return othersPermissions | groupPermissions | userPermissions | specialPermissions;
     }
     #endregion
 }

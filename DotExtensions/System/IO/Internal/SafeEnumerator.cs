@@ -32,6 +32,8 @@ namespace DotExtensions.IO.Internal;
 /// Inaccessible entries are skipped by the underlying enumerator via
 /// <see cref="EnumerationOptions.IgnoreInaccessible"/>. If the enumerator itself faults with an
 /// <see cref="UnauthorizedAccessException"/> or <see cref="IOException"/>, enumeration stops.
+/// If the enumerator cannot be constructed at all (for example because the root directory does
+/// not exist), the resulting sequence is empty instead of throwing.
 /// The enumerator is not resumed after a fault, because a faulted
 /// <see cref="System.IO.Enumeration.FileSystemEnumerator{TResult}"/> does not advance its internal
 /// state and would throw the same exception indefinitely.
@@ -40,31 +42,52 @@ internal static class SafeEnumerator
 {
     /// <summary>
     /// Safely enumerates files, skipping inaccessible paths and stopping if enumeration faults.
+    /// If the underlying enumerator cannot be constructed (e.g. the root directory does not exist),
+    /// an empty sequence is returned.
     /// </summary>
     public static IEnumerable<FileInfo> EnumerateFiles(DirectoryInfo directoryInfo, string searchPattern,
         SearchOption searchOption, bool ignoreCase)
     {
         EnumerationOptions options = searchOption.ToEnumerationOptions(!ignoreCase);
 
-        using IEnumerator<FileInfo> enumerator = directoryInfo.EnumerateFiles(searchPattern, options).GetEnumerator();
+        IEnumerator<FileInfo>? enumerator = null;
 
-        while (true)
+        try
         {
-            try
-            {
-                if (!enumerator.MoveNext())
-                    break;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                break;
-            }
-            catch (IOException)
-            {
-                break;
-            }
+            enumerator = directoryInfo.EnumerateFiles(searchPattern, options).GetEnumerator();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // Construction failed (e.g. the root is inaccessible): yield an empty sequence.
+        }
+        catch (IOException)
+        {
+            // Construction failed (e.g. the root does not exist): yield an empty sequence.
+        }
 
-            yield return enumerator.Current;
+        if (enumerator is null)
+            yield break;
+
+        using (enumerator)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (!enumerator.MoveNext())
+                        break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+                catch (IOException)
+                {
+                    break;
+                }
+
+                yield return enumerator.Current;
+            }
         }
     }
 
@@ -77,32 +100,52 @@ internal static class SafeEnumerator
 
     /// <summary>
     /// Safely enumerates directories, skipping inaccessible paths and stopping if enumeration faults.
+    /// If the underlying enumerator cannot be constructed (e.g. the root directory does not exist),
+    /// an empty sequence is returned.
     /// </summary>
     public static IEnumerable<DirectoryInfo> EnumerateDirectories(DirectoryInfo directoryInfo, string searchPattern,
         SearchOption searchOption, bool ignoreCase)
     {
         EnumerationOptions options = searchOption.ToEnumerationOptions(!ignoreCase);
 
-        using IEnumerator<DirectoryInfo> enumerator =
-            directoryInfo.EnumerateDirectories(searchPattern, options).GetEnumerator();
+        IEnumerator<DirectoryInfo>? enumerator = null;
 
-        while (true)
+        try
         {
-            try
-            {
-                if (!enumerator.MoveNext())
-                    break;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                break;
-            }
-            catch (IOException)
-            {
-                break;
-            }
+            enumerator = directoryInfo.EnumerateDirectories(searchPattern, options).GetEnumerator();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // Construction failed (e.g. the root is inaccessible): yield an empty sequence.
+        }
+        catch (IOException)
+        {
+            // Construction failed (e.g. the root does not exist): yield an empty sequence.
+        }
 
-            yield return enumerator.Current;
+        if (enumerator is null)
+            yield break;
+
+        using (enumerator)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (!enumerator.MoveNext())
+                        break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+                catch (IOException)
+                {
+                    break;
+                }
+
+                yield return enumerator.Current;
+            }
         }
     }
 

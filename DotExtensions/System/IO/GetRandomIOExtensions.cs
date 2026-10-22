@@ -31,9 +31,56 @@ namespace DotExtensions.IO;
 /// <summary>
 /// Provides extensions to retrieve a random file.
 /// </summary>
+/// <remarks>
+/// Hidden and system entries never take part in random selection because
+/// <see cref="EnumerationOptions.AttributesToSkip"/> keeps its default value
+/// (<see cref="FileAttributes.Hidden"/> | <see cref="FileAttributes.System"/>), so only
+/// non-hidden, non-system files and directories are ever returned.
+/// </remarks>
 public static class GetRandomIOExtensions
 {
     private const int MaxWalkDepth = 64;
+
+    /// <summary>
+    /// Checks whether a directory contains any files, swallowing transient I/O failures
+    /// (e.g. a file deleted between enumeration and inspection mid-walk) and treating
+    /// such directories as containing no files.
+    /// </summary>
+    private static bool DirectoryHasFilesSafe(DirectoryInfo directory)
+    {
+        try
+        {
+            return directory.HasFiles;
+        }
+        catch (IOException)
+        {
+            return false;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Returns <see langword="true"/> when a directory entry can be inspected and is not a reparse point.
+    /// Entries that disappeared mid-walk or whose attributes cannot be read are skipped.
+    /// </summary>
+    private static bool IsNotReparsePoint(DirectoryInfo directory)
+    {
+        try
+        {
+            return !directory.Attributes.HasFlag(FileAttributes.ReparsePoint);
+        }
+        catch (IOException)
+        {
+            return false;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return false;
+        }
+    }
 
     extension(DriveInfo)
     {
@@ -130,27 +177,21 @@ public static class GetRandomIOExtensions
         /// </summary>
         /// <param name="mustContainFiles">Whether to filter directories containing files.</param>
         /// <returns>A <see cref="DirectoryInfo"/> object representing the randomly selected directory.</returns>
-        /// <exception cref="DirectoryNotFoundException">Thrown when no valid directory is found.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when no random directory could be found.</exception>
         public static DirectoryInfo GetRandomDirectory(bool mustContainFiles = false)
         {
             DriveInfo drive = DriveInfo.GetRandomDrive(driveMustContainFiles: mustContainFiles);
 
-            DirectoryInfo? result = FindRandomDirectoryByWalk(drive.RootDirectory, mustContainFiles);
-
-            if (result is not null)
-                return result;
-
-            string sysDir = OperatingSystem.IsWindows()
-                ? Environment.GetFolderPath(Environment.SpecialFolder.Windows)
-                : Environment.SystemDirectory;
-
-            return new DirectoryInfo(sysDir).Parent ??
-                   throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
-                       sysDir, StringComparison.OrdinalIgnoreCase));
+            return FindRandomDirectoryByWalk(drive.RootDirectory, mustContainFiles)
+                   ?? throw new InvalidOperationException(Resources.Exceptions_IO_RandomDirectoryNotFound);
         }
 
         /// <summary>
         /// Walks the directory tree randomly to find a directory, optionally one that contains files.
+        /// At each step the current directory is kept with probability 1/(depth+1) (reservoir-style
+        /// selection, so shallower directories are more likely) and the walk otherwise descends into
+        /// a random subdirectory. When <paramref name="mustContainFiles"/> is <see langword="true"/>,
+        /// only directories that actually contain files are ever selected.
         /// </summary>
         private static DirectoryInfo? FindRandomDirectoryByWalk(DirectoryInfo dir, bool mustContainFiles)
         {
@@ -167,25 +208,27 @@ public static class GetRandomIOExtensions
                     if (!visited.Add(current.FullName))
                         break;
 
+                    // Reservoir-style single-pass choice: return the current directory with
+                    // probability 1/(depth+1); the root itself (depth 0) is never selected
+                    // directly - otherwise the walk would always return immediately.
+                    if (depth > 0 && Random.Shared.Next(depth + 1) == 0 &&
+                        (!mustContainFiles || DirectoryHasFilesSafe(current)))
+                        return current;
+
                     DirectoryInfo[] subDirs = SafeEnumerator
                         .EnumerateDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
-                        .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                        .Where(IsNotReparsePoint)
                         .ToArray();
 
                     if (subDirs.Length == 0)
                     {
-                        if (!mustContainFiles || current.HasFiles)
+                        if (!mustContainFiles || DirectoryHasFilesSafe(current))
                             return current;
 
                         break;
                     }
 
-                    DirectoryInfo next = subDirs[Random.Shared.Next(0, subDirs.Length)];
-
-                    if (mustContainFiles && next.HasFiles)
-                        return next;
-
-                    current = next;
+                    current = subDirs[Random.Shared.Next(0, subDirs.Length)];
                     depth++;
                 }
             }
@@ -238,7 +281,7 @@ public static class GetRandomIOExtensions
 
                     DirectoryInfo[] subDirs = SafeEnumerator
                         .EnumerateDirectories(current, "*", SearchOption.TopDirectoryOnly, true)
-                        .Where(d => !d.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                        .Where(IsNotReparsePoint)
                         .ToArray();
 
                     if (subDirs.Length == 0)

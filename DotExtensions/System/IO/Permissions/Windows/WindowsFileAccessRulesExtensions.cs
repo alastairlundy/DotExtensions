@@ -116,7 +116,9 @@ public static class WindowsFileAccessRulesExtensions
 
             DirectorySecurity directorySecurity = directory.GetAccessControl(AccessControlSections.Access);
 
-            directorySecurity.AddAccessRule(new FileSystemAccessRule(identityReference, fileSystemRights, AccessControlType.Allow));
+            directorySecurity.AddAccessRule(new FileSystemAccessRule(identityReference, fileSystemRights,
+                InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit, PropagationFlags.None,
+                AccessControlType.Allow));
             directory.SetAccessControl(directorySecurity);
         }
 

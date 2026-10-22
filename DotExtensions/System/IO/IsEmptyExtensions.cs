@@ -29,6 +29,11 @@ namespace DotExtensions.IO;
 /// <summary>
 /// Provides extension properties for checking whether a directory or drive is empty.
 /// </summary>
+/// <remarks>
+/// Hidden and system file system entries are not taken into account: enumeration skips entries whose
+/// attributes include <see cref="FileAttributes.Hidden"/> or <see cref="FileAttributes.System"/>,
+/// so a directory or drive containing only hidden/system entries is reported as empty.
+/// </remarks>
 public static class IsEmptyExtensions
 {
     private static void ThrowIfDirectoryNotFound(DirectoryInfo directory)
@@ -86,6 +91,9 @@ public static class IsEmptyExtensions
         /// <summary>
         /// Whether a Drive is empty or not.
         /// </summary>
+        /// <remarks>
+        /// Only the drive's root directory is inspected (recursively); hidden and system entries are excluded.
+        /// </remarks>
         public bool IsEmpty
         {
             get
@@ -95,8 +103,7 @@ public static class IsEmptyExtensions
                 if (!driveInfo.IsReady)
                     return false;
 
-                return driveInfo.TotalFreeSpace == driveInfo.TotalSize
-                       && driveInfo.RootDirectory.IsEmpty;
+                return driveInfo.RootDirectory.IsEmpty;
             }
         }
 
@@ -109,6 +116,9 @@ public static class IsEmptyExtensions
             get
             {
                 ArgumentNullException.ThrowIfNull(driveInfo);
+
+                if (!driveInfo.IsReady)
+                    return false;
 
                 return SafeEnumerator.EnumerateFiles(driveInfo.RootDirectory, "*", SearchOption.AllDirectories, false).Any();
             }
@@ -123,6 +133,9 @@ public static class IsEmptyExtensions
             get
             {
                 ArgumentNullException.ThrowIfNull(driveInfo);
+
+                if (!driveInfo.IsReady)
+                    return false;
 
                 return SafeEnumerator.EnumerateDirectories(driveInfo.RootDirectory, "*", SearchOption.AllDirectories, true).Any();
             }
