@@ -199,6 +199,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
+        /// <remarks>Null elements are not treated as whitespace; a span containing a null element returns false rather than throwing.</remarks>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         public static bool IsEmptyOrWhiteSpace(Span<string> source) => source.IsEmpty || source.IsWhiteSpace();
@@ -213,9 +214,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
         {
             for (int i = 0; i < span.Length; i++)
             {
-                bool isWhiteSpace = span[i].IsWhiteSpace();
+                string element = span[i];
 
-                if (!isWhiteSpace)
+                if (element is null || !element.IsWhiteSpace())
                     return false;
             }
 
@@ -229,6 +230,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <summary>
         /// Determines if a span is empty or whitespace.
         /// </summary>
+        /// <remarks>Null elements are not treated as whitespace; a span containing a null element returns false rather than throwing.</remarks>
         /// <param name="source">The span to search.</param>
         /// <returns>True if the span is empty or whitespace, false otherwise.</returns>
         public static bool IsEmptyOrWhiteSpace(ReadOnlySpan<string> source) => source.IsEmpty || source.IsWhiteSpace();
@@ -241,9 +243,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
         {
             for (int i = 0; i < span.Length; i++)
             {
-                bool isWhiteSpace = span[i].IsWhiteSpace();
+                string element = span[i];
 
-                if (!isWhiteSpace)
+                if (element is null || !element.IsWhiteSpace())
                     return false;
             }
 
@@ -257,6 +259,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <summary>
         /// Determines whether a memory of strings is empty or consists entirely of whitespace elements.
         /// </summary>
+        /// <remarks>Null elements are not treated as whitespace; a memory containing a null element returns false rather than throwing.</remarks>
         /// <param name="source">The memory of strings to evaluate.</param>
         /// <returns>True if the memory is empty or all its elements are whitespace, false otherwise.</returns>
         public static bool IsEmptyOrWhiteSpace(Memory<string> source) => source.IsEmpty || source.IsWhiteSpace();
@@ -269,9 +272,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
         {
             for (int i = 0; i < memory.Length; i++)
             {
-                bool isWhiteSpace = memory.Span[i].IsWhiteSpace();
+                string element = memory.Span[i];
 
-                if (!isWhiteSpace)
+                if (element is null || !element.IsWhiteSpace())
                     return false;
             }
 
@@ -285,6 +288,7 @@ public static class IsEmptyOrWhiteSpaceExtensions
         /// <summary>
         /// Determines if a ReadOnlyMemory of strings is empty or contains only whitespace elements.
         /// </summary>
+        /// <remarks>Null elements are not treated as whitespace; a memory containing a null element returns false rather than throwing.</remarks>
         /// <param name="source">The ReadOnlyMemory of strings to evaluate.</param>
         /// <returns>True if the memory is empty or all its elements are whitespace, false otherwise.</returns>
         public static bool IsEmptyOrWhiteSpace(ReadOnlyMemory<string> source) => source.IsEmpty || source.IsWhiteSpace();
@@ -297,9 +301,9 @@ public static class IsEmptyOrWhiteSpaceExtensions
         {
             for (int i = 0; i < memory.Length; i++)
             {
-                bool isWhiteSpace = memory.Span[i].IsWhiteSpace();
+                string element = memory.Span[i];
 
-                if (!isWhiteSpace)
+                if (element is null || !element.IsWhiteSpace())
                     return false;
             }
 

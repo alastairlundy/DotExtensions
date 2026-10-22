@@ -23,6 +23,7 @@
    */
 
 
+using System;
 using Bogus;
 using DotExtensions.Strings;
 
@@ -49,5 +50,49 @@ public class StringInsertTests
 
         await Assert.That(actual)
             .IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task StringInsert_Char_AtEnd_Appends()
+    {
+        string actual = "abc".Insert(3, '!');
+
+        await Assert.That(actual).IsEqualTo("abc!");
+    }
+
+    [Test]
+    public async Task StringInsertRange_InsertsActualCharacters()
+    {
+        string actual = "abc".InsertRange(1, new[] { 'X', 'Y' });
+
+        await Assert.That(actual).IsEqualTo("aXYbc");
+    }
+
+    [Test]
+    public async Task StringInsertRange_AppendsAtEnd()
+    {
+        string actual = "abc".InsertRange(3, new[] { '!' });
+
+        await Assert.That(actual).IsEqualTo("abc!");
+    }
+
+    [Test]
+    public async Task StringInsertRange_EnumerableCollection_InsertsActualCharacters()
+    {
+        // Regression: this previously bound to StringBuilder.Insert(int, object) and
+        // inserted the collection's type name instead of its characters.
+        ICollection<char> chars = new List<char> { 'x', 'y' };
+
+        string actual = "ab".InsertRange(1, chars);
+
+        await Assert.That(actual).IsEqualTo("axyb");
+        await Assert.That(actual.Contains("Collection", StringComparison.Ordinal)).IsFalse();
+    }
+
+    [Test]
+    public async Task StringInsertRange_NegativeIndex_ThrowsArgumentOutOfRangeException()
+    {
+        await Assert.That(() => "abc".InsertRange(-1, new[] { 'x' }))
+            .Throws<ArgumentOutOfRangeException>();
     }
 }

@@ -68,11 +68,33 @@ public class EscapeCharacterRemovalTests
     {
         string text = $"Hello World {escapeCharacter}";
 
-        const string expected = "Hello World";
+        // Surrounding spaces are caller-owned and must be preserved.
+        const string expected = "Hello World ";
 
         string actual = text.RemoveEscapeCharacters();
 
         await Assert.That(actual)
             .IsEqualTo(expected);
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_NoEscapeChars_ReturnsSameContentAndInstance()
+    {
+        string text = "  Hello World  ";
+
+        string actual = text.RemoveEscapeCharacters();
+
+        await Assert.That(actual).IsEqualTo(text);
+        await Assert.That(ReferenceEquals(actual, text)).IsTrue();
+    }
+
+    [Test]
+    public async Task RemoveEscapeCharacters_PreservesSurroundingSpaces()
+    {
+        string text = " Hello\tWorld  ";
+
+        string actual = text.RemoveEscapeCharacters();
+
+        await Assert.That(actual).IsEqualTo(" HelloWorld  ");
     }
 }

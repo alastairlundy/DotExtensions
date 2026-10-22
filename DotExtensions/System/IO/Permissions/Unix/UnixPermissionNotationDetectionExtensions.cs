@@ -35,32 +35,45 @@ internal static class UnixPermissionNotationDetectionExtensions
         /// <summary>
         /// Validates whether a given string represents a valid Unix file permission symbolic notation (rwx format).
         /// </summary>
+        /// <remarks>
+        /// The notation optionally starts with a single file type indicator character
+        /// (<c>-</c>, <c>b</c>, <c>c</c>, <c>d</c>, <c>l</c>, <c>p</c> or <c>s</c>), which is ignored during parsing,
+        /// followed by exactly nine permission characters grouped into three user/group/other triples
+        /// where each character is either the expected letter (<c>r</c>, <c>w</c>, <c>x</c>) or <c>-</c>.
+        /// </remarks>
         /// <returns>A boolean value indicating whether the input notation is valid.</returns>
         internal bool IsValidRwxSymbolNotation()
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
-            if (notation.Length != 10)
-                return false;
+            int offset = 0;
 
-            return notation switch
+            if (notation.Length == 10)
             {
-                "----------" or
-                    "---x--x--x" or
-                    "--w--w--w-" or
-                    "--wx-wx-wx" or
-                    "-r--r--r--" or
-                    "-r-xr-xr-x" or
-                    "-rw-rw-rw-" or
-                    "-rwx------" or
-                    // ReSharper disable once StringLiteralTypo
-                    "-rwxr-----" or
-                    // ReSharper disable once StringLiteralTypo
-                    "-rwxrwx---" or
-                    // ReSharper disable once StringLiteralTypo
-                    "-rwxrwxrwx" => true,
-                _ => false
-            };
+                if (notation[0] is not ('-' or 'b' or 'c' or 'd' or 'l' or 'p' or 's'))
+                    return false;
+
+                offset = 1;
+            }
+            else if (notation.Length != 9)
+            {
+                return false;
+            }
+
+            for (int i = offset; i < notation.Length; i++)
+            {
+                bool isValid = (i - offset) switch
+                {
+                    0 or 3 or 6 => notation[i] is 'r' or '-',
+                    1 or 4 or 7 => notation[i] is 'w' or '-',
+                    _ => notation[i] is 'x' or '-'
+                };
+
+                if (!isValid)
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -74,15 +87,16 @@ internal static class UnixPermissionNotationDetectionExtensions
         {
             ArgumentException.ThrowIfNullOrEmpty(notation);
 
-            if (notation.Length is < 3 or > 4 || !int.TryParse(notation, NumberStyles.Integer,
-                    CultureInfo.InvariantCulture, out int result))
+            if (notation.Length is < 3 or > 4)
                 return false;
 
-            if (notation.Length == 4 && notation[0] != '0')
-                return result is >= 0 and <= 4777 && notation.AsEnumerable()
-                    .All(x => x != '8' && x != '9');
+            foreach (char c in notation)
+            {
+                if (c is < '0' or > '9')
+                    return false;
+            }
 
-            return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
+            return true;
         }
     }
 }

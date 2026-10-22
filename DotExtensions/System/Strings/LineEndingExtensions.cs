@@ -35,47 +35,47 @@ public static class LineEndingExtensions
         /// <summary>
         /// Detects the line ending used in the string.
         /// </summary>
+        /// <remarks>An adjacent CRLF (<c>\r\n</c>) pair takes precedence. If the string contains no CRLF pair,
+        /// a string containing bare LF and bare CR characters is classified by whichever of the two appears.
+        /// Strings with no line endings at all fall back to the current platform's line ending convention.</remarks>
         /// <returns>The line ending used in the string.</returns>
         /// <exception cref="ArgumentException">Thrown if the string is null or empty.</exception>
         public string GetLineEnding()
         {
             ArgumentException.ThrowIfNullOrEmpty(s);
 
-            bool containsR = s.Contains('\r', StringComparison.InvariantCulture);
-            bool containsN = s.Contains('\n', StringComparison.InvariantCulture);
+            // An actual adjacent CRLF pair takes precedence over bare character presence.
+            if (s.Contains("\r\n", StringComparison.Ordinal))
+                return "\r\n";
 
-            char newLineChar;
+            bool containsR = false;
+            bool containsN = false;
 
-            if (containsN || containsR || s.Contains(Environment.NewLine, StringComparison.Ordinal))
+            for (int i = 0; i < s.Length; i++)
             {
-                try
-                {
-                    newLineChar = s.First(c => c == Environment.NewLine.First());
-                }
-                catch
-                {
-                    switch (containsR)
-                    {
-                        case true:
-                            newLineChar = s.First(c => c == '\r');
-                            break;
-                        case false:
-                            newLineChar = containsN ? s.First(c => c == '\n') :
-                                Environment.NewLine.First();
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                newLineChar = Environment.NewLine.First();
+                char c = s[i];
+
+                if (c == '\r')
+                    containsR = true;
+                else if (c == '\n')
+                    containsN = true;
+
+                if (containsR && containsN)
+                    break;
             }
 
-            return newLineChar switch
+            if (containsN)
+                return "\n";
+
+            if (containsR)
+                return "\r";
+
+            // No line endings present: fall back to the platform default.
+            return Environment.NewLine[0] switch
             {
-                '\n' => containsR ? "\r\n" : "\n",
-                '\r' => containsN ? "\r\n" : "\r",
-                _ => ""
+                '\n' => "\n",
+                '\r' => "\r",
+                _ => Environment.NewLine
             };
         }
     }

@@ -44,16 +44,9 @@ public static class IncrementedNumberRange
         {
             ArgumentNullException.ThrowIfNull(source);
 
-            TNumber expectedNumber = source[0];
-
-            for (int index = 0; index < source.Count; index++)
+            for (int index = 1; index < source.Count; index++)
             {
-                TNumber actual = source[index];
-
-                if (index > 0)
-                    expectedNumber += expectedIncrement;
-
-                if (expectedNumber != actual)
+                if (!TryAdvance(source[index - 1], expectedIncrement, source[index]))
                     return false;
             }
 
@@ -78,26 +71,65 @@ public static class IncrementedNumberRange
                 return list.IsIncrementedNumberRange(expectedIncrement);
 
             bool foundFirstNumber = false;
-
-            TNumber expectedNumber = TNumber.Zero;
+            TNumber previous = TNumber.Zero;
 
             foreach (TNumber actual in source)
             {
                 if (!foundFirstNumber)
                 {
-                    expectedNumber = actual;
+                    previous = actual;
                     foundFirstNumber = true;
                 }
                 else
                 {
-                    expectedNumber += expectedIncrement;
-                }
+                    if (!TryAdvance(previous, expectedIncrement, actual))
+                        return false;
 
-                if (expectedNumber != actual)
-                    return false;
+                    previous = actual;
+                }
             }
 
             return true;
         }
+    }
+
+    /// <summary>
+    /// Advances <paramref name="previous"/> by <paramref name="increment"/> and reports whether the
+    /// result equals <paramref name="actual"/> without ever accepting an overflowed value.
+    /// </summary>
+    /// <remarks>
+    /// Unchecked integral arithmetic that wraps across a type's bound moves the result in the
+    /// opposite direction of a non-zero increment (a positive increment yields a smaller value,
+    /// and vice versa); that direction flip is detected and reported as a mismatch instead of
+    /// comparing against the wrapped value. Arithmetic that throws on overflow (e.g. <see cref="decimal"/>)
+    /// is likewise treated as a mismatch: a sequence that would have to cross the type's bounds
+    /// cannot be a valid increment chain at that point.
+    /// </remarks>
+    private static bool TryAdvance<TNumber>(TNumber previous, TNumber increment, TNumber actual)
+        where TNumber : INumber<TNumber>
+    {
+        TNumber expected;
+
+        try
+        {
+            expected = previous + increment;
+        }
+        catch (OverflowException)
+        {
+            return false;
+        }
+
+        if (increment > TNumber.Zero)
+        {
+            if (expected < previous)
+                return false;
+        }
+        else if (increment < TNumber.Zero)
+        {
+            if (expected > previous)
+                return false;
+        }
+
+        return expected == actual;
     }
 }

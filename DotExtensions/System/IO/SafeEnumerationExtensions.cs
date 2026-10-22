@@ -30,6 +30,11 @@ namespace DotExtensions.IO;
 /// Contains extension methods for performing safe file and directory enumerations
 /// to avoid common exceptions caused by inaccessible or locked file system entries.
 /// </summary>
+/// <remarks>
+/// Hidden and system file system entries are excluded from all enumerations because
+/// <see cref="EnumerationOptions.AttributesToSkip"/> keeps its default value
+/// (<see cref="FileAttributes.Hidden"/> | <see cref="FileAttributes.System"/>).
+/// </remarks>
 public static class SafeEnumerationExtensions
 {
     extension(SearchOption directorySearchOption)
@@ -40,6 +45,11 @@ public static class SafeEnumerationExtensions
         /// </summary>
         /// <param name="matchCasing">Specifies whether file and directory names should be matched case-sensitively.</param>
         /// <returns>Returns an <see cref="EnumerationOptions"/> object configured for safe and conditional file enumeration.</returns>
+        /// <remarks>
+        /// <see cref="EnumerationOptions.AttributesToSkip"/> is left at its default value, so entries with the
+        /// <see cref="FileAttributes.Hidden"/> or <see cref="FileAttributes.System"/> attribute are skipped
+        /// (and therefore never surface through any of the safe enumeration APIs).
+        /// </remarks>
         public
             EnumerationOptions ToEnumerationOptions(bool matchCasing = false)
         {
@@ -369,11 +379,9 @@ public static class SafeEnumerationExtensions
         /// </param>
         /// <returns>
         /// An array of <see cref="DirectoryInfo"/> objects representing the directories found at the specified path based on the default search pattern "*".
-        /// If no directories are found, an empty array is returned.
+        /// If no directories are found - for example because the path does not exist or cannot be accessed -
+        /// an empty array is returned.
         /// </returns>
-        /// <exception cref="DirectoryNotFoundException">
-        /// Thrown if the specified path does not exist or cannot be accessed.
-        /// </exception>
         public static DirectoryInfo[] SafelyGetDirectories(string path, string searchPattern)
             => Directory.SafelyGetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
 

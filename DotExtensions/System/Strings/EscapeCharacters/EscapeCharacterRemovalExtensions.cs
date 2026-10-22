@@ -48,6 +48,9 @@ public static class EscapeCharacterRemovalExtensions
         /// <summary>
         /// Removes escape characters from a string.
         /// </summary>
+        /// <remarks>This method operates on the literal escape patterns defined in <see cref="CharacterConstants.EscapeCharacters"/>;
+        /// it removes those literal sequences and does not interpret or decode escape sequences. Any other characters,
+        /// including leading and trailing spaces, are preserved.</remarks>
         /// <returns>Returns the modified string if one or more escape characters were found, returns the original string otherwise.</returns>
         public string RemoveEscapeCharacters()
         {
@@ -60,7 +63,9 @@ public static class EscapeCharacterRemovalExtensions
                 strBuilder.Replace(escapeCharacter, string.Empty);
             }
 
-            return strBuilder.ToString().Trim(' ').TrimEnd(' ');
+            string result = strBuilder.ToString();
+
+            return string.Equals(result, str, StringComparison.Ordinal) ? str : result;
         }
     }
 

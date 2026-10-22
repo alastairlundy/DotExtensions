@@ -140,4 +140,23 @@ public class VersionParseTests
     {
         await Assert.ThrowsAsync<ArgumentException>(() => Task.FromResult(Version.GracefulParse("abc.def")));
     }
+
+    // Regression: >= 4 separators before the first digit used to make Take(4) discard every
+    // digit-bearing token, and the fallback then mapped the digit CHARACTER to its char code
+    // ('1' -> 49), yielding Version 49.0 instead of Version 1.0.
+    [Test]
+    public async Task GracefulParse_SeparatorsOnlyBeforeFirstDigit_ReturnsDigitValue()
+    {
+        await Assert.That(Version.GracefulParse(". . . .1")).IsEqualTo(new Version(1, 0));
+    }
+
+    // Regression: tokenization required a '.' in the sanitized input even though FindSeparator
+    // also detects ',', '-' and whitespace, so "1,2" silently collapsed to Version(1, 0).
+    [Test]
+    [Arguments("1,2")]
+    [Arguments("1-2")]
+    public async Task GracefulParse_DetectedNonDotSeparator_TokenizesOnThatSeparator(string input)
+    {
+        await Assert.That(Version.GracefulParse(input)).IsEqualTo(new Version(1, 2));
+    }
 }

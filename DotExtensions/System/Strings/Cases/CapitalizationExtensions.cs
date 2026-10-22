@@ -61,6 +61,9 @@ public static class CapitalizationExtensions
         /// </summary>
         /// <param name="indices">The indices of the chars to capitalize.</param>
         /// <returns>A string with all the chars at the specified indices capitalized.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="indices"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if any index is negative.</exception>
+        /// <exception cref="ArgumentException">Thrown if any index is greater than or equal to the length of the string.</exception>
         public string CapitalizeChars(IEnumerable<int> indices)
         {
             ArgumentNullException.ThrowIfNull(indices);
@@ -70,14 +73,11 @@ public static class CapitalizationExtensions
 
             foreach (int index in indices)
             {
-                if (index == -1)
-                    throw new ArgumentException(
-                        Resources.Exceptions_Indices_IndexOutOfRange.Replace("{0}", index.ToString("N", CultureInfo.CurrentCulture)
-                            , StringComparison.Ordinal
-                        ), nameof(indices));
+                ArgumentOutOfRangeException.ThrowIfNegative(index, nameof(indices));
 
                 if (index >= str.Length)
-                    throw new ArgumentException(Resources.Exceptions_Indices_LargerIndexThanExpected, nameof(indices));
+                    throw new ArgumentException(
+                        string.Format(CultureInfo.CurrentCulture, Resources.Exceptions_Indices_LargerIndexThanExpected, index), nameof(indices));
 
                 if (!char.IsUpper(str[index]))
                     stringBuilder[index] = char.ToUpper(str[index], CultureInfo.CurrentCulture);

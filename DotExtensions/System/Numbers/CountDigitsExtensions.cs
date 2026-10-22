@@ -37,9 +37,14 @@ public static class CountDigitsExtensions
     extension<TNumber>(TNumber number) where TNumber : INumber<TNumber>
     {
         /// <summary>
-        /// Counts the number of digits in the numerical value.
+        /// Counts the number of digits in the integer part of the absolute value of the numerical value.
         /// </summary>
-        /// <returns>The number of digits in the numerical value, returned as an integer; returns -1 if the value is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</returns>
+        /// <returns>
+        /// The number of digits in the integer part of the absolute value, returned as an integer;
+        /// values whose magnitude is less than 1 (including 0) count as 1 digit, matching the signed
+        /// integer ladders where 0 is the lower bound of the 1-digit case; returns -1 if the value is
+        /// <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/>, or <see cref="double.NegativeInfinity"/>.
+        /// </returns>
         public int CountNumberOfDigits()
         {
             // Dispatch common numeric types to specialized implementations
@@ -161,8 +166,16 @@ public static class CountDigitsExtensions
     }
 
     /// <summary>
-    /// Counts the number of digits in a double-precision floating-point value using a division loop.
+    /// Counts the digits of the integer part of the absolute value of a double-precision
+    /// floating-point value using a division loop.
     /// </summary>
+    /// <remarks>
+    /// Semantics (mirrored by the float, decimal, and generic paths): the result is the number of
+    /// digits in the integer part of |number|, so 2.0 → 1, 10.0 → 2, 10.5 → 2, and -10.5 → 2.
+    /// A magnitude below 1 (including 0.0 and -0.0) counts as 1 digit: the integer part is 0, and the
+    /// signed integer ladders above treat 0 as the lower bound of the 1-digit case, so no finite value
+    /// ever returns 0. NaN and ±∞ return -1.
+    /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsDouble(double number)
     {
@@ -183,8 +196,10 @@ public static class CountDigitsExtensions
 
         int digits = 1;
         double ten = 10.0;
+        double remaining = number;
 
-        while ((number /= ten) != 0.0)
+        // Stop once the remaining value drops below 1: only integer-part digits are counted.
+        while ((remaining /= ten) >= 1.0)
         {
             ++digits;
         }
@@ -193,44 +208,33 @@ public static class CountDigitsExtensions
     }
 
     /// <summary>
-    /// Counts the number of digits in a single-precision floating-point value using a division loop.
+    /// Counts the digits of the integer part of the absolute value of a single-precision
+    /// floating-point value.
     /// </summary>
+    /// <remarks>
+    /// The float→double conversion performed here is exact (every float is representable as a
+    /// double), so counting in double precision yields the exact integer-part digit count of the
+    /// original float. Semantics - including the &lt; 1 → 1 and NaN/±∞ → -1 rules - are documented
+    /// on <see cref="CountDigitsDouble"/>.
+    /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsSingle(float number)
-    {
-        if (float.IsNaN(number))
-        {
-            return -1;
-        }
-
-        if (number < 0.0f || (number == 0.0f && 1.0f / number < 0.0f))
-        {
-            number = -number;
-        }
-
-        if (float.IsPositiveInfinity(number))
-        {
-            return -1;
-        }
-
-        int digits = 1;
-        float ten = 10.0f;
-
-        while ((number /= ten) != 0.0f)
-        {
-            ++digits;
-        }
-
-        return digits;
-    }
+        => CountDigitsDouble(number);
 
     /// <summary>
-    /// Counts the number of digits in a decimal value using a division loop.
+    /// Counts the digits of the integer part of the absolute value of a decimal value
+    /// using a division loop.
     /// </summary>
+    /// <remarks>
+    /// <see cref="decimal"/> has no NaN or infinity representations, so this path never returns -1.
+    /// Semantics otherwise match <see cref="CountDigitsDouble"/> (decimal arithmetic is exact, so the
+    /// loop is exact).
+    /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int CountDigitsDecimal(decimal number)
     {
         decimal ten = 10m;
+        decimal one = decimal.One;
         decimal zero = decimal.Zero;
 
         if (number < zero)
@@ -239,8 +243,10 @@ public static class CountDigitsExtensions
         }
 
         int digits = 1;
+        decimal remaining = number;
 
-        while ((number /= ten) != zero)
+        // Stop once the remaining value drops below 1: only integer-part digits are counted.
+        while ((remaining /= ten) >= one)
         {
             ++digits;
         }
@@ -251,6 +257,10 @@ public static class CountDigitsExtensions
     /// <summary>
     /// Generic fallback for INumber{T} types without a specialized fast path.
     /// </summary>
+    /// <remarks>
+    /// NaN and ±∞ return -1; without this guard <c>+∞ / 10 == +∞</c> would loop forever.
+    /// Semantics otherwise match <see cref="CountDigitsDouble"/>.
+    /// </remarks>
     private static int CountDigitsGeneric<TNumber>(TNumber number) where TNumber : INumber<TNumber>
     {
         // Hoist constants out of the loop: previous implementation called
@@ -258,8 +268,9 @@ public static class CountDigitsExtensions
         // ToString() and Parse() and dominated the cost of this method.
         TNumber ten = TNumber.CreateChecked(10);
         TNumber zero = TNumber.Zero;
+        TNumber one = TNumber.One;
 
-        if (TNumber.IsNaN(number))
+        if (TNumber.IsNaN(number) || TNumber.IsInfinity(number))
         {
             return -1;
         }
@@ -272,10 +283,30 @@ public static class CountDigitsExtensions
             number = zero - number;
         }
 
-        int digits = 1;
+        // Negation of a two's-complement minimum (e.g. sbyte.MinValue) overflows back to the
+        // negative value itself. Those integral types divide toward zero, so counting while the
+        // value is still negative produces the correct magnitude before reaching zero.
+        bool stillNegative = number < zero;
 
-        while ((number /= ten) != zero)
+        // Safety cap: a pathological TNumber implementation whose division never converges must
+        // not hang the caller. Real numeric types (even types with millions of digits) stay well
+        // below this bound.
+        const int MaxIterations = 1_000_000;
+
+        int digits = 1;
+        int iterations = 0;
+
+        while (true)
         {
+            number /= ten;
+
+            bool hasMoreDigits = stillNegative ? number < zero : number >= one;
+
+            if (!hasMoreDigits || ++iterations > MaxIterations)
+            {
+                break;
+            }
+
             ++digits;
         }
 

@@ -36,7 +36,7 @@ public static class VersionComparisonExtensions
         /// Returns whether this version is newer than or equal to the current version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True, if the specified compared version is newer than or equal to this version, returns false otherwise.</returns>
+        /// <returns>True if this version is greater than or equal to the specified version; otherwise, false.</returns>
         public bool IsAtLeast(Version versionToBeCompared)
             => version >= versionToBeCompared;
 
@@ -44,7 +44,7 @@ public static class VersionComparisonExtensions
         /// Returns whether this version is older than the current Version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True, if the specified compared version is older than this version, returns false otherwise.</returns>
+        /// <returns>True if this version is older than the specified version; otherwise, false.</returns>
         public bool IsOlderThan(Version versionToBeCompared)
             => version < versionToBeCompared;
 
@@ -52,7 +52,7 @@ public static class VersionComparisonExtensions
         /// Returns whether this version is newer than the current version object.
         /// </summary>
         /// <param name="versionToBeCompared">The version to be compared.</param>
-        /// <returns>True, if the specified compared version is newer than this version, returns false otherwise.</returns>
+        /// <returns>True if this version is newer than the specified version; otherwise, false.</returns>
         public bool IsNewerThan(Version versionToBeCompared)
             => version > versionToBeCompared;
     }

@@ -60,7 +60,7 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Memory must not contain chars or strings with whitespace..
+        ///   Looks up a localized string similar to Memory must not consist entirely of whitespace..
         /// </summary>
         internal static string Exceptions_Argument_WhiteSpace_Memory {
             get {
@@ -69,7 +69,7 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Span must not contain chars or strings with whitespace..
+        ///   Looks up a localized string similar to Span must not consist entirely of whitespace..
         /// </summary>
         internal static string Exceptions_Argument_WhiteSpace_Span {
             get {
@@ -195,6 +195,15 @@ namespace DotExtensions.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No random directory could be found..
+        /// </summary>
+        internal static string Exceptions_IO_RandomDirectoryNotFound {
+            get {
+                return ResourceManager.GetString("Exceptions.IO.RandomDirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KeyValuePair not found within the collection.
         /// </summary>
         internal static string Exceptions_KeyValuePairNotFound {
@@ -227,6 +236,15 @@ namespace DotExtensions.Localizations {
         internal static string Exceptions_Permissions_Unix_InvalidSymbolicNotation {
             get {
                 return ResourceManager.GetString("Exceptions.Permissions.Unix.InvalidSymbolicNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot modify a read-only SecureString..
+        /// </summary>
+        internal static string Exceptions_Security_SecureString_ReadOnly {
+            get {
+                return ResourceManager.GetString("Exceptions.Security.SecureString.ReadOnly", resourceCulture);
             }
         }
         
