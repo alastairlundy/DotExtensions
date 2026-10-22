@@ -103,10 +103,10 @@
         <value>B</value>
     </data>
     <data name="Exceptions.Argument.WhiteSpace.Memory" xml:space="preserve">
-        <value>Memory must not contain chars or strings with whitespace.</value>
+        <value>Memory must not consist entirely of whitespace.</value>
     </data>
     <data name="Exceptions.Argument.WhiteSpace.Span" xml:space="preserve">
-        <value>Span must not contain chars or strings with whitespace.</value>
+        <value>Span must not consist entirely of whitespace.</value>
     </data>
     <data name="Exceptions.InvalidOperation.EmptyMemory" xml:space="preserve">
         <value>Memory must not be empty for this operation to be performed successfully.</value>
@@ -122,5 +122,11 @@
     </data>
     <data name="Exceptions.Spans.Copy.DestinationSmallerThanIndex" xml:space="preserve">
         <value>Destination span length is smaller than start index + length.</value>
+    </data>
+    <data name="Exceptions.Security.SecureString.ReadOnly" xml:space="preserve">
+        <value>Cannot modify a read-only SecureString.</value>
+    </data>
+    <data name="Exceptions.IO.RandomDirectoryNotFound" xml:space="preserve">
+        <value>No random directory could be found.</value>
     </data>
 </root>
