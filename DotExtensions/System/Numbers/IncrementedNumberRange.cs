@@ -47,6 +47,9 @@ public static class IncrementedNumberRange
         {
             ArgumentNullException.ThrowIfNull(source);
 
+            if (source.Count == 0)
+                return true;
+
             TNumber expectedNumber = source[0];
 
             for (int index = 0; index < source.Count; index++)
@@ -114,6 +117,11 @@ public static class IncrementedNumberRange
         /// <returns>True if each number in the list of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
         public bool IsIncrementedNumberRange(int expectedIncrement)
         {
+            ArgumentNullException.ThrowIfNull(source);
+
+            if (source.Count == 0)
+                return true;
+
             int expectedNumber = source[0];
 
             for (int index = 0; index < source.Count; index++)
@@ -141,6 +149,8 @@ public static class IncrementedNumberRange
         /// <returns>True if each number in the sequence of numbers is incremented by the expected amount from the first number onwards, false otherwise.</returns>
         public bool IsIncrementedNumberRange(int expectedIncrement)
         {
+            ArgumentNullException.ThrowIfNull(source);
+
             if (source is IList<int> list)
                 return list.IsIncrementedNumberRange(expectedIncrement);
 

@@ -53,12 +53,15 @@ public static class NumberToTNumber
         /// <summary>
         /// Converts a number of <see cref="INumber{TSourceNumber}"/> to a number of type <see cref="INumber{TDestinationNumber}"/>.
         /// </summary>
-        /// <remarks>If <see cref="INumber{TDestinationNumber}"/> type has a lower level of precision than <see cref="INumber{TSourceNumber}"/>, this conversion may be lossy.</remarks>
+        /// <remarks>
+        /// Conversions to an <see cref="INumber{TDestinationNumber}"/> type with lower precision or a smaller
+        /// range truncate toward zero (matching C# cast semantics) rather than throwing or rounding.
+        /// </remarks>
         /// <typeparam name="TDestinationNumber">The destination number type to convert the source number to.</typeparam>
         /// <returns>The source number converted to the <see cref="INumber{TDestinationNumber}"/> type.</returns>
         public TDestinationNumber ToDestinationNumber<TDestinationNumber>()
             where TDestinationNumber : INumber<TDestinationNumber>
-            => TDestinationNumber.Parse(number.ToString(), NumberFormatInfo.CurrentInfo);
+            => TDestinationNumber.CreateTruncating(number);
     }
 }
 #endif

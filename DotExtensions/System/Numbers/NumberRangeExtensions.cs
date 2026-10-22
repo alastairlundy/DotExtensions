@@ -47,9 +47,21 @@ public static class NumberRangeExtensions
         /// <summary>
         /// Creates a new instance of the Range struct based on the given Index value and length.
         /// </summary>
+        /// <remarks>
+        /// When <paramref name="start"/> is from-end (for example <c>^2</c>), the resulting range is also
+        /// anchored to the end of the sequence: the end index is <c>^0</c> minus the requested count from
+        /// the end, so <c>new Index(2, true).AsRange(2)</c> on a 10-element sequence yields <c>^2..^0</c>
+        /// covering the last two elements.
+        /// </remarks>
         /// <param name="count">The number of elements in the range.</param>
         /// <returns>A new Range instance representing the specified sequence of values.</returns>
-        public Range AsRange(int count) =>
-            new(start, new Index(start.Value + count));
+        public Range AsRange(int count)
+        {
+            Index end = start.IsFromEnd
+                ? new Index(start.Value - count, fromEnd: true)
+                : new Index(start.Value + count);
+
+            return new Range(start, end);
+        }
     }
 }
