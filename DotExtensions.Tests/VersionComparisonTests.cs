@@ -58,4 +58,56 @@ public class VersionComparisonTests
 
         await Assert.That(actual).IsTrue();
     }
+
+    [Test]
+    [Arguments("1.0.0", "2.0.0")]
+    [Arguments("0.99.0", "1.0.0")]
+    public async Task OlderVersion_IsAtLeast_NewerVersion_ShouldBeFalse(string versionInput, string comparedVersionInput)
+    {
+        Version version = Version.Parse(versionInput);
+        Version comparedVersion = Version.Parse(comparedVersionInput);
+
+        bool actual = version.IsAtLeast(comparedVersion);
+
+        await Assert.That(actual).IsFalse();
+    }
+
+    [Test]
+    [Arguments("1.0.0", "1.0.0")]
+    [Arguments("2.0.0", "1.0.0")]
+    public async Task SameOrNewerVersion_IsOlderThan_SameOrOlderVersion_ShouldBeFalse(string versionInput, string comparedVersionInput)
+    {
+        Version version = Version.Parse(versionInput);
+        Version comparedVersion = Version.Parse(comparedVersionInput);
+
+        bool actual = version.IsOlderThan(comparedVersion);
+
+        await Assert.That(actual).IsFalse();
+    }
+
+    [Test]
+    [Arguments("1.0.0", "1.0.0")]
+    [Arguments("1.0.0", "2.0.0")]
+    public async Task SameOrOlderVersion_IsNewerThan_SameOrNewerVersion_ShouldBeFalse(string versionInput, string comparedVersionInput)
+    {
+        Version version = Version.Parse(versionInput);
+        Version comparedVersion = Version.Parse(comparedVersionInput);
+
+        bool actual = version.IsNewerThan(comparedVersion);
+
+        await Assert.That(actual).IsFalse();
+    }
+
+    [Test]
+    [Arguments("2.0.0", "1.0.0")]
+    [Arguments("1.0.1", "1.0.0")]
+    public async Task NewerVersion_IsNewerThan_OlderVersion_ShouldBeTrue(string newVersionInput, string oldVersionInput)
+    {
+        Version oldVersion = Version.Parse(oldVersionInput);
+        Version newVersion = Version.Parse(newVersionInput);
+
+        bool actual = newVersion.IsNewerThan(oldVersion);
+
+        await Assert.That(actual).IsTrue();
+    }
 }
