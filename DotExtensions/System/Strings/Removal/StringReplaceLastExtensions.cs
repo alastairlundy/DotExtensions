@@ -36,18 +36,21 @@ public static class StringReplaceLastExtensions
         /// Replaces the first occurrence of a specified substring with a new value in the given string.
         /// </summary>
         /// <param name="oldValue">The substring to be replaced.</param>
-        /// <param name="newValue">The substring to replace the first occurrence of <paramref name="oldValue"/>.</param>
+        /// <param name="newValue">The substring to replace the first occurrence of <paramref name="oldValue"/>. May be empty to remove the occurrence.</param>
         /// <param name="stringComparison"></param>
         /// <returns>
         /// A new string where the first occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
         /// Returns the original string if <paramref name="oldValue"/> is not found in the input string.
         /// </returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> or <paramref name="newValue"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="oldValue"/> is null or empty.</exception>
         public string ReplaceFirst(
             string oldValue, string newValue,
             StringComparison stringComparison = StringComparison.CurrentCulture)
         {
+            ArgumentNullException.ThrowIfNull(str);
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
-            ArgumentException.ThrowIfNullOrEmpty(newValue);
+            ArgumentNullException.ThrowIfNull(newValue);
 
             int lastIndex = str.IndexOf(oldValue, stringComparison);
 
@@ -64,18 +67,21 @@ public static class StringReplaceLastExtensions
         /// Replaces the last occurrence of a specified substring with a new value in the given string.
         /// </summary>
         /// <param name="oldValue">The substring to be replaced.</param>
-        /// <param name="newValue">The substring to replace the last occurrence of <paramref name="oldValue"/>.</param>
+        /// <param name="newValue">The substring to replace the last occurrence of <paramref name="oldValue"/>. May be empty to remove the occurrence.</param>
         /// <param name="stringComparison"></param>
         /// <returns>
         /// A new string where the last occurrence of <paramref name="oldValue"/> is replaced with <paramref name="newValue"/>.
         /// Returns the original string if <paramref name="oldValue"/> is not found.
         /// </returns>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> or <paramref name="newValue"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="oldValue"/> is null or empty.</exception>
         public string ReplaceLast(
             string oldValue, string newValue,
             StringComparison stringComparison = StringComparison.CurrentCulture)
         {
+            ArgumentNullException.ThrowIfNull(str);
             ArgumentException.ThrowIfNullOrEmpty(oldValue);
-            ArgumentException.ThrowIfNullOrEmpty(newValue);
+            ArgumentNullException.ThrowIfNull(newValue);
 
             int lastIndex = str.LastIndexOf(oldValue, stringComparison);
 
