@@ -41,8 +41,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="span">The span of characters to check for emptiness or whitespace.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided span is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the span is empty or contains only whitespace characters.
+        /// Thrown when the span contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(Span<char> span)
         {
@@ -57,8 +60,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="span">The span of characters to check for emptiness or whitespace.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided span is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the span is empty or contains only whitespace characters.
+        /// Thrown when the span contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(Span<string> span)
         {
@@ -73,8 +79,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="span">The read-only span of characters to check for emptiness or whitespace.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided span is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the span is empty or contains only whitespace characters.
+        /// Thrown when the span contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(ReadOnlySpan<char> span)
         {
@@ -89,8 +98,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="span">The span of characters to validate.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided span is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the span is empty or contains only whitespace characters.
+        /// Thrown when the span contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(ReadOnlySpan<string> span)
         {
@@ -105,8 +117,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="memory">The memory of characters to check for emptiness or whitespace.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided memory is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the memory is empty or contains only whitespace characters.
+        /// Thrown when the memory contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(Memory<char> memory)
         {
@@ -140,8 +155,11 @@ public static class ArgumentExceptionExtensions
         /// is empty or contains only whitespace characters.
         /// </summary>
         /// <param name="memory">The memory to check for emptiness or whitespace.</param>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the provided memory is empty.
+        /// </exception>
         /// <exception cref="ArgumentException">
-        /// Thrown when the memory is empty or contains only whitespace characters.
+        /// Thrown when the memory contains only whitespace characters.
         /// </exception>
         public static void ThrowIfEmptyOrWhiteSpace(ReadOnlyMemory<char> memory)
         {
