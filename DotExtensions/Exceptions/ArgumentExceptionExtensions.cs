@@ -275,10 +275,10 @@ public static class ArgumentExceptionExtensions
     #region internal emptiness workers
 
     /// <summary>
-    /// Internalized span/memory emptiness workers (ledger T014): the four former public
+    /// Internalized span/memory emptiness workers: the four former public
     /// emptiness guards leave the v11 public surface and survive here as internal members,
     /// reworked from their original <see cref="InvalidOperationException"/> to the module's
-    /// <see cref="ArgumentException"/> tier (T013's rule preserved into T014, T026). The public
+    /// <see cref="ArgumentException"/> tier. The public
     /// char-family guards call them first to handle the emptiness half of their predicate; the
     /// whitespace half is stated through the BCL <c>MemoryExtensions.IsWhiteSpace</c> contract.
     /// </summary>
