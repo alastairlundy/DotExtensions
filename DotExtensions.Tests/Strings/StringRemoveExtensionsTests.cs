@@ -30,8 +30,8 @@ namespace DotExtensions.Tests.Strings;
 
 /// <summary>
 /// Comprehensive invariant tests for <see cref="StringRemoveExtensions"/>.
-/// These tests assert the documented contract per XML doc comments (D006) using
-/// TUnit <c>[Arguments]</c> parameterization (T003) with ASCII or stable
+/// These tests assert the documented contract per XML doc comments using
+/// TUnit <c>[Arguments]</c> parameterization with ASCII or stable
 /// Unicode inputs to avoid culture-sensitive flakiness.
 /// </summary>
 public class StringRemoveExtensionsTests
