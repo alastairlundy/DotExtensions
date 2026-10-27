@@ -11,7 +11,38 @@
     <RepositoryUrl>https://github.com/alastairlundy/DotExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>extensions, extension-members,extension-methods, ienumerable-extensions,</PackageTags>
-    <PackageReleaseNotes>* Updated internal Polyfill version from 11.4.3 to 11.4.5</PackageReleaseNotes>
+    <PackageReleaseNotes>
+#### 🐛 Bug Fixes
+
+**I/O**
+- Fixed file size formatting at exact 1000-multiple boundaries
+- Fixed Unix permission notation parsing and stopped counting Deny ACL entries as grants
+- Safely enumeration now includes hidden and system entries and caps recursion depth
+- Aligned Safely enumeration case-sensitivity defaults and returning an empty result for missing directories instead of throwing
+- `GetRandomDrive` now deep-walks candidate drives before declaring that none contain files
+- Guarded drive `HasFiles`/`HasDirectories` against not-ready drives
+- Fixed Linux fallbacks in `GetRandomDirectory` and `DrivesIsEmpty`
+- Fixed a stale `homeTokenIndex` when a PATH entry contains both `~` and `$HOME`
+
+**Numbers**
+- Fixed digit counting for floating point values and infinite generic numeric types
+- Fixed from-end `Index.AsRange` handling, empty incremented-range validation, and truncating behavior in `ToDestinationNumber`
+
+**Strings**
+- Fixed `StringSegment` `Remove` off-by-one errors and a `Contains` throw near the end of the segment
+- Fixed `InsertRange` argument binding and inverted `Remove`-range validation
+- `Insert`/`InsertRange` now accept an append position index equal to `Length`
+- `ReplaceFirst`/`ReplaceLast` now accept an empty replacement value and null-check the receiver
+- Escape character removal is now single-pass and no longer trims edge spaces
+
+**Threading &amp; Security**
+- Fixed `WaitAsync` timeout blocking behavior
+- Fixed `SecureString` validation and wipe bugs
+
+**Dates &amp; Versions**
+- `DateOnly` conversion and week / day-of-week calculations are now culture-safe
+- Fixed inverted XML docs on `Version` comparison predicates
+</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A collection of useful extension members and extension methods for .NET .</Description>
@@ -26,9 +57,9 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
       <PolyArgumentExceptions>true</PolyArgumentExceptions>
       <NoWarn>$(NoWarn);CS0618</NoWarn>
-      <Version>10.6.1</Version>
-      <AssemblyVersion>10.6.1</AssemblyVersion>
-      <FileVersion>10.6.1</FileVersion>
+      <Version>10.6.2</Version>
+      <AssemblyVersion>10.6.2</AssemblyVersion>
+      <FileVersion>10.6.2</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">

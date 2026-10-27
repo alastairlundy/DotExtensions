@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>10.6.1</Version>
+    <Version>10.6.2</Version>
     <Title>DotExtensions.Memory</Title>
     <Authors>Alastair Lundy</Authors>
     <Copyright>Copyright (c) Alastair Lundy 2025-2026</Copyright>
@@ -21,13 +21,15 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <IsTrimmable>true</IsTrimmable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>* Updated internal Polyfill to 11.4.5</PackageReleaseNotes>
+    <PackageReleaseNotes>#### 🐛 Bug Fixes
+- Fixed `Span.TryCopyTo` always returning true and span-aliasing bugs: `TryCopyTo` now correctly returns false when the destination is too small and leaves the destination unmodified, instead of re-pointing the destination at a slice of the source
+- `OptimisticCopy` no longer re-points the destination span at source memory; when the destination is too small it is replaced with a newly allocated span holding the copied elements</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A collection of useful extension members and extension methods for Span and Memory types in .NET.</Description>
     <PackageTags>extension-members, extensions, span, memory,</PackageTags>
     <PolyArgumentExceptions>true</PolyArgumentExceptions>
-    <AssemblyVersion>10.6.1</AssemblyVersion>
-    <FileVersion>10.6.1</FileVersion>
+    <AssemblyVersion>10.6.2</AssemblyVersion>
+    <FileVersion>10.6.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework) != 'netstandard2.0' OR $(TargetFramework) == 'netstandard2.1'">
