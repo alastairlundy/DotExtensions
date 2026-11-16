@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="11.0.0" />
     <PackageVersion Include="Microsoft.Bcl.Memory" Version="11.0.0" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.322" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.339" />
     <PackageVersion Include="Polyfill" Version="11.4.5" />
   </ItemGroup>
   <ItemGroup>
